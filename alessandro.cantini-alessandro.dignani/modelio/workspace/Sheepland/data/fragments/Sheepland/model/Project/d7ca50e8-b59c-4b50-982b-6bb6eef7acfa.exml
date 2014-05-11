@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Sheepland" version="3">
+  <DEPS>
+    <ID name="Sheepland" mc="Project" uid="d7ca50e8-b59c-4b50-982b-6bb6eef7acfa"/>
+    <COMPID name="Sheepland" mc="DiagramSet" uid="ad25f787-efd6-4ec3-b8cd-a6f1fae78393"/>
+    <COMPID name="sheepland" mc="Package" uid="b732ea39-0589-4ad3-a548-8afcd289fd04"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Sheepland" mc="Project" uid="d7ca50e8-b59c-4b50-982b-6bb6eef7acfa"/>
+    <ATTRIBUTES>
+      <ATT name="ProjectContext"></ATT>
+      <ATT name="ProjectDescr"></ATT>
+      <ATT name="Name"><![CDATA[Sheepland]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="DiagramRoot">
+        <COMPID name="Sheepland" mc="DiagramSet" uid="ad25f787-efd6-4ec3-b8cd-a6f1fae78393"/>
+      </COMP>
+      <COMP relation="Model">
+        <COMPID name="sheepland" mc="Package" uid="b732ea39-0589-4ad3-a548-8afcd289fd04"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="PecoraNera" version="3">
+  <DEPS>
+    <ID name="PecoraNera" mc="Class" uid="e341b489-b507-42ab-9076-714a1de91e5f"/>
+    <EXTID name="Pecora" mc="Class" uid="01f8ca65-6472-49c5-9d02-b61255abaac1"/>
+    <FOREIGNID name="JavaClass" mc="Stereotype" uid="01ec23a8-0000-0258-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="PecoraNera" mc="Class" uid="e341b489-b507-42ab-9076-714a1de91e5f"/>
+    <PID name="pedina" mc="Package" uid="1d3422c4-444f-4a7a-bebd-d2d26715a6c0"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[PecoraNera]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Parent">
+        <OBJECT>
+          <ID name="Generalization" mc="Generalization" uid="a2194e9b-140e-4373-abcd-6531f3eb47b8"/>
+          <PID name="PecoraNera" mc="Class" uid="e341b489-b507-42ab-9076-714a1de91e5f"/>
+          <ATTRIBUTES>
+            <ATT name="Discriminator"></ATT>
+            <ATT name="Name"><![CDATA[Generalization]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="SuperType">
+              <ID name="Pecora" mc="Class" uid="01f8ca65-6472-49c5-9d02-b61255abaac1"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <LINK relation="Extension">
+        <FOREIGNID name="JavaClass" mc="Stereotype" uid="01ec23a8-0000-0258-0000-000000000000"/>
+      </LINK>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

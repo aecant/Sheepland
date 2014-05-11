@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="sheepland" version="3">
+  <DEPS>
+    <ID name="sheepland" mc="Package" uid="b732ea39-0589-4ad3-a548-8afcd289fd04"/>
+    <COMPID name="gioco" mc="Package" uid="05434af8-622a-4abf-9e44-5cff29f7bf44"/>
+    <COMPID name="pedina" mc="Package" uid="1d3422c4-444f-4a7a-bebd-d2d26715a6c0"/>
+    <COMPID name="sheepland Class diagram" mc="ClassDiagram" uid="cfee1baf-022a-4768-ad51-472e559fda15"/>
+    <COMPID name="tabellone" mc="Package" uid="b17c79d8-72db-440f-bfa1-be4ede23c3f9"/>
+    <FOREIGNID name="JavaPackage" mc="Stereotype" uid="01ec23a8-0000-0126-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="sheepland" mc="Package" uid="b732ea39-0589-4ad3-a548-8afcd289fd04"/>
+    <PID name="Sheepland" mc="Project" uid="d7ca50e8-b59c-4b50-982b-6bb6eef7acfa"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[sheepland]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="pedina" mc="Package" uid="1d3422c4-444f-4a7a-bebd-d2d26715a6c0"/>
+        <COMPID name="tabellone" mc="Package" uid="b17c79d8-72db-440f-bfa1-be4ede23c3f9"/>
+        <COMPID name="gioco" mc="Package" uid="05434af8-622a-4abf-9e44-5cff29f7bf44"/>
+      </COMP>
+      <LINK relation="Extension">
+        <FOREIGNID name="JavaPackage" mc="Stereotype" uid="01ec23a8-0000-0126-0000-000000000000"/>
+      </LINK>
+      <COMP relation="Product">
+        <COMPID name="sheepland Class diagram" mc="ClassDiagram" uid="cfee1baf-022a-4768-ad51-472e559fda15"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
