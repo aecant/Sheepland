@@ -3,6 +3,7 @@
   <DEPS>
     <ID name="Giocatore" mc="Class" uid="ec4a6fa4-a6de-4171-93d1-aa79d6755d13"/>
     <EXTID name="Pastore" mc="Class" uid="7c2c6267-8470-49bc-9d17-00a37833d124"/>
+    <EXTID name="Tessera" mc="Class" uid="ec67347a-1e21-4235-9872-eb6bf4bf1d7e"/>
     <FOREIGNID name="JavaClass" mc="Stereotype" uid="01ec23a8-0000-0258-0000-000000000000"/>
     <FOREIGNID name="JavaCode" mc="NoteType" uid="003800a8-0000-018e-0000-000000000000"/>
     <FOREIGNID name="JavaGetter" mc="Stereotype" uid="01ec23a8-0000-012b-0000-000000000000"/>
@@ -278,13 +279,13 @@
           <DEPENDENCIES></DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="getPastore" mc="Operation" uid="a5c7f9c3-33b9-4bcd-87c4-68a59556c508"/>
+          <ID name="getPastore" mc="Operation" uid="8589c31a-90eb-4dce-a032-6bdab6926901"/>
           <PID name="Giocatore" mc="Class" uid="ec4a6fa4-a6de-4171-93d1-aa79d6755d13"/>
           <ATTRIBUTES>
             <ATT name="Concurrency">false</ATT>
             <ATT name="Final">false</ATT>
             <ATT name="Passing">MethodOut</ATT>
-            <ATT name="Visibility">PackageVisibility</ATT>
+            <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
             <ATT name="Name"><![CDATA[getPastore]]></ATT>
@@ -293,7 +294,7 @@
           <DEPENDENCIES>
             <COMP relation="Return">
               <OBJECT>
-                <ID name="" mc="Parameter" uid="473fb932-0fad-40e1-9033-ba0a19e5f470"/>
+                <ID name="" mc="Parameter" uid="aa228cc1-53b1-4024-9ab6-3fa7a4c2585a"/>
                 <PID name="Giocatore" mc="Class" uid="ec4a6fa4-a6de-4171-93d1-aa79d6755d13"/>
                 <ATTRIBUTES>
                   <ATT name="ParameterPassing">In</ATT>
@@ -321,7 +322,7 @@
             </LINK>
             <COMP relation="DependsOnDependency">
               <OBJECT>
-                <ID name="" mc="Dependency" uid="006a7714-e180-423f-88ee-2e80b85164a7"/>
+                <ID name="" mc="Dependency" uid="6c03455b-2f64-4fce-9741-b3998e09225d"/>
                 <PID name="Giocatore" mc="Class" uid="ec4a6fa4-a6de-4171-93d1-aa79d6755d13"/>
                 <ATTRIBUTES>
                   <ATT name="DependsOnId"></ATT>
@@ -344,7 +345,7 @@
             </COMP>
             <COMP relation="Descriptor">
               <OBJECT>
-                <ID name="" mc="Note" uid="41ea7699-6801-4395-82ce-afda52dd8de6"/>
+                <ID name="" mc="Note" uid="423bd613-6427-4e1c-9e57-5bf53a1e2516"/>
                 <PID name="Giocatore" mc="Class" uid="ec4a6fa4-a6de-4171-93d1-aa79d6755d13"/>
                 <ATTRIBUTES>
                   <ATT name="Content"><![CDATA[// Automatically generated method. Please delete this comment before entering specific code.]]></ATT>
@@ -358,7 +359,7 @@
                 </DEPENDENCIES>
               </OBJECT>
               <OBJECT>
-                <ID name="" mc="Note" uid="c155eb22-78ad-4374-a81f-ded9bea6d5c0"/>
+                <ID name="" mc="Note" uid="8d0f35bc-7259-47b7-9d27-960e2c5683d3"/>
                 <PID name="Giocatore" mc="Class" uid="ec4a6fa4-a6de-4171-93d1-aa79d6755d13"/>
                 <ATTRIBUTES>
                   <ATT name="Content"><![CDATA[return this.pastore;]]></ATT>
@@ -368,6 +369,88 @@
                 <DEPENDENCIES>
                   <LINK relation="Model">
                     <FOREIGNID name="JavaReturned" mc="NoteType" uid="003800a8-0000-0190-0000-000000000000"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="mettiInVendita" mc="Operation" uid="51e65399-909f-4ed8-b288-3eddbf9fa145"/>
+          <PID name="Giocatore" mc="Class" uid="ec4a6fa4-a6de-4171-93d1-aa79d6755d13"/>
+          <ATTRIBUTES>
+            <ATT name="Concurrency">false</ATT>
+            <ATT name="Final">false</ATT>
+            <ATT name="Passing">MethodOut</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[mettiInVendita]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="IO">
+              <OBJECT>
+                <ID name="tessera" mc="Parameter" uid="5cf8f65b-1124-49c1-aa85-3cb9aa24f131"/>
+                <PID name="Giocatore" mc="Class" uid="ec4a6fa4-a6de-4171-93d1-aa79d6755d13"/>
+                <ATTRIBUTES>
+                  <ATT name="ParameterPassing">In</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="TypeConstraint"></ATT>
+                  <ATT name="DefaultValue"></ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="IsException">false</ATT>
+                  <ATT name="IsStream">false</ATT>
+                  <ATT name="Effect">ReadEffect</ATT>
+                  <ATT name="Name"><![CDATA[tessera]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Type">
+                    <ID name="Tessera" mc="Class" uid="ec67347a-1e21-4235-9872-eb6bf4bf1d7e"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="compra" mc="Operation" uid="4ce5c74f-314b-49e5-995a-aaf3d0df9d8c"/>
+          <PID name="Giocatore" mc="Class" uid="ec4a6fa4-a6de-4171-93d1-aa79d6755d13"/>
+          <ATTRIBUTES>
+            <ATT name="Concurrency">false</ATT>
+            <ATT name="Final">false</ATT>
+            <ATT name="Passing">MethodOut</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[compra]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="IO">
+              <OBJECT>
+                <ID name="tessera" mc="Parameter" uid="97ace8ae-5eb0-4bd6-a5c3-c69e95c7909d"/>
+                <PID name="Giocatore" mc="Class" uid="ec4a6fa4-a6de-4171-93d1-aa79d6755d13"/>
+                <ATTRIBUTES>
+                  <ATT name="ParameterPassing">In</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="TypeConstraint"></ATT>
+                  <ATT name="DefaultValue"></ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="IsException">false</ATT>
+                  <ATT name="IsStream">false</ATT>
+                  <ATT name="Effect">ReadEffect</ATT>
+                  <ATT name="Name"><![CDATA[tessera]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Type">
+                    <ID name="Tessera" mc="Class" uid="ec67347a-1e21-4235-9872-eb6bf4bf1d7e"/>
                   </LINK>
                 </DEPENDENCIES>
               </OBJECT>
@@ -429,6 +512,70 @@
       </COMP>
       <COMP relation="OwnedEnd">
         <OBJECT>
+          <ID name="tessere" mc="AssociationEnd" uid="e9d62b54-c2af-4c54-badb-c3d527c7d5cb"/>
+          <PID name="Giocatore" mc="Class" uid="ec4a6fa4-a6de-4171-93d1-aa79d6755d13"/>
+          <ATTRIBUTES>
+            <ATT name="Aggregation">KindIsAssociation</ATT>
+            <ATT name="IsChangeable">true</ATT>
+            <ATT name="Changeable">ReadWrite</ATT>
+            <ATT name="IsDerived">false</ATT>
+            <ATT name="IsOrdered">false</ATT>
+            <ATT name="IsUnique">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[*]]></ATT>
+            <ATT name="Visibility">Private</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[tessere]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Target">
+              <ID name="Tessera" mc="Class" uid="ec67347a-1e21-4235-9872-eb6bf4bf1d7e"/>
+            </LINK>
+            <COMP relation="Opposite">
+              <OBJECT>
+                <ID name="" mc="AssociationEnd" uid="bd309507-c64a-41bb-b7f2-d39392ae0bf3"/>
+                <PID name="Giocatore" mc="Class" uid="ec4a6fa4-a6de-4171-93d1-aa79d6755d13"/>
+                <ATTRIBUTES>
+                  <ATT name="Aggregation">KindIsAssociation</ATT>
+                  <ATT name="IsChangeable">true</ATT>
+                  <ATT name="Changeable">ReadWrite</ATT>
+                  <ATT name="IsDerived">false</ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="Visibility">Private</ATT>
+                  <ATT name="IsClass">false</ATT>
+                  <ATT name="IsAbstract">false</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Opposite">
+                    <COMPID name="tessere" mc="AssociationEnd" uid="e9d62b54-c2af-4c54-badb-c3d527c7d5cb"/>
+                  </COMP>
+                  <COMP relation="Association">
+                    <OBJECT>
+                      <ID name="" mc="Association" uid="0e04c67b-948b-4583-b036-03be70202295"/>
+                      <PID name="Giocatore" mc="Class" uid="ec4a6fa4-a6de-4171-93d1-aa79d6755d13"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Association">
+              <COMPID name="" mc="Association" uid="0e04c67b-948b-4583-b036-03be70202295"/>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
           <ID name="pastore" mc="AssociationEnd" uid="2ea83a29-2ce7-4eef-a1f3-846bb3166a09"/>
           <PID name="Giocatore" mc="Class" uid="ec4a6fa4-a6de-4171-93d1-aa79d6755d13"/>
           <ATTRIBUTES>
@@ -461,7 +608,7 @@
                   <ATT name="IsDerived">false</ATT>
                   <ATT name="IsOrdered">false</ATT>
                   <ATT name="IsUnique">false</ATT>
-                  <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
                   <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
                   <ATT name="Visibility">Private</ATT>
                   <ATT name="IsClass">false</ATT>

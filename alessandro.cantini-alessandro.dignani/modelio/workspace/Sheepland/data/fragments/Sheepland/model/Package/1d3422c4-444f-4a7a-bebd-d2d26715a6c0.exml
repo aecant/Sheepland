@@ -3,14 +3,13 @@
   <DEPS>
     <ID name="pedina" mc="Package" uid="1d3422c4-444f-4a7a-bebd-d2d26715a6c0"/>
     <COMPID name="Agnello" mc="Class" uid="f2fc6522-4a4d-4974-97f0-d75e7e8ee61a"/>
-    <COMPID name="Animale" mc="Class" uid="8f2d8c81-25f3-4a28-aed8-f9653b5a4ff3"/>
     <COMPID name="Lupo" mc="Class" uid="c85e5a4c-583f-4360-8806-3f31b107cc3e"/>
     <COMPID name="Pastore" mc="Class" uid="7c2c6267-8470-49bc-9d17-00a37833d124"/>
     <COMPID name="Pecora" mc="Class" uid="01f8ca65-6472-49c5-9d02-b61255abaac1"/>
     <COMPID name="PecoraNera" mc="Class" uid="e341b489-b507-42ab-9076-714a1de91e5f"/>
-    <COMPID name="Pedina" mc="Class" uid="8932ab91-8d7e-495b-936d-e67184a80bca"/>
+    <COMPID name="PedinaSuStrada" mc="Class" uid="bdcd6b5a-ba6b-4d3a-b3f5-fea5c4b1b675"/>
+    <COMPID name="PedinaSuTerritorio" mc="Class" uid="32a97c03-a42e-40f0-8261-3de6bce8942f"/>
     <COMPID name="Recinto" mc="Class" uid="bc7593fb-14f8-4339-ab7d-a7940841df0b"/>
-    <COMPID name="RecintoFinale" mc="Class" uid="aacafb51-7131-40f4-99a9-bb0f6e08c278"/>
     <FOREIGNID name="JavaPackage" mc="Stereotype" uid="01ec23a8-0000-0126-0000-000000000000"/>
   </DEPS>
   <OBJECT>
@@ -28,14 +27,13 @@
     <DEPENDENCIES>
       <COMP relation="OwnedElement">
         <COMPID name="Pecora" mc="Class" uid="01f8ca65-6472-49c5-9d02-b61255abaac1"/>
-        <COMPID name="Pedina" mc="Class" uid="8932ab91-8d7e-495b-936d-e67184a80bca"/>
         <COMPID name="Pastore" mc="Class" uid="7c2c6267-8470-49bc-9d17-00a37833d124"/>
-        <COMPID name="Animale" mc="Class" uid="8f2d8c81-25f3-4a28-aed8-f9653b5a4ff3"/>
         <COMPID name="Lupo" mc="Class" uid="c85e5a4c-583f-4360-8806-3f31b107cc3e"/>
         <COMPID name="PecoraNera" mc="Class" uid="e341b489-b507-42ab-9076-714a1de91e5f"/>
         <COMPID name="Recinto" mc="Class" uid="bc7593fb-14f8-4339-ab7d-a7940841df0b"/>
-        <COMPID name="RecintoFinale" mc="Class" uid="aacafb51-7131-40f4-99a9-bb0f6e08c278"/>
         <COMPID name="Agnello" mc="Class" uid="f2fc6522-4a4d-4974-97f0-d75e7e8ee61a"/>
+        <COMPID name="PedinaSuTerritorio" mc="Class" uid="32a97c03-a42e-40f0-8261-3de6bce8942f"/>
+        <COMPID name="PedinaSuStrada" mc="Class" uid="bdcd6b5a-ba6b-4d3a-b3f5-fea5c4b1b675"/>
       </COMP>
       <LINK relation="Extension">
         <FOREIGNID name="JavaPackage" mc="Stereotype" uid="01ec23a8-0000-0126-0000-000000000000"/>

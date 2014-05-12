@@ -2,7 +2,8 @@
 <!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Pastore" version="3">
   <DEPS>
     <ID name="Pastore" mc="Class" uid="7c2c6267-8470-49bc-9d17-00a37833d124"/>
-    <EXTID name="Pedina" mc="Class" uid="8932ab91-8d7e-495b-936d-e67184a80bca"/>
+    <EXTID name="PedinaSuStrada" mc="Class" uid="bdcd6b5a-ba6b-4d3a-b3f5-fea5c4b1b675"/>
+    <EXTID name="Strada" mc="Class" uid="a833c3fb-b0ab-4d2a-a670-d13cbf82be42"/>
     <FOREIGNID name="JavaClass" mc="Stereotype" uid="01ec23a8-0000-0258-0000-000000000000"/>
   </DEPS>
   <OBJECT>
@@ -20,9 +21,93 @@
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
+      <COMP relation="OwnedOperation">
+        <OBJECT>
+          <ID name="muoviIn" mc="Operation" uid="6368a8bd-e535-4fc7-a863-be810b070357"/>
+          <PID name="Pastore" mc="Class" uid="7c2c6267-8470-49bc-9d17-00a37833d124"/>
+          <ATTRIBUTES>
+            <ATT name="Concurrency">false</ATT>
+            <ATT name="Final">false</ATT>
+            <ATT name="Passing">MethodOut</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[muoviIn]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="IO">
+              <OBJECT>
+                <ID name="posizione" mc="Parameter" uid="b4c2f1a7-2a25-443b-9537-c07bc0bcc526"/>
+                <PID name="Pastore" mc="Class" uid="7c2c6267-8470-49bc-9d17-00a37833d124"/>
+                <ATTRIBUTES>
+                  <ATT name="ParameterPassing">In</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="TypeConstraint"></ATT>
+                  <ATT name="DefaultValue"></ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="IsException">false</ATT>
+                  <ATT name="IsStream">false</ATT>
+                  <ATT name="Effect">ReadEffect</ATT>
+                  <ATT name="Name"><![CDATA[posizione]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Type">
+                    <ID name="Strada" mc="Class" uid="a833c3fb-b0ab-4d2a-a670-d13cbf82be42"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="scegliMovimento" mc="Operation" uid="4e00759b-f7a5-4ecc-b491-fac940ab1c7a"/>
+          <PID name="Pastore" mc="Class" uid="7c2c6267-8470-49bc-9d17-00a37833d124"/>
+          <ATTRIBUTES>
+            <ATT name="Concurrency">false</ATT>
+            <ATT name="Final">false</ATT>
+            <ATT name="Passing">MethodOut</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[scegliMovimento]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Return">
+              <OBJECT>
+                <ID name="" mc="Parameter" uid="7231351b-8987-4f69-9e2f-963dc7865d49"/>
+                <PID name="Pastore" mc="Class" uid="7c2c6267-8470-49bc-9d17-00a37833d124"/>
+                <ATTRIBUTES>
+                  <ATT name="ParameterPassing">In</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="TypeConstraint"></ATT>
+                  <ATT name="DefaultValue"></ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="IsException">false</ATT>
+                  <ATT name="IsStream">false</ATT>
+                  <ATT name="Effect">ReadEffect</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Type">
+                    <ID name="Strada" mc="Class" uid="a833c3fb-b0ab-4d2a-a670-d13cbf82be42"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
       <COMP relation="Parent">
         <OBJECT>
-          <ID name="Generalization" mc="Generalization" uid="94d301d2-d466-4e67-b469-7a88bb5527c8"/>
+          <ID name="Generalization" mc="Generalization" uid="b78ab915-a5e0-42b4-8675-0e7327d382ca"/>
           <PID name="Pastore" mc="Class" uid="7c2c6267-8470-49bc-9d17-00a37833d124"/>
           <ATTRIBUTES>
             <ATT name="Discriminator"></ATT>
@@ -31,7 +116,7 @@
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="SuperType">
-              <ID name="Pedina" mc="Class" uid="8932ab91-8d7e-495b-936d-e67184a80bca"/>
+              <ID name="PedinaSuStrada" mc="Class" uid="bdcd6b5a-ba6b-4d3a-b3f5-fea5c4b1b675"/>
             </LINK>
           </DEPENDENCIES>
         </OBJECT>

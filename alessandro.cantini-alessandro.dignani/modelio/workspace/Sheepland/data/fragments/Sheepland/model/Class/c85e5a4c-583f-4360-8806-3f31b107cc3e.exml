@@ -2,7 +2,9 @@
 <!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Lupo" version="3">
   <DEPS>
     <ID name="Lupo" mc="Class" uid="c85e5a4c-583f-4360-8806-3f31b107cc3e"/>
-    <EXTID name="Animale" mc="Class" uid="8f2d8c81-25f3-4a28-aed8-f9653b5a4ff3"/>
+    <EXTID name="Pecora" mc="Class" uid="01f8ca65-6472-49c5-9d02-b61255abaac1"/>
+    <EXTID name="PedinaSuTerritorio" mc="Class" uid="32a97c03-a42e-40f0-8261-3de6bce8942f"/>
+    <EXTID name="Territorio" mc="Class" uid="86220001-a086-47fe-87dd-54390d526387"/>
     <FOREIGNID name="JavaClass" mc="Stereotype" uid="01ec23a8-0000-0258-0000-000000000000"/>
   </DEPS>
   <OBJECT>
@@ -20,9 +22,181 @@
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
+      <COMP relation="OwnedOperation">
+        <OBJECT>
+          <ID name="mangia" mc="Operation" uid="39cb70c0-ffd5-4f05-a5b5-8281c7211e9e"/>
+          <PID name="Lupo" mc="Class" uid="c85e5a4c-583f-4360-8806-3f31b107cc3e"/>
+          <ATTRIBUTES>
+            <ATT name="Concurrency">false</ATT>
+            <ATT name="Final">false</ATT>
+            <ATT name="Passing">MethodOut</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[mangia]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="IO">
+              <OBJECT>
+                <ID name="pecora" mc="Parameter" uid="f3de3100-0827-41ee-b77e-e1f6497e776a"/>
+                <PID name="Lupo" mc="Class" uid="c85e5a4c-583f-4360-8806-3f31b107cc3e"/>
+                <ATTRIBUTES>
+                  <ATT name="ParameterPassing">In</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="TypeConstraint"></ATT>
+                  <ATT name="DefaultValue"></ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="IsException">false</ATT>
+                  <ATT name="IsStream">false</ATT>
+                  <ATT name="Effect">ReadEffect</ATT>
+                  <ATT name="Name"><![CDATA[pecora]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Type">
+                    <ID name="Pecora" mc="Class" uid="01f8ca65-6472-49c5-9d02-b61255abaac1"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="getTerritorio" mc="Operation" uid="ecd368b8-6492-47a5-b7f8-afbcddb742eb"/>
+          <PID name="Lupo" mc="Class" uid="c85e5a4c-583f-4360-8806-3f31b107cc3e"/>
+          <ATTRIBUTES>
+            <ATT name="Concurrency">false</ATT>
+            <ATT name="Final">false</ATT>
+            <ATT name="Passing">MethodOut</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[getTerritorio]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Return">
+              <OBJECT>
+                <ID name="" mc="Parameter" uid="5d3d090f-373e-49c5-a0f7-786494326558"/>
+                <PID name="Lupo" mc="Class" uid="c85e5a4c-583f-4360-8806-3f31b107cc3e"/>
+                <ATTRIBUTES>
+                  <ATT name="ParameterPassing">Out</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="TypeConstraint"></ATT>
+                  <ATT name="DefaultValue"></ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="IsException">false</ATT>
+                  <ATT name="IsStream">false</ATT>
+                  <ATT name="Effect">ReadEffect</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Type">
+                    <ID name="Territorio" mc="Class" uid="86220001-a086-47fe-87dd-54390d526387"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="setTerritorio" mc="Operation" uid="ecc806c2-9e57-4b0f-b5a5-a8fde9442b9b"/>
+          <PID name="Lupo" mc="Class" uid="c85e5a4c-583f-4360-8806-3f31b107cc3e"/>
+          <ATTRIBUTES>
+            <ATT name="Concurrency">false</ATT>
+            <ATT name="Final">false</ATT>
+            <ATT name="Passing">MethodOut</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[setTerritorio]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="IO">
+              <OBJECT>
+                <ID name="value" mc="Parameter" uid="53e6256c-ecf6-4e82-a5f6-43dc2d1e66d2"/>
+                <PID name="Lupo" mc="Class" uid="c85e5a4c-583f-4360-8806-3f31b107cc3e"/>
+                <ATTRIBUTES>
+                  <ATT name="ParameterPassing">In</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="TypeConstraint"></ATT>
+                  <ATT name="DefaultValue"></ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="IsException">false</ATT>
+                  <ATT name="IsStream">false</ATT>
+                  <ATT name="Effect">ReadEffect</ATT>
+                  <ATT name="Name"><![CDATA[value]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Type">
+                    <ID name="Territorio" mc="Class" uid="86220001-a086-47fe-87dd-54390d526387"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="scegliMovimento" mc="Operation" uid="52ab81f0-a731-4507-a256-db85ea61e9f7"/>
+          <PID name="Lupo" mc="Class" uid="c85e5a4c-583f-4360-8806-3f31b107cc3e"/>
+          <ATTRIBUTES>
+            <ATT name="Concurrency">false</ATT>
+            <ATT name="Final">false</ATT>
+            <ATT name="Passing">MethodOut</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[scegliMovimento]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Return">
+              <OBJECT>
+                <ID name="" mc="Parameter" uid="e42cbcf9-8872-4ed5-bedd-a1af3bfd2524"/>
+                <PID name="Lupo" mc="Class" uid="c85e5a4c-583f-4360-8806-3f31b107cc3e"/>
+                <ATTRIBUTES>
+                  <ATT name="ParameterPassing">In</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="TypeConstraint"></ATT>
+                  <ATT name="DefaultValue"></ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="IsException">false</ATT>
+                  <ATT name="IsStream">false</ATT>
+                  <ATT name="Effect">ReadEffect</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Type">
+                    <ID name="Territorio" mc="Class" uid="86220001-a086-47fe-87dd-54390d526387"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Redefines">
+              <REFOBJ>
+                <ID name="scegliMovimento" mc="Operation" uid="27331aed-ebaf-42dc-ba60-36c742ad0249"/>
+                <PID name="PedinaSuTerritorio" mc="Class" uid="32a97c03-a42e-40f0-8261-3de6bce8942f"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
       <COMP relation="Parent">
         <OBJECT>
-          <ID name="Generalization" mc="Generalization" uid="3d630f72-9430-4366-b276-4058bdc834fd"/>
+          <ID name="Generalization" mc="Generalization" uid="dcfe7344-c1cd-483e-85bd-64d98acc9343"/>
           <PID name="Lupo" mc="Class" uid="c85e5a4c-583f-4360-8806-3f31b107cc3e"/>
           <ATTRIBUTES>
             <ATT name="Discriminator"></ATT>
@@ -31,7 +205,7 @@
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="SuperType">
-              <ID name="Animale" mc="Class" uid="8f2d8c81-25f3-4a28-aed8-f9653b5a4ff3"/>
+              <ID name="PedinaSuTerritorio" mc="Class" uid="32a97c03-a42e-40f0-8261-3de6bce8942f"/>
             </LINK>
           </DEPENDENCIES>
         </OBJECT>

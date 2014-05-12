@@ -2,7 +2,8 @@
 <!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Pecora" version="3">
   <DEPS>
     <ID name="Pecora" mc="Class" uid="01f8ca65-6472-49c5-9d02-b61255abaac1"/>
-    <EXTID name="Animale" mc="Class" uid="8f2d8c81-25f3-4a28-aed8-f9653b5a4ff3"/>
+    <EXTID name="PedinaSuTerritorio" mc="Class" uid="32a97c03-a42e-40f0-8261-3de6bce8942f"/>
+    <EXTID name="Territorio" mc="Class" uid="86220001-a086-47fe-87dd-54390d526387"/>
     <FOREIGNID name="JavaClass" mc="Stereotype" uid="01ec23a8-0000-0258-0000-000000000000"/>
     <FOREIGNID name="JavaCode" mc="NoteType" uid="003800a8-0000-018e-0000-000000000000"/>
     <FOREIGNID name="JavaGetter" mc="Stereotype" uid="01ec23a8-0000-012b-0000-000000000000"/>
@@ -33,7 +34,7 @@
             <ATT name="Concurrency">false</ATT>
             <ATT name="Final">false</ATT>
             <ATT name="Passing">MethodOut</ATT>
-            <ATT name="Visibility">PackageVisibility</ATT>
+            <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
             <ATT name="Name"><![CDATA[isMaschio]]></ATT>
@@ -123,6 +124,53 @@
             </COMP>
           </DEPENDENCIES>
         </OBJECT>
+        <OBJECT>
+          <ID name="scegliMovimento" mc="Operation" uid="bb708c8c-f415-4537-b95e-07a3063a7149"/>
+          <PID name="Pecora" mc="Class" uid="01f8ca65-6472-49c5-9d02-b61255abaac1"/>
+          <ATTRIBUTES>
+            <ATT name="Concurrency">false</ATT>
+            <ATT name="Final">false</ATT>
+            <ATT name="Passing">MethodOut</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[scegliMovimento]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Return">
+              <OBJECT>
+                <ID name="" mc="Parameter" uid="742e11c6-6f5a-41d4-ae7b-593219bc7970"/>
+                <PID name="Pecora" mc="Class" uid="01f8ca65-6472-49c5-9d02-b61255abaac1"/>
+                <ATTRIBUTES>
+                  <ATT name="ParameterPassing">In</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="TypeConstraint"></ATT>
+                  <ATT name="DefaultValue"></ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="IsException">false</ATT>
+                  <ATT name="IsStream">false</ATT>
+                  <ATT name="Effect">ReadEffect</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Type">
+                    <ID name="Territorio" mc="Class" uid="86220001-a086-47fe-87dd-54390d526387"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Redefines">
+              <REFOBJ>
+                <ID name="scegliMovimento" mc="Operation" uid="27331aed-ebaf-42dc-ba60-36c742ad0249"/>
+                <PID name="PedinaSuTerritorio" mc="Class" uid="32a97c03-a42e-40f0-8261-3de6bce8942f"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
       </COMP>
       <COMP relation="OwnedAttribute">
         <OBJECT>
@@ -153,7 +201,7 @@
       </COMP>
       <COMP relation="Parent">
         <OBJECT>
-          <ID name="Generalization" mc="Generalization" uid="0b8880d0-7935-446a-85aa-a1c1b6971ad6"/>
+          <ID name="Generalization" mc="Generalization" uid="cac671b0-a807-46ef-a9c6-2bfff89b8a0a"/>
           <PID name="Pecora" mc="Class" uid="01f8ca65-6472-49c5-9d02-b61255abaac1"/>
           <ATTRIBUTES>
             <ATT name="Discriminator"></ATT>
@@ -162,7 +210,7 @@
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="SuperType">
-              <ID name="Animale" mc="Class" uid="8f2d8c81-25f3-4a28-aed8-f9653b5a4ff3"/>
+              <ID name="PedinaSuTerritorio" mc="Class" uid="32a97c03-a42e-40f0-8261-3de6bce8942f"/>
             </LINK>
           </DEPENDENCIES>
         </OBJECT>
