@@ -4,35 +4,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Giocatore {
-    private String nome;
+	private String nome;
+	private int denaro;
+	private Pastore pastore;
+	private ArrayList<Tessera> tessere = new ArrayList<Tessera>();
 
-    private int denaro;
+	public Giocatore(String nome) {
+		this.nome = nome;
+		this.denaro = 0;
+	}
 
-    private List<Tessera> tessere = new ArrayList<Tessera> ();
 
-    private List<Pastore> pastore = new ArrayList<Pastore> ();
+	public void aggiungiDenaro(int quantita) {
+	}
 
-    public String getNome() {
-        return this.nome;
-    }
+	public void sottraiDenaro() {
+	}
 
-    public int getDenaro() {
-        return this.denaro;
-    }
+	public void mettiInVendita(Tessera tessera) {
+	}
 
-    public void aggiungiDenaro(int quantita) {
-    }
+	public void compra(Tessera tessera) {
+	}
 
-    public void sottraiDenaro() {
-    }
+	public void prendiTessera(TipoTerritorio tipo) {
+	}
 
-    public void mettiInVendita(Tessera tessera) {
-    }
+	public String getNome() {
+		return this.nome;
+	}
 
-    public void compra(Tessera tessera) {
-    }
+	public int getDenaro() {
+		return this.denaro;
+	}
 
-    public void prendiTessera(TipoTerritorio tipo) {
-    }
 
+	public Pastore getPastore() {
+		return pastore;
+	}
+
+
+	public void setPastore(Pastore pastore) {
+		this.pastore = pastore;
+	}
 }
