@@ -6,6 +6,7 @@ public class Strada {
     private Territorio territorio2;
 
     public boolean isConfinante(Strada altra) {
+    	//TODO
 		return false;
     }
 
