@@ -8,4 +8,8 @@ public enum TipoTerritorio {
     BOSCO,
     PASCOLO,
     CAMPO;
+    
+    public String toString() {
+    	return this.name().toLowerCase();
+    }
 }

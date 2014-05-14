@@ -1,7 +1,7 @@
 package it.polimi.deib.provaFinale.alessandro.cantini_alessandro.dignani.modelTest;
 
 import static org.junit.Assert.*;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Dado;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.Dado;
 
 import org.junit.Test;
 

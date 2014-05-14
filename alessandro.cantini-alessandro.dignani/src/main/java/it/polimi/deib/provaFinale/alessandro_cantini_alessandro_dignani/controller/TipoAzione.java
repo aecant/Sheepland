@@ -1,4 +1,4 @@
-package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model;
+package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller;
 
 public enum TipoAzione {
     MUOVI_PASTORE,

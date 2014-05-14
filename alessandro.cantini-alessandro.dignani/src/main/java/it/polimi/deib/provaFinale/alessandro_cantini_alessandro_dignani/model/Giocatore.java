@@ -1,7 +1,6 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Giocatore {
 	private String nome;
@@ -14,20 +13,12 @@ public class Giocatore {
 		this.denaro = 0;
 	}
 
-
 	public void aggiungiDenaro(int quantita) {
+		denaro += quantita;
 	}
 
-	public void sottraiDenaro() {
-	}
-
-	public void mettiInVendita(Tessera tessera) {
-	}
-
-	public void compra(Tessera tessera) {
-	}
-
-	public void prendiTessera(TipoTerritorio tipo) {
+	public void aggiungiTessera(Tessera tessera) {
+		tessere.add(tessera);
 	}
 
 	public String getNome() {
@@ -38,13 +29,24 @@ public class Giocatore {
 		return this.denaro;
 	}
 
-
 	public Pastore getPastore() {
 		return pastore;
 	}
 
-
 	public void setPastore(Pastore pastore) {
 		this.pastore = pastore;
 	}
+
+	public class DenaroInsufficienteException extends IllegalArgumentException {
+		private static final long serialVersionUID = 1L;
+
+		public DenaroInsufficienteException() {
+			super();
+		}
+
+		public DenaroInsufficienteException(String s) {
+			super(s);
+		}
+	}
+
 }
