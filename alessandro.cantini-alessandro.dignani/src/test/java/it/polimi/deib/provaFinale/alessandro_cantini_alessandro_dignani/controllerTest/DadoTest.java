@@ -15,5 +15,4 @@ public class DadoTest {
 			assertTrue(lancio >= 1 && lancio <= 6);
 		}
 	}
-
 }

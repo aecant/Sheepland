@@ -2,15 +2,15 @@ package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model;
 
 public class Costanti {
 	public static final int ETA_MASSIMA_AGNELLO = 2;
-	
+
 	public static final int MAX_VALORE_TESSERA = 4;
-	
+
 	public static final int DENARO_INIZIALE = 20;
 	public static final int DENARO_INIZIALE_DUE_GIOCATORI = 40;
 
 	public static final int NUM_RECINTI = 20;
 	public static final int NUM_RECINTI_FINALI = 12;
-	
+
 	public static final int[][] MAPPA = {
 		{1,4,7,10,13,16},
 		{0,18,2,4,16,17},
@@ -32,6 +32,4 @@ public class Costanti {
 		{17,15,18,16,17,1},
 		{2,1,17,18,18,18}
 		};
-	
-	
 }
