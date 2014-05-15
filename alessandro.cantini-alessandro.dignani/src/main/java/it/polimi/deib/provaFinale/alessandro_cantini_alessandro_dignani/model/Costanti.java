@@ -10,7 +10,7 @@ public class Costanti {
 
 	public static final int NUM_RECINTI = 20;
 	public static final int NUM_RECINTI_FINALI = 12;
-
+	
 	public static final int[][] MAPPA = {
 		{1,4,7,10,13,16},
 		{0,18,2,4,16,17},
@@ -32,4 +32,8 @@ public class Costanti {
 		{17,15,18,16,17,1},
 		{2,1,17,18,18,18}
 		};
+	
+	public static final int NUM_TERRITORI = MAPPA.length;
+
+	
 }

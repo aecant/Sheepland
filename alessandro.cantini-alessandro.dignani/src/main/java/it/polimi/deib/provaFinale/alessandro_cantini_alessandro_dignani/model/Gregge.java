@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Gregge {
 	private static Gregge istanza = null;
-	ArrayList<Pecora> pecore;
+	private ArrayList<Pecora> pecore;
 
 	public ArrayList<Pecora> getPecore() {
 		return pecore;
