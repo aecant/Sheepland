@@ -10,8 +10,10 @@ public class Agnello extends Pecora {
 
 	public void invecchia() {
 		eta++;
-		if (eta > Costanti.ETA_MASSIMA_AGNELLO)
-			Partita.trasformaAgnelloInPecora(this);
+	}
+
+	public int getEta() {
+		return eta;
 	}
 
 }

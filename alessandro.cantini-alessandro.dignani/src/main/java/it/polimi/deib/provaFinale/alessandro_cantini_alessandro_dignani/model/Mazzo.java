@@ -32,6 +32,10 @@ public class Mazzo {
 	public Tessera prelevaCarta(TipoTerritorio tipo) throws MazzoFinitoException {
 		return mazzo.get(tipo).pop();
 	}
+	
+	public void reset() {
+		istanza = new Mazzo();
+	}
 
 	public class MazzoFinitoException extends IllegalArgumentException {
 		private static final long serialVersionUID = 1L;
