@@ -1,4 +1,4 @@
-package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controllerTest;
+package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller;
 
 import static org.junit.Assert.*;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.Dado;

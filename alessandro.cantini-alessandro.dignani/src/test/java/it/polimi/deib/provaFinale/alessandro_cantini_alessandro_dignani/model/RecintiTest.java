@@ -1,4 +1,4 @@
-package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.modelTest;
+package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model;
 
 import static org.junit.Assert.*;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Costanti;
