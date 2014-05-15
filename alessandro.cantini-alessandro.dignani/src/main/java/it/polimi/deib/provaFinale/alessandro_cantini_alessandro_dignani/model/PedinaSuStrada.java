@@ -7,5 +7,9 @@ public class PedinaSuStrada {
         // Automatically generated method. Please delete this comment before entering specific code.
         return this.strada;
     }
+    
+    public void setStrada(Strada strada) {
+    	this.strada = strada;
+    }
 
 }

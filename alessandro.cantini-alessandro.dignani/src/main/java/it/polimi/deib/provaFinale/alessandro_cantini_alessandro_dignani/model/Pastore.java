@@ -4,23 +4,21 @@ public class Pastore extends PedinaSuStrada {
     private Colore colore;
 
     public void muoviIn(Strada posizione) {
-    }
-
-    public Strada scegliMovimento() {
+    	super.setStrada(posizione);
     }
 
     public Colore getColore() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.colore;
     }
 
     public void setColore(Colore value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
         this.colore = value;
     }
 
-    public enum Colore {
-        ;
+    private enum Colore {
+        ROSSO,
+        BLU,
+        VERDE,
+        GIALLO;
     }
-
 }
