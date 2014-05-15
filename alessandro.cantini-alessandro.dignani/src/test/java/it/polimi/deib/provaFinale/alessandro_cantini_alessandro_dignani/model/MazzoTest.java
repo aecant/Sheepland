@@ -21,8 +21,9 @@ public class MazzoTest {
 		assertEquals(mazzo1, mazzo2);
 	}
 
-	/*@Test
+	@Test (expected=IllegalArgumentException.class)
 	public void testPrelevaCarta() {
-	}*/
-
+		for(int i=0; i<Costanti.MAX_VALORE_TESSERA+2; i++)
+			Mazzo.getMazzo().prelevaCarta(TipoTerritorio.BOSCO);
+	}
 }

@@ -1,5 +1,6 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model;
 
+import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -30,7 +31,12 @@ public class Mazzo {
 	}
 
 	public Tessera prelevaCarta(TipoTerritorio tipo) throws MazzoFinitoException {
-		return mazzo.get(tipo).pop();
+		try {
+			return mazzo.get(tipo).pop();
+		}
+		catch (EmptyStackException e) {
+			throw new MazzoFinitoException();
+		}
 	}
 	
 	public void reset() {
