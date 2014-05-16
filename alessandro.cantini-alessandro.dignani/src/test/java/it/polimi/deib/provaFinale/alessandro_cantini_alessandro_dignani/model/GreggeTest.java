@@ -9,7 +9,7 @@ public class GreggeTest {
 
 	@Before
 	public void setUp() {
-		Pecora pecora = new Pecora(null, false)
+		Pecora pecora = new Pecora(null, false);
 		Gregge.getGregge().inserisci(pecora);
 	}
 	

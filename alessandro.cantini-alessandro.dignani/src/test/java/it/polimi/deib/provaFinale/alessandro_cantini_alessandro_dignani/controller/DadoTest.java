@@ -6,7 +6,7 @@ import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controll
 import org.junit.Test;
 
 public class DadoTest {
-	private final int NUMERO_LANCI = 10;
+	private final int NUMERO_LANCI = 1000;
 	
 	@Test
 	public void testDado() {
