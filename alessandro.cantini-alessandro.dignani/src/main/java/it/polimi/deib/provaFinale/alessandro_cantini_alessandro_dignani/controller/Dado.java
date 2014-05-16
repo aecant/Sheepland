@@ -8,5 +8,4 @@ public class Dado {
 		Random r = new Random();
 		return 1 + r.nextInt(5);
     }
-
 }
