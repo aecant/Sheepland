@@ -3,21 +3,10 @@ package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model;
 import java.util.ArrayList;
 
 public class Gregge {
-	private static Gregge istanza = null;
 	private ArrayList<Pecora> pecore;
 
-	public ArrayList<Pecora> getPecore() {
-		return pecore;
-	}
-
-	private Gregge() {
+	public Gregge() {
 		pecore = new ArrayList<Pecora>();
-	}
-
-	public static Gregge getGregge() {
-		if (istanza == null)
-			istanza = new Gregge();
-		return istanza;
 	}
 
 	public void inserisci(Pecora pec) {
@@ -35,5 +24,9 @@ public class Gregge {
 	 */
 	public void trasformaAgnelloInPecora(Agnello agnello) {
 		pecore.set(pecore.indexOf(agnello), (Pecora) agnello);
+	}
+	
+	public ArrayList<Pecora> getPecore() {
+		return pecore;
 	}
 }

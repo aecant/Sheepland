@@ -6,11 +6,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class GreggeTest {
-
+	Gregge g;
+	
 	@Before
 	public void setUp() {
 		Pecora pecora = new Pecora(null, false);
-		Gregge.getGregge().inserisci(pecora);
+		g.inserisci(pecora);
 	}
 	
 	@Test

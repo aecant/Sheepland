@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Stack;
 
 public class Mazzo {
-	private static Mazzo istanza = null;
 	private HashMap<TipoTerritorio, Stack<Tessera>> mazzo;
 
 	// TODO migliorare chiarezza
@@ -13,7 +12,7 @@ public class Mazzo {
 	 * Crea uno stack di carte per ogni tipo contenuto in TipoTerritorio,
 	 * eccetto Sheepsburg, con il valore più basso in cima alla pila
 	 */
-	private Mazzo() {
+	public Mazzo() {
 		mazzo = new HashMap<TipoTerritorio, Stack<Tessera>>();
 		for (TipoTerritorio t : TipoTerritorio.values())
 			if (t != TipoTerritorio.SHEEPSBURG) {
@@ -24,11 +23,6 @@ public class Mazzo {
 			}
 	}
 
-	public static Mazzo getMazzo() {
-		if (istanza == null)
-			istanza = new Mazzo();
-		return istanza;
-	}
 
 	public Tessera prelevaCarta(TipoTerritorio tipo) throws MazzoFinitoException {
 		try {
@@ -39,10 +33,7 @@ public class Mazzo {
 		}
 	}
 	
-	public void reset() {
-		istanza = new Mazzo();
-	}
-
+	
 	public class MazzoFinitoException extends IllegalArgumentException {
 		private static final long serialVersionUID = 1L;
 
@@ -64,7 +55,4 @@ public class Mazzo {
 		return s;
 	}
 
-	public static void main(String[] args) {
-		System.out.println("" + getMazzo());
-	}
 }
