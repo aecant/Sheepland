@@ -66,7 +66,6 @@ public class Costanti {
 	};
 	
 	
-	
 	public static final int NUM_TERRITORI = MAPPA.length;
 
 	

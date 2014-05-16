@@ -13,7 +13,7 @@ public class Territorio {
 
 	@Override
 	public String toString() {
-		return "Codice: " + codice + " (" + tipo + ")";
+		return "Territorio: " + codice + " (" + tipo + ")";
 	}
 
 	@Override

@@ -52,7 +52,7 @@ public class Mappa {
 
 	/** 
 	 * Controlla se due territori sono confinanti, controllando se ci il codice di t2 e'
-	 * contenuto nella riga di t1 della matrice di transizione @Costanti.MAPPA
+	 * contenuto nella riga di t1 della matrice di transizione Costanti.MAPPA
 	 * @param t1
 	 * @param t2
 	 * @return true se i territori sono confinanti, false altrimenti
