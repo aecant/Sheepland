@@ -6,11 +6,16 @@ public class Costanti {
 	public static final int MAX_VALORE_TESSERA = 4;
 
 	public static final int DENARO_INIZIALE = 20;
-	public static final int DENARO_INIZIALE_DUE_GIOCATORI = 40;
+	public static final int DENARO_INIZIALE_DUE_GIOCATORI = 30;
 
 	public static final int NUM_RECINTI = 20;
 	public static final int NUM_RECINTI_FINALI = 12;
 	
+	/**
+	 * matrice di transizione fra un territorio e un altro confinante
+	 * l'indice delle righe corrisponde al codice del territorio
+	 * l'indice delle colonne rappresenta il valore del dado
+	 */
 	public static final int[][] MAPPA = {
 		{1,4,7,10,13,16},
 		{0,18,2,4,16,17},
@@ -32,6 +37,35 @@ public class Costanti {
 		{17,15,18,16,17,1},
 		{2,1,17,18,18,18}
 		};
+	
+	/**
+	 * array che fornisce la corrispondenza tra il codice di un territorio e il suo tipo,
+	 * l'indice dell'array corrisponde al codice del territorio
+	 * dipende dall'implementazione di Mappa
+	 */
+	public static final TipoTerritorio[] TERRITORIO_CODICE = {
+		TipoTerritorio.SHEEPSBURG,
+		TipoTerritorio.MONTAGNA,
+		TipoTerritorio.MONTAGNA,
+		TipoTerritorio.MONTAGNA,
+		TipoTerritorio.DESERTO,
+		TipoTerritorio.DESERTO,
+		TipoTerritorio.DESERTO,
+		TipoTerritorio.LAGO,
+		TipoTerritorio.LAGO,
+		TipoTerritorio.LAGO,
+		TipoTerritorio.BOSCO,
+		TipoTerritorio.BOSCO,
+		TipoTerritorio.BOSCO,
+		TipoTerritorio.PASCOLO,
+		TipoTerritorio.PASCOLO,
+		TipoTerritorio.PASCOLO,
+		TipoTerritorio.CAMPO,
+		TipoTerritorio.CAMPO,
+		TipoTerritorio.CAMPO,
+	};
+	
+	
 	
 	public static final int NUM_TERRITORI = MAPPA.length;
 
