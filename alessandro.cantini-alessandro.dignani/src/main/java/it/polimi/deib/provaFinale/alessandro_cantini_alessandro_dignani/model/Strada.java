@@ -40,4 +40,12 @@ public class Strada {
 		return false;
 	}
 
+	@Override
+	public String toString() {
+		return "Strada fra [" + territorio1.getCodice() + "] e ["
+				+ territorio2.getCodice() + "]";
+	}
+	
+	
+
 }
