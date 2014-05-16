@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 public class Utilita {
-	public static <E> boolean contieneDuplicati(List<E> array) {
-		List<E> list = array;
+	public static <E> boolean contieneDuplicati(List<E> lista) {
+		List<E> list = lista;
 		Set<E> set = new HashSet<E>(list);
 
 		if(set.size() < list.size()){
@@ -16,7 +16,18 @@ public class Utilita {
 		return false;
 	}
 	
-	public static boolean contieneDuplicati(Object[] array) {
+	public static <E> boolean contieneDuplicati(E[] array) {
 		return contieneDuplicati(Arrays.asList(array));
+	}
+	
+	public static <E> boolean contiene(List<E> lista, E element) {
+		for (E i : lista)
+			if(i == element)
+				return true;
+		return false;
+	}
+	
+	public static <E> boolean contiene(E[] array, E element) {
+		return contiene(Arrays.asList(array), element);
 	}
 }

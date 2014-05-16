@@ -27,11 +27,23 @@ public class UtilitaTest {
 
 	
 	@Test
-	public void test() {
+	public void testContieneDuplicati() {
 		assertFalse(Utilita.contieneDuplicati(a1));
-		assertTrue(Utilita.contieneDuplicati(a2));
 		assertFalse(Utilita.contieneDuplicati(al1));
+		
+		assertTrue(Utilita.contieneDuplicati(a2));
 		assertTrue(Utilita.contieneDuplicati(al2));
+
+	}
+	
+	@Test
+	public void testContiene() {
+		assertTrue(Utilita.contiene(a1, 1));
+		assertTrue(Utilita.contiene(al1, 1));
+		
+		assertFalse(Utilita.contiene(a1, 4));
+		assertFalse(Utilita.contiene(a2, 4));
+
 	}
 
 }

@@ -16,7 +16,7 @@ public class Costanti {
 	 * l'indice delle righe corrisponde al codice del territorio
 	 * l'indice delle colonne rappresenta il valore del dado
 	 */
-	public static final int[][] MAPPA = {
+	public static final Integer[][] MAPPA = {
 		{1,4,7,10,13,16},
 		{0,18,2,4,16,17},
 		{18,3,1,2,4,2},

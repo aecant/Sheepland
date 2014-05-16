@@ -1,8 +1,8 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model;
 
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.Utilita;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * Singleton
@@ -57,8 +57,8 @@ public class Mappa {
 	 * @param t2
 	 * @return true se i territori sono confinanti, false altrimenti
 	 */
-	private boolean sonoConfinanti(Territorio t1, Territorio t2) {
-		return Arrays.asList(Costanti.MAPPA[t1.getCodice()]).contains(t2.getCodice());
+	public boolean sonoConfinanti(Territorio t1, Territorio t2) {
+		return Utilita.contiene(Costanti.MAPPA[t1.getCodice()], t2.getCodice());
 	}
 
 	public static Mappa getMappa() {
