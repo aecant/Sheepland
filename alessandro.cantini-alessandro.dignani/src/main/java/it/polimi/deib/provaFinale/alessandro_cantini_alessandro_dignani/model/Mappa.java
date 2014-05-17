@@ -67,6 +67,13 @@ public class Mappa {
 		return Utilita.contiene(Costanti.MAPPA[t1.getCodice()], t2.getCodice());
 	}
 	
+	/**
+	 * Date due strade, controlla se sono contigue
+	 * 
+	 * @param s1
+	 * @param s2
+	 * @return
+	 */
 	public boolean sonoContigue(Strada s1, Strada s2) {
 		Territorio t1, t2;
 		Territorio terrInComune = territorioInComune(s1,s2);

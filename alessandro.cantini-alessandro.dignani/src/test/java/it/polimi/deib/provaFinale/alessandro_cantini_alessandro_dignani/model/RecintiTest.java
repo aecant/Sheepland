@@ -10,10 +10,7 @@ public class RecintiTest {
 
 	@Before
 	public void setUp() {
-		//TODO da fare quando avremo implementato aggiungi in recinti
-		for(int i=0; i < Costanti.NUM_RECINTI+4; i++){
-			Recinti.getRecinti().aggiungi(null);
-		}
+		//TODO aggiungo un tot di recinti e verifico che li abbia aggiunti correttamente fra iniziali e finali
 	}
 	
 	@Test
