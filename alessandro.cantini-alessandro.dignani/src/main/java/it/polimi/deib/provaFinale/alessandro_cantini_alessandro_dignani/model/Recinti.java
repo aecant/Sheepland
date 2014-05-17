@@ -10,13 +10,20 @@ public class Recinti {
 		recintiIniziali = new ArrayList<PedinaSuStrada>();
 		recintiFinali = new ArrayList<PedinaSuStrada>();
 	}
-
+	
 	public void aggiungi(Strada strada) {
-		//TODO controllo che non sia immesso in una strada già occupata
 		if (recintiIniziali.size() > Costanti.NUM_RECINTI)
 			recintiIniziali.add(new PedinaSuStrada(strada));
 		else
 			recintiFinali.add(new PedinaSuStrada(strada));
+	}
+	
+	public ArrayList<PedinaSuStrada> getRecinti() {
+		ArrayList<PedinaSuStrada> recinti = new ArrayList<PedinaSuStrada>();
+		recinti.addAll(recintiIniziali);
+		recinti.addAll(recintiFinali);
+		
+		return recinti;
 	}
 	
 }

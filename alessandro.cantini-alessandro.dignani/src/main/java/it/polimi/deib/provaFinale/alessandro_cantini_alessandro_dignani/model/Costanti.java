@@ -11,6 +11,8 @@ public class Costanti {
 	public static final int NUM_RECINTI = 20;
 	public static final int NUM_RECINTI_FINALI = 12;
 	
+	public static final int NUM_PASTORI_DUE_GIOCATORI = 2;
+	
 	/**
 	 * matrice di transizione fra un territorio e un altro confinante
 	 * l'indice delle righe corrisponde al codice del territorio
@@ -68,5 +70,8 @@ public class Costanti {
 	
 	public static final int NUM_TERRITORI = MAPPA.length;
 
+	public static final Territorio POS_INIZIALE_LUPO = Mappa.getMappa().getTerritori()[0];
+	public static final Territorio POS_INIZIALE_PECORA_NERA = Mappa.getMappa().getTerritori()[0];
+	
 	
 }

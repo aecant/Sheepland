@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Animale {
 	private Territorio posizione;
@@ -15,13 +15,14 @@ public class Animale {
 
 	
 	/**
-	 * Data una strada ed una lista di pedine su strada controlla se la strada è occupata da una di quelle pedine
+	 * Data una lista di animali e un territorio, controlla se c'è un animale all'interno
+	 * della lista che occupa quel territorio
 	 * 
 	 * @param lista
 	 * @param territorio
 	 * @return
 	 */
-	public static boolean territorioOccupato(List<Animale> lista, Territorio territorio) {
+	public static boolean territorioOccupato(ArrayList<Animale> lista, Territorio territorio) {
 		for(Animale a : lista)
 			if(a.getPosizione().equals(territorio))
 				return true;

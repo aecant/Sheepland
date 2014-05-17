@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class PedinaSuStrada {
 	private Strada strada;
@@ -16,7 +16,7 @@ public class PedinaSuStrada {
 	 * @param strada
 	 * @return
 	 */
-	public static boolean stradaOccupata(List<PedinaSuStrada> lista, Strada strada) {
+	public static boolean stradaOccupata(ArrayList<PedinaSuStrada> lista, Strada strada) {
 		for(PedinaSuStrada p : lista)
 			if(p.getStrada().equals(strada))
 				return true;

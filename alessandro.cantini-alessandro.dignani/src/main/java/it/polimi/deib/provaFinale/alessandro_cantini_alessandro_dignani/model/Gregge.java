@@ -4,17 +4,20 @@ import java.util.ArrayList;
 
 public class Gregge {
 	private ArrayList<Pecora> pecore;
+	private Animale pecoraNera;
+
 
 	public Gregge() {
 		pecore = new ArrayList<Pecora>();
+		pecoraNera = new Animale(Costanti.POS_INIZIALE_PECORA_NERA);
 	}
 
-	public void inserisci(Pecora pec) {
-		pecore.add(pec);
+	public void inserisci(Pecora p) {
+		pecore.add(p);
 	}
 
-	public void elimina(Pecora pec) {
-		pecore.remove(pec);
+	public void elimina(Pecora p) {
+		pecore.remove(p);
 	}
 
 	/**
@@ -26,6 +29,10 @@ public class Gregge {
 		pecore.set(pecore.indexOf(agnello), (Pecora) agnello);
 	}
 	
+	public Animale getPecoraNera() {
+		return pecoraNera;
+	}
+
 	public ArrayList<Pecora> getPecore() {
 		return pecore;
 	}

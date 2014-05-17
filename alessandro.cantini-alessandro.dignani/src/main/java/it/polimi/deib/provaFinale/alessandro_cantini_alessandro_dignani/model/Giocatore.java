@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Giocatore {
 	private String nome;
 	private int denaro;
-	private Pastore pastore;
+	private ArrayList<Pastore> pastori;
 	private ArrayList<Tessera> tessere = new ArrayList<Tessera>();
 
 	public Giocatore(String nome) {
@@ -29,13 +29,17 @@ public class Giocatore {
 		return this.denaro;
 	}
 
-	public Pastore getPastore() {
-		return pastore;
+	
+	public ArrayList<Pastore> getPastori() {
+		return pastori;
 	}
 
-	public void setPastore(Pastore pastore) {
-		this.pastore = pastore;
+	public void aggiungiPastore(Pastore p) throws RuntimeException{
+		if(pastori.size() >= Costanti.NUM_PASTORI_DUE_GIOCATORI)
+			throw new RuntimeException("Il numero di pastori non puo' essere maggiore di "+Costanti.NUM_PASTORI_DUE_GIOCATORI);
+		pastori.add(p);
 	}
+	
 
 	public class DenaroInsufficienteException extends IllegalArgumentException {
 		private static final long serialVersionUID = 1L;
