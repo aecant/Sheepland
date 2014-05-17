@@ -30,5 +30,4 @@ public class PedinaSuStrada {
 	public void setStrada(Strada strada) {
 		this.strada = strada;
 	}
-
 }
