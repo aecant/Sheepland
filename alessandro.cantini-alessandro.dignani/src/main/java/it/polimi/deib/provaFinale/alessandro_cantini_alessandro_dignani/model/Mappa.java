@@ -57,7 +57,9 @@ public class Mappa {
 	 * @param t2
 	 * @return true se i territori sono confinanti, false altrimenti
 	 */
-	public boolean sonoConfinanti(Territorio t1, Territorio t2) {
+	public boolean sonoConfinanti(Territorio t1, Territorio t2) throws IllegalArgumentException{
+		if (t1.equals(t2))
+			throw new IllegalArgumentException("I territori devono essere diversi");
 		return Utilita.contiene(Costanti.MAPPA[t1.getCodice()], t2.getCodice());
 	}
 
