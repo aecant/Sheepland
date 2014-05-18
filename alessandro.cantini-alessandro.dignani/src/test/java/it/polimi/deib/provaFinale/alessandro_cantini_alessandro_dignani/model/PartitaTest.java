@@ -30,9 +30,9 @@ public class PartitaTest {
 
 	@Test
 	public void testStradaLibera() {
+		assertTrue(partita.stradaLibera(s3));
 		assertFalse(partita.stradaLibera(s1));
 		assertFalse(partita.stradaLibera(s2));
-		assertTrue(partita.stradaLibera(s3));
 	}
 
 }
