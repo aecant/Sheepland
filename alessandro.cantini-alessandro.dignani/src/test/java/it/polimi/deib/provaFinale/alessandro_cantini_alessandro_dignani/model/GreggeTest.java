@@ -32,14 +32,6 @@ public class GreggeTest {
 		assertTrue(gregge2.getPecore().contains(pecora));
 	}
 	
-	/**
-	 * Testo che il gregge non sia modificabile all'esterno
-	 */
-	@Test
-	public void testGetPecore() {
-		gregge2.getPecore().remove(pecora);
-		assertTrue(gregge2.getPecore().contains(pecora));
-	}
 	
 	@Test
 	public void testTrasformaAgnelloInPecora() {

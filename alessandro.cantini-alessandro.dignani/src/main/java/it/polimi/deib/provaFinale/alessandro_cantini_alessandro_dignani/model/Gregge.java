@@ -1,5 +1,7 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model;
 
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.Utilita;
+
 import java.util.ArrayList;
 
 public class Gregge {
@@ -62,8 +64,6 @@ public class Gregge {
 	 * @return ArrayList di pecore clonato
 	 */
 	public ArrayList<Pecora> getPecore() {
-		ArrayList<Pecora> temp = new ArrayList<Pecora>();
-		temp.addAll(pecore);
-		return temp;
+		return Utilita.copia(pecore);
 	}
 }
