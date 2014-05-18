@@ -21,6 +21,21 @@ public class Giocatore {
 		tessere.add(tessera);
 	}
 
+	public void aggiungiPastore(Pastore p) throws RuntimeException{
+		if(pastori.size() >= Costanti.NUM_PASTORI_DUE_GIOCATORI)
+			throw new RuntimeException("Il numero di pastori non puo' essere maggiore di "+Costanti.NUM_PASTORI_DUE_GIOCATORI);
+		pastori.add(p);
+	}
+	
+
+	public ArrayList<Tessera> getTessere() {
+		return tessere;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 	public String getNome() {
 		return this.nome;
 	}
@@ -29,17 +44,10 @@ public class Giocatore {
 		return this.denaro;
 	}
 
-	
 	public ArrayList<Pastore> getPastori() {
 		return pastori;
 	}
 
-	public void aggiungiPastore(Pastore p) throws RuntimeException{
-		if(pastori.size() >= Costanti.NUM_PASTORI_DUE_GIOCATORI)
-			throw new RuntimeException("Il numero di pastori non puo' essere maggiore di "+Costanti.NUM_PASTORI_DUE_GIOCATORI);
-		pastori.add(p);
-	}
-	
 
 	public class DenaroInsufficienteException extends IllegalArgumentException {
 		private static final long serialVersionUID = 1L;
