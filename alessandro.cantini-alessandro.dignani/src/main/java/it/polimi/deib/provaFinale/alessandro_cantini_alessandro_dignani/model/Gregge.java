@@ -12,12 +12,19 @@ public class Gregge {
 		pecoraNera = new Animale(Costanti.POS_INIZIALE_PECORA_NERA);
 	}
 
-	public void inserisci(Pecora p) {
+	public void aggiungi(Pecora p) {
 		pecore.add(p);
 	}
 
-	public void elimina(Pecora p) {
-		pecore.remove(p);
+	/**
+	 * Rimuove dal gregge la pecora passata come parametro
+	 * 
+	 * @param p
+	 * @throws IllegalArgumentException se la pecora non e' presente
+	 */
+	public void rimuovi(Pecora p) throws IllegalArgumentException{
+		if(!pecore.remove(p))
+			throw new IllegalArgumentException("La pecora non e' presente nel gregge");
 	}
 
 	/**
@@ -33,7 +40,13 @@ public class Gregge {
 		return pecoraNera;
 	}
 
+	/**
+	 * Restituisce una copia del gregge in modo da non poter essere modificata all'esterno
+	 * @return ArrayList di pecore clonato
+	 */
 	public ArrayList<Pecora> getPecore() {
-		return pecore;
+		ArrayList<Pecora> temp = new ArrayList<Pecora>();
+		temp.addAll(pecore);
+		return temp;
 	}
 }
