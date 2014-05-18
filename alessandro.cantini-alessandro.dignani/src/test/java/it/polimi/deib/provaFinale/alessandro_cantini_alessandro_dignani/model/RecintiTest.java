@@ -2,13 +2,13 @@ package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model;
 
 import static org.junit.Assert.*;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Costanti;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Recinti;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.InsiemeDiRecinti;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class RecintiTest {
-	Recinti recinti;
+	InsiemeDiRecinti recinti;
 	
 	/**
 	 * Inserisco un numero di recinti tali da riempire l'arraylist di recinti iniziali e meta' dei
@@ -16,7 +16,7 @@ public class RecintiTest {
 	 */
 	@Before
 	public void setUp() {
-		recinti = new Recinti();
+		recinti = new InsiemeDiRecinti();
 		for(int i = 0; i < Costanti.NUM_RECINTI_INIZIALI + Costanti.NUM_RECINTI_FINALI / 2; i++)
 			recinti.aggiungi(Mappa.getMappa().getStrade()[i]);
 	}

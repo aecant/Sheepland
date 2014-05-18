@@ -2,11 +2,11 @@ package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model;
 
 import java.util.ArrayList;
 
-public class Recinti {
+public class InsiemeDiRecinti {
 	private ArrayList<PedinaSuStrada> recintiIniziali;
 	private ArrayList<PedinaSuStrada> recintiFinali;
 
-	public Recinti() {
+	public InsiemeDiRecinti() {
 		recintiIniziali = new ArrayList<PedinaSuStrada>();
 		recintiFinali = new ArrayList<PedinaSuStrada>();
 	}

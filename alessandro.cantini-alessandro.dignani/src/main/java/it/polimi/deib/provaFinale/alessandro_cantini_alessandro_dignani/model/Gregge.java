@@ -32,10 +32,27 @@ public class Gregge {
 	 * 
 	 * @param agnello
 	 */
-	public void trasformaAgnelloInPecora(Agnello agnello) {
+	public void trasformaAgnelloInPecora(Agnello agnello) throws IllegalArgumentException{
+		if(!pecore.contains(agnello))
+			throw new IllegalArgumentException("L'agnello non e' presente");
 		pecore.set(pecore.indexOf(agnello), (Pecora) agnello);
 	}
 	
+	/**
+	 * Restituisce la lista delle pecore che stanno su un determinato territorio
+	 * @param t
+	 * @return
+	 */
+	public ArrayList<Pecora> pecoreSuTerritorio(Territorio t) {
+		ArrayList<Pecora> pecore = new ArrayList<Pecora>();
+		
+		for(Pecora p : getPecore()) {
+			if(p.getPosizione().equals(t))
+				pecore.add(p);
+		}		
+		return pecore;
+	}
+
 	public Animale getPecoraNera() {
 		return pecoraNera;
 	}
