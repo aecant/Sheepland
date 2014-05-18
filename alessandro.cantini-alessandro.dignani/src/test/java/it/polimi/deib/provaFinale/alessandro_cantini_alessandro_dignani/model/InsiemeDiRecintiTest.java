@@ -7,7 +7,7 @@ import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.In
 import org.junit.Before;
 import org.junit.Test;
 
-public class RecintiTest {
+public class InsiemeDiRecintiTest {
 	InsiemeDiRecinti recinti;
 	
 	/**
