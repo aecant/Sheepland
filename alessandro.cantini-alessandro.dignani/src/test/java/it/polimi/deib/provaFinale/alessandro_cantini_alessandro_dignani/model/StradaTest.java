@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class StradaTest {
-	Strada s1, s2, s3;
+	Strada s1, s2, s3, s4;
 
 	@Before
 	public void setUp() {
@@ -17,11 +17,13 @@ public class StradaTest {
 		s1 = new Strada(t1, t2);
 		s2 = new Strada(t2, t1);
 		s3 = new Strada(t1, t3);
+		s4 = new Strada(t1, t2);
 	}
 
 	@Test
 	public void testEquals() {
 		assertEquals(s1, s1);
+		assertEquals(s1, s4);
 		assertEquals(s1, s2);
 		assertFalse(s1.equals(s3));
 	}
