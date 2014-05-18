@@ -4,6 +4,7 @@ public class Agnello extends Pecora {
 
 	public Agnello(Territorio posizione, boolean maschio) {
 		super(posizione, maschio);
+		eta = 0;
 	}
 
 	private int eta;
