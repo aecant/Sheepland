@@ -1,16 +1,21 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model;
 
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.Utilita;
+
 import java.util.ArrayList;
 
 public class Giocatore {
 	private String nome;
 	private int denaro;
 	private ArrayList<Pastore> pastori;
-	private ArrayList<Tessera> tessere = new ArrayList<Tessera>();
+	private ArrayList<Tessera> tessere;
 
 	public Giocatore(String nome) {
 		this.nome = nome;
 		this.denaro = 0;
+		
+		pastori = new ArrayList<Pastore>();
+		tessere = new ArrayList<Tessera>();
 	}
 
 	public void aggiungiDenaro(int quantita) {
@@ -29,7 +34,7 @@ public class Giocatore {
 	
 
 	public ArrayList<Tessera> getTessere() {
-		return tessere;
+		return Utilita.copia(tessere);
 	}
 
 	public void setNome(String nome) {
@@ -45,7 +50,7 @@ public class Giocatore {
 	}
 
 	public ArrayList<Pastore> getPastori() {
-		return pastori;
+		return Utilita.copia(pastori);
 	}
 
 

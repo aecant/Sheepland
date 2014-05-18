@@ -1,5 +1,7 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model;
 
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.Utilita;
+
 import java.util.ArrayList;
 
 public class Partita {
@@ -28,6 +30,10 @@ public class Partita {
 
 		return true;
 	}
+	
+	public void aggiungiGiocatore(String nome) {
+		giocatori.add(new Giocatore(nome));
+	}
 
 	/**
 	 * Restituisce la lista dei pastori, costruita scorrendo la lista dei
@@ -48,7 +54,7 @@ public class Partita {
 	}
 
 	public ArrayList<Giocatore> getGiocatori() {
-		return giocatori;
+		return Utilita.copia(giocatori);
 	}
 
 	public InsiemeDiRecinti getRecinti() {
