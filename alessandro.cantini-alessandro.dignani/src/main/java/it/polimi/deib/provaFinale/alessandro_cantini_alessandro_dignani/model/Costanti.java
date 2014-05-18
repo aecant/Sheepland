@@ -4,6 +4,7 @@ public class Costanti {
 	public static final int ETA_MAX_AGNELLO = 2;
 
 	public static final int MAX_VALORE_TESSERA = 4;
+	public static final int NUM_TESSERE_PER_TIPO = MAX_VALORE_TESSERA + 1;
 
 	public static final int DENARO_INIZIALE = 20;
 	public static final int DENARO_INIZIALE_DUE_GIOCATORI = 30;

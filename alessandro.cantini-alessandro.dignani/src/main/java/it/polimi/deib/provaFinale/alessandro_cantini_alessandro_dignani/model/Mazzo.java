@@ -24,7 +24,10 @@ public class Mazzo {
 	}
 
 
-	public Tessera prelevaCarta(TipoTerritorio tipo) throws MazzoFinitoException {
+	public Tessera prelevaCarta(TipoTerritorio tipo) throws MazzoFinitoException, IllegalArgumentException {
+		if (tipo == TipoTerritorio.SHEEPSBURG)
+			throw new IllegalArgumentException("Non esistono tessere di tipo Sheepsburg");
+		
 		try {
 			return mazzo.get(tipo).pop();
 		}
@@ -34,7 +37,15 @@ public class Mazzo {
 	}
 	
 	
-	public class MazzoFinitoException extends IllegalArgumentException {
+	public Integer getCostoCartaInCima(TipoTerritorio tipo) {
+		return mazzo.get(tipo).peek().getCosto();
+	}
+	
+	public Integer getCarteRimaste(TipoTerritorio tipo) {
+		return mazzo.get(tipo).size();
+	}
+	
+	public class MazzoFinitoException extends RuntimeException {
 		private static final long serialVersionUID = 1L;
 
 		public MazzoFinitoException() {
