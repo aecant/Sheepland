@@ -18,7 +18,7 @@ public class InsiemeDiRecinti {
 			recintiFinali.add(new PedinaSuStrada(posizione));
 	}
 	
-	public ArrayList<PedinaSuStrada> getRecinti() {
+	public ArrayList<PedinaSuStrada> getListaRecinti() {
 		ArrayList<PedinaSuStrada> recinti = new ArrayList<PedinaSuStrada>();
 		recinti.addAll(recintiIniziali);
 		recinti.addAll(recintiFinali);

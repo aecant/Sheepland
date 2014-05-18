@@ -26,7 +26,7 @@ public class InsiemeDiRecintiTest {
 	public void testAggiungi() {
 		assertTrue(recinti.getRecintiIniziali().size() == Costanti.NUM_RECINTI_INIZIALI);
 		assertTrue(recinti.getRecintiFinali().size() == Costanti.NUM_RECINTI_FINALI / 2);
-		assertTrue(recinti.getRecinti().size() == Costanti.NUM_RECINTI_INIZIALI + Costanti.NUM_RECINTI_FINALI / 2);
+		assertTrue(recinti.getListaRecinti().size() == Costanti.NUM_RECINTI_INIZIALI + Costanti.NUM_RECINTI_FINALI / 2);
 	}
 
 }

@@ -21,7 +21,7 @@ public class Partita {
 
 	public boolean stradaLibera(Strada s) {
 		ArrayList<PedinaSuStrada> pedine = new ArrayList<PedinaSuStrada>();
-		pedine.addAll(recinti.getRecinti());
+		pedine.addAll(recinti.getListaRecinti());
 		pedine.addAll(getPastori());
 
 		for (PedinaSuStrada p : pedine)
