@@ -17,7 +17,7 @@ public class Territorio {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj) throws RuntimeException{
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -25,8 +25,10 @@ public class Territorio {
 		if (!(obj instanceof Territorio))
 			return false;
 		Territorio other = (Territorio) obj;
-		if (codice != other.codice)
+		if (!getCodice().equals(other.getCodice()))
 			return false;
+		if (!getTipo().equals(other.getTipo()))
+			throw new RuntimeException("Il codice e' uguale ma il territorio e' diverso");
 		return true;
 	}
 
@@ -34,7 +36,7 @@ public class Territorio {
 		return this.tipo;
 	}
 
-	public int getCodice() {
+	public Integer getCodice() {
 		return this.codice;
 	}
 
