@@ -8,7 +8,7 @@ public class Costanti {
 	public static final int DENARO_INIZIALE = 20;
 	public static final int DENARO_INIZIALE_DUE_GIOCATORI = 30;
 
-	public static final int NUM_RECINTI = 20;
+	public static final int NUM_RECINTI_INIZIALI = 20;
 	public static final int NUM_RECINTI_FINALI = 12;
 	
 	public static final int NUM_PASTORI_DUE_GIOCATORI = 2;

@@ -11,11 +11,11 @@ public class Recinti {
 		recintiFinali = new ArrayList<PedinaSuStrada>();
 	}
 	
-	public void aggiungi(Strada strada) {
-		if (recintiIniziali.size() > Costanti.NUM_RECINTI)
-			recintiIniziali.add(new PedinaSuStrada(strada));
+	public void aggiungi(Strada posizione) {
+		if (recintiIniziali.size() < Costanti.NUM_RECINTI_INIZIALI)
+			recintiIniziali.add(new PedinaSuStrada(posizione));
 		else
-			recintiFinali.add(new PedinaSuStrada(strada));
+			recintiFinali.add(new PedinaSuStrada(posizione));
 	}
 	
 	public ArrayList<PedinaSuStrada> getRecinti() {
@@ -25,5 +25,14 @@ public class Recinti {
 		
 		return recinti;
 	}
+
+	public ArrayList<PedinaSuStrada> getRecintiIniziali() {
+		return recintiIniziali;
+	}
+
+	public ArrayList<PedinaSuStrada> getRecintiFinali() {
+		return recintiFinali;
+	}
+	
 	
 }
