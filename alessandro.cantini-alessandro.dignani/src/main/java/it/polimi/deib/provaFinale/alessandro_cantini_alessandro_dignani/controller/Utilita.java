@@ -27,11 +27,16 @@ public class Utilita {
 				return true;
 		return false;
 	}
-
+	
 	public static <E> boolean contiene(E[] array, E element) {
 		return contiene(Arrays.asList(array), element);
 	}
-
+	
+	/**
+	 * Restituisce una copia di un ArrayList
+	 * @param array
+	 * @return
+	 */
 	public static <E> ArrayList<E> copia(ArrayList<E> array) {
 		ArrayList<E> temp = new ArrayList<E>();
 		temp.addAll(array);
