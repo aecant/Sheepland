@@ -10,6 +10,7 @@ public class AnimaleTest {
 	Animale a;
 	
 	
+	
 	@Before
 	public void setUp() {
 		t1 = Mappa.getMappa().getTerritori()[0];
@@ -24,5 +25,6 @@ public class AnimaleTest {
 		a.muoviIn(t2);
 		assertTrue(a.getPosizione().equals(t2));
 	}
-
+	
+	
 }

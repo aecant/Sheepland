@@ -17,4 +17,18 @@ public class Agnello extends Pecora {
 		return eta;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (!(obj instanceof Agnello))
+			return false;
+		Agnello other = (Agnello) obj;
+		if (eta != other.eta)
+			return false;
+		return true;
+	}
+
 }

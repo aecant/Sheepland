@@ -15,4 +15,24 @@ public class Animale {
 		return posizione;
 	}
 
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Animale))
+			return false;
+		Animale other = (Animale) obj;
+		if (posizione == null) {
+			if (other.posizione != null)
+				return false;
+		} else if (!posizione.equals(other.posizione))
+			return false;
+		return true;
+	}
+	
+	
+
 }
