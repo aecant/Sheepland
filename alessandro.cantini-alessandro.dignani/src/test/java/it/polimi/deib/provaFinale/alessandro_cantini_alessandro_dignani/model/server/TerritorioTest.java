@@ -1,8 +1,8 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server;
 
 import static org.junit.Assert.*;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.Territorio;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.TipoTerritorio;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Territorio;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.TipoTerritorio;
 
 import org.junit.Before;
 import org.junit.Test;

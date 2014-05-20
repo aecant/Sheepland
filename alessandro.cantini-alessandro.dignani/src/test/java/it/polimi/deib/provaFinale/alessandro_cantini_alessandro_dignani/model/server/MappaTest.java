@@ -2,10 +2,10 @@ package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.s
 
 import static org.junit.Assert.*;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.server.Utilita;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.Mappa;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.Strada;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.Territorio;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.TipoTerritorio;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Mappa;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Strada;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Territorio;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.TipoTerritorio;
 
 import org.junit.Before;
 import org.junit.Test;

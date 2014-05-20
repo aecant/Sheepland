@@ -1,10 +1,10 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server;
 
 import static org.junit.Assert.*;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.Costanti;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.Mazzo;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.TipoTerritorio;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.Mazzo.MazzoFinitoException;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Costanti;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Mazzo;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.TipoTerritorio;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Mazzo.MazzoFinitoException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -55,7 +55,7 @@ public class MazzoTest {
 	}
 	
 	@Test
-	public void testGetCostoCartaInCima() {
-		assertTrue(mazzo3.getCostoCartaInCima(TipoTerritorio.MONTAGNA) == Costanti.MAX_VALORE_TESSERA-2);
+	public void testGetTesseraInCima() {
+		assertTrue(mazzo3.getTesseraInCima(TipoTerritorio.MONTAGNA).getCosto() == Costanti.MAX_VALORE_TESSERA-2);
 	}
 }

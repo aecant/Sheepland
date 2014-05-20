@@ -1,24 +1,24 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server;
 
 import static org.junit.Assert.*;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.ColorePastore;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.PartitaServer;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.Pastore;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.Strada;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.Territorio;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.TipoTerritorio;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.ColorePastore;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Partita;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Pastore;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Strada;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Territorio;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.TipoTerritorio;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class PartitaServerTest {
-	PartitaServer partita;
+	Partita partita;
 	Strada s1, s2, s3;
 	Territorio t0, t1, t4, t7;
 	
 	@Before
 	public void setUp() {
-		partita = new PartitaServer();
+		partita = new Partita();
 		
 		t0 = new Territorio(0, TipoTerritorio.SHEEPSBURG);
 		t1 = new Territorio(1, TipoTerritorio.MONTAGNA);

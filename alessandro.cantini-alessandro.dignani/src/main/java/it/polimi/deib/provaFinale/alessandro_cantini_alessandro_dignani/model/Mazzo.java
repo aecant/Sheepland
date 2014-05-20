@@ -1,4 +1,4 @@
-package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server;
+package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model;
 
 import java.util.EmptyStackException;
 import java.util.HashMap;
@@ -23,22 +23,23 @@ public class Mazzo {
 			}
 	}
 
-
-	public Tessera prelevaCarta(TipoTerritorio tipo) throws MazzoFinitoException, IllegalArgumentException {
+	
+	public Tessera getTesseraInCima(TipoTerritorio tipo) {
 		if (tipo == TipoTerritorio.SHEEPSBURG)
 			throw new IllegalArgumentException("Non esistono tessere di tipo Sheepsburg");
 		
 		try {
-			return mazzo.get(tipo).pop();
+			return mazzo.get(tipo).peek();
 		}
 		catch (EmptyStackException e) {
 			throw new MazzoFinitoException();
 		}
 	}
 	
-	
-	public Integer getCostoCartaInCima(TipoTerritorio tipo) {
-		return mazzo.get(tipo).peek().getCosto();
+	public Tessera prelevaCarta(TipoTerritorio tipo) throws MazzoFinitoException, IllegalArgumentException {
+		Tessera t = getTesseraInCima(tipo);
+		mazzo.get(tipo).pop();
+		return t;
 	}
 	
 	public Integer getCarteRimaste(TipoTerritorio tipo) {

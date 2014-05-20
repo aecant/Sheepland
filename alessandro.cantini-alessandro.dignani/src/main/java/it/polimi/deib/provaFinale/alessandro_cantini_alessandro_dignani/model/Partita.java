@@ -1,17 +1,17 @@
-package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server;
+package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model;
 
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.server.Utilita;
 
 import java.util.ArrayList;
 
-public class PartitaServer {
+public class Partita {
 	private Mazzo mazzo;
 	private Animale lupo;
 	private Gregge gregge;
 	private InsiemeDiRecinti recinti;
 	private ArrayList<Giocatore> giocatori;
 
-	public PartitaServer() {
+	public Partita() {
 		mazzo = new Mazzo();
 		lupo = new Animale(Costanti.POS_INIZIALE_LUPO);
 		gregge = new Gregge();

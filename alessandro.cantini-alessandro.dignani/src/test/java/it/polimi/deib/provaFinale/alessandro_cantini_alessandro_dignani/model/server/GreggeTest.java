@@ -1,10 +1,10 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server;
 
 import static org.junit.Assert.*;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.Agnello;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.Gregge;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.Mappa;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.Pecora;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Agnello;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Gregge;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Mappa;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Pecora;
 
 import org.junit.Before;
 import org.junit.Test;
