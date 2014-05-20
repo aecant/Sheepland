@@ -6,7 +6,9 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface ConnessioneDatiPartita extends Remote{
-	Tessera[] getTessereConfinanti(int strada) throws RemoteException;
 	
+	public Tessera[] getTessereConfinanti(int codPartita, int strada) throws RemoteException;
+	public Integer numero() throws RemoteException;
+
 
 }
