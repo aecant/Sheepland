@@ -29,6 +29,8 @@ public class Client {
 		
 		while(true) {
 			eventoCorrente = connessione.chiediEvento();
+			utente.visualizzaEvento(eventoCorrente);
+			
 			if(eventoCorrente instanceof InizioTurno && ((InizioTurno) eventoCorrente).getGiocatore().getNome().equals(nome)) {
 				mosseDisponibili = connessione.chiediMosseDisponibili();
 				mossaScelta = utente.chiediMossa(mosseDisponibili);
