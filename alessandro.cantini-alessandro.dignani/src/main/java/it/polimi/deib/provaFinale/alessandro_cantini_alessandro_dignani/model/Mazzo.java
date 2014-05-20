@@ -24,7 +24,7 @@ public class Mazzo {
 	}
 
 	
-	public Tessera getTesseraInCima(TipoTerritorio tipo) {
+	public Tessera leggiTesseraInCima(TipoTerritorio tipo) {
 		if (tipo == TipoTerritorio.SHEEPSBURG)
 			throw new IllegalArgumentException("Non esistono tessere di tipo Sheepsburg");
 		
@@ -36,13 +36,13 @@ public class Mazzo {
 		}
 	}
 	
-	public Tessera prelevaCarta(TipoTerritorio tipo) throws MazzoFinitoException, IllegalArgumentException {
-		Tessera t = getTesseraInCima(tipo);
+	public Tessera prelevaTessera(TipoTerritorio tipo) throws MazzoFinitoException, IllegalArgumentException {
+		Tessera t = leggiTesseraInCima(tipo);
 		mazzo.get(tipo).pop();
 		return t;
 	}
 	
-	public Integer getCarteRimaste(TipoTerritorio tipo) {
+	public Integer getTessereRimaste(TipoTerritorio tipo) {
 		return mazzo.get(tipo).size();
 	}
 	

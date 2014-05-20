@@ -3,6 +3,7 @@ package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.s
 import static org.junit.Assert.*;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Costanti;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Mazzo;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Tessera;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.TipoTerritorio;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Mazzo.MazzoFinitoException;
 
@@ -22,40 +23,45 @@ public class MazzoTest {
 	@Test (expected=MazzoFinitoException.class)
 	public void testMazzoFinito() {
 		for(int i=0; i<Costanti.MAX_VALORE_TESSERA+2; i++)
-			mazzo1.prelevaCarta(TipoTerritorio.BOSCO);
+			mazzo1.prelevaTessera(TipoTerritorio.BOSCO);
 	}
 	
 	
 	@Test (expected=IllegalArgumentException.class)
 	public void testPrelevaSheepsburg() {
-		mazzo1.prelevaCarta(TipoTerritorio.SHEEPSBURG);
+		mazzo1.prelevaTessera(TipoTerritorio.SHEEPSBURG);
 	}
 	
-	/**
-	 * Preleva una carta per ogni tipo (a parte SHEEPSBURG) e verifica che la carta prelevata sia corretta
-	 */
-	@Test
-	public void testPrelevaCarta() {
-		for(TipoTerritorio terr : TipoTerritorio.values())
-			if(terr != TipoTerritorio.SHEEPSBURG)
-				assertEquals(terr, mazzo2.prelevaCarta(terr).getTipo());
-	}
 	
 	@Before 
 	public void setUpCarteRimaste() {
 		mazzo3 = new Mazzo();
 	
-		mazzo3.prelevaCarta(TipoTerritorio.MONTAGNA);
-		mazzo3.prelevaCarta(TipoTerritorio.MONTAGNA);
+		mazzo3.prelevaTessera(TipoTerritorio.MONTAGNA);
+		mazzo3.prelevaTessera(TipoTerritorio.MONTAGNA);
 	}
 	
 	@Test 
-	public void testGetCarteRimaste() {
-		assertTrue(mazzo3.getCarteRimaste(TipoTerritorio.MONTAGNA) == Costanti.NUM_TESSERE_PER_TIPO-2);
+	public void testGetTessereRimaste() {
+		assertTrue(mazzo3.getTessereRimaste(TipoTerritorio.MONTAGNA) == Costanti.NUM_TESSERE_PER_TIPO-2);
 	}
 	
 	@Test
-	public void testGetTesseraInCima() {
-		assertTrue(mazzo3.getTesseraInCima(TipoTerritorio.MONTAGNA).getCosto() == Costanti.MAX_VALORE_TESSERA-2);
+	public void testLeggiTesseraInCima() {
+		assertTrue(mazzo3.leggiTesseraInCima(TipoTerritorio.MONTAGNA).getCosto() == Costanti.MAX_VALORE_TESSERA-2);
+	}
+	
+	/**
+	 * Preleva una carta per ogni tipo (a parte SHEEPSBURG), verifica che la carta prelevata sia corretta
+	 * e che l'abbia effettivamente prelevata
+	 */
+	@Test
+	public void testPrelevaTessera() {
+		for(TipoTerritorio tipo : TipoTerritorio.values())
+			if(tipo != TipoTerritorio.SHEEPSBURG) {
+				Tessera tesseraPrelevata = mazzo2.prelevaTessera(tipo);
+				assertEquals(tipo, tesseraPrelevata.getTipo());
+				assertFalse(tesseraPrelevata.equals(mazzo2.leggiTesseraInCima(tipo)));
+			}
 	}
 }

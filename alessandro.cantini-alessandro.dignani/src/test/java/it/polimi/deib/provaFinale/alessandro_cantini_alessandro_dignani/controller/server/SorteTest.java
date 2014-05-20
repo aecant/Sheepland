@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.server.Sorte;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class SorteTest {
@@ -45,12 +46,14 @@ public class SorteTest {
 	}
 	
 	@Test 
+	@Ignore("Test non deterministico")
 	public void testEquitaDado(){
 		for(Integer cont : contDado)
 			assertEquals(cont, NUMERO_LANCI / 6, DELTA);
 	}
 	
 	@Test
+	@Ignore("Test non deterministico")
 	public void testEquitaMoneta() {
 		assertEquals(contTrue, contFalse, DELTA);
 	}
