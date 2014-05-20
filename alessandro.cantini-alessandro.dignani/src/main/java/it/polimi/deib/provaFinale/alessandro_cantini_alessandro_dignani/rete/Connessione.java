@@ -1,5 +1,6 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.rete;
 
+
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Giocatore;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Pastore;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Tessera;
@@ -7,19 +8,21 @@ import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Te
 
 public interface Connessione {
 	
-	DatiTerritorio[] chiediElencoTerritori();
+	public DatiTerritorio[] chiediElencoTerritori();
 	
-	Integer[] chiediStradeConfinanti(Integer strada);
-	Integer[] chiediStradeLibere();
+	public Integer[] chiediStradeConfinanti(Integer strada);
+	public Integer[] chiediStradeLibere();
 	
-	DatiTerritorio[] chediPecoreTerritoriVicini(Integer strada);
+	public DatiTerritorio[] chediPecoreTerritoriVicini(Integer strada);
 	
-	Pastore[] chiediPastori();
+	public Pastore[] chiediPastori();
 	
-	Integer[] chiediRecintiIniziali();
-	Integer[] chiediRecintiFinali();
+	public Integer[] chiediRecintiIniziali();
+	public Integer[] chiediRecintiFinali();
 	
-	Giocatore[] chiediGiocatoreTurno();
+	public Giocatore[] chiediGiocatoreTurno();
 	
-	Tessera[] chiediTessereTerritoriConfinanti(Integer strada);
+	public Tessera[] chiediTessereTerritoriConfinanti(Integer strada);
+	
+
 }

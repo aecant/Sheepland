@@ -7,7 +7,7 @@ import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Te
 
 import java.rmi.*;
 
-public class ConnessioneDatiPartitaImpl implements ConnessioneDatiPartita{
+public class ConnessioneRMIImpl implements ConnessioneRMI{
 	
 	public Tessera[] getTessereConfinanti(int codPartita, int strada) throws RemoteException {
 		//TODO da cambiare
