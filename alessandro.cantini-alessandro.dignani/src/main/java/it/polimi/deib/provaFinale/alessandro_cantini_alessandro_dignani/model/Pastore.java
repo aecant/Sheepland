@@ -16,5 +16,6 @@ public class Pastore extends PedinaSuStrada {
 	public ColorePastore getColore() {
 		return this.colore;
 	}
-
+	
+	
 }
