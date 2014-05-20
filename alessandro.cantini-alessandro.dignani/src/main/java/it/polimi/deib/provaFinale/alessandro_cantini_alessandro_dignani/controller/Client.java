@@ -1,4 +1,4 @@
-package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.client;
+package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller;
 
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.*;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.rete.Connessione;
