@@ -1,7 +1,7 @@
-package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.server;
+package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller;
 
 import static org.junit.Assert.*;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.server.Sorte;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.Sorte;
 
 import org.junit.Before;
 import org.junit.Ignore;

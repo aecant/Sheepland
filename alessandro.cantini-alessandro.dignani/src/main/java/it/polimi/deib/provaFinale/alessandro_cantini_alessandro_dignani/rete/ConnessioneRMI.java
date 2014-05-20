@@ -1,14 +1,8 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.rete;
 
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Tessera;
-
-import java.io.IOException;
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-
-public interface ConnessioneRMI extends Remote{
-	
-	public Tessera[] getTessereConfinanti(int codPartita, int strada) throws IOException;
-	public Integer numero() throws RemoteException;
-
+public class ConnessioneRMI /*implements Connessione*/ {
+	/*
+	Registry registry = LocateRegistry.getRegistry("localhost", Server.SERVER_PORT);
+	InterfacciaRMI connessione = (InterfacciaRMI) registry.lookup(Server.SERVER_NAME);
+	*/
 }

@@ -1,13 +1,17 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.rete;
 
 
+import java.util.ArrayList;
+
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.Evento;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.Mossa;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Giocatore;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Pastore;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Tessera;
 
 
 public interface Connessione {
-	
+		
 	public DatiTerritorio[] chiediElencoTerritori();
 	
 	public Integer[] chiediStradeConfinanti(Integer strada);
@@ -23,6 +27,9 @@ public interface Connessione {
 	public Giocatore[] chiediGiocatoreTurno();
 	
 	public Tessera[] chiediTessereTerritoriConfinanti(Integer strada);
-	
+
+	public Evento chiediEvento();
+
+	public Mossa[] chiediMosseDisponibili();
 
 }

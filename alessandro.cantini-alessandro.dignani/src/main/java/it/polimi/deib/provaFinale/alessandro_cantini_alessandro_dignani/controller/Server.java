@@ -1,11 +1,11 @@
-package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.server;
+package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.rete.ConnessioneRMI;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.rete.ConnessioneRMIImpl;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.rete.InterfacciaRMI;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.rete.InterfacciaRMIImpl;
 
 
 public class Server {
@@ -15,8 +15,8 @@ public class Server {
 
 	public static void main(String[] args) {
 		try {
-			ConnessioneRMI dati = new ConnessioneRMIImpl();
-			ConnessioneRMI stub = (ConnessioneRMI) UnicastRemoteObject.exportObject(dati, 0);
+			InterfacciaRMI dati = new InterfacciaRMIImpl();
+			InterfacciaRMI stub = (InterfacciaRMI) UnicastRemoteObject.exportObject(dati, 0);
 			Registry registry = LocateRegistry.createRegistry(SERVER_PORT);
 			registry.rebind(SERVER_NAME, stub);
 			

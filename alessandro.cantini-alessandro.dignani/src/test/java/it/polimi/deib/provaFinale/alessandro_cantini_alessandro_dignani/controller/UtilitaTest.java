@@ -1,7 +1,7 @@
-package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.server;
+package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller;
 
 import static org.junit.Assert.*;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.server.Utilita;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.Utilita;
 
 import java.util.ArrayList;
 
