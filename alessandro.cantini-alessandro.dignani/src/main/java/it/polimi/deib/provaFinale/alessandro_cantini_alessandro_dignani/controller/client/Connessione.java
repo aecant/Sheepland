@@ -1,4 +1,4 @@
-package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.rete;
+package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.client;
 
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.Giocatore;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.server.Pastore;
