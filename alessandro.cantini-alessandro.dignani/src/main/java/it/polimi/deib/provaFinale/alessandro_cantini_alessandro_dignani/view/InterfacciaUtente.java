@@ -7,6 +7,7 @@ import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Pe
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Strada;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Territorio;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Tessera;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.rete.DatiPartita;
 
 public interface InterfacciaUtente {
 
@@ -25,5 +26,11 @@ public interface InterfacciaUtente {
 	public void acquistoTessera(Giocatore giocatore, Tessera tessera);
 
 	public void abbattimento(Giocatore giocatore, Pecora pecora);
+
+	public DatiPartita scaricaDatiPartita();
+
+	public void inizioTurno(Giocatore giocatore);
+
+	public void trasformazioneAgnello(boolean maschio, Integer territorio);
 
 }

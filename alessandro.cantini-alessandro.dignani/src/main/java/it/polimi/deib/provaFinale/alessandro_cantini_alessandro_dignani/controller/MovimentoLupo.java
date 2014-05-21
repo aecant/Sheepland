@@ -4,7 +4,7 @@ import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Te
 
 public class MovimentoLupo extends MovimentoAnimale {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -2442027714276181519L;
 
 	public MovimentoLupo(Territorio origine, Territorio destinazione) {
 		super(origine, destinazione);

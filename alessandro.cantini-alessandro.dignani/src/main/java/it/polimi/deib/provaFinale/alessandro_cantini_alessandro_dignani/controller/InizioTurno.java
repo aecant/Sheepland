@@ -17,8 +17,7 @@ public class InizioTurno extends Mossa {
 
 	@Override
 	public void visualizza() {
-		// TODO Auto-generated method stub
-		
+		Client.getUI().inizioTurno(super.getGiocatore());
 	}
 
 }

@@ -51,33 +51,36 @@ public class Client {
 
 		while (true) {
 			gestisciEvento();
-			
-			if (eventoCorrente instanceof InizioTurno && ((InizioTurno) eventoCorrente).getGiocatore().getNome().equals(nome)) {
-				mosseDisponibili = connessione.chiediMosseDisponibili();
-				mossaScelta = ui.chiediMossa(mosseDisponibili);
+
+			if (isProprioTurno()) {
+				gestisciProprioTurno();
 			}
 		}
 	}
 
+	private static void gestisciProprioTurno() {
+		Mossa mossaScelta;
+		mosseDisponibili = connessione.chiediMosseDisponibili();
+		mossaScelta = ui.chiediMossa(mosseDisponibili);
+	}
+
+	private static boolean isProprioTurno() {
+		return datiPartita.getGiocatoreDiTurno().getNome().equals(nome) ? true : false;
+	}
+
 	private static void gestisciEvento() {
 		eventoCorrente = connessione.chiediEvento();
-
+		eventoCorrente.aggiornaDati();
 		eventoCorrente.visualizza();
-
 	}
 
 	private static void iniziaPartita() {
-		datiPartita = scaricaDatiPartita();
+		datiPartita = ui.scaricaDatiPartita();
 	}
 
 	private static void registraGiocatore() {
 
 		// while(connessione.registraNome(utente.chiediNome()));
-	}
-
-	private static DatiPartita scaricaDatiPartita() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	private static Connessione chiediTipoConnessione() {
