@@ -1,20 +1,19 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller;
 
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Giocatore;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Pecora;
 
 public class Abbattimento extends Mossa {
 
 	private static final long serialVersionUID = 1L;
-	private Pecora pecora;
+	private TipoOvino TipoOvino;
 
-	public Abbattimento(Giocatore giocatore, Pecora pecora) {
+	public Abbattimento(Giocatore giocatore, TipoOvino TipoOvino) {
 		super(giocatore);
-		this.pecora = pecora;
+		this.TipoOvino = TipoOvino;
 	}
 	
-	public Pecora getPecora() {
-		return pecora;
+	public TipoOvino getTipoOvino() {
+		return TipoOvino;
 	}
 
 	@Override
@@ -24,7 +23,7 @@ public class Abbattimento extends Mossa {
 
 	@Override
 	public void visualizza() {
-		Client.getUI().abbattimento(super.getGiocatore(), pecora);
+		Client.getUI().abbattimento(super.getGiocatore(), TipoOvino);
 	}
 	
 	

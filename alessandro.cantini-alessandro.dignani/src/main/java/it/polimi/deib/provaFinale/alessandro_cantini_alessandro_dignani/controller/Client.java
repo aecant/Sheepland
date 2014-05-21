@@ -47,8 +47,6 @@ public class Client {
 	}
 
 	private static void eseguiPartita() {
-		Mossa mossaScelta;
-
 		while (true) {
 			gestisciEvento();
 
@@ -62,6 +60,7 @@ public class Client {
 		Mossa mossaScelta;
 		mosseDisponibili = connessione.chiediMosseDisponibili();
 		mossaScelta = ui.chiediMossa(mosseDisponibili);
+		connessione.inviaMossa(mossaScelta);
 	}
 
 	private static boolean isProprioTurno() {

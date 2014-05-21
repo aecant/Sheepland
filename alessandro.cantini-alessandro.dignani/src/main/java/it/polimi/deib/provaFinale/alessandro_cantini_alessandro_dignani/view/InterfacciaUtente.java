@@ -1,9 +1,9 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.view;
 
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.Mossa;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.TipoOvino;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Giocatore;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Pastore;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Pecora;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Strada;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Territorio;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Tessera;
@@ -13,7 +13,7 @@ public interface InterfacciaUtente {
 
 	public Mossa chiediMossa(Mossa[] mosseDisponibili);
 
-	public void movimentoPecora(Pecora pecora, Territorio origine, Territorio destinazione);
+	public void movimentoPecora(TipoOvino pecora, Territorio origine, Territorio destinazione);
 
 	public void movimentoPastore(Pastore pastore, Strada origine, Strada destinazione);
 
@@ -25,7 +25,7 @@ public interface InterfacciaUtente {
 
 	public void acquistoTessera(Giocatore giocatore, Tessera tessera);
 
-	public void abbattimento(Giocatore giocatore, Pecora pecora);
+	public void abbattimento(Giocatore giocatore, TipoOvino tipoOvino);
 
 	public DatiPartita scaricaDatiPartita();
 

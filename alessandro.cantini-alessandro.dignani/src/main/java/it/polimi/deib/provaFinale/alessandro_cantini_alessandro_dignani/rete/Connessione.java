@@ -33,4 +33,6 @@ public interface Connessione {
 	public Tessera[] chiediTessere();
 
 	public Tessera[] chiediTessereInCima();
+
+	public void inviaMossa(Mossa mossaScelta);
 }
