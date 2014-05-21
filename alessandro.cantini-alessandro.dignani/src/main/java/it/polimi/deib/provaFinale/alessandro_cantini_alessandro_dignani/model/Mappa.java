@@ -20,7 +20,7 @@ public class Mappa {
 	/**
 	 * Controlla se due territori sono confinanti, controllando se ci il codice
 	 * di t2 e' contenuto nella riga di t1 della matrice di transizione
-	 * Costanti.MAPPA
+	 * { @link Costanti.MAPPA}
 	 * 
 	 * @param t1
 	 * @param t2
@@ -51,24 +51,6 @@ public class Mappa {
 		return false;
 	}
 	
-	/**
-	 * Metodo di servizio che restituisce un array di strade creato a partire
-	 * dai territori
-	 * 
-	 * @return l'array di strade
-	 */
-	private Strada[] creaStrade() {
-		ArrayList<Strada> temp = new ArrayList<Strada>();
-		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
-			for (int j = i + 1; j < Costanti.NUM_TERRITORI; j++) {
-				if (sonoConfinanti(territori[i], territori[j]))
-					temp.add(new Strada(territori[i], territori[j]));
-			}
-		}
-	
-		return temp.toArray(new Strada[temp.size()]);
-	}
-
 	/**
 	 * Dati un territorio e una strada che lo delimita, restituisce il territorio opposto
 	 * a quella strada
@@ -106,8 +88,8 @@ public class Mappa {
 
 	/**
 	 * Metodo di servizio che crea un array di territori il cui codice è
-	 * l'indice dell'array in @Costanti.MAPPA, il tipo viene letto in
-	 * @Costanti.TERRITORIO_CODICE
+	 * l'indice dell'array in {@Link Costanti#MAPPA}, il tipo viene letto in
+	 * {link @Costanti.TERRITORIO_CODICE}
 	 * 
 	 * @return l'array di territori
 	 */
@@ -119,6 +101,24 @@ public class Mappa {
 		}
 	
 		return temp;
+	}
+
+	/**
+	 * Metodo di servizio che restituisce un array di strade creato a partire
+	 * dai territori
+	 * 
+	 * @return l'array di strade
+	 */
+	private Strada[] creaStrade() {
+		ArrayList<Strada> temp = new ArrayList<Strada>();
+		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
+			for (int j = i + 1; j < Costanti.NUM_TERRITORI; j++) {
+				if (sonoConfinanti(territori[i], territori[j]))
+					temp.add(new Strada(territori[i], territori[j]));
+			}
+		}
+	
+		return temp.toArray(new Strada[temp.size()]);
 	}
 
 	public static Mappa getMappa() {
