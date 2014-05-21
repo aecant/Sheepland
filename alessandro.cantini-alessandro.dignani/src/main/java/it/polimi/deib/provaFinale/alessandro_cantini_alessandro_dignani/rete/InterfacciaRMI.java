@@ -2,7 +2,6 @@ package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.rete;
 
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Tessera;
 
-import java.io.IOException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
