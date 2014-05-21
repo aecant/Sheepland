@@ -12,12 +12,12 @@ public class MovimentoPecoraNera extends MovimentoAnimale {
 
 	@Override
 	public void aggiornaDati() {
-		Client.getDatiPartita().aggiornaTerritori();
+		ClientMain.getDatiPartita().aggiornaTerritori();
 	}
 
 	@Override
 	public void visualizza() {
-		Client.getUI().movimentoPecoraNera(super.getOrigine(), super.getDestinazione());
+		ClientMain.getUI().movimentoPecoraNera(super.getOrigine(), super.getDestinazione());
 	}
 
 }

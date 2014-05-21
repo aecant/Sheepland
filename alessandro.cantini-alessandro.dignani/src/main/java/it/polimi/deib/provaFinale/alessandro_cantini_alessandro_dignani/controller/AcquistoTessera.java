@@ -18,12 +18,12 @@ public class AcquistoTessera extends Mossa {
 
 	@Override
 	public void aggiornaDati() {
-		Client.getDatiPartita().aggiornaTessereInCima();
+		ClientMain.getDatiPartita().aggiornaTessereInCima();
 	}
 
 	@Override
 	public void visualizza() {
-		Client.getUI().acquistoTessera(super.getGiocatore(), getTessera());
+		ClientMain.getUI().acquistoTessera(super.getGiocatore(), getTessera());
 	}
 
 }

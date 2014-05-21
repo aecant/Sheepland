@@ -30,12 +30,12 @@ public class MovimentoPastore extends Mossa{
 
 	@Override
 	public void aggiornaDati() {
-		Client.getDatiPartita().aggiornaPastori();
+		ClientMain.getDatiPartita().aggiornaPastori();
 	}
 
 	@Override
 	public void visualizza() {
-		Client.getUI().movimentoPastore(pastore, origine, destinazione);
+		ClientMain.getUI().movimentoPastore(pastore, origine, destinazione);
 	}
 	
 }

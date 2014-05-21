@@ -16,12 +16,12 @@ public class Abbattimento extends Mossa {
 
 	@Override
 	public void aggiornaDati() {
-		Client.getDatiPartita().aggiornaTerritori();
+		ClientMain.getDatiPartita().aggiornaTerritori();
 	}
 
 	@Override
 	public void visualizza() {
-		Client.getUI().abbattimento(super.getGiocatore(), TipoOvino);
+		ClientMain.getUI().abbattimento(super.getGiocatore(), TipoOvino);
 	}
 	
 	

@@ -3,7 +3,7 @@ package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.control
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.rete.*;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.view.*;
 
-public class Client {
+public class ClientMain {
 	private static InterfacciaUtente ui;
 	private static Connessione connessione;
 	private static DatiPartita datiPartita;
@@ -21,7 +21,7 @@ public class Client {
 	}
 
 	public static void setDatiPartita(DatiPartita datiPartita) {
-		Client.datiPartita = datiPartita;
+		ClientMain.datiPartita = datiPartita;
 	}
 
 	private static Mossa[] mosseDisponibili;

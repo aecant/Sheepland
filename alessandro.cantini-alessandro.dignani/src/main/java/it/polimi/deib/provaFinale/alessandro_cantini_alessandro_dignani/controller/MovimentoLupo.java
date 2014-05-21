@@ -12,12 +12,12 @@ public class MovimentoLupo extends MovimentoAnimale {
 
 	@Override
 	public void aggiornaDati() {
-		Client.getDatiPartita().aggiornaTerritori();
+		ClientMain.getDatiPartita().aggiornaTerritori();
 	}
 
 	@Override
 	public void visualizza() {
-		Client.getUI().movimentoLupo(super.getOrigine(), super.getDestinazione());
+		ClientMain.getUI().movimentoLupo(super.getOrigine(), super.getDestinazione());
 	}
 
 }

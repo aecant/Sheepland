@@ -19,7 +19,7 @@ public class LancioDado implements Evento {
 	}
 
 	public void visualizza() {
-		Client.getUI().lancioDado(numero);
+		ClientMain.getUI().lancioDado(numero);
 	}
 
 }

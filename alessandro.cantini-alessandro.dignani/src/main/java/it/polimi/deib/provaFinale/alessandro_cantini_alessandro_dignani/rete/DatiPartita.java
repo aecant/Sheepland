@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.rete;
 
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.Client;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Giocatore;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Pastore;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Tessera;
@@ -20,20 +20,20 @@ public class DatiPartita {
 	}
 
 	public void aggiornaGiocatori() {
-		giocatori = Client.getConnessione().chiediGiocatori();
+		giocatori = ClientMain.getConnessione().chiediGiocatori();
 	}
 
 	public void aggiornaTerritori() {
-		territori = Client.getConnessione().chiediElencoTerritori();
+		territori = ClientMain.getConnessione().chiediElencoTerritori();
 	}
 
 	public void aggiornaPastori() {
-		pastori = Client.getConnessione().chiediPastori();
+		pastori = ClientMain.getConnessione().chiediPastori();
 	}
 
 	public void aggiornaRecinti() {
-		recintiIniziali = Client.getConnessione().chiediRecintiIniziali();
-		recintiFinali = Client.getConnessione().chiediRecintiFinali();
+		recintiIniziali = ClientMain.getConnessione().chiediRecintiIniziali();
+		recintiFinali = ClientMain.getConnessione().chiediRecintiFinali();
 	}
 	
 	public void setGiocatoreDiTurno(String giocatore) {
@@ -41,15 +41,15 @@ public class DatiPartita {
 	}
 
 	public void aggiornaGiocatoreDiTurno() {
-		giocatoreDiTurno = Client.getConnessione().chiediGiocatoreDiTurno();
+		giocatoreDiTurno = ClientMain.getConnessione().chiediGiocatoreDiTurno();
 	}
 
 	public void aggiornaTessere() {
-		tessere = Client.getConnessione().chiediTessere();
+		tessere = ClientMain.getConnessione().chiediTessere();
 	}
 
 	public void aggiornaTessereInCima() {
-		tessereInCima = Client.getConnessione().chiediTessereInCima();
+		tessereInCima = ClientMain.getConnessione().chiediTessereInCima();
 	}
 	
 	public DatiTerritorio[] getTerritori() {

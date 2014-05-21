@@ -2,7 +2,7 @@ package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.control
 
 public class InizioTurno extends Mossa {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -1669276038393313888L;
 
 	public InizioTurno(String giocatore) {
 		super(giocatore);
@@ -10,12 +10,12 @@ public class InizioTurno extends Mossa {
 
 	@Override
 	public void aggiornaDati() {
-		Client.getDatiPartita().setGiocatoreDiTurno(super.getGiocatore());
+		ClientMain.getDatiPartita().setGiocatoreDiTurno(super.getGiocatore());
 	}
 
 	@Override
 	public void visualizza() {
-		Client.getUI().inizioTurno(super.getGiocatore());
+		ClientMain.getUI().inizioTurno(super.getGiocatore());
 	}
 
 }

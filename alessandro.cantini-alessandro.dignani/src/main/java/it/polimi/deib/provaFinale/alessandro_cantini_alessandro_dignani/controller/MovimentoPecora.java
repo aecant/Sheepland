@@ -28,12 +28,12 @@ public class MovimentoPecora extends Mossa {
 
 	@Override
 	public void aggiornaDati() {
-		Client.getDatiPartita().aggiornaTerritori();
+		ClientMain.getDatiPartita().aggiornaTerritori();
 	}
 
 	@Override
 	public void visualizza() {
-		Client.getUI().movimentoPecora(pecora, origine, destinazione);
+		ClientMain.getUI().movimentoPecora(pecora, origine, destinazione);
 	}
 
 }

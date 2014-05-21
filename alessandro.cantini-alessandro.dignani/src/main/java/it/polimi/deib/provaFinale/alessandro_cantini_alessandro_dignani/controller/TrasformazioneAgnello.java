@@ -20,11 +20,11 @@ public class TrasformazioneAgnello implements Evento {
 	}
 
 	public void aggiornaDati() {
-		Client.getDatiPartita().aggiornaTerritori();
+		ClientMain.getDatiPartita().aggiornaTerritori();
 	}
 
 	public void visualizza() {
-		Client.getUI().trasformazioneAgnello(maschio, territorio);
+		ClientMain.getUI().trasformazioneAgnello(maschio, territorio);
 	}
 
 }

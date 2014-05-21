@@ -13,12 +13,12 @@ public class Pagamento extends Mossa {
 
 	@Override
 	public void aggiornaDati() {
-		Client.getDatiPartita().aggiornaGiocatori();
+		ClientMain.getDatiPartita().aggiornaGiocatori();
 	}
 
 	@Override
 	public void visualizza() {
-		Client.getUI().pagamento(denaro, super.getGiocatore(), altroGiocatore);
+		ClientMain.getUI().pagamento(denaro, super.getGiocatore(), altroGiocatore);
 	}
 
 }
