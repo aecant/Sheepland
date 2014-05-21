@@ -1,6 +1,5 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller;
 
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Giocatore;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Pastore;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Strada;
 
@@ -10,7 +9,7 @@ public class MovimentoPastore extends Mossa{
 	private Pastore pastore;
 	private Strada origine, destinazione;
 	
-	public MovimentoPastore(Giocatore giocatore, Pastore pastore, Strada origine, Strada destinazione) {
+	public MovimentoPastore(String giocatore, Pastore pastore, Strada origine, Strada destinazione) {
 		super(giocatore);
 		this.pastore = pastore;
 		this.origine = origine;

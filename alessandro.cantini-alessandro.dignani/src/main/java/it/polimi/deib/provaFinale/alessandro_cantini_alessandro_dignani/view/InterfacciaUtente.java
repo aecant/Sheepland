@@ -2,7 +2,6 @@ package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.view;
 
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.Mossa;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.TipoOvino;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Giocatore;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Pastore;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Strada;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Territorio;
@@ -23,14 +22,16 @@ public interface InterfacciaUtente {
 
 	public void lancioDado(Integer numero);
 
-	public void acquistoTessera(Giocatore giocatore, Tessera tessera);
+	public void acquistoTessera(String giocatore, Tessera tessera);
 
-	public void abbattimento(Giocatore giocatore, TipoOvino tipoOvino);
+	public void abbattimento(String string, TipoOvino tipoOvino);
 
 	public DatiPartita scaricaDatiPartita();
 
-	public void inizioTurno(Giocatore giocatore);
+	public void inizioTurno(String giocatore);
 
 	public void trasformazioneAgnello(boolean maschio, Integer territorio);
+
+	public void pagamento(Integer denaro, String pagante, String pagato);
 
 }

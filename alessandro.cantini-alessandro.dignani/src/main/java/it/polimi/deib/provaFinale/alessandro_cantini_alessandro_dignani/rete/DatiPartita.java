@@ -10,9 +10,18 @@ public class DatiPartita {
 	Pastore[] pastori;
 	Integer[] recintiIniziali;
 	Integer[] recintiFinali;
-	Giocatore giocatoreDiTurno;
+	String giocatoreDiTurno;
 	Tessera[] tessere;
 	Tessera[] tessereInCima;
+	Giocatore[] giocatori;
+	
+	public Giocatore[] getGiocatori() {
+		return giocatori;
+	}
+
+	public void aggiornaGiocatori() {
+		giocatori = Client.getConnessione().chiediGiocatori();
+	}
 
 	public void aggiornaTerritori() {
 		territori = Client.getConnessione().chiediElencoTerritori();
@@ -27,8 +36,8 @@ public class DatiPartita {
 		recintiFinali = Client.getConnessione().chiediRecintiFinali();
 	}
 	
-	public void setGiocatoreDiTurno(Giocatore giocatoreDiTurno) {
-		this.giocatoreDiTurno = giocatoreDiTurno;
+	public void setGiocatoreDiTurno(String giocatore) {
+		this.giocatoreDiTurno = giocatore;
 	}
 
 	public void aggiornaGiocatoreDiTurno() {
@@ -59,7 +68,7 @@ public class DatiPartita {
 		return recintiFinali;
 	}
 
-	public Giocatore getGiocatoreDiTurno() {
+	public String getGiocatoreDiTurno() {
 		return giocatoreDiTurno;
 	}
 

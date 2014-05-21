@@ -22,7 +22,7 @@ public interface Connessione {
 
 	public Integer[] chiediRecintiFinali();
 
-	public Giocatore chiediGiocatoreDiTurno();
+	public String chiediGiocatoreDiTurno();
 
 	public Tessera[] chiediTessereTerritoriConfinanti(Integer strada);
 
@@ -35,4 +35,6 @@ public interface Connessione {
 	public Tessera[] chiediTessereInCima();
 
 	public void inviaMossa(Mossa mossaScelta);
+
+	public Giocatore[] chiediGiocatori();
 }

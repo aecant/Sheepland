@@ -64,7 +64,7 @@ public class Client {
 	}
 
 	private static boolean isProprioTurno() {
-		return datiPartita.getGiocatoreDiTurno().getNome().equals(nome) ? true : false;
+		return datiPartita.getGiocatoreDiTurno().equals(nome) ? true : false;
 	}
 
 	private static void gestisciEvento() {
