@@ -28,5 +28,15 @@ public class MovimentoPastore extends Mossa{
 	public Strada getDestinazione() {
 		return destinazione;
 	}
+
+	@Override
+	public void aggiornaDati() {
+		Client.getDatiPartita().aggiornaPastori();
+	}
+
+	@Override
+	public void visualizza() {
+		Client.getUI().movimentoPastore(pastore, origine, destinazione);
+	}
 	
 }

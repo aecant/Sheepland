@@ -8,7 +8,7 @@ public class MovimentoPecora extends Mossa {
 	private static final long serialVersionUID = -5815440396346581844L;
 	private Pecora pecora;
 	private Territorio origine, destinazione;
-	
+
 	public MovimentoPecora(Giocatore giocatore, Pecora pecora, Territorio origine, Territorio destinazione) {
 		super(giocatore);
 		this.pecora = pecora;
@@ -28,5 +28,14 @@ public class MovimentoPecora extends Mossa {
 		return destinazione;
 	}
 
-	
+	@Override
+	public void aggiornaDati() {
+		Client.getDatiPartita().aggiornaTerritori();
+	}
+
+	@Override
+	public void visualizza() {
+		Client.getUI().movimentoPecora(pecora, origine, destinazione);
+	}
+
 }

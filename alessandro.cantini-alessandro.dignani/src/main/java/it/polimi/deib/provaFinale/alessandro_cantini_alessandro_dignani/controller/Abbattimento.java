@@ -16,4 +16,16 @@ public class Abbattimento extends Mossa {
 	public Pecora getPecora() {
 		return pecora;
 	}
+
+	@Override
+	public void aggiornaDati() {
+		Client.getDatiPartita().aggiornaTerritori();
+	}
+
+	@Override
+	public void visualizza() {
+		Client.getUI().abbattimento(super.getGiocatore(), pecora);
+	}
+	
+	
 }

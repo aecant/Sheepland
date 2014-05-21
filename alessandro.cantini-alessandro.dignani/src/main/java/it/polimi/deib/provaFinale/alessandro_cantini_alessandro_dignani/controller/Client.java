@@ -1,47 +1,78 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller;
 
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.*;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.rete.Connessione;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.rete.DatiPartita;
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.view.InterfacciaUtente;
-
-
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.rete.*;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.view.*;
 
 public class Client {
+	private static InterfacciaUtente ui;
+	private static Connessione connessione;
+	private static DatiPartita datiPartita;
+
+	public static InterfacciaUtente getUI() {
+		return ui;
+	}
+
+	public static Connessione getConnessione() {
+		return connessione;
+	}
+
+	public static DatiPartita getDatiPartita() {
+		return datiPartita;
+	}
+
+	public static void setDatiPartita(DatiPartita datiPartita) {
+		Client.datiPartita = datiPartita;
+	}
 
 	private static Mossa[] mosseDisponibili;
-	private static DatiPartita datiPartita;
-	private static Connessione connessione;
-	private static InterfacciaUtente utente;
-	private static Mossa mossaScelta;
 	private static Evento eventoCorrente;
 	private static String nome;
-	
-	public static void main(String[] args) {		
+
+	public static void main(String[] args) {
 		connessione = chiediTipoConnessione();
-		utente = chiediTipoInterfaccia();
-		
+		ui = chiediTipoInterfaccia();
+
 		registraGiocatore();
-		
-		datiPartita = scaricaDatiPartita();
-		
-		
-		
-		while(true) {
-			eventoCorrente = connessione.chiediEvento();
-			utente.visualizzaEvento(eventoCorrente);
+
+		do {
+			iniziaPartita();
+			eseguiPartita();
+		} while (!nuovaPartita());
+
+	}
+
+	private static boolean nuovaPartita() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	private static void eseguiPartita() {
+		Mossa mossaScelta;
+
+		while (true) {
+			gestisciEvento();
 			
-			if(eventoCorrente instanceof InizioTurno && ((InizioTurno) eventoCorrente).getGiocatore().getNome().equals(nome)) {
+			if (eventoCorrente instanceof InizioTurno && ((InizioTurno) eventoCorrente).getGiocatore().getNome().equals(nome)) {
 				mosseDisponibili = connessione.chiediMosseDisponibili();
-				mossaScelta = utente.chiediMossa(mosseDisponibili);
+				mossaScelta = ui.chiediMossa(mosseDisponibili);
 			}
 		}
-		
+	}
+
+	private static void gestisciEvento() {
+		eventoCorrente = connessione.chiediEvento();
+
+		eventoCorrente.visualizza();
+
+	}
+
+	private static void iniziaPartita() {
+		datiPartita = scaricaDatiPartita();
 	}
 
 	private static void registraGiocatore() {
-		
-		//while(connessione.registraNome(utente.chiediNome()));
+
+		// while(connessione.registraNome(utente.chiediNome()));
 	}
 
 	private static DatiPartita scaricaDatiPartita() {

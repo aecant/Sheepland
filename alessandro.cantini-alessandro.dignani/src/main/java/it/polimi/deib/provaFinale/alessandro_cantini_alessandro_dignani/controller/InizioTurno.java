@@ -10,4 +10,15 @@ public class InizioTurno extends Mossa {
 		super(giocatore);
 	}
 
+	@Override
+	public void aggiornaDati() {
+		Client.getDatiPartita().setGiocatoreDiTurno(super.getGiocatore());
+	}
+
+	@Override
+	public void visualizza() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
