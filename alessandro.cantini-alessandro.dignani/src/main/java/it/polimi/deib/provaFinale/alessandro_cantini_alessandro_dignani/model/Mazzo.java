@@ -4,6 +4,11 @@ import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Stack;
 
+/** 
+ * Rappresenta l'insieme delle tessere. E' composto da una pila di carte per ogni tipo di territorio
+ * presente in {@link TipoTerritorio}, eccetto Sheepsburg.
+ *
+ */
 public class Mazzo {
 	private HashMap<TipoTerritorio, Stack<Tessera>> mazzo;
 
@@ -23,8 +28,15 @@ public class Mazzo {
 			}
 	}
 
-	
-	public Tessera leggiTesseraInCima(TipoTerritorio tipo) {
+	/**
+	 * Legge la tessera in cima alla pila del tipo indicato come parametro
+	 * 
+	 * @param tipo
+	 * @return La tessera di tipo richiesto
+	 * @throws MazzoFinitoException nel caso il mazzo sia finito
+	 * @throws IllegalArgumentException nel caso si cerchi di prelevare la tessera Sheepsburg
+	 */
+	public Tessera leggiTesseraInCima(TipoTerritorio tipo) throws MazzoFinitoException, IllegalArgumentException{
 		if (tipo == TipoTerritorio.SHEEPSBURG)
 			throw new IllegalArgumentException("Non esistono tessere di tipo Sheepsburg");
 		
@@ -36,16 +48,34 @@ public class Mazzo {
 		}
 	}
 	
-	public Tessera prelevaTessera(TipoTerritorio tipo) throws MazzoFinitoException, IllegalArgumentException {
+	/**
+	 * Legge la tessera in cima al mazzo usando {@link Mazzo#leggiTesseraInCima}, se non ci sono eccezioni
+	 * la scarta
+	 * 
+	 * @param tipo Il tipo della carta che si vuole prelevare
+	 * @return La tessera del tipo richiesto
+	 * @throws MazzoFinitoException nel caso il mazzo sia finito
+	 * @throws IllegalArgumentException nel caso si cerchi di prelevare la tessera Sheepsburg
+	 */
+	public Tessera prelevaTessera(TipoTerritorio tipo) throws MazzoFinitoException, IllegalArgumentException{
 		Tessera t = leggiTesseraInCima(tipo);
 		mazzo.get(tipo).pop();
 		return t;
 	}
 	
+	/**
+	 * Restituisce il numero di carte rimaste di un certo tipo di territorio
+	 * 
+	 * @param tipo
+	 * @return
+	 */
 	public Integer getTessereRimaste(TipoTerritorio tipo) {
 		return mazzo.get(tipo).size();
 	}
 	
+	/**
+	 * Eccezione che indica che la pila di tessere di un territorio e' finita
+	 */
 	public class MazzoFinitoException extends RuntimeException {
 		private static final long serialVersionUID = 1L;
 
@@ -58,7 +88,7 @@ public class Mazzo {
 		}
 	}
 
-	
+	@Override
 	public String toString() {
 		String s = "Mazzo:\n";
 		for (TipoTerritorio terr : mazzo.keySet()) {

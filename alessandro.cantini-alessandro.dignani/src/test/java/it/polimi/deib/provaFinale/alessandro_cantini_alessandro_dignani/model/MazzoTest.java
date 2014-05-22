@@ -19,20 +19,28 @@ public class MazzoTest {
 		mazzo2 = new Mazzo();
 	}
 	
-
+	/**
+	 * Verifica il sollevamento di una MazzoFinitoException se si cerca di pescare una tessera in piu'
+	 * del numero di tessere per ogni pila {@see Costanti.NUM_TESSERE_PER_TIPO}
+	 */
 	@Test (expected=MazzoFinitoException.class)
 	public void testMazzoFinito() {
-		for(int i=0; i<Costanti.MAX_VALORE_TESSERA+2; i++)
+		for(int i=0; i<Costanti.NUM_TESSERE_PER_TIPO+1; i++)
 			mazzo1.prelevaTessera(TipoTerritorio.BOSCO);
 	}
 	
-	
+	/**
+	 * Verifica il sollevamento di una IllegalArgumentException se si cerca 
+	 * di prelevare una tessera di tipo Sheepsburg
+	 */
 	@Test (expected=IllegalArgumentException.class)
 	public void testPrelevaSheepsburg() {
 		mazzo1.prelevaTessera(TipoTerritorio.SHEEPSBURG);
 	}
 	
-	
+	/**
+	 * Instanzia un nuovo mazzo e preleva due tessere
+	 */
 	@Before 
 	public void setUpCarteRimaste() {
 		mazzo3 = new Mazzo();
@@ -41,11 +49,18 @@ public class MazzoTest {
 		mazzo3.prelevaTessera(TipoTerritorio.MONTAGNA);
 	}
 	
+	/**
+	 * Verifica che le cartie rimanenti del tipo estratto in precedenza 
+	 * siano esattamente il numero iniziale - 2
+	 */
 	@Test 
 	public void testGetTessereRimaste() {
 		assertTrue(mazzo3.getTessereRimaste(TipoTerritorio.MONTAGNA) == Costanti.NUM_TESSERE_PER_TIPO-2);
 	}
 	
+	/**
+	 * Verifica che il valore della carta in cima sia il valore massimo - 2
+	 */
 	@Test
 	public void testLeggiTesseraInCima() {
 		assertTrue(mazzo3.leggiTesseraInCima(TipoTerritorio.MONTAGNA).getCosto() == Costanti.MAX_VALORE_TESSERA-2);
