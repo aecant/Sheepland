@@ -1,4 +1,6 @@
-package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller;
+package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.eventi;
+
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.ClientMain;
 
 public class InizioTurno extends Mossa {
 

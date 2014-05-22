@@ -1,7 +1,7 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.view;
 
-import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.Mossa;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.TipoOvino;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.eventi.Mossa;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Pastore;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Strada;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model.Territorio;

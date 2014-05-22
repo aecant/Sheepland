@@ -1,4 +1,7 @@
-package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller;
+package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.eventi;
+
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.TipoOvino;
 
 public class Abbattimento extends Mossa {
 

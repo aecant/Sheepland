@@ -1,5 +1,7 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller;
 
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.eventi.Evento;
+import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.controller.eventi.Mossa;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.rete.*;
 import it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.view.*;
 
