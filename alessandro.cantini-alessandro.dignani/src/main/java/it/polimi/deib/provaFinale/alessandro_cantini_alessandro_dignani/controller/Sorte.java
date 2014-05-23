@@ -3,6 +3,8 @@ package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.control
 import java.util.Random;
 
 public class Sorte {
+	private Sorte() {
+	}
 
 	public static int lanciaDado() {
 		return numeroCasuale (1, 6);

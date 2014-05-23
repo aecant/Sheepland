@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Set;
 
 public class Utilita {
+	private Utilita() {
+	}
+	
 	public static <E> boolean contieneDuplicati(List<E> lista) {
 		List<E> list = lista;
 		Set<E> set = new HashSet<E>(list);
@@ -37,7 +40,7 @@ public class Utilita {
 	 * @param array
 	 * @return
 	 */
-	public static <E> ArrayList<E> copia(ArrayList<E> array) {
+	public static <E> ArrayList<E> copia(List<E> array) {
 		ArrayList<E> temp = new ArrayList<E>();
 		temp.addAll(array);
 		return temp;

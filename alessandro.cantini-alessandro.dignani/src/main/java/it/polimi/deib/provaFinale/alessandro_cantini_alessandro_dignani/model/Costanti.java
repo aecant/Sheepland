@@ -1,6 +1,9 @@
 package it.polimi.deib.provaFinale.alessandro_cantini_alessandro_dignani.model;
 
 public class Costanti {
+	private Costanti() {
+	}
+	
 	public static final int ETA_MAX_AGNELLO = 2;
 
 	public static final int MAX_VALORE_TESSERA = 4;
