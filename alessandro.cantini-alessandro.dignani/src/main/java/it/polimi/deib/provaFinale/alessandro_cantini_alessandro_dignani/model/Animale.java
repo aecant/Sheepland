@@ -15,7 +15,14 @@ public class Animale {
 		return posizione;
 	}
 
-	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((posizione == null) ? 0 : posizione.hashCode());
+		return result;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -32,7 +39,5 @@ public class Animale {
 			return false;
 		return true;
 	}
-	
-	
 
 }
