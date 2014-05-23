@@ -4,15 +4,15 @@ import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Stack;
 
-/** 
- * Rappresenta l'insieme delle tessere. E' composto da una pila di carte per ogni tipo di territorio
- * presente in {@link TipoTerritorio}, eccetto Sheepsburg.
- *
+/**
+ * Rappresenta l'insieme delle tessere. E' composto da una pila di carte per
+ * ogni tipo di territorio presente in {@link TipoTerritorio}, eccetto
+ * Sheepsburg.
+ * 
  */
 public class Mazzo {
 	private HashMap<TipoTerritorio, Stack<Tessera>> mazzo;
 
-	// TODO migliorare chiarezza
 	/**
 	 * Crea uno stack di carte per ogni tipo contenuto in TipoTerritorio,
 	 * eccetto Sheepsburg, con il valore più basso in cima alla pila
@@ -33,53 +33,56 @@ public class Mazzo {
 	 * 
 	 * @param tipo
 	 * @return La tessera di tipo richiesto
-	 * @throws MazzoFinitoException nel caso il mazzo sia finito
-	 * @throws IllegalArgumentException nel caso si cerchi di prelevare la tessera Sheepsburg
+	 * @throws MazzoFinitoException
+	 *             nel caso il mazzo sia finito
+	 * @throws IllegalArgumentException
+	 *             nel caso si cerchi di prelevare la tessera Sheepsburg
 	 */
-	public Tessera leggiTesseraInCima(TipoTerritorio tipo) throws MazzoFinitoException, IllegalArgumentException{
+	public Tessera leggiTesseraInCima(TipoTerritorio tipo) throws MazzoFinitoException, IllegalArgumentException {
 		if (tipo == TipoTerritorio.SHEEPSBURG)
 			throw new IllegalArgumentException("Non esistono tessere di tipo Sheepsburg");
-		
+
 		try {
 			return mazzo.get(tipo).peek();
-		}
-		catch (EmptyStackException e) {
+		} catch (EmptyStackException e) {
 			throw new MazzoFinitoException(e);
 		}
 	}
-	
+
 	/**
-	 * Legge la tessera in cima al mazzo usando {@link Mazzo#leggiTesseraInCima}, se non ci sono eccezioni
-	 * la scarta
+	 * Legge la tessera in cima al mazzo usando {@link Mazzo#leggiTesseraInCima},
+	 * se non ci sono eccezioni la scarta
 	 * 
-	 * @param tipo Il tipo della carta che si vuole prelevare
-	 * @return La tessera del tipo richiesto
-	 * @throws MazzoFinitoException nel caso il mazzo sia finito
-	 * @throws IllegalArgumentException nel caso si cerchi di prelevare la tessera Sheepsburg
+	 * @param tipo
+	 *            il tipo della carta che si vuole prelevare
+	 * @return la tessera del tipo richiesto
+	 * @throws MazzoFinitoException
+	 *             nel caso il mazzo sia finito
+	 * @throws IllegalArgumentException
+	 *             nel caso si cerchi di prelevare la tessera Sheepsburg
 	 */
-	public Tessera prelevaTessera(TipoTerritorio tipo) throws MazzoFinitoException, IllegalArgumentException{
+	public Tessera prelevaTessera(TipoTerritorio tipo) throws MazzoFinitoException, IllegalArgumentException {
 		Tessera t = leggiTesseraInCima(tipo);
 		mazzo.get(tipo).pop();
 		return t;
 	}
-	
+
 	/**
 	 * Restituisce il numero di carte rimaste di un certo tipo di territorio
 	 * 
 	 * @param tipo
-	 * @return
+	 * @return il numero di carte rimaste di un certo tipo di territorio
 	 */
 	public Integer getTessereRimaste(TipoTerritorio tipo) {
 		return mazzo.get(tipo).size();
 	}
-	
+
 	/**
 	 * Eccezione che indica che la pila di tessere di un territorio e' finita
 	 */
 	public class MazzoFinitoException extends RuntimeException {
 
 		private static final long serialVersionUID = -797454772948488201L;
-		
 
 		public MazzoFinitoException(String message, Throwable cause) {
 			super(message, cause);
@@ -102,7 +105,7 @@ public class Mazzo {
 	public String toString() {
 		String s = "Mazzo:\n";
 		for (TipoTerritorio terr : mazzo.keySet()) {
-			s += terr + ": " + mazzo.get(terr)+"\n";
+			s += terr + ": " + mazzo.get(terr) + "\n";
 		}
 		return s;
 	}
