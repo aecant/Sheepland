@@ -44,7 +44,7 @@ public class Mazzo {
 			return mazzo.get(tipo).peek();
 		}
 		catch (EmptyStackException e) {
-			throw new MazzoFinitoException();
+			throw new MazzoFinitoException(e);
 		}
 	}
 	
@@ -77,7 +77,17 @@ public class Mazzo {
 	 * Eccezione che indica che la pila di tessere di un territorio e' finita
 	 */
 	public class MazzoFinitoException extends RuntimeException {
-		private static final long serialVersionUID = 1L;
+
+		private static final long serialVersionUID = -797454772948488201L;
+		
+
+		public MazzoFinitoException(String message, Throwable cause) {
+			super(message, cause);
+		}
+
+		public MazzoFinitoException(Throwable cause) {
+			super(cause);
+		}
 
 		public MazzoFinitoException() {
 			super();

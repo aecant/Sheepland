@@ -10,7 +10,7 @@ public class Strada {
 			if (territorio1.equals(territorio2))
 				throw new IllegalArgumentException("I due territori devono essere diversi");
 		} catch (NullPointerException e) {
-			throw new IllegalArgumentException("I territori non devono essere null");
+			throw new IllegalArgumentException("I territori non devono essere null", e);
 		}
 		this.territorio1 = territorio1;
 		this.territorio2 = territorio2;
