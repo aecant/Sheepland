@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import controller.Utilita;
 
@@ -10,13 +11,15 @@ public class Partita {
 	private Gregge gregge;
 	private InsiemeDiRecinti recinti;
 	private ArrayList<Giocatore> giocatori;
-
-	public Partita() {
+	
+	public Partita(List<String> nomiGiocatori) {
 		mazzo = new Mazzo();
 		lupo = new Animale(Costanti.POS_INIZIALE_LUPO);
 		gregge = new Gregge();
 		recinti = new InsiemeDiRecinti();
 		giocatori = new ArrayList<Giocatore>();
+		for(String nome : nomiGiocatori)
+			giocatori.add(new Giocatore(nome));
 	}
 
 	public boolean stradaLibera(Strada s) {
@@ -31,9 +34,6 @@ public class Partita {
 		return true;
 	}
 	
-	public void aggiungiGiocatore(String nome) {
-		giocatori.add(new Giocatore(nome));
-	}
 
 	/**
 	 * Restituisce la lista dei pastori, costruita scorrendo la lista dei
