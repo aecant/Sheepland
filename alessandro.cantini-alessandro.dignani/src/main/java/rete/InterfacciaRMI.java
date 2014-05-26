@@ -7,7 +7,8 @@ import model.Tessera;
 
 public interface InterfacciaRMI extends Remote{
 	
-	public Tessera[] getTessereConfinanti(int codPartita, int strada) throws RemoteException;
-	public Integer numero() throws RemoteException;
+	public Tessera[] getTessereConfinanti(String giocatore, int strada) throws RemoteException;
+	
+	public void registraNome(String nome) throws RemoteException;
 
 }

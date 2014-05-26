@@ -1,7 +1,8 @@
 package rete;
 
 public interface InterfacciaServer {
-
-	String clientConnesso();
 	
+	public void inizializza();
+	
+
 }

@@ -1,37 +1,78 @@
 package controller;
 
 import java.util.Vector;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import model.Costanti;
+import model.Giocatore;
+import model.Partita;
 import rete.InterfacciaServer;
-import model.Mappa;
-
 
 public class ServerMain {
-	private static Vector<String> clientInAttesa;
+	private static Vector<Partita> partite;
+	private static Vector<String> giocatoriInAttesa;
 	private static InterfacciaServer connessione;
-	
-	
+	private static ExecutorService esecutorePartite = Executors.newCachedThreadPool();
+
 	public static void main(String[] args) {
 		impostaTipoConnessione();
-		
-	
-		while(true) {
-			clientInAttesa.add(connessione.clientConnesso());
-			int numeroClient = clientInAttesa.size();
-		/*	if(numeroClient >= 2)
-				time = startTimer();*/
-			if(numeroClient == 4)
-				nuovaPartita(); //aggiungi partita a pool di thread)
-		}
-		
-	}
-	
-	
-	private static void nuovaPartita() {
-		//pool di GestorePartita
+		connessione.inizializza();
+
 	}
 
 	private static void impostaTipoConnessione() {
-		//TODO in base alla scelta iniziale, o avvio un pool di thread con i socket, o creo il registry RMI
+		// TODO chiedo all'utente che tipo di server vuole e creo l'oggetto
 	}
+
+	/**
+	 * Restituisce la partita giocata da un giocatore
+	 * 
+	 * @param giocatore
+	 *            il nome del giocatore
+	 * @return la partita giocata dal giocatore
+	 */
+	public static Partita getPartita(String giocatore) {
+		for (Partita p : partite) {
+			for (Giocatore g : p.getGiocatori()) {
+				if (giocatore.equals(g.getNome())) {
+					return p;
+				}
+			}
+		}
+
+		throw new IllegalArgumentException("Il giocatore non è presente");
+
+	}
+
+	private static boolean nomeGiaRegistrato(String nome) {
+		for (Partita p : partite) {
+			for (Giocatore g : p.getGiocatori()) {
+				if (nome.equals(g.getNome())) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	// TODO impostare timer per iniziare partita
+	public synchronized static boolean aggiungiGiocatore(String nome) {
+		if (nomeGiaRegistrato(nome))
+			return false;
+
+		giocatoriInAttesa.add(nome);
+
+		if (giocatoriInAttesa.size() == Costanti.NUM_MAX_GIOCATORI) {
+			iniziaPartita(new Partita(giocatoriInAttesa));
+			giocatoriInAttesa.clear();
+		}
+
+		return true;
+	}
+
+	private static void iniziaPartita(Partita partita) {
+		esecutorePartite.submit(new GestorePartita(partita));
+	}
+
 }

@@ -7,14 +7,14 @@ import controller.eventi.Mossa;
 
 public class ClientMain {
 	private static InterfacciaUtente ui;
-	private static Connessione connessione;
+	private static ConnessioneClient connessione;
 	private static DatiPartita datiPartita;
 
 	public static InterfacciaUtente getUI() {
 		return ui;
 	}
 
-	public static Connessione getConnessione() {
+	public static ConnessioneClient getConnessione() {
 		return connessione;
 	}
 
@@ -84,7 +84,7 @@ public class ClientMain {
 		// while(connessione.registraNome(utente.chiediNome()));
 	}
 
-	private static Connessione chiediTipoConnessione() {
+	private static ConnessioneClient chiediTipoConnessione() {
 		// TODO Auto-generated method stub
 		return null;
 	}
