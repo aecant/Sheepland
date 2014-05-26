@@ -6,7 +6,7 @@ import model.Tessera;
 import controller.eventi.Evento;
 import controller.eventi.Mossa;
 
-public interface Connessione {
+public interface ConnessioneClient {
 
 	public DatiTerritorio[] chiediElencoTerritori();
 
