@@ -19,7 +19,8 @@ public class ServerMain {
 	public static void main(String[] args) {
 		impostaTipoConnessione();
 		connessione.inizializza();
-
+		
+		
 	}
 
 	private static void impostaTipoConnessione() {
@@ -45,6 +46,10 @@ public class ServerMain {
 
 		throw new IllegalArgumentException("Il giocatore non è presente");
 
+	}
+
+	public static InterfacciaServer getConnessione() {
+		return connessione;
 	}
 
 	private static boolean nomeGiaRegistrato(String nome) {

@@ -9,7 +9,7 @@ import java.util.Set;
 public class Utilita {
 	private Utilita() {
 	}
-	
+
 	public static <E> boolean contieneDuplicati(List<E> lista) {
 		List<E> list = lista;
 		Set<E> set = new HashSet<E>(list);
@@ -30,13 +30,14 @@ public class Utilita {
 				return true;
 		return false;
 	}
-	
+
 	public static <E> boolean contiene(E[] array, E element) {
 		return contiene(Arrays.asList(array), element);
 	}
-	
+
 	/**
 	 * Restituisce una copia di un ArrayList
+	 * 
 	 * @param array
 	 * @return
 	 */
@@ -44,5 +45,19 @@ public class Utilita {
 		ArrayList<E> temp = new ArrayList<E>();
 		temp.addAll(array);
 		return temp;
+	}
+
+	/**
+	 * Sospende il thread per un certo numero di millisecondi
+	 * 
+	 * @param millisecondi
+	 *            il numero di millisecondi per cui viene sospeso il thread
+	 */
+	public static void aspetta(long millisecondi) {
+		try {
+			Thread.sleep(millisecondi);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }

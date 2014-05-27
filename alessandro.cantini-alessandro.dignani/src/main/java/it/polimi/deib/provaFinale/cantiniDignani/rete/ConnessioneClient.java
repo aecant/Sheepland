@@ -45,4 +45,5 @@ public interface ConnessioneClient {
 	public Tessera[] chiediTessereInCima();
 
 	public Giocatore[] chiediGiocatori();
+	
 }

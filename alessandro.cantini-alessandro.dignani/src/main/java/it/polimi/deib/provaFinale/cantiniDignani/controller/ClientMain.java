@@ -1,6 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.InizioPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneRMI;
@@ -24,30 +25,21 @@ public class ClientMain {
 	public static void main(String[] args) {
 		connessione = chiediTipoConnessione();
 		ui = chiediTipoInterfaccia();
-		
+
 		connessione.inizializza();
-		
+
 		registraGiocatore();
 
-		do {
-			iniziaPartita();
-			eseguiPartita();
-		} while (!nuovaPartita());
-
+		aspettaEvento(InizioPartita.class);
 	}
 
-	private static boolean nuovaPartita() {
-		// TODO Auto-generated method stub
-		return false;
+	public static void setEventoCorrente(Evento eventoCorrente) {
+		ClientMain.eventoCorrente = eventoCorrente;
 	}
 
-	private static void eseguiPartita() {
-		while (true) {
-			gestisciEvento();
-
-			if (isProprioTurno()) {
-				gestisciProprioTurno();
-			}
+	private static void aspettaEvento(Class<?> classe) {
+		while (eventoCorrente.getClass() != classe) {
+			Utilita.aspetta(100);
 		}
 	}
 
@@ -66,10 +58,6 @@ public class ClientMain {
 		eventoCorrente = connessione.chiediEvento();
 		eventoCorrente.aggiornaDati();
 		eventoCorrente.visualizza();
-	}
-
-	private static void iniziaPartita() {
-		datiPartita = connessione.scaricaDatiPartita();
 	}
 
 	private static void registraGiocatore() {
@@ -95,6 +83,10 @@ public class ClientMain {
 	private static InterfacciaUtente chiediTipoInterfaccia() {
 		// TODO Auto-generated method stub
 		return new Cli();
+	}
+
+	public static String getNome() {
+		return nome;
 	}
 
 	public static InterfacciaUtente getUI() {

@@ -10,17 +10,18 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
-public class ConnessioneRMI implements ConnessioneClient {
-	
+public class ConnessioneRMI implements ConnessioneClient, AscoltatoreRemoto {
+
 	private Registry registry;
-	InterfacciaRMI server;
-	
+	private InterfacciaRMI server;
+
 	public void inizializza() {
 		try {
 			registry = LocateRegistry.getRegistry(Costanti.SERVER_ADDRESS, Costanti.SERVER_PORT);
 			server = (InterfacciaRMI) registry.lookup(Costanti.SERVER_NAME);
-			
+
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -32,6 +33,8 @@ public class ConnessioneRMI implements ConnessioneClient {
 
 	public void registraGiocatore(String nome) throws RemoteException {
 		server.registraGiocatore(nome);
+		AscoltatoreRemoto ascoltatore = (AscoltatoreRemoto) UnicastRemoteObject.exportObject(this, 0);
+		server.aggiungiAscoltatore(nome, ascoltatore);
 	}
 
 	public Evento chiediEvento() {
@@ -46,7 +49,7 @@ public class ConnessioneRMI implements ConnessioneClient {
 
 	public void inviaMossa(Mossa mossaScelta) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public DatiTerritorio[] chiediElencoTerritori() {
@@ -113,5 +116,10 @@ public class ConnessioneRMI implements ConnessioneClient {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+	public Evento riceviEvento(Evento e) throws RemoteException {
+		System.out.println("Evento ricevuto: " + e);
+		return e;
+	}
+
 }

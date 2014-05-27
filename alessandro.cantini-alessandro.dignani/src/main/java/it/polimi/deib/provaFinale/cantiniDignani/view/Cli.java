@@ -13,13 +13,13 @@ public class Cli implements InterfacciaUtente {
 	private PrintStream out = Costanti.OUTPUT;
 
 	public String chiediNome() {
+		pulisci();
 		out.println("Inserisci il tuo nome");
 		return Input.readString();
 	}
 
 	public void nomeGiaPresente() {
-		// TODO Auto-generated method stub
-
+		out.println("Questo nome e' gia' registrato");
 	}
 
 	public void inizioTurno(String giocatore) {
@@ -80,6 +80,12 @@ public class Cli implements InterfacciaUtente {
 	public void inizioPartita() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	private void pulisci() {
+		for(int i = 0; i < 30; i++) {
+			out.println();
+		}
 	}
 
 }
