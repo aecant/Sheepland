@@ -34,4 +34,6 @@ public interface InterfacciaUtente {
 
 	public void pagamento(Integer denaro, String pagante, String pagato);
 
+	public void inizioPartita();
+
 }
