@@ -8,6 +8,7 @@ import model.Costanti;
 import model.Giocatore;
 import model.Partita;
 import rete.InterfacciaServer;
+import rete.ServerRMI;
 
 public class ServerMain {
 	private static Vector<Partita> partite;
@@ -23,6 +24,7 @@ public class ServerMain {
 
 	private static void impostaTipoConnessione() {
 		// TODO chiedo all'utente che tipo di server vuole e creo l'oggetto
+		connessione = new ServerRMI();
 	}
 
 	/**

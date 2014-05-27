@@ -9,6 +9,6 @@ public interface InterfacciaRMI extends Remote{
 	
 	public Tessera[] getTessereConfinanti(String giocatore, int strada) throws RemoteException;
 	
-	public void registraNome(String nome) throws RemoteException;
+	public void registraGiocatore(String nome) throws RemoteException;
 
 }

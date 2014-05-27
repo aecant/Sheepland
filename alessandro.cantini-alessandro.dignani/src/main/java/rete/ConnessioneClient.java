@@ -1,5 +1,7 @@
 package rete;
 
+import java.rmi.RemoteException;
+
 import model.Giocatore;
 import model.Pastore;
 import model.Tessera;
@@ -7,6 +9,18 @@ import controller.eventi.Evento;
 import controller.eventi.Mossa;
 
 public interface ConnessioneClient {
+
+	public void inizializza();
+
+	public DatiPartita scaricaDatiPartita();
+
+	public void registraGiocatore(String nome) throws RemoteException;
+
+	public Evento chiediEvento();
+
+	public Mossa[] chiediMosseDisponibili();
+
+	public void inviaMossa(Mossa mossaScelta);
 
 	public DatiTerritorio[] chiediElencoTerritori();
 
@@ -26,15 +40,9 @@ public interface ConnessioneClient {
 
 	public Tessera[] chiediTessereTerritoriConfinanti(Integer strada);
 
-	public Evento chiediEvento();
-
-	public Mossa[] chiediMosseDisponibili();
-
 	public Tessera[] chiediTessere();
 
 	public Tessera[] chiediTessereInCima();
-
-	public void inviaMossa(Mossa mossaScelta);
 
 	public Giocatore[] chiediGiocatori();
 }

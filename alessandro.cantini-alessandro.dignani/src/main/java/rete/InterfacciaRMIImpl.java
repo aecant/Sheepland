@@ -12,12 +12,11 @@ public class InterfacciaRMIImpl implements InterfacciaRMI {
 		return Estrattore.tessereConfinanti(ServerMain.getPartita(giocatore), strada);
 	}
 
-	public void registraNome(String nome) throws NomeGiaPresenteException {
-		if (!ServerMain.aggiungiGiocatore(nome))
+	public void registraGiocatore(String nome) throws NomeGiaPresenteException {
+		if (!ServerMain.aggiungiGiocatore(nome)) {
 			throw new NomeGiaPresenteException("Il nome e' gia' registrato");
-				
+		}
+		System.out.println("Giocatore registrato: " + nome);
 	}
 
-	
-	
 }

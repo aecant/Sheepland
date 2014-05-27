@@ -1,6 +1,5 @@
 package view;
 
-import rete.DatiPartita;
 import model.Pastore;
 import model.Strada;
 import model.Territorio;
@@ -9,6 +8,12 @@ import controller.TipoOvino;
 import controller.eventi.Mossa;
 
 public interface InterfacciaUtente {
+
+	public String chiediNome();
+
+	public void nomeGiaPresente();
+
+	public void inizioTurno(String giocatore);
 
 	public Mossa chiediMossa(Mossa[] mosseDisponibili);
 
@@ -25,10 +30,6 @@ public interface InterfacciaUtente {
 	public void acquistoTessera(String giocatore, Tessera tessera);
 
 	public void abbattimento(String string, TipoOvino tipoOvino);
-
-	public DatiPartita scaricaDatiPartita();
-
-	public void inizioTurno(String giocatore);
 
 	public void trasformazioneAgnello(boolean maschio, Integer territorio);
 

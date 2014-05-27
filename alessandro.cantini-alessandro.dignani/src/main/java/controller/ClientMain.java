@@ -1,39 +1,31 @@
 package controller;
 
-import rete.*;
-import view.*;
+import java.rmi.RemoteException;
+
+import rete.ConnessioneClient;
+import rete.ConnessioneRMI;
+import rete.DatiPartita;
+import rete.NomeGiaPresenteException;
+import view.InterfacciaUtente;
 import controller.eventi.Evento;
 import controller.eventi.Mossa;
 
 public class ClientMain {
+	private static String nome;
 	private static InterfacciaUtente ui;
 	private static ConnessioneClient connessione;
 	private static DatiPartita datiPartita;
 
-	public static InterfacciaUtente getUI() {
-		return ui;
-	}
-
-	public static ConnessioneClient getConnessione() {
-		return connessione;
-	}
-
-	public static DatiPartita getDatiPartita() {
-		return datiPartita;
-	}
-
-	public static void setDatiPartita(DatiPartita datiPartita) {
-		ClientMain.datiPartita = datiPartita;
-	}
-
 	private static Mossa[] mosseDisponibili;
+
 	private static Evento eventoCorrente;
-	private static String nome;
 
 	public static void main(String[] args) {
 		connessione = chiediTipoConnessione();
 		ui = chiediTipoInterfaccia();
-
+		
+		connessione.inizializza();
+		
 		registraGiocatore();
 
 		do {
@@ -76,22 +68,48 @@ public class ClientMain {
 	}
 
 	private static void iniziaPartita() {
-		datiPartita = ui.scaricaDatiPartita();
+		datiPartita = connessione.scaricaDatiPartita();
 	}
 
 	private static void registraGiocatore() {
-
-		// while(connessione.registraNome(utente.chiediNome()));
+		while (true) {
+			try {
+				nome = ui.chiediNome();
+				connessione.registraGiocatore(nome);
+				break;
+			} catch (NomeGiaPresenteException e) {
+				ui.nomeGiaPresente();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private static ConnessioneClient chiediTipoConnessione() {
 		// TODO Auto-generated method stub
-		return null;
+		return new ConnessioneRMI();
 	}
 
 	private static InterfacciaUtente chiediTipoInterfaccia() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public static InterfacciaUtente getUI() {
+		return ui;
+	}
+
+	public static ConnessioneClient getConnessione() {
+		return connessione;
+	}
+
+	public static DatiPartita getDatiPartita() {
+		return datiPartita;
+	}
+
+	public static void setDatiPartita(DatiPartita datiPartita) {
+		ClientMain.datiPartita = datiPartita;
 	}
 
 }
