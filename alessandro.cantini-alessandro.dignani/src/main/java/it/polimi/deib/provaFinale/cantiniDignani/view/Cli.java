@@ -11,11 +11,10 @@ import java.io.PrintStream;
 
 public class Cli implements InterfacciaUtente {
 	private PrintStream out = Costanti.OUTPUT;
-	
-	
+
 	public String chiediNome() {
-		
-		return null;
+		out.println("Inserisci il tuo nome");
+		return Input.readString();
 	}
 
 	public void nomeGiaPresente() {

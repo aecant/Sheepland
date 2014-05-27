@@ -6,6 +6,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneRMI;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.DatiPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
+import it.polimi.deib.provaFinale.cantiniDignani.view.Cli;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 
 import java.rmi.RemoteException;
@@ -93,7 +94,7 @@ public class ClientMain {
 
 	private static InterfacciaUtente chiediTipoInterfaccia() {
 		// TODO Auto-generated method stub
-		return null;
+		return new Cli();
 	}
 
 	public static InterfacciaUtente getUI() {
