@@ -11,8 +11,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ServerMain {
-	private static Vector<Partita> partite;
-	private static Vector<String> giocatoriInAttesa;
+	private static Vector<Partita> partite = new Vector<Partita>();
+	private static Vector<String> giocatoriInAttesa = new Vector<String>();
 	private static InterfacciaServer connessione;
 	private static ExecutorService esecutorePartite = Executors.newCachedThreadPool();
 
