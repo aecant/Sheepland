@@ -13,6 +13,8 @@ public interface InterfacciaUtente {
 
 	public void nomeGiaPresente();
 
+	public void inizioPartita();
+
 	public void inizioTurno(String giocatore);
 
 	public Mossa chiediMossa(Mossa[] mosseDisponibili);
@@ -34,7 +36,5 @@ public interface InterfacciaUtente {
 	public void trasformazioneAgnello(boolean maschio, Integer territorio);
 
 	public void pagamento(Integer denaro, String pagante, String pagato);
-
-	public void inizioPartita();
 
 }

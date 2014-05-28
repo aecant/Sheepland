@@ -8,6 +8,8 @@ public class LancioDado implements Evento {
 	private Integer numero;
 
 	public LancioDado(Integer numero) {
+		if(numero < 1 && numero > 6)
+			throw new IllegalArgumentException("Il numero del dado dev'essere compreso fra 1 e 6");
 		this.numero = numero;
 	}
 

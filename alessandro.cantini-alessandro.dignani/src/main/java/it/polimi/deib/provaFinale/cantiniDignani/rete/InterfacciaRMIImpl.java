@@ -12,9 +12,9 @@ public class InterfacciaRMIImpl implements InterfacciaRMI {
 		return Estrattore.tessereConfinanti(ServerMain.getPartita(giocatore), strada);
 	}
 
-	public void registraGiocatore(String nome) throws RemoteException {
+	public void registraGiocatore(String nome) throws NomeGiaPresenteException, RemoteException {
 		if (!ServerMain.aggiungiGiocatore(nome)) {
-			throw new NomeGiaPresenteException("Il nome e' gia' registrato");
+			throw new NomeGiaPresenteException();
 		}
 		System.out.println("Giocatore registrato: " + nome);
 	}
@@ -23,5 +23,4 @@ public class InterfacciaRMIImpl implements InterfacciaRMI {
 		ServerRMI.getAscoltatori().put(nome, ascoltatore);
 		System.out.println("Ascoltatore aggiunto: " + ascoltatore);
 	}
-
 }

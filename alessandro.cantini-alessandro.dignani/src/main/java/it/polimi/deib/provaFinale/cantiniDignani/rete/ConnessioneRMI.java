@@ -1,5 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
@@ -117,9 +118,9 @@ public class ConnessioneRMI implements ConnessioneClient, AscoltatoreRemoto {
 		return null;
 	}
 
-	public Evento riceviEvento(Evento e) throws RemoteException {
-		System.out.println("Evento ricevuto: " + e);
-		return e;
+	public void riceviEvento(Evento e) throws RemoteException {
+		ClientMain.getCodaEventi().add(e);
+
 	}
 
 }

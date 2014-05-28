@@ -22,6 +22,10 @@ public class Cli implements InterfacciaUtente {
 		out.println("Questo nome e' gia' registrato");
 	}
 
+	public void inizioPartita() {
+		out.println("Partita iniziata!");
+	}
+
 	public void inizioTurno(String giocatore) {
 		// TODO Auto-generated method stub
 
@@ -53,8 +57,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void lancioDado(Integer numero) {
-		// TODO Auto-generated method stub
-
+		out.println("Dado lanciato: " + numero);
 	}
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
@@ -77,13 +80,9 @@ public class Cli implements InterfacciaUtente {
 
 	}
 
-	public void inizioPartita() {
-		// TODO Auto-generated method stub
-
-	}
-	
 	private void pulisci() {
-		for(int i = 0; i < 30; i++) {
+		//per ora, nullo
+		for(int i = 0; i < 0; i++) {
 			out.println();
 		}
 	}

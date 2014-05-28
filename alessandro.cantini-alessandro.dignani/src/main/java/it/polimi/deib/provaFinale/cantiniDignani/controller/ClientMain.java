@@ -11,36 +11,59 @@ import it.polimi.deib.provaFinale.cantiniDignani.view.Cli;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 
 import java.rmi.RemoteException;
+import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class ClientMain {
 	private static String nome;
 	private static InterfacciaUtente ui;
 	private static ConnessioneClient connessione;
 	private static DatiPartita datiPartita;
-
+	private static LinkedBlockingQueue<Evento> codaEventi = new LinkedBlockingQueue<Evento>();
 	private static Mossa[] mosseDisponibili;
-
-	private static Evento eventoCorrente;
 
 	public static void main(String[] args) {
 		connessione = chiediTipoConnessione();
 		ui = chiediTipoInterfaccia();
 
 		connessione.inizializza();
-
+				
 		registraGiocatore();
-
-		aspettaEvento(InizioPartita.class);
+		
+	
 	}
 
-	public static void setEventoCorrente(Evento eventoCorrente) {
-		ClientMain.eventoCorrente = eventoCorrente;
-	}
-
-	private static void aspettaEvento(Class<?> classe) {
-		while (eventoCorrente.getClass() != classe) {
-			Utilita.aspetta(100);
+	/**
+	 * Aspetta e restituisce un evento inviato dal server
+	 * 
+	 * @return l'evento ricevuto dal server
+	 */
+	private static Evento aspettaEvento() {
+		Evento evento = null;
+		try {
+			evento = codaEventi.take();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		return evento;
+	}
+
+	/**
+	 * Aspetta e restituisce un evento di un determinato tipo, controlla che
+	 * l'evento ricevuto sia del tipo passato come parametro, in caso negativo
+	 * fa terminare il programma
+	 * 
+	 * @param classe
+	 *            il tipo di evento che ci si aspetta
+	 * @return l'evento ricevuto dal server
+	 */
+	private static Evento aspettaEvento(Class<?> classe) {
+		Evento e = aspettaEvento();
+		if (e.getClass() != classe) {
+			throw new RuntimeException("L'evento è diverso da quello aspettato");
+		}
+		return e;
 	}
 
 	private static void gestisciProprioTurno() {
@@ -54,11 +77,11 @@ public class ClientMain {
 		return datiPartita.getGiocatoreDiTurno().equals(nome) ? true : false;
 	}
 
-	private static void gestisciEvento() {
-		eventoCorrente = connessione.chiediEvento();
-		eventoCorrente.aggiornaDati();
-		eventoCorrente.visualizza();
-	}
+	/*
+	 * private static void gestisciEvento() { eventoCorrente =
+	 * connessione.chiediEvento(); eventoCorrente.aggiornaDati();
+	 * eventoCorrente.visualizza(); }
+	 */
 
 	private static void registraGiocatore() {
 		while (true) {
@@ -68,7 +91,7 @@ public class ClientMain {
 				break;
 			} catch (NomeGiaPresenteException e) {
 				ui.nomeGiaPresente();
-			} catch (RemoteException e) {
+			}catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -83,6 +106,10 @@ public class ClientMain {
 	private static InterfacciaUtente chiediTipoInterfaccia() {
 		// TODO Auto-generated method stub
 		return new Cli();
+	}
+
+	public static Queue<Evento> getCodaEventi() {
+		return codaEventi;
 	}
 
 	public static String getNome() {
