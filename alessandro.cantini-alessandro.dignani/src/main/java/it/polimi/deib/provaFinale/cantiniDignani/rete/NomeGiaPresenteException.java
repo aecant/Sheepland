@@ -1,10 +1,8 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete;
 
-import java.rmi.RemoteException;
+public class NomeGiaPresenteException extends IllegalArgumentException {
 
-public class NomeGiaPresenteException extends RemoteException {
-
-	private static final long serialVersionUID = 7496212372080702479L;
+	private static final long serialVersionUID = 4955266557899050412L;
 
 	public NomeGiaPresenteException() {
 		super();
