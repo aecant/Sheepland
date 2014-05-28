@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.GestioneEventi;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
@@ -36,6 +36,10 @@ public class ConnessioneRMI implements ConnessioneClient, AscoltatoreRemoto {
 		server.registraGiocatore(nome);
 		AscoltatoreRemoto ascoltatore = (AscoltatoreRemoto) UnicastRemoteObject.exportObject(this, 0);
 		server.aggiungiAscoltatore(nome, ascoltatore);
+	}
+
+	public void riceviEvento(Evento e) throws RemoteException {
+		GestioneEventi.aggiungi(e);
 	}
 
 	public Evento chiediEvento() {
@@ -116,11 +120,6 @@ public class ConnessioneRMI implements ConnessioneClient, AscoltatoreRemoto {
 	public DatiPartita scaricaDatiPartita() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	public void riceviEvento(Evento e) throws RemoteException {
-		ClientMain.getCodaEventi().add(e);
-
 	}
 
 }

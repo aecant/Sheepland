@@ -6,7 +6,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ServerRMI;
-import it.polimi.deib.provaFinale.cantiniDignani.view.Input;
 
 import java.util.Vector;
 import java.util.concurrent.ExecutorService;
