@@ -23,15 +23,19 @@ public class Pecora extends Animale {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (!super.equals(obj))
+		}
+		if (!super.equals(obj)) {
 			return false;
-		if (!(obj instanceof Pecora))
+		}
+		if (!(obj instanceof Pecora)) {
 			return false;
+		}
 		Pecora other = (Pecora) obj;
-		if (maschio != other.maschio)
+		if (maschio != other.maschio) {
 			return false;
+		}
 		return true;
 	}
 
