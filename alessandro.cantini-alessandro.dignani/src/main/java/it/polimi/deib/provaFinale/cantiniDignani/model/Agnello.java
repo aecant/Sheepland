@@ -2,13 +2,24 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 public class Agnello extends Pecora {
 
+	private int eta;
+
+	/**
+	 * Instanzia un agnello
+	 * 
+	 * @param posizione
+	 *            il territorio su cui si trova
+	 * @param maschio
+	 *            true se e' un montone, false se e' una pecora
+	 */
 	public Agnello(Territorio posizione, boolean maschio) {
 		super(posizione, maschio);
 		eta = 0;
 	}
 
-	private int eta;
-
+	/**
+	 * Aumenta di uno l'eta' dell'agnello
+	 */
 	public void invecchia() {
 		eta++;
 	}
@@ -27,15 +38,19 @@ public class Agnello extends Pecora {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (!super.equals(obj))
+		}
+		if (!super.equals(obj)) {
 			return false;
-		if (!(obj instanceof Agnello))
+		}
+		if (!(obj instanceof Agnello)) {
 			return false;
+		}
 		Agnello other = (Agnello) obj;
-		if (eta != other.eta)
+		if (eta != other.eta) {
 			return false;
+		}
 		return true;
 	}
 
