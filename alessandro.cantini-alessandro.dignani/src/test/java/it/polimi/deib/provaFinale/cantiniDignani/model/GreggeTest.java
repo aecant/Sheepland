@@ -1,48 +1,71 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
 import it.polimi.deib.provaFinale.cantiniDignani.model.Agnello;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Gregge;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class GreggeTest {
-	Gregge gregge1, gregge2, gregge3;
-	Pecora pecora;
+	Gregge g1, g2, g3;
+	Pecora p1, p2, p3;
 	Agnello agnello;
+	Territorio t1, t2;
+	ArrayList<Pecora> pecoreSuTerr;
 	
 	@Before
 	public void setUp() {
-		pecora = new Pecora(Mappa.getMappa().getTerritori()[0], false);
-		agnello = new Agnello(Mappa.getMappa().getTerritori()[0], false);
-		gregge1 = new Gregge();
-		gregge2 = new Gregge();
-		gregge3 = new Gregge();
+		t1 = new Territorio(0, TipoTerritorio.SHEEPSBURG);
+		t2 = new Territorio(5, TipoTerritorio.DESERTO);
+
+		p1 = new Pecora(t1, false);
+		p2 = new Pecora(t1, true);
+		p3 = new Pecora(t2, true);
 		
-		gregge1.aggiungi(pecora);
-		gregge1.rimuovi(pecora);
+		agnello = new Agnello(t1, false);
+		g1 = new Gregge();
+		g2 = new Gregge();
+		g3 = new Gregge();
 		
-		gregge2.aggiungi(pecora);
+		g1.aggiungi(p1);
+		g1.rimuovi(p1);
 		
-		gregge3.aggiungi(agnello);
+		g2.aggiungi(p1);
+		
+		g3.aggiungi(agnello);
+		g3.aggiungi(p1);
+		g3.aggiungi(p2);
+		g3.aggiungi(p3);
+		
+		pecoreSuTerr = g3.pecoreSuTerritorio(t1);
 	}
 	
 	@Test
 	public void testAggiungiRimuovi() {
-		assertFalse(gregge1.getPecore().contains(pecora));
-		assertTrue(gregge2.getPecore().contains(pecora));
+		assertFalse(g1.getPecore().contains(p1));
+		assertTrue(g2.getPecore().contains(p1));
 	}
 	
 	
 	@Test
 	public void testTrasformaAgnelloInPecora() {
-		assertTrue(gregge3.getPecore().contains(agnello));
-		assertTrue(gregge3.getPecore().get(0) instanceof Agnello);
-		gregge3.trasformaAgnelloInPecora(agnello);
-		assertTrue(gregge3.getPecore().get(0) instanceof Pecora);
+		assertTrue(g3.getPecore().contains(agnello));
+		assertTrue(g3.getPecore().get(0) instanceof Agnello);
+		g3.trasformaAgnelloInPecora(agnello);
+		assertTrue(g3.getPecore().get(0) instanceof Pecora);
 				
 	}
+	
+	@Test
+	public void testPecoreSuTerritorio() {
+		for(Pecora p : pecoreSuTerr) {
+			assertEquals(p.getPosizione(), t1);
+		}
+	}
+	
 }

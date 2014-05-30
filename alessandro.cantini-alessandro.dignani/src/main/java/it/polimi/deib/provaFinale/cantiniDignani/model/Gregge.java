@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe che contiene la lista di pecore di una partita e che contiene i metodi
- * per gestirle
+ * Classe che contiene la lista di pecore di una partita e i metodi per gestirle
  */
 public class Gregge {
 	private List<Pecora> pecore;
@@ -41,8 +40,9 @@ public class Gregge {
 	 *             se la pecora non e' presente
 	 */
 	public void rimuovi(Pecora p) throws IllegalArgumentException {
-		if (!pecore.remove(p))
+		if (!pecore.remove(p)) {
 			throw new IllegalArgumentException("La pecora non e' presente nel gregge");
+		}
 	}
 
 	/**
@@ -52,23 +52,26 @@ public class Gregge {
 	 *            l'agnello da trasformare
 	 */
 	public void trasformaAgnelloInPecora(Agnello agnello) throws IllegalArgumentException {
-		if (!pecore.contains(agnello))
+		if (!pecore.contains(agnello)) {
 			throw new IllegalArgumentException("L'agnello non e' presente");
-		pecore.set(pecore.indexOf(agnello), (Pecora) agnello);
+		}
+		pecore.set(pecore.indexOf(agnello), agnello);
 	}
 
 	/**
 	 * Restituisce la lista delle pecore che stanno su un determinato territorio
 	 * 
 	 * @param t
-	 * @return
+	 *            il territorio su cui stanno le pecore
+	 * @return la lista delle pecore sul territorio passato come parametro
 	 */
 	public ArrayList<Pecora> pecoreSuTerritorio(Territorio t) {
 		ArrayList<Pecora> pecore = new ArrayList<Pecora>();
 
 		for (Pecora p : getPecore()) {
-			if (p.getPosizione().equals(t))
+			if (p.getPosizione().equals(t)) {
 				pecore.add(p);
+			}
 		}
 		return pecore;
 	}
