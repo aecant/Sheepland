@@ -24,12 +24,7 @@ public class ClientMain {
 		connessione.inizializza();
 				
 		registraGiocatore();
-		
-		//TODO test da rimuovere
-		while(true) {
-			Evento e = GestioneEventi.aspettaEvento(LancioDado.class);
-			e.visualizza();
-		}
+	
 	}
 
 	
@@ -58,20 +53,17 @@ public class ClientMain {
 				break;
 			} catch (NomeGiaPresenteException e) {
 				ui.nomeGiaPresente();
-			}catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		}
 	}
 
 	private static ConnessioneClient chiediTipoConnessione() {
-		// TODO Auto-generated method stub
+		// TODO test da rimuovere
 		return new ConnessioneRMI();
 	}
 
 	private static InterfacciaUtente chiediTipoInterfaccia() {
-		// TODO Auto-generated method stub
+		// TODO test da rimuovere
 		return new Cli();
 	}
 

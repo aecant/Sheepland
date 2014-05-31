@@ -21,21 +21,27 @@ public class ServerMain {
 	public static void main(String[] args) {
 		impostaTipoConnessione();
 		connessione.inizializza();
-
-		// TODO test da rimuovere
-		while (true) {
-			System.out.println("0 per mandare un evento a tutti");
-			if (Input.readInt() == 0)
-				connessione.inviaEventoATutti(new LancioDado(6));
-		}
-
 	}
 
-	private static void impostaTipoConnessione() {
-		// TODO chiedo all'utente che tipo di server vuole e creo l'oggetto
+	// TODO impostare timer per iniziare partita
+	public synchronized static boolean aggiungiGiocatore(String nome) {
+		if (nomeGiaRegistrato(nome))
+			return false;
 
-		// TODO da rimuovere, test
-		connessione = new ServerRMI();
+		giocatoriInAttesa.add(nome);
+
+		if (giocatoriInAttesa.size() == Costanti.NUM_MAX_GIOCATORI) {
+			iniziaPartita(new Partita(giocatoriInAttesa));
+		}
+
+		return true;
+	}
+
+	protected synchronized static void iniziaPartita(Partita partita) {
+		partite.add(partita);
+		esecutorePartite.submit(new GestorePartita(partita, connessione));
+		giocatoriInAttesa.clear();
+		System.out.println("Partita iniziata.");
 	}
 
 	/**
@@ -60,25 +66,11 @@ public class ServerMain {
 		return false;
 	}
 
-	// TODO impostare timer per iniziare partita
-	public synchronized static boolean aggiungiGiocatore(String nome) {
-		if (nomeGiaRegistrato(nome))
-			return false;
-
-		giocatoriInAttesa.add(nome);
-
-		if (giocatoriInAttesa.size() == Costanti.NUM_MAX_GIOCATORI) {
-			iniziaPartita(new Partita(giocatoriInAttesa));
-		}
-
-		return true;
-	}
-
-	protected synchronized static void iniziaPartita(Partita partita) {
-		partite.add(partita);
-		esecutorePartite.submit(new GestorePartita(partita));
-		giocatoriInAttesa.clear();
-		System.out.println("Partita iniziata.");
+	private static void impostaTipoConnessione() {
+		// TODO chiedo all'utente che tipo di server vuole e creo l'oggetto
+	
+		// TODO da rimuovere, test
+		connessione = new ServerRMI();
 	}
 
 	/**

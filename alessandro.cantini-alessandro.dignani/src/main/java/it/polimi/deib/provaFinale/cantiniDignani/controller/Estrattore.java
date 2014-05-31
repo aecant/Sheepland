@@ -16,8 +16,7 @@ public class Estrattore {
 	 */
 	private Estrattore() {
 	}
-	
-	
+
 	public static Tessera[] tessereConfinanti(Partita partita, int strada) {
 		Tessera[] tessere = new Tessera[2];
 
@@ -30,4 +29,6 @@ public class Estrattore {
 
 		return tessere;
 	}
+	
+	
 }

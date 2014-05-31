@@ -32,17 +32,23 @@ public class ConnessioneRMI implements ConnessioneClient, AscoltatoreRemoto {
 		}
 	}
 
-	public void registraGiocatore(String nome) throws RemoteException {
-		server.registraGiocatore(nome);
-		AscoltatoreRemoto ascoltatore = (AscoltatoreRemoto) UnicastRemoteObject.exportObject(this, 0);
-		server.aggiungiAscoltatore(nome, ascoltatore);
+	public void registraGiocatore(String nome) {
+		try {
+			server.registraGiocatore(nome);
+			AscoltatoreRemoto ascoltatore = (AscoltatoreRemoto) UnicastRemoteObject.exportObject(this, 0);
+			server.aggiungiAscoltatore(nome, ascoltatore);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
-	public void riceviEvento(Evento e) throws RemoteException {
+	public void riceviEvento(Evento e) {
 		GestioneEventi.aggiungi(e);
 	}
 
-	public Evento chiediEvento() {
+	public DatiPartita scaricaDatiPartita() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -54,7 +60,7 @@ public class ConnessioneRMI implements ConnessioneClient, AscoltatoreRemoto {
 
 	public void inviaMossa(Mossa mossaScelta) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	public DatiTerritorio[] chiediElencoTerritori() {
@@ -62,17 +68,7 @@ public class ConnessioneRMI implements ConnessioneClient, AscoltatoreRemoto {
 		return null;
 	}
 
-	public Integer[] chiediStradeConfinanti(Integer strada) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Integer[] chiediStradeLibere() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public DatiTerritorio[] chediPecoreTerritoriVicini(Integer strada) {
+	public Giocatore[] chiediGiocatori() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -97,11 +93,6 @@ public class ConnessioneRMI implements ConnessioneClient, AscoltatoreRemoto {
 		return null;
 	}
 
-	public Tessera[] chiediTessereTerritoriConfinanti(Integer strada) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public Tessera[] chiediTessere() {
 		// TODO Auto-generated method stub
 		return null;
@@ -112,14 +103,5 @@ public class ConnessioneRMI implements ConnessioneClient, AscoltatoreRemoto {
 		return null;
 	}
 
-	public Giocatore[] chiediGiocatori() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public DatiPartita scaricaDatiPartita() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

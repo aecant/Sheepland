@@ -1,12 +1,9 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
-
-import java.rmi.RemoteException;
 
 public interface ConnessioneClient {
 
@@ -14,9 +11,7 @@ public interface ConnessioneClient {
 
 	public DatiPartita scaricaDatiPartita();
 
-	public void registraGiocatore(String nome) throws RemoteException;
-
-	public Evento chiediEvento();
+	public void registraGiocatore(String nome);
 
 	public Mossa[] chiediMosseDisponibili();
 
@@ -24,11 +19,7 @@ public interface ConnessioneClient {
 
 	public DatiTerritorio[] chiediElencoTerritori();
 
-	public Integer[] chiediStradeConfinanti(Integer strada);
-
-	public Integer[] chiediStradeLibere();
-
-	public DatiTerritorio[] chediPecoreTerritoriVicini(Integer strada);
+	public Giocatore[] chiediGiocatori();
 
 	public Pastore[] chiediPastori();
 
@@ -38,12 +29,10 @@ public interface ConnessioneClient {
 
 	public String chiediGiocatoreDiTurno();
 
-	public Tessera[] chiediTessereTerritoriConfinanti(Integer strada);
-
 	public Tessera[] chiediTessere();
 
 	public Tessera[] chiediTessereInCima();
 
-	public Giocatore[] chiediGiocatori();
+	
 	
 }

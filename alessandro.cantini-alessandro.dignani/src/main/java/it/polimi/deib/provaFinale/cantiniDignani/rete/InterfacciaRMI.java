@@ -12,5 +12,5 @@ public interface InterfacciaRMI extends Remote {
 	public void registraGiocatore(String giocatore) throws RemoteException;
 
 	public void aggiungiAscoltatore(String giocatore, AscoltatoreRemoto ascoltatore) throws RemoteException;
-
+	
 }

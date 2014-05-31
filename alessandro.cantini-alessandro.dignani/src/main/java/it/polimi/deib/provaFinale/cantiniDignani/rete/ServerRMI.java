@@ -7,6 +7,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Hashtable;
+import java.util.List;
 
 public class ServerRMI implements InterfacciaServer {
 
@@ -30,10 +31,10 @@ public class ServerRMI implements InterfacciaServer {
 		return ascoltatori;
 	}
 
-	public void inviaEventoATutti(Evento evento) {
-		for(AscoltatoreRemoto a : ascoltatori.values()) {
+	public void inviaEvento(Evento evento, List<String> giocatori) {
+		for(String giocatore : giocatori) {
 			try {
-				a.riceviEvento(evento);
+				ascoltatori.get(giocatore).riceviEvento(evento);
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
