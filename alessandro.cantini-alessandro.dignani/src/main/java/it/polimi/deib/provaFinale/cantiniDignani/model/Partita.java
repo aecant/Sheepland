@@ -48,7 +48,7 @@ public class Partita {
 	 * Restituisce la lista dei pastori, costruita scorrendo la lista dei
 	 * giocatori
 	 * 
-	 * @return
+	 * @return la lista dei pastori
 	 */
 	public ArrayList<Pastore> getPastori() {
 		ArrayList<Pastore> pastori = new ArrayList<Pastore>();
@@ -63,6 +63,11 @@ public class Partita {
 		return gregge;
 	}
 
+	/**
+	 * Restitusice una copia della lista dei giocatori
+	 * 
+	 * @return una copia della lista dei giocatori
+	 */
 	public ArrayList<Giocatore> getGiocatori() {
 		return Utilita.copia(giocatori);
 	}
