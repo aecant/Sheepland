@@ -6,6 +6,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ServerRMI;
+import it.polimi.deib.provaFinale.cantiniDignani.view.Input;
 
 import java.util.Vector;
 import java.util.concurrent.ExecutorService;
@@ -21,7 +22,13 @@ public class ServerMain {
 		impostaTipoConnessione();
 		connessione.inizializza();
 
-		
+		// TODO test da rimuovere
+		while (true) {
+			System.out.println("0 per mandare un evento a tutti");
+			if (Input.readInt() == 0)
+				connessione.inviaEventoATutti(new LancioDado(6));
+		}
+
 	}
 
 	private static void impostaTipoConnessione() {
@@ -32,29 +39,12 @@ public class ServerMain {
 	}
 
 	/**
-	 * Restituisce la partita giocata da un giocatore
+	 * Controlla se un nome e' gia' stato registrato sul server
 	 * 
-	 * @param giocatore
-	 *            il nome del giocatore
-	 * @return la partita giocata dal giocatore
+	 * @param nome
+	 *            il nome da controllare
+	 * @return true se e' gia' stato registrato, false se il nome e' disponibile
 	 */
-	public static Partita getPartita(String giocatore) {
-		for (Partita p : partite) {
-			for (Giocatore g : p.getGiocatori()) {
-				if (giocatore.equals(g.getNome())) {
-					return p;
-				}
-			}
-		}
-
-		throw new IllegalArgumentException("Il giocatore non è presente");
-
-	}
-
-	public static InterfacciaServer getConnessione() {
-		return connessione;
-	}
-
 	private static boolean nomeGiaRegistrato(String nome) {
 		for (Partita p : partite) {
 			for (Giocatore g : p.getGiocatori()) {
@@ -79,14 +69,40 @@ public class ServerMain {
 
 		if (giocatoriInAttesa.size() == Costanti.NUM_MAX_GIOCATORI) {
 			iniziaPartita(new Partita(giocatoriInAttesa));
-			giocatoriInAttesa.clear();
 		}
 
 		return true;
 	}
 
-	private static void iniziaPartita(Partita partita) {
+	protected synchronized static void iniziaPartita(Partita partita) {
+		partite.add(partita);
 		esecutorePartite.submit(new GestorePartita(partita));
+		giocatoriInAttesa.clear();
+		System.out.println("Partita iniziata.");
+	}
+
+	/**
+	 * Restituisce la partita giocata da un giocatore
+	 * 
+	 * @param giocatore
+	 *            il nome del giocatore
+	 * @return la partita giocata dal giocatore
+	 */
+	public static Partita getPartita(String giocatore) {
+		for (Partita p : partite) {
+			for (Giocatore g : p.getGiocatori()) {
+				if (giocatore.equals(g.getNome())) {
+					return p;
+				}
+			}
+		}
+
+		throw new IllegalArgumentException("Il giocatore non è presente");
+
+	}
+
+	public static InterfacciaServer getConnessione() {
+		return connessione;
 	}
 
 }
