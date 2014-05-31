@@ -21,7 +21,7 @@ public class Gregge {
 	}
 
 	/**
-	 * Aggiunge una pecora alla lista
+	 * Aggiunge una pecora al gregge
 	 * 
 	 * @param p
 	 *            la pecora da aggiungere
@@ -31,6 +31,7 @@ public class Gregge {
 		pecore.add(p);
 	}
 
+	
 	/**
 	 * Rimuove dal gregge la pecora passata come parametro
 	 * 
@@ -46,7 +47,7 @@ public class Gregge {
 	}
 
 	/**
-	 * Trasforma l'agnello passato come parametro in pecora con un casting
+	 * Trasforma un agnello in pecora
 	 * 
 	 * @param agnello
 	 *            l'agnello da trasformare
