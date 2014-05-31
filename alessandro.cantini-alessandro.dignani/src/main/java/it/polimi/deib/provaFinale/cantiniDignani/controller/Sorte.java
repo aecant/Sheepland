@@ -1,5 +1,9 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
+import it.polimi.deib.provaFinale.cantiniDignani.model.Agnello;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
+
 import java.util.Random;
 
 public class Sorte {
@@ -29,6 +33,27 @@ public class Sorte {
 	}
 
 	/**
+	 * Restituisce un ovino che e' randomicamente una pecora, un montone o un
+	 * agnello. Nel caso in cui sia agnello il sesso viene stabilito lanciando
+	 * una moneta.
+	 * 
+	 * @param t
+	 *            il territorrio su cui creare l'ovino
+	 * @return una pecora creata randomicamente
+	 */
+	public static Pecora pecoraCasuale(Territorio t) {
+		switch (numeroCasuale(1, 3)) {
+		case 1:
+			return new Pecora(t, true);
+		case 2:
+			return new Pecora(t, false);
+		default:
+			return new Agnello(t, lanciaMoneta());
+		}
+
+	}
+
+	/**
 	 * Restituisce un numero casuale compreso fra i due parametri, parametri
 	 * compresi
 	 * 
@@ -37,7 +62,8 @@ public class Sorte {
 	 * @param max
 	 *            il valore massimo
 	 * @return un numero casuale compreso fra
-	 * @throws IllegalArgumentException se min e' maggiore o uguale a max
+	 * @throws IllegalArgumentException
+	 *             se min e' maggiore o uguale a max
 	 */
 	public static int numeroCasuale(int min, int max) throws IllegalArgumentException {
 		if (min >= max) {
