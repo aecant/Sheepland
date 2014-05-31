@@ -11,7 +11,7 @@ public class PedinaSuStrada {
 		return this.strada;
 	}
 
-	public void setStrada(Strada strada) {
+	protected void setStrada(Strada strada) {
 		this.strada = strada;
 	}
 }
