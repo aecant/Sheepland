@@ -7,9 +7,19 @@ import java.util.List;
 import java.util.Set;
 
 public class Utilita {
+	/**
+	 * Costruttore privato per nascondere quello pubblico
+	 */
 	private Utilita() {
 	}
 
+	/**
+	 * Controlla se una lista contiene duplicati
+	 * 
+	 * @param lista
+	 *            la lista da analizzare
+	 * @return true se la lista contiene elementi duplicati, false altrimenti
+	 */
 	public static <E> boolean contieneDuplicati(List<E> lista) {
 		List<E> list = lista;
 		Set<E> set = new HashSet<E>(list);
@@ -20,17 +30,44 @@ public class Utilita {
 		return false;
 	}
 
+	/**
+	 * Controlla se un array contiene duplicati
+	 * 
+	 * @param array
+	 *            l'array da analizzare
+	 * @return true se l'array contiene elementi duplicati, false altrimenti
+	 */
 	public static <E> boolean contieneDuplicati(E[] array) {
 		return contieneDuplicati(Arrays.asList(array));
 	}
 
+	/**
+	 * Controlla se una lista contiene un certo elementeo
+	 * 
+	 * @param lista
+	 *            la lista da analizzare
+	 * @param element
+	 *            l'elemento da cercare
+	 * @return true se la lista contiene l'elemento, false altrimenti
+	 */
 	public static <E> boolean contiene(List<E> lista, E element) {
-		for (E i : lista)
-			if (i == element)
+		for (E i : lista) {
+			if (i == element) {
 				return true;
+			}
+		}
 		return false;
 	}
 
+	/**
+	 * Controlla se un array contiene un certo elementeo
+	 * 
+	 * @param array
+	 *            l'array da analizzare
+	 * @param element
+	 *            l'elemento da cercare
+	 * @return true se l'array contiene l'elemento, false altrimenti
+	 */
 	public static <E> boolean contiene(E[] array, E element) {
 		return contiene(Arrays.asList(array), element);
 	}
@@ -38,12 +75,14 @@ public class Utilita {
 	/**
 	 * Restituisce una copia di un ArrayList
 	 * 
-	 * @param array
-	 * @return
+	 * @param al
+	 *            l'arrayList da copiare
+	 * @return una copia dell'ArrayList passato come parametro
 	 */
-	public static <E> ArrayList<E> copia(List<E> array) {
+	//TODO implementare come deep copy
+	public static <E> ArrayList<E> copia(List<E> al) {
 		ArrayList<E> temp = new ArrayList<E>();
-		temp.addAll(array);
+		temp.addAll(al);
 		return temp;
 	}
 
