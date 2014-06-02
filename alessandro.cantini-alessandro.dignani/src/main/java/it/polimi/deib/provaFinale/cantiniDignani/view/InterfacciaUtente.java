@@ -41,4 +41,6 @@ public interface InterfacciaUtente {
 
 	public void sceltaPosizionePastore(int[] stradeLibere);
 
+	public void ricezioneTesseraIniziale(Tessera tessera);
+
 }

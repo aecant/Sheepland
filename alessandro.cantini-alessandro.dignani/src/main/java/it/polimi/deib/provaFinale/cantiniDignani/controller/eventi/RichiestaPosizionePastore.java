@@ -13,7 +13,6 @@ public class RichiestaPosizionePastore implements Evento {
 	}
 
 	public void aggiornaDati() {
-		ClientMain.getConnessione().chiediPastori();
 	}
 
 	public void visualizza() {

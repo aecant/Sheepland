@@ -97,4 +97,9 @@ public class Cli implements InterfacciaUtente {
 		
 	}
 
+	public void ricezioneTesseraIniziale(Tessera tessera) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

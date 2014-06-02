@@ -51,4 +51,9 @@ public class ServerRMI implements InterfacciaServer {
 		inviaEvento(evento, listaDiUnElemento);
 	}
 
+	public int aspettaPosizionePastore(String nome) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

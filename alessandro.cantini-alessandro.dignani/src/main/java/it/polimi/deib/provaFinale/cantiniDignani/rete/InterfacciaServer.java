@@ -28,5 +28,7 @@ public interface InterfacciaServer {
 	 */
 	public void inviaEvento(Evento evento, String giocatore);
 
+	public int aspettaPosizionePastore(String nome);
+
 
 }

@@ -5,12 +5,14 @@ import java.util.Collections;
 import java.util.Stack;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.InizioPartita;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.PosizionamentoPastore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPosizionePastore;
+import it.polimi.deib.provaFinale.cantiniDignani.model.ColorePastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
@@ -20,7 +22,7 @@ public class GestorePartita implements Runnable {
 
 	private final Partita partita;
 	private final ArrayList<String> nomiGiocatori;
-	private InterfacciaServer connessione;
+	private final InterfacciaServer connessione;
 
 	public GestorePartita(Partita partita, InterfacciaServer connessione) {
 		this.partita = partita;
@@ -34,13 +36,16 @@ public class GestorePartita implements Runnable {
 	public void run() {
 		iniziaPartita();
 		selezionePosizioneIniziale();
-		
 	}
 
 	private void selezionePosizioneIniziale() {
 		for(Giocatore g : partita.getGiocatori()) {
+			int risposta;
 			int[] stradeLibere = Estrattore.stradeLibere();
 			connessione.inviaEvento(new RichiestaPosizionePastore(stradeLibere), g.getNome());
+			risposta = connessione.aspettaPosizionePastore(g.getNome());
+			g.aggiungiPastore(new Pastore(Mappa.getMappa().getStrade()[risposta], ColorePastore.BLU));
+			connessione.inviaEvento(new PosizionamentoPastore(g.getNome(), risposta), nomiGiocatori);
 		}
 	}
 

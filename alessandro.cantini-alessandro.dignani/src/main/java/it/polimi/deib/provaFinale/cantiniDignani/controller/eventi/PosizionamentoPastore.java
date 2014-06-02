@@ -2,12 +2,12 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 
-public class SelezionePosizioneInizialePastore extends Mossa {
+public class PosizionamentoPastore extends Mossa {
 
 	private static final long serialVersionUID = 663578033332385725L;
 	private int strada;
 
-	public SelezionePosizioneInizialePastore(String giocatore, int strada) {
+	public PosizionamentoPastore(String giocatore, int strada) {
 		super(giocatore);
 		this.strada = strada;
 	}
