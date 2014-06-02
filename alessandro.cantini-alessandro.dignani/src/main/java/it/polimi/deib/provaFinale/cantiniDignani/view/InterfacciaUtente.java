@@ -37,4 +37,8 @@ public interface InterfacciaUtente {
 
 	public void pagamento(Integer denaro, String pagante, String pagato);
 
+	public void selezionePosizioneInizialePastore(String pastore, int strada);
+
+	public void sceltaPosizionePastore(int[] stradeLibere);
+
 }

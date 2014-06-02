@@ -1,12 +1,10 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.*;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ServerRMI;
-import it.polimi.deib.provaFinale.cantiniDignani.view.Input;
 
 import java.util.Vector;
 import java.util.concurrent.ExecutorService;
@@ -25,8 +23,9 @@ public class ServerMain {
 
 	// TODO impostare timer per iniziare partita
 	public synchronized static boolean aggiungiGiocatore(String nome) {
-		if (nomeGiaRegistrato(nome))
+		if (nomeGiaRegistrato(nome)) {
 			return false;
+		}
 
 		giocatoriInAttesa.add(nome);
 
@@ -60,15 +59,16 @@ public class ServerMain {
 			}
 		}
 		for (String s : giocatoriInAttesa) {
-			if (nome.equals(s))
+			if (nome.equals(s)) {
 				return true;
+			}
 		}
 		return false;
 	}
 
 	private static void impostaTipoConnessione() {
 		// TODO chiedo all'utente che tipo di server vuole e creo l'oggetto
-	
+
 		// TODO da rimuovere, test
 		connessione = new ServerRMI();
 	}

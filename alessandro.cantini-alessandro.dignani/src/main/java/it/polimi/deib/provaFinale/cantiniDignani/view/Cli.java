@@ -87,4 +87,14 @@ public class Cli implements InterfacciaUtente {
 		}
 	}
 
+	public void selezionePosizioneInizialePastore(String pastore, int strada) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void sceltaPosizionePastore(int[] stradeLibere) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

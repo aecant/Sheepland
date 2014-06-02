@@ -29,6 +29,10 @@ public class Estrattore {
 
 		return tessere;
 	}
-	
-	
+
+	public static int[] stradeLibere() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

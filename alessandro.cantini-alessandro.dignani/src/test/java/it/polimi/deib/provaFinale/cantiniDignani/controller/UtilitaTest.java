@@ -2,6 +2,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import static org.junit.Assert.*;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Agnello;
 
 import java.util.ArrayList;
 
@@ -60,6 +61,14 @@ public class UtilitaTest {
 		copia.remove(oggettoGenerico);
 		assertFalse(copia.contains(oggettoGenerico));
 		assertTrue(originale.contains(oggettoGenerico));
+		
+//		ArrayList<Agnello> agnelli = new ArrayList<Agnello>();
+//		Agnello agnello = new Agnello(null, false);
+//		agnelli.add(agnello);
+//		ArrayList<Agnello> agnelliCopia = Utilita.copia(agnelli);
+//		agnello.invecchia();
+//		assertEquals(agnelli.get(0).getEta(), 1);
+//		assertEquals(agnelliCopia.get(0).getEta(), 0);
 	}
 
 }

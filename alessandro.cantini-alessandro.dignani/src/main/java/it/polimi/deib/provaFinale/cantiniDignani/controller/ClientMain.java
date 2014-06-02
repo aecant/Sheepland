@@ -1,6 +1,5 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.*;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneRMI;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.DatiPartita;
@@ -8,42 +7,21 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.view.Cli;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 
-import java.rmi.RemoteException;
-
 public class ClientMain {
 	private static String nome;
 	private static InterfacciaUtente ui;
 	private static ConnessioneClient connessione;
 	private static DatiPartita datiPartita;
-	private static Mossa[] mosseDisponibili;
 
 	public static void main(String[] args) {
 		connessione = chiediTipoConnessione();
 		ui = chiediTipoInterfaccia();
 
 		connessione.inizializza();
-				
+
 		registraGiocatore();
-	
-	}
 
-	
-	private static void gestisciProprioTurno() {
-		Mossa mossaScelta;
-		mosseDisponibili = connessione.chiediMosseDisponibili();
-		mossaScelta = ui.chiediMossa(mosseDisponibili);
-		connessione.inviaMossa(mossaScelta);
 	}
-
-	private static boolean isProprioTurno() {
-		return datiPartita.getGiocatoreDiTurno().equals(nome) ? true : false;
-	}
-
-	/*
-	 * private static void gestisciEvento() { eventoCorrente =
-	 * connessione.chiediEvento(); eventoCorrente.aggiornaDati();
-	 * eventoCorrente.visualizza(); }
-	 */
 
 	private static void registraGiocatore() {
 		while (true) {

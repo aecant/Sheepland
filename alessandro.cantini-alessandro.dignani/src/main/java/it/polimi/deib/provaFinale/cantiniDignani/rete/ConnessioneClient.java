@@ -13,8 +13,6 @@ public interface ConnessioneClient {
 
 	public void registraGiocatore(String nome);
 
-	public Mossa[] chiediMosseDisponibili();
-
 	public void inviaMossa(Mossa mossaScelta);
 
 	public DatiTerritorio[] chiediElencoTerritori();

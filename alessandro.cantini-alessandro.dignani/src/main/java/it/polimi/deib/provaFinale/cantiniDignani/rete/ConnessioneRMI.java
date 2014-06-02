@@ -53,11 +53,6 @@ public class ConnessioneRMI implements ConnessioneClient, AscoltatoreRemoto {
 		return null;
 	}
 
-	public Mossa[] chiediMosseDisponibili() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public void inviaMossa(Mossa mossaScelta) {
 		// TODO Auto-generated method stub
 		
