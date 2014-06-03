@@ -2,7 +2,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 
-public class RichiestaPosizionePastore implements Evento {
+public class RichiestaPosizionePastore extends Richiesta {
 
 	private static final long serialVersionUID = 708070364097104922L;
 	
@@ -12,11 +12,9 @@ public class RichiestaPosizionePastore implements Evento {
 		this.stradeLibere = stradeLibere;
 	}
 
-	public void aggiornaDati() {
-	}
-
-	public void visualizza() {
-		ClientMain.getUI().sceltaPosizionePastore(stradeLibere);
+	@Override
+	protected Mossa interagisci() {
+		return ClientMain.getUI().sceltaPosizionePastore(stradeLibere);
 	}
 
 }
