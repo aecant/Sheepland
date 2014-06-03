@@ -3,6 +3,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Partita {
@@ -21,6 +22,7 @@ public class Partita {
 		for (String nome : nomiGiocatori) {
 			giocatori.add(new Giocatore(nome));
 		}
+		Collections.shuffle(giocatori);
 	}
 
 	/**
