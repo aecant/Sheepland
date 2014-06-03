@@ -2,29 +2,29 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoOvino;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 
 public class MovimentoPecora extends Mossa {
 	private static final long serialVersionUID = -5815440396346581844L;
+	
 	private TipoOvino pecora;
-	private Territorio origine, destinazione;
+	private int origine, destinazione;
 
-	public MovimentoPecora(String giocatore, TipoOvino pecora, Territorio origine, Territorio destinazione) {
+	public MovimentoPecora(String giocatore, TipoOvino pecora, int origine, int destinazione) {
 		super(giocatore);
 		this.pecora = pecora;
 		this.origine = origine;
 		this.destinazione = destinazione;
 	}
-
+	
 	public TipoOvino getPecora() {
 		return pecora;
 	}
 
-	public Territorio getOrigine() {
+	public int getOrigine() {
 		return origine;
 	}
 
-	public Territorio getDestinazione() {
+	public int getDestinazione() {
 		return destinazione;
 	}
 

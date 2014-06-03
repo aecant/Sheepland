@@ -1,28 +1,25 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
-
 public abstract class MovimentoAnimale implements Evento {
 
 	private static final long serialVersionUID = 3263700493723371773L;
-	private Territorio origine, destinazione;
-	
-	public MovimentoAnimale(Territorio origine, Territorio destinazione) {
+	private int origine, destinazione;
+
+	public MovimentoAnimale(int origine, int destinazione) {
 		this.origine = origine;
 		this.destinazione = destinazione;
 	}
 
-	
-	public Territorio getOrigine() {
+	public int getOrigine() {
 		return origine;
 	}
 
-	public Territorio getDestinazione() {
+	public int getDestinazione() {
 		return destinazione;
 	}
 
 	public abstract void aggiornaDati();
 
 	public abstract void visualizza();
-	
+
 }
