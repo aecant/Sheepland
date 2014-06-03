@@ -15,6 +15,7 @@ public class ServerMain {
 	private static Vector<String> giocatoriInAttesa = new Vector<String>();
 	private static InterfacciaServer connessione;
 	private static ExecutorService esecutorePartite = Executors.newCachedThreadPool();
+	private static GestoreEventi gestoreEventi = new GestoreEventi();
 
 	public static void main(String[] args) {
 		impostaTipoConnessione();
@@ -91,6 +92,10 @@ public class ServerMain {
 
 		throw new IllegalArgumentException("Il giocatore non è presente");
 
+	}
+
+	public static GestoreEventi getGestoreEventi() {
+		return gestoreEventi;
 	}
 
 	public static InterfacciaServer getConnessione() {

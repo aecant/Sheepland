@@ -30,6 +30,15 @@ public class MappaTest {
 	}
 
 	@Test
+	public void testTransizione() {
+		assertEquals(Mappa.getMappa().transizione(t4, 1), t7);
+		assertEquals(Mappa.getMappa().transizione(t4, 6), t5);
+		assertEquals(Mappa.getMappa().transizione(t5, 2), t7);
+		assertEquals(Mappa.getMappa().transizione(t7, 4), t6);
+		assertEquals(Mappa.getMappa().transizione(t6, 4), t7);
+	}
+	
+	@Test
 	public void testGetTerritori() {
 		assertEquals(Mappa.getMappa().getTerritori().length, Costanti.NUM_TERRITORI);
 	}

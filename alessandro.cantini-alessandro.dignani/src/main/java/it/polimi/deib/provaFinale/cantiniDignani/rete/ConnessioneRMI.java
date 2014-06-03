@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.GestioneEventi;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
@@ -45,7 +45,7 @@ public class ConnessioneRMI implements ConnessioneClient, AscoltatoreRemoto {
 	}
 
 	public void riceviEvento(Evento e) {
-		GestioneEventi.aggiungi(e);
+		ClientMain.getGestoreEventi().aggiungi(e);
 	}
 
 	public DatiPartita scaricaDatiPartita() {
@@ -54,8 +54,7 @@ public class ConnessioneRMI implements ConnessioneClient, AscoltatoreRemoto {
 	}
 
 	public void inviaMossa(Mossa mossaScelta) {
-		// TODO Auto-generated method stub
-		
+		server.riceviMossa(mossaScelta);
 	}
 
 	public DatiTerritorio[] chiediElencoTerritori() {

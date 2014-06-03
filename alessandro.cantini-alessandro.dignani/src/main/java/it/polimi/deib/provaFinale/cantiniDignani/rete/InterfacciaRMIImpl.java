@@ -2,6 +2,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.rete;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 
 import java.rmi.RemoteException;
@@ -23,4 +24,10 @@ public class InterfacciaRMIImpl implements InterfacciaRMI {
 		ServerRMI.getAscoltatori().put(nome, ascoltatore);
 		System.out.println("Ascoltatore aggiunto: " + ascoltatore);
 	}
+
+	public void riceviMossa(Mossa mossa) {
+		ServerMain.getGestoreEventi().aggiungi(mossa);
+	}
+	
+	
 }

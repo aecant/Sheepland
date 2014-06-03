@@ -12,6 +12,7 @@ public class ClientMain {
 	private static InterfacciaUtente ui;
 	private static ConnessioneClient connessione;
 	private static DatiPartita datiPartita;
+	private static GestoreEventi gestoreEventi = new GestoreEventi();
 
 	public static void main(String[] args) {
 		connessione = chiediTipoConnessione();
@@ -59,6 +60,10 @@ public class ClientMain {
 
 	public static DatiPartita getDatiPartita() {
 		return datiPartita;
+	}
+
+	public static GestoreEventi getGestoreEventi() {
+		return gestoreEventi;
 	}
 
 	public static void setDatiPartita(DatiPartita datiPartita) {

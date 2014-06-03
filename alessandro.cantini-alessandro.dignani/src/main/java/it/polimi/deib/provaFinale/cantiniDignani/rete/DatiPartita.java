@@ -6,14 +6,14 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 
 public class DatiPartita {
-	DatiTerritorio[] territori;
-	Pastore[] pastori;
-	Integer[] recintiIniziali;
-	Integer[] recintiFinali;
-	String giocatoreDiTurno;
-	Tessera[] tessere;
-	Tessera[] tessereInCima;
-	Giocatore[] giocatori;
+	private DatiTerritorio[] territori;
+	private Pastore[] pastori;
+	private Integer[] recintiIniziali;
+	private Integer[] recintiFinali;
+	private String giocatoreDiTurno;
+	private Tessera[] tessere;
+	private Tessera[] tessereInCima;
+	private Giocatore[] giocatori;
 	
 	public Giocatore[] getGiocatori() {
 		return giocatori;

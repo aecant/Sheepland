@@ -14,7 +14,7 @@ public class RichiestaPosizionePastore extends Richiesta {
 
 	@Override
 	protected Mossa interagisci() {
-		return ClientMain.getUI().sceltaPosizionePastore(stradeLibere);
+		return ClientMain.getUI().richiestaPosizionePastore(stradeLibere);
 	}
 
 }

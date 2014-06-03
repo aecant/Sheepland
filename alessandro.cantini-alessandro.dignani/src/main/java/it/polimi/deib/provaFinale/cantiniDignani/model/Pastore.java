@@ -2,6 +2,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 public class Pastore extends PedinaSuStrada {
 
+	private static final long serialVersionUID = -7195381118983518612L;
 	private ColorePastore colore;
 
 	public Pastore(Strada strada, ColorePastore colore) {
