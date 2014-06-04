@@ -141,11 +141,13 @@ public class Mappa {
 	 * @return l'array di strade
 	 */
 	private Strada[] creaStrade() {
+		int codice = 0;
 		ArrayList<Strada> temp = new ArrayList<Strada>();
 		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
 			for (int j = i + 1; j < Costanti.NUM_TERRITORI; j++) {
 				if (sonoConfinanti(territori[i], territori[j])) {
-					temp.add(new Strada(territori[i], territori[j]));
+					temp.add(new Strada(territori[i], territori[j], codice));
+					codice++;
 				}
 			}
 		}

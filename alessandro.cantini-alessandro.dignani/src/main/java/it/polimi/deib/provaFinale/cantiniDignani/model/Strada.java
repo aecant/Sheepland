@@ -3,17 +3,24 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 public class Strada {
 	private Territorio territorio1;
 	private Territorio territorio2;
+	private Integer codice;
 
-	public Strada(Territorio territorio1, Territorio territorio2) throws IllegalArgumentException {
+	public Strada(Territorio territorio1, Territorio territorio2, Integer codice) {
 
 		try {
-			if (territorio1.equals(territorio2))
+			if (territorio1.equals(territorio2)) {
 				throw new IllegalArgumentException("I due territori devono essere diversi");
+			}
 		} catch (NullPointerException e) {
 			throw new IllegalArgumentException("I territori non devono essere null", e);
 		}
 		this.territorio1 = territorio1;
 		this.territorio2 = territorio2;
+		this.codice = codice;
+	}
+
+	public Strada(Territorio territorio1, Territorio territorio2) {
+		this(territorio1, territorio2, null);
 	}
 
 	public Territorio getTerritorio1() {
@@ -22,6 +29,10 @@ public class Strada {
 
 	public Territorio getTerritorio2() {
 		return this.territorio2;
+	}
+
+	public Integer getCodice() {
+		return this.codice;
 	}
 
 	@Override
@@ -35,15 +46,19 @@ public class Strada {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (!(obj instanceof Strada))
+		}
+		if (!(obj instanceof Strada)) {
 			return false;
+		}
 		Strada other = (Strada) obj;
-		if ((territorio1.equals(other.territorio1) && territorio2.equals(other.territorio2)) || territorio1.equals(other.territorio2) && territorio2.equals(other.territorio1))
+		if ((territorio1.equals(other.territorio1) && territorio2.equals(other.territorio2)) || territorio1.equals(other.territorio2) && territorio2.equals(other.territorio1)) {
 			return true;
+		}
 
 		return false;
 	}
