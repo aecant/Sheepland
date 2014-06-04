@@ -74,6 +74,8 @@ public class GestorePartita implements Runnable {
 		TipoMossa mossaPrecedente = null;
 		boolean pastoreMosso = false;
 		Pastore pastoreCorrente;
+		
+		partita.setGiocatoreDiTurno(giocatore);
 
 		connessione.inviaEvento(new InizioTurno(giocatore.getNome()), nomiGiocatori);
 
@@ -102,7 +104,7 @@ public class GestorePartita implements Runnable {
 			}
 			
 			if (mossaPrecedente != TipoMossa.ABBATTI) {
-				
+				//TODO
 			}
 			
 			connessione.inviaEvento(new RichiestaTipoMossa(mosseDisponibili), giocatore.getNome());
