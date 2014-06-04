@@ -1,7 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoOvino;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoOvino;
 
 public class MovimentoPecora extends Mossa {
 	private static final long serialVersionUID = -5815440396346581844L;

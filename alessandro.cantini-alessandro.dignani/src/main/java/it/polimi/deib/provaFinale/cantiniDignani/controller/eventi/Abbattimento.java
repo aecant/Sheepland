@@ -1,7 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoOvino;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoOvino;
 
 public class Abbattimento extends Mossa {
 

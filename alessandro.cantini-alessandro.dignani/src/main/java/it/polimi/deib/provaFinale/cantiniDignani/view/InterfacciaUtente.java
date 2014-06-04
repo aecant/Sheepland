@@ -3,10 +3,10 @@ package it.polimi.deib.provaFinale.cantiniDignani.view;
 import java.util.Set;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoOvino;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoOvino;
 
 public interface InterfacciaUtente {
 
