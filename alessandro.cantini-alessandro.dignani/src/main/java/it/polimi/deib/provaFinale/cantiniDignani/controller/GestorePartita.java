@@ -101,6 +101,10 @@ public class GestorePartita implements Runnable {
 				mosseDisponibili.add(TipoMossa.COMPRATESSERA);
 			}
 			
+			if (mossaPrecedente != TipoMossa.ABBATTI) {
+				
+			}
+			
 			connessione.inviaEvento(new RichiestaTipoMossa(mosseDisponibili), giocatore.getNome());
 
 		}

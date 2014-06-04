@@ -2,7 +2,6 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneRMI;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.DatiPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.view.Cli;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
