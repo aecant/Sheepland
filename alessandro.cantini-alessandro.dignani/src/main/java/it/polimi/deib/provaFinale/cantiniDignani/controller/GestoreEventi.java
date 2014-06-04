@@ -5,16 +5,17 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import java.util.concurrent.LinkedBlockingQueue;
 
 
-public class GestioneEventi {
+public class GestoreEventi {
 
-	private static LinkedBlockingQueue<Evento> codaEventi = new LinkedBlockingQueue<Evento>();
-
+	private LinkedBlockingQueue<Evento> codaEventi = new LinkedBlockingQueue<Evento>();
+	
+	
 	/**
 	 * Aspetta e restituisce un evento inviato dal server
 	 * 
 	 * @return l'evento ricevuto dal server
 	 */
-	public static Evento aspettaEvento() {
+	public Evento aspettaEvento() {
 		Evento evento = null;
 		try {
 			evento = codaEventi.take();
@@ -34,15 +35,15 @@ public class GestioneEventi {
 	 *            il tipo di evento che ci si aspetta
 	 * @return l'evento ricevuto dal server
 	 */
-	public static Evento aspettaEvento(Class<?> classe) {
-		Evento e = aspettaEvento();
-		if (e.getClass() != classe) {
+	public Evento aspettaEvento(Class<?> classe) {
+		Evento evento = aspettaEvento();
+		if (evento.getClass() != classe) {
 			throw new RuntimeException("L'evento è diverso da quello aspettato");
 		}
-		return e;
+		return evento;
 	}
 
-	public static void aggiungi(Evento e) {
+	public void aggiungi(Evento e) {
 		codaEventi.add(e);
 	}
 

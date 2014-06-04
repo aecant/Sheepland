@@ -18,6 +18,21 @@ public class Mappa {
 	}
 
 	/**
+	 * Restituisce il territorio che si ottiene lanciando un dado
+	 * 
+	 * @param t
+	 *            il territorio di partenza
+	 * @param dado
+	 *            il risultato del lancio del dado
+	 * @return il territorio di destinazione
+	 */
+	public Territorio transizione(Territorio t, int dado) {
+		int indice = Costanti.MAPPA[t.getCodice()][dado - 1];
+		return territori[indice];
+	}
+
+	
+	/**
 	 * Controlla se due territori sono confinanti, controllando se ci il codice
 	 * di t2 e' contenuto nella riga di t1 della matrice di transizione { @link
 	 * Costanti.MAPPA}

@@ -1,7 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
-
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -49,11 +48,6 @@ public class ServerRMI implements InterfacciaServer {
 		List<String> listaDiUnElemento = new ArrayList<String>();
 		listaDiUnElemento.add(giocatore);
 		inviaEvento(evento, listaDiUnElemento);
-	}
-
-	public int aspettaPosizionePastore(String nome) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }

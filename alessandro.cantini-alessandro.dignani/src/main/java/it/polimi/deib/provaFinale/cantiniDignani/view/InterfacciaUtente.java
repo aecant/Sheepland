@@ -1,10 +1,11 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view;
 
+import java.util.Set;
+
+import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoOvino;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 
 public interface InterfacciaUtente {
@@ -17,15 +18,13 @@ public interface InterfacciaUtente {
 
 	public void inizioTurno(String giocatore);
 
-	public Mossa chiediMossa(Mossa[] mosseDisponibili);
+	public void movimentoPecora(TipoOvino pecora, int origine, int destinazione);
 
-	public void movimentoPecora(TipoOvino pecora, Territorio origine, Territorio destinazione);
+	public void movimentoPastore(Pastore pastore, int origine, int destinazione);
 
-	public void movimentoPastore(Pastore pastore, Strada origine, Strada destinazione);
+	public void movimentoLupo(int origine, int destinazione);
 
-	public void movimentoLupo(Territorio origine, Territorio destinazione);
-
-	public void movimentoPecoraNera(Territorio origine, Territorio destinazione);
+	public void movimentoPecoraNera(int origine, int destinazione);
 
 	public void lancioDado(Integer numero);
 
@@ -39,8 +38,14 @@ public interface InterfacciaUtente {
 
 	public void selezionePosizioneInizialePastore(String pastore, int strada);
 
-	public void sceltaPosizionePastore(int[] stradeLibere);
+	public Mossa richiestaPosizionePastore(int[] stradeLibere);
 
 	public void ricezioneTesseraIniziale(Tessera tessera);
+
+	public Mossa richiestaTipoMossa(Set<TipoMossa> mosseDisponibili);
+
+	public void sceltaPastore(Pastore pastore);
+
+	public Mossa richiestaPastore();
 
 }

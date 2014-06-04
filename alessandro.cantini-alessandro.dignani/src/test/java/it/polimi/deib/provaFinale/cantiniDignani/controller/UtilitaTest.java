@@ -2,8 +2,6 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import static org.junit.Assert.*;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Agnello;
-
 import java.util.ArrayList;
 
 import org.junit.Before;

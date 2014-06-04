@@ -2,15 +2,14 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
 
 public class MovimentoPastore extends Mossa{
 
 	private static final long serialVersionUID = -8968808141497412233L;
 	private Pastore pastore;
-	private Strada origine, destinazione;
+	private int origine, destinazione;
 	
-	public MovimentoPastore(String giocatore, Pastore pastore, Strada origine, Strada destinazione) {
+	public MovimentoPastore(String giocatore, Pastore pastore, int origine, int destinazione) {
 		super(giocatore);
 		this.pastore = pastore;
 		this.origine = origine;
@@ -21,11 +20,11 @@ public class MovimentoPastore extends Mossa{
 		return pastore;
 	}
 
-	public Strada getOrigine() {
+	public int getOrigine() {
 		return origine;
 	}
 
-	public Strada getDestinazione() {
+	public int getDestinazione() {
 		return destinazione;
 	}
 

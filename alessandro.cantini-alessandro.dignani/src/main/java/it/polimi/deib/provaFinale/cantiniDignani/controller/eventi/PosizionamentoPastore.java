@@ -21,4 +21,9 @@ public class PosizionamentoPastore extends Mossa {
 	public void visualizza() {
 		ClientMain.getUI().selezionePosizioneInizialePastore(super.getGiocatore(), strada);
 	}
+
+	public int getStrada() {
+		return strada;
+	}
+
 }

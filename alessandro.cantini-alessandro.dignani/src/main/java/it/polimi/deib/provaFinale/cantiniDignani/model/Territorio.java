@@ -1,7 +1,10 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
-public class Territorio {
+import java.io.Serializable;
 
+public class Territorio implements Serializable{
+
+	private static final long serialVersionUID = 4585423958440423655L;
 	private int codice;
 	private TipoTerritorio tipo;
 

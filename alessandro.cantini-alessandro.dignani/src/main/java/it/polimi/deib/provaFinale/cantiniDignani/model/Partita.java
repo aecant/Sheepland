@@ -3,6 +3,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Partita {
@@ -21,6 +22,7 @@ public class Partita {
 		for (String nome : nomiGiocatori) {
 			giocatori.add(new Giocatore(nome));
 		}
+		Collections.shuffle(giocatori);
 	}
 
 	/**
@@ -41,6 +43,24 @@ public class Partita {
 			}
 		}
 
+		return true;
+	}
+
+	/**
+	 * Verifica se una strada e' occupata da una pecora o dalla pecora nera. Il lupo
+	 * non e' considerato nel controllo.
+	 * 
+	 * @return true se il territorio e' libero, false se e' occupato
+	 */
+	public boolean territorioLibero(Territorio t) {
+		for (Pecora p : gregge.getPecore()) {
+			if (p.getPosizione().equals(t)) {
+				return false;
+			}
+		}
+		if (gregge.getPecoraNera().equals(t)) {
+			return false;
+		}
 		return true;
 	}
 

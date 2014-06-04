@@ -1,6 +1,10 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
-public class PedinaSuStrada {
+import java.io.Serializable;
+
+public class PedinaSuStrada implements Serializable{
+
+	private static final long serialVersionUID = -6921466505175740285L;
 	private Strada strada;
 
 	public PedinaSuStrada(Strada strada) {

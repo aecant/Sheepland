@@ -1,13 +1,12 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 
 public class MovimentoPecoraNera extends MovimentoAnimale {
 
 	private static final long serialVersionUID = -742787287192836056L;
 
-	public MovimentoPecoraNera(Territorio origine, Territorio destinazione) {
+	public MovimentoPecoraNera(int origine, int destinazione) {
 		super(origine, destinazione);
 	}
 
