@@ -88,19 +88,36 @@ public class GestorePartita implements Runnable {
 		for (int numMossa = 0; numMossa < 3; numMossa++) {
 			Set<TipoMossa> mosseDisponibili = new HashSet<TipoMossa>();
 			mosseDisponibili.add(TipoMossa.MUOVIPASTORE);
-			
+
 			// se uno dei due territori ha almeno una pecora aggiungo la mossa
 			if (mossaPrecedente != TipoMossa.MUOVIPECORA
 					&& (partita.territorioLibero(pastoreCorrente.getStrada().getTerritorio1()) || partita.territorioLibero(pastoreCorrente.getStrada().getTerritorio2()))) {
 				mosseDisponibili.add(TipoMossa.MUOVIPECORA);
 			}
-			
-			if (mossaPrecedente != TipoMossa.COMPRATESSERA) {
-				//TODO
+
+			if (mossaPrecedente != TipoMossa.COMPRATESSERA
+					&& (siPuoAcquistareTessera(pastoreCorrente.getStrada().getTerritorio1(), giocatore.getDenaro()) || siPuoAcquistareTessera(pastoreCorrente.getStrada().getTerritorio2(),
+							giocatore.getDenaro()))) {
+				mosseDisponibili.add(TipoMossa.COMPRATESSERA);
 			}
+			
 			connessione.inviaEvento(new RichiestaTipoMossa(mosseDisponibili), giocatore.getNome());
 
 		}
+	}
+
+	private boolean siPuoAcquistareTessera(Territorio terr, int denaroGiocatore) {
+		if (terr.getTipo() == TipoTerritorio.SHEEPSBURG) {
+			return false;
+		}
+		if (partita.getMazzo().getTessereRimaste(terr.getTipo()) == 0) {
+			return false;
+		}
+		if (partita.getMazzo().leggiTesseraInCima(terr.getTipo()).getCosto() > denaroGiocatore) {
+			return false;
+		}
+
+		return true;
 	}
 
 	private void movimentoPecoraNera() {
