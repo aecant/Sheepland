@@ -17,7 +17,7 @@ public class MappaView {
 	private JPanel panelMosse;
 	
 	//temporanei
-	private JLabel lblTessere;
+	//private JLabel lblTessere;
 	private JLabel lblGiocatori;
 	private JLabel lblMosse;
 	
@@ -32,7 +32,8 @@ public class MappaView {
 		//carico l'immagine 
 		
 		//imposto il label delle tessere (temporaneo)
-		lblTessere = new JLabel("Tessere...");
+		// porcata per far vedere il panel delle tessere
+		//lblTessere = new JLabel("Tessere........mmmm");
 		
 		//imposto il label dei giocatori (temporaneo)
 		lblGiocatori = new JLabel("Giocatori...");
@@ -45,9 +46,7 @@ public class MappaView {
 		mappa = new BackgroundPanel(imgMappa);
 		
 		//imposto il panel delle tessere
-		panelTessere = new JPanel();
-		panelTessere.setSize(100, 600);
-		panelTessere.add(lblTessere);
+		panelTessere = new PannelloTessere();
 		
 		//imposto il panel dei giocatori
 		panelGiocatori = new JPanel();
