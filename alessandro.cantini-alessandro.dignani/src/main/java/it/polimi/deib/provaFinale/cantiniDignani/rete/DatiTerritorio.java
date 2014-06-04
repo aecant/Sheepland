@@ -1,15 +1,38 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete;
 
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoOvino;
+
 public class DatiTerritorio {
 	private int numPecore, numMontoni, numAgnelli;
 	private boolean lupo, pecoraNera;
+
+	public DatiTerritorio() {
+		this.numPecore = 0;
+		this.numMontoni = 0;
+		this.numAgnelli = 0;
+		this.lupo = false;
+		this.pecoraNera = false;
+	}
+
+	public void aggiungiOvino(TipoOvino tipo) {
+		switch (tipo) {
+		case PECORA:
+			numPecore++;
+			break;
+		case MONTONE:
+			numMontoni++;
+			break;
+		case AGNELLO:
+			numAgnelli++;
+			break;
+		case PECORANERA:
+			pecoraNera = true;
+			break;		
+		}
+	}
 	
-	public DatiTerritorio(int numPecore, int numMontoni, int numAgnelli, boolean lupo, boolean pecoraNera) {
-		this.numPecore = numPecore;
-		this.numMontoni = numMontoni;
-		this.numAgnelli = numAgnelli;
-		this.lupo = lupo;
-		this.pecoraNera = pecoraNera;
+	public void aggiungiLupo() {
+		lupo = true;
 	}
 
 	public int getNumPecore() {

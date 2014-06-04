@@ -21,6 +21,7 @@ public class Pecora extends Animale {
 		}
 	}
 
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
