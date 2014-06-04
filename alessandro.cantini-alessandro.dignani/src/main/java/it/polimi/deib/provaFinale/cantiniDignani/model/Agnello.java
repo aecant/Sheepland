@@ -29,6 +29,11 @@ public class Agnello extends Pecora {
 	}
 
 	@Override
+	public TipoOvino getTipoOvino() {
+		return TipoOvino.AGNELLO;
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();

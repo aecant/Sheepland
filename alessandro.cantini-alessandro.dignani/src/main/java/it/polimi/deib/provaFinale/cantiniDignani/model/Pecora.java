@@ -13,6 +13,14 @@ public class Pecora extends Animale {
 		return this.maschio;
 	}
 
+	public TipoOvino getTipoOvino() {
+		if (maschio) {
+			return TipoOvino.MONTONE;
+		} else {
+			return TipoOvino.PECORA;
+		}
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
