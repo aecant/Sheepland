@@ -12,6 +12,7 @@ public class Partita {
 	private Gregge gregge;
 	private InsiemeDiRecinti recinti;
 	private ArrayList<Giocatore> giocatori;
+	private Giocatore giocatoreDiTurno;
 
 	public Partita(List<String> nomiGiocatori) {
 		mazzo = new Mazzo();
@@ -103,5 +104,14 @@ public class Partita {
 	public Animale getLupo() {
 		return lupo;
 	}
+
+	public Giocatore getGiocatoreDiTurno() {
+		return giocatoreDiTurno;
+	}
+
+	public void setGiocatoreDiTurno(Giocatore giocatoreDiTurno) {
+		this.giocatoreDiTurno = giocatoreDiTurno;
+	}
+
 
 }
