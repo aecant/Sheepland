@@ -67,6 +67,16 @@ public class Estrattore {
 		return arrayDiPosizioni(partita.getRecinti().getRecintiIniziali());
 	}
 	
+	public Integer[] recintiFinali(Partita partita) {
+		return arrayDiPosizioni(partita.getRecinti().getRecintiFinali());
+	}
+	
+	public String giocatoreDiTurno(Partita partita) {
+		return partita.getGiocatoreDiTurno().getNome();
+	}
+	
+	
+	
 	private Integer[] arrayDiPosizioni(List<PedinaSuStrada> lista) {
 		int numPedine = lista.size();
 		Integer[] posizioni = new Integer[numPedine];
