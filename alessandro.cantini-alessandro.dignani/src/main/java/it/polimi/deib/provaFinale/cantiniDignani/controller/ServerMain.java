@@ -16,8 +16,12 @@ public class ServerMain {
 	private static InterfacciaServer connessione;
 	private static ExecutorService esecutorePartite = Executors.newCachedThreadPool();
 	private static GestoreEventi gestoreEventi = new GestoreEventi();
+	private static TimerPartita timerPartita;
 
 	public static void main(String[] args) {
+		timerPartita = new TimerPartita();
+		timerPartita.start();
+
 		impostaTipoConnessione();
 		connessione.inizializza();
 	}
@@ -31,13 +35,24 @@ public class ServerMain {
 		giocatoriInAttesa.add(nome);
 
 		if (giocatoriInAttesa.size() == Costanti.NUM_MAX_GIOCATORI) {
-			iniziaPartita(new Partita(giocatoriInAttesa));
+			iniziaPartita();
+		}
+
+		if (giocatoriInAttesa.size() >= 2) {
+			timerPartita.inizia();
 		}
 
 		return true;
 	}
 
-	protected synchronized static void iniziaPartita(Partita partita) {
+	protected synchronized static void iniziaPartita() {
+
+		if (giocatoriInAttesa.size() < 2 || giocatoriInAttesa.size() > Costanti.NUM_MAX_GIOCATORI) {
+			throw new RuntimeException("La partita non puo' iniziare con " + giocatoriInAttesa.size() + "giocatori");
+		}
+
+		timerPartita.ferma();
+		Partita partita = new Partita(giocatoriInAttesa);
 		partite.add(partita);
 		esecutorePartite.submit(new GestorePartita(partita, connessione));
 		giocatoriInAttesa.clear();

@@ -7,5 +7,5 @@ public class Costanti {
 	private Costanti() {
 	}
 	
-	public static final int SECONDI_TIMER = 10;
+	public static final int SECONDI_TIMER = 30;
 }
