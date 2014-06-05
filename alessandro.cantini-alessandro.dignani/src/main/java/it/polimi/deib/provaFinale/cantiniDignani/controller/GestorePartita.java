@@ -26,6 +26,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
 
 public class GestorePartita implements Runnable {
@@ -74,7 +75,7 @@ public class GestorePartita implements Runnable {
 		TipoMossa mossaPrecedente = null;
 		boolean pastoreMosso = false;
 		Pastore pastoreCorrente;
-		
+
 		partita.setGiocatoreDiTurno(giocatore);
 
 		connessione.inviaEvento(new InizioTurno(giocatore.getNome()), nomiGiocatori);
@@ -87,29 +88,66 @@ public class GestorePartita implements Runnable {
 			pastoreCorrente = giocatore.getPastori().get(0);
 		}
 
-		for (int numMossa = 0; numMossa < 3; numMossa++) {
+		for (int numMossa = 1; numMossa <= 3; numMossa++) {
 			Set<TipoMossa> mosseDisponibili = new HashSet<TipoMossa>();
+			boolean entrambiTerritoriLiberi = partita.territorioLibero(pastoreCorrente.getStrada().getTerritorio1()) && partita.territorioLibero(pastoreCorrente.getStrada().getTerritorio2());
+
 			mosseDisponibili.add(TipoMossa.MUOVIPASTORE);
 
-			// se uno dei due territori ha almeno una pecora aggiungo la mossa
-			if (mossaPrecedente != TipoMossa.MUOVIPECORA
-					&& (partita.territorioLibero(pastoreCorrente.getStrada().getTerritorio1()) || partita.territorioLibero(pastoreCorrente.getStrada().getTerritorio2()))) {
+			// se e' la terza mossa e il giocatore non ha ancora mosso il
+			// pastore, si puo' solo muovere il pastore
+			if (numMossa == 3 && pastoreMosso == false) {
+				continue;
+			}
+
+			// se uno dei due territori ha almeno una pecora
+			if (mossaPrecedente != TipoMossa.MUOVIPECORA && !entrambiTerritoriLiberi) {
 				mosseDisponibili.add(TipoMossa.MUOVIPECORA);
 			}
 
+			// se il giocatore ha abbastanza soldi per comprare una delle due
+			// tessere
 			if (mossaPrecedente != TipoMossa.COMPRATESSERA
 					&& (siPuoAcquistareTessera(pastoreCorrente.getStrada().getTerritorio1(), giocatore.getDenaro()) || siPuoAcquistareTessera(pastoreCorrente.getStrada().getTerritorio2(),
 							giocatore.getDenaro()))) {
 				mosseDisponibili.add(TipoMossa.COMPRATESSERA);
 			}
-			
-			if (mossaPrecedente != TipoMossa.ABBATTI) {
-				//TODO
+
+			// se almento uno dei due territorio vicini contiene sia una pecora
+			// che un montone
+			if (mossaPrecedente != TipoMossa.ACCOPPIA) {
+				DatiTerritorio[] dati = Estrattore.datiTerritori(partita);
+				if (contieneSiaPecoraCheMontone(dati[pastoreCorrente.getStrada().getTerritorio1().getCodice()])
+						|| contieneSiaPecoraCheMontone(dati[pastoreCorrente.getStrada().getTerritorio2().getCodice()])) {
+					mosseDisponibili.add(TipoMossa.ACCOPPIA);
+				}
 			}
-			
+
+			// se c'e' almeno una pecora da abbattere e il giocatore ha
+			// abbastanza soldi per pagare il silenzio dei pastori vicini
+			if (mossaPrecedente != TipoMossa.ABBATTI && !entrambiTerritoriLiberi) {
+				int denaroDovuto = 0;
+				for (Pastore past : partita.getPastori()) {
+					if (!past.getColore().equals(pastoreCorrente.getColore()) && Mappa.getMappa().sonoContigue(past.getStrada(), pastoreCorrente.getStrada())) {
+						denaroDovuto += 2;
+					}
+				}
+				if (denaroDovuto <= giocatore.getDenaro()) {
+					mosseDisponibili.add(TipoMossa.ABBATTI);
+				}
+
+			}
+
 			connessione.inviaEvento(new RichiestaTipoMossa(mosseDisponibili), giocatore.getNome());
 
 		}
+	}
+
+	private boolean contieneSiaPecoraCheMontone(DatiTerritorio dati) {
+		if (dati.getNumMontoni() > 0 && dati.getNumPecore() > 0) {
+			return true;
+		}
+		return false;
 	}
 
 	private boolean siPuoAcquistareTessera(Territorio terr, int denaroGiocatore) {
