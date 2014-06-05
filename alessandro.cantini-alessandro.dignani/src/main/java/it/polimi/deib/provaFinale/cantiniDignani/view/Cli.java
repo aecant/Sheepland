@@ -39,62 +39,67 @@ public class Cli implements InterfacciaUtente {
 
 	public void inizioTurno(String giocatore) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void movimentoPecora(TipoOvino pecora, int origine, int destinazione) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void movimentoPastore(Pastore pastore, int origine, int destinazione) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void movimentoLupo(int origine, int destinazione) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void movimentoPecoraNera(int origine, int destinazione) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void abbattimento(String string, TipoOvino tipoOvino) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void trasformazioneAgnello(boolean maschio, Integer territorio) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void pagamento(Integer denaro, String pagante, String pagato) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void selezionePosizioneInizialePastore(String pastore, int strada) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
-	public Mossa richiestaPosizionePastore(int[] stradeLibere) {
+	public Mossa richiestaPosizioneInizialePastore(boolean[] stradeLibere) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Mossa richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereGratis2) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public void ricezioneTesseraIniziale(Tessera tessera) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	public Mossa richiestaTipoMossa(Set<TipoMossa> mosseDisponibili) {
@@ -111,5 +116,7 @@ public class Cli implements InterfacciaUtente {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

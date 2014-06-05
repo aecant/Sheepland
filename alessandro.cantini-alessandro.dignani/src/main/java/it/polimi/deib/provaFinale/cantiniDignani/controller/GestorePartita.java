@@ -6,27 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.InizioPartita;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.InizioTurno;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.LancioDado;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoLupo;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPecoraNera;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.PosizionamentoPastore;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPastore;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPosizionePastore;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTipoMossa;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SceltaMossa;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SceltaPastore;
-import it.polimi.deib.provaFinale.cantiniDignani.model.ColorePastore;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
-import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.*;
+import it.polimi.deib.provaFinale.cantiniDignani.model.*;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
 
@@ -77,7 +58,7 @@ public class GestorePartita implements Runnable {
 	private void gestioneTurno(Giocatore giocatore) {
 		TipoMossa mossaPrecedente = null;
 		boolean pastoreMosso = false;
-		Pastore pastoreCorrente;
+		Pastore pastore;
 
 		partita.setGiocatoreDiTurno(giocatore);
 
@@ -86,19 +67,33 @@ public class GestorePartita implements Runnable {
 		if (dueGiocatori) {
 			connessione.inviaEvento(new RichiestaPastore(), giocatore.getNome());
 			SceltaPastore scelta = (SceltaPastore) gestoreEventi.aspettaEvento(SceltaPastore.class);
-			pastoreCorrente = scelta.getPastore();
+			pastore = scelta.getPastore();
 		} else {
-			pastoreCorrente = giocatore.getPastori().get(0);
+			pastore = giocatore.getPastori().get(0);
 		}
 
 		for (int numMossa = 1; numMossa <= Costanti.NUM_MOSSE_DISPONIBILI; numMossa++) {
-			Set<TipoMossa> mosseDisponibili = creaMosseDisponibili(numMossa, pastoreMosso, mossaPrecedente, pastoreCorrente, giocatore.getDenaro());
+			Set<TipoMossa> mosseDisponibili = creaMosseDisponibili(numMossa, pastoreMosso, mossaPrecedente, pastore, giocatore.getDenaro());
 
 			connessione.inviaEvento(new RichiestaTipoMossa(mosseDisponibili), giocatore.getNome());
-			
-			TipoMossa mossa = ((SceltaMossa) gestoreEventi.aspettaEvento(SceltaMossa.class)).getMossa();
-			switch(mossa) {
-			//TODO
+
+			TipoMossa tipoMossa = ((SceltaMossa) gestoreEventi.aspettaEvento(SceltaMossa.class)).getMossa();
+			switch (tipoMossa) {
+			case MUOVIPASTORE:
+				boolean[] stradeGratis = Estrattore.stradeLibereGratis(partita, pastore.getStrada());
+				boolean[] stradeAPagamento = Estrattore.stradeLibereGratis(partita, pastore.getStrada());
+				connessione.inviaEvento(new RichiestaPosizionePastore(stradeGratis, stradeAPagamento), giocatore.getNome());
+				//TODO ricevi la posizione del pastore dal client, sposta il pastore
+				
+				break;
+			case ABBATTI:
+				break;
+			case ACCOPPIA:
+				break;
+			case COMPRATESSERA:
+				break;
+			case MUOVIPECORA:
+				break;
 			}
 		}
 	}
@@ -255,8 +250,8 @@ public class GestorePartita implements Runnable {
 
 	private void giroPosizionamentoPastore() {
 		for (Giocatore g : partita.getGiocatori()) {
-			int[] stradeLibere = Estrattore.stradeLibere();
-			connessione.inviaEvento(new RichiestaPosizionePastore(stradeLibere), g.getNome());
+			boolean[] stradeLibere = Estrattore.stradeLibere(partita);
+			connessione.inviaEvento(new RichiestaPosizioneInizialePastore(stradeLibere), g.getNome());
 			PosizionamentoPastore risposta = (PosizionamentoPastore) gestoreEventi.aspettaEvento(PosizionamentoPastore.class);
 
 			Strada strada = Mappa.getMappa().getStrade()[risposta.getStrada()];

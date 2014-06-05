@@ -38,7 +38,9 @@ public interface InterfacciaUtente {
 
 	public void selezionePosizioneInizialePastore(String pastore, int strada);
 
-	public Mossa richiestaPosizionePastore(int[] stradeLibere);
+	public Mossa richiestaPosizioneInizialePastore(boolean[] stradeLibere);
+
+	public Mossa richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereGratis2);
 
 	public void ricezioneTesseraIniziale(Tessera tessera);
 
