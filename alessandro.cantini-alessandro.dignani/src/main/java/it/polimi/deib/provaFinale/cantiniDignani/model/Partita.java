@@ -34,9 +34,7 @@ public class Partita {
 	 * @return true se la strada e' libera, false se e' occupata
 	 */
 	public boolean stradaLibera(Strada s) {
-		ArrayList<PedinaSuStrada> pedine = new ArrayList<PedinaSuStrada>();
-		pedine.addAll(recinti.getListaRecinti());
-		pedine.addAll(getPastori());
+		List<PedinaSuStrada> pedine = getTutteLePedineSuStrada();
 
 		for (PedinaSuStrada p : pedine) {
 			if (p.getStrada().equals(s)) {
@@ -46,10 +44,11 @@ public class Partita {
 
 		return true;
 	}
-
+	
+	
 	/**
-	 * Verifica se una strada e' occupata da una pecora o dalla pecora nera. Il lupo
-	 * non e' considerato nel controllo.
+	 * Verifica se una strada e' occupata da una pecora o dalla pecora nera. Il
+	 * lupo non e' considerato nel controllo.
 	 * 
 	 * @return true se il territorio e' libero, false se e' occupato
 	 */
@@ -63,6 +62,18 @@ public class Partita {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * Restituisce una lista con tutte le pedine su strada
+	 * 
+	 * @return la lista di tutte le pedine su strada della partita
+	 */
+	public List<PedinaSuStrada> getTutteLePedineSuStrada() {
+		List<PedinaSuStrada> pedine = new ArrayList<PedinaSuStrada>();
+		pedine.addAll(getPastori());
+		pedine.addAll(recinti.getListaRecinti());
+		return pedine;
 	}
 
 	/**
@@ -112,6 +123,5 @@ public class Partita {
 	public void setGiocatoreDiTurno(Giocatore giocatoreDiTurno) {
 		this.giocatoreDiTurno = giocatoreDiTurno;
 	}
-
 
 }
