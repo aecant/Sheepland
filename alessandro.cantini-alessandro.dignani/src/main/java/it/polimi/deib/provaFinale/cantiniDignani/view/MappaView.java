@@ -1,6 +1,8 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 
@@ -17,7 +19,6 @@ public class MappaView {
 	private JPanel panelMosse;
 	
 	//temporanei
-	//private JLabel lblTessere;
 	private JLabel lblGiocatori;
 	private JLabel lblMosse;
 	
@@ -27,13 +28,8 @@ public class MappaView {
 	public MappaView() {
 		//carico l'immagine della mappa
 		imgMappa = Toolkit.getDefaultToolkit().getImage("src/images/mappa.jpg");
-		imgMappa = imgMappa.getScaledInstance(500, 700, 0);
+		imgMappa = imgMappa.getScaledInstance(500, 600, 0);
 		
-		//carico l'immagine 
-		
-		//imposto il label delle tessere (temporaneo)
-		// porcata per far vedere il panel delle tessere
-		//lblTessere = new JLabel("Tessere........mmmm");
 		
 		//imposto il label dei giocatori (temporaneo)
 		lblGiocatori = new JLabel("Giocatori...");
@@ -44,18 +40,21 @@ public class MappaView {
 		
 		//imposto il panel della mappa
 		mappa = new BackgroundPanel(imgMappa);
+		mappa.setPreferredSize(new Dimension(500, 600));
 		
 		//imposto il panel delle tessere
 		panelTessere = new PannelloTessere();
-		
+	
 		//imposto il panel dei giocatori
 		panelGiocatori = new JPanel();
-		panelGiocatori.setSize(100, 600);
+		panelGiocatori.setPreferredSize(new Dimension(150, 600));
+		panelGiocatori.setBackground(new Color(50, 50, 150));
 		panelGiocatori.add(lblGiocatori);
 		
 		//imposto il panel delle mosse
 		panelMosse = new JPanel();
-		panelMosse.setSize(600, 100);
+		//panelMosse.setPreferredSize(new Dimension(800, 70));
+		panelMosse.setBackground(new Color(50, 150, 50));
 		panelMosse.add(lblMosse);
 		
 		
@@ -71,7 +70,7 @@ public class MappaView {
 		finestra.add(panelMosse, BorderLayout.SOUTH);
 		
 		finestra.pack();
-		finestra.setSize(700, 700);
+		//finestra.setSize(700, 650);
 		finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
