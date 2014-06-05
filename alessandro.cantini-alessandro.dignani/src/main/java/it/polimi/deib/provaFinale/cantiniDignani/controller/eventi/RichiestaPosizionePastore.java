@@ -3,18 +3,17 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 
 public class RichiestaPosizionePastore extends Richiesta {
+	private static final long serialVersionUID = -3895425016270580277L;
+	boolean[] stradeLibereGratis, stradeLibereAPagamento;
 
-	private static final long serialVersionUID = 708070364097104922L;
-	
-	private int[] stradeLibere;
-
-	public RichiestaPosizionePastore(int[] stradeLibere) {
-		this.stradeLibere = stradeLibere;
+	public RichiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento) {
+		this.stradeLibereGratis = stradeLibereGratis;
+		this.stradeLibereAPagamento = stradeLibereAPagamento;
 	}
 
 	@Override
 	protected Mossa interagisci() {
-		return ClientMain.getUI().richiestaPosizionePastore(stradeLibere);
+		return ClientMain.getUI().richiestaPosizionePastore(stradeLibereGratis, stradeLibereGratis);
 	}
 
 }
