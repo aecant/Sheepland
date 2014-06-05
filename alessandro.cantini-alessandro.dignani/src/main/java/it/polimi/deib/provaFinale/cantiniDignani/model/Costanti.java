@@ -79,5 +79,6 @@ public class Costanti {
 	public static final Territorio POS_INIZIALE_LUPO = Mappa.getMappa().getTerritori()[0];
 	public static final Territorio POS_INIZIALE_PECORA_NERA = Mappa.getMappa().getTerritori()[0];
 	
+	public static final long SECONDI_TIMER_PARTITA = 30;
 	
 }
