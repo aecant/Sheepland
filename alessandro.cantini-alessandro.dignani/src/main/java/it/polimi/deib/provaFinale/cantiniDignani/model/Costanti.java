@@ -80,5 +80,7 @@ public class Costanti {
 	public static final Territorio POS_INIZIALE_PECORA_NERA = Mappa.getMappa().getTerritori()[0];
 	
 	public static final long SECONDI_TIMER_PARTITA = 30;
+
+	public static final int NUM_MOSSE_DISPONIBILI = 3;
 	
 }

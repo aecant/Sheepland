@@ -19,7 +19,7 @@ public class ServerMain {
 	private static TimerPartita timerPartita;
 
 	public static void main(String[] args) {
-		timerPartita = new TimerPartita();
+		timerPartita = new TimerPartita(Costanti.SECONDI_TIMER_PARTITA);
 		timerPartita.start();
 
 		impostaTipoConnessione();
@@ -54,7 +54,7 @@ public class ServerMain {
 		timerPartita.ferma();
 		Partita partita = new Partita(giocatoriInAttesa);
 		partite.add(partita);
-		esecutorePartite.submit(new GestorePartita(partita, connessione));
+		esecutorePartite.submit(new GestorePartita(partita, connessione, gestoreEventi));
 		giocatoriInAttesa.clear();
 		System.out.println("Partita iniziata.");
 	}
@@ -109,12 +109,12 @@ public class ServerMain {
 
 	}
 
-	public static GestoreEventi getGestoreEventi() {
-		return gestoreEventi;
-	}
-
 	public static InterfacciaServer getConnessione() {
 		return connessione;
+	}
+
+	public static GestoreEventi getGestoreEventi() {
+		return gestoreEventi;
 	}
 
 }

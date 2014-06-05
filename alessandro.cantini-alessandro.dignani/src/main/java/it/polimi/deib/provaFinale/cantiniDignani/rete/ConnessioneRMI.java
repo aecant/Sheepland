@@ -55,7 +55,12 @@ public class ConnessioneRMI implements ConnessioneClient, AscoltatoreRemoto {
 	}
 
 	public void inviaMossa(Mossa mossaScelta) {
-		server.riceviMossa(mossaScelta);
+		try {
+			server.riceviMossa(mossaScelta);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public DatiTerritorio[] chiediElencoTerritori() {

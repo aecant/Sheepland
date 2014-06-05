@@ -75,8 +75,6 @@ public class Estrattore {
 		return partita.getGiocatoreDiTurno().getNome();
 	}
 	
-	
-	
 	private Integer[] arrayDiPosizioni(List<PedinaSuStrada> lista) {
 		int numPedine = lista.size();
 		Integer[] posizioni = new Integer[numPedine];
