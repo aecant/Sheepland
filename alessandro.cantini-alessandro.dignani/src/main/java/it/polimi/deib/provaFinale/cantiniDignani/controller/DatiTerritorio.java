@@ -27,10 +27,10 @@ public class DatiTerritorio {
 			break;
 		case PECORANERA:
 			pecoraNera = true;
-			break;		
+			break;
 		}
 	}
-	
+
 	protected void aggiungiLupo() {
 		lupo = true;
 	}
@@ -45,6 +45,15 @@ public class DatiTerritorio {
 
 	public int getNumAgnelli() {
 		return numAgnelli;
+	}
+
+	/**
+	 * Restituisce il numero di ovini (pecore, montoni e agnelli)
+	 * 
+	 * @return il numero di ovini
+	 */
+	public int getNumOvini() {
+		return numPecore + numAgnelli + numMontoni;
 	}
 
 	public boolean isLupo() {
