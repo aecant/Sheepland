@@ -14,7 +14,7 @@ public class DatiTerritorio {
 		this.pecoraNera = false;
 	}
 
-	public void aggiungiOvino(TipoOvino tipo) {
+	protected void aggiungiOvino(TipoOvino tipo) {
 		switch (tipo) {
 		case PECORA:
 			numPecore++;
@@ -31,7 +31,7 @@ public class DatiTerritorio {
 		}
 	}
 	
-	public void aggiungiLupo() {
+	protected void aggiungiLupo() {
 		lupo = true;
 	}
 
