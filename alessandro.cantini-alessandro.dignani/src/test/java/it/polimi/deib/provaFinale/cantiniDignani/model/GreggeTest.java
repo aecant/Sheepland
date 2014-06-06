@@ -2,7 +2,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.deib.provaFinale.cantiniDignani.model.Agnello;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Gregge;
@@ -16,7 +16,7 @@ public class GreggeTest {
 	Pecora p1, p2, p3;
 	Agnello agnello;
 	Territorio t1, t2;
-	ArrayList<Pecora> pecoreSuTerr;
+	List<Pecora> pecoreSuTerr;
 	
 	@Before
 	public void setUp() {

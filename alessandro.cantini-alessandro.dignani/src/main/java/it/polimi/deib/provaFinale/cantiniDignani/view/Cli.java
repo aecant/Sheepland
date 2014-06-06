@@ -1,7 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.*;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoOvino;
@@ -67,7 +67,7 @@ public class Cli implements InterfacciaUtente {
 		
 	}
 
-	public void abbattimento(String string, TipoOvino tipoOvino) {
+	public void abbattimento(String string, TipoOvino tipoOvino, int territorio) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -87,24 +87,9 @@ public class Cli implements InterfacciaUtente {
 		
 	}
 
-	public Mossa richiestaPosizioneInizialePastore(boolean[] stradeLibere) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Mossa richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereGratis2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public void ricezioneTesseraIniziale(Tessera tessera) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	public Mossa richiestaTipoMossa(Set<TipoMossa> mosseDisponibili) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public void sceltaPastore(Pastore pastore) {
@@ -112,11 +97,35 @@ public class Cli implements InterfacciaUtente {
 		
 	}
 
-	public Mossa richiestaPastore() {
+	public PosizionamentoPastore richiestaPosizioneInizialePastore(boolean[] stradeLibere) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	public MovimentoPastore richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereGratis2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	public SceltaMossa richiestaTipoMossa(Set<TipoMossa> mosseDisponibili) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	public SceltaPastore richiestaPastore() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public MovimentoPecora richiestaPecoraDaMuovere(int t1, Set<TipoOvino> oviniT1, int t2, Set<TipoOvino> oviniT2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public MovimentoPecora richiestaPecoraDaAbbattere(int t1, Set<TipoOvino> oviniT1, int t2, Set<TipoOvino> oviniT2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

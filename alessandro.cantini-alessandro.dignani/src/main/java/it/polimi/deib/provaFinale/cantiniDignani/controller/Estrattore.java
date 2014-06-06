@@ -110,17 +110,33 @@ public class Estrattore {
 
 		return strade;
 	}
-	
+
 	public static boolean[] stradeLibereGratis(Partita partita, Strada posPastore) {
 		boolean[] stradeLibere = stradeLibere(partita);
 		boolean[] stradeLibereAPagamento = stradeLibereAPagamento(partita, posPastore);
 		boolean[] stradeLibereGratis = new boolean[Costanti.NUM_STRADE];
-		
-		for(int i = 0; i < stradeLibereGratis.length; i++) {
+
+		for (int i = 0; i < stradeLibereGratis.length; i++) {
 			stradeLibereGratis[i] = stradeLibere[i] && !stradeLibereAPagamento[i];
 		}
-		
+
 		return stradeLibereGratis;
+	}
+
+	/**
+	 * Restituisce una pecora che si trova su un certo territorio e che e' di un
+	 * certo @see {TipoOvino}
+	 * 
+	 * @return la pecora su un territorio e di un certo tipo
+	 */
+	public static Pecora getPecora(Partita partita, int codTerritorio, TipoOvino tipo) {
+		for (Pecora pec : partita.getGregge().getPecore()) {
+			if (pec.getPosizione().getCodice() == codTerritorio && pec.getTipoOvino() == tipo) {
+				return pec;
+			}
+		}
+
+		throw new IllegalArgumentException("La pecora non esiste");
 	}
 
 }

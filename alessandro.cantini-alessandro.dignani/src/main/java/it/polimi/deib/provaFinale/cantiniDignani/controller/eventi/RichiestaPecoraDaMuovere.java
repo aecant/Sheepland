@@ -1,27 +1,20 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
+import java.util.Set;
+
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoOvino;
 
-import java.util.Set;
-
-public class RichiestaPecoraDaMuovere extends Richiesta {
-
-	private static final long serialVersionUID = -561851180399299704L;
-
-	private int t1, t2;
-	private Set<TipoOvino> oviniT1, oviniT2;
+public class RichiestaPecoraDaMuovere extends RichiestaPecora {
+	private static final long serialVersionUID = 8050350177901857718L;
 
 	public RichiestaPecoraDaMuovere(int t1, Set<TipoOvino> oviniT1, int t2, Set<TipoOvino> oviniT2) {
-		this.t1 = t1;
-		this.t2 = t2;
-		this.oviniT1 = oviniT1;
-		this.oviniT2 = oviniT2;
+		super(t1, oviniT1, t2, oviniT2);
 	}
 
 	@Override
 	protected Mossa interagisci() {
-		return ClientMain.getUI().richiestaPecoraDaSpostare(t1, oviniT1, t2, oviniT2);
+		return ClientMain.getUI().richiestaPecoraDaMuovere(getT1(), getOviniT1(), getT2(), getOviniT2());
 	}
 
 }

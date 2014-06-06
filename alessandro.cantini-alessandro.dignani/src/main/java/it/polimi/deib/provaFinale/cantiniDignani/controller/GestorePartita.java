@@ -13,7 +13,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
 public class GestorePartita implements Runnable {
 
 	private final Partita partita;
-	private final ArrayList<String> nomiGiocatori;
+	private final ArrayList<String> tutti;
 	private final InterfacciaServer connessione;
 	private int contColorePastore = 0;
 	private boolean dueGiocatori;
@@ -31,9 +31,9 @@ public class GestorePartita implements Runnable {
 			dueGiocatori = false;
 			denaroIniziale = Costanti.DENARO_INIZIALE;
 		}
-		nomiGiocatori = new ArrayList<String>();
+		tutti = new ArrayList<String>();
 		for (Giocatore g : partita.getGiocatori()) {
-			nomiGiocatori.add(g.getNome());
+			tutti.add(g.getNome());
 		}
 	}
 
@@ -61,7 +61,7 @@ public class GestorePartita implements Runnable {
 
 		partita.setGiocatoreDiTurno(giocatore);
 
-		connessione.inviaEvento(new InizioTurno(giocatore.getNome()), nomiGiocatori);
+		connessione.inviaEvento(new InizioTurno(giocatore.getNome()), tutti);
 
 		if (dueGiocatori) {
 			connessione.inviaEvento(new RichiestaPastore(), giocatore.getNome());
@@ -77,22 +77,65 @@ public class GestorePartita implements Runnable {
 			connessione.inviaEvento(new RichiestaTipoMossa(mosseDisponibili), giocatore.getNome());
 
 			TipoMossa tipoMossa = ((SceltaMossa) gestoreEventi.aspettaEvento(SceltaMossa.class)).getMossa();
+
+			DatiTerritorio[] dati = Estrattore.datiTerritori(partita);
+			int codT1 = pastore.getStrada().getTerritorio1().getCodice();
+			int codT2 = pastore.getStrada().getTerritorio2().getCodice();
+			Set<TipoOvino> oviniT1 = dati[codT1].getTipiOvino();
+			Set<TipoOvino> oviniT2 = dati[codT2].getTipiOvino();
+
 			switch (tipoMossa) {
-			case MUOVIPASTORE:
+
+			case MUOVIPASTORE: {
 				boolean[] stradeGratis = Estrattore.stradeLibereGratis(partita, pastore.getStrada());
 				boolean[] stradeAPagamento = Estrattore.stradeLibereGratis(partita, pastore.getStrada());
 				connessione.inviaEvento(new RichiestaPosizionePastore(stradeGratis, stradeAPagamento), giocatore.getNome());
-				//TODO ricevi la posizione del pastore dal client, sposta il pastore
+
+				MovimentoPastore movimento = (MovimentoPastore) gestoreEventi.aspettaEvento(MovimentoPastore.class);
+				Strada destinazione = Mappa.getMappa().getStrade()[movimento.getDestinazione()];
+
+				pastore.muoviIn(destinazione);
+
+				connessione.inviaEvento(movimento, tutti);
+
+				break;
+			}
+			case MUOVIPECORA: {
+				connessione.inviaEvento(new RichiestaPecoraDaMuovere(codT1, oviniT1, codT2, oviniT2), giocatore.getNome());
+
+				MovimentoPecora movimento = (MovimentoPecora) gestoreEventi.aspettaEvento(MovimentoPecora.class);
+				Territorio destinazione = Mappa.getMappa().getTerritori()[movimento.getDestinazione()];
+
+				if (movimento.getTipoOvino() == TipoOvino.PECORANERA) {
+					partita.getGregge().getPecoraNera().muoviIn(destinazione);
+				} else {
+					Estrattore.getPecora(partita, movimento.getOrigine(), movimento.getTipoOvino()).muoviIn(destinazione);
+				}
+
+				break;
+			}
+
+			case ABBATTI: {
+				oviniT1.remove(TipoOvino.PECORANERA);
+				oviniT2.remove(TipoOvino.PECORANERA);
+				connessione.inviaEvento(new RichiestaPecoraDaAbbattere(codT1, oviniT1, codT2, oviniT2), giocatore.getNome());
+
+				Abbattimento abbattimento = (Abbattimento) gestoreEventi.aspettaEvento(Abbattimento.class);
+				Pecora daAbbattere = Estrattore.getPecora(partita, abbattimento.getTerritorio(), abbattimento.getTipoOvino());
+				partita.getGregge().rimuovi(daAbbattere);
+
+				connessione.inviaEvento(abbattimento, tutti);
+
+				//TODO gestire il fatto che si compra il silenzio
+				
 				
 				break;
-			case ABBATTI:
-				break;
+			}
 			case ACCOPPIA:
 				break;
 			case COMPRATESSERA:
 				break;
-			case MUOVIPECORA:
-				break;
+
 			}
 		}
 	}
@@ -191,13 +234,13 @@ public class GestorePartita implements Runnable {
 		Territorio destinazione = Mappa.getMappa().transizione(origine, lancio);
 		if (movimentoPossibile(origine, lancio)) {
 			partita.getGregge().getPecoraNera().muoviIn(destinazione);
-			connessione.inviaEvento(new MovimentoPecoraNera(origine.getCodice(), destinazione.getCodice()), nomiGiocatori);
+			connessione.inviaEvento(new MovimentoPecoraNera(origine.getCodice(), destinazione.getCodice()), tutti);
 		}
 	}
 
 	private int lancioDado() {
 		int lancio = Sorte.lanciaDado();
-		connessione.inviaEvento(new LancioDado(lancio), nomiGiocatori);
+		connessione.inviaEvento(new LancioDado(lancio), tutti);
 		return lancio;
 	}
 
@@ -218,7 +261,7 @@ public class GestorePartita implements Runnable {
 
 		if (movimentoPossibile(origine, lancio) || tutteStradeOccupate) {
 			partita.getLupo().muoviIn(destinazione);
-			connessione.inviaEvento(new MovimentoLupo(origine.getCodice(), destinazione.getCodice()), nomiGiocatori);
+			connessione.inviaEvento(new MovimentoLupo(origine.getCodice(), destinazione.getCodice()), tutti);
 		}
 	}
 
@@ -257,7 +300,7 @@ public class GestorePartita implements Runnable {
 			ColorePastore colore = ColorePastore.values()[contColorePastore++];
 			g.aggiungiPastore(new Pastore(strada, colore));
 
-			connessione.inviaEvento(new PosizionamentoPastore(g.getNome(), risposta.getStrada()), nomiGiocatori);
+			connessione.inviaEvento(new PosizionamentoPastore(g.getNome(), risposta.getStrada()), tutti);
 		}
 	}
 
@@ -268,7 +311,7 @@ public class GestorePartita implements Runnable {
 		distribuisciDenari();
 		disponiPecore();
 		disponiTessereIniziali();
-		connessione.inviaEvento(new InizioPartita(), nomiGiocatori);
+		connessione.inviaEvento(new InizioPartita(), tutti);
 	}
 
 	/**
