@@ -8,7 +8,6 @@ import java.util.Stack;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.*;
 import it.polimi.deib.provaFinale.cantiniDignani.model.*;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
 
 public class GestorePartita implements Runnable {

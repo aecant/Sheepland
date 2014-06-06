@@ -13,7 +13,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoOvino;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.DatiTerritorio;
 
 /**
  * Classe che fornisce metodi statici per effettuare query e ottenere dati dal

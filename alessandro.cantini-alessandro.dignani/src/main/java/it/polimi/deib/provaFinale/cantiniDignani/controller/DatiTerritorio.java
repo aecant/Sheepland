@@ -1,4 +1,4 @@
-package it.polimi.deib.provaFinale.cantiniDignani.rete;
+package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoOvino;
 
