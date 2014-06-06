@@ -5,7 +5,8 @@ public class Costanti {
 	}
 	
 	public static final int ETA_MAX_AGNELLO = 2;
-	
+
+	public static final int NUM_MIN_GIOCATORI = 2;
 	public static final int NUM_MAX_GIOCATORI = 4;
 
 	public static final int MAX_VALORE_TESSERA = 4;
