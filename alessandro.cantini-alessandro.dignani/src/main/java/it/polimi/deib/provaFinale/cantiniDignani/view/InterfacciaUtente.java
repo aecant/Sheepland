@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view;
 
-import java.util.Set;
+import java.util.Collection;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.*;
@@ -17,7 +17,7 @@ public interface InterfacciaUtente {
 	public void inizioPartita();
 
 	public void inizioTurno(String giocatore);
-
+	
 	public void movimentoPecora(TipoOvino pecora, int origine, int destinazione);
 
 	public void movimentoPastore(Pastore pastore, int origine, int destinazione);
@@ -31,6 +31,8 @@ public interface InterfacciaUtente {
 	public void acquistoTessera(String giocatore, Tessera tessera);
 
 	public void abbattimento(String string, TipoOvino tipoOvino, int territorio, boolean aBuonFine);
+
+	public void accoppiamento(String giocatore, int territorio, boolean aBuonFine);
 
 	public void trasformazioneAgnello(boolean maschio, Integer territorio);
 
@@ -46,12 +48,16 @@ public interface InterfacciaUtente {
 
 	public MovimentoPastore richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereGratis2);
 
-	public SceltaMossa richiestaTipoMossa(Set<TipoMossa> mosseDisponibili);
+	public SceltaMossa richiestaTipoMossa(Collection<TipoMossa> mosseDisponibili);
 
 	public SceltaPastore richiestaPastore();
 
-	public MovimentoPecora richiestaPecoraDaMuovere(int t1, Set<TipoOvino> oviniT1, int t2, Set<TipoOvino> oviniT2);
+	public MovimentoPecora richiestaPecoraDaMuovere(int t1, Collection<TipoOvino> oviniT1, int t2, Collection<TipoOvino> oviniT2);
 	
-	public MovimentoPecora richiestaPecoraDaAbbattere(int t1, Set<TipoOvino> oviniT1, int t2, Set<TipoOvino> oviniT2);
+	public MovimentoPecora richiestaPecoraDaAbbattere(int t1, Collection<TipoOvino> oviniT1, int t2, Collection<TipoOvino> oviniT2);
+
+	public Accoppiamento richiestaTerritorioPerAccoppiamento(Collection<Integer> terrDisponibili);
+
+	public AcquistoTessera richiestaTesseraDaAcquistare(Collection<Tessera> tessereDisp);
 
 }
