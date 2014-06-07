@@ -1,10 +1,12 @@
-package it.polimi.deib.provaFinale.cantiniDignani.view;
+package it.polimi.deib.provaFinale.cantiniDignani.view.cli;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.*;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoOvino;
+import it.polimi.deib.provaFinale.cantiniDignani.view.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 
 import java.io.PrintStream;
 import java.util.Set;
