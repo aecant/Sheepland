@@ -1,6 +1,7 @@
-package it.polimi.deib.provaFinale.cantiniDignani.view;
+package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
+import it.polimi.deib.provaFinale.cantiniDignani.view.Costanti;
 
 import java.awt.Color;
 import java.awt.Dimension;

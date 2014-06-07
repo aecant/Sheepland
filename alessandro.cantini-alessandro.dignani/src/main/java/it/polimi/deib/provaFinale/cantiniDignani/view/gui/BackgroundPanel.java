@@ -1,4 +1,4 @@
-package it.polimi.deib.provaFinale.cantiniDignani.view;
+package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
