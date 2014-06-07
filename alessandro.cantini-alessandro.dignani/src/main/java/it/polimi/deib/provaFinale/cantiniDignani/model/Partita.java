@@ -44,8 +44,7 @@ public class Partita {
 
 		return true;
 	}
-	
-	
+
 	/**
 	 * Verifica se una strada e' occupata da una pecora o dalla pecora nera. Il
 	 * lupo non e' considerato nel controllo.
@@ -82,13 +81,32 @@ public class Partita {
 	 * 
 	 * @return la lista dei pastori
 	 */
-	public ArrayList<Pastore> getPastori() {
-		ArrayList<Pastore> pastori = new ArrayList<Pastore>();
+	public List<Pastore> getPastori() {
+		List<Pastore> pastori = new ArrayList<Pastore>();
 		for (Giocatore g : giocatori) {
 			pastori.addAll(g.getPastori());
 		}
 
 		return pastori;
+	}
+
+	/**
+	 * Restituisce il giocatore che possiede un certo pastore
+	 * 
+	 * @param pastore
+	 *            il pastore del giocatore
+	 * @return il giocatore che possiede il pastore
+	 */
+	public Giocatore getGiocatore(Pastore pastore) {
+		for (Giocatore g : giocatori) {
+			for (Pastore p : g.getPastori()) {
+				if (p.equals(pastore)) {
+					return g;
+				}
+			}
+		}
+
+		throw new RuntimeException("Problema nel ricavare il giocatore relativo a un pastore");
 	}
 
 	public Gregge getGregge() {
@@ -100,7 +118,7 @@ public class Partita {
 	 * 
 	 * @return una copia della lista dei giocatori
 	 */
-	public ArrayList<Giocatore> getGiocatori() {
+	public List<Giocatore> getGiocatori() {
 		return Utilita.copia(giocatori);
 	}
 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Singleton che gestisce la mappa di Sheepland
  */
-public class Mappa {	
+public class Mappa {
 	private static Mappa istanza = null;
 	private Territorio[] territori;
 	private Strada[] strade;
@@ -31,7 +31,6 @@ public class Mappa {
 		return territori[indice];
 	}
 
-	
 	/**
 	 * Controlla se due territori sono confinanti, controllando se ci il codice
 	 * di t2 e' contenuto nella riga di t1 della matrice di transizione { @link
@@ -60,10 +59,10 @@ public class Mappa {
 	 * @return true se le strade sono contigue, false altrimenti
 	 */
 	public boolean sonoContigue(Strada s1, Strada s2) {
-		if(s1.equals(s2)) {
+		if (s1.equals(s2)) {
 			return false;
 		}
-		
+
 		Territorio t1, t2;
 		Territorio terrInComune = territorioInComune(s1, s2);
 		if (terrInComune != null) {
@@ -73,6 +72,26 @@ public class Mappa {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Restituisce il numero del dado corrispondente alla strada
+	 * 
+	 * @param strada
+	 *            la strada di cui si vuole il numero del dado
+	 * @return il numero del dado disegnato sulla strada
+	 */
+	public int getDado(Strada strada) {
+		int codT1 = strada.getTerritorio1().getCodice();
+		int codT2 = strada.getTerritorio2().getCodice();
+
+		for (int lancio = 0; lancio < 6; lancio++) {
+			if (Costanti.MAPPA[codT1][lancio] == codT2) {
+				return lancio + 1;
+			}
+		}
+
+		throw new RuntimeException("Problema nell'ottenere lancio del dado corrispondente alla strada");
 	}
 
 	/**

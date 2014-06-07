@@ -20,7 +20,6 @@ public class ClientMain {
 		connessione.inizializza();
 
 		registraGiocatore();
-
 	}
 
 	private static void registraGiocatore() {

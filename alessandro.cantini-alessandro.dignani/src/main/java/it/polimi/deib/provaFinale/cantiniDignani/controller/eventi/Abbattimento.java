@@ -8,11 +8,17 @@ public class Abbattimento extends Mossa {
 
 	private TipoOvino tipoOvino;
 	private int territorio;
+	private boolean aBuonFine;
 
 	public Abbattimento(String giocatore, TipoOvino tipoOvino, int territorio) {
 		super(giocatore);
 		this.tipoOvino = tipoOvino;
 		this.territorio = territorio;
+	}
+
+	public Abbattimento(Abbattimento abb, boolean aBuonFine) {
+		this(abb.getGiocatore(), abb.getTipoOvino(), abb.getTerritorio());
+		this.aBuonFine = aBuonFine;
 	}
 
 	public TipoOvino getTipoOvino() {
@@ -23,14 +29,21 @@ public class Abbattimento extends Mossa {
 		return territorio;
 	}
 
+	public boolean isaBuonFine() {
+		return aBuonFine;
+	}
+
 	@Override
 	public void aggiornaDati() {
-		ClientMain.getDatiPartita().aggiornaTerritori();
+		if (aBuonFine) {
+			ClientMain.getDatiPartita().aggiornaTerritori();
+			ClientMain.getDatiPartita().aggiornaGiocatori();
+		}
 	}
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().abbattimento(super.getGiocatore(), tipoOvino, territorio);
+		ClientMain.getUI().abbattimento(super.getGiocatore(), tipoOvino, territorio, aBuonFine);
 	}
 
 }

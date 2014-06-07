@@ -79,4 +79,13 @@ public class MappaTest {
 			assertTrue(i == Mappa.getMappa().getStrade()[i].getCodice());
 		}
 	}
+	
+	@Test
+	public void testGetDado() {
+		assertEquals(Mappa.getMappa().getDado(s1), 1);
+		assertEquals(Mappa.getMappa().getDado(s2), 2);
+		assertEquals(Mappa.getMappa().getDado(s4), 4);
+		assertEquals(Mappa.getMappa().getDado(s5), 5);
+		assertEquals(Mappa.getMappa().getDado(s6), 6);
+	}
 }

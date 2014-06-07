@@ -30,7 +30,7 @@ public interface InterfacciaUtente {
 
 	public void acquistoTessera(String giocatore, Tessera tessera);
 
-	public void abbattimento(String string, TipoOvino tipoOvino, int territorio);
+	public void abbattimento(String string, TipoOvino tipoOvino, int territorio, boolean aBuonFine);
 
 	public void trasformazioneAgnello(boolean maschio, Integer territorio);
 
