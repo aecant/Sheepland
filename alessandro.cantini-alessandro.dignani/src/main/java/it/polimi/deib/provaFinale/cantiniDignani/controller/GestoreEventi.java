@@ -4,12 +4,10 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 
 import java.util.concurrent.LinkedBlockingQueue;
 
-
 public class GestoreEventi {
 
 	private LinkedBlockingQueue<Evento> codaEventi = new LinkedBlockingQueue<Evento>();
-	
-	
+
 	/**
 	 * Aspetta e restituisce un evento inviato dal server
 	 * 
@@ -43,6 +41,12 @@ public class GestoreEventi {
 		return evento;
 	}
 
+	/**
+	 * Aggiunge un evento
+	 * 
+	 * @param e
+	 *            l'evento da aggiungere
+	 */
 	public void aggiungi(Evento e) {
 		codaEventi.add(e);
 	}

@@ -6,18 +6,18 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.TipoOvino;
 public class MovimentoPecora extends Mossa {
 	private static final long serialVersionUID = -5815440396346581844L;
 	
-	private TipoOvino pecora;
+	private TipoOvino tipo;
 	private int origine, destinazione;
 
-	public MovimentoPecora(String giocatore, TipoOvino pecora, int origine, int destinazione) {
+	public MovimentoPecora(String giocatore, TipoOvino tipo, int origine, int destinazione) {
 		super(giocatore);
-		this.pecora = pecora;
+		this.tipo = tipo;
 		this.origine = origine;
 		this.destinazione = destinazione;
 	}
 	
-	public TipoOvino getPecora() {
-		return pecora;
+	public TipoOvino getTipoOvino() {
+		return tipo;
 	}
 
 	public int getOrigine() {
@@ -35,7 +35,7 @@ public class MovimentoPecora extends Mossa {
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().movimentoPecora(pecora, origine, destinazione);
+		ClientMain.getUI().movimentoPecora(tipo, origine, destinazione);
 	}
 
 }

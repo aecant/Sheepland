@@ -62,7 +62,8 @@ public class MappaTest {
 		assertFalse(Mappa.getMappa().sonoContigue(s5, s1));
 		assertFalse(Mappa.getMappa().sonoContigue(s1, s4));
 		assertFalse(Mappa.getMappa().sonoContigue(s6, s5));
-
+		assertFalse(Mappa.getMappa().sonoContigue(s1, s1));
+		assertFalse(Mappa.getMappa().sonoContigue(s2, s2));
 	}
 
 	@Test
@@ -70,5 +71,12 @@ public class MappaTest {
 		assertTrue(Mappa.getMappa().sonoConfinanti(t4, t5));
 		assertTrue(Mappa.getMappa().sonoConfinanti(t4, t7));
 		assertFalse(Mappa.getMappa().sonoConfinanti(t4, t6));
+	}
+	
+	@Test
+	public void testCodiceStrade() {
+		for(int i = 0; i < Mappa.getMappa().getStrade().length; i++) {
+			assertTrue(i == Mappa.getMappa().getStrade()[i].getCodice());
+		}
 	}
 }

@@ -3,7 +3,6 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.DatiTerritorio;
 
 public class DatiPartita {
 	private DatiTerritorio[] territori;

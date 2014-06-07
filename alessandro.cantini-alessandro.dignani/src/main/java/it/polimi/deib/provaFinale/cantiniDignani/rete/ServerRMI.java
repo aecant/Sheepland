@@ -1,6 +1,8 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Richiesta;
+
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -34,6 +36,9 @@ public class ServerRMI implements InterfacciaServer {
 	public void inviaEvento(Evento evento, List<String> giocatori) {
 		if(giocatori.size() == 0)
 			throw new IllegalArgumentException("La lista dei giocatori non puo' essere vuota");
+		if(evento instanceof Richiesta && giocatori.size() > 1) {
+			throw new IllegalArgumentException("Non si possono mandare richieste a piu' giocatori");
+		}
 		for(String giocatore : giocatori) {
 			try {
 				ascoltatori.get(giocatore).riceviEvento(evento);

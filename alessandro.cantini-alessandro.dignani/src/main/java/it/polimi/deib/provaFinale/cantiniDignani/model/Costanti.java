@@ -5,7 +5,8 @@ public class Costanti {
 	}
 	
 	public static final int ETA_MAX_AGNELLO = 2;
-	
+
+	public static final int NUM_MIN_GIOCATORI = 2;
 	public static final int NUM_MAX_GIOCATORI = 4;
 
 	public static final int MAX_VALORE_TESSERA = 4;
@@ -75,6 +76,11 @@ public class Costanti {
 	
 	
 	public static final int NUM_TERRITORI = MAPPA.length;
+	public static void main(String[] args) {
+		System.out.println(Mappa.getMappa().getStrade().length);
+	}
+	
+	public static final int NUM_STRADE = 42;
 
 	public static final Territorio POS_INIZIALE_LUPO = Mappa.getMappa().getTerritori()[0];
 	public static final Territorio POS_INIZIALE_PECORA_NERA = Mappa.getMappa().getTerritori()[0];

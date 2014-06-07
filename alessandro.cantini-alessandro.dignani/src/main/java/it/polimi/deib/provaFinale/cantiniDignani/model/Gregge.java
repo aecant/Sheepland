@@ -31,7 +31,6 @@ public class Gregge {
 		pecore.add(p);
 	}
 
-	
 	/**
 	 * Rimuove dal gregge la pecora passata come parametro
 	 * 
@@ -66,8 +65,8 @@ public class Gregge {
 	 *            il territorio su cui stanno le pecore
 	 * @return la lista delle pecore sul territorio passato come parametro
 	 */
-	public ArrayList<Pecora> pecoreSuTerritorio(Territorio t) {
-		ArrayList<Pecora> pecore = new ArrayList<Pecora>();
+	public List<Pecora> pecoreSuTerritorio(Territorio t) {
+		List<Pecora> pecore = new ArrayList<Pecora>();
 
 		for (Pecora p : getPecore()) {
 			if (p.getPosizione().equals(t)) {
@@ -91,7 +90,19 @@ public class Gregge {
 	 * 
 	 * @return una copia dell'ArrayList pecore
 	 */
-	public ArrayList<Pecora> getPecore() {
+	public List<Pecora> getPecore() {
 		return Utilita.copia(pecore);
+	}
+
+	/**
+	 * Restituisce la lista di tutti gli ovini, compresa la pecora nera
+	 * 
+	 * @return la lista di tutti gli ovini
+	 */
+	public List<Animale> getPecoreCompresaLaNera() {
+		List<Animale> pecore = new ArrayList<Animale>();
+		pecore.addAll(pecore);
+		pecore.add(pecoraNera);
+		return pecore;
 	}
 }

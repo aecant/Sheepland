@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Singleton che gestisce la mappa di Sheepland
  */
-public class Mappa {
+public class Mappa {	
 	private static Mappa istanza = null;
 	private Territorio[] territori;
 	private Strada[] strade;
@@ -60,6 +60,10 @@ public class Mappa {
 	 * @return true se le strade sono contigue, false altrimenti
 	 */
 	public boolean sonoContigue(Strada s1, Strada s2) {
+		if(s1.equals(s2)) {
+			return false;
+		}
+		
 		Territorio t1, t2;
 		Territorio terrInComune = territorioInComune(s1, s2);
 		if (terrInComune != null) {
