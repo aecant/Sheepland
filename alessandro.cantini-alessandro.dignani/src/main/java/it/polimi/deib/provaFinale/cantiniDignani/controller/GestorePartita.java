@@ -92,9 +92,11 @@ public class GestorePartita implements Runnable {
 				connessione.inviaEvento(new RichiestaPosizionePastore(stradeGratis, stradeAPagamento), giocatore.getNome());
 
 				MovimentoPastore movimento = (MovimentoPastore) gestoreEventi.aspettaEvento(MovimentoPastore.class);
+				Strada origine = Mappa.getMappa().getStrade()[movimento.getOrigine()];
 				Strada destinazione = Mappa.getMappa().getStrade()[movimento.getDestinazione()];
 
 				pastore.muoviIn(destinazione);
+				partita.getRecinti().aggiungi(origine);
 
 				connessione.inviaEvento(movimento, tutti);
 
@@ -121,14 +123,32 @@ public class GestorePartita implements Runnable {
 				connessione.inviaEvento(new RichiestaPecoraDaAbbattere(codT1, oviniT1, codT2, oviniT2), giocatore.getNome());
 
 				Abbattimento abbattimento = (Abbattimento) gestoreEventi.aspettaEvento(Abbattimento.class);
-				Pecora daAbbattere = Estrattore.getPecora(partita, abbattimento.getTerritorio(), abbattimento.getTipoOvino());
-				partita.getGregge().rimuovi(daAbbattere);
 
-				connessione.inviaEvento(abbattimento, tutti);
+				int lancio = lanciaDado();
 
-				//TODO gestire il fatto che si compra il silenzio
-				
-				
+				boolean aBuonFine = (lancio == Mappa.getMappa().getDado(pastore.getStrada()));
+
+				if (aBuonFine) {
+					Pecora daAbbattere = Estrattore.getPecora(partita, abbattimento.getTerritorio(), abbattimento.getTipoOvino());
+					partita.getGregge().rimuovi(daAbbattere);
+
+					for (Pastore pastoreVicino : partita.getPastori()) {
+						if (Mappa.getMappa().sonoContigue(pastore.getStrada(), pastoreVicino.getStrada()) && !pastoreVicino.getColore().equals(pastore.getColore())) {
+							lancio = lanciaDado();
+							if (lancio >= Costanti.DADO_MIN_PER_SILENZIO) {
+								int somma = Costanti.COSTO_SILENZIO;
+								Giocatore ricevente = partita.getGiocatore(pastoreVicino);
+								pagamento(somma, giocatore, ricevente);
+								connessione.inviaEvento(new Pagamento(somma, giocatore.getNome(), ricevente.getNome()), tutti);
+							}
+						}
+					}
+				}
+
+				connessione.inviaEvento(new Abbattimento(abbattimento, aBuonFine), tutti);
+
+				// TODO gestire il fatto che si compra il silenzio
+
 				break;
 			}
 			case ACCOPPIA:
@@ -228,7 +248,7 @@ public class GestorePartita implements Runnable {
 	}
 
 	private void movimentoPecoraNera() {
-		int lancio = lancioDado();
+		int lancio = lanciaDado();
 
 		Territorio origine = partita.getGregge().getPecoraNera().getPosizione();
 		Territorio destinazione = Mappa.getMappa().transizione(origine, lancio);
@@ -238,7 +258,7 @@ public class GestorePartita implements Runnable {
 		}
 	}
 
-	private int lancioDado() {
+	private int lanciaDado() {
 		int lancio = Sorte.lanciaDado();
 		connessione.inviaEvento(new LancioDado(lancio), tutti);
 		return lancio;
@@ -247,7 +267,7 @@ public class GestorePartita implements Runnable {
 	private void movimentoLupo() {
 		boolean tutteStradeOccupate = true;
 
-		int lancio = lancioDado();
+		int lancio = lanciaDado();
 
 		Territorio origine = partita.getLupo().getPosizione();
 		Territorio destinazione = Mappa.getMappa().transizione(origine, lancio);
@@ -349,6 +369,11 @@ public class GestorePartita implements Runnable {
 		for (Territorio t : Mappa.getMappa().getTerritori()) {
 			partita.getGregge().aggiungi(Sorte.pecoraCasuale(t));
 		}
+	}
+
+	private void pagamento(int somma, Giocatore pagante, Giocatore ricevente) {
+		pagante.sottraiDenaro(somma);
+		ricevente.aggiungiDenaro(somma);
 	}
 
 }

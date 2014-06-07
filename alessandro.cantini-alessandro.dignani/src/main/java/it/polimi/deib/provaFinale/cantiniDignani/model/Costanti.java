@@ -89,4 +89,7 @@ public class Costanti {
 
 	public static final int NUM_MOSSE_DISPONIBILI = 3;
 	
+	public static final int COSTO_SILENZIO = 2;
+	public static final int DADO_MIN_PER_SILENZIO = 5;
+	
 }
