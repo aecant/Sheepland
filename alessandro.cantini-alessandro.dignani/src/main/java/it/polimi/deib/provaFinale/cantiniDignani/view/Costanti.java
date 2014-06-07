@@ -10,5 +10,6 @@ public class Costanti {
 	}
 	
 	public static PrintStream OUTPUT = System.out;
+	public static String percorsoImmagini = new String("immagini/");
 	
 }
