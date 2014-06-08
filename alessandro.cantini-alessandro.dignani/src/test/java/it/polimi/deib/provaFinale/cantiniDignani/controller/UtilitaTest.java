@@ -47,9 +47,6 @@ public class UtilitaTest {
 
 	@Test
 	public void testContiene() {
-		assertTrue(Utilita.contiene(a1, 1));
-		assertTrue(Utilita.contiene(al1, 1));
-
 		assertFalse(Utilita.contiene(a1, 4));
 		assertFalse(Utilita.contiene(a2, 4));
 

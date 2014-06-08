@@ -41,23 +41,6 @@ public class Utilita {
 		return contieneDuplicati(Arrays.asList(array));
 	}
 
-	/**
-	 * Controlla se una lista contiene un certo elementeo
-	 * 
-	 * @param lista
-	 *            la lista da analizzare
-	 * @param element
-	 *            l'elemento da cercare
-	 * @return true se la lista contiene l'elemento, false altrimenti
-	 */
-	public static <E> boolean contiene(List<E> lista, E element) {
-		for (E i : lista) {
-			if (i == element) {
-				return true;
-			}
-		}
-		return false;
-	}
 
 	/**
 	 * Controlla se un array contiene un certo elementeo
@@ -69,7 +52,7 @@ public class Utilita {
 	 * @return true se l'array contiene l'elemento, false altrimenti
 	 */
 	public static <E> boolean contiene(E[] array, E element) {
-		return contiene(Arrays.asList(array), element);
+		return Arrays.asList(array).contains(element);
 	}
 
 	/**
