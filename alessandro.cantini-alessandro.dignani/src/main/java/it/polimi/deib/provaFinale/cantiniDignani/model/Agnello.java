@@ -29,8 +29,8 @@ public class Agnello extends Pecora {
 	}
 
 	@Override
-	public TipoOvino getTipoOvino() {
-		return TipoOvino.AGNELLO;
+	public TipoAnimale getTipoOvino() {
+		return TipoAnimale.AGNELLO;
 	}
 
 	@Override

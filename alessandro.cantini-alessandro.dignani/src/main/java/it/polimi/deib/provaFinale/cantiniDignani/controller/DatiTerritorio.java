@@ -1,9 +1,9 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
+
 import java.util.HashSet;
 import java.util.Set;
-
-import it.polimi.deib.provaFinale.cantiniDignani.model.TipoOvino;
 
 public class DatiTerritorio {
 	private int numPecore, numMontoni, numAgnelli;
@@ -17,7 +17,7 @@ public class DatiTerritorio {
 		this.pecoraNera = false;
 	}
 
-	protected void aggiungiOvino(TipoOvino tipo) {
+	protected void aggiungi(TipoAnimale tipo) {
 		switch (tipo) {
 		case PECORA:
 			numPecore++;
@@ -31,11 +31,10 @@ public class DatiTerritorio {
 		case PECORANERA:
 			pecoraNera = true;
 			break;
+		case LUPO:
+			lupo = true;
+			break;
 		}
-	}
-
-	protected void aggiungiLupo() {
-		lupo = true;
 	}
 
 	public int getNumPecore() {
@@ -65,20 +64,20 @@ public class DatiTerritorio {
 	 * 
 	 * @return il set dei TipoOvino presenti sul territorio
 	 */
-	public Set<TipoOvino> getTipiOvino() {
-		Set<TipoOvino> tipi = new HashSet<TipoOvino>();
+	public Set<TipoAnimale> getTipiOvino() {
+		Set<TipoAnimale> tipi = new HashSet<TipoAnimale>();
 
 		if (numPecore > 0) {
-			tipi.add(TipoOvino.PECORA);
+			tipi.add(TipoAnimale.PECORA);
 		}
 		if (numMontoni > 0) {
-			tipi.add(TipoOvino.PECORA);
+			tipi.add(TipoAnimale.PECORA);
 		}
 		if (numAgnelli > 0) {
-			tipi.add(TipoOvino.PECORA);
+			tipi.add(TipoAnimale.PECORA);
 		}
 		if (pecoraNera) {
-			tipi.add(TipoOvino.PECORANERA);
+			tipi.add(TipoAnimale.PECORANERA);
 		}
 
 		return tipi;

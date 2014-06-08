@@ -12,7 +12,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.PedinaSuStrada;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
-import it.polimi.deib.provaFinale.cantiniDignani.model.TipoOvino;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 
 /**
  * Classe che fornisce metodi statici per effettuare query e ottenere dati dal
@@ -46,11 +46,11 @@ public class Estrattore {
 		}
 
 		for (Pecora pec : partita.getGregge().getPecore()) {
-			dati[pec.getPosizione().getCodice()].aggiungiOvino(pec.getTipoOvino());
+			dati[pec.getPosizione().getCodice()].aggiungi(pec.getTipoOvino());
 		}
 
-		dati[partita.getGregge().getPecoraNera().getPosizione().getCodice()].aggiungiOvino(TipoOvino.PECORANERA);
-		dati[partita.getLupo().getPosizione().getCodice()].aggiungiLupo();
+		dati[partita.getGregge().getPecoraNera().getPosizione().getCodice()].aggiungi(TipoAnimale.PECORANERA);
+		dati[partita.getLupo().getPosizione().getCodice()].aggiungi(TipoAnimale.LUPO);
 
 		return dati;
 	}
@@ -129,7 +129,7 @@ public class Estrattore {
 	 * 
 	 * @return la pecora su un territorio e di un certo tipo
 	 */
-	public static Pecora getPecora(Partita partita, int codTerritorio, TipoOvino tipo) {
+	public static Pecora getPecora(Partita partita, int codTerritorio, TipoAnimale tipo) {
 		for (Pecora pec : partita.getGregge().getPecore()) {
 			if (pec.getPosizione().getCodice() == codTerritorio && pec.getTipoOvino() == tipo) {
 				return pec;

@@ -4,7 +4,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.*;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
-import it.polimi.deib.provaFinale.cantiniDignani.model.TipoOvino;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 import it.polimi.deib.provaFinale.cantiniDignani.view.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 
@@ -46,7 +46,7 @@ public class Cli implements InterfacciaUtente {
 		
 	}
 
-	public void movimentoPecora(TipoOvino pecora, int origine, int destinazione) {
+	public void movimentoPecora(TipoAnimale pecora, int origine, int destinazione) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -71,7 +71,7 @@ public class Cli implements InterfacciaUtente {
 		
 	}
 
-	public void abbattimento(String string, TipoOvino tipoOvino, int territorio, boolean aBuonFine) {
+	public void abbattimento(String string, TipoAnimale tipoOvino, int territorio, boolean aBuonFine) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -126,12 +126,12 @@ public class Cli implements InterfacciaUtente {
 		return null;
 	}
 
-	public MovimentoPecora richiestaPecoraDaMuovere(int t1, Set<TipoOvino> oviniT1, int t2, Set<TipoOvino> oviniT2) {
+	public MovimentoPecora richiestaPecoraDaMuovere(int t1, Set<TipoAnimale> oviniT1, int t2, Set<TipoAnimale> oviniT2) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public MovimentoPecora richiestaPecoraDaAbbattere(int t1, Set<TipoOvino> oviniT1, int t2, Set<TipoOvino> oviniT2) {
+	public MovimentoPecora richiestaPecoraDaAbbattere(int t1, Set<TipoAnimale> oviniT1, int t2, Set<TipoAnimale> oviniT2) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -146,12 +146,12 @@ public class Cli implements InterfacciaUtente {
 		return null;
 	}
 
-	public MovimentoPecora richiestaPecoraDaMuovere(int t1, Collection<TipoOvino> oviniT1, int t2, Collection<TipoOvino> oviniT2) {
+	public MovimentoPecora richiestaPecoraDaMuovere(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public MovimentoPecora richiestaPecoraDaAbbattere(int t1, Collection<TipoOvino> oviniT1, int t2, Collection<TipoOvino> oviniT2) {
+	public MovimentoPecora richiestaPecoraDaAbbattere(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -6,7 +6,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.*;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
-import it.polimi.deib.provaFinale.cantiniDignani.model.TipoOvino;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 
 public interface InterfacciaUtente {
 
@@ -18,7 +18,7 @@ public interface InterfacciaUtente {
 
 	public void inizioTurno(String giocatore);
 	
-	public void movimentoPecora(TipoOvino pecora, int origine, int destinazione);
+	public void movimentoPecora(TipoAnimale pecora, int origine, int destinazione);
 
 	public void movimentoPastore(Pastore pastore, int origine, int destinazione);
 
@@ -30,7 +30,7 @@ public interface InterfacciaUtente {
 
 	public void acquistoTessera(String giocatore, Tessera tessera);
 
-	public void abbattimento(String string, TipoOvino tipoOvino, int territorio, boolean aBuonFine);
+	public void abbattimento(String string, TipoAnimale tipoOvino, int territorio, boolean aBuonFine);
 
 	public void accoppiamento(String giocatore, int territorio, boolean aBuonFine);
 
@@ -52,9 +52,9 @@ public interface InterfacciaUtente {
 
 	public SceltaPastore richiestaPastore();
 
-	public MovimentoPecora richiestaPecoraDaMuovere(int t1, Collection<TipoOvino> oviniT1, int t2, Collection<TipoOvino> oviniT2);
+	public MovimentoPecora richiestaPecoraDaMuovere(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2);
 	
-	public MovimentoPecora richiestaPecoraDaAbbattere(int t1, Collection<TipoOvino> oviniT1, int t2, Collection<TipoOvino> oviniT2);
+	public MovimentoPecora richiestaPecoraDaAbbattere(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2);
 
 	public Accoppiamento richiestaTerritorioPerAccoppiamento(Collection<Integer> terrDisponibili);
 
