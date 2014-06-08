@@ -20,4 +20,7 @@ public class Costanti {
 	public static Dimension dimensioneAgnello = new Dimension(40, 30);
 	public static Dimension dimensioneLupo = new Dimension(40, 30);
 	
+	// Risoluzione spostamento
+	public static int risoluzioneSpostamento = 100;
+	
 }

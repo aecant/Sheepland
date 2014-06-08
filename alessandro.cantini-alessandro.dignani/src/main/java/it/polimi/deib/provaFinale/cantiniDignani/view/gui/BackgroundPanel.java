@@ -6,7 +6,7 @@ import java.awt.Image;
 
 import javax.swing.JPanel;
 
-class BackgroundPanel extends JPanel {
+public class BackgroundPanel extends JPanel {
 
 	private static final long serialVersionUID = -3163543217049638252L;
 
