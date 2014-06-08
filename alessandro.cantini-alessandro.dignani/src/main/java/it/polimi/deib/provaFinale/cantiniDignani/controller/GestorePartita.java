@@ -1,14 +1,37 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.InizioPartita;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.InizioTurno;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.LancioDado;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoLupo;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPecoraNera;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.PosizionamentoPastore;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPastore;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPosizioneInizialePastore;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTipoMossa;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SceltaMossa;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SceltaPastore;
+import it.polimi.deib.provaFinale.cantiniDignani.model.ColorePastore;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
-
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.*;
-import it.polimi.deib.provaFinale.cantiniDignani.model.*;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
 
 public class GestorePartita implements Runnable {
 
@@ -16,6 +39,7 @@ public class GestorePartita implements Runnable {
 	private List<String> tuttiGiocatori;
 	private final InterfacciaServer connessione;
 	private final GestoreMossa gestoreMossa;
+	private final GestoreFaseFinale gestoreFaseFinale;
 	private final GestoreCoda<Evento> gestoreEventi;
 
 	private int contColorePastore = 0;
@@ -38,6 +62,7 @@ public class GestorePartita implements Runnable {
 			tuttiGiocatori.add(g.getNome());
 		}
 		gestoreMossa = new GestoreMossa(this);
+		gestoreFaseFinale = new GestoreFaseFinale(partita);
 
 	}
 
@@ -45,6 +70,12 @@ public class GestorePartita implements Runnable {
 		iniziaPartita();
 		selezionePosizioneIniziale();
 		gestioneGiro();
+		faseFinale();
+	}
+
+	private void faseFinale() {
+		//TODO
+		
 	}
 
 	private void gestioneGiro() {

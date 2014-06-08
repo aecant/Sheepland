@@ -7,13 +7,14 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ServerRMI;
 
+import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ServerMain {
-	private static Vector<Partita> partite = new Vector<Partita>();
-	private static Vector<String> giocatoriInAttesa = new Vector<String>();
+	private static List<Partita> partite = new Vector<Partita>();
+	private static List<String> giocatoriInAttesa = new Vector<String>();
 	private static InterfacciaServer connessione;
 	private static ExecutorService esecutorePartite = Executors.newCachedThreadPool();
 	private static GestoreCoda<Evento> gestoreEventi = new GestoreCoda<Evento>();

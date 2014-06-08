@@ -1,0 +1,53 @@
+package it.polimi.deib.provaFinale.cantiniDignani.controller;
+
+import static org.junit.Assert.*;
+
+import java.util.Arrays;
+import java.util.Map;
+
+import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class GestoreFaseFinaleTest {
+
+	Partita partita;
+	GestoreFaseFinale gestore;
+	Territorio t1 = new Territorio(4, TipoTerritorio.DESERTO);
+	Territorio t2 = new Territorio(5, TipoTerritorio.DESERTO);
+	Territorio t3 = new Territorio(7, TipoTerritorio.LAGO);
+
+	@Before
+	public void setUp() {
+		partita = new Partita(Arrays.asList("esempio1", "esempio2"));
+		
+		partita.getGregge().aggiungi(Sorte.pecoraRandom(t1));
+		partita.getGregge().aggiungi(Sorte.pecoraRandom(t2));
+		partita.getGregge().aggiungi(Sorte.pecoraRandom(t3));
+		
+		gestore = new GestoreFaseFinale(partita);
+
+	}
+
+	@Test
+	public void testGetValoriTerritori() {
+		Map<TipoTerritorio, Integer> valori = gestore.getValoriTerritori();
+		
+		assertTrue(valori.get(TipoTerritorio.BOSCO) == 0);
+		assertTrue(valori.get(TipoTerritorio.PASCOLO) == 0);
+		assertTrue(valori.get(TipoTerritorio.LAGO) == 1);
+		assertTrue(valori.get(TipoTerritorio.DESERTO) == 2);
+		
+		partita.getGregge().getPecoraNera().muoviIn(t1);
+		
+		valori = gestore.getValoriTerritori();
+		
+		assertTrue(valori.get(TipoTerritorio.DESERTO) == 4);
+		
+		
+	}
+
+}

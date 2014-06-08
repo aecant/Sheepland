@@ -12,7 +12,7 @@ public class Partita {
 	private Animale lupo;
 	private Gregge gregge;
 	private InsiemeDiRecinti recinti;
-	private ArrayList<Giocatore> giocatori;
+	private List<Giocatore> giocatori;
 	private Giocatore giocatoreDiTurno;
 
 	public Partita(Collection<String> nomiGiocatori) {
