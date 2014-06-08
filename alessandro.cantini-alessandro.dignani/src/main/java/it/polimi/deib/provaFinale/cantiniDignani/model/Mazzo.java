@@ -19,13 +19,12 @@ public class Mazzo {
 	 */
 	public Mazzo() {
 		mazzo = new HashMap<TipoTerritorio, Stack<Tessera>>();
-		for (TipoTerritorio t : TipoTerritorio.values())
-			if (t != TipoTerritorio.SHEEPSBURG) {
-				Stack<Tessera> pilaDiCarte = new Stack<Tessera>();
-				for (int i = Costanti.MAX_VALORE_TESSERA; i >= 0; i--)
-					pilaDiCarte.push(new Tessera(t, i));
-				mazzo.put(t, pilaDiCarte);
-			}
+		for (TipoTerritorio t : TipoTerritorio.valoriTessere()) {
+			Stack<Tessera> pilaDiCarte = new Stack<Tessera>();
+			for (int i = Costanti.MAX_VALORE_TESSERA; i >= 0; i--)
+				pilaDiCarte.push(new Tessera(t, i));
+			mazzo.put(t, pilaDiCarte);
+		}
 	}
 
 	/**
@@ -50,8 +49,8 @@ public class Mazzo {
 	}
 
 	/**
-	 * Legge la tessera in cima al mazzo usando {@link Mazzo#leggiTesseraInCima},
-	 * se non ci sono eccezioni la scarta
+	 * Legge la tessera in cima al mazzo usando {@link Mazzo#leggiTesseraInCima}
+	 * , se non ci sono eccezioni la scarta
 	 * 
 	 * @param tipo
 	 *            il tipo della carta che si vuole prelevare

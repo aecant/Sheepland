@@ -76,9 +76,6 @@ public class Costanti {
 	
 	
 	public static final int NUM_TERRITORI = MAPPA.length;
-	public static void main(String[] args) {
-		System.out.println(Mappa.getMappa().getStrade().length);
-	}
 	
 	public static final int NUM_STRADE = 42;
 
