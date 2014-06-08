@@ -9,7 +9,7 @@ import java.util.Set;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.*;
 import it.polimi.deib.provaFinale.cantiniDignani.model.*;
 
-public class GestoreMossa {
+public class GestoreMossa{
 
 	private GestorePartita gestorePartita;
 	private Partita partita;

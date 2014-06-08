@@ -15,7 +15,7 @@ import org.junit.Test;
 public class GestoreFaseFinaleTest {
 
 	Partita partita;
-	GestoreFaseFinale gestore;
+	FaseFinale fase;
 	Territorio t1 = new Territorio(4, TipoTerritorio.DESERTO);
 	Territorio t2 = new Territorio(5, TipoTerritorio.DESERTO);
 	Territorio t3 = new Territorio(7, TipoTerritorio.LAGO);
@@ -28,13 +28,13 @@ public class GestoreFaseFinaleTest {
 		partita.getGregge().aggiungi(Sorte.pecoraRandom(t2));
 		partita.getGregge().aggiungi(Sorte.pecoraRandom(t3));
 		
-		gestore = new GestoreFaseFinale(partita);
+		fase = new FaseFinale(new GestorePartita(partita, null, null));
 
 	}
 
 	@Test
 	public void testGetValoriTerritori() {
-		Map<TipoTerritorio, Integer> valori = gestore.getValoriTerritori();
+		Map<TipoTerritorio, Integer> valori = fase.getValoriTerritori();
 		
 		assertTrue(valori.get(TipoTerritorio.BOSCO) == 0);
 		assertTrue(valori.get(TipoTerritorio.PASCOLO) == 0);
@@ -43,7 +43,7 @@ public class GestoreFaseFinaleTest {
 		
 		partita.getGregge().getPecoraNera().muoviIn(t1);
 		
-		valori = gestore.getValoriTerritori();
+		valori = fase.getValoriTerritori();
 		
 		assertTrue(valori.get(TipoTerritorio.DESERTO) == 4);
 		

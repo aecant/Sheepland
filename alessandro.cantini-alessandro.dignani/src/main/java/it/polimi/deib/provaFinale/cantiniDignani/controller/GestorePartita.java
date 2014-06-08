@@ -1,7 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.InizioPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.InizioTurno;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.LancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoLupo;
@@ -18,20 +17,13 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
-import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.Stack;
 
 public class GestorePartita implements Runnable {
 
@@ -39,12 +31,12 @@ public class GestorePartita implements Runnable {
 	private List<String> tuttiGiocatori;
 	private final InterfacciaServer connessione;
 	private final GestoreMossa gestoreMossa;
-	private final GestoreFaseFinale gestoreFaseFinale;
+	private final FasePartita faseIniziale, faseFinale;
 	private final GestoreCoda<Evento> gestoreEventi;
 
 	private int contColorePastore = 0;
 	private boolean dueGiocatori;
-	private final int denaroIniziale;
+	public final int denaroIniziale;
 
 	public GestorePartita(Partita partita, InterfacciaServer connessione, GestoreCoda<Evento> gestoreEventi) {
 		this.partita = partita;
@@ -62,20 +54,23 @@ public class GestorePartita implements Runnable {
 			tuttiGiocatori.add(g.getNome());
 		}
 		gestoreMossa = new GestoreMossa(this);
-		gestoreFaseFinale = new GestoreFaseFinale(partita);
-
+		faseFinale = new FaseFinale(this);
+		faseIniziale = new FaseIniziale(this);
 	}
 
 	public void run() {
-		iniziaPartita();
+		faseIniziale.esegui();
+
+		faseFinale.esegui();
+
 		selezionePosizioneIniziale();
 		gestioneGiro();
 		faseFinale();
 	}
 
 	private void faseFinale() {
-		//TODO
-		
+		// TODO
+
 	}
 
 	private void gestioneGiro() {
@@ -194,59 +189,17 @@ public class GestorePartita implements Runnable {
 		}
 	}
 
-	/**
-	 * Gestisce la fase iniziale della partita
-	 */
-	private void iniziaPartita() {
-		distribuisciDenari();
-		disponiPecore();
-		disponiTessereIniziali();
-		connessione.inviaEvento(new InizioPartita(), tuttiGiocatori);
-	}
-
-	/**
-	 * Crea uno stack di tessere, di tutti i tipi a parte Sheepsburg, lo mescola
-	 * e distribuisce una tessera per ogni giocatore
-	 */
-	private void disponiTessereIniziali() {
-		Stack<Tessera> territoriIniziali = new Stack<Tessera>();
-		for (TipoTerritorio tipo : TipoTerritorio.values()) {
-			if (tipo != TipoTerritorio.SHEEPSBURG) {
-				territoriIniziali.push(new Tessera(tipo, 0));
-			}
-		}
-
-		Collections.shuffle(territoriIniziali);
-
-		for (Giocatore g : partita.getGiocatori()) {
-			g.aggiungiTessera(territoriIniziali.pop());
-		}
-	}
-
-	/**
-	 * Distribuisce la somma di denaro iniziale a ogni giocatore
-	 */
-	private void distribuisciDenari() {
-		for (Giocatore g : partita.getGiocatori()) {
-			g.aggiungiDenaro(denaroIniziale);
-		}
-	}
-
-	/**
-	 * Dispone una pecora, un montone o un agnello per ciascun territorio.
-	 */
-	private void disponiPecore() {
-		for (Territorio t : Mappa.getMappa().getTerritori()) {
-			partita.getGregge().aggiungi(Sorte.pecoraRandom(t));
-		}
-	}
-
 	protected void inviaEventoATutti(Evento e) {
-		connessione.inviaEvento(e, tuttiGiocatori);
+		getConnessione().inviaEvento(e, getTuttiGiocatori());
 	}
 
 	protected void inviaEvento(Evento e, Giocatore g) {
-		connessione.inviaEvento(e, g.getNome());
+		getConnessione().inviaEvento(e, g.getNome());
+	}
+
+	protected void pagamento(int somma, Giocatore pagante, Giocatore ricevente) {
+		pagante.sottraiDenaro(somma);
+		ricevente.aggiungiDenaro(somma);
 	}
 
 	protected GestoreCoda<Evento> getGestoreEventi() {
@@ -261,9 +214,8 @@ public class GestorePartita implements Runnable {
 		return connessione;
 	}
 
-	protected void pagamento(int somma, Giocatore pagante, Giocatore ricevente) {
-		pagante.sottraiDenaro(somma);
-		ricevente.aggiungiDenaro(somma);
+	protected List<String> getTuttiGiocatori() {
+		return tuttiGiocatori;
 	}
 
 }

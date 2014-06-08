@@ -1,18 +1,16 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.model.Animale;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class GestoreFaseFinale {
-	private Partita partita;
+public class FaseFinale extends FasePartita {
 
-	public GestoreFaseFinale(Partita partita) {
-		this.partita = partita;
+	public FaseFinale(GestorePartita gestore) {
+		super(gestore);
 	}
 
 	/**
@@ -53,5 +51,11 @@ public class GestoreFaseFinale {
 		if (tipo == TipoTerritorio.SHEEPSBURG)
 			return;
 		mappa.put(tipo, mappa.get(tipo) + quantita);
+	}
+
+	@Override
+	public void esegui() {
+		// TODO Auto-generated method stub
+
 	}
 }
