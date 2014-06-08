@@ -3,12 +3,13 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Giocatore {
 	private String nome;
 	private int denaro;
-	private ArrayList<Pastore> pastori;
-	private ArrayList<Tessera> tessere;
+	private List<Pastore> pastori;
+	private List<Tessera> tessere;
 
 	public Giocatore(String nome) {
 		this.nome = nome;
@@ -68,7 +69,7 @@ public class Giocatore {
 	 * 
 	 * @return una copia dell'ArrayList delle tessere possedute dal giocatore
 	 */
-	public ArrayList<Tessera> getTessere() {
+	public List<Tessera> getTessere() {
 		return Utilita.copia(tessere);
 	}
 
@@ -77,7 +78,7 @@ public class Giocatore {
 	 * 
 	 * @return una copia dell'ArrayList delle tessere possedute dal giocatore
 	 */
-	public ArrayList<Pastore> getPastori() {
+	public List<Pastore> getPastori() {
 		return Utilita.copia(pastori);
 	}
 

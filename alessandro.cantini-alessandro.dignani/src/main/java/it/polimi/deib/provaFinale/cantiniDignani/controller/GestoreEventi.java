@@ -2,11 +2,12 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class GestoreEventi {
 
-	private LinkedBlockingQueue<Evento> codaEventi = new LinkedBlockingQueue<Evento>();
+	private BlockingQueue<Evento> codaEventi = new LinkedBlockingQueue<Evento>();
 
 	/**
 	 * Aspetta e restituisce un evento inviato dal server

@@ -3,13 +3,14 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe che fornisce i metodi per la gestione dei recinti
  */
 public class InsiemeDiRecinti {
-	private ArrayList<PedinaSuStrada> recintiIniziali;
-	private ArrayList<PedinaSuStrada> recintiFinali;
+	private List<PedinaSuStrada> recintiIniziali;
+	private List<PedinaSuStrada> recintiFinali;
 
 	public InsiemeDiRecinti() {
 		recintiIniziali = new ArrayList<PedinaSuStrada>();
@@ -48,7 +49,7 @@ public class InsiemeDiRecinti {
 	 * 
 	 * @return una copia della la lista dei reciniti iniziali
 	 */
-	public ArrayList<PedinaSuStrada> getRecintiIniziali() {
+	public List<PedinaSuStrada> getRecintiIniziali() {
 		return Utilita.copia(recintiIniziali);
 	}
 
@@ -57,7 +58,7 @@ public class InsiemeDiRecinti {
 	 * 
 	 * @return una copia della la lista dei reciniti finali
 	 */
-	public ArrayList<PedinaSuStrada> getRecintiFinali() {
+	public List<PedinaSuStrada> getRecintiFinali() {
 		return Utilita.copia(recintiFinali);
 	}
 

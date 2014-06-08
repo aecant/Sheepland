@@ -73,16 +73,17 @@ public class Utilita {
 	}
 
 	/**
-	 * Restituisce una copia di un ArrayList
+	 * Restituisce una copia di un ArrayList. Si tratta di una copia di
+	 * superficie, in modo tale che non si possano aggiungere ne' rimuovere
+	 * elementi dalla lista; invece i singoli elementi si possono modificare
 	 * 
-	 * @param al
+	 * @param lista
 	 *            l'arrayList da copiare
 	 * @return una copia dell'ArrayList passato come parametro
 	 */
-	//TODO implementare come deep copy
-	public static <E> ArrayList<E> copia(List<E> al) {
-		ArrayList<E> temp = new ArrayList<E>();
-		temp.addAll(al);
+	public static <E> List<E> copia(List<E> lista) {
+		List<E> temp = new ArrayList<E>();
+		temp.addAll(lista);
 		return temp;
 	}
 
