@@ -37,17 +37,26 @@ public class PecoraView extends JPanel {
 	}
 
 	public void muoviPecora(Point destinazione) {
-		Point pos = this.getLocation();
-		while (this.getLocation().distance(destinazione) > 20) {
-			Point temp = this.getLocation();
-			temp.translate((int) (((destinazione.getX() - pos.getX()) / 20) ), (int) (((destinazione.getY() - pos.getY()) / 20) ));
-			this.setLocation(temp);
+		Point[] posizioni = creaArrayPosizioniSpostamento(destinazione);
+		for(Point p : posizioni) {
+			this.setLocation(p);
 			try {
-				Thread.sleep(30);
+				Thread.sleep(10);
 			} catch (Exception e) {
 				System.err.println(e);
 			}
 		}
 		this.setLocation(destinazione);
+	}
+
+	private Point[] creaArrayPosizioniSpostamento(Point destinazione) {
+		Point[] posizioni = new Point[Costanti.risoluzioneSpostamento];
+		posizioni[0] = this.getLocation();
+		Point temp = new Point(posizioni[0]);
+		for(int i=1; i < Costanti.risoluzioneSpostamento; i++) {
+			temp.translate((int) (destinazione.getX() - temp.getX())/(Costanti.risoluzioneSpostamento-i), (int) (destinazione.getY() - temp.getY())/(Costanti.risoluzioneSpostamento-i)); 
+			posizioni[i] = new Point(temp);
+		}
+		return posizioni;
 	}
 }
