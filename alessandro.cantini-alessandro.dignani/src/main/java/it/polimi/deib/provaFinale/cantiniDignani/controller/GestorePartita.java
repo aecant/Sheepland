@@ -16,13 +16,13 @@ public class GestorePartita implements Runnable {
 	private List<String> tuttiGiocatori;
 	private final InterfacciaServer connessione;
 	private final GestoreMossa gestoreMossa;
-	private final GestoreEventi gestoreEventi;
+	private final GestoreCoda<Evento> gestoreEventi;
 
 	private int contColorePastore = 0;
 	private boolean dueGiocatori;
 	private final int denaroIniziale;
 
-	public GestorePartita(Partita partita, InterfacciaServer connessione, GestoreEventi gestoreEventi) {
+	public GestorePartita(Partita partita, InterfacciaServer connessione, GestoreCoda<Evento> gestoreEventi) {
 		this.partita = partita;
 		this.connessione = connessione;
 		this.gestoreEventi = gestoreEventi;
@@ -69,7 +69,7 @@ public class GestorePartita implements Runnable {
 
 		if (dueGiocatori) {
 			inviaEvento(new RichiestaPastore(), giocatore);
-			SceltaPastore scelta = (SceltaPastore) gestoreEventi.aspettaEvento(SceltaPastore.class);
+			SceltaPastore scelta = (SceltaPastore) gestoreEventi.aspetta(SceltaPastore.class);
 			pastore = scelta.getPastore();
 		} else {
 			pastore = giocatore.getPastori().get(0);
@@ -80,7 +80,7 @@ public class GestorePartita implements Runnable {
 
 			inviaEvento(new RichiestaTipoMossa(mosseDisponibili), giocatore);
 
-			TipoMossa tipoMossa = ((SceltaMossa) gestoreEventi.aspettaEvento(SceltaMossa.class)).getMossa();
+			TipoMossa tipoMossa = ((SceltaMossa) gestoreEventi.aspetta(SceltaMossa.class)).getMossa();
 
 			gestoreMossa.effettuaMossa(pastore, tipoMossa);
 		}
@@ -153,7 +153,7 @@ public class GestorePartita implements Runnable {
 		for (Giocatore g : partita.getGiocatori()) {
 			boolean[] stradeLibere = Estrattore.stradeLibere(partita);
 			connessione.inviaEvento(new RichiestaPosizioneInizialePastore(stradeLibere), g.getNome());
-			PosizionamentoPastore risposta = (PosizionamentoPastore) gestoreEventi.aspettaEvento(PosizionamentoPastore.class);
+			PosizionamentoPastore risposta = (PosizionamentoPastore) gestoreEventi.aspetta(PosizionamentoPastore.class);
 
 			Strada strada = Mappa.getMappa().getStrade()[risposta.getStrada()];
 			ColorePastore colore = ColorePastore.values()[contColorePastore++];
@@ -218,7 +218,7 @@ public class GestorePartita implements Runnable {
 		connessione.inviaEvento(e, g.getNome());
 	}
 
-	protected GestoreEventi getGestoreEventi() {
+	protected GestoreCoda<Evento> getGestoreEventi() {
 		return gestoreEventi;
 	}
 

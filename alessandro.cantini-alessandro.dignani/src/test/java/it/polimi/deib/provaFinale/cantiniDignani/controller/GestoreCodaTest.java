@@ -8,16 +8,16 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPeco
 import org.junit.Before;
 import org.junit.Test;
 
-public class GestoreEventiTest {
+public class GestoreCodaTest {
 
-	GestoreEventi gestore;
+	GestoreCoda<Evento> gestore;
 
 	final static Evento EVENTO = new LancioDado(6);
 	Evento daAspettare;
 
 	@Before
 	public void setUp() {
-		gestore = new GestoreEventi();
+		gestore = new GestoreCoda<Evento>();
 	}
 
 	@Test
@@ -41,7 +41,7 @@ public class GestoreEventiTest {
 	@Test (expected = RuntimeException.class)
 	public void testAspettaEventoSpecifico() {
 		gestore.aggiungi(EVENTO);
-		gestore.aspettaEvento(MovimentoPecora.class);
+		gestore.aspetta(MovimentoPecora.class);
 	}
 	
 	class ThreadAggiungiEvento extends Thread {

@@ -13,7 +13,7 @@ public class GestoreMossa {
 
 	private GestorePartita gestorePartita;
 	private Partita partita;
-	private GestoreEventi gestoreEventi;
+	private GestoreCoda<Evento> gestoreEventi;
 	private int codT1, codT2;
 	private Set<TipoOvino> oviniT1, oviniT2;
 	private DatiTerritorio[] dati;
@@ -74,7 +74,7 @@ public class GestoreMossa {
 
 		gestorePartita.inviaEvento(new RichiestaTesseraDaAcquistare(tessereDisp), giocatore);
 
-		AcquistoTessera acq = (AcquistoTessera) gestoreEventi.aspettaEvento(AcquistoTessera.class);
+		AcquistoTessera acq = (AcquistoTessera) gestoreEventi.aspetta(AcquistoTessera.class);
 
 		TipoTerritorio tipo = acq.getTessera().getTipo();
 
@@ -100,7 +100,7 @@ public class GestoreMossa {
 
 		gestorePartita.inviaEvento(new RichiestaTerritorioPerAccoppiamento(terrDisp), giocatore);
 
-		Accoppiamento acc = (Accoppiamento) gestoreEventi.aspettaEvento(Accoppiamento.class);
+		Accoppiamento acc = (Accoppiamento) gestoreEventi.aspetta(Accoppiamento.class);
 
 		int codTerr = acc.getTerritorio();
 		Territorio terr = Mappa.getMappa().getTerritori()[codTerr];
@@ -121,7 +121,7 @@ public class GestoreMossa {
 		oviniT2.remove(TipoOvino.PECORANERA);
 		gestorePartita.inviaEvento(new RichiestaPecoraDaAbbattere(codT1, oviniT1, codT2, oviniT2), giocatore);
 
-		Abbattimento abb = (Abbattimento) gestoreEventi.aspettaEvento(Abbattimento.class);
+		Abbattimento abb = (Abbattimento) gestoreEventi.aspetta(Abbattimento.class);
 
 		int lancio = gestorePartita.lanciaDado();
 
@@ -150,7 +150,7 @@ public class GestoreMossa {
 	private void muoviPecora(Giocatore giocatore) {
 		gestorePartita.inviaEvento(new RichiestaPecoraDaMuovere(codT1, oviniT1, codT2, oviniT2), giocatore);
 
-		MovimentoPecora movimento = (MovimentoPecora) gestoreEventi.aspettaEvento(MovimentoPecora.class);
+		MovimentoPecora movimento = (MovimentoPecora) gestoreEventi.aspetta(MovimentoPecora.class);
 		Territorio destinazione = Mappa.getMappa().getTerritori()[movimento.getDestinazione()];
 
 		if (movimento.getTipoOvino() == TipoOvino.PECORANERA) {
@@ -165,7 +165,7 @@ public class GestoreMossa {
 		boolean[] stradeAPagamento = Estrattore.stradeLibereGratis(partita, pastore.getStrada());
 		gestorePartita.inviaEvento(new RichiestaPosizionePastore(stradeGratis, stradeAPagamento), giocatore);
 
-		MovimentoPastore movimento = (MovimentoPastore) gestoreEventi.aspettaEvento(MovimentoPastore.class);
+		MovimentoPastore movimento = (MovimentoPastore) gestoreEventi.aspetta(MovimentoPastore.class);
 		Strada origine = Mappa.getMappa().getStrade()[movimento.getOrigine()];
 		Strada destinazione = Mappa.getMappa().getStrade()[movimento.getDestinazione()];
 
