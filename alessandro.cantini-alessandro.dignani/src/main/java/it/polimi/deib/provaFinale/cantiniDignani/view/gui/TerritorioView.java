@@ -13,28 +13,29 @@ public class TerritorioView {
 	private final int codTerr;
 	private DatiTerritorio dati;
 	private int indice;
-
+	
 	public TerritorioView(int codTerr, Point[] coordinate, DatiTerritorio dati) {
 		this.codTerr = codTerr;
 		this.coordinate = coordinate;
 		this.dati = dati;
 		aggiorna();
 	}
-
+	
 	/**
 	 * Aggiorna la mappa delle coordinate degli animali
 	 */
 	public void aggiorna() {
 		coordAnimali = new HashMap<TipoAnimale, Point>();
 		indice = 0;
-		for (TipoAnimale tipo : TipoAnimale.values()) {
-			if (dati.getTipiOvino().contains(tipo)) {
+		for(TipoAnimale tipo : TipoAnimale.values()) {
+			if(dati.getTipiOvino().contains(tipo)) {
 				coordAnimali.put(tipo, coordinate[indice]);
 				indice++;
 			}
 		}
-	}
 
+	}
+	
 	public Point getCoordinate(TipoAnimale tipo) {
 		return coordAnimali.containsKey(tipo) ? coordAnimali.get(tipo) : coordinate[indice];
 	}
