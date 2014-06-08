@@ -2,51 +2,35 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class DatiTerritorio {
-	private int numPecore, numMontoni, numAgnelli;
-	private boolean lupo, pecoraNera;
+	private Map<TipoAnimale, Integer> numeroAnimali;
 
 	public DatiTerritorio() {
-		this.numPecore = 0;
-		this.numMontoni = 0;
-		this.numAgnelli = 0;
-		this.lupo = false;
-		this.pecoraNera = false;
-	}
-
-	protected void aggiungi(TipoAnimale tipo) {
-		switch (tipo) {
-		case PECORA:
-			numPecore++;
-			break;
-		case MONTONE:
-			numMontoni++;
-			break;
-		case AGNELLO:
-			numAgnelli++;
-			break;
-		case PECORANERA:
-			pecoraNera = true;
-			break;
-		case LUPO:
-			lupo = true;
-			break;
+		numeroAnimali = new HashMap<TipoAnimale, Integer>();
+		for (TipoAnimale tipo : TipoAnimale.values()) {
+			numeroAnimali.put(tipo, 0);
 		}
 	}
 
+	protected void aggiungi(TipoAnimale tipo) {
+		Utilita.incrementa(numeroAnimali, tipo);
+	}
+
 	public int getNumPecore() {
-		return numPecore;
+		return numeroAnimali.get(TipoAnimale.PECORA);
 	}
 
 	public int getNumMontoni() {
-		return numMontoni;
+		return numeroAnimali.get(TipoAnimale.MONTONE);
 	}
 
 	public int getNumAgnelli() {
-		return numAgnelli;
+		return numeroAnimali.get(TipoAnimale.AGNELLO);
 	}
 
 	/**
@@ -55,7 +39,7 @@ public class DatiTerritorio {
 	 * @return il numero di ovini
 	 */
 	public int getNumOvini() {
-		return numPecore + numAgnelli + numMontoni;
+		return getNumPecore() + getNumAgnelli() + getNumMontoni();
 	}
 
 	/**
@@ -67,28 +51,21 @@ public class DatiTerritorio {
 	public Set<TipoAnimale> getTipiOvino() {
 		Set<TipoAnimale> tipi = new HashSet<TipoAnimale>();
 
-		if (numPecore > 0) {
-			tipi.add(TipoAnimale.PECORA);
-		}
-		if (numMontoni > 0) {
-			tipi.add(TipoAnimale.PECORA);
-		}
-		if (numAgnelli > 0) {
-			tipi.add(TipoAnimale.PECORA);
-		}
-		if (pecoraNera) {
-			tipi.add(TipoAnimale.PECORANERA);
+		for (TipoAnimale t : numeroAnimali.keySet()) {
+			if (numeroAnimali.get(t) > 0) {
+				tipi.add(t);
+			}
 		}
 
 		return tipi;
 	}
 
 	public boolean isLupo() {
-		return lupo;
+		return numeroAnimali.get(TipoAnimale.LUPO) > 0;
 	}
 
 	public boolean isPecoraNera() {
-		return pecoraNera;
+		return numeroAnimali.get(TipoAnimale.PECORANERA) > 0;
 	}
 
 }

@@ -12,7 +12,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
 import org.junit.Before;
 import org.junit.Test;
 
-public class GestoreFaseFinaleTest {
+public class FaseFinaleTest {
 
 	Partita partita;
 	FaseFinale fase;

@@ -35,24 +35,13 @@ public class FaseFinale extends FasePartita {
 		return valori;
 	}
 
-	/**
-	 * Aumenta il valore del tipo di territorio su cui sta un certo animale
-	 * 
-	 * @param mappa
-	 *            la mappa che contiene l'associazione fra TipoTerritorio e
-	 *            valore
-	 * @param animale
-	 *            l'animale il cui TipoTerritorio si vuole incrementare
-	 * @param quantita
-	 *            la quantita' di cui si vuole incrementare il valore
-	 */
 	private void incrementa(Map<TipoTerritorio, Integer> mappa, Animale animale, int quantita) {
 		TipoTerritorio tipo = animale.getPosizione().getTipo();
 		if (tipo == TipoTerritorio.SHEEPSBURG)
 			return;
-		mappa.put(tipo, mappa.get(tipo) + quantita);
+		Utilita.incrementa(mappa, tipo, quantita);
 	}
-
+	
 	@Override
 	public void esegui() {
 		// TODO Auto-generated method stub

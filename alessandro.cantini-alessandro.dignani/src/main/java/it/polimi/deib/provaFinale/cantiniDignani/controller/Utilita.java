@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Utilita {
@@ -40,7 +41,6 @@ public class Utilita {
 	public static <E> boolean contieneDuplicati(E[] array) {
 		return contieneDuplicati(Arrays.asList(array));
 	}
-
 
 	/**
 	 * Controlla se un array contiene un certo elementeo
@@ -83,4 +83,38 @@ public class Utilita {
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * Incrementa il valore di una certa chiave in una mappa che associa un
+	 * intero a un tipo generico. Se la chiave non e' presente nella mappa viene
+	 * aggiunta e il relativo valore viene inizializzato alla quantita passata
+	 * come parametro
+	 * 
+	 * @param mappa
+	 *            la mappa che associa un intero a un valore
+	 * @param chiave
+	 *            la chiave di cui aumentare il valore
+	 * @param quantita
+	 *            la quantita di cui aumentare il valore
+	 * 
+	 */
+	public static <K> void incrementa(Map<K, Integer> mappa, K chiave, Integer quantita) {
+		mappa.put(chiave, mappa.getOrDefault(chiave, 0) + quantita);
+	}
+
+	/**
+	 * Incrementa di uno il valore di una certa chiave in una mappa che associa
+	 * un intero a un tipo generico. Se la chiave non e' presente nella mappa
+	 * viene aggiunta e il relativo valore viene inizializzato alla quantita
+	 * passata come parametro
+	 * 
+	 * @param mappa
+	 *            la mappa che associa un intero a un valore
+	 * @param chiave
+	 *            la chiave di cui aumentare il valore
+	 */
+	public static <K> void incrementa(Map<K, Integer> mappa, K chiave) {
+		incrementa(mappa, chiave, 1);
+	}
+
 }
