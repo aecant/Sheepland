@@ -1,4 +1,4 @@
-package it.polimi.deib.provaFinale.cantiniDignani.view;
+package it.polimi.deib.provaFinale.cantiniDignani.view.cli;
 
 
 import java.io.BufferedReader;

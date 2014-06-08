@@ -41,16 +41,27 @@ public class Sorte {
 	 *            il territorrio su cui creare l'ovino
 	 * @return una pecora creata randomicamente
 	 */
-	public static Pecora pecoraCasuale(Territorio t) {
+	public static Pecora pecoraRandom(Territorio t) {
 		switch (numeroCasuale(1, 3)) {
 		case 1:
 			return new Pecora(t, true);
 		case 2:
 			return new Pecora(t, false);
 		default:
-			return new Agnello(t, lanciaMoneta());
+			return agnelloRandom(t);
 		}
 
+	}
+
+	/**
+	 * Restituisce un agnello che diventera' randomicamente pecora o montone
+	 * 
+	 * @param t
+	 *            il territorio su cui creare l'agnello
+	 * @return un agnello di sesso casuale
+	 */
+	public static Pecora agnelloRandom(Territorio t) {
+		return new Agnello(t, lanciaMoneta());
 	}
 
 	/**

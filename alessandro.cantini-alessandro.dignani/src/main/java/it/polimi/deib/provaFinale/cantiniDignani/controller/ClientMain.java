@@ -1,17 +1,18 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneRMI;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
-import it.polimi.deib.provaFinale.cantiniDignani.view.Cli;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
+import it.polimi.deib.provaFinale.cantiniDignani.view.cli.Cli;
 
 public class ClientMain {
 	private static String nome;
 	private static InterfacciaUtente ui;
 	private static ConnessioneClient connessione;
 	private static DatiPartita datiPartita;
-	private static GestoreEventi gestoreEventi = new GestoreEventi();
+	private static GestoreCoda<Evento> gestoreEventi = new GestoreCoda<Evento>();
 
 	public static void main(String[] args) {
 		connessione = chiediTipoConnessione();
@@ -60,7 +61,7 @@ public class ClientMain {
 		return datiPartita;
 	}
 
-	public static GestoreEventi getGestoreEventi() {
+	public static GestoreCoda<Evento> getGestoreEventi() {
 		return gestoreEventi;
 	}
 

@@ -59,24 +59,6 @@ public class Gregge {
 	}
 
 	/**
-	 * Restituisce la lista delle pecore che stanno su un determinato territorio
-	 * 
-	 * @param t
-	 *            il territorio su cui stanno le pecore
-	 * @return la lista delle pecore sul territorio passato come parametro
-	 */
-	public List<Pecora> pecoreSuTerritorio(Territorio t) {
-		List<Pecora> pecore = new ArrayList<Pecora>();
-
-		for (Pecora p : getPecore()) {
-			if (p.getPosizione().equals(t)) {
-				pecore.add(p);
-			}
-		}
-		return pecore;
-	}
-
-	/**
 	 * Restituisce la pecora nera
 	 * 
 	 * @return la pecora nera

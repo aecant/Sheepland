@@ -3,6 +3,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Singleton che gestisce la mappa di Sheepland
@@ -165,7 +166,7 @@ public class Mappa {
 	 */
 	private Strada[] creaStrade() {
 		int codice = 0;
-		ArrayList<Strada> temp = new ArrayList<Strada>();
+		List<Strada> temp = new ArrayList<Strada>();
 		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
 			for (int j = i + 1; j < Costanti.NUM_TERRITORI; j++) {
 				if (sonoConfinanti(territori[i], territori[j])) {

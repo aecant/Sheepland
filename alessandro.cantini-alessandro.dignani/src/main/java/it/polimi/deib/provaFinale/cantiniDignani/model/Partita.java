@@ -3,6 +3,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class Partita {
 	private ArrayList<Giocatore> giocatori;
 	private Giocatore giocatoreDiTurno;
 
-	public Partita(List<String> nomiGiocatori) {
+	public Partita(Collection<String> nomiGiocatori) {
 		mazzo = new Mazzo();
 		lupo = new Animale(Costanti.POS_INIZIALE_LUPO);
 		gregge = new Gregge();

@@ -2,7 +2,9 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import static org.junit.Assert.*;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,9 +12,9 @@ import org.junit.Test;
 public class UtilitaTest {
 	Integer[] a1 = { 1, 2, 3 };
 	Integer[] a2 = { 1, 2, 2 };
-	ArrayList<Integer> al1;
-	ArrayList<Integer> al2;
-	ArrayList<Object> originale, copia;
+	List<Integer> al1;
+	List<Integer> al2;
+	List<Object> originale, copia;
 	Object oggettoGenerico;
 
 	@Before

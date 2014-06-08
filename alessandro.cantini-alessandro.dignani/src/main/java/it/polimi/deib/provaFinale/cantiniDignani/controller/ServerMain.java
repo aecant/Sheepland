@@ -1,5 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
@@ -15,7 +16,7 @@ public class ServerMain {
 	private static Vector<String> giocatoriInAttesa = new Vector<String>();
 	private static InterfacciaServer connessione;
 	private static ExecutorService esecutorePartite = Executors.newCachedThreadPool();
-	private static GestoreEventi gestoreEventi = new GestoreEventi();
+	private static GestoreCoda<Evento> gestoreEventi = new GestoreCoda<Evento>();
 	private static TimerPartita timerPartita;
 
 	public static void main(String[] args) {
@@ -113,7 +114,7 @@ public class ServerMain {
 		return connessione;
 	}
 
-	public static GestoreEventi getGestoreEventi() {
+	public static GestoreCoda<Evento> getGestoreEventi() {
 		return gestoreEventi;
 	}
 
