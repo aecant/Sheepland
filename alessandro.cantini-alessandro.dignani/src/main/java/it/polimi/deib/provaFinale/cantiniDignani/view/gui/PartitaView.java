@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 public class PartitaView {
 	private JFrame finestra;
 	private MappaView mappa;
-	
+
 	private JPanel panelTessere;
 	private JPanel panelGiocatoriMosse;
 
@@ -24,7 +24,7 @@ public class PartitaView {
 	 */
 	public PartitaView(DatiPartita datiPartita) {
 		this.datiPartita = datiPartita;
-		
+
 		// imposto il panel della mappa
 		mappa = new MappaView();
 
@@ -62,14 +62,8 @@ public class PartitaView {
 		DatiPartita dati = new DatiPartita();
 		PartitaView tabellone = new PartitaView(null);
 		tabellone.visualizza();
-		try {
-			Thread.sleep(1000);
-		} catch (Exception e) {
-			System.err.println(e);
-		}
 
 		while (true) {
-
 			tabellone.getMappa().getPec().muoviPecora(new Point((int) Sorte.numeroCasuale(0, 415), (int) Sorte.numeroCasuale(0, 600)));
 			try {
 				Thread.sleep(500);
