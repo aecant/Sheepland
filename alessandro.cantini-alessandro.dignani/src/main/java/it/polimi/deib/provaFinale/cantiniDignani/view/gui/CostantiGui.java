@@ -31,10 +31,12 @@ public class CostantiGui {
 	public static final Dimension dimensioneAgnello = new Dimension(dimensioneMappa.height/15, dimensioneMappa.height/20);
 	public static final Dimension dimensioneLupo = new Dimension(dimensioneMappa.height/15, dimensioneMappa.height/20);
 	
-	
+	// Panel Tessere
 	public static final Dimension dimensionePanelTessera = new Dimension(dimensioneMappa.height/6, dimensioneMappa.height/6);
-	
 	public static final int dimensioneAngolini = dimensioneMappa.height/(6*5);
+	
+	//Panel pastori
+	public static final Dimension dimensionePannelloGiocatori = new Dimension(200, dimensioneMappa.height/2); 
 
 	// Coordinate delle posizioni delle pecore nei territori (5 per ogni territorio)
 	public static final Point[][] coordinate = {};

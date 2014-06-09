@@ -1,5 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
+
 
 public class Gui {
 	private FinestraChiediNome fcn;
@@ -15,7 +17,8 @@ public class Gui {
 	}
 	
 	public void inizioPartita() {
-		
+		DatiPartita datiPartita = null;// TODO scarico i dati della partita prima [TOGLIERE IL NULL]
+		PartitaView partita = new PartitaView(datiPartita);
 	}
 	
 	
@@ -24,7 +27,7 @@ public class Gui {
 		Gui gui = new Gui();
 		System.out.println(gui.chiediNome());
 		System.out.println(gui.chiediNome());
-		System.out.println(gui.chiediNome());
-		System.out.println(gui.chiediNome());
+
+		gui.inizioPartita();
 	}
 }
