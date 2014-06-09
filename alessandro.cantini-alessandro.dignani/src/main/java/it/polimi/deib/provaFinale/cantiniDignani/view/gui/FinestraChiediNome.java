@@ -1,7 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
-import it.polimi.deib.provaFinale.cantiniDignani.view.Costanti;
-import it.polimi.deib.provaFinale.cantiniDignani.view.gui.BackgroundPanel;
+import it.polimi.deib.provaFinale.cantiniDignani.view.gui.CostantiGui;
 
 import java.awt.Color;
 import java.awt.Image;
@@ -34,7 +33,7 @@ public class FinestraChiediNome extends JFrame {
 		super("Sheepland - Inserisci il nome");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 150, 400, 400);
-		contentPane = new BackgroundPanel(Toolkit.getDefaultToolkit().getImage(Costanti.percorsoImmagini + "sfondoPastorePecore.png").getScaledInstance(400, 400, Image.SCALE_SMOOTH));
+		contentPane = new BackgroundPanel(Toolkit.getDefaultToolkit().getImage(CostantiGui.percorsoImmagini + "sfondoPastorePecore.png").getScaledInstance(400, 400, Image.SCALE_SMOOTH));
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 

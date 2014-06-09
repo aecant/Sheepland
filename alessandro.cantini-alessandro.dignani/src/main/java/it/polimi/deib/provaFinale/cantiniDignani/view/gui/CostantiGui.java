@@ -5,6 +5,11 @@ import java.awt.Dimension;
 import java.awt.Point;
 
 public class CostantiGui {
+
+	// Risoluzione spostamento
+	public static int risoluzioneSpostamento = 100;
+
+
 	/**
 	 * Costruttore privato per nascondere quello di default
 	 */
@@ -24,9 +29,7 @@ public class CostantiGui {
 	
 	public static int dimensioneAngolini = 20;
 	
-	// Risoluzione spostamento
-	public static int risoluzioneSpostamento = 100;
-	
+
 	// Coordinate delle posizioni delle pecore nei territori (5 per ogni territorio)
 	public static Point[][] coordinate = {};
 }

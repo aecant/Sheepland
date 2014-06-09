@@ -99,7 +99,10 @@ public class Utilita {
 	 * 
 	 */
 	public static <K> void incrementa(Map<K, Integer> mappa, K chiave, Integer quantita) {
-		mappa.put(chiave, mappa.getOrDefault(chiave, 0) + quantita);
+		if(!mappa.containsKey(chiave)) {
+			mappa.put(chiave, 0);
+		}
+		mappa.put(chiave, mappa.get(chiave) + quantita);
 	}
 
 	/**

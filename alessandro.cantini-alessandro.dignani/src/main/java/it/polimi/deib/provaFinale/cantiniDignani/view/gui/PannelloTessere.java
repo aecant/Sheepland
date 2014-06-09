@@ -1,7 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
-import it.polimi.deib.provaFinale.cantiniDignani.view.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.view.gui.CostantiGui;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -29,7 +29,7 @@ public class PannelloTessere extends JPanel {
 		int cont = 0;
 		for (TipoTerritorio t : TipoTerritorio.values()) {
 			if (!t.equals(TipoTerritorio.SHEEPSBURG)) {
-				immaginiTerreni[cont] = creaCasella(Costanti.percorsoImmagini + t.name().toLowerCase() + ".jpg");
+				immaginiTerreni[cont] = creaCasella(CostantiGui.percorsoImmagini + t.name().toLowerCase() + ".jpg");
 				cont++;
 			}
 		}
