@@ -11,7 +11,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPosi
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SceltaMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SceltaPastore;
-import it.polimi.deib.provaFinale.cantiniDignani.model.ColorePastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
@@ -34,7 +33,6 @@ public class GestorePartita implements Runnable {
 	private final FasePartita faseIniziale, faseFinale;
 	private final GestoreCoda<Evento> gestoreEventi;
 
-	private int contColorePastore = 0;
 	private boolean dueGiocatori;
 	public final int denaroIniziale;
 
@@ -168,23 +166,21 @@ public class GestorePartita implements Runnable {
 	}
 
 	private void selezionePosizioneIniziale() {
-		giroPosizionamentoPastore();
+		giroPosizionamentoPastore(0);
 		if (dueGiocatori) {
-			contColorePastore = 0;
-			giroPosizionamentoPastore();
+			giroPosizionamentoPastore(1);
 		}
 	}
 
-	private void giroPosizionamentoPastore() {
+	private void giroPosizionamentoPastore(int numGiro) {
 		for (Giocatore g : partita.getGiocatori()) {
 			boolean[] stradeLibere = Estrattore.stradeLibere(partita);
 			connessione.inviaEvento(new RichiestaPosizioneInizialePastore(stradeLibere), g.getNome());
 			PosizionamentoPastore risposta = (PosizionamentoPastore) gestoreEventi.aspetta(PosizionamentoPastore.class);
 
 			Strada strada = Mappa.getMappa().getStrade()[risposta.getStrada()];
-			ColorePastore colore = ColorePastore.values()[contColorePastore++];
-			g.aggiungiPastore(new Pastore(strada, colore));
-
+			g.getPastori().get(numGiro).muoviIn(strada);
+			
 			connessione.inviaEvento(new PosizionamentoPastore(g.getNome(), risposta.getStrada()), tuttiGiocatori);
 		}
 	}

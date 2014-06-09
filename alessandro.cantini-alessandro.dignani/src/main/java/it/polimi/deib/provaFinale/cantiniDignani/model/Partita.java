@@ -24,7 +24,13 @@ public class Partita {
 		for (String nome : nomiGiocatori) {
 			giocatori.add(new Giocatore(nome));
 		}
+
 		Collections.shuffle(giocatori);
+
+		aggiungiPastoreAiGiocatori();
+		if (giocatori.size() == 2) {
+			aggiungiPastoreAiGiocatori();
+		}
 	}
 
 	/**
@@ -141,6 +147,12 @@ public class Partita {
 
 	public void setGiocatoreDiTurno(Giocatore giocatoreDiTurno) {
 		this.giocatoreDiTurno = giocatoreDiTurno;
+	}
+
+	private void aggiungiPastoreAiGiocatori() {
+		for (int i = 0; i < giocatori.size(); i++) {
+			giocatori.get(i).aggiungiPastore(new Pastore(null, ColorePastore.values()[i]));
+		}
 	}
 
 }

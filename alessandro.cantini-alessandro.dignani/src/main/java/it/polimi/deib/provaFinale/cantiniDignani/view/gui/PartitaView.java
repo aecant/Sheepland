@@ -2,10 +2,12 @@ package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Sorte;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 
 import java.awt.BorderLayout;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.util.Arrays;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -57,9 +59,11 @@ public class PartitaView {
 	public MappaView getMappa() {
 		return this.mappa;
 	}
-
+	
+	//TODO TEST DA RIMUOVERE
 	public static void main(String[] args) {
-		DatiPartita dati = new DatiPartita();
+		Partita partita = new Partita(Arrays.asList("esempio1","esempio2","esempio3","esempio4"));
+		DatiPartita dati = new DatiPartita(partita);
 		PartitaView tabellone = new PartitaView(null);
 		tabellone.visualizza();
 

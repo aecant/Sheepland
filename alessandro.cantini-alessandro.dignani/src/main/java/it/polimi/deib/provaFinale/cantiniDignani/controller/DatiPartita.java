@@ -1,6 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 
@@ -13,22 +14,30 @@ public class DatiPartita {
 	private Integer[] recintiIniziali;
 	private Integer[] recintiFinali;
 	private String giocatoreDiTurno;
-	private Tessera[] tessere;
 	private Tessera[] tessereInCima;
 	private Giocatore[] giocatori;
-	
+
+	public DatiPartita(Partita partita) {
+		territori = Estrattore.datiTerritori(partita);
+		pastori = Estrattore.pastori(partita);
+		recintiIniziali = Estrattore.recintiIniziali(partita);
+		recintiFinali = Estrattore.recintiFinali(partita);
+		giocatoreDiTurno = partita.getGiocatoreDiTurno().getNome();
+
+	}
+
 	public Giocatore[] getGiocatori() {
 		return giocatori;
 	}
-	
-	public Collection<String> getNomiGiocatori(){
+
+	public Collection<String> getNomiGiocatori() {
 		Collection<String> nomi = new ArrayList<String>();
 		for (Giocatore g : giocatori) {
 			nomi.add(g.getNome());
 		}
 		return nomi;
 	}
-	
+
 	public void aggiornaGiocatori() {
 		giocatori = ClientMain.getConnessione().chiediGiocatori();
 	}
@@ -45,7 +54,7 @@ public class DatiPartita {
 		recintiIniziali = ClientMain.getConnessione().chiediRecintiIniziali();
 		recintiFinali = ClientMain.getConnessione().chiediRecintiFinali();
 	}
-	
+
 	public void setGiocatoreDiTurno(String giocatore) {
 		this.giocatoreDiTurno = giocatore;
 	}
@@ -54,14 +63,10 @@ public class DatiPartita {
 		giocatoreDiTurno = ClientMain.getConnessione().chiediGiocatoreDiTurno();
 	}
 
-	public void aggiornaTessere() {
-		tessere = ClientMain.getConnessione().chiediTessere();
-	}
-
 	public void aggiornaTessereInCima() {
 		tessereInCima = ClientMain.getConnessione().chiediTessereInCima();
 	}
-	
+
 	public DatiTerritorio[] getTerritori() {
 		return territori;
 	}
@@ -80,10 +85,6 @@ public class DatiPartita {
 
 	public String getGiocatoreDiTurno() {
 		return giocatoreDiTurno;
-	}
-
-	public Tessera[] getTessere() {
-		return tessere;
 	}
 
 	public Tessera[] getTessereInCima() {
