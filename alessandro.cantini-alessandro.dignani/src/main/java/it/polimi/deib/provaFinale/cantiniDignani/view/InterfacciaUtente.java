@@ -46,7 +46,7 @@ public interface InterfacciaUtente {
 
 	public PosizionamentoPastore richiestaPosizioneInizialePastore(boolean[] stradeLibere);
 
-	public MovimentoPastore richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereGratis2);
+	public MovimentoPastore richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento);
 
 	public SceltaMossa richiestaTipoMossa(Collection<TipoMossa> mosseDisponibili);
 

@@ -123,7 +123,7 @@ public class GestorePartita implements Runnable {
 
 	public int lanciaDado() {
 		int lancio = Sorte.lanciaDado();
-		connessione.inviaEvento(new LancioDado(lancio), tuttiGiocatori);
+		inviaEventoATutti(new LancioDado(lancio));
 		return lancio;
 	}
 
@@ -144,7 +144,7 @@ public class GestorePartita implements Runnable {
 
 		if (movimentoPossibile(origine, lancio) || tutteStradeOccupate) {
 			partita.getLupo().muoviIn(destinazione);
-			connessione.inviaEvento(new MovimentoLupo(origine.getCodice(), destinazione.getCodice()), tuttiGiocatori);
+			inviaEventoATutti(new MovimentoLupo(origine.getCodice(), destinazione.getCodice()));
 		}
 	}
 
@@ -175,13 +175,13 @@ public class GestorePartita implements Runnable {
 	private void giroPosizionamentoPastore(int numGiro) {
 		for (Giocatore g : partita.getGiocatori()) {
 			boolean[] stradeLibere = Estrattore.stradeLibere(partita);
-			connessione.inviaEvento(new RichiestaPosizioneInizialePastore(stradeLibere), g.getNome());
+			inviaEvento(new RichiestaPosizioneInizialePastore(stradeLibere), g);
 			PosizionamentoPastore risposta = (PosizionamentoPastore) gestoreEventi.aspetta(PosizionamentoPastore.class);
 
 			Strada strada = Mappa.getMappa().getStrade()[risposta.getStrada()];
 			g.getPastori().get(numGiro).muoviIn(strada);
 			
-			connessione.inviaEvento(new PosizionamentoPastore(g.getNome(), risposta.getStrada()), tuttiGiocatori);
+			inviaEventoATutti(new PosizionamentoPastore(g.getNome(), risposta.getStrada()));
 		}
 	}
 

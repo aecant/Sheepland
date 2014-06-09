@@ -102,8 +102,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void sceltaPastore(String giocatore, Pastore pastore) {
-		// TODO Auto-generated method stub
-
+		//vuoto
 	}
 
 	public PosizionamentoPastore richiestaPosizioneInizialePastore(boolean[] stradeLibere) {
@@ -111,7 +110,7 @@ public class Cli implements InterfacciaUtente {
 		return null;
 	}
 
-	public MovimentoPastore richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereGratis2) {
+	public MovimentoPastore richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento) {
 		// TODO Auto-generated method stub
 		return null;
 	}

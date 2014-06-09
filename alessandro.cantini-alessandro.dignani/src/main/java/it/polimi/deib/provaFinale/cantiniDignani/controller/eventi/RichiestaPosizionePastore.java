@@ -13,7 +13,7 @@ public class RichiestaPosizionePastore extends Richiesta {
 
 	@Override
 	protected Mossa interagisci() {
-		return ClientMain.getUI().richiestaPosizionePastore(stradeLibereGratis, stradeLibereGratis);
+		return ClientMain.getUI().richiestaPosizionePastore(stradeLibereGratis, stradeLibereAPagamento);
 	}
 
 }
