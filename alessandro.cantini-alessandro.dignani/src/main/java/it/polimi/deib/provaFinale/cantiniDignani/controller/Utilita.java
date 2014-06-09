@@ -2,7 +2,9 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -21,8 +23,8 @@ public class Utilita {
 	 *            la lista da analizzare
 	 * @return true se la lista contiene elementi duplicati, false altrimenti
 	 */
-	public static <E> boolean contieneDuplicati(List<E> lista) {
-		List<E> list = lista;
+	public static <E> boolean contieneDuplicati(Collection<E> lista) {
+		Collection<E> list = lista;
 		Set<E> set = new HashSet<E>(list);
 
 		if (set.size() < list.size()) {
@@ -99,7 +101,7 @@ public class Utilita {
 	 * 
 	 */
 	public static <K> void incrementa(Map<K, Integer> mappa, K chiave, Integer quantita) {
-		if(!mappa.containsKey(chiave)) {
+		if (!mappa.containsKey(chiave)) {
 			mappa.put(chiave, 0);
 		}
 		mappa.put(chiave, mappa.get(chiave) + quantita);
@@ -119,5 +121,35 @@ public class Utilita {
 	public static <K> void incrementa(Map<K, Integer> mappa, K chiave) {
 		incrementa(mappa, chiave, 1);
 	}
+	
+	/**
+	 * Crea una stringa composta dalle stringhe di una collezione.
+	 * 
+	 * @param collezione
+	 *            la lista di stringhe
+	 * @param separatore
+	 *            i caratteri fra una stringa e un'altra
+	 * @param fine
+	 *            la stringa da aggiungere alla fine
+	 * @return la stringa composta dalle stringhe in una collezione
+	 */
+	public static String listaDiStringhe(Collection<String> collezione, String separatore, String fine) {
+		String listaStringhe = "";
+		Iterator<String> iter = collezione.iterator();
+		
+		while (iter.hasNext()) {
+			String s = iter.next();
+			listaStringhe += s;
+			if (iter.hasNext()) {
+				listaStringhe += separatore;
+			}
+		}
+		listaStringhe += fine;
 
+		return listaStringhe;
+	}
+	
+	public static String listaDiStringhe(String[] array, String separatore, String fine) {
+		return listaDiStringhe(Arrays.asList(array), separatore, fine);
+	}
 }

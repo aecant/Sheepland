@@ -29,8 +29,8 @@ public class GestoreMossa{
 		dati = Estrattore.datiTerritori(partita);
 		codT1 = pastore.getStrada().getTerritorio1().getCodice();
 		codT2 = pastore.getStrada().getTerritorio2().getCodice();
-		oviniT1 = dati[codT1].getTipiOvino();
-		oviniT2 = dati[codT2].getTipiOvino();
+		oviniT1 = dati[codT1].getTipiAnimale();
+		oviniT2 = dati[codT2].getTipiAnimale();
 
 		switch (tipoMossa) {
 

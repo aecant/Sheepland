@@ -4,6 +4,9 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class DatiPartita {
 	private DatiTerritorio[] territori;
 	private Pastore[] pastori;
@@ -17,7 +20,15 @@ public class DatiPartita {
 	public Giocatore[] getGiocatori() {
 		return giocatori;
 	}
-
+	
+	public Collection<String> getNomiGiocatori(){
+		Collection<String> nomi = new ArrayList<String>();
+		for (Giocatore g : giocatori) {
+			nomi.add(g.getNome());
+		}
+		return nomi;
+	}
+	
 	public void aggiornaGiocatori() {
 		giocatori = ClientMain.getConnessione().chiediGiocatori();
 	}

@@ -1,7 +1,15 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.cli;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.*;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Accoppiamento;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.AcquistoTessera;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPastore;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPecora;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.PosizionamentoPastore;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SceltaMossa;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SceltaPastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
@@ -13,20 +21,22 @@ import java.util.List;
 import java.util.Set;
 
 public class Cli implements InterfacciaUtente {
-	private PrintStream out = CostantiCli.OUTPUT;
+	private final InputCli in = new InputCli(CostantiCli.DEFAULT_INPUT);
+	private final PrintStream out = CostantiCli.DEFAULT_OUTPUT;
 
 	public String chiediNome() {
 		pulisci();
 		out.println("Inserisci il tuo nome");
-		return Input.readString();
+		return in.leggiStringa();
 	}
 
 	public void nomeGiaPresente() {
-		out.println("Questo nome e' gia' registrato");
+		out.println("Questo nome e' gia' registrato, inseriscine un altro");
 	}
 
 	public void inizioPartita() {
-		out.println("Partita iniziata!");
+		out.println("Partita iniziata con i giocatori:");
+		out.println(Utilita.listaDiStringhe(ClientMain.getDatiPartita().getNomiGiocatori(), " ;", "."));
 	}
 
 	public void lancioDado(Integer numero) {
@@ -42,67 +52,67 @@ public class Cli implements InterfacciaUtente {
 
 	public void inizioTurno(String giocatore) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void movimentoPecora(TipoAnimale pecora, int origine, int destinazione) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void movimentoPastore(Pastore pastore, int origine, int destinazione) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void movimentoLupo(int origine, int destinazione) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void movimentoPecoraNera(int origine, int destinazione) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void abbattimento(String string, TipoAnimale tipoOvino, int territorio, boolean aBuonFine) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void accoppiamento(String giocatore, int territorio, boolean aBuonFine) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void trasformazioneAgnello(boolean maschio, Integer territorio) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void pagamento(Integer denaro, String pagante, String pagato) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void selezionePosizioneInizialePastore(String pastore, int strada) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void ricezioneTesseraIniziale(Tessera tessera) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void sceltaPastore(Pastore pastore) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public PosizionamentoPastore richiestaPosizioneInizialePastore(boolean[] stradeLibere) {
@@ -164,7 +174,5 @@ public class Cli implements InterfacciaUtente {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
 
 }
