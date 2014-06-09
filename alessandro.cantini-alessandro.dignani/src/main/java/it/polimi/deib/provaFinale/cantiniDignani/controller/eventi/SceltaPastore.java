@@ -19,7 +19,7 @@ public class SceltaPastore extends Mossa {
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().sceltaPastore(pastore);
+		ClientMain.getUI().sceltaPastore(getGiocatore(), pastore);
 	}
 
 	public Pastore getPastore() {

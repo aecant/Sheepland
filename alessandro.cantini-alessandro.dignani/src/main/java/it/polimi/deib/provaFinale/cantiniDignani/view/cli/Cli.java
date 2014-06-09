@@ -57,7 +57,9 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void movimentoPastore(String giocatore, int origine, int destinazione) {
+		String tipoRecinto = ClientMain.getDatiPartita().getRecintiFinali().length == 0 ? "iniziale" : "finale";
 		out.println(giocatore + " ha spostato il pastore " + daA(origine, destinazione) + " .");
+		out.println("E' stato posizionato un recinto " + tipoRecinto + " " + nelTerr(origine));
 	}
 
 	public void movimentoLupo(int origine, int destinazione) {
@@ -96,11 +98,10 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void ricezioneTesseraIniziale(Tessera tessera) {
-		// TODO Auto-generated method stub
-
+		out.println("La tua tessera iniziale e' " + inizialeMaiuscola(tessera.getTipo().toString()));
 	}
 
-	public void sceltaPastore(Pastore pastore) {
+	public void sceltaPastore(String giocatore, Pastore pastore) {
 		// TODO Auto-generated method stub
 
 	}

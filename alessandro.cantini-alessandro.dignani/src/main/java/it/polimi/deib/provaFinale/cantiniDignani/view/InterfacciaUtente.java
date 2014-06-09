@@ -42,7 +42,7 @@ public interface InterfacciaUtente {
 
 	public void ricezioneTesseraIniziale(Tessera tessera);
 
-	public void sceltaPastore(Pastore pastore);
+	public void sceltaPastore(String giocatore, Pastore pastore);
 
 	public PosizionamentoPastore richiestaPosizioneInizialePastore(boolean[] stradeLibere);
 
