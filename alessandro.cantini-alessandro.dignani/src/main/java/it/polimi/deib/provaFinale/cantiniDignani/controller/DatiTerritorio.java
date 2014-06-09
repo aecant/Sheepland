@@ -14,6 +14,13 @@ public class DatiTerritorio {
 	}
 
 	protected void aggiungi(TipoAnimale tipo) {
+		if (isLupo() && tipo == TipoAnimale.LUPO) {
+			throw new IllegalArgumentException("Si sta cercando di aggiungere piu' di un lupo");
+		}
+		if (isPecoraNera() && tipo == TipoAnimale.PECORANERA) {
+			throw new IllegalArgumentException("Si sta cercando di aggiungere piu' di una pecora nera");
+		}
+
 		Utilita.incrementa(numeroAnimali, tipo);
 	}
 
