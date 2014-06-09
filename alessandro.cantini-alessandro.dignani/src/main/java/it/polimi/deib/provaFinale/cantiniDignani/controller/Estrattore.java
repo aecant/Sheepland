@@ -49,7 +49,7 @@ public class Estrattore {
 			dati[pec.getPosizione().getCodice()].aggiungi(pec.getTipoOvino());
 		}
 
-		dati[partita.getGregge().getPecoraNera().getPosizione().getCodice()].aggiungi(TipoAnimale.PECORANERA);
+		dati[partita.getGregge().getPecoraNera().getPosizione().getCodice()].aggiungi(TipoAnimale.PECORA_NERA);
 		dati[partita.getLupo().getPosizione().getCodice()].aggiungi(TipoAnimale.LUPO);
 
 		return dati;

@@ -35,7 +35,7 @@ public class MovimentoPecora extends Mossa {
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().movimentoPecora(tipo, origine, destinazione);
+		ClientMain.getUI().movimentoPecora(getGiocatore(), tipo, origine, destinazione);
 	}
 
 }

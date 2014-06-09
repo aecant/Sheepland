@@ -46,7 +46,7 @@ public class MovimentoPastore extends Mossa {
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().movimentoPastore(pastore, origine, destinazione);
+		ClientMain.getUI().movimentoPastore(getGiocatore(), origine, destinazione);
 	}
 
 }

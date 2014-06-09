@@ -17,7 +17,7 @@ public class DatiTerritorio {
 		if (isLupo() && tipo == TipoAnimale.LUPO) {
 			throw new IllegalArgumentException("Si sta cercando di aggiungere piu' di un lupo");
 		}
-		if (isPecoraNera() && tipo == TipoAnimale.PECORANERA) {
+		if (isPecoraNera() && tipo == TipoAnimale.PECORA_NERA) {
 			throw new IllegalArgumentException("Si sta cercando di aggiungere piu' di una pecora nera");
 		}
 
@@ -71,7 +71,7 @@ public class DatiTerritorio {
 	}
 
 	public boolean isPecoraNera() {
-		return numeroAnimali.get(TipoAnimale.PECORANERA) > 0;
+		return numeroAnimali.get(TipoAnimale.PECORA_NERA) > 0;
 	}
 
 }
