@@ -1,6 +1,16 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
+import java.awt.Color;
+
 public enum ColorePastore {
-	ROSSO, BLU, VERDE, GIALLO;
+	ROSSO(Color.RED),
+	BLU(Color.BLUE),
+	VERDE(Color.GREEN),
+	GIALLO(Color.YELLOW);
 	
+	public final Color coloreView;
+	
+	private ColorePastore(Color coloreView) {
+		this.coloreView = coloreView;
+	}
 }
