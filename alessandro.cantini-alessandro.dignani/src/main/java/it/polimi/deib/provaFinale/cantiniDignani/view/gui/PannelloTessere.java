@@ -1,9 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
-import it.polimi.deib.provaFinale.cantiniDignani.view.gui.CostantiGui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -42,7 +40,7 @@ public class PannelloTessere extends JPanel {
 
 			panelsAngolini[i] = new JPanel();
 			panelsAngolini[i].setBounds(0, 0, CostantiGui.dimensioneAngolini, CostantiGui.dimensioneAngolini);
-			panelsAngolini[i].setBackground(new Color(255, 255, 255, 180));
+			panelsAngolini[i].setBackground(CostantiGui.coloreSfondoAngolini);
 			panelsAngolini[i].add(lblTerreni[i]);
 
 			panelsTerreni[i] = new BackgroundPanel(immaginiTerreni[i]);
