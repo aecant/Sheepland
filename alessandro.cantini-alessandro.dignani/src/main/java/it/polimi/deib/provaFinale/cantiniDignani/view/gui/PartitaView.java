@@ -5,6 +5,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.Sorte;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -49,8 +50,9 @@ public class PartitaView {
 		finestra.add(panelGiocatoriMosse, BorderLayout.EAST);
 
 		finestra.pack();
-		finestra.setResizable(false);
+		//finestra.setResizable(false);
 		finestra.setLocation(300, 150);
+		finestra.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 

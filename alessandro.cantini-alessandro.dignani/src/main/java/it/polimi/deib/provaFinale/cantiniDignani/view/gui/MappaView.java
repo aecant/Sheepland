@@ -5,7 +5,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.view.Costanti;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
-public class MappaView extends BackgroundPanel{
+public class MappaView extends BackgroundMappaPanel{
 
 	private static final long serialVersionUID = 7034340670757736701L;
 	private PecoraView pec;
