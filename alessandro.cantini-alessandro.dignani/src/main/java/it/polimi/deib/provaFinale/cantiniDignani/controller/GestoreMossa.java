@@ -117,8 +117,8 @@ public class GestoreMossa{
 	}
 
 	private void abbatti(Giocatore giocatore, Pastore pastore) {
-		oviniT1.remove(TipoAnimale.PECORANERA);
-		oviniT2.remove(TipoAnimale.PECORANERA);
+		oviniT1.remove(TipoAnimale.PECORA_NERA);
+		oviniT2.remove(TipoAnimale.PECORA_NERA);
 		gestorePartita.inviaEvento(new RichiestaPecoraDaAbbattere(codT1, oviniT1, codT2, oviniT2), giocatore);
 
 		Abbattimento abb = (Abbattimento) gestoreEventi.aspetta(Abbattimento.class);
@@ -153,7 +153,7 @@ public class GestoreMossa{
 		MovimentoPecora movimento = (MovimentoPecora) gestoreEventi.aspetta(MovimentoPecora.class);
 		Territorio destinazione = Mappa.getMappa().getTerritori()[movimento.getDestinazione()];
 
-		if (movimento.getTipoOvino() == TipoAnimale.PECORANERA) {
+		if (movimento.getTipoOvino() == TipoAnimale.PECORA_NERA) {
 			partita.getGregge().getPecoraNera().muoviIn(destinazione);
 		} else {
 			Estrattore.getPecora(partita, movimento.getOrigine(), movimento.getTipoOvino()).muoviIn(destinazione);

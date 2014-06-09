@@ -18,9 +18,9 @@ public interface InterfacciaUtente {
 
 	public void inizioTurno(String giocatore);
 	
-	public void movimentoPecora(TipoAnimale pecora, int origine, int destinazione);
+	public void movimentoPecora(String giocatore, TipoAnimale pecora, int origine, int destinazione);
 
-	public void movimentoPastore(Pastore pastore, int origine, int destinazione);
+	public void movimentoPastore(String giocatore, int origine, int destinazione);
 
 	public void movimentoLupo(int origine, int destinazione);
 
@@ -30,7 +30,7 @@ public interface InterfacciaUtente {
 
 	public void acquistoTessera(String giocatore, Tessera tessera);
 
-	public void abbattimento(String string, TipoAnimale tipoOvino, int territorio, boolean aBuonFine);
+	public void abbattimento(String giocatore, TipoAnimale tipo, int territorio, boolean aBuonFine);
 
 	public void accoppiamento(String giocatore, int territorio, boolean aBuonFine);
 
@@ -38,7 +38,7 @@ public interface InterfacciaUtente {
 
 	public void pagamento(Integer denaro, String pagante, String pagato);
 
-	public void selezionePosizioneInizialePastore(String pastore, int strada);
+	public void selezionePosizioneInizialePastore(String giocatore, int strada);
 
 	public void ricezioneTesseraIniziale(Tessera tessera);
 
