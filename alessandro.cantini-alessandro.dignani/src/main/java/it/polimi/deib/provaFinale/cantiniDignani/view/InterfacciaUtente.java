@@ -17,7 +17,7 @@ public interface InterfacciaUtente {
 	public void inizioPartita();
 
 	public void inizioTurno(String giocatore);
-	
+
 	public void movimentoPecora(String giocatore, TipoAnimale pecora, int origine, int destinazione);
 
 	public void movimentoPastore(String giocatore, int origine, int destinazione);
@@ -42,8 +42,6 @@ public interface InterfacciaUtente {
 
 	public void ricezioneTesseraIniziale(Tessera tessera);
 
-	public void sceltaPastore(String giocatore, Pastore pastore);
-
 	public PosizionamentoPastore richiestaPosizioneInizialePastore(boolean[] stradeLibere);
 
 	public MovimentoPastore richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento);
@@ -53,7 +51,7 @@ public interface InterfacciaUtente {
 	public SceltaPastore richiestaPastore();
 
 	public MovimentoPecora richiestaPecoraDaMuovere(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2);
-	
+
 	public MovimentoPecora richiestaPecoraDaAbbattere(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2);
 
 	public Accoppiamento richiestaTerritorioPerAccoppiamento(Collection<Integer> terrDisponibili);

@@ -1,6 +1,5 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 
 public class SceltaPastore extends Mossa {
@@ -19,7 +18,6 @@ public class SceltaPastore extends Mossa {
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().sceltaPastore(getGiocatore(), pastore);
 	}
 
 	public Pastore getPastore() {
