@@ -23,7 +23,7 @@ public class PannelloTessere extends JPanel {
 	private Image[] immaginiTerreni = new Image[TipoTerritorio.values().length - 1];
 
 	public PannelloTessere() {
-		super(new GridLayout(6, 1));
+		super(new GridLayout(6, 1, 0, 0));
 
 		// carico le immagini
 		int cont = 0;
@@ -37,29 +37,27 @@ public class PannelloTessere extends JPanel {
 		// inizializzo i panel e li inserisco
 		for (int i = 0; i < immaginiTerreni.length; i++) {
 			lblTerreni[i] = new JLabel("0");
-			lblTerreni[i].setForeground(new Color(34, 145, 243));
+			lblTerreni[i].setForeground(CostantiGui.coloreAcqua);
 			lblTerreni[i].setFont(new Font("Arial", Font.BOLD, 14));
 
-
 			panelsAngolini[i] = new JPanel();
-			panelsAngolini[i].setBounds(80, 80, 20, 20);
+			panelsAngolini[i].setBounds(0, 0, CostantiGui.dimensioneAngolini, CostantiGui.dimensioneAngolini);
 			panelsAngolini[i].setBackground(new Color(255, 255, 255, 180));
 			panelsAngolini[i].add(lblTerreni[i]);
 
 			panelsTerreni[i] = new BackgroundPanel(immaginiTerreni[i]);
 			panelsTerreni[i].setLayout(null);
-			panelsTerreni[i].setBackground(new Color(34, 145, 243));
+			panelsTerreni[i].setBackground(CostantiGui.coloreAcqua);
 			panelsTerreni[i].add(panelsAngolini[i]);
 
-			this.add(panelsTerreni[i], i);
+			add(panelsTerreni[i], i);
 		}
-		this.setBackground(new Color(48, 140, 235));
-		this.setPreferredSize(new Dimension(100, 600));
-		this.setMinimumSize(new Dimension(100, 600));
+		this.setBackground(CostantiGui.coloreAcqua);
+		this.setPreferredSize(new Dimension(CostantiGui.dimensioneMappa.height/6, CostantiGui.dimensioneMappa.height));
 
 	}
 
 	private Image creaCasella(String percorsoImg) {
-		return Toolkit.getDefaultToolkit().getImage(percorsoImg).getScaledInstance(100, 100, 0);
+		return Toolkit.getDefaultToolkit().getImage(percorsoImg).getScaledInstance(CostantiGui.dimensionePanelTessera.width, CostantiGui.dimensionePanelTessera.height, 0);
 	}
 }
