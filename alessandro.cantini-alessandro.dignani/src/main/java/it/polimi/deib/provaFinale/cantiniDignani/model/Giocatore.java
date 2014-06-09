@@ -2,10 +2,13 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Giocatore {
+public class Giocatore implements Serializable{
+	private static final long serialVersionUID = -8973926581885818571L;
+	
 	private String nome;
 	private int denaro;
 	private List<Pastore> pastori;
