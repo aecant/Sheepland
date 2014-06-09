@@ -67,11 +67,11 @@ public class DatiTerritorio {
 	}
 
 	public boolean isLupo() {
-		return numeroAnimali.get(TipoAnimale.LUPO) > 0;
+		return numeroAnimali.containsKey(TipoAnimale.LUPO) ? numeroAnimali.get(TipoAnimale.LUPO) > 0 : false;
 	}
 
 	public boolean isPecoraNera() {
-		return numeroAnimali.get(TipoAnimale.PECORA_NERA) > 0;
+		return numeroAnimali.containsKey(TipoAnimale.PECORA_NERA) ? numeroAnimali.get(TipoAnimale.PECORA_NERA) > 0 : false;
 	}
 
 }

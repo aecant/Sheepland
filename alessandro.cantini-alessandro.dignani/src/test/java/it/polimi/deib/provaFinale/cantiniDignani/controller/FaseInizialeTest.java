@@ -14,9 +14,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-public class GestorePartitaTest {
+public class FaseInizialeTest {
 	List<String> listaNomi = new ArrayList<String>();
 	Partita partita;
+	FaseIniziale faseIniziale;
 	GestorePartita gestore;
 
 	@Before
@@ -24,10 +25,7 @@ public class GestorePartitaTest {
 		Collections.addAll(listaNomi, "esempio1", "esempio2", "esempio3", "esempio4");
 		partita = new Partita(listaNomi);
 		gestore = new GestorePartita(partita, null, null);
-
-		Field fieldPartita = GestorePartita.class.getDeclaredField("partita");
-		fieldPartita.setAccessible(true);
-		fieldPartita.set(gestore, partita);
+		faseIniziale = new FaseIniziale(gestore);
 	}
 
 	/**
@@ -36,13 +34,14 @@ public class GestorePartitaTest {
 	 */
 	@Test
 	public void testDistribuisciDenari() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
-		Method method = GestorePartita.class.getDeclaredMethod("distribuisciDenari", (Class<?>[]) null);
+		Method method = FaseIniziale.class.getDeclaredMethod("distribuisciDenari", (Class<?>[]) null);
 		method.setAccessible(true);
 
 		for (int i = Costanti.NUM_MAX_GIOCATORI; i >= Costanti.NUM_MIN_GIOCATORI; i--) {
 			partita = new Partita(listaNomi);
 			gestore = new GestorePartita(partita, null, null);
-			method.invoke(gestore, (Object[]) null);
+			faseIniziale = new FaseIniziale(gestore);
+			method.invoke(faseIniziale, (Object[]) null);
 
 			for (Giocatore g : partita.getGiocatori()) {
 				
@@ -64,9 +63,9 @@ public class GestorePartitaTest {
 	 */
 	@Test
 	public void disponiPecora() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
-		Method method = GestorePartita.class.getDeclaredMethod("disponiPecore", (Class<?>[]) null);
+		Method method = FaseIniziale.class.getDeclaredMethod("disponiPecore", (Class<?>[]) null);
 		method.setAccessible(true);
-		method.invoke(gestore, (Object[]) null);
+		method.invoke(faseIniziale, (Object[]) null);
 
 		DatiTerritorio[] dati = Estrattore.datiTerritori(partita);
 
@@ -82,9 +81,9 @@ public class GestorePartitaTest {
 	 */
 	@Test
 	public void testDisponiTessereIniziali() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
-		Method method = GestorePartita.class.getDeclaredMethod("disponiTessereIniziali", (Class<?>[]) null);
+		Method method = FaseIniziale.class.getDeclaredMethod("disponiTessereIniziali", (Class<?>[]) null);
 		method.setAccessible(true);
-		method.invoke(gestore, (Object[]) null);
+		method.invoke(faseIniziale, (Object[]) null);
 
 		List<Tessera> listaTessere = new ArrayList<Tessera>();
 

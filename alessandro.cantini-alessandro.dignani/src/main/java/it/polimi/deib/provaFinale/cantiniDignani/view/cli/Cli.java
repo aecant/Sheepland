@@ -101,7 +101,7 @@ public class Cli implements InterfacciaUtente {
 		out.println("La tua tessera iniziale e' " + inizialeMaiuscola(tessera.getTipo().toString()));
 	}
 
-	public void sceltaPastore(Pastore pastore) {
+	public void sceltaPastore(String giocatore, Pastore pastore) {
 		// TODO Auto-generated method stub
 
 	}
