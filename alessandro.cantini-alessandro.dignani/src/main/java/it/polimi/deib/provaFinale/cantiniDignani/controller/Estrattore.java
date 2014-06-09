@@ -46,7 +46,7 @@ public class Estrattore {
 		}
 
 		for (Pecora pec : partita.getGregge().getPecore()) {
-			dati[pec.getPosizione().getCodice()].aggiungi(pec.getTipoOvino());
+			dati[pec.getPosizione().getCodice()].aggiungi(pec.getTipoAnimale());
 		}
 
 		dati[partita.getGregge().getPecoraNera().getPosizione().getCodice()].aggiungi(TipoAnimale.PECORA_NERA);
@@ -131,7 +131,7 @@ public class Estrattore {
 	 */
 	public static Pecora getPecora(Partita partita, int codTerritorio, TipoAnimale tipo) {
 		for (Pecora pec : partita.getGregge().getPecore()) {
-			if (pec.getPosizione().getCodice() == codTerritorio && pec.getTipoOvino() == tipo) {
+			if (pec.getPosizione().getCodice() == codTerritorio && pec.getTipoAnimale() == tipo) {
 				return pec;
 			}
 		}

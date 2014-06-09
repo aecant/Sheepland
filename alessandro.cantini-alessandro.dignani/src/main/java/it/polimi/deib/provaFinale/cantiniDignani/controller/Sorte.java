@@ -60,7 +60,7 @@ public class Sorte {
 	 *            il territorio su cui creare l'agnello
 	 * @return un agnello di sesso casuale
 	 */
-	public static Pecora agnelloRandom(Territorio t) {
+	public static Agnello agnelloRandom(Territorio t) {
 		return new Agnello(t, lanciaMoneta());
 	}
 

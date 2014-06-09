@@ -5,6 +5,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.Sorte;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Agnello;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
 
 import org.junit.Before;
@@ -52,12 +53,15 @@ public class SorteTest {
 
 	@Test
 	public void testPecoraRandom() {
-		assertTrue(Sorte.pecoraRandom(terr) instanceof Pecora);
+		Pecora pecora = Sorte.pecoraRandom(terr);
+		assertTrue(pecora instanceof Pecora);
 	}
 
 	@Test
 	public void testAgnelloRandom() {
-		assertTrue(Sorte.pecoraRandom(terr) instanceof Agnello);
+		Agnello agnello = Sorte.agnelloRandom(terr);
+		assertTrue(agnello instanceof Agnello);
+		assertTrue(agnello.getTipoAnimale() == TipoAnimale.AGNELLO);
 	}
 
 	@Test

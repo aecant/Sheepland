@@ -44,7 +44,7 @@ public class Partita {
 		List<PedinaSuStrada> pedine = getTutteLePedineSuStrada();
 
 		for (PedinaSuStrada p : pedine) {
-			if (p.getStrada().equals(s)) {
+			if (s.equals(p.getStrada())) {
 				return false;
 			}
 		}

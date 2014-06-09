@@ -120,4 +120,21 @@ public class Utilita {
 	public static <K> void incrementa(Map<K, Integer> mappa, K chiave) {
 		incrementa(mappa, chiave, 1);
 	}
+
+	/**
+	 * Restituisce la lista degli indici dei valori true di un array di boolean
+	 * 
+	 * @param array
+	 *            l'array di boolean
+	 * @return la lista degli indici che contengono valori true
+	 */
+	public static List<Integer> indiciTrue(boolean[] array) {
+		List<Integer> lista = new ArrayList<Integer>();
+		for (int i = 0; i < array.length; i++) {
+			if (array[i]) {
+				lista.add(i);
+			}
+		}
+		return lista;
+	}
 }
