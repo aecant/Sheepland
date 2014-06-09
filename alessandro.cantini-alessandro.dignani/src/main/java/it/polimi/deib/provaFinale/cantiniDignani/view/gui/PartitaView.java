@@ -63,7 +63,6 @@ public class PartitaView {
 	//TODO TEST DA RIMUOVERE
 	public static void main(String[] args) {
 		Partita partita = new Partita(Arrays.asList("esempio1","esempio2","esempio3","esempio4"));
-		DatiPartita dati = new DatiPartita(partita);
 		PartitaView tabellone = new PartitaView(null);
 		tabellone.visualizza();
 

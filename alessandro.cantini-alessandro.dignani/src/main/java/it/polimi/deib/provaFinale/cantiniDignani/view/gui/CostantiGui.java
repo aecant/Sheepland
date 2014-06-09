@@ -34,10 +34,14 @@ public class CostantiGui {
 	// Panel Tessere
 	public static final Dimension dimensionePanelTessera = new Dimension(dimensioneMappa.height/6, dimensioneMappa.height/6);
 	public static final int dimensioneAngolini = dimensioneMappa.height/(6*5);
+	public static final Color coloreSfondoAngolini = new Color(255, 255, 255, 180);
 	
-	//Panel pastori
-	public static final Dimension dimensionePannelloGiocatori = new Dimension(200, dimensioneMappa.height/2); 
-
+	// Panel giocatori
+	public static final Dimension dimensionePannelloGiocatori = new Dimension(200, dimensioneMappa.height/2);
+	public static final Dimension dimensionePanelGiocatore = new Dimension(200, 50);
+	public static final Color coloreSfondoNomeGiocatore = new Color(255, 255, 255, 180);
+	public static final Dimension dimensioneAgnelloPanelSoldi = new Dimension(50, 50);
+	
 	// Coordinate delle posizioni delle pecore nei territori (5 per ogni territorio)
-	public static final Point[][] coordinate = {};
+	public static final Point[][] coordinate = {}; // TODO
 }
