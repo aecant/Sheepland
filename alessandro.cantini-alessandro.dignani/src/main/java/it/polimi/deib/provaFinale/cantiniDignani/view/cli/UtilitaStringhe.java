@@ -1,5 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.cli;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
@@ -38,6 +39,10 @@ public class UtilitaStringhe {
 
 		return listaStringhe;
 	}
+	
+	public static String listaDiInteri(Collection<Integer> collezione, String separatore, String fine) {
+		return listaDiStringhe(trasforma(collezione), separatore, fine);
+	}
 
 	public static String listaDiStringhe(String[] array, String separatore, String fine) {
 		return listaDiStringhe(Arrays.asList(array), separatore, fine);
@@ -63,6 +68,14 @@ public class UtilitaStringhe {
 	
 	public static String nelTerr(int territorio) {
 		return nelTerr(territorio, false);
+	}
+	
+	public static Collection<String> trasforma(Collection<Integer> collInteri){
+		Collection<String> collStringhe = new ArrayList<String>();
+		for(Integer i : collInteri) {
+			collStringhe.add(i.toString());
+		}
+		return collStringhe;
 	}
 
 }

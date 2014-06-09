@@ -13,7 +13,7 @@ public class Pecora extends Animale {
 		return this.maschio;
 	}
 
-	public TipoAnimale getTipoOvino() {
+	public TipoAnimale getTipoAnimale() {
 		if (maschio) {
 			return TipoAnimale.MONTONE;
 		} else {

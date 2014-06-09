@@ -2,6 +2,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.view.cli;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Collection;
 import java.util.Scanner;
 
 public class InputCli {
@@ -46,10 +47,25 @@ public class InputCli {
 	 * @return un intero compreso in due limiti
 	 */
 	public int leggiIntero(int min, int max) {
-		Integer num = null;
-		num = leggiIntero();
+		Integer num = leggiIntero();
 		while (num < min || num > max) {
 			out.println("Devi inserire un intero compreso fra " + min + " e " + max);
+			num = leggiIntero();
+		}
+		return num;
+	}
+
+	/**
+	 * Restituisce un intero che appartiene a un inseme di numeri
+	 * 
+	 * @param insieme
+	 *            l'insieme di numeri di cui l'intero deve far parte
+	 * @return il numero scelto
+	 */
+	public int leggiIntero(Collection<Integer> insieme) {
+		Integer num = leggiIntero();
+		while (!insieme.contains(num)) {
+			out.println("Devi inserire un numero presente nell'elenco");
 			num = leggiIntero();
 		}
 		return num;

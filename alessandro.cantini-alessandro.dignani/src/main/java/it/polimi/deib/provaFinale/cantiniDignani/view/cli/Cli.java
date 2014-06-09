@@ -1,9 +1,9 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.cli;
 
 import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.*;
-
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Accoppiamento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.AcquistoTessera;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPastore;
@@ -11,12 +11,12 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPeco
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.PosizionamentoPastore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SceltaMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SceltaPastore;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -101,18 +101,33 @@ public class Cli implements InterfacciaUtente {
 		out.println("La tua tessera iniziale e' " + inizialeMaiuscola(tessera.getTipo().toString()));
 	}
 
-	public void sceltaPastore(String giocatore, Pastore pastore) {
-		//vuoto
-	}
-
 	public PosizionamentoPastore richiestaPosizioneInizialePastore(boolean[] stradeLibere) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Integer> stradeDisponibili = Utilita.indiciTrue(stradeLibere);
+		out.println("Inserisci la posizione iniziale del pastore");
+		out.println("Le strade disponibili sono le seguenti: ");
+		out.println(listaDiInteri(stradeDisponibili, " ,", "."));
+		
+		int stradaScelta = in.leggiIntero(stradeDisponibili);
+		
+		return new PosizionamentoPastore(ClientMain.getNome(), stradaScelta);		
 	}
 
-	public MovimentoPastore richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento) {
-		// TODO Auto-generated method stub
-		return null;
+	public MovimentoPastore richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento, int origine) {
+		List<Integer> gratis = Utilita.indiciTrue(stradeLibereGratis);
+		List<Integer> pagamento = Utilita.indiciTrue(stradeLibereAPagamento);
+		out.println("Inserisci la posizione in cui vuoi muovere il pastore");
+		out.println("Queste sono le strade gratis");
+		out.println(listaDiInteri(gratis, " ,", "."));
+		out.println("Queste sono le strade a pagamento");
+		out.println(listaDiInteri(pagamento, " ,", "."));
+		
+		List<Integer> tutte = new ArrayList<Integer>() ;
+		tutte.addAll(pagamento);
+		tutte.addAll(gratis);
+		
+		int stradaScelta = in.leggiIntero(tutte);
+		
+		return new MovimentoPastore(ClientMain.getNome(), origine, stradaScelta);
 	}
 
 	public SceltaMossa richiestaTipoMossa(Set<TipoMossa> mosseDisponibili) {
