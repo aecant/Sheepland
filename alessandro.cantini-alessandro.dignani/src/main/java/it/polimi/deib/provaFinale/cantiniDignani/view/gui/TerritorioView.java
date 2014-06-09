@@ -28,7 +28,7 @@ public class TerritorioView {
 		coordAnimali = new HashMap<TipoAnimale, Point>();
 		indice = 0;
 		for(TipoAnimale tipo : TipoAnimale.values()) {
-			if(dati.getTipiOvino().contains(tipo)) {
+			if(dati.getTipiAnimale().contains(tipo)) {
 				coordAnimali.put(tipo, coordinate[indice]);
 				indice++;
 			}

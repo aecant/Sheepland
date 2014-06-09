@@ -62,7 +62,7 @@ public class DatiTerritorio {
 	 * 
 	 * @return il set dei TipoOvino presenti sul territorio
 	 */
-	public Set<TipoAnimale> getTipiOvino() {
+	public Set<TipoAnimale> getTipiAnimale() {
 		return numeroAnimali.keySet();
 	}
 
