@@ -3,8 +3,6 @@ package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
 public class Gui {
 	private FinestraChiediNome fcn;
-	private PartitaView finestraPartita;
-	
 	/**
 	 * Implementazione del metodo che chiede all'utente il nome per connettersi
 	 * tramite una nuova finestra

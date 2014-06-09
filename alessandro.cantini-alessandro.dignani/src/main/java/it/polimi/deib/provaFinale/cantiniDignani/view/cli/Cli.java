@@ -5,7 +5,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.*;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
-import it.polimi.deib.provaFinale.cantiniDignani.view.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 
 import java.io.PrintStream;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Cli implements InterfacciaUtente {
-	private PrintStream out = Costanti.OUTPUT;
+	private PrintStream out = CostantiCli.OUTPUT;
 
 	public String chiediNome() {
 		pulisci();
