@@ -15,7 +15,6 @@ public class PannelloGiocatori extends JPanel {
 
 	public PannelloGiocatori(Giocatore[] giocatori) {
 		super(new GridLayout(giocatori.length, 1, 0, 10));
-		setPreferredSize(CostantiGui.dimensionePannelloGiocatori);
 		setBackground(CostantiGui.coloreAcqua);
 		for (Giocatore g : giocatori) {
 			panelsGiocatori.add(new GiocatoreView(g));
