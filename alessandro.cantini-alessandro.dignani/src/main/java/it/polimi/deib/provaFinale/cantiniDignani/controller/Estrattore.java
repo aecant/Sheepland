@@ -55,41 +55,57 @@ public class Estrattore {
 
 	/**
 	 * Restituisce l'array dei giocatori di una certa partita
-	 * @param partita la partita di cui si vogliono conoscere i giocatori
+	 * 
+	 * @param partita
+	 *            la partita di cui si vogliono conoscere i giocatori
 	 * @return l'array dei giocatori di una partita
 	 */
 	public static Giocatore[] giocatori(Partita partita) {
 		return partita.getGiocatori().toArray(new Giocatore[partita.getGiocatori().size()]);
 	}
-	
+
 	/**
 	 * Restituisce l'array dei pastori di una certa partita
-	 * @param partita la partita di cui si vogliono conoscere i pastori
+	 * 
+	 * @param partita
+	 *            la partita di cui si vogliono conoscere i pastori
 	 * @return l'array dei pastori di una partita
 	 */
 	public static Pastore[] pastori(Partita partita) {
 		return partita.getPastori().toArray(new Pastore[partita.getPastori().size()]);
 	}
-	
+
+	/**
+	 * Restituisc l'array delle posizioni dei recinti iniziali.
+	 * 
+	 * @param partita
+	 *            la partita di cui si vogliono conoscere i recinti iniziali
+	 * @return l'array delle posizioni dei recinti iniziali
+	 */
 	public static Integer[] recintiIniziali(Partita partita) {
 		return arrayDiPosizioni(partita.getRecinti().getRecintiIniziali());
 	}
 
+	/**
+	 * Restituisc l'array delle posizioni dei recinti finale.
+	 * 
+	 * @param partita
+	 *            la partita di cui si vogliono conoscere i recinti finali
+	 * @return l'array delle posizioni dei recinti finali
+	 */
 	public static Integer[] recintiFinali(Partita partita) {
 		return arrayDiPosizioni(partita.getRecinti().getRecintiFinali());
 	}
 
+	/**
+	 * Restituisce il giocatore che sta giocando il proprio turno
+	 * 
+	 * @param partita
+	 *            la partita in cui si gioca
+	 * @return il giocatore di turno
+	 */
 	public static String giocatoreDiTurno(Partita partita) {
 		return partita.getGiocatoreDiTurno().getNome();
-	}
-
-	private static Integer[] arrayDiPosizioni(List<PedinaSuStrada> lista) {
-		int numPedine = lista.size();
-		Integer[] posizioni = new Integer[numPedine];
-		for (int i = 0; i < numPedine; i++) {
-			posizioni[i] = lista.get(i).getStrada().getCodice();
-		}
-		return posizioni;
 	}
 
 	/**
@@ -168,7 +184,7 @@ public class Estrattore {
 	 * @return la pecora su un territorio e di un certo tipo
 	 */
 	public static Pecora getPecora(Partita partita, int codTerritorio, TipoAnimale tipo) {
-		
+
 		for (Pecora pec : partita.getGregge().getPecore()) {
 			if (pec.getPosizione().getCodice() == codTerritorio && pec.getTipoAnimale() == tipo) {
 				return pec;
@@ -193,5 +209,21 @@ public class Estrattore {
 
 		return tessere;
 	}
-	
+
+	/**
+	 * Data una lista di pedine su strada, restituisc un array contente i codici
+	 * delle strade su cui stanno le pedine della lista
+	 * 
+	 * @param lista
+	 *            la lista di pedine su strada
+	 * @return l'array delle posizioni delle pedine
+	 */
+	private static Integer[] arrayDiPosizioni(List<PedinaSuStrada> lista) {
+		int numPedine = lista.size();
+		Integer[] posizioni = new Integer[numPedine];
+		for (int i = 0; i < numPedine; i++) {
+			posizioni[i] = lista.get(i).getStrada().getCodice();
+		}
+		return posizioni;
+	}
 }

@@ -1,6 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import static org.junit.Assert.*;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
@@ -124,6 +125,24 @@ public class EstrattoreTest {
 		for(Tessera t : tessere) {
 			assertEquals(t.getCosto(), 0);
 		}
+	}
+	
+	@Test
+	public void testGiocatori() {
+		Giocatore[] giocatori = Estrattore.giocatori(partita);
+		
+		for(Giocatore g : partita.getGiocatori()) {
+			assertTrue(Utilita.contiene(giocatori, g));
+		}
+	}
+	
+	@Test
+	public void recintiIniziali() {
+		Integer[] posRecIn = Estrattore.recintiIniziali(partita);
+		partita.getRecinti().aggiungi(s[4]);
+		partita.getRecinti().aggiungi(s[5]);
+		assertFalse(Utilita.contiene(posRecIn, 4));
+		assertFalse(Utilita.contiene(posRecIn, 5));
 	}
 	
 	private void eliminaPecora(Territorio t) {
