@@ -136,8 +136,7 @@ public class Cli implements InterfacciaUtente {
 		return new MovimentoPastore(nome, origine, stradaScelta);
 	}
 
-	public SceltaMossa richiestaTipoMossa(Set<TipoMossa> mosseDisponibili) {
-		// TODO Auto-generated method stub
+	public SceltaMossa richiestaTipoMossa(Collection<TipoMossa> mosseDisponibili, int numMossa) {
 		return null;
 	}
 

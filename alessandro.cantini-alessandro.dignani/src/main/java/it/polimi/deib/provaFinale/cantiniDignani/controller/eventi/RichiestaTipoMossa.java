@@ -10,14 +10,16 @@ public class RichiestaTipoMossa extends Richiesta {
 	private static final long serialVersionUID = -1955175358557235321L;
 
 	private Set<TipoMossa> mosseDisponibili;
+	private int numMossa;
 
-	public RichiestaTipoMossa(Set<TipoMossa> set) {
+	public RichiestaTipoMossa(Set<TipoMossa> set, int numMossa) {
 		this.mosseDisponibili = set;
+		this.numMossa = numMossa;
 	}
 
 	@Override
 	protected Mossa interagisci() {
-		return ClientMain.getUI().richiestaTipoMossa(mosseDisponibili);
+		return ClientMain.getUI().richiestaTipoMossa(mosseDisponibili, numMossa);
 	}
 
 }

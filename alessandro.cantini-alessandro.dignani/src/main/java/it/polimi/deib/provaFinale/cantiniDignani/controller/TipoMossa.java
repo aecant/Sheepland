@@ -12,4 +12,9 @@ public enum TipoMossa {
 	private TipoMossa(String nome) {
 		this.nome = nome;
 	}
+	
+	@Override
+	public String toString() {
+		return nome;
+	}
 }

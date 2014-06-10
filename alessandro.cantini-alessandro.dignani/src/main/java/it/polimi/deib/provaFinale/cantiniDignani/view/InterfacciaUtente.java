@@ -51,7 +51,7 @@ public interface InterfacciaUtente {
 
 	public MovimentoPastore richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento, int origine);
 
-	public SceltaMossa richiestaTipoMossa(Collection<TipoMossa> mosseDisponibili);
+	public SceltaMossa richiestaTipoMossa(Collection<TipoMossa> mosseDisponibili, int numMossa);
 
 	public SceltaPastore richiestaPastore();
 
