@@ -2,6 +2,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Point;
 import java.awt.Toolkit;
 
@@ -51,4 +52,11 @@ public class CostantiGui {
 	
 	// Panel mosse
 	public static final Dimension dimensionePanelMossa = new Dimension(150, 80);
+	
+	// Fonts
+	public static final Font fontPulsantiMosse = new Font("Chalkduster", Font.PLAIN, 18);
+	public static final Font fontNomeGiocatore = new Font("Chalkduster", Font.PLAIN, 16);
+	public static final Font fontSoldi = new Font("Farisi", Font.PLAIN, 30);
+	public static final Font fontTerreni = new Font("Arial", Font.BOLD, 14);
+	
 }

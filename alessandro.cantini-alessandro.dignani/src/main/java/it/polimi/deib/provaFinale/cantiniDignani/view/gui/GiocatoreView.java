@@ -5,7 +5,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 
@@ -32,14 +31,14 @@ public class GiocatoreView extends JPanel {
 		setBorder(new EmptyBorder(10, 10, 10, 10));
 		
 		lblNome = new JLabel(g.getNome());
-		lblNome.setFont(new Font("Chalkduster", Font.PLAIN, 16));
+		lblNome.setFont(CostantiGui.fontNomeGiocatore);
 		lblNome.setVerticalAlignment(SwingConstants.CENTER);
 		
 		panelNome.setBackground(CostantiGui.coloreSfondoNomeGiocatore);
 		panelNome.add(lblNome);
 		
 		lblSoldi = new JLabel(g.getDenaro().toString());
-		lblSoldi.setFont(new Font("Farisi", Font.PLAIN, 30));
+		lblSoldi.setFont(CostantiGui.fontSoldi);
 		
 		Image img = Toolkit.getDefaultToolkit().getImage(CostantiGui.percorsoImmagini + "soldi.png").getScaledInstance(CostantiGui.dimensionePanelTessera.width, CostantiGui.dimensionePanelTessera.height, 0);
 		panelSoldi = new BackgroundPanel(img);

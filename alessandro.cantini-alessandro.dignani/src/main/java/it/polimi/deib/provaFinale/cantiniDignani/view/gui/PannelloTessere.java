@@ -3,7 +3,6 @@ package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
 
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -36,7 +35,7 @@ public class PannelloTessere extends JPanel {
 		for (int i = 0; i < immaginiTerreni.length; i++) {
 			lblTerreni[i] = new JLabel("0");
 			lblTerreni[i].setForeground(CostantiGui.coloreAcqua);
-			lblTerreni[i].setFont(new Font("Arial", Font.BOLD, 14));
+			lblTerreni[i].setFont(CostantiGui.fontTerreni);
 
 			panelsAngolini[i] = new JPanel();
 			panelsAngolini[i].setBounds(0, 0, CostantiGui.dimensioneAngolini, CostantiGui.dimensioneAngolini);
