@@ -6,7 +6,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 
-import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,7 +24,7 @@ public class FaseInizialeTest {
 		Collections.addAll(listaNomi, "esempio1", "esempio2", "esempio3", "esempio4");
 		partita = new Partita(listaNomi);
 		gestore = new GestorePartita(partita, null, null);
-		faseIniziale = new FaseIniziale(gestore);
+		faseIniziale = gestore.faseIniziale;
 	}
 
 	/**
@@ -33,25 +32,21 @@ public class FaseInizialeTest {
 	 * configurazione di giocatori
 	 */
 	@Test
-	public void testDistribuisciDenari() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
-		Method method = FaseIniziale.class.getDeclaredMethod("distribuisciDenari", (Class<?>[]) null);
-		method.setAccessible(true);
-
+	public void testDistribuisciDenari() {
 		for (int i = Costanti.NUM_MAX_GIOCATORI; i >= Costanti.NUM_MIN_GIOCATORI; i--) {
 			partita = new Partita(listaNomi);
 			gestore = new GestorePartita(partita, null, null);
-			faseIniziale = new FaseIniziale(gestore);
-			method.invoke(faseIniziale, (Object[]) null);
+			faseIniziale = gestore.faseIniziale;
+			faseIniziale.distribuisciDenari();
 
 			for (Giocatore g : partita.getGiocatori()) {
-				
 				if (partita.getGiocatori().size() == 2) {
 					assertTrue(g.getDenaro() == Costanti.DENARO_INIZIALE_DUE_GIOCATORI);
 				} else {
 					assertTrue(g.getDenaro() == Costanti.DENARO_INIZIALE);
 				}
 			}
-			
+
 			listaNomi.remove(0);
 		}
 
@@ -62,15 +57,14 @@ public class FaseInizialeTest {
 	 * un agnello
 	 */
 	@Test
-	public void disponiPecora() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
-		Method method = FaseIniziale.class.getDeclaredMethod("disponiPecore", (Class<?>[]) null);
-		method.setAccessible(true);
-		method.invoke(faseIniziale, (Object[]) null);
+	public void testDisponiPecore()  {
+		faseIniziale.disponiPecore();
 
 		DatiTerritorio[] dati = Estrattore.datiTerritori(partita);
-
-		for (DatiTerritorio d : dati) {
-			assertEquals(d.getNumOvini(), 1);
+		
+		//parto da 1 perche' su Sheepsburg c'e' solo la pecora nera
+		for (int i = 1; i < dati.length; i++) {
+			assertEquals(dati[i].getNumOvini(), 1);
 		}
 	}
 
@@ -80,10 +74,8 @@ public class FaseInizialeTest {
 	 * duplicate
 	 */
 	@Test
-	public void testDisponiTessereIniziali() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
-		Method method = FaseIniziale.class.getDeclaredMethod("disponiTessereIniziali", (Class<?>[]) null);
-		method.setAccessible(true);
-		method.invoke(faseIniziale, (Object[]) null);
+	public void testDisponiTessereIniziali() {
+		faseIniziale.disponiTessereIniziali();
 
 		List<Tessera> listaTessere = new ArrayList<Tessera>();
 
