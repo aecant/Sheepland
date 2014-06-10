@@ -56,7 +56,7 @@ public class Estrattore {
 	}
 
 	public static Pastore[] pastori(Partita partita) {
-		return (Pastore[]) partita.getPastori().toArray();
+		return partita.getPastori().toArray(new Pastore[partita.getGiocatori().size()]);
 	}
 
 	public static Integer[] recintiIniziali(Partita partita) {
