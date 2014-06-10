@@ -5,7 +5,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
 
 import java.rmi.RemoteException;
 
-public class InterfacciaRMIImpl implements InterfacciaRMI {
+public class InterfacciaRmiImpl implements InterfacciaRmi {
 
 	public void registraGiocatore(String nome) throws NomeGiaPresenteException, RemoteException {
 		if (!ServerMain.aggiungiGiocatore(nome)) {
