@@ -3,7 +3,6 @@ package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
@@ -20,8 +19,10 @@ public class PartitaView {
 	private MappaView mappa;
 
 	private JPanel panelTessere;
+	
 	private JPanel panelGiocatoriMosse;
 	private JPanel panelGiocatori;
+	private JPanel panelMosse;
 
 	private DatiPartita datiPartita;
 
@@ -51,9 +52,14 @@ public class PartitaView {
 
 		// imposto il panel dei giocatori
 		panelGiocatori = new PannelloGiocatori(this.datiPartita.getGiocatori());
+		
+		// imposto il panel delle mosse
+		panelMosse = new PannelloMosse();
+		
+		// imposto il panel che contiene i panel delle mosse e dei giocatori
 		panelGiocatoriMosse = new JPanel(new BorderLayout());
-		panelGiocatori.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panelGiocatoriMosse.add(panelGiocatori, BorderLayout.NORTH);
+		panelGiocatoriMosse.add(panelMosse, BorderLayout.SOUTH);
 		panelGiocatoriMosse.setBackground(CostantiGui.coloreAcqua);
 
 		// imposto la finestra
