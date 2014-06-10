@@ -1,6 +1,9 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.cli;
 
-import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.*;
+import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.daA;
+import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.listaDiInteri;
+import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.listaDiStringhe;
+import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.nelTerr;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
@@ -13,6 +16,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SceltaMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SceltaPastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 
 import java.io.PrintStream;
@@ -24,7 +28,9 @@ import java.util.Set;
 public class Cli implements InterfacciaUtente {
 	private final InputCli in = new InputCli(CostantiCli.DEFAULT_INPUT);
 	private final PrintStream out = CostantiCli.DEFAULT_OUTPUT;
-
+	private final String nome = ClientMain.getNome();
+	
+	
 	public String chiediNome() {
 		pulisci();
 		out.println("Inserisci il tuo nome");
@@ -38,7 +44,8 @@ public class Cli implements InterfacciaUtente {
 	public void inizioPartita() {
 		out.println("Partita iniziata con i giocatori:");
 		out.println(listaDiStringhe(ClientMain.getDatiPartita().getNomiGiocatori(), " ;", "."));
-		out.println("La tua tessera iniziale e' di tipo ");
+		TipoTerritorio tipoTesseraIniziale = ClientMain.getDatiPartita().getGiocatore(nome).getTessere().get(0).getTipo();
+		out.println("La tua tessera iniziale e' di tipo " + tipoTesseraIniziale);	
 	}
 
 	public void lancioDado(Integer numero) {
@@ -46,7 +53,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void inizioTurno(String giocatore) {
-		if (giocatore.equals(ClientMain.getNome())) {
+		if (giocatore.equals(nome)) {
 			out.println("E' il tuo turno.");
 		} else {
 			out.println("E' il turno di " + giocatore);
@@ -72,7 +79,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
-		out.println("Il giocatore ha acquistato una tessera di" + inizialeMaiuscola(tessera.getTipo().toString()));
+		out.println("Il giocatore ha acquistato una tessera di" + tessera.getTipo().toString());
 	}
 
 	public void abbattimento(String giocatore, TipoAnimale tipo, int territorio, boolean aBuonFine) {
@@ -99,7 +106,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void ricezioneTesseraIniziale(Tessera tessera) {
-		out.println("La tua tessera iniziale e' " + inizialeMaiuscola(tessera.getTipo().toString()));
+		out.println("La tua tessera iniziale e' " + tessera.getTipo().toString());
 	}
 
 	public PosizionamentoPastore richiestaPosizioneInizialePastore(boolean[] stradeLibere) {
@@ -110,7 +117,7 @@ public class Cli implements InterfacciaUtente {
 		
 		int stradaScelta = in.leggiIntero(stradeDisponibili);
 		
-		return new PosizionamentoPastore(ClientMain.getNome(), stradaScelta);		
+		return new PosizionamentoPastore(nome, stradaScelta);		
 	}
 
 	public MovimentoPastore richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento, int origine) {
@@ -128,7 +135,7 @@ public class Cli implements InterfacciaUtente {
 		
 		int stradaScelta = in.leggiIntero(tutte);
 		
-		return new MovimentoPastore(ClientMain.getNome(), origine, stradaScelta);
+		return new MovimentoPastore(nome, origine, stradaScelta);
 	}
 
 	public SceltaMossa richiestaTipoMossa(Set<TipoMossa> mosseDisponibili) {

@@ -30,7 +30,8 @@ public class GestorePartita implements Runnable {
 	private List<String> tuttiGiocatori;
 	private final InterfacciaServer connessione;
 	private final GestoreMossa gestoreMossa;
-	private final FasePartita faseIniziale, faseFinale;
+	public final FaseIniziale faseIniziale;
+	public final FaseFinale faseFinale;
 	private final GestoreCoda<Evento> gestoreEventi;
 
 	private boolean dueGiocatori;
