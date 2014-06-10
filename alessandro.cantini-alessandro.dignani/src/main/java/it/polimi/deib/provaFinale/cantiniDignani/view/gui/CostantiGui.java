@@ -26,6 +26,7 @@ public class CostantiGui {
 	static {
 		dimensioneMappa = new Dimension((int) (Toolkit.getDefaultToolkit().getScreenSize().height*(0.75)), Toolkit.getDefaultToolkit().getScreenSize().height);
 	}
+	
 	public static final Dimension dimensionePecora = new Dimension(dimensioneMappa.height/15, dimensioneMappa.height/20);
 	public static final Dimension dimensioneMontone = new Dimension(dimensioneMappa.height/15, dimensioneMappa.height/20);
 	public static final Dimension dimensioneAgnello = new Dimension(dimensioneMappa.height/15, dimensioneMappa.height/20);
@@ -37,7 +38,7 @@ public class CostantiGui {
 	public static final Color coloreSfondoAngolini = new Color(255, 255, 255, 180);
 	
 	// Panel giocatori
-	public static final Dimension dimensionePannelloGiocatori = new Dimension(200, dimensioneMappa.height/2);
+	public static final Dimension dimensionePannelloGiocatori = new Dimension(200, 300);
 	public static final Dimension dimensionePanelGiocatore = new Dimension(200, 50);
 	public static final Color coloreSfondoNomeGiocatore = new Color(255, 255, 255, 180);
 	public static final Dimension dimensioneAgnelloPanelSoldi = new Dimension(50, 50);

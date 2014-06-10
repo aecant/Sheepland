@@ -1,10 +1,16 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.FaseIniziale;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.GestorePartita;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
+
+import java.util.Arrays;
 
 
 public class Gui {
-	private FinestraChiediNome fcn;
+	private FinestraChiediNome fcn;	
+	
 	/**
 	 * Implementazione del metodo che chiede all'utente il nome per connettersi
 	 * tramite una nuova finestra
@@ -17,8 +23,19 @@ public class Gui {
 	}
 	
 	public void inizioPartita() {
-		DatiPartita datiPartita = null;// TODO scarico i dati della partita prima [TOGLIERE IL NULL]
-		PartitaView partita = new PartitaView(datiPartita);
+		
+		// TODO questo è un test, andrà mofificato con ClientMain.getDatiPartita()
+		Partita part = new Partita(Arrays.asList("Alessandro", "Andrea", "Luca", "paolo"));
+		GestorePartita gest = new GestorePartita(part, null, null);
+		FaseIniziale fi = new FaseIniziale(gest);
+		fi.disponiPecore();
+		fi.disponiTessereIniziali();
+		fi.distribuisciDenari();
+		DatiPartita dati = new DatiPartita(part);
+		// Fine test
+
+		PartitaView partita = new PartitaView(dati);
+		partita.visualizza();
 	}
 	
 	
@@ -26,8 +43,6 @@ public class Gui {
 	public static void main (String[] args) {
 		Gui gui = new Gui();
 		System.out.println(gui.chiediNome());
-		System.out.println(gui.chiediNome());
-
 		gui.inizioPartita();
 	}
 }

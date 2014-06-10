@@ -1,7 +1,5 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
-import it.polimi.deib.provaFinale.cantiniDignani.view.gui.CostantiGui;
-
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -16,7 +14,7 @@ public class MappaView extends BackgroundMappaPanel{
 
 	public MappaView() {
 		super(Toolkit.getDefaultToolkit().getImage(CostantiGui.percorsoImmagini + "mappaSheepland.png"));
-		this.setPreferredSize(new Dimension(415, 600));
+		this.setPreferredSize(new Dimension(CostantiGui.dimensioneMappa));
 		this.setLayout(null);
 		
 		
