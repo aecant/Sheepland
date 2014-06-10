@@ -7,6 +7,8 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -86,7 +88,7 @@ public class EstrattoreTest {
 	}
 
 	@Test
-	public void testStradeLibereGratis() {
+	public void testStradeLibereGratisEAPagamento() {
 		List<List<Integer>> stradeGratis = new ArrayList<List<Integer>>();
 		stradeGratis.add(0, Arrays.asList(5, 8, 7));
 		stradeGratis.add(1, Arrays.asList(7, 17));
@@ -94,15 +96,36 @@ public class EstrattoreTest {
 		stradeGratis.add(3, Arrays.asList(23, 29));
 
 		for (int i = 0; i < stradeGratis.size(); i++) {
+			boolean[] sl = Estrattore.stradeLibere(partita);
 			boolean[] slg = Estrattore.stradeLibereGratis(partita, s[i]);
+			boolean[] slap = Estrattore.stradeLibereAPagamento(partita, s[i]);
 			for (int j = 0; j < slg.length; j++) {
 				if (stradeGratis.get(i).contains(j)) {
+					assertTrue(sl[j]);
 					assertTrue(slg[j]);
+					assertFalse(slap[j]);
 				}
 			}
 		}
 	}
 
+	@Test
+	public void testGetPecora() {
+		partita.getGregge().aggiungi(new Pecora(t1, false));
+		Pecora p = Estrattore.getPecora(partita, t1.getCodice(), TipoAnimale.PECORA);
+		assertEquals(p.getPosizione(), t1);
+		assertEquals(p.getTipoAnimale(), TipoAnimale.PECORA);
+	}
+	
+	
+	@Test
+	public void testTessereInCima() {
+		Tessera[] tessere = Estrattore.tessereInCima(partita);
+		for(Tessera t : tessere) {
+			assertEquals(t.getCosto(), 0);
+		}
+	}
+	
 	private void eliminaPecora(Territorio t) {
 		for (Pecora p : partita.getGregge().getPecore()) {
 			if (p.getPosizione().equals(t)) {
@@ -110,5 +133,5 @@ public class EstrattoreTest {
 			}
 		}
 	}
-
+	
 }

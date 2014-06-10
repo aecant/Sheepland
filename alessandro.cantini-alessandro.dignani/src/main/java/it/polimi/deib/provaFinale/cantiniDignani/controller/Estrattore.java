@@ -53,10 +53,24 @@ public class Estrattore {
 		return dati;
 	}
 
+	/**
+	 * Restituisce l'array dei giocatori di una certa partita
+	 * @param partita la partita di cui si vogliono conoscere i giocatori
+	 * @return l'array dei giocatori di una partita
+	 */
+	public static Giocatore[] giocatori(Partita partita) {
+		return partita.getGiocatori().toArray(new Giocatore[partita.getGiocatori().size()]);
+	}
+	
+	/**
+	 * Restituisce l'array dei pastori di una certa partita
+	 * @param partita la partita di cui si vogliono conoscere i pastori
+	 * @return l'array dei pastori di una partita
+	 */
 	public static Pastore[] pastori(Partita partita) {
 		return partita.getPastori().toArray(new Pastore[partita.getPastori().size()]);
 	}
-
+	
 	public static Integer[] recintiIniziali(Partita partita) {
 		return arrayDiPosizioni(partita.getRecinti().getRecintiIniziali());
 	}
@@ -149,11 +163,12 @@ public class Estrattore {
 
 	/**
 	 * Restituisce una pecora che si trova su un certo territorio e che e' di un
-	 * certo @see {TipoOvino}
+	 * certo tipo
 	 * 
 	 * @return la pecora su un territorio e di un certo tipo
 	 */
 	public static Pecora getPecora(Partita partita, int codTerritorio, TipoAnimale tipo) {
+		
 		for (Pecora pec : partita.getGregge().getPecore()) {
 			if (pec.getPosizione().getCodice() == codTerritorio && pec.getTipoAnimale() == tipo) {
 				return pec;
@@ -178,11 +193,5 @@ public class Estrattore {
 
 		return tessere;
 	}
-
-	/**
-	 * Restituisce l'array dei giocatori di una partita
-	 */
-	public static Giocatore[] giocatori(Partita partita) {
-		return partita.getGiocatori().toArray(new Giocatore[partita.getGiocatori().size()]);
-	}
+	
 }
