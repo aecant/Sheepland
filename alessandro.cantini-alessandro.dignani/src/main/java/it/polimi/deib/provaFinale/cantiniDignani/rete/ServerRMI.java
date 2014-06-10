@@ -17,8 +17,8 @@ public class ServerRMI implements InterfacciaServer {
 
 	public void inizializza() {
 		try {
-			InterfacciaRMI server = new InterfacciaRMIImpl();
-			InterfacciaRMI stub = (InterfacciaRMI) UnicastRemoteObject.exportObject(server, 0);
+			InterfacciaRmi server = new InterfacciaRmiImpl();
+			InterfacciaRmi stub = (InterfacciaRmi) UnicastRemoteObject.exportObject(server, 0);
 			Registry registry = LocateRegistry.createRegistry(Costanti.SERVER_PORT);
 			registry.rebind(Costanti.SERVER_NAME, stub);
 

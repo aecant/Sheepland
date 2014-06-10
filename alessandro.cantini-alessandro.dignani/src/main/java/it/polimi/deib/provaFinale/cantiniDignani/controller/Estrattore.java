@@ -8,7 +8,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
 import it.polimi.deib.provaFinale.cantiniDignani.model.PedinaSuStrada;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
@@ -28,19 +27,16 @@ public class Estrattore {
 	private Estrattore() {
 	}
 
-	public static Tessera[] tessereConfinanti(Partita partita, int strada) {
-		Tessera[] tessere = new Tessera[2];
-
-		Territorio t1, t2;
-		t1 = Mappa.getMappa().getStrade()[strada].getTerritorio1();
-		t2 = Mappa.getMappa().getStrade()[strada].getTerritorio2();
-
-		tessere[0] = partita.getMazzo().leggiTesseraInCima(t1.getTipo());
-		tessere[1] = partita.getMazzo().leggiTesseraInCima(t2.getTipo());
-
-		return tessere;
-	}
-
+	/**
+	 * Restituisce un array di DatiTerritorio. Ogni elemento dell'array contiene
+	 * i dati su un territorio, l'indice dell'array corrisponde al codice del
+	 * territorio.
+	 * 
+	 * @param partita
+	 *            la partita di cui si vogliono i dati
+	 * @return un array di DatiTerritorio che descrive lo stato dei territori di
+	 *         una partita
+	 */
 	public static DatiTerritorio[] datiTerritori(Partita partita) {
 		DatiTerritorio[] dati = new DatiTerritorio[Costanti.NUM_TERRITORI];
 		for (int i = 0; i < dati.length; i++) {
@@ -156,7 +152,7 @@ public class Estrattore {
 
 		return tessere;
 	}
-	
+
 	/**
 	 * Restituisce l'array dei giocatori di una partita
 	 */

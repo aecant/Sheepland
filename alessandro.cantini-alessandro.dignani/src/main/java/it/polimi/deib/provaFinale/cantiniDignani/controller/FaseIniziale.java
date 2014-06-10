@@ -10,7 +10,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
 import java.util.Collections;
 import java.util.Stack;
 
-public class FaseIniziale extends FasePartita{
+public class FaseIniziale extends FasePartita {
 
 	public FaseIniziale(GestorePartita gestore) {
 		super(gestore);
@@ -35,9 +35,9 @@ public class FaseIniziale extends FasePartita{
 				territoriIniziali.push(new Tessera(tipo, 0));
 			}
 		}
-	
+
 		Collections.shuffle(territoriIniziali);
-	
+
 		for (Giocatore g : partita.getGiocatori()) {
 			g.aggiungiTessera(territoriIniziali.pop());
 		}
@@ -57,7 +57,9 @@ public class FaseIniziale extends FasePartita{
 	 */
 	public void disponiPecore() {
 		for (Territorio t : Mappa.getMappa().getTerritori()) {
-			partita.getGregge().aggiungi(Sorte.pecoraRandom(t));
+			if (t.getTipo() != TipoTerritorio.SHEEPSBURG) {
+				partita.getGregge().aggiungi(Sorte.pecoraRandom(t));
+			}
 		}
 	}
 

@@ -1,5 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
+import it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe;
+
 public enum TipoTerritorio {
 	SHEEPSBURG,
 	MONTAGNA,
@@ -9,10 +11,7 @@ public enum TipoTerritorio {
 	PASCOLO,
 	CAMPO;
 
-	public String toString() {
-		return this.name().toLowerCase();
-	}
-
+	
 	/**
 	 * Restituisce l'array di tutti i tipi territori a parte Sheepsburg
 	 * 
@@ -22,4 +21,10 @@ public enum TipoTerritorio {
 		TipoTerritorio[] valoriTessere = { MONTAGNA, DESERTO, LAGO, BOSCO, PASCOLO, CAMPO };
 		return valoriTessere;
 	}
+	
+	@Override
+	public String toString() {
+		return UtilitaStringhe.inizialeMaiuscola(this.name());
+	}
+
 }

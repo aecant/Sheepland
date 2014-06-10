@@ -37,7 +37,8 @@ public class DatiTerritorio {
 	}
 
 	/**
-	 * Restituisce il numero di ovini (pecore, montoni e agnelli)
+	 * Restituisce il numero di ovini (pecore, montoni e agnelli). La pecora
+	 * nera non e' compresa.
 	 * 
 	 * @return il numero di ovini
 	 */

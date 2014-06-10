@@ -18,12 +18,12 @@ import java.rmi.server.UnicastRemoteObject;
 public class ConnessioneRMI implements ConnessioneClient, AscoltatoreRemoto {
 
 	private Registry registry;
-	private InterfacciaRMI server;
+	private InterfacciaRmi server;
 
 	public void inizializza() {
 		try {
 			registry = LocateRegistry.getRegistry(Costanti.SERVER_ADDRESS, Costanti.SERVER_PORT);
-			server = (InterfacciaRMI) registry.lookup(Costanti.SERVER_NAME);
+			server = (InterfacciaRmi) registry.lookup(Costanti.SERVER_NAME);
 
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

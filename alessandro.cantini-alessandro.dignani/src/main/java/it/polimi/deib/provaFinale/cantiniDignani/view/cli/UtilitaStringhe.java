@@ -58,6 +58,7 @@ public class UtilitaStringhe {
 	}
 
 	public static String inizialeMaiuscola(String s) {
+		s = s.toLowerCase();
 		return s.substring(0, 1).toUpperCase() + s.substring(1);
 	}
 

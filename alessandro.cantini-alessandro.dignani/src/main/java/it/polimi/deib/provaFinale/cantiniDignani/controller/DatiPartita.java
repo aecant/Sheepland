@@ -31,6 +31,15 @@ public class DatiPartita {
 		return giocatori;
 	}
 
+	public Giocatore getGiocatore(String nome) {
+		for(Giocatore g : giocatori) {
+			if(g.getNome().equals(nome)) {
+				return g;
+			}
+		}
+		throw new IllegalArgumentException("Il giocatore non e' presente");
+	}
+	
 	public Collection<String> getNomiGiocatori() {
 		Collection<String> nomi = new ArrayList<String>();
 		for (Giocatore g : giocatori) {
