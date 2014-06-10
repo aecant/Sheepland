@@ -23,7 +23,8 @@ public class DatiPartita {
 		recintiIniziali = Estrattore.recintiIniziali(partita);
 		recintiFinali = Estrattore.recintiFinali(partita);
 		giocatoreDiTurno = partita.getGiocatoreDiTurno().getNome();
-
+		tessereInCima = Estrattore.tessereInCima(partita);
+		giocatori = Estrattore.giocatori(partita);
 	}
 
 	public Giocatore[] getGiocatori() {

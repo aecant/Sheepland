@@ -38,6 +38,7 @@ public class Cli implements InterfacciaUtente {
 	public void inizioPartita() {
 		out.println("Partita iniziata con i giocatori:");
 		out.println(listaDiStringhe(ClientMain.getDatiPartita().getNomiGiocatori(), " ;", "."));
+		out.println("La tua tessera iniziale e' di tipo ");
 	}
 
 	public void lancioDado(Integer numero) {
