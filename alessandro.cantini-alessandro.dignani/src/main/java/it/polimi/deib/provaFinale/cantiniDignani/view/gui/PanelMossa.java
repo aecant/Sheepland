@@ -15,7 +15,7 @@ public class PanelMossa extends JPanel {
 
 	public PanelMossa(TipoMossa tipoMossa) {
 		setLayout(new BorderLayout());
-		bottone = new JButton(tipoMossa.name());
+		bottone = new JButton(tipoMossa.nome);
 		add(bottone, BorderLayout.CENTER);
 		setPreferredSize(CostantiGui.dimensionePanelMossa);
 		setOpaque(false);
