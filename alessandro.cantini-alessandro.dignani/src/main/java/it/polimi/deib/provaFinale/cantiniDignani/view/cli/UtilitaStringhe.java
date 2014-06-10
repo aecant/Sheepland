@@ -39,44 +39,157 @@ public class UtilitaStringhe {
 
 		return listaStringhe;
 	}
-	
+
+	/**
+	 * Restituisce una formattata lista di interi
+	 * 
+	 * @param collezione
+	 *            la collezione di stringhe da formattare
+	 * @param separatore
+	 *            la stringa fra un elemento e il successivo
+	 * @param fine
+	 *            la stringa da appendere alla fine
+	 * @return una formattata lista di interi
+	 */
 	public static String listaDiInteri(Collection<Integer> collezione, String separatore, String fine) {
-		return listaDiStringhe(trasforma(collezione), separatore, fine);
+		return listaDiStringhe(trasformaInStringhe(collezione), separatore, fine);
 	}
 
+	/**
+	 * Restituisce una lista formattata di stringhe
+	 * 
+	 * @param array
+	 *            l'array di stringhe da formattare
+	 * @param separatore
+	 *            la stringa fra un elemento e il successivo
+	 * @param fine
+	 *            la stringa da appendere alla fine
+	 * @return una lista formattata di stringhe
+	 */
 	public static String listaDiStringhe(String[] array, String separatore, String fine) {
 		return listaDiStringhe(Arrays.asList(array), separatore, fine);
 	}
 
-	public static String daA(int origine, int destinazione, boolean fineFrase) {
-		String fine = fineFrase ? "." : "";
+	/**
+	 * Restituisce una stringa "da...a..." formattata per bene
+	 * 
+	 * @param origine
+	 *            da..
+	 * @param destinazione
+	 * @param fineFrase
+	 *            stringa da aggiungere alla fine
+	 * @return una stringa "da...a..." formattata per bene con una stringa
+	 *         concatenata alla fine
+	 */
+	public static String daA(int origine, int destinazione, String fine) {
 		return "da " + origine + " a " + destinazione + fine;
 	}
 
+	/**
+	 * Restituisce una stringa "da...a..." formattata per bene
+	 * 
+	 * @param origine
+	 *            da..
+	 * @param destinazione
+	 *            a..
+	 * @return una stringa formattata "da...a..."
+	 */
 	public static String daA(int origine, int destinazione) {
-		return daA(origine, destinazione, false);
+		return daA(origine, destinazione, "");
 	}
 
+	/**
+	 * Data una stringa, la restituisce con l'iniziale maiuscola e le altre
+	 * lettere minuscole
+	 * 
+	 * @param s
+	 *            la stringa da formattare
+	 * @return una stringa con l'iniziale maiuscola
+	 */
 	public static String inizialeMaiuscola(String s) {
 		s = s.toLowerCase();
 		return s.substring(0, 1).toUpperCase() + s.substring(1);
 	}
 
-	public static String nelTerr(int territorio, boolean fineFrase) {
-		String fine = fineFrase ? "." : "";
+	/**
+	 * Restituisce una stringa formattata del complemento di luogo verso un
+	 * territorio
+	 * 
+	 * @param territorio
+	 *            il codice del territorio
+	 * @param fineFrase
+	 *            la stringa da appendere alla fine
+	 * @return un complemento di luogo ben formattato
+	 */
+	public static String nelTerr(int territorio, String fine) {
 		return "nel territorio " + territorio + fine;
 	}
-	
+
+	/**
+	 * Restituisce una stringa formattata del complemento di luogo verso un
+	 * territorio
+	 * 
+	 * @param territorio
+	 *            il codice del territorio
+	 * @return un complemento di luogo ben formattato
+	 */
 	public static String nelTerr(int territorio) {
-		return nelTerr(territorio, false);
+		return nelTerr(territorio, "");
 	}
-	
-	public static Collection<String> trasforma(Collection<Integer> collInteri){
+
+	/**
+	 * Trasforma una collezione di interi in una collezione di stringhe
+	 * 
+	 * @param collInteri
+	 *            la collezione di interi da trasformare
+	 * @return la collezione di stringhe trasformata
+	 */
+	public static Collection<String> trasformaInStringhe(Collection<Integer> collInteri) {
 		Collection<String> collStringhe = new ArrayList<String>();
-		for(Integer i : collInteri) {
+		for (Integer i : collInteri) {
 			collStringhe.add(i.toString());
 		}
 		return collStringhe;
+	}
+
+	/**
+	 * Restituisce un menu per scegliere un elemento di una lista
+	 * 
+	 * @param lista
+	 *            la lista di elementi fra cui scegliere
+	 * @return un menu di scelta con gli elementi di una lista
+	 */
+	public static <E> String menuDiScelta(Collection<E> lista) {
+		return menuDiScelta(lista, "): ", ";\n", ".");
+	}
+
+	/**
+	 * Restituisce un menu per scegliere un elemento di una lista. Utile
+	 * specialmente se utilizzato con @link {InputCli#scegliElemento}
+	 * 
+	 * @param lista
+	 *            la lista di elementi fra cui scegliere
+	 * @param separatore
+	 *            la stringa fra il numero e la scelta
+	 * @param fineRiga
+	 *            la stringa alla fine delle righe
+	 * @param fineElenco
+	 *            la stringa alla fine dell'ultima riga
+	 * @return un menu di scelta con gli elementi di una lista
+	 */
+	public static <E> String menuDiScelta(Collection<E> lista, String separatore, String fineRiga, String fineElenco) {
+		String elenco = "";
+
+		int indice = 1;
+		Iterator<E> iter = lista.iterator();
+		while (iter.hasNext()) {
+			String elem = iter.next().toString();
+			String fine = iter.hasNext() ? fineRiga : fineElenco;
+			elenco += indice + separatore + elem + fine;
+			indice++;
+		}
+
+		return elenco;
 	}
 
 }

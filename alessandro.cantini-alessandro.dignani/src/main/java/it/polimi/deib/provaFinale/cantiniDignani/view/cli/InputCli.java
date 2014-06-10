@@ -13,13 +13,18 @@ public class InputCli {
 		in = new Scanner(inputStream);
 	}
 
+	/**
+	 * Chiede una stringa
+	 * 
+	 * @return la stringa inserita
+	 */
 	public String leggiStringa() {
 		return in.nextLine();
 	}
 
 	/**
-	 * Restituisce un intero, effettua la richiesta finche' la stringa inserita
-	 * e' corretta
+	 * Chiede un intero, effettua la richiesta finche' la stringa inserita e'
+	 * corretta
 	 * 
 	 * @return un intero
 	 */
@@ -38,7 +43,8 @@ public class InputCli {
 	}
 
 	/**
-	 * Restituisce un intero compreso fra min e max, i limiti sono inclusi.
+	 * Chiede un intero che deve essere compreso fra min e max, i limiti sono
+	 * inclusi.
 	 * 
 	 * @param min
 	 *            il numero minimo
@@ -56,7 +62,7 @@ public class InputCli {
 	}
 
 	/**
-	 * Restituisce un intero che appartiene a un inseme di numeri
+	 * Chiede un intero che deve appartenere a un inseme di numeri
 	 * 
 	 * @param insieme
 	 *            l'insieme di numeri di cui l'intero deve far parte
@@ -69,6 +75,25 @@ public class InputCli {
 			num = leggiIntero();
 		}
 		return num;
+	}
+
+	/**
+	 * Chiede all'utente
+	 * 
+	 * @param mosseDisponibili
+	 * @return
+	 */
+	public <E> E scegliElemento(Collection<E> coll) {
+		int scelta = leggiIntero(1, coll.size()) - 1;
+		int indice = 0;
+		for (E elem : coll) {
+			if (indice == scelta) {
+				return elem;
+			}
+			indice++;
+		}
+
+		throw new IllegalArgumentException("Impossibile scegliere dalla lista");
 	}
 
 }

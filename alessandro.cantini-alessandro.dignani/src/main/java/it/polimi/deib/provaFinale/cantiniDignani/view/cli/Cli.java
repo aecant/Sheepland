@@ -27,8 +27,7 @@ public class Cli implements InterfacciaUtente {
 	private final InputCli in = new InputCli(CostantiCli.DEFAULT_INPUT);
 	private final PrintStream out = CostantiCli.DEFAULT_OUTPUT;
 	private final String nome = ClientMain.getNome();
-	
-	
+
 	public String chiediNome() {
 		pulisci();
 		out.println("Inserisci il tuo nome");
@@ -43,7 +42,7 @@ public class Cli implements InterfacciaUtente {
 		out.println("Partita iniziata con i giocatori:");
 		out.println(listaDiStringhe(ClientMain.getDatiPartita().getNomiGiocatori(), " ;", "."));
 		TipoTerritorio tipoTesseraIniziale = ClientMain.getDatiPartita().getGiocatore(nome).getTessere().get(0).getTipo();
-		out.println("La tua tessera iniziale e' di tipo " + tipoTesseraIniziale);	
+		out.println("La tua tessera iniziale e' di tipo " + tipoTesseraIniziale);
 	}
 
 	public void lancioDado(Integer numero) {
@@ -69,11 +68,11 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void movimentoLupo(int origine, int destinazione) {
-		out.println("Il lupo si e' spostato " + daA(origine, destinazione, true));
+		out.println("Il lupo si e' spostato " + daA(origine, destinazione, "."));
 	}
 
 	public void movimentoPecoraNera(int origine, int destinazione) {
-		out.println("La pecora si e' spostata " + daA(origine, destinazione, true));
+		out.println("La pecora si e' spostata " + daA(origine, destinazione, "."));
 	}
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
@@ -82,17 +81,17 @@ public class Cli implements InterfacciaUtente {
 
 	public void abbattimento(String giocatore, TipoAnimale tipo, int territorio, boolean aBuonFine) {
 		String verbo = aBuonFine ? "ha abbattuto " : "non e' riuscito ad abbattere ";
-		out.println(giocatore + verbo + tipo.nomeGenerico + nelTerr(territorio, true));
+		out.println(giocatore + verbo + tipo.nomeGenerico + nelTerr(territorio, "."));
 	}
 
 	public void accoppiamento(String giocatore, int territorio, boolean aBuonFine) {
 		String verbo = aBuonFine ? "ha fatto" : "non e' riuscito a far";
-		out.println("Il giocatore " + verbo + " una pecora e un montone nel territorio " + nelTerr(territorio, true));
+		out.println("Il giocatore " + verbo + " una pecora e un montone nel territorio " + nelTerr(territorio, "."));
 	}
 
 	public void trasformazioneAgnello(boolean maschio, Integer territorio) {
 		TipoAnimale adulto = maschio ? TipoAnimale.MONTONE : TipoAnimale.PECORA;
-		out.println("Un agnello e' diventato " + adulto.nomeGenerico + nelTerr(territorio, true));
+		out.println("Un agnello e' diventato " + adulto.nomeGenerico + nelTerr(territorio, "."));
 	}
 
 	public void pagamento(Integer denaro, String pagante, String pagato) {
@@ -112,10 +111,10 @@ public class Cli implements InterfacciaUtente {
 		out.println("Inserisci la posizione iniziale del pastore");
 		out.println("Le strade disponibili sono le seguenti: ");
 		out.println(listaDiInteri(stradeDisponibili, " ,", "."));
-		
+
 		int stradaScelta = in.leggiIntero(stradeDisponibili);
-		
-		return new PosizionamentoPastore(nome, stradaScelta);		
+
+		return new PosizionamentoPastore(nome, stradaScelta);
 	}
 
 	public MovimentoPastore richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento, int origine) {
@@ -126,18 +125,23 @@ public class Cli implements InterfacciaUtente {
 		out.println(listaDiInteri(gratis, " ,", "."));
 		out.println("Queste sono le strade a pagamento");
 		out.println(listaDiInteri(pagamento, " ,", "."));
-		
-		List<Integer> tutte = new ArrayList<Integer>() ;
+
+		List<Integer> tutte = new ArrayList<Integer>();
 		tutte.addAll(pagamento);
 		tutte.addAll(gratis);
-		
+
 		int stradaScelta = in.leggiIntero(tutte);
-		
+
 		return new MovimentoPastore(nome, origine, stradaScelta);
 	}
 
 	public SceltaMossa richiestaTipoMossa(Collection<TipoMossa> mosseDisponibili, int numMossa) {
-		return null;
+		out.println("Devi effettuare la mossa numero"+ numMossa +".");
+		out.println("Scegli la mossa da effettuare fra le seguenti:");
+		out.println(menuDiScelta(mosseDisponibili));
+		TipoMossa scelta = in.scegliElemento(mosseDisponibili);
+		
+		return new SceltaMossa(nome, scelta);
 	}
 
 	public SceltaPastore richiestaPastore() {
