@@ -28,7 +28,7 @@ public class FaseIniziale extends FasePartita{
 	 * Crea uno stack di tessere, di tutti i tipi a parte Sheepsburg, lo mescola
 	 * e distribuisce una tessera per ogni giocatore
 	 */
-	private void disponiTessereIniziali() {
+	public void disponiTessereIniziali() {
 		Stack<Tessera> territoriIniziali = new Stack<Tessera>();
 		for (TipoTerritorio tipo : TipoTerritorio.values()) {
 			if (tipo != TipoTerritorio.SHEEPSBURG) {
@@ -46,7 +46,7 @@ public class FaseIniziale extends FasePartita{
 	/**
 	 * Distribuisce la somma di denaro iniziale a ogni giocatore
 	 */
-	private void distribuisciDenari() {
+	public void distribuisciDenari() {
 		for (Giocatore g : partita.getGiocatori()) {
 			g.aggiungiDenaro(gestore.denaroIniziale);
 		}
@@ -55,7 +55,7 @@ public class FaseIniziale extends FasePartita{
 	/**
 	 * Dispone una pecora, un montone o un agnello per ciascun territorio.
 	 */
-	private void disponiPecore() {
+	public void disponiPecore() {
 		for (Territorio t : Mappa.getMappa().getTerritori()) {
 			partita.getGregge().aggiungi(Sorte.pecoraRandom(t));
 		}
