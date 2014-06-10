@@ -65,7 +65,7 @@ public class Strada {
 
 	@Override
 	public String toString() {
-		return "Strada fra [" + territorio1.getCodice() + "] e [" + territorio2.getCodice() + "]";
+		return "Strada " + codice + " fra " + territorio1 + " e " + territorio2;
 	}
 
 }
