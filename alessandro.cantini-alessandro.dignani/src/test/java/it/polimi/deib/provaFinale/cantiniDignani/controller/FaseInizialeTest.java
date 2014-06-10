@@ -21,7 +21,7 @@ public class FaseInizialeTest {
 	GestorePartita gestore;
 
 	@Before
-	public void setUp() throws NoSuchMethodException, SecurityException, NoSuchFieldException, IllegalAccessException {
+	public void setUp() {
 		Collections.addAll(listaNomi, "esempio1", "esempio2", "esempio3", "esempio4");
 		partita = new Partita(listaNomi);
 		gestore = new GestorePartita(partita, null, null);
@@ -46,9 +46,9 @@ public class FaseInizialeTest {
 			for (Giocatore g : partita.getGiocatori()) {
 				
 				if (partita.getGiocatori().size() == 2) {
-					assertEquals(g.getDenaro(), Costanti.DENARO_INIZIALE_DUE_GIOCATORI);
+					assertTrue(g.getDenaro() == Costanti.DENARO_INIZIALE_DUE_GIOCATORI);
 				} else {
-					assertEquals(g.getDenaro(), Costanti.DENARO_INIZIALE);
+					assertTrue(g.getDenaro() == Costanti.DENARO_INIZIALE);
 				}
 			}
 			

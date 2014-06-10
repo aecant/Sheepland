@@ -10,7 +10,7 @@ public class Giocatore implements Serializable{
 	private static final long serialVersionUID = -8973926581885818571L;
 	
 	private String nome;
-	private int denaro;
+	private Integer denaro;
 	private List<Pastore> pastori;
 	private List<Tessera> tessere;
 

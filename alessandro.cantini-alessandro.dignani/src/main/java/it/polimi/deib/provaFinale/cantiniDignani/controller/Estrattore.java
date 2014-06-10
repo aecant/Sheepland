@@ -1,9 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
-import java.util.Arrays;
-import java.util.List;
-
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
@@ -13,6 +11,10 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Classe che fornisce metodi statici per effettuare query e ottenere dati dal
@@ -56,7 +58,7 @@ public class Estrattore {
 	}
 
 	public static Pastore[] pastori(Partita partita) {
-		return partita.getPastori().toArray(new Pastore[partita.getGiocatori().size()]);
+		return partita.getPastori().toArray(new Pastore[partita.getPastori().size()]);
 	}
 
 	public static Integer[] recintiIniziali(Partita partita) {
@@ -139,4 +141,26 @@ public class Estrattore {
 		throw new IllegalArgumentException("La pecora non esiste");
 	}
 
+	/**
+	 * Restituisce l'array delle tessere in cima al mazzo
+	 * 
+	 * @param partita
+	 *            la partita di cui si vogliono conoscere le tessere
+	 * @return l'array delle tessere in cima al mazzo
+	 */
+	public static Tessera[] tessereInCima(Partita partita) {
+		Tessera[] tessere = new Tessera[TipoTerritorio.valoriTessere().length];
+		for (int i = 0; i < tessere.length; i++) {
+			tessere[i] = partita.getMazzo().leggiTesseraInCima(TipoTerritorio.valoriTessere()[i]);
+		}
+
+		return tessere;
+	}
+	
+	/**
+	 * Restituisce l'array dei giocatori di una partita
+	 */
+	public static Giocatore[] giocatori(Partita partita) {
+		return partita.getGiocatori().toArray(new Giocatore[partita.getGiocatori().size()]);
+	}
 }

@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class GiocatoreTest {
-	int denaro = 100;
+	Integer denaro = 100;
 	String nome = "esempio";
 	Giocatore giocatore;
 
@@ -19,7 +19,7 @@ public class GiocatoreTest {
 	@Test
 	public void testGiocatore() {
 		assertEquals(giocatore.getNome(), nome);
-		assertEquals(giocatore.getDenaro(), 0);
+		assertEquals(giocatore.getDenaro(), Integer.valueOf(0));
 	}
 
 	@Test
@@ -27,7 +27,7 @@ public class GiocatoreTest {
 		giocatore.aggiungiDenaro(denaro);
 		assertEquals(giocatore.getDenaro(), denaro);
 		giocatore.sottraiDenaro(denaro);
-		assertEquals(giocatore.getDenaro(), 0);
+		assertEquals(giocatore.getDenaro(), Integer.valueOf(0));
 	}
 
 	@Test(expected = DenaroInsufficienteException.class)
