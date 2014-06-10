@@ -103,7 +103,7 @@ public class GestorePartita implements Runnable {
 		for (int numMossa = 1; numMossa <= Costanti.NUM_MOSSE; numMossa++) {
 			Set<TipoMossa> mosseDisponibili = gestoreMossa.creaMosseDisponibili(numMossa, pastoreMosso, mossaPrecedente, pastore, giocatore.getDenaro());
 
-			inviaEvento(new RichiestaTipoMossa(mosseDisponibili), giocatore);
+			inviaEvento(new RichiestaTipoMossa(mosseDisponibili, numMossa), giocatore);
 
 			TipoMossa tipoMossa = ((SceltaMossa) gestoreEventi.aspetta(SceltaMossa.class)).getMossa();
 
