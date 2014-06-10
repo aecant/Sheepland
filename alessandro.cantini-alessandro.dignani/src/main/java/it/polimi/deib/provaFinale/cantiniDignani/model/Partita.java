@@ -27,6 +27,8 @@ public class Partita {
 
 		Collections.shuffle(giocatori);
 
+		giocatoreDiTurno = giocatori.get(0);
+		
 		aggiungiPastoreAiGiocatori();
 		if (giocatori.size() == 2) {
 			aggiungiPastoreAiGiocatori();
