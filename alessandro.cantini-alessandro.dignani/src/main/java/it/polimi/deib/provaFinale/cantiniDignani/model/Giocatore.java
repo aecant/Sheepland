@@ -89,7 +89,7 @@ public class Giocatore implements Serializable{
 		return this.nome;
 	}
 
-	public int getDenaro() {
+	public Integer getDenaro() {
 		return this.denaro;
 	}
 
