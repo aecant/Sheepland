@@ -1,9 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.cli;
 
-import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.daA;
-import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.listaDiInteri;
-import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.listaDiStringhe;
-import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.nelTerr;
+import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.*;
+
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
