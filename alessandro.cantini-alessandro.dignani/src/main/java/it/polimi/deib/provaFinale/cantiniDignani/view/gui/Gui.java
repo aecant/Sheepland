@@ -54,7 +54,7 @@ public class Gui {
 		gui.inizioPartita();
 		
 		while(true) {
-			gui.pec.muoviPecora(new Point(Sorte.numeroCasuale(0, CostantiGui.dimensioneMappa.width), Sorte.numeroCasuale(0, CostantiGui.dimensioneMappa.height)));
+			gui.pec.muoviPecora(new Point(Sorte.numeroCasuale(0, CostantiGui.DIMENSIONE_MAPPA.width), Sorte.numeroCasuale(0, CostantiGui.DIMENSIONE_MAPPA.height)));
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {

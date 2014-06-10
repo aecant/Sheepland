@@ -15,7 +15,7 @@ public class BackgroundMappaPanel extends JPanel {
 	public BackgroundMappaPanel(Image img) {
 		super(new BorderLayout());
 		this.img = img;
-		this.setBackground(CostantiGui.coloreAcqua);
+		this.setBackground(CostantiGui.COLORE_ACQUA);
 	}
 
 	public void paintComponent(Graphics g) {

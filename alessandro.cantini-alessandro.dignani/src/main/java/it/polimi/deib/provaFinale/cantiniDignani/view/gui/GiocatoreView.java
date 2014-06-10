@@ -25,24 +25,24 @@ public class GiocatoreView extends JPanel {
 
 	public GiocatoreView(Giocatore g) {
 		super();
-		setPreferredSize(CostantiGui.dimensionePanelGiocatore);
+		setPreferredSize(CostantiGui.DIMENSIONE_PANEL_GIOCATORE);
 		setBackground(g.getPastori().get(0).getColore().coloreView);
 		setLayout(new BorderLayout());
 		setBorder(new EmptyBorder(10, 10, 10, 10));
 		
 		lblNome = new JLabel(g.getNome());
-		lblNome.setFont(CostantiGui.fontNomeGiocatore);
+		lblNome.setFont(CostantiGui.FONT_NOME_GIOCATORE);
 		lblNome.setVerticalAlignment(SwingConstants.CENTER);
 		
-		panelNome.setBackground(CostantiGui.coloreSfondoNomeGiocatore);
+		panelNome.setBackground(CostantiGui.COLORE_SFONDO_NOME_GIOC);
 		panelNome.add(lblNome);
 		
 		lblSoldi = new JLabel(g.getDenaro().toString());
-		lblSoldi.setFont(CostantiGui.fontSoldi);
+		lblSoldi.setFont(CostantiGui.FONT_SOLDI);
 		
-		Image img = Toolkit.getDefaultToolkit().getImage(CostantiGui.percorsoImmagini + "soldi.png").getScaledInstance(CostantiGui.dimensionePanelTessera.width, CostantiGui.dimensionePanelTessera.height, 0);
+		Image img = Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "soldi.png").getScaledInstance(CostantiGui.DIMENSIONE_PANEL_TESSERA.width, CostantiGui.DIMENSIONE_PANEL_TESSERA.height, 0);
 		panelSoldi = new BackgroundPanel(img);
-		panelSoldi.setPreferredSize(CostantiGui.dimensioneAgnelloPanelSoldi);
+		panelSoldi.setPreferredSize(CostantiGui.DIMENSIONE_PANEL_SOLDI);
 		panelSoldi.add(lblSoldi);
 		panelSoldi.setBackground(new Color(0, 0, 0, 0));
 		lblSoldi.setHorizontalAlignment(SwingConstants.CENTER);

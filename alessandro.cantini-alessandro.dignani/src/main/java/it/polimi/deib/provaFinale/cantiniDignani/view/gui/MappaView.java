@@ -12,9 +12,9 @@ public class MappaView extends BackgroundMappaPanel{
 	}
 
 	public MappaView() {
-		super(Toolkit.getDefaultToolkit().getImage(CostantiGui.percorsoImmagini + "mappaSheepland.png"));
-		this.setPreferredSize(CostantiGui.dimensioneMappa);
-		this.setMaximumSize(CostantiGui.dimensioneMappa);
+		super(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "mappaSheepland.png"));
+		this.setPreferredSize(CostantiGui.DIMENSIONE_MAPPA);
+		this.setMaximumSize(CostantiGui.DIMENSIONE_MAPPA);
 		this.setLayout(null);
 		
 		// Prova inserimento pecora in 40, 70

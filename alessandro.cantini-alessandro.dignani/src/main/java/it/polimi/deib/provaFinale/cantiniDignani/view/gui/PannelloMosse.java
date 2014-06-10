@@ -18,7 +18,7 @@ public class PannelloMosse extends JPanel {
 	public PannelloMosse() {
 		super(new GridLayout(TipoMossa.values().length, 1, 0, 0));
 		
-		setBackground(CostantiGui.coloreAcqua);
+		setBackground(CostantiGui.COLORE_ACQUA);
 
 		for(TipoMossa tm : TipoMossa.values()) {
 			panelsMosse.add(new PanelMossa(tm));

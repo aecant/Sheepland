@@ -26,7 +26,7 @@ public class PannelloTessere extends JPanel {
 		int cont = 0;
 		for (TipoTerritorio t : TipoTerritorio.values()) {
 			if (!t.equals(TipoTerritorio.SHEEPSBURG)) {
-				immaginiTerreni[cont] = creaCasella(CostantiGui.percorsoImmagini + t.name().toLowerCase() + ".jpg");
+				immaginiTerreni[cont] = creaCasella(CostantiGui.PERCORSO_IMMAGINI + t.name().toLowerCase() + ".jpg");
 				cont++;
 			}
 		}
@@ -34,27 +34,27 @@ public class PannelloTessere extends JPanel {
 		// inizializzo i panel e li inserisco
 		for (int i = 0; i < immaginiTerreni.length; i++) {
 			lblTerreni[i] = new JLabel("0");
-			lblTerreni[i].setForeground(CostantiGui.coloreAcqua);
-			lblTerreni[i].setFont(CostantiGui.fontTerreni);
+			lblTerreni[i].setForeground(CostantiGui.COLORE_ACQUA);
+			lblTerreni[i].setFont(CostantiGui.FONT_TERRENI);
 
 			panelsAngolini[i] = new JPanel();
-			panelsAngolini[i].setBounds(0, 0, CostantiGui.dimensioneAngolini, CostantiGui.dimensioneAngolini);
-			panelsAngolini[i].setBackground(CostantiGui.coloreSfondoAngolini);
+			panelsAngolini[i].setBounds(0, 0, CostantiGui.DIMENSIONE_ANGOLINI, CostantiGui.DIMENSIONE_ANGOLINI);
+			panelsAngolini[i].setBackground(CostantiGui.COLORE_SFONDO_ANGOLINI);
 			panelsAngolini[i].add(lblTerreni[i]);
 
 			panelsTerreni[i] = new BackgroundPanel(immaginiTerreni[i]);
 			panelsTerreni[i].setLayout(null);
-			panelsTerreni[i].setBackground(CostantiGui.coloreAcqua);
+			panelsTerreni[i].setBackground(CostantiGui.COLORE_ACQUA);
 			panelsTerreni[i].add(panelsAngolini[i]);
 
 			add(panelsTerreni[i], i);
 		}
-		this.setBackground(CostantiGui.coloreAcqua);
-		this.setPreferredSize(new Dimension(CostantiGui.dimensioneMappa.height/6, CostantiGui.dimensioneMappa.height));
+		this.setBackground(CostantiGui.COLORE_ACQUA);
+		this.setPreferredSize(new Dimension(CostantiGui.DIMENSIONE_MAPPA.height/6, CostantiGui.DIMENSIONE_MAPPA.height));
 
 	}
 
 	private Image creaCasella(String percorsoImg) {
-		return Toolkit.getDefaultToolkit().getImage(percorsoImg).getScaledInstance(CostantiGui.dimensionePanelTessera.width, CostantiGui.dimensionePanelTessera.height, 0);
+		return Toolkit.getDefaultToolkit().getImage(percorsoImg).getScaledInstance(CostantiGui.DIMENSIONE_PANEL_TESSERA.width, CostantiGui.DIMENSIONE_PANEL_TESSERA.height, 0);
 	}
 }

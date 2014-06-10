@@ -35,12 +35,12 @@ public class PartitaView {
 		// imposto il panel della mappa
 		panelMappa = new JPanel(new BorderLayout());
 		panelMappaSinistra = new JPanel();
-		panelMappaSinistra.setPreferredSize(CostantiGui.dimensionePannelliLateraliMappa);
-		panelMappaSinistra.setBackground(CostantiGui.coloreAcqua);
+		panelMappaSinistra.setPreferredSize(CostantiGui.DIMENSIONE_PAN_LATERALI_MAPPA);
+		panelMappaSinistra.setBackground(CostantiGui.COLORE_ACQUA);
 		
 		panelMappaDestra = new JPanel();
-		panelMappaDestra.setPreferredSize(CostantiGui.dimensionePannelliLateraliMappa);
-		panelMappaDestra.setBackground(CostantiGui.coloreAcqua);
+		panelMappaDestra.setPreferredSize(CostantiGui.DIMENSIONE_PAN_LATERALI_MAPPA);
+		panelMappaDestra.setBackground(CostantiGui.COLORE_ACQUA);
 		
 		mappa = new MappaView();
 		panelMappa.add(mappa, BorderLayout.CENTER);
@@ -60,7 +60,7 @@ public class PartitaView {
 		panelGiocatoriMosse = new JPanel(new BorderLayout());
 		panelGiocatoriMosse.add(panelGiocatori, BorderLayout.NORTH);
 		panelGiocatoriMosse.add(panelMosse, BorderLayout.SOUTH);
-		panelGiocatoriMosse.setBackground(CostantiGui.coloreAcqua);
+		panelGiocatoriMosse.setBackground(CostantiGui.COLORE_ACQUA);
 
 		// imposto la finestra
 		finestra = new JFrame("Sheepland - The Videogame");

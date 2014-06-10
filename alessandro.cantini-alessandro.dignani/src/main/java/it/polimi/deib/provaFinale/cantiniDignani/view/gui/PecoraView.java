@@ -13,15 +13,15 @@ public class PecoraView extends JPanel {
 	private PecoraImmagine pi;
 
 	public PecoraView(int x, int y) {
-		this.setBounds(new Rectangle(new Point(x, y), CostantiGui.dimensionePecora));
+		this.setBounds(new Rectangle(new Point(x, y), CostantiGui.DIMENSIONE_PECORA));
 		this.setLayout(null);
 		this.setOpaque(false);
 		
 		lblContatore = new JLabel("0");
-		lblContatore.setBounds((CostantiGui.dimensionePecora.width/2), (CostantiGui.dimensionePecora.height/2)-5, 10, 10);
+		lblContatore.setBounds((CostantiGui.DIMENSIONE_PECORA.width/2), (CostantiGui.DIMENSIONE_PECORA.height/2)-5, 10, 10);
 		
 		pi = new PecoraImmagine();
-		pi.setBounds(new Rectangle(new Point(0, 0), CostantiGui.dimensionePecora));
+		pi.setBounds(new Rectangle(new Point(0, 0), CostantiGui.DIMENSIONE_PECORA));
 		
 		this.add(lblContatore);
 		this.add(pi);
@@ -48,11 +48,11 @@ public class PecoraView extends JPanel {
 	}
 
 	private Point[] creaArrayPosizioniSpostamento(Point destinazione) {
-		Point[] posizioni = new Point[CostantiGui.risoluzioneSpostamento];
+		Point[] posizioni = new Point[CostantiGui.NUM_PASSI_SPOSTAMENTO];
 		posizioni[0] = this.getLocation();
 		Point temp = new Point(posizioni[0]);
-		for(int i=1; i < CostantiGui.risoluzioneSpostamento; i++) {
-			temp.translate((int) (destinazione.getX() - temp.getX())/(CostantiGui.risoluzioneSpostamento-i), (int) (destinazione.getY() - temp.getY())/(CostantiGui.risoluzioneSpostamento-i)); 
+		for(int i=1; i < CostantiGui.NUM_PASSI_SPOSTAMENTO; i++) {
+			temp.translate((int) (destinazione.getX() - temp.getX())/(CostantiGui.NUM_PASSI_SPOSTAMENTO-i), (int) (destinazione.getY() - temp.getY())/(CostantiGui.NUM_PASSI_SPOSTAMENTO-i)); 
 			posizioni[i] = new Point(temp);
 		}
 		return posizioni;
