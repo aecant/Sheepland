@@ -8,7 +8,7 @@ import java.awt.Toolkit;
 public class CostantiGui {
 
 	// Risoluzione spostamento
-	public static int risoluzioneSpostamento = 100;
+	public static int risoluzioneSpostamento = 50;
 
 
 	/**
@@ -39,14 +39,16 @@ public class CostantiGui {
 	public static final Color coloreSfondoAngolini = new Color(255, 255, 255, 180);
 	
 	// Panel giocatori
-	public static final Dimension dimensionePannelloGiocatori = new Dimension(200, 300);
 	public static final Dimension dimensionePanelGiocatore = new Dimension(200, 70);
 	public static final Color coloreSfondoNomeGiocatore = new Color(255, 255, 255, 180);
 	public static final Dimension dimensioneAgnelloPanelSoldi = new Dimension(50, 50);
 	
 	// panels laterali mappa
-	public static final Dimension dimensionePannelliLateraliMappa = new Dimension((int) (dimensioneSchermo.width-dimensioneSchermo.height*(0.75)-dimensionePannelloGiocatori.width-dimensionePanelTessera.width)/2, dimensioneSchermo.height);
+	public static final Dimension dimensionePannelliLateraliMappa = new Dimension((int) (dimensioneSchermo.width-dimensioneSchermo.height*(0.75)-dimensionePanelGiocatore.width-dimensionePanelTessera.width)/2, dimensioneSchermo.height);
 	
 	// Coordinate delle posizioni delle pecore nei territori (5 per ogni territorio)
 	public static final Point[][] coordinate = {}; // TODO
+	
+	// Panel mosse
+	public static final Dimension dimensionePanelMossa = new Dimension(150, 80);
 }
