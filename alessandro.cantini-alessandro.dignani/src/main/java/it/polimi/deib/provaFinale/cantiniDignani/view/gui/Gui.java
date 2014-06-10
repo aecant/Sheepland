@@ -25,7 +25,7 @@ public class Gui {
 	public void inizioPartita() {
 		
 		// TODO questo è un test, andrà mofificato con ClientMain.getDatiPartita()
-		Partita part = new Partita(Arrays.asList("Alessandro", "Andrea", "Luca", "paolo"));
+		Partita part = new Partita(Arrays.asList("Alessandro", "Andrea", "Luca", "Marco"));
 		GestorePartita gest = new GestorePartita(part, null, null);
 		FaseIniziale fi = new FaseIniziale(gest);
 		fi.disponiPecore();

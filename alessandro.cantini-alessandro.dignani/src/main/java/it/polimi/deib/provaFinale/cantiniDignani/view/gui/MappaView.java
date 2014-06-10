@@ -1,6 +1,5 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
-import java.awt.Dimension;
 import java.awt.Toolkit;
 
 public class MappaView extends BackgroundMappaPanel{
@@ -14,9 +13,9 @@ public class MappaView extends BackgroundMappaPanel{
 
 	public MappaView() {
 		super(Toolkit.getDefaultToolkit().getImage(CostantiGui.percorsoImmagini + "mappaSheepland.png"));
-		this.setPreferredSize(new Dimension(CostantiGui.dimensioneMappa));
+		this.setPreferredSize(CostantiGui.dimensioneMappa);
+		this.setMaximumSize(CostantiGui.dimensioneMappa);
 		this.setLayout(null);
-		
 		
 		// Prova inserimento pecora in 40, 70
 		pec = new PecoraView(40, 40);
