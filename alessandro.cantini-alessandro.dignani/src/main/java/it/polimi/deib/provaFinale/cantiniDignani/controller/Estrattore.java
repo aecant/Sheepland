@@ -97,6 +97,19 @@ public class Estrattore {
 		return strade;
 	}
 
+	/**
+	 * Restituisce un array di boolean. L'indice dell'array corrisponde al
+	 * codice della strada, gli elementi valgono true se la strada
+	 * corrispondente e' libera e non e' contigua alla strada passata come
+	 * parametro.
+	 * 
+	 * @param partita
+	 *            la partita in interesse
+	 * @param posPastore
+	 *            la posizione del pastore
+	 * @return un array di boolean che indica le strade libere in cui un pastore
+	 *         si puo' spostare pagando.
+	 */
 	public static boolean[] stradeLibereAPagamento(Partita partita, Strada posPastore) {
 		boolean[] strade = stradeLibere(partita);
 
@@ -109,6 +122,19 @@ public class Estrattore {
 		return strade;
 	}
 
+	/**
+	 * Restituisce un array di boolean. L'indice dell'array corrisponde al
+	 * codice della strada, gli elementi valgono true se la strada
+	 * corrispondente e' libera ed e' contigua alla strada passata come
+	 * parametro.
+	 * 
+	 * @param partita
+	 *            la partita in interesse
+	 * @param posPastore
+	 *            la posizione del pastore
+	 * @return un array di boolean che indica le strade libere in cui un pastore
+	 *         si puo' spostare gratis.
+	 */
 	public static boolean[] stradeLibereGratis(Partita partita, Strada posPastore) {
 		boolean[] stradeLibere = stradeLibere(partita);
 		boolean[] stradeLibereAPagamento = stradeLibereAPagamento(partita, posPastore);
