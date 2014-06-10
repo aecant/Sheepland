@@ -4,6 +4,8 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
@@ -11,6 +13,10 @@ import javax.swing.JPanel;
 
 public class PartitaView {
 	private JFrame finestra;
+	
+	private JPanel panelMappa;
+	private JPanel panelMappaSinistra;
+	private JPanel panelMappaDestra;
 	private MappaView mappa;
 
 	private JPanel panelTessere;
@@ -26,7 +32,19 @@ public class PartitaView {
 		this.datiPartita = datiPartita;
 
 		// imposto il panel della mappa
+		panelMappa = new JPanel(new BorderLayout());
+		panelMappaSinistra = new JPanel();
+		panelMappaSinistra.setPreferredSize(CostantiGui.dimensionePannelliLateraliMappa);
+		panelMappaSinistra.setBackground(CostantiGui.coloreAcqua);
+		
+		panelMappaDestra = new JPanel();
+		panelMappaDestra.setPreferredSize(CostantiGui.dimensionePannelliLateraliMappa);
+		panelMappaDestra.setBackground(CostantiGui.coloreAcqua);
+		
 		mappa = new MappaView();
+		panelMappa.add(mappa, BorderLayout.CENTER);
+		panelMappa.add(panelMappaSinistra, BorderLayout.WEST);
+		panelMappa.add(panelMappaDestra, BorderLayout.EAST);
 
 		// imposto il panel delle tessere
 		panelTessere = new PannelloTessere();
@@ -44,14 +62,16 @@ public class PartitaView {
 
 		// aggiungo i panel alla finestra
 		finestra.add(panelTessere, BorderLayout.WEST);
-		finestra.add(mappa, BorderLayout.CENTER);
+		finestra.add(panelMappa, BorderLayout.CENTER);
 		finestra.add(panelGiocatoriMosse, BorderLayout.EAST);
 
 		finestra.pack();
-		// finestra.setResizable(false);
-		finestra.setLocation(300, 150);
 		finestra.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		java.awt.GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice cc = ge.getDefaultScreenDevice();
+		cc.setFullScreenWindow(finestra);
 	}
 
 	public void visualizza() {
