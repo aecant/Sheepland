@@ -22,15 +22,24 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 public class Cli implements InterfacciaUtente {
-	private final InputCli in = new InputCli(CostantiCli.DEFAULT_INPUT);
+	private final InputCli in;
 	private final PrintStream out = CostantiCli.DEFAULT_OUTPUT;
 	private final String nome = ClientMain.getNome();
+
+	public Cli(InputStream is) {
+		in = new InputCli(is);
+	}
+
+	public Cli() {
+		this(CostantiCli.DEFAULT_INPUT);
+	}
 
 	public String chiediNome() {
 		pulisci();
@@ -62,7 +71,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void movimentoPecora(String giocatore, TipoAnimale pecora, int origine, int destinazione) {
-		out.println(giocatore + " ha spostato " + pecora.nomeGenerico + daA(origine, destinazione));
+		out.println(giocatore + " ha spostato " + pecora.nomeGenerico + " " + daA(origine, destinazione));
 	}
 
 	public void movimentoPastore(String giocatore, int origine, int destinazione) {
@@ -84,8 +93,8 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void abbattimento(String giocatore, TipoAnimale tipo, int territorio, boolean aBuonFine) {
-		String verbo = aBuonFine ? "ha abbattuto " : "non e' riuscito ad abbattere ";
-		out.println(giocatore + verbo + tipo.nomeGenerico + nelTerr(territorio, "."));
+		String verbo = aBuonFine ? " ha abbattuto " : " non e' riuscito ad abbattere ";
+		out.println(giocatore + verbo + tipo.nomeGenerico + " " + nelTerr(territorio, "."));
 	}
 
 	public void accoppiamento(String giocatore, int territorio, boolean aBuonFine) {
@@ -157,7 +166,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public MovimentoPecora richiestaPecoraDaMuovere(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2) {
-		out.println("Devi selezionare una pecora da muovere");
+		out.println("Devi selezionare una pecora da spostare");
 		int indice = selezionaPecoraDaTerritorio(t1, oviniT1, t2, oviniT2);
 		List<TipoAnimale> tutti = new ArrayList<TipoAnimale>();
 		tutti.addAll(oviniT1);
@@ -165,19 +174,26 @@ public class Cli implements InterfacciaUtente {
 		TipoAnimale tipo = tutti.get(indice);
 		int destinazione, origine;
 		if (indice < oviniT1.size()) {
-			destinazione = t1;
-			origine = t2;
-		} else {
-			destinazione = t2;
 			origine = t1;
+			destinazione = t2;
+		} else {
+			origine = t2;
+			destinazione = t1;
 		}
 		return new MovimentoPecora(nome, tipo, origine, destinazione);
 
 	}
 
 	public Abbattimento richiestaPecoraDaAbbattere(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2) {
-		// TODO Auto-generated method stub
-		return null;
+		out.println("Devi selezionare una pecora da abbattere");
+		int indice = selezionaPecoraDaTerritorio(t1, oviniT1, t2, oviniT2);
+		List<TipoAnimale> tutti = new ArrayList<TipoAnimale>();
+		tutti.addAll(oviniT1);
+		tutti.addAll(oviniT2);
+		TipoAnimale tipo = tutti.get(indice);
+		int terr = indice < oviniT1.size() ? t1 : t2;
+
+		return new Abbattimento(nome, tipo, terr);
 	}
 
 	public Accoppiamento richiestaTerritorioPerAccoppiamento(Collection<Integer> terrDisponibili) {
@@ -198,12 +214,17 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	private int selezionaPecoraDaTerritorio(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2) {
-		out.println("Queste sono le pecore " + nelTerr(t1));
+		if (!oviniT1.isEmpty()) {
+			out.println("Queste sono le pecore " + nelTerr(t1));
+		}
 		out.println(menuDiScelta(oviniT1));
-		out.println("Queste sono le pecore " + nelTerr(t1));
-		out.println(menuDiScelta(oviniT1, oviniT1.size() + 1));
 
-		return in.leggiIntero(1, oviniT2.size()) - 1;
+		if (!oviniT2.isEmpty()) {
+			out.println("Queste sono le pecore " + nelTerr(t2));
+		}
+		out.println(menuDiScelta(oviniT2, oviniT1.size() + 1));
+
+		return in.leggiIntero(1, oviniT1.size() + oviniT2.size()) - 1;
 	}
 
 }

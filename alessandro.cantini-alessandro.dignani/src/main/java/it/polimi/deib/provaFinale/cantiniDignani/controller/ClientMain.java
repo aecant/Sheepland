@@ -8,8 +8,8 @@ import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 import it.polimi.deib.provaFinale.cantiniDignani.view.cli.Cli;
 
 public class ClientMain {
-	private static String nome;
-	private static InterfacciaUtente ui;
+	private static String nome = "nomegiocatore"; //TODO test da rimuovere
+	private static InterfacciaUtente ui = new Cli(); //TODO test da rimuovere
 	private static ConnessioneClient connessione;
 	private static DatiPartita datiPartita;
 	private static GestoreCoda<Evento> gestoreEventi = new GestoreCoda<Evento>();
