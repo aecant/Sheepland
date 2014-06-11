@@ -1,8 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 public class Costanti {
-	private Costanti() {
-	}
 	
 	public static final int ETA_MAX_AGNELLO = 2;
 
@@ -21,9 +19,9 @@ public class Costanti {
 	public static final int NUM_PASTORI_DUE_GIOCATORI = 2;
 	
 	/**
-	 * matrice di transizione fra un territorio e un altro confinante
-	 * l'indice delle righe corrisponde al codice del territorio
-	 * l'indice delle colonne rappresenta il valore del dado
+	 * La matrice di transizione fra un territorio e un altro confinante
+	 * L'indice delle righe corrisponde al codice del territorio
+	 * L'indice delle colonne rappresenta il valore del dado
 	 */
 	public static final Integer[][] MAPPA = {
 		{1,4,7,10,13,16},
@@ -88,5 +86,11 @@ public class Costanti {
 	
 	public static final int COSTO_SILENZIO = 2;
 	public static final int DADO_MIN_PER_SILENZIO = 5;
+	
+	/**
+	 * Costruttore privato per nascondere quello di default
+	 */
+	private Costanti() {
+	}
 	
 }
