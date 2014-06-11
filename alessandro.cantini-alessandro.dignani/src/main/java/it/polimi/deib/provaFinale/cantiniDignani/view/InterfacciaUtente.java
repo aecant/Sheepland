@@ -1,6 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Abbattimento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Accoppiamento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.AcquistoTessera;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPastore;
@@ -57,7 +58,7 @@ public interface InterfacciaUtente {
 
 	public MovimentoPecora richiestaPecoraDaMuovere(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2);
 
-	public MovimentoPecora richiestaPecoraDaAbbattere(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2);
+	public Abbattimento richiestaPecoraDaAbbattere(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2);
 
 	public Accoppiamento richiestaTerritorioPerAccoppiamento(Collection<Integer> terrDisponibili);
 
