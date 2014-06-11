@@ -1,10 +1,14 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.cli;
 
-import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.*;
-
+import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.daA;
+import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.listaDiInteri;
+import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.listaDiStringhe;
+import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.menuDiScelta;
+import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.nelTerr;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Abbattimento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Accoppiamento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.AcquistoTessera;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPastore;
@@ -12,6 +16,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPeco
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.PosizionamentoPastore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SceltaMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SceltaPastore;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
@@ -21,7 +26,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 public class Cli implements InterfacciaUtente {
 	private final InputCli in = new InputCli(CostantiCli.DEFAULT_INPUT);
@@ -86,7 +90,7 @@ public class Cli implements InterfacciaUtente {
 
 	public void accoppiamento(String giocatore, int territorio, boolean aBuonFine) {
 		String verbo = aBuonFine ? "ha fatto" : "non e' riuscito a far";
-		out.println("Il giocatore " + verbo + " una pecora e un montone nel territorio " + nelTerr(territorio, "."));
+		out.println("Il giocatore " + verbo + " accoppiare una pecora e un montone nel territorio " + nelTerr(territorio, "."));
 	}
 
 	public void trasformazioneAgnello(boolean maschio, Integer territorio) {
@@ -95,7 +99,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void pagamento(Integer denaro, String pagante, String pagato) {
-		out.println(pagante + " ha pagato a " + pagato + denaro + " denari.");
+		out.println(pagante + " ha pagato a " + pagato + " " + denaro + " denari.");
 	}
 
 	public void selezionePosizioneInizialePastore(String giocatore, int strada) {
@@ -136,45 +140,42 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public SceltaMossa richiestaTipoMossa(Collection<TipoMossa> mosseDisponibili, int numMossa) {
-		out.println("Devi effettuare la mossa numero"+ numMossa +".");
+		out.println("Devi effettuare la mossa numero" + numMossa + ".");
 		out.println("Scegli la mossa da effettuare fra le seguenti:");
 		out.println(menuDiScelta(mosseDisponibili));
 		TipoMossa scelta = in.scegliElemento(mosseDisponibili);
-		
+
 		return new SceltaMossa(nome, scelta);
 	}
 
 	public SceltaPastore richiestaPastore() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public MovimentoPecora richiestaPecoraDaMuovere(int t1, Set<TipoAnimale> oviniT1, int t2, Set<TipoAnimale> oviniT2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public MovimentoPecora richiestaPecoraDaAbbattere(int t1, Set<TipoAnimale> oviniT1, int t2, Set<TipoAnimale> oviniT2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Accoppiamento richiestaTerritorioPerAccoppiamento(List<Integer> terrDisponibili) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public SceltaMossa richiestaTipoMossa(Collection<TipoMossa> mosseDisponibili) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Pastore> pastori = ClientMain.getDatiPartita().getGiocatore(nome).getPastori();
+		out.println("Devi scegliere uno dei tuoi pastori");
+		out.println(menuDiScelta(pastori));
+		Pastore scelto = in.scegliElemento(pastori);
+		return new SceltaPastore(nome, scelto);
 	}
 
 	public MovimentoPecora richiestaPecoraDaMuovere(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2) {
-		// TODO Auto-generated method stub
-		return null;
+		out.println("Devi selezionare una pecora da muovere");
+		int indice = selezionaPecoraDaTerritorio(t1, oviniT1, t2, oviniT2);
+		List<TipoAnimale> tutti = new ArrayList<TipoAnimale>();
+		tutti.addAll(oviniT1);
+		tutti.addAll(oviniT2);
+		TipoAnimale tipo = tutti.get(indice);
+		int destinazione, origine;
+		if (indice < oviniT1.size()) {
+			destinazione = t1;
+			origine = t2;
+		} else {
+			destinazione = t2;
+			origine = t1;
+		}
+		return new MovimentoPecora(nome, tipo, origine, destinazione);
+
 	}
 
-	public MovimentoPecora richiestaPecoraDaAbbattere(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2) {
+	public Abbattimento richiestaPecoraDaAbbattere(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -194,6 +195,15 @@ public class Cli implements InterfacciaUtente {
 		for (int i = 0; i < 0; i++) {
 			out.println();
 		}
+	}
+
+	private int selezionaPecoraDaTerritorio(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2) {
+		out.println("Queste sono le pecore " + nelTerr(t1));
+		out.println(menuDiScelta(oviniT1));
+		out.println("Queste sono le pecore " + nelTerr(t1));
+		out.println(menuDiScelta(oviniT1, oviniT1.size() + 1));
+
+		return in.leggiIntero(1, oviniT2.size()) - 1;
 	}
 
 }

@@ -153,14 +153,33 @@ public class UtilitaStringhe {
 	}
 
 	/**
-	 * Restituisce un menu per scegliere un elemento di una lista
+	 * Restituisce un menu per scegliere un elemento di una lista. Utile
+	 * specialmente se utilizzato con @link {InputCli#scegliElemento}
 	 * 
 	 * @param lista
 	 *            la lista di elementi fra cui scegliere
+	 * @param separatore
+	 *            la stringa fra il numero e la scelta
+	 * @param fineRiga
+	 *            la stringa alla fine delle righe
+	 * @param fineElenco
+	 *            la stringa alla fine dell'ultima riga
+	 * @param indice
+	 *            l'indice da cui far partire l'elenco
 	 * @return un menu di scelta con gli elementi di una lista
 	 */
-	public static <E> String menuDiScelta(Collection<E> lista) {
-		return menuDiScelta(lista, "): ", ";\n", ".");
+	public static <E> String menuDiScelta(Collection<E> lista, String separatore, String fineRiga, String fineElenco, int indice) {
+		String elenco = "";
+
+		Iterator<E> iter = lista.iterator();
+		while (iter.hasNext()) {
+			String elem = iter.next().toString();
+			String fine = iter.hasNext() ? fineRiga : fineElenco;
+			elenco += indice + separatore + elem + fine;
+			indice++;
+		}
+
+		return elenco;
 	}
 
 	/**
@@ -178,18 +197,33 @@ public class UtilitaStringhe {
 	 * @return un menu di scelta con gli elementi di una lista
 	 */
 	public static <E> String menuDiScelta(Collection<E> lista, String separatore, String fineRiga, String fineElenco) {
-		String elenco = "";
+		return menuDiScelta(lista, separatore, fineRiga, fineElenco, 1);
+	}
 
-		int indice = 1;
-		Iterator<E> iter = lista.iterator();
-		while (iter.hasNext()) {
-			String elem = iter.next().toString();
-			String fine = iter.hasNext() ? fineRiga : fineElenco;
-			elenco += indice + separatore + elem + fine;
-			indice++;
-		}
+	/**
+	 * Restituisce un menu per scegliere un elemento di una lista. Utile
+	 * specialmente se utilizzato con @link {InputCli#scegliElemento}
+	 * 
+	 * @param lista
+	 *            la lista di elementi fra cui scegliere
+	 * 
+	 * @param indice
+	 *            la lista di elementi fra cui scegliere
+	 * @return un menu di scelta con gli elementi di una lista
+	 */
+	public static <E> String menuDiScelta(Collection<E> lista, int indice) {
+		return menuDiScelta(lista, "): ", ";\n", ".", indice);
+	}
 
-		return elenco;
+	/**
+	 * Restituisce un menu per scegliere un elemento di una lista
+	 * 
+	 * @param lista
+	 *            la lista di elementi fra cui scegliere
+	 * @return un menu di scelta con gli elementi di una lista
+	 */
+	public static <E> String menuDiScelta(Collection<E> lista) {
+		return menuDiScelta(lista, 1);
 	}
 
 }

@@ -78,10 +78,12 @@ public class InputCli {
 	}
 
 	/**
-	 * Chiede all'utente
+	 * Chiede all'utente un intero che corrisponde alla posizione di un elemento
+	 * in una collezione
 	 * 
-	 * @param mosseDisponibili
-	 * @return
+	 * @param coll
+	 *            la collezione fra cui scegliere l'elemento
+	 * @return un elemento di una collezione
 	 */
 	public <E> E scegliElemento(Collection<E> coll) {
 		int scelta = leggiIntero(1, coll.size()) - 1;
