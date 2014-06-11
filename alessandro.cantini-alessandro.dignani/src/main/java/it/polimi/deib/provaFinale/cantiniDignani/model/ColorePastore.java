@@ -13,4 +13,9 @@ public enum ColorePastore {
 	private ColorePastore(Color coloreView) {
 		this.coloreView = coloreView;
 	}
+	
+	@Override 
+	public String toString() {
+		return name().toLowerCase();
+	}
 }

@@ -18,5 +18,9 @@ public class Pastore extends PedinaSuStrada {
 		return this.colore;
 	}
 	
+	@Override
+	public String toString() {
+		return "pastore " + colore + " in " + super.getStrada();
+	}
 	
 }
