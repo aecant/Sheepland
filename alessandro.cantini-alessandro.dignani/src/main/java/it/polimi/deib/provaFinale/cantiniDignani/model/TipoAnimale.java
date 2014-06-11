@@ -12,5 +12,10 @@ public enum TipoAnimale {
 	private TipoAnimale(String nomeGenerico) {
 		this.nomeGenerico = nomeGenerico;
 	}
+	
+	@Override
+	public String toString() {
+		return name().toLowerCase();
+	}
 
 }
