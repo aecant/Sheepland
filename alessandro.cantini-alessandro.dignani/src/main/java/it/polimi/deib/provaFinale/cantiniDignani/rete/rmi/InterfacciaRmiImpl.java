@@ -1,7 +1,8 @@
-package it.polimi.deib.provaFinale.cantiniDignani.rete;
+package it.polimi.deib.provaFinale.cantiniDignani.rete.rmi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 
 import java.rmi.RemoteException;
 

@@ -1,4 +1,4 @@
-package it.polimi.deib.provaFinale.cantiniDignani.rete;
+package it.polimi.deib.provaFinale.cantiniDignani.rete.rmi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
@@ -8,6 +8,8 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneClient;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -15,15 +17,15 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class ConnessioneRmi implements ConnessioneClient, AscoltatoreRemoto {
+public class ConnessioneClientRmi implements ConnessioneClient, AscoltatoreRemoto {
 
 	private Registry registry;
 	private InterfacciaRmi server;
 
 	public void inizializza() {
 		try {
-			registry = LocateRegistry.getRegistry(Costanti.SERVER_ADDRESS, Costanti.SERVER_PORT);
-			server = (InterfacciaRmi) registry.lookup(Costanti.SERVER_NAME);
+			registry = LocateRegistry.getRegistry(CostantiRete.SERVER_ADDRESS, CostantiRete.SERVER_PORT);
+			server = (InterfacciaRmi) registry.lookup(CostantiRete.SERVER_NAME);
 
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

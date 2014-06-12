@@ -1,11 +1,11 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete;
 
-public class Costanti {
+public class CostantiRete {
 	
 	/**
 	 * Costruttore private per nascondere quello di default
 	 */
-	private Costanti() {
+	private CostantiRete() {
 	}
 	
 	public static final String SERVER_ADDRESS = "127.0.0.1";

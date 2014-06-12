@@ -2,8 +2,8 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneClient;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneRmi;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ConnessioneClientRmi;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 import it.polimi.deib.provaFinale.cantiniDignani.view.cli.Cli;
 
@@ -51,7 +51,7 @@ public class ClientMain {
 
 	private static ConnessioneClient chiediTipoConnessione() {
 		// TODO test da rimuovere
-		return new ConnessioneRmi();
+		return new ConnessioneClientRmi();
 	}
 
 	private static InterfacciaUtente chiediTipoInterfaccia() {

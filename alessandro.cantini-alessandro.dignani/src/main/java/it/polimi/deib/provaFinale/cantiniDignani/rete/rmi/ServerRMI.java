@@ -1,7 +1,9 @@
-package it.polimi.deib.provaFinale.cantiniDignani.rete;
+package it.polimi.deib.provaFinale.cantiniDignani.rete.rmi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Richiesta;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -19,8 +21,8 @@ public class ServerRMI implements InterfacciaServer {
 		try {
 			InterfacciaRmi server = new InterfacciaRmiImpl();
 			InterfacciaRmi stub = (InterfacciaRmi) UnicastRemoteObject.exportObject(server, 0);
-			Registry registry = LocateRegistry.createRegistry(Costanti.SERVER_PORT);
-			registry.rebind(Costanti.SERVER_NAME, stub);
+			Registry registry = LocateRegistry.createRegistry(CostantiRete.SERVER_PORT);
+			registry.rebind(CostantiRete.SERVER_NAME, stub);
 
 			System.out.println("Server RMI inizializzato, ora accetto le richieste.");
 		} catch (RemoteException e) {

@@ -33,6 +33,4 @@ public interface ConnessioneClient {
 
 	public Tessera[] chiediTessereInCima();
 
-	
-	
 }
