@@ -29,8 +29,6 @@ public interface ConnessioneClient {
 
 	public String chiediGiocatoreDiTurno();
 
-	public Tessera[] chiediTessere();
-
 	public Tessera[] chiediTessereInCima();
 
 }

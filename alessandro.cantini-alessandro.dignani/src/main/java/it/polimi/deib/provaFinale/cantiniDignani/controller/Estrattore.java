@@ -226,4 +226,16 @@ public class Estrattore {
 		}
 		return posizioni;
 	}
+
+	/**
+	 * Restituisce un istanza di DatiPartita contenente i dati sulla partita
+	 * passata come parametro
+	 * 
+	 * @param partita
+	 *            la partita di cui si vogliono avere i dati
+	 * @return un istanza di DatiPartita
+	 */
+	public static DatiPartita datiPartita(Partita partita) {
+		return new DatiPartita(partita);
+	}
 }

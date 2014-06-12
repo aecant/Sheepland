@@ -9,7 +9,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -52,9 +52,7 @@ public class ServerRMI implements InterfacciaServer {
 	}
 
 	public void inviaEvento(Evento evento, String giocatore) {
-		List<String> listaDiUnElemento = new ArrayList<String>();
-		listaDiUnElemento.add(giocatore);
-		inviaEvento(evento, listaDiUnElemento);
+		inviaEvento(evento, Collections.singletonList(giocatore));
 	}
 
 }

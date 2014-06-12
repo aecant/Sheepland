@@ -2,6 +2,8 @@ package it.polimi.deib.provaFinale.cantiniDignani.rete;
 
 public class CostantiRete {
 	
+	public static final long MILLISECONDI_TIMER_PARTITA = 5000;
+
 	/**
 	 * Costruttore private per nascondere quello di default
 	 */

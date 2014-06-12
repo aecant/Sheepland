@@ -21,6 +21,7 @@ public class ConnessioneClientRmi implements ConnessioneClient, AscoltatoreRemot
 
 	private Registry registry;
 	private InterfacciaRmi server;
+	private String nome;
 
 	public void inizializza() {
 		try {
@@ -41,11 +42,12 @@ public class ConnessioneClientRmi implements ConnessioneClient, AscoltatoreRemot
 			server.registraGiocatore(nome);
 			AscoltatoreRemoto ascoltatore = (AscoltatoreRemoto) UnicastRemoteObject.exportObject(this, 0);
 			server.aggiungiAscoltatore(nome, ascoltatore);
+			this.nome = nome;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public void riceviEvento(Evento e) {
@@ -53,8 +55,14 @@ public class ConnessioneClientRmi implements ConnessioneClient, AscoltatoreRemot
 	}
 
 	public DatiPartita scaricaDatiPartita() {
-		// TODO Auto-generated method stub
-		return null;
+		DatiPartita dati = null;
+		try {
+			dati = server.scaricaDatiPartita(ClientMain.getNome());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dati;
 	}
 
 	public void inviaMossa(Mossa mossaScelta) {
@@ -67,44 +75,82 @@ public class ConnessioneClientRmi implements ConnessioneClient, AscoltatoreRemot
 	}
 
 	public DatiTerritorio[] chiediElencoTerritori() {
-		// TODO Auto-generated method stub
-		return null;
+		DatiTerritorio[] dati = null;
+		try {
+			dati = server.chiediElencoTerritori(nome);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return dati;
 	}
 
 	public Giocatore[] chiediGiocatori() {
-		// TODO Auto-generated method stub
-		return null;
+		Giocatore[] giocatori = null;
+		try {
+			giocatori = server.chiediGiocatori(nome);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return giocatori;
 	}
 
 	public Pastore[] chiediPastori() {
 		// TODO Auto-generated method stub
-		return null;
+		Pastore[] pastori = null;
+		try {
+			pastori = server.chiediPastori(nome);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return pastori;
 	}
 
 	public Integer[] chiediRecintiIniziali() {
-		// TODO Auto-generated method stub
-		return null;
+		Integer[] recintiIniziali = null;
+		try {
+			recintiIniziali = server.chiediRecintiIniziali(nome);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return recintiIniziali;
 	}
 
 	public Integer[] chiediRecintiFinali() {
-		// TODO Auto-generated method stub
-		return null;
+		Integer[] recintiFinali = null;
+		try {
+			recintiFinali = server.chiediRecintiFinali(nome);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return recintiFinali;
 	}
 
 	public String chiediGiocatoreDiTurno() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Tessera[] chiediTessere() {
-		// TODO Auto-generated method stub
-		return null;
+		String giocatoreDiTurno = null;
+		try {
+			giocatoreDiTurno = server.chiediGiocatoreDiTurno(nome);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return giocatoreDiTurno;
 	}
 
 	public Tessera[] chiediTessereInCima() {
-		// TODO Auto-generated method stub
-		return null;
+		Tessera[] tessere = null;
+		try {
+			tessere = server.chiediTessereInCima(nome);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return tessere;
 	}
-
 
 }
