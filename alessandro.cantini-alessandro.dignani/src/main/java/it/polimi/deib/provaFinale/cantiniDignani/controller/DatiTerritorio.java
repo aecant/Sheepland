@@ -2,11 +2,14 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class DatiTerritorio {
+public class DatiTerritorio implements Serializable {
+	private static final long serialVersionUID = 7966573036032987276L;
+
 	private Map<TipoAnimale, Integer> numeroAnimali;
 
 	public DatiTerritorio() {

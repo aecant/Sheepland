@@ -5,10 +5,13 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class DatiPartita {
+public class DatiPartita implements Serializable {
+	private static final long serialVersionUID = -4880327134106355480L;
+
 	private DatiTerritorio[] territori;
 	private Pastore[] pastori;
 	private Integer[] recintiIniziali;
@@ -32,14 +35,14 @@ public class DatiPartita {
 	}
 
 	public Giocatore getGiocatore(String nome) {
-		for(Giocatore g : giocatori) {
-			if(g.getNome().equals(nome)) {
+		for (Giocatore g : giocatori) {
+			if (g.getNome().equals(nome)) {
 				return g;
 			}
 		}
 		throw new IllegalArgumentException("Il giocatore non e' presente");
 	}
-	
+
 	public Collection<String> getNomiGiocatori() {
 		Collection<String> nomi = new ArrayList<String>();
 		for (Giocatore g : giocatori) {
