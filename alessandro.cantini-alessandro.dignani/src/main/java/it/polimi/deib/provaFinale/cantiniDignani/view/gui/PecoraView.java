@@ -12,8 +12,8 @@ public class PecoraView extends JPanel {
 	private JLabel lblContatore;
 	private PecoraImmagine pi;
 
-	public PecoraView(int x, int y) {
-		this.setBounds(new Rectangle(new Point(x, y), CostantiGui.DIMENSIONE_PECORA));
+	public PecoraView(int posizioneX, int posizioneY) {
+		this.setBounds(new Rectangle(new Point(posizioneX, posizioneY), CostantiGui.DIMENSIONE_PECORA));
 		this.setLayout(null);
 		this.setOpaque(false);
 		
