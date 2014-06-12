@@ -1,6 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.FaseIniziale;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.GestorePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Sorte;
@@ -37,7 +38,7 @@ public class Gui {
 		fi.disponiPecore();
 		fi.disponiTessereIniziali();
 		fi.distribuisciDenari();
-		DatiPartita dati = new DatiPartita(part);
+		DatiPartita dati = Estrattore.datiPartita(part);
 		// Fine test
 
 		finestraPartita = new PartitaView(dati);

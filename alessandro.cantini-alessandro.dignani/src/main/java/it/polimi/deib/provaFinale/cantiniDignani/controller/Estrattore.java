@@ -22,12 +22,6 @@ import java.util.List;
 public class Estrattore {
 
 	/**
-	 * Costruttore privato per nascondere quello di default
-	 */
-	private Estrattore() {
-	}
-
-	/**
 	 * Restituisce un array di DatiTerritorio. Ogni elemento dell'array contiene
 	 * i dati su un territorio, l'indice dell'array corrisponde al codice del
 	 * territorio.
@@ -237,5 +231,11 @@ public class Estrattore {
 	 */
 	public static DatiPartita datiPartita(Partita partita) {
 		return new DatiPartita(partita);
+	}
+
+	/**
+	 * Costruttore privato per nascondere quello di default
+	 */
+	private Estrattore() {
 	}
 }

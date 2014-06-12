@@ -20,7 +20,7 @@ public class DatiPartita implements Serializable {
 	private Tessera[] tessereInCima;
 	private Giocatore[] giocatori;
 
-	public DatiPartita(Partita partita) {
+	protected DatiPartita(Partita partita) {
 		territori = Estrattore.datiTerritori(partita);
 		pastori = Estrattore.pastori(partita);
 		recintiIniziali = Estrattore.recintiIniziali(partita);
