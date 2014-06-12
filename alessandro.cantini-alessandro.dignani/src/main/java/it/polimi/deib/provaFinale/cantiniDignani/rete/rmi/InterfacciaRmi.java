@@ -4,7 +4,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 
 import java.rmi.Remote;
@@ -23,8 +22,6 @@ public interface InterfacciaRmi extends Remote {
 	public DatiTerritorio[] chiediElencoTerritori(String giocatore) throws RemoteException;
 
 	public Giocatore[] chiediGiocatori(String giocatore) throws RemoteException;
-
-	public Pastore[] chiediPastori(String giocatore) throws RemoteException;
 
 	public Integer[] chiediRecintiIniziali(String giocatore) throws RemoteException;
 

@@ -9,7 +9,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 
@@ -18,7 +17,7 @@ import java.rmi.RemoteException;
 
 public class InterfacciaRmiImpl implements InterfacciaRmi {
 
-	private final PrintStream logger = System.out;
+	private final PrintStream logger = ServerMain.LOGGER;
 	private final GestoreCoda<Evento> gestoreEventi = ServerMain.getGestoreEventi();
 
 	// TODO verificare se si riesce a fare qualcosa di più efficiente
@@ -56,11 +55,6 @@ public class InterfacciaRmiImpl implements InterfacciaRmi {
 	public Giocatore[] chiediGiocatori(String giocatore) throws RemoteException {
 		logger.println(giocatore + "ha aggiornato l'elenco dei giocatori");
 		return Estrattore.giocatori(getPartita(giocatore));
-	}
-
-	public Pastore[] chiediPastori(String giocatore) throws RemoteException {
-		logger.println(giocatore + "ha aggiornato l'elenco dei pastori");
-		return Estrattore.pastori(getPartita(giocatore));
 	}
 
 	public Integer[] chiediRecintiIniziali(String giocatore) throws RemoteException {

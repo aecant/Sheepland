@@ -20,4 +20,8 @@ public class MovimentoLupo extends MovimentoAnimale {
 		ClientMain.getUI().movimentoLupo(super.getOrigine(), super.getDestinazione());
 	}
 
+	@Override
+	public String toString() {
+		return "Movimento lupo da " + super.getOrigine() + " a " + super.getDestinazione();
+	}
 }

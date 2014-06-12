@@ -2,7 +2,6 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 
 import java.io.Serializable;
@@ -13,7 +12,6 @@ public class DatiPartita implements Serializable {
 	private static final long serialVersionUID = -4880327134106355480L;
 
 	private DatiTerritorio[] territori;
-	private Pastore[] pastori;
 	private Integer[] recintiIniziali;
 	private Integer[] recintiFinali;
 	private String giocatoreDiTurno;
@@ -22,7 +20,6 @@ public class DatiPartita implements Serializable {
 
 	protected DatiPartita(Partita partita) {
 		territori = Estrattore.datiTerritori(partita);
-		pastori = Estrattore.pastori(partita);
 		recintiIniziali = Estrattore.recintiIniziali(partita);
 		recintiFinali = Estrattore.recintiFinali(partita);
 		giocatoreDiTurno = partita.getGiocatoreDiTurno().getNome();
@@ -40,7 +37,7 @@ public class DatiPartita implements Serializable {
 				return g;
 			}
 		}
-		throw new IllegalArgumentException("Il giocatore non e' presente");
+		throw new IllegalArgumentException("Il giocatore " + nome + " non e' presente");
 	}
 
 	public Collection<String> getNomiGiocatori() {
@@ -57,10 +54,6 @@ public class DatiPartita implements Serializable {
 
 	public void aggiornaTerritori() {
 		territori = ClientMain.getConnessione().chiediElencoTerritori();
-	}
-
-	public void aggiornaPastori() {
-		pastori = ClientMain.getConnessione().chiediPastori();
 	}
 
 	public void aggiornaRecinti() {
@@ -82,10 +75,6 @@ public class DatiPartita implements Serializable {
 
 	public DatiTerritorio[] getTerritori() {
 		return territori;
-	}
-
-	public Pastore[] getPastori() {
-		return pastori;
 	}
 
 	public Integer[] getRecintiIniziali() {

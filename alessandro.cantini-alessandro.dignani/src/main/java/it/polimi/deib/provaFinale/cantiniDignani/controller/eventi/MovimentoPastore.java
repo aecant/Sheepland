@@ -33,7 +33,7 @@ public class MovimentoPastore extends Mossa {
 
 	@Override
 	public void aggiornaDati() {
-		ClientMain.getDatiPartita().aggiornaPastori();
+		ClientMain.getDatiPartita().aggiornaGiocatori();
 		ClientMain.getDatiPartita().aggiornaRecinti();
 	}
 

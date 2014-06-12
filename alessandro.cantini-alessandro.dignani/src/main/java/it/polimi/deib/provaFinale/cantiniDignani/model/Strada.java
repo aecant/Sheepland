@@ -1,6 +1,10 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
-public class Strada {
+import java.io.Serializable;
+
+public class Strada implements Serializable{
+	private static final long serialVersionUID = 6178303418989298078L;
+	
 	private Territorio territorio1;
 	private Territorio territorio2;
 	private Integer codice;

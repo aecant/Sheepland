@@ -58,18 +58,14 @@ public class GestorePartita implements Runnable {
 	}
 
 	public void run() {
+
 		faseIniziale.esegui();
+		
+		selezionePosizioneIniziale();
+
+		gestioneGiro();
 
 		faseFinale.esegui();
-
-		selezionePosizioneIniziale();
-		gestioneGiro();
-		faseFinale();
-	}
-
-	private void faseFinale() {
-		// TODO
-
 	}
 
 	private void gestioneGiro() {
@@ -173,21 +169,21 @@ public class GestorePartita implements Runnable {
 		}
 	}
 
-	private void giroPosizionamentoPastore(int numGiro) {
+	private void giroPosizionamentoPastore(int numPastore) {
 		for (Giocatore g : partita.getGiocatori()) {
 			boolean[] stradeLibere = Estrattore.stradeLibere(partita);
 			inviaEvento(new RichiestaPosizioneInizialePastore(stradeLibere), g);
 			PosizionamentoPastore risposta = (PosizionamentoPastore) gestoreEventi.aspetta(PosizionamentoPastore.class);
 
 			Strada strada = Mappa.getMappa().getStrade()[risposta.getStrada()];
-			g.getPastori().get(numGiro).muoviIn(strada);
-			
+			g.getPastori().get(numPastore).muoviIn(strada);
+
 			inviaEventoATutti(new PosizionamentoPastore(g.getNome(), risposta.getStrada()));
 		}
 	}
 
 	protected void inviaEventoATutti(Evento e) {
-		getConnessione().inviaEvento(e, getTuttiGiocatori());
+		getConnessione().inviaEvento(e, tuttiGiocatori);
 	}
 
 	protected void inviaEvento(Evento e, Giocatore g) {
@@ -209,10 +205,6 @@ public class GestorePartita implements Runnable {
 
 	protected InterfacciaServer getConnessione() {
 		return connessione;
-	}
-
-	protected List<String> getTuttiGiocatori() {
-		return tuttiGiocatori;
 	}
 
 }

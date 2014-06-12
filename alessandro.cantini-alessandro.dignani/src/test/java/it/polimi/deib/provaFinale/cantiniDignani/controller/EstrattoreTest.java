@@ -1,6 +1,8 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
@@ -86,6 +88,14 @@ public class EstrattoreTest {
 				assertTrue(sl[i]);
 			}
 		}
+		
+		Partita partita2 = new Partita(Arrays.asList("esempio1", "esempio2", "esempio3", "esempio4"));
+		sl = Estrattore.stradeLibere(partita2);
+		for (boolean b : sl) {
+			assertTrue(b);
+		}
+		
+		
 	}
 
 	@Test

@@ -93,7 +93,11 @@ public class Partita {
 	public List<Pastore> getPastori() {
 		List<Pastore> pastori = new ArrayList<Pastore>();
 		for (Giocatore g : giocatori) {
-			pastori.addAll(g.getPastori());
+			for(Pastore p : g.getPastori()) {
+				if (p.getStrada() != null) {
+					pastori.add(p);
+				}
+			}
 		}
 
 		return pastori;

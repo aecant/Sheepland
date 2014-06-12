@@ -4,7 +4,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
 import it.polimi.deib.provaFinale.cantiniDignani.model.PedinaSuStrada;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
@@ -56,17 +55,6 @@ public class Estrattore {
 	 */
 	public static Giocatore[] giocatori(Partita partita) {
 		return partita.getGiocatori().toArray(new Giocatore[partita.getGiocatori().size()]);
-	}
-
-	/**
-	 * Restituisce l'array dei pastori di una certa partita
-	 * 
-	 * @param partita
-	 *            la partita di cui si vogliono conoscere i pastori
-	 * @return l'array dei pastori di una partita
-	 */
-	public static Pastore[] pastori(Partita partita) {
-		return partita.getPastori().toArray(new Pastore[partita.getPastori().size()]);
 	}
 
 	/**

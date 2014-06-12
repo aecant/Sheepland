@@ -8,27 +8,29 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ServerRMI;
 
+import java.io.PrintStream;
 import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ServerMain {
-	private static List<Partita> partite = new Vector<Partita>();
+	public final static PrintStream LOGGER = System.out;
+	
+	private static List<GestorePartita> gestoriPartita = new Vector<GestorePartita>();
 	private static List<String> giocatoriInAttesa = new Vector<String>();
 	private static InterfacciaServer connessione;
-	private static ExecutorService esecutorePartite = Executors.newCachedThreadPool();
+	private static final ExecutorService esecutorePartite = Executors.newCachedThreadPool();
 	private static GestoreCoda<Evento> gestoreEventi = new GestoreCoda<Evento>();
-	private static TimerPartita timerPartita;
+	private static TimerPartita timerPartita = new TimerPartita(CostantiRete.MILLISECONDI_TIMER_PARTITA);
 
 	public static void main(String[] args) {
-		timerPartita = new TimerPartita(CostantiRete.MILLISECONDI_TIMER_PARTITA);
 		timerPartita.start();
 
 		impostaTipoConnessione();
 		connessione.inizializza();
 	}
-
+	
 	public synchronized static boolean aggiungiGiocatore(String nome) {
 		if (nomeGiaRegistrato(nome)) {
 			return false;
@@ -55,10 +57,10 @@ public class ServerMain {
 
 		timerPartita.ferma();
 		Partita partita = new Partita(giocatoriInAttesa);
-		partite.add(partita);
-		esecutorePartite.submit(new GestorePartita(partita, connessione, gestoreEventi));
+		GestorePartita gestore = new GestorePartita(partita, connessione, gestoreEventi);
+		gestoriPartita.add(gestore);
+		esecutorePartite.submit(gestore);
 		giocatoriInAttesa.clear();
-		System.out.println("Partita iniziata.");
 	}
 
 	/**
@@ -69,9 +71,9 @@ public class ServerMain {
 	 * @return true se e' gia' stato registrato, false se il nome e' disponibile
 	 */
 	private static boolean nomeGiaRegistrato(String nome) {
-		for (Partita p : partite) {
-			for (Giocatore g : p.getGiocatori()) {
-				if (nome.equals(g.getNome())) {
+		for (GestorePartita gest : gestoriPartita) {
+			for (Giocatore gioc : gest.getPartita().getGiocatori()) {
+				if (nome.equals(gioc.getNome())) {
 					return true;
 				}
 			}
@@ -99,10 +101,10 @@ public class ServerMain {
 	 * @return la partita giocata dal giocatore
 	 */
 	public static Partita getPartita(String giocatore) {
-		for (Partita p : partite) {
-			for (Giocatore g : p.getGiocatori()) {
+		for (GestorePartita gest : gestoriPartita) {
+			for (Giocatore g : gest.getPartita().getGiocatori()) {
 				if (giocatore.equals(g.getNome())) {
-					return p;
+					return gest.getPartita();
 				}
 			}
 		}

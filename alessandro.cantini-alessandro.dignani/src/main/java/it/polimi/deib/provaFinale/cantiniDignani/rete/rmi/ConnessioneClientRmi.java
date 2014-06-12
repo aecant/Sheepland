@@ -6,7 +6,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
@@ -95,18 +94,6 @@ public class ConnessioneClientRmi implements ConnessioneClient, AscoltatoreRemot
 			e.printStackTrace();
 		}
 		return giocatori;
-	}
-
-	public Pastore[] chiediPastori() {
-		// TODO Auto-generated method stub
-		Pastore[] pastori = null;
-		try {
-			pastori = server.chiediPastori(nome);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return pastori;
 	}
 
 	public Integer[] chiediRecintiIniziali() {

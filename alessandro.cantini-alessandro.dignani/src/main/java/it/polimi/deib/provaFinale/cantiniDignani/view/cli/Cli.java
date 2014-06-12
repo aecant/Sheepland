@@ -31,7 +31,6 @@ import java.util.List;
 public class Cli implements InterfacciaUtente {
 	private final InputCli in;
 	private final PrintStream out = CostantiCli.DEFAULT_OUTPUT;
-	private final String nome = ClientMain.getNome();
 
 	public Cli(InputStream is) {
 		in = new InputCli(is);
@@ -53,8 +52,8 @@ public class Cli implements InterfacciaUtente {
 
 	public void inizioPartita() {
 		out.println("Partita iniziata con i giocatori:");
-		out.println(listaDiStringhe(ClientMain.getDatiPartita().getNomiGiocatori(), " ;", "."));
-		TipoTerritorio tipoTesseraIniziale = ClientMain.getDatiPartita().getGiocatore(nome).getTessere().get(0).getTipo();
+		out.println(listaDiStringhe(ClientMain.getDatiPartita().getNomiGiocatori(), "; ", "."));
+		TipoTerritorio tipoTesseraIniziale = ClientMain.getDatiPartita().getGiocatore(nome()).getTessere().get(0).getTipo();
 		out.println("La tua tessera iniziale e' di tipo " + tipoTesseraIniziale);
 	}
 
@@ -63,7 +62,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void inizioTurno(String giocatore) {
-		if (giocatore.equals(nome)) {
+		if (giocatore.equals(nome())) {
 			out.println("E' il tuo turno.");
 		} else {
 			out.println("E' il turno di " + giocatore);
@@ -85,7 +84,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void movimentoPecoraNera(int origine, int destinazione) {
-		out.println("La pecora si e' spostata " + daA(origine, destinazione, "."));
+		out.println("La pecora nera si e' spostata " + daA(origine, destinazione, "."));
 	}
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
@@ -112,7 +111,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void selezionePosizioneInizialePastore(String giocatore, int strada) {
-		out.println(giocatore + "ha posizionato il pastore sulla strada " + strada + " .");
+		out.println(giocatore + " ha posizionato il pastore sulla strada " + strada + " .");
 	}
 
 	public void ricezioneTesseraIniziale(Tessera tessera) {
@@ -123,11 +122,11 @@ public class Cli implements InterfacciaUtente {
 		List<Integer> stradeDisponibili = Utilita.indiciTrue(stradeLibere);
 		out.println("Inserisci la posizione iniziale del pastore");
 		out.println("Le strade disponibili sono le seguenti: ");
-		out.println(listaDiInteri(stradeDisponibili, " ,", "."));
+		out.println(listaDiInteri(stradeDisponibili, ", ", "."));
 
 		int stradaScelta = in.leggiIntero(stradeDisponibili);
 
-		return new PosizionamentoPastore(nome, stradaScelta);
+		return new PosizionamentoPastore(nome(), stradaScelta);
 	}
 
 	public MovimentoPastore richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento, int origine) {
@@ -135,7 +134,7 @@ public class Cli implements InterfacciaUtente {
 		List<Integer> pagamento = Utilita.indiciTrue(stradeLibereAPagamento);
 		out.println("Inserisci la posizione in cui vuoi muovere il pastore");
 		out.println("Queste sono le strade gratis");
-		out.println(listaDiInteri(gratis, " ,", "."));
+		out.println(listaDiInteri(gratis, ", ", "."));
 		out.println("Queste sono le strade a pagamento");
 		out.println(listaDiInteri(pagamento, " ,", "."));
 
@@ -145,7 +144,7 @@ public class Cli implements InterfacciaUtente {
 
 		int stradaScelta = in.leggiIntero(tutte);
 
-		return new MovimentoPastore(nome, origine, stradaScelta);
+		return new MovimentoPastore(nome(), origine, stradaScelta);
 	}
 
 	public SceltaMossa richiestaTipoMossa(Collection<TipoMossa> mosseDisponibili, int numMossa) {
@@ -154,15 +153,16 @@ public class Cli implements InterfacciaUtente {
 		out.println(menuDiScelta(mosseDisponibili));
 		TipoMossa scelta = in.scegliElemento(mosseDisponibili);
 
-		return new SceltaMossa(nome, scelta);
+		return new SceltaMossa(nome(), scelta);
 	}
 
 	public SceltaPastore richiestaPastore() {
-		List<Pastore> pastori = ClientMain.getDatiPartita().getGiocatore(nome).getPastori();
+		List<Pastore> pastori = ClientMain.getDatiPartita().getGiocatore(nome()).getPastori();
 		out.println("Devi scegliere uno dei tuoi pastori");
 		out.println(menuDiScelta(pastori));
 		Pastore scelto = in.scegliElemento(pastori);
-		return new SceltaPastore(nome, scelto);
+		
+		return new SceltaPastore(nome(), scelto);
 	}
 
 	public MovimentoPecora richiestaPecoraDaMuovere(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2) {
@@ -180,7 +180,7 @@ public class Cli implements InterfacciaUtente {
 			origine = t2;
 			destinazione = t1;
 		}
-		return new MovimentoPecora(nome, tipo, origine, destinazione);
+		return new MovimentoPecora(nome(), tipo, origine, destinazione);
 
 	}
 
@@ -193,7 +193,7 @@ public class Cli implements InterfacciaUtente {
 		TipoAnimale tipo = tutti.get(indice);
 		int terr = indice < oviniT1.size() ? t1 : t2;
 
-		return new Abbattimento(nome, tipo, terr);
+		return new Abbattimento(nome(), tipo, terr);
 	}
 
 	public Accoppiamento richiestaTerritorioPerAccoppiamento(Collection<Integer> territoriDisponibili) {
@@ -201,7 +201,7 @@ public class Cli implements InterfacciaUtente {
 		out.println(menuDiScelta(territoriDisponibili));
 		int terrScelto = in.scegliElemento(territoriDisponibili);
 		
-		return new Accoppiamento(nome, terrScelto);
+		return new Accoppiamento(nome(), terrScelto);
 	}
 
 	public AcquistoTessera richiestaTesseraDaAcquistare(Collection<Tessera> tessereDisp) {
@@ -209,7 +209,7 @@ public class Cli implements InterfacciaUtente {
 		out.println(menuDiScelta(tessereDisp));
 		Tessera tessScelta = in.scegliElemento(tessereDisp);
 		
-		return new AcquistoTessera(nome, tessScelta);
+		return new AcquistoTessera(nome(), tessScelta);
 	}
 
 	private void pulisci() {
@@ -231,6 +231,10 @@ public class Cli implements InterfacciaUtente {
 		out.println(menuDiScelta(oviniT2, oviniT1.size() + 1));
 
 		return in.leggiIntero(1, oviniT1.size() + oviniT2.size()) - 1;
+	}
+	
+	private String nome() {
+		return ClientMain.getNome();
 	}
 
 }

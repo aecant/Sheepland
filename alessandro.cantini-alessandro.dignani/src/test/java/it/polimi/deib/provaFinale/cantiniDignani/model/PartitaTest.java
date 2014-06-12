@@ -51,6 +51,10 @@ public class PartitaTest {
 		}
 		
 		assertTrue(listaNomi.containsAll(nomi));
+		
+		for(int i = 0; i < partita.getGiocatori().size(); i++) {
+			
+		}
 	}
 	
 	

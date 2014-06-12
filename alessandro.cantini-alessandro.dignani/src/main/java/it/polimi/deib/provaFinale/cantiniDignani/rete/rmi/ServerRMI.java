@@ -1,5 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete.rmi;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Richiesta;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
@@ -43,6 +44,7 @@ public class ServerRMI implements InterfacciaServer {
 		}
 		for(String giocatore : giocatori) {
 			try {
+				ServerMain.LOGGER.println("Evento: " + evento + " inviato a " + giocatore);
 				ascoltatori.get(giocatore).riceviEvento(evento);
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block

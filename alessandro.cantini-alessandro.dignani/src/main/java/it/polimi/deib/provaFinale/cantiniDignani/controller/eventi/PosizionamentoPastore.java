@@ -14,7 +14,7 @@ public class PosizionamentoPastore extends Mossa {
 
 	@Override
 	public void aggiornaDati() {
-		ClientMain.getConnessione().chiediPastori();
+		ClientMain.getDatiPartita().aggiornaGiocatori();
 	}
 
 	@Override
