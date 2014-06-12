@@ -4,15 +4,15 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.FaseIniziale;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.GestorePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Sorte;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 
-import java.awt.Point;
 import java.util.Arrays;
 
 
 public class Gui {
 	private FinestraChiediNome fcn;
-	public PecoraView pec; // TEMPORANEO per il test
+	PartitaView finestraPartita;
 	
 	/**
 	 * Implementazione del metodo che chiede all'utente il nome per connettersi
@@ -40,26 +40,41 @@ public class Gui {
 		DatiPartita dati = new DatiPartita(part);
 		// Fine test
 
-		PartitaView partita = new PartitaView(dati);
+		finestraPartita = new PartitaView(dati);
 		
-		pec = partita.getMappa().getPec();
-		partita.visualizza();
+		for(int i=0; i<Costanti.NUM_TERRITORI; i++) {
+			for(int j=0; j<5; j++) {
+				finestraPartita.getMappa().disegnaPecora(CostantiGui.COORDINATE[i][j]);
+			}
+		}
+		
+		finestraPartita.visualizza();
+	}
+	
+	/**
+	 * Metodo che restituisce la finestra che contiene a sua volta tutte le componenti della partita
+	 * 
+	 * @param 
+	 */
+	public PartitaView getPartita() {
+		return this.finestraPartita;
 	}
 	
 	
 	//Test
 	public static void main (String[] args) {
 		Gui gui = new Gui();
+		System.out.println("Risoluzione Schermo: "+CostantiGui.DIMENSIONE_SCHERMO.width+"x"+CostantiGui.DIMENSIONE_SCHERMO.height);
 		System.out.println(gui.chiediNome());
 		gui.inizioPartita();
 		
-		while(true) {
-			gui.pec.muoviPecora(new Point(Sorte.numeroCasuale(0, CostantiGui.DIMENSIONE_MAPPA.width), Sorte.numeroCasuale(0, CostantiGui.DIMENSIONE_MAPPA.height)));
+		for(int i=0; i<Costanti.NUM_TERRITORI*5; i++) {
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			gui.getPartita().getMappa().getPec().get(i).muoviPecora(CostantiGui.COORDINATE[Sorte.numeroCasuale(0, Costanti.NUM_TERRITORI-1)][Sorte.numeroCasuale(0, 4)]);
 		}
 	}
 }
