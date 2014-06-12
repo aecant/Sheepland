@@ -21,14 +21,13 @@ public class ServerMain {
 	private static TimerPartita timerPartita;
 
 	public static void main(String[] args) {
-		timerPartita = new TimerPartita(Costanti.SECONDI_TIMER_PARTITA);
+		timerPartita = new TimerPartita(Costanti.MILLISECONDI_TIMER_PARTITA);
 		timerPartita.start();
 
 		impostaTipoConnessione();
 		connessione.inizializza();
 	}
 
-	// TODO impostare timer per iniziare partita
 	public synchronized static boolean aggiungiGiocatore(String nome) {
 		if (nomeGiaRegistrato(nome)) {
 			return false;
@@ -91,25 +90,25 @@ public class ServerMain {
 		connessione = new ServerRMI();
 	}
 
-	/**
-	 * Restituisce la partita giocata da un giocatore
-	 * 
-	 * @param giocatore
-	 *            il nome del giocatore
-	 * @return la partita giocata dal giocatore
-	 */
-	public static Partita getPartita(String giocatore) {
-		for (Partita p : partite) {
-			for (Giocatore g : p.getGiocatori()) {
-				if (giocatore.equals(g.getNome())) {
-					return p;
-				}
-			}
-		}
-
-		throw new IllegalArgumentException("Il giocatore non è presente");
-
-	}
+//	/**
+//	 * Restituisce la partita giocata da un giocatore
+//	 * 
+//	 * @param giocatore
+//	 *            il nome del giocatore
+//	 * @return la partita giocata dal giocatore
+//	 */
+//	public static Partita getPartita(String giocatore) {
+//		for (Partita p : partite) {
+//			for (Giocatore g : p.getGiocatori()) {
+//				if (giocatore.equals(g.getNome())) {
+//					return p;
+//				}
+//			}
+//		}
+//
+//		throw new IllegalArgumentException("Il giocatore non è presente");
+//
+//	}
 
 	public static InterfacciaServer getConnessione() {
 		return connessione;

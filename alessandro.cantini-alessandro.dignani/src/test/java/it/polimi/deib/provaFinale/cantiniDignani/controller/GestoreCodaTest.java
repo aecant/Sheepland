@@ -23,7 +23,7 @@ public class GestoreCodaTest {
 	@Test
 	public void testAspettaEvento() {
 		gestore.aggiungi(EVENTO);
-		assertTrue(gestore.aspettaEvento() == EVENTO);
+		assertTrue(gestore.aspetta() == EVENTO);
 	}
 	
 	@Test (timeout = 1000)
@@ -33,7 +33,7 @@ public class GestoreCodaTest {
 		Thread aggEvento = new ThreadAggiungiEvento();
 		aggEvento.start();
 		
-		daAspettare = gestore.aspettaEvento();
+		daAspettare = gestore.aspetta();
 		
 		assertTrue(daAspettare == EVENTO);
 	}

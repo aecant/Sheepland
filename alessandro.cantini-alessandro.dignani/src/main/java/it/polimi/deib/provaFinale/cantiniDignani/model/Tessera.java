@@ -2,12 +2,12 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 import java.io.Serializable;
 
-public class Tessera implements Serializable{
-	
-	private static final long serialVersionUID = -4405168162325304567L;
-	private TipoTerritorio tipo;
-	private int costo;
+public class Tessera implements Serializable {
 
+	private static final long serialVersionUID = -4405168162325304567L;
+
+	private final TipoTerritorio tipo;
+	private final int costo;
 
 	public Tessera(TipoTerritorio tipo, int costo) {
 		this.costo = costo;

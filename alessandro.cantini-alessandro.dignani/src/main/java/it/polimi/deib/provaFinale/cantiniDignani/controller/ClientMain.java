@@ -21,6 +21,20 @@ public class ClientMain {
 		connessione.inizializza();
 
 		registraGiocatore();
+		
+		effettuaPartita();
+	}
+
+	private static void effettuaPartita() {
+		while(true) {
+			Evento eventoCorrente = gestoreEventi.aspetta();
+			gestisciEvento(eventoCorrente);
+		}
+	}
+
+	private static void gestisciEvento(Evento evento) {
+		evento.aggiornaDati();
+		evento.visualizza();
 	}
 
 	private static void registraGiocatore() {

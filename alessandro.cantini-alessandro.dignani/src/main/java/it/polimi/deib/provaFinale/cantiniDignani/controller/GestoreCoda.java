@@ -12,17 +12,18 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class GestoreCoda<T> {
 
-	private BlockingQueue<T> codaEventi = new LinkedBlockingQueue<T>();
+	private BlockingQueue<T> coda = new LinkedBlockingQueue<T>();
 
 	/**
-	 * Aspetta e restituisce un evento inviato dal server
+	 * Restituisce il primo elemento nella coda. Se la coda non contiene
+	 * elementi aspetta finche' non c'e' un elemento.
 	 * 
-	 * @return l'evento ricevuto dal server
+	 * @return
 	 */
-	public T aspettaEvento() {
+	public T aspetta() {
 		T evento = null;
 		try {
-			evento = codaEventi.take();
+			evento = coda.take();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,7 +41,7 @@ public class GestoreCoda<T> {
 	 * @return l'evento ricevuto dal server
 	 */
 	public T aspetta(Class<? extends T> classe) {
-		T elemento = aspettaEvento();
+		T elemento = aspetta();
 		if (elemento.getClass() != classe) {
 			throw new RuntimeException("L'evento è diverso da quello aspettato");
 		}
@@ -54,7 +55,7 @@ public class GestoreCoda<T> {
 	 *            l'elemento da aggiungere
 	 */
 	public void aggiungi(T elemento) {
-		codaEventi.add(elemento);
+		coda.add(elemento);
 	}
 
 }

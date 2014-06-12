@@ -196,14 +196,20 @@ public class Cli implements InterfacciaUtente {
 		return new Abbattimento(nome, tipo, terr);
 	}
 
-	public Accoppiamento richiestaTerritorioPerAccoppiamento(Collection<Integer> terrDisponibili) {
-		// TODO Auto-generated method stub
-		return null;
+	public Accoppiamento richiestaTerritorioPerAccoppiamento(Collection<Integer> territoriDisponibili) {
+		out.println("Devi selezionare un territorio in cui far accoppiare una pecora e un montone");
+		out.println(menuDiScelta(territoriDisponibili));
+		int terrScelto = in.scegliElemento(territoriDisponibili);
+		
+		return new Accoppiamento(nome, terrScelto);
 	}
 
 	public AcquistoTessera richiestaTesseraDaAcquistare(Collection<Tessera> tessereDisp) {
-		// TODO Auto-generated method stub
-		return null;
+		out.println("Devi selezionare una tessera da acquistare");
+		out.println(menuDiScelta(tessereDisp));
+		Tessera tessScelta = in.scegliElemento(tessereDisp);
+		
+		return new AcquistoTessera(nome, tessScelta);
 	}
 
 	private void pulisci() {

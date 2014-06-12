@@ -60,8 +60,8 @@ public interface InterfacciaUtente {
 
 	public Abbattimento richiestaPecoraDaAbbattere(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2);
 
-	public Accoppiamento richiestaTerritorioPerAccoppiamento(Collection<Integer> terrDisponibili);
+	public Accoppiamento richiestaTerritorioPerAccoppiamento(Collection<Integer> territoriDisponibili);
 
-	public AcquistoTessera richiestaTesseraDaAcquistare(Collection<Tessera> tessereDisp);
+	public AcquistoTessera richiestaTesseraDaAcquistare(Collection<Tessera> tessereDisponibili);
 
 }
