@@ -6,6 +6,7 @@ import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe
 import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.menuDiScelta;
 import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.nelTerr;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Abbattimento;
@@ -57,8 +58,8 @@ public class Cli implements InterfacciaUtente {
 		out.println("La tua tessera iniziale e' di tipo " + tipoTesseraIniziale);
 	}
 
-	public void lancioDado(Integer numero) {
-		out.println("Dado lanciato: " + numero);
+	public void lancioDado(Integer numero, MotivoLancioDado motivo) {
+		out.println("Dado lanciato: " + numero + "per il motivo: " + motivo);
 	}
 
 	public void inizioTurno(String giocatore) {

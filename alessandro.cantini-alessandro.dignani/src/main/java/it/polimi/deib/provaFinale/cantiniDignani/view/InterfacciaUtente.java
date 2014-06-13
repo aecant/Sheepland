@@ -1,5 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Abbattimento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Accoppiamento;
@@ -32,7 +33,7 @@ public interface InterfacciaUtente {
 
 	void movimentoPecoraNera(int origine, int destinazione);
 
-	void lancioDado(Integer numero);
+	void lancioDado(Integer numero, MotivoLancioDado motivo);
 
 	void acquistoTessera(String giocatore, Tessera tessera);
 

@@ -124,7 +124,7 @@ public class GestoreMossa {
 		int codTerr = acc.getTerritorio();
 		Territorio terr = Mappa.getMappa().getTerritori()[codTerr];
 
-		int lancio = gestorePartita.lanciaDado();
+		int lancio = gestorePartita.lanciaDado(MotivoLancioDado.TENTATIVO_ACCOPPIAMENTO);
 
 		boolean aBuonFine = (lancio == Mappa.getMappa().getDado(pastore.getStrada()));
 
@@ -142,7 +142,7 @@ public class GestoreMossa {
 
 		Abbattimento abb = (Abbattimento) gestoreEventi.aspetta(Abbattimento.class);
 
-		int lancio = gestorePartita.lanciaDado();
+		int lancio = gestorePartita.lanciaDado(MotivoLancioDado.TENTATIVO_ABBATTIMENTO);
 
 		boolean aBuonFine = (lancio == Mappa.getMappa().getDado(pastore.getStrada()));
 
@@ -152,7 +152,7 @@ public class GestoreMossa {
 
 			for (Pastore pastoreVicino : partita.getPastori()) {
 				if (Mappa.getMappa().sonoContigue(pastore.getStrada(), pastoreVicino.getStrada()) && !pastoreVicino.getColore().equals(pastore.getColore())) {
-					lancio = gestorePartita.lanciaDado();
+					lancio = gestorePartita.lanciaDado(MotivoLancioDado.SILENZIO_ABBATTIMENTO);
 					if (lancio >= Costanti.DADO_MIN_PER_SILENZIO) {
 						int somma = Costanti.COSTO_SILENZIO;
 						Giocatore ricevente = partita.getGiocatore(pastoreVicino);

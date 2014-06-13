@@ -123,7 +123,7 @@ public class GestorePartita extends Thread {
 	}
 
 	private void movimentoPecoraNera() {
-		int lancio = lanciaDado();
+		int lancio = lanciaDado(MotivoLancioDado.MOVIMENTO_PECORA_NERA);
 
 		Territorio origine = partita.getGregge().getPecoraNera().getPosizione();
 		Territorio destinazione = Mappa.getMappa().transizione(origine, lancio);
@@ -133,16 +133,16 @@ public class GestorePartita extends Thread {
 		}
 	}
 
-	public int lanciaDado() {
+	public int lanciaDado(MotivoLancioDado motivo) {
 		int lancio = Sorte.lanciaDado();
-		inviaEventoATutti(new LancioDado(lancio));
+		inviaEventoATutti(new LancioDado(lancio, motivo));
 		return lancio;
 	}
 
 	private void movimentoLupo() {
 		boolean tutteStradeOccupate = true;
 
-		int lancio = lanciaDado();
+		int lancio = lanciaDado(MotivoLancioDado.MOVIMENTO_LUPO);
 
 		Territorio origine = partita.getLupo().getPosizione();
 		Territorio destinazione = Mappa.getMappa().transizione(origine, lancio);
