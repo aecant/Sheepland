@@ -1,5 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -136,6 +137,35 @@ public class Utilita {
 			}
 		}
 		return lista;
+	}
+
+	/**
+	 * Restituisce una versione serializzabile di una collezione. Se la
+	 * collezione e' gia' serializzabile, viene restituita senza essere
+	 * modificata
+	 * 
+	 * @param collezione
+	 *            la collezione da rendere serializzabile
+	 * @return una versione serializzabile della collezione passata come
+	 *         parametro
+	 */
+	public static <E> Collection<E> rendiSerializzabile(Collection<E> collezione) {
+		if(collezione instanceof Serializable) {
+			return collezione;
+		}
+		
+		Collection<E> al = new ArrayList<E>();
+
+		// prova il cast, se fallisce copia gli elementi uno a uno
+		try {
+			al = (ArrayList<E>) collezione;
+		} catch (ClassCastException exc) {
+			for (E elemento : collezione) {
+				al.add(elemento);
+			}
+		}
+
+		return al;
 	}
 
 }
