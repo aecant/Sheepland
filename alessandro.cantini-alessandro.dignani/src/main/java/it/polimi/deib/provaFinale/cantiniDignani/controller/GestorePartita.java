@@ -60,7 +60,7 @@ public class GestorePartita extends Thread {
 	public void run() {
 
 		faseIniziale.esegui();
-		
+
 		selezionePosizioneIniziale();
 
 		gestioneGiro();
@@ -71,7 +71,6 @@ public class GestorePartita extends Thread {
 	private void gestioneGiro() {
 		while (!recintiInizialiFiniti()) {
 			for (Giocatore g : partita.getGiocatori()) {
-				movimentoPecoraNera();
 				gestioneTurno(g);
 				movimentoLupo();
 				market();
@@ -80,9 +79,11 @@ public class GestorePartita extends Thread {
 	}
 
 	private void gestioneTurno(Giocatore giocatore) {
+		movimentoPecoraNera();
+
 		TipoMossa mossaPrecedente = null;
 		boolean pastoreMosso = false;
-		Pastore pastore;
+		Pastore pastore = null;
 
 		partita.setGiocatoreDiTurno(giocatore);
 
@@ -91,11 +92,20 @@ public class GestorePartita extends Thread {
 		if (dueGiocatori) {
 			inviaEvento(new RichiestaPastore(), giocatore);
 			SceltaPastore scelta = (SceltaPastore) gestoreEventi.aspetta(SceltaPastore.class);
-			pastore = scelta.getPastore();
+			Pastore temp = scelta.getPastore();
+			for (Pastore p : partita.getPastori()) {
+				if (temp.equals(p)) {
+					pastore = p;
+				}
+			}
 		} else {
 			pastore = giocatore.getPastori().get(0);
 		}
 
+		if (pastore == null) {
+			throw new NullPointerException("A questo punto il pastore deve essere assegnato");
+		}
+		
 		for (int numMossa = 1; numMossa <= Costanti.NUM_MOSSE; numMossa++) {
 			Collection<TipoMossa> mosseDisponibili = gestoreMossa.creaMosseDisponibili(numMossa, pastoreMosso, mossaPrecedente, pastore, giocatore.getDenaro());
 

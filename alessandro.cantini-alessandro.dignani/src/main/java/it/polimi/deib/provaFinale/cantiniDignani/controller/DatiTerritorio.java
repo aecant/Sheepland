@@ -69,7 +69,18 @@ public class DatiTerritorio implements Serializable {
 	public Collection<TipoAnimale> getTipiAnimale() {
 		return numeroAnimali.keySet();
 	}
-
+	
+	/**
+	 * Restituisce i tipi di ovino presenti sul territorio, compresa la pecora nera
+	 * 
+	 * @return i tipi di ovino sul territorio, la pecora nera e' inclusa
+	 */
+	public Collection<TipoAnimale> getTipiOvino(){
+		Collection<TipoAnimale> tipiOvino = getTipiAnimale();
+		tipiOvino.remove(TipoAnimale.LUPO);
+		return tipiOvino;
+	}
+	
 	public boolean isLupo() {
 		return numeroAnimali.containsKey(TipoAnimale.LUPO) ? numeroAnimali.get(TipoAnimale.LUPO) > 0 : false;
 	}
