@@ -110,4 +110,11 @@ public class Giocatore implements Serializable{
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "Giocatore [nome=" + nome + ", pastori=" + pastori + "]";
+	}
+	
+	
+
 }

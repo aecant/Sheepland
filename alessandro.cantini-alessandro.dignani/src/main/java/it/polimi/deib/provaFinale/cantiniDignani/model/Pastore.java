@@ -17,10 +17,36 @@ public class Pastore extends PedinaSuStrada {
 	public ColorePastore getColore() {
 		return this.colore;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "pastore " + colore + " in " + super.getStrada();
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((colore == null) ? 0 : colore.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!super.equals(obj)) {
+			return false;
+		}
+		if (!(obj instanceof Pastore)) {
+			return false;
+		}
+		Pastore other = (Pastore) obj;
+		if (colore != other.colore) {
+			return false;
+		}
+		return true;
+	}
+
 }
