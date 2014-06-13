@@ -88,7 +88,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
-		out.println("Il giocatore ha acquistato una tessera di" + tessera.getTipo().toString());
+		out.println("Il giocatore ha acquistato una tessera di tipo " + tessera.getTipo().toString());
 	}
 
 	public void abbattimento(String giocatore, TipoAnimale tipo, int territorio, boolean aBuonFine) {
@@ -122,7 +122,7 @@ public class Cli implements InterfacciaUtente {
 		List<Integer> stradeDisponibili = Utilita.indiciTrue(stradeLibere);
 		out.println("Inserisci la posizione iniziale del pastore");
 		out.println("Le strade disponibili sono le seguenti: ");
-		out.println(listaDiInteri(stradeDisponibili, ", ", "."));
+		out.println(listaDiInteri(stradeDisponibili));
 
 		int stradaScelta = in.leggiIntero(stradeDisponibili);
 
@@ -134,9 +134,9 @@ public class Cli implements InterfacciaUtente {
 		List<Integer> pagamento = Utilita.indiciTrue(stradeLibereAPagamento);
 		out.println("Inserisci la posizione in cui vuoi muovere il pastore");
 		out.println("Queste sono le strade gratis");
-		out.println(listaDiInteri(gratis, ", ", "."));
+		out.println(listaDiInteri(gratis));
 		out.println("Queste sono le strade a pagamento");
-		out.println(listaDiInteri(pagamento, " ,", "."));
+		out.println(listaDiInteri(pagamento));
 
 		List<Integer> tutte = new ArrayList<Integer>();
 		tutte.addAll(pagamento);
@@ -148,7 +148,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public SceltaMossa richiestaTipoMossa(Collection<TipoMossa> mosseDisponibili, int numMossa) {
-		out.println("Devi effettuare la mossa numero" + numMossa + ".");
+		out.println("Devi effettuare la mossa numero " + numMossa + ".");
 		out.println("Scegli la mossa da effettuare fra le seguenti:");
 		out.println(menuDiScelta(mosseDisponibili));
 		TipoMossa scelta = in.scegliElemento(mosseDisponibili);

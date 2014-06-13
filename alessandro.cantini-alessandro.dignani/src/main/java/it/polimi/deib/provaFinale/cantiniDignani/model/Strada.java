@@ -69,7 +69,7 @@ public class Strada implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Strada " + codice + " fra " + territorio1 + " e " + territorio2;
+		return "Strada " + codice;
 	}
 
 }

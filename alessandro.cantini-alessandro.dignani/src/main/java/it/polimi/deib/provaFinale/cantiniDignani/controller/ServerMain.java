@@ -11,8 +11,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ServerRMI;
 import java.io.PrintStream;
 import java.util.List;
 import java.util.Vector;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class ServerMain {
 	public final static PrintStream LOGGER = System.out;
@@ -20,7 +18,6 @@ public class ServerMain {
 	private static List<GestorePartita> gestoriPartita = new Vector<GestorePartita>();
 	private static List<String> giocatoriInAttesa = new Vector<String>();
 	private static InterfacciaServer connessione;
-	private static final ExecutorService esecutorePartite = Executors.newCachedThreadPool();
 	private static GestoreCoda<Evento> gestoreEventi = new GestoreCoda<Evento>();
 	private static TimerPartita timerPartita = new TimerPartita(CostantiRete.MILLISECONDI_TIMER_PARTITA);
 
@@ -59,7 +56,7 @@ public class ServerMain {
 		Partita partita = new Partita(giocatoriInAttesa);
 		GestorePartita gestore = new GestorePartita(partita, connessione, gestoreEventi);
 		gestoriPartita.add(gestore);
-		esecutorePartite.submit(gestore);
+		gestore.start();
 		giocatoriInAttesa.clear();
 	}
 

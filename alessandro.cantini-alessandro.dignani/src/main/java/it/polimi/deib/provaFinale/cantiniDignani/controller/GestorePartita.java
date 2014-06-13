@@ -21,10 +21,10 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
-public class GestorePartita implements Runnable {
+public class GestorePartita extends Thread {
 
 	private final Partita partita;
 	private List<String> tuttiGiocatori;
@@ -97,7 +97,7 @@ public class GestorePartita implements Runnable {
 		}
 
 		for (int numMossa = 1; numMossa <= Costanti.NUM_MOSSE; numMossa++) {
-			Set<TipoMossa> mosseDisponibili = gestoreMossa.creaMosseDisponibili(numMossa, pastoreMosso, mossaPrecedente, pastore, giocatore.getDenaro());
+			Collection<TipoMossa> mosseDisponibili = gestoreMossa.creaMosseDisponibili(numMossa, pastoreMosso, mossaPrecedente, pastore, giocatore.getDenaro());
 
 			inviaEvento(new RichiestaTipoMossa(mosseDisponibili, numMossa), giocatore);
 
@@ -205,6 +205,10 @@ public class GestorePartita implements Runnable {
 
 	protected InterfacciaServer getConnessione() {
 		return connessione;
+	}
+
+	protected List<String> getTuttiGiocatori() {
+		return tuttiGiocatori;
 	}
 
 }

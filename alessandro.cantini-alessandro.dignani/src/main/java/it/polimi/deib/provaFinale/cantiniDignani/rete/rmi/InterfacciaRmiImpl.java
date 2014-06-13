@@ -48,32 +48,32 @@ public class InterfacciaRmiImpl implements InterfacciaRmi {
 	}
 
 	public DatiTerritorio[] chiediElencoTerritori(String giocatore) throws RemoteException {
-		logger.println(giocatore + "ha aggiornato l'elenco dei territori");
+		logger.println(giocatore + " ha aggiornato l'elenco dei territori");
 		return Estrattore.datiTerritori(getPartita(giocatore));
 	}
 
 	public Giocatore[] chiediGiocatori(String giocatore) throws RemoteException {
-		logger.println(giocatore + "ha aggiornato l'elenco dei giocatori");
+		logger.println(giocatore + " ha aggiornato l'elenco dei giocatori");
 		return Estrattore.giocatori(getPartita(giocatore));
 	}
 
 	public Integer[] chiediRecintiIniziali(String giocatore) throws RemoteException {
-		logger.println(giocatore + "ha aggiornato l'elenco dei recinti iniziali");
+		logger.println(giocatore + " ha aggiornato l'elenco dei recinti iniziali");
 		return Estrattore.recintiIniziali(getPartita(giocatore));
 	}
 
 	public Integer[] chiediRecintiFinali(String giocatore) throws RemoteException {
-		logger.println(giocatore + "ha aggiornato l'elenco dei recinti finali");
+		logger.println(giocatore + " ha aggiornato l'elenco dei recinti finali");
 		return Estrattore.recintiFinali(getPartita(giocatore));
 	}
 
 	public String chiediGiocatoreDiTurno(String giocatore) throws RemoteException {
-		logger.println(giocatore + "ha aggiornato il giocatore di turno");
+		logger.println(giocatore + " ha aggiornato il giocatore di turno");
 		return Estrattore.giocatoreDiTurno(getPartita(giocatore));
 	}
 
 	public Tessera[] chiediTessereInCima(String giocatore) throws RemoteException {
-		logger.println(giocatore + "ha aggiornato le tessere in cima al mazzo");
+		logger.println(giocatore + " ha aggiornato le tessere in cima al mazzo");
 		return Estrattore.tessereInCima(getPartita(giocatore));
 	}
 

@@ -17,4 +17,9 @@ public class RichiestaPosizioneInizialePastore extends Richiesta {
 		return ClientMain.getUI().richiestaPosizioneInizialePastore(stradeLibere);
 	}
 
+	@Override
+	public String toString() {
+		return "richiesta posizione iniziale pastore";
+	}
+	
 }

@@ -1,6 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 
 import java.util.Collection;
@@ -12,7 +13,7 @@ public class RichiestaTesseraDaAcquistare extends Richiesta {
 	private Collection<Tessera> tessereDisp;
 		
 	public RichiestaTesseraDaAcquistare(Collection<Tessera> tessereDisp) {
-		this.tessereDisp = tessereDisp;
+		this.tessereDisp = Utilita.rendiSerializzabile(tessereDisp);
 	}
 
 	@Override

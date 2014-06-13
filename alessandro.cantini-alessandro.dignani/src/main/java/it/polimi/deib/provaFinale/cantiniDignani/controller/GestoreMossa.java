@@ -1,21 +1,40 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Abbattimento;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Accoppiamento;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.AcquistoTessera;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPastore;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPecora;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Pagamento;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPecoraDaAbbattere;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPecoraDaMuovere;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPosizionePastore;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTerritorioPerAccoppiamento;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTesseraDaAcquistare;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
+
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.*;
-import it.polimi.deib.provaFinale.cantiniDignani.model.*;
-
-public class GestoreMossa{
+public class GestoreMossa {
 
 	private GestorePartita gestorePartita;
 	private Partita partita;
 	private GestoreCoda<Evento> gestoreEventi;
 	private int codT1, codT2;
-	private Set<TipoAnimale> oviniT1, oviniT2;
+	private Collection<TipoAnimale> oviniT1, oviniT2;
 	private DatiTerritorio[] dati;
 
 	public GestoreMossa(GestorePartita gestorePartita) {
@@ -58,7 +77,7 @@ public class GestoreMossa{
 	}
 
 	private void acquistaTessera(Pastore pastore, Giocatore giocatore) {
-		Collection<Tessera> tessereDisp = new HashSet<Tessera>();
+		Collection<Tessera> tessereDisp = new ArrayList<Tessera>();
 		Territorio terr1 = pastore.getStrada().getTerritorio1();
 		Territorio terr2 = pastore.getStrada().getTerritorio2();
 
@@ -162,14 +181,18 @@ public class GestoreMossa{
 
 	private void muoviPastore(Giocatore giocatore, Pastore pastore) {
 		boolean[] stradeGratis = Estrattore.stradeLibereGratis(partita, pastore.getStrada());
-		boolean[] stradeAPagamento = Estrattore.stradeLibereGratis(partita, pastore.getStrada());
+		boolean[] stradeAPagamento = Estrattore.stradeLibereAPagamento(partita, pastore.getStrada());
 		gestorePartita.inviaEvento(new RichiestaPosizionePastore(stradeGratis, stradeAPagamento, pastore.getStrada().getCodice()), giocatore);
 
 		MovimentoPastore movimento = (MovimentoPastore) gestoreEventi.aspetta(MovimentoPastore.class);
 		Strada origine = Mappa.getMappa().getStrade()[movimento.getOrigine()];
 		Strada destinazione = Mappa.getMappa().getStrade()[movimento.getDestinazione()];
 
-		pastore.muoviIn(destinazione);
+		for (Pastore past : partita.getPastori()) {
+			if (past.equals(pastore)) {
+				past.muoviIn(destinazione);
+			}
+		}
 		partita.getRecinti().aggiungi(origine);
 
 		gestorePartita.inviaEventoATutti(movimento);
@@ -190,8 +213,8 @@ public class GestoreMossa{
 	 *            il denaro del giocatore
 	 * @return il set di mosse disponibili
 	 */
-	protected Set<TipoMossa> creaMosseDisponibili(int numMossa, boolean pastoreMosso, TipoMossa mossaPrecedente, Pastore pastoreCorrente, int denaroDisponibile) {
-		Set<TipoMossa> mosseDisponibili = new HashSet<TipoMossa>();
+	protected Collection<TipoMossa> creaMosseDisponibili(int numMossa, boolean pastoreMosso, TipoMossa mossaPrecedente, Pastore pastoreCorrente, int denaroDisponibile) {
+		List<TipoMossa> mosseDisponibili = new ArrayList<TipoMossa>();
 		boolean entrambiTerritoriLiberi = partita.territorioLibero(pastoreCorrente.getStrada().getTerritorio1()) && partita.territorioLibero(pastoreCorrente.getStrada().getTerritorio2());
 
 		mosseDisponibili.add(TipoMossa.MUOVI_PASTORE);
