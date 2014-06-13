@@ -53,7 +53,7 @@ public class DatiPartita implements Serializable {
 	}
 
 	public void aggiornaTerritori() {
-		territori = ClientMain.getConnessione().chiediElencoTerritori();
+		territori = ClientMain.getConnessione().chiediDatiTerritori();
 	}
 
 	public void aggiornaRecinti() {

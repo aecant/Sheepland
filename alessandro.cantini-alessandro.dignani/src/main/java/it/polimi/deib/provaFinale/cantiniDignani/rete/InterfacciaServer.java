@@ -18,14 +18,4 @@ public interface InterfacciaServer {
 	 */
 	void inviaEvento(Evento evento, List<String> giocatori);
 
-	/**
-	 * Invia un evento a un singolo giocatore
-	 * 
-	 * @param evento
-	 *            l'evento da inviare
-	 * @param giocatore
-	 *            il giocatore a cui inviare l'evento
-	 */
-	void inviaEvento(Evento evento, String giocatore);
-
 }

@@ -73,7 +73,7 @@ public class ConnessioneClientRmi implements ConnessioneClient, AscoltatoreRemot
 		}
 	}
 
-	public DatiTerritorio[] chiediElencoTerritori() {
+	public DatiTerritorio[] chiediDatiTerritori() {
 		DatiTerritorio[] dati = null;
 		try {
 			dati = server.chiediElencoTerritori(nome);

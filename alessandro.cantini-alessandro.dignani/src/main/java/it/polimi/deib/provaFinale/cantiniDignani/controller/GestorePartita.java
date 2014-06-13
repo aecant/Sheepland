@@ -22,6 +22,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class GestorePartita extends Thread {
@@ -202,7 +203,7 @@ public class GestorePartita extends Thread {
 	}
 
 	protected void inviaEvento(Evento e, Giocatore g) {
-		getConnessione().inviaEvento(e, g.getNome());
+		getConnessione().inviaEvento(e, Collections.singletonList(g.getNome()));
 	}
 
 	protected void pagamento(int somma, Giocatore pagante, Giocatore ricevente) {

@@ -56,6 +56,10 @@ public class Cli implements InterfacciaUtente {
 		out.println(listaDiStringhe(ClientMain.getDatiPartita().getNomiGiocatori(), "; ", "."));
 		TipoTerritorio tipoTesseraIniziale = ClientMain.getDatiPartita().getGiocatore(nome()).getTessere().get(0).getTipo();
 		out.println("La tua tessera iniziale e' di tipo " + tipoTesseraIniziale);
+		
+		for(int i = 0; i < ClientMain.getDatiPartita().getTerritori().length; i++) {
+			out.println();
+		}
 	}
 
 	public void lancioDado(Integer numero, MotivoLancioDado motivo) {

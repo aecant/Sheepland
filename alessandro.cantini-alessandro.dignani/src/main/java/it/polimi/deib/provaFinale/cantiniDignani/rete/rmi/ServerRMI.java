@@ -10,7 +10,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -51,10 +50,6 @@ public class ServerRMI implements InterfacciaServer {
 				e.printStackTrace();
 			}
 		}
-	}
-
-	public void inviaEvento(Evento evento, String giocatore) {
-		inviaEvento(evento, Collections.singletonList(giocatore));
 	}
 
 }

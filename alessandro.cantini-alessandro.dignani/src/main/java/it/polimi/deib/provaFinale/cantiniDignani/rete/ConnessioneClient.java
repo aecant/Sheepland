@@ -16,7 +16,7 @@ public interface ConnessioneClient {
 
 	DatiPartita scaricaDatiPartita();
 
-	DatiTerritorio[] chiediElencoTerritori();
+	DatiTerritorio[] chiediDatiTerritori();
 
 	Giocatore[] chiediGiocatori();
 
