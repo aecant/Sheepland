@@ -60,7 +60,7 @@ public class GestorePartita extends Thread {
 	public void run() {
 
 		faseIniziale.esegui();
-		
+
 		selezionePosizioneIniziale();
 
 		gestioneGiro();
@@ -71,7 +71,6 @@ public class GestorePartita extends Thread {
 	private void gestioneGiro() {
 		while (!recintiInizialiFiniti()) {
 			for (Giocatore g : partita.getGiocatori()) {
-				movimentoPecoraNera();
 				gestioneTurno(g);
 				movimentoLupo();
 				market();
@@ -80,9 +79,11 @@ public class GestorePartita extends Thread {
 	}
 
 	private void gestioneTurno(Giocatore giocatore) {
+		movimentoPecoraNera();
+
 		TipoMossa mossaPrecedente = null;
 		boolean pastoreMosso = false;
-		Pastore pastore;
+		Pastore pastore = null;
 
 		partita.setGiocatoreDiTurno(giocatore);
 
@@ -91,18 +92,32 @@ public class GestorePartita extends Thread {
 		if (dueGiocatori) {
 			inviaEvento(new RichiestaPastore(), giocatore);
 			SceltaPastore scelta = (SceltaPastore) gestoreEventi.aspetta(SceltaPastore.class);
-			pastore = scelta.getPastore();
+			Pastore temp = scelta.getPastore();
+			for (Pastore p : partita.getPastori()) {
+				if (temp.equals(p)) {
+					pastore = p;
+				}
+			}
 		} else {
 			pastore = giocatore.getPastori().get(0);
 		}
 
+		if (pastore == null) {
+			throw new NullPointerException("A questo punto il pastore deve essere assegnato");
+		}
+		
 		for (int numMossa = 1; numMossa <= Costanti.NUM_MOSSE; numMossa++) {
 			Collection<TipoMossa> mosseDisponibili = gestoreMossa.creaMosseDisponibili(numMossa, pastoreMosso, mossaPrecedente, pastore, giocatore.getDenaro());
 
 			inviaEvento(new RichiestaTipoMossa(mosseDisponibili, numMossa), giocatore);
 
 			TipoMossa tipoMossa = ((SceltaMossa) gestoreEventi.aspetta(SceltaMossa.class)).getMossa();
-
+			
+			mossaPrecedente = tipoMossa;
+			if(tipoMossa == TipoMossa.MUOVI_PASTORE) {
+				pastoreMosso = true;
+			}
+			
 			gestoreMossa.effettuaMossa(pastore, tipoMossa);
 		}
 	}
@@ -132,7 +147,7 @@ public class GestorePartita extends Thread {
 		Territorio origine = partita.getLupo().getPosizione();
 		Territorio destinazione = Mappa.getMappa().transizione(origine, lancio);
 
-		for (int i = 0; i < 5; i++) {
+		for (int i = 1; i < 6; i++) {
 			if (movimentoPossibile(origine, i)) {
 				tutteStradeOccupate = false;
 				break;

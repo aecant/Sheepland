@@ -19,7 +19,8 @@ public class InputCli {
 	 * @return la stringa inserita
 	 */
 	public String leggiStringa() {
-		return in.nextLine();
+		String risposta = in.nextLine();
+		return risposta.trim();
 	}
 
 	/**

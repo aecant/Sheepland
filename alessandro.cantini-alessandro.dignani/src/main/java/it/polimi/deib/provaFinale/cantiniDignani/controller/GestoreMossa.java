@@ -48,8 +48,8 @@ public class GestoreMossa {
 		dati = Estrattore.datiTerritori(partita);
 		codT1 = pastore.getStrada().getTerritorio1().getCodice();
 		codT2 = pastore.getStrada().getTerritorio2().getCodice();
-		oviniT1 = dati[codT1].getTipiAnimale();
-		oviniT2 = dati[codT2].getTipiAnimale();
+		oviniT1 = dati[codT1].getTipiOvino();
+		oviniT2 = dati[codT2].getTipiOvino();
 
 		switch (tipoMossa) {
 
@@ -188,11 +188,8 @@ public class GestoreMossa {
 		Strada origine = Mappa.getMappa().getStrade()[movimento.getOrigine()];
 		Strada destinazione = Mappa.getMappa().getStrade()[movimento.getDestinazione()];
 
-		for (Pastore past : partita.getPastori()) {
-			if (past.equals(pastore)) {
-				past.muoviIn(destinazione);
-			}
-		}
+		pastore.muoviIn(destinazione);
+		
 		partita.getRecinti().aggiungi(origine);
 
 		gestorePartita.inviaEventoATutti(movimento);

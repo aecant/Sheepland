@@ -28,6 +28,10 @@ public class Mappa {
 	 * @return il territorio di destinazione
 	 */
 	public Territorio transizione(Territorio t, int dado) {
+		if(dado < 1 || dado > 6) {
+			throw new IllegalArgumentException(dado + " non e' un parametro accettabile: il numero dev'essere compreso fra 1 e 6");
+		}
+		
 		int indice = Costanti.MAPPA[t.getCodice()][dado - 1];
 		return territori[indice];
 	}
