@@ -133,7 +133,7 @@ public class CostantiGui {
 	};
 
 	// Panel mosse
-	public static final Dimension DIMENSIONE_PANEL_MOSSA = new Dimension(150, 80);
+	public static final Dimension DIMENSIONE_PANEL_MOSSA = new Dimension(DIMENSIONE_PANEL_GIOCATORE.width, 80);
 
 	// Fonts
 	public static final Font FONT_PULSANTI_MOSSE = new Font("Chalkduster", Font.PLAIN, 18);
