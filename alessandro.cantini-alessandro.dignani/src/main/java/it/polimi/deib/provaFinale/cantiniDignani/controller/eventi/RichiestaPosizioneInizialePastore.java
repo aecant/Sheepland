@@ -9,7 +9,7 @@ public class RichiestaPosizioneInizialePastore extends Richiesta {
 	private boolean[] stradeLibere;
 
 	public RichiestaPosizioneInizialePastore(boolean[] stradeLibere) {
-		this.stradeLibere = stradeLibere;
+		this.stradeLibere = stradeLibere.clone();
 	}
 
 	@Override
