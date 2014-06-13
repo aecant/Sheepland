@@ -8,24 +8,24 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 
 public interface ConnessioneClient {
 
-	public void inizializza();
+	void inizializza();
 
-	public void registraGiocatore(String nome);
+	void registraGiocatore(String nome);
 
-	public void inviaMossa(Mossa mossaScelta);
+	void inviaMossa(Mossa mossaScelta);
 
-	public DatiPartita scaricaDatiPartita();
+	DatiPartita scaricaDatiPartita();
 
-	public DatiTerritorio[] chiediElencoTerritori();
+	DatiTerritorio[] chiediElencoTerritori();
 
-	public Giocatore[] chiediGiocatori();
+	Giocatore[] chiediGiocatori();
 
-	public Integer[] chiediRecintiIniziali();
+	Integer[] chiediRecintiIniziali();
 
-	public Integer[] chiediRecintiFinali();
+	Integer[] chiediRecintiFinali();
 
-	public String chiediGiocatoreDiTurno();
+	String chiediGiocatoreDiTurno();
 
-	public Tessera[] chiediTessereInCima();
+	Tessera[] chiediTessereInCima();
 
 }

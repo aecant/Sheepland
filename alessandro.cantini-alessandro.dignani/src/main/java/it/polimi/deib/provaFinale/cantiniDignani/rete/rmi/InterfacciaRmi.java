@@ -11,24 +11,24 @@ import java.rmi.RemoteException;
 
 public interface InterfacciaRmi extends Remote {
 
-	public void registraGiocatore(String giocatore) throws RemoteException;
+	void registraGiocatore(String giocatore) throws RemoteException;
 
-	public void aggiungiAscoltatore(String giocatore, AscoltatoreRemoto ascoltatore) throws RemoteException;
+	void aggiungiAscoltatore(String giocatore, AscoltatoreRemoto ascoltatore) throws RemoteException;
 
-	public void riceviMossa(Mossa mossa) throws RemoteException;
+	void riceviMossa(Mossa mossa) throws RemoteException;
 
-	public DatiPartita scaricaDatiPartita(String giocatore) throws RemoteException;
+	DatiPartita scaricaDatiPartita(String giocatore) throws RemoteException;
 
-	public DatiTerritorio[] chiediElencoTerritori(String giocatore) throws RemoteException;
+	DatiTerritorio[] chiediElencoTerritori(String giocatore) throws RemoteException;
 
-	public Giocatore[] chiediGiocatori(String giocatore) throws RemoteException;
+	Giocatore[] chiediGiocatori(String giocatore) throws RemoteException;
 
-	public Integer[] chiediRecintiIniziali(String giocatore) throws RemoteException;
+	Integer[] chiediRecintiIniziali(String giocatore) throws RemoteException;
 
-	public Integer[] chiediRecintiFinali(String giocatore) throws RemoteException;
+	Integer[] chiediRecintiFinali(String giocatore) throws RemoteException;
 
-	public String chiediGiocatoreDiTurno(String giocatore) throws RemoteException;
+	String chiediGiocatoreDiTurno(String giocatore) throws RemoteException;
 
-	public Tessera[] chiediTessereInCima(String giocatore) throws RemoteException;
+	Tessera[] chiediTessereInCima(String giocatore) throws RemoteException;
 
 }

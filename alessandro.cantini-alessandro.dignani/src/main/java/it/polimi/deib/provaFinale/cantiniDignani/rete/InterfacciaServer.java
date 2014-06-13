@@ -6,7 +6,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 
 public interface InterfacciaServer {
 
-	public void inizializza();
+	void inizializza();
 
 	/**
 	 * Invia un evento a determinati giocatori
@@ -16,7 +16,7 @@ public interface InterfacciaServer {
 	 * @param giocatori
 	 *            la lista dei giocatori a cui inviare l'evento
 	 */
-	public void inviaEvento(Evento evento, List<String> giocatori);
+	void inviaEvento(Evento evento, List<String> giocatori);
 
 	/**
 	 * Invia un evento a un singolo giocatore
@@ -26,6 +26,6 @@ public interface InterfacciaServer {
 	 * @param giocatore
 	 *            il giocatore a cui inviare l'evento
 	 */
-	public void inviaEvento(Evento evento, String giocatore);
+	void inviaEvento(Evento evento, String giocatore);
 
 }
