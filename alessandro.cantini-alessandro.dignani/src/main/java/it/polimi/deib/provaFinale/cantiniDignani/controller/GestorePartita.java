@@ -147,7 +147,7 @@ public class GestorePartita extends Thread {
 		Territorio origine = partita.getLupo().getPosizione();
 		Territorio destinazione = Mappa.getMappa().transizione(origine, lancio);
 
-		for (int i = 0; i < 5; i++) {
+		for (int i = 1; i < 6; i++) {
 			if (movimentoPossibile(origine, i)) {
 				tutteStradeOccupate = false;
 				break;
