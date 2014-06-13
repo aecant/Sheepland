@@ -6,6 +6,8 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import java.awt.BorderLayout;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
@@ -21,9 +23,12 @@ public class PartitaView {
 
 	private JPanel panelTessere;
 
+	private JPanel contenitore;
 	private JPanel panelGiocatoriMosse;
 	private JPanel panelGiocatori;
 	private JPanel panelMosse;
+
+	private JPanel panelMessaggi;
 
 	private DatiPartita datiPartita;
 
@@ -65,12 +70,25 @@ public class PartitaView {
 
 		// imposto la finestra
 		finestra = new JFrame("Sheepland - The Videogame");
-		finestra.setLayout(new BorderLayout());
+		finestra.setLayout(null);
+		finestra.setVisible(false);
 
-		// aggiungo i panel alla finestra
-		finestra.add(panelTessere, BorderLayout.WEST);
-		finestra.add(panelMappa, BorderLayout.CENTER);
-		finestra.add(panelGiocatoriMosse, BorderLayout.EAST);
+		// imposto il panel contenitore
+		contenitore = new JPanel(new BorderLayout());
+
+		// aggiungo i panel al contenitore
+		contenitore.add(panelTessere, BorderLayout.WEST);
+		contenitore.add(panelMappa, BorderLayout.CENTER);
+		contenitore.add(panelGiocatoriMosse, BorderLayout.EAST);
+		contenitore.setBounds(new Rectangle(new Point(0, 0), CostantiGui.DIMENSIONE_SCHERMO));
+		
+		// imposto il panelMessaggi
+		panelMessaggi = new PanelMessaggi();
+		
+
+		// aggiungo il contenitore alla finestra
+		finestra.add(panelMessaggi);
+		finestra.add(contenitore);
 
 		finestra.pack();
 		finestra.setSize(Toolkit.getDefaultToolkit().getScreenSize());
@@ -81,7 +99,6 @@ public class PartitaView {
 			GraphicsDevice cc = ge.getDefaultScreenDevice();
 			cc.setFullScreenWindow(finestra);
 		}
-
 	}
 
 	public void visualizza() {
@@ -90,5 +107,9 @@ public class PartitaView {
 
 	public MappaView getMappa() {
 		return this.mappa;
+	}
+	
+	public PanelMessaggi getPanelMessaggi() {
+		return (PanelMessaggi) this.panelMessaggi;
 	}
 }

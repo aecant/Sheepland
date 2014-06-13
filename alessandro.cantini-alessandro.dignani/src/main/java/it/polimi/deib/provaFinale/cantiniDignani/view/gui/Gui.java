@@ -70,8 +70,9 @@ public class Gui {
 			finestraPartita.getMappa().creaPecoraNera(coordinateTerritori[i][3]);
 			finestraPartita.getMappa().creaLupo(coordinateTerritori[i][4]);
 		}
-
 		finestraPartita.visualizza();
+		
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio("E' il turno di " + dati.getGiocatoreDiTurno());
 	}
 
 	/**

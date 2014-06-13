@@ -13,6 +13,7 @@ public class CostantiGui {
 
 	public static String PERCORSO_IMMAGINI = new String("immagini/");
 
+	// Colori
 	public static Color COLORE_ACQUA = new Color(34, 145, 243);
 
 	public static final Dimension DIMENSIONE_SCHERMO;
@@ -39,6 +40,13 @@ public class CostantiGui {
 	public static final Dimension DIMENSIONE_PANEL_GIOCATORE = new Dimension(200, 70);
 	public static final Color COLORE_SFONDO_NOME_GIOC = new Color(255, 255, 255, 180);
 	public static final Dimension DIMENSIONE_PANEL_SOLDI = new Dimension(50, 50);
+	
+	// Panel messaggi
+	public static final Color COLORE_SFONDO_MESSAGGI = new Color(152, 215, 244);
+	public static final Dimension DIMENSIONE_PANEL_MESSAGGI = new Dimension(DIMENSIONE_SCHERMO.width, DIMENSIONE_SCHERMO.height / 3);
+	public static final int TEMPO_VISUALIZZAZIONE_MESSAGGIO = 3000;
+	public static final Font FONT_MESSAGGI = new Font("Arial", Font.BOLD, 40);
+	public static final Color COLORE_TESTO_MESSAGGI = new Color(80, 80, 80);
 
 	// panels laterali mappa
 	public static final Dimension DIMENSIONE_PAN_LATERALI_MAPPA = new Dimension(

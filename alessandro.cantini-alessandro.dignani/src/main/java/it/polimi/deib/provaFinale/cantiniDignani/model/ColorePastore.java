@@ -5,7 +5,7 @@ import java.awt.Color;
 public enum ColorePastore {
 	ROSSO(Color.RED),
 	BLU(Color.BLUE),
-	VERDE(Color.GREEN),
+	VERDE(new Color(0, 217, 36)),
 	GIALLO(Color.YELLOW);
 	
 	public final Color coloreView;

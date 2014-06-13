@@ -21,6 +21,9 @@ public class PanelMessaggi extends JPanel{
 		lblMessaggi = new JLabel();
 		lblMessaggi.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblMessaggi.setVerticalTextPosition(SwingConstants.CENTER);
+		lblMessaggi.setFont(CostantiGui.FONT_MESSAGGI);
+		lblMessaggi.setForeground(CostantiGui.COLORE_TESTO_MESSAGGI);
+
 		
 		add(lblMessaggi);
 		setVisible(false);
