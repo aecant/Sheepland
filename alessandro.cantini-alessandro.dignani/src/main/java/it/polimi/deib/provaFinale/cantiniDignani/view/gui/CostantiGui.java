@@ -26,8 +26,9 @@ public class CostantiGui {
 	public static final Dimension DIMENSIONE_MAPPA = new Dimension((int) (DIMENSIONE_SCHERMO.height * (0.75)), DIMENSIONE_SCHERMO.height);
 	public static final Dimension DIMENSIONE_PECORA = new Dimension(DIMENSIONE_MAPPA.height / 18, DIMENSIONE_MAPPA.height / 24);
 	public static final Dimension DIMENSIONE_MONTONE = new Dimension(DIMENSIONE_MAPPA.height / 18, DIMENSIONE_MAPPA.height / 24);
-	public static final Dimension DIMENSIONE_AGNELLO = new Dimension(DIMENSIONE_MAPPA.height / 18, DIMENSIONE_MAPPA.height / 24);
+	public static final Dimension DIMENSIONE_AGNELLO = new Dimension(DIMENSIONE_MAPPA.height / 21, DIMENSIONE_MAPPA.height / 28);
 	public static final Dimension DIMENSIONE_LUPO = new Dimension(DIMENSIONE_MAPPA.height / 18, DIMENSIONE_MAPPA.height / 24);
+	public static final Dimension DIMENSIONE_PASTORE = new Dimension(DIMENSIONE_MAPPA.height / 24, DIMENSIONE_MAPPA.height / 24);
 
 	// Panel Tessere
 	public static final Dimension DIMENSIONE_PANEL_TESSERA = new Dimension(DIMENSIONE_MAPPA.height / 6, DIMENSIONE_MAPPA.height / 6);
@@ -50,7 +51,7 @@ public class CostantiGui {
 	 * moltiplicate per il FATTORE_DI_SCALA calcolato facendo
 	 * PIXEL_ALTEZZA_SCHERMO_CORRENTE / 800
 	 */
-	public static final Point[][] COORDINATE = {
+	public static final Point[][] COORDINATE_TERRITORI = {
 			// Sheepsburg
 			{ new Point(313, 366), new Point(316, 392), new Point(316, 340), new Point(276, 367), new Point(347, 372) },
 			// Montagna
@@ -76,10 +77,60 @@ public class CostantiGui {
 			// Campo
 			{ new Point(230, 310), new Point(243, 265), new Point(227, 344), new Point(206, 278), new Point(266, 291) },
 			{ new Point(225, 179), new Point(216, 217), new Point(170, 169), new Point(287, 168), new Point(173, 117) },
-			{ new Point(380, 117), new Point(380, 168), new Point(433, 90), new Point(340, 125), new Point(377, 58) } }; // TODO
-																															// inserire
-																															// le
-																															// coordinate
+			{ new Point(380, 117), new Point(380, 168), new Point(433, 90), new Point(340, 125), new Point(377, 58) } };
+	
+	
+	/**
+	 * Coordinate delle posizioni delle strade
+	 * [Attenzione] Le coordinate salvate sono relative ad uno
+	 * schermo con risoluzione 1280x800 Queste coordinate andranno poi
+	 * moltiplicate per il FATTORE_DI_SCALA calcolato facendo
+	 * PIXEL_ALTEZZA_SCHERMO_CORRENTE / 800
+	 */
+	public static final Point[] COORDINATE_STRADE = {
+		new Point(318, 311),
+		new Point(363, 338),
+		new Point(369, 395),
+		new Point(325, 424),
+		new Point(273, 397),
+		new Point(268, 340),
+		new Point(397, 227),
+		new Point(382, 282),
+		new Point(290, 272),
+		new Point(306, 212),
+		new Point(359, 198),
+		new Point(503, 202),
+		new Point(434, 255),
+		new Point(422, 142),
+		new Point(480, 274),
+		new Point(540, 292),
+		new Point(473, 335),
+		new Point(409, 372),
+		new Point(525, 441),
+		new Point(473, 394),
+		new Point(453, 470),
+		new Point(458, 571),
+		new Point(404, 517),
+		new Point(369, 463),
+		new Point(368, 637),
+		new Point(367, 547),
+		new Point(323, 581),
+		new Point(233, 664),
+		new Point(279, 554),
+		new Point(284, 476),
+		new Point(153, 601),
+		new Point(235, 530),
+		new Point(195, 478),
+		new Point(146, 440),
+		new Point(191, 402),
+		new Point(229, 372),
+		new Point(102, 292),
+		new Point(191, 326),
+		new Point(192, 259),
+		new Point(154, 202),
+		new Point(249, 236),
+		new Point(315, 134)
+	};
 
 	// Panel mosse
 	public static final Dimension DIMENSIONE_PANEL_MOSSA = new Dimension(150, 80);

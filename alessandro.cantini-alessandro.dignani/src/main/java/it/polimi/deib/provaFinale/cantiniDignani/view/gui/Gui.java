@@ -4,6 +4,8 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.FaseIniziale;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.GestorePartita;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Sorte;
+import it.polimi.deib.provaFinale.cantiniDignani.model.ColorePastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 
@@ -43,19 +45,30 @@ public class Gui {
 
 		finestraPartita = new PartitaView(dati);
 
-		Point[][] coordinate = new Point[Costanti.NUM_TERRITORI][5];
+		Point[][] coordinateTerritori = new Point[Costanti.NUM_TERRITORI][5];
 		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
 			for (int j = 0; j < 5; j++) {
-				coordinate[i][j] = new Point((int) (CostantiGui.COORDINATE[i][j].getX() * CostantiGui.FATTORE_DI_SCALA), (int) (CostantiGui.COORDINATE[i][j].getY() * CostantiGui.FATTORE_DI_SCALA));
+				coordinateTerritori[i][j] = new Point((int) (CostantiGui.COORDINATE_TERRITORI[i][j].getX() * CostantiGui.FATTORE_DI_SCALA),
+						(int) (CostantiGui.COORDINATE_TERRITORI[i][j].getY() * CostantiGui.FATTORE_DI_SCALA));
 			}
 		}
 
+		Point[] coordinateStrade = new Point[Costanti.NUM_STRADE];
+		for (int i = 0; i < Costanti.NUM_STRADE; i++) {
+			coordinateStrade[i] = new Point((int) (CostantiGui.COORDINATE_STRADE[i].getX() * CostantiGui.FATTORE_DI_SCALA),
+					(int) (CostantiGui.COORDINATE_STRADE[i].getY() * CostantiGui.FATTORE_DI_SCALA));
+		}
+
+		for (int i = 0; i < dati.getGiocatori().length; i++) {
+			finestraPartita.getMappa().creaPastore(coordinateStrade[Sorte.numeroCasuale(0, Costanti.NUM_STRADE -1)], ColorePastore.values()[i]);
+		}
+		
 		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
-				finestraPartita.getMappa().creaPecora(coordinate[i][0]);
-				finestraPartita.getMappa().creaMontone(coordinate[i][1]);
-				finestraPartita.getMappa().creaAgnello(coordinate[i][2]);
-				finestraPartita.getMappa().creaPecoraNera(coordinate[i][3]);
-				finestraPartita.getMappa().creaLupo(coordinate[i][4]);
+			finestraPartita.getMappa().creaPecora(coordinateTerritori[i][0]);
+			finestraPartita.getMappa().creaMontone(coordinateTerritori[i][1]);
+			finestraPartita.getMappa().creaAgnello(coordinateTerritori[i][2]);
+			finestraPartita.getMappa().creaPecoraNera(coordinateTerritori[i][3]);
+			finestraPartita.getMappa().creaLupo(coordinateTerritori[i][4]);
 		}
 
 		finestraPartita.visualizza();
@@ -74,13 +87,14 @@ public class Gui {
 	// Test
 	public static void main(String[] args) {
 		Gui gui = new Gui();
-		//System.out.println(gui.chiediNome());
+		// System.out.println(gui.chiediNome());
 		gui.inizioPartita();
 
 		Point[][] coordinate = new Point[Costanti.NUM_TERRITORI][5];
 		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
 			for (int j = 0; j < 5; j++) {
-				coordinate[i][j] = new Point((int) (CostantiGui.COORDINATE[i][j].getX() * CostantiGui.FATTORE_DI_SCALA), (int) (CostantiGui.COORDINATE[i][j].getY() * CostantiGui.FATTORE_DI_SCALA));
+				coordinate[i][j] = new Point((int) (CostantiGui.COORDINATE_TERRITORI[i][j].getX() * CostantiGui.FATTORE_DI_SCALA),
+						(int) (CostantiGui.COORDINATE_TERRITORI[i][j].getY() * CostantiGui.FATTORE_DI_SCALA));
 			}
 		}
 	}

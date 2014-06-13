@@ -1,5 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
+import it.polimi.deib.provaFinale.cantiniDignani.model.ColorePastore;
+
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -19,13 +21,20 @@ public class MappaView extends BackgroundMappaPanel{
 		this.setMaximumSize(CostantiGui.DIMENSIONE_MAPPA);
 		this.setMinimumSize(CostantiGui.DIMENSIONE_MAPPA);
 		this.setLayout(null);
+		
+		// Temporaneo
+		this.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent e) {
+				System.out.println("new Point(" + e.getX() + ", " + e.getY() + "),");
+			}
+		});
 	}
 	
 	public void creaPecora(Point coordinate) {
-		PecoraView temp = new PecoraView(coordinate.x-(CostantiGui.DIMENSIONE_PECORA.width/2), coordinate.y-(CostantiGui.DIMENSIONE_PECORA.height/2));
-		pec.add(temp);
-		add(temp);
-		temp.getParent().repaint();
+		PecoraView pecor = new PecoraView(coordinate.x-(CostantiGui.DIMENSIONE_PECORA.width/2), coordinate.y-(CostantiGui.DIMENSIONE_PECORA.height/2));
+		pec.add(pecor);
+		add(pecor);
+		pecor.getParent().repaint();
 	}
 
 	public void creaMontone(Point coordinate) {
@@ -41,14 +50,20 @@ public class MappaView extends BackgroundMappaPanel{
 	}
 
 	public void creaPecoraNera(Point coordinate) {
-		PecoraNeraView mont = new PecoraNeraView(coordinate.x-(CostantiGui.DIMENSIONE_PECORA.width/2), coordinate.y-(CostantiGui.DIMENSIONE_PECORA.height/2));
-		add(mont);
-		mont.getParent().repaint();
+		PecoraNeraView pecoraNera = new PecoraNeraView(coordinate.x-(CostantiGui.DIMENSIONE_PECORA.width/2), coordinate.y-(CostantiGui.DIMENSIONE_PECORA.height/2));
+		add(pecoraNera);
+		pecoraNera.getParent().repaint();
 	}
 
 	public void creaLupo(Point coordinate) {
-		LupoView mont = new LupoView(coordinate.x-(CostantiGui.DIMENSIONE_LUPO.width/2), coordinate.y-(CostantiGui.DIMENSIONE_LUPO.height/2));
-		add(mont);
-		mont.getParent().repaint();
+		LupoView lupo = new LupoView(coordinate.x-(CostantiGui.DIMENSIONE_LUPO.width/2), coordinate.y-(CostantiGui.DIMENSIONE_LUPO.height/2));
+		add(lupo);
+		lupo.getParent().repaint();
+	}
+	
+	public void creaPastore(Point coordinate, ColorePastore colore) {
+		PastoreView past = new PastoreView(coordinate.x-(CostantiGui.DIMENSIONE_PASTORE.width/2), coordinate.y-(CostantiGui.DIMENSIONE_PASTORE.height/2), colore);
+		add(past);
+		past.getParent().repaint();
 	}
 }
