@@ -31,8 +31,8 @@ public class GestorePartita extends Thread {
 	private List<String> tuttiGiocatori;
 	private final InterfacciaServer connessione;
 	private final GestoreMossa gestoreMossa;
-	public final FaseIniziale faseIniziale;
-	public final FaseFinale faseFinale;
+	private final FaseIniziale faseIniziale;
+	private final FaseFinale faseFinale;
 	private final GestoreCoda<Evento> gestoreEventi;
 
 	private boolean dueGiocatori;
@@ -226,5 +226,15 @@ public class GestorePartita extends Thread {
 	protected List<String> getTuttiGiocatori() {
 		return tuttiGiocatori;
 	}
+
+	protected FaseIniziale getFaseIniziale() {
+		return faseIniziale;
+	}
+
+	protected FaseFinale getFaseFinale() {
+		return faseFinale;
+	}
+	
+	
 
 }

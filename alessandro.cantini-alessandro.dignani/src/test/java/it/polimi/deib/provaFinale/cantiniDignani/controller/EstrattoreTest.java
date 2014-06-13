@@ -34,9 +34,9 @@ public class EstrattoreTest {
 		partita = new Partita(Arrays.asList("esempio1", "esempio2", "esempio3", "esempio4"));
 
 		GestorePartita gestore = new GestorePartita(partita, null, null);
-		gestore.faseIniziale.disponiPecore();
-		gestore.faseIniziale.disponiTessereIniziali();
-		gestore.faseIniziale.distribuisciDenari();
+		gestore.getFaseIniziale().disponiPecore();
+		gestore.getFaseIniziale().disponiTessereIniziali();
+		gestore.getFaseIniziale().distribuisciDenari();
 
 		for (int i = 0; i < partita.getPastori().size(); i++) {
 			partita.getPastori().get(i).muoviIn(s[i]);

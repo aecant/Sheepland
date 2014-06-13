@@ -24,7 +24,7 @@ public class FaseInizialeTest {
 		Collections.addAll(listaNomi, "esempio1", "esempio2", "esempio3", "esempio4");
 		partita = new Partita(listaNomi);
 		gestore = new GestorePartita(partita, null, null);
-		faseIniziale = gestore.faseIniziale;
+		faseIniziale = gestore.getFaseIniziale();
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class FaseInizialeTest {
 		for (int i = Costanti.NUM_MAX_GIOCATORI; i >= Costanti.NUM_MIN_GIOCATORI; i--) {
 			partita = new Partita(listaNomi);
 			gestore = new GestorePartita(partita, null, null);
-			faseIniziale = gestore.faseIniziale;
+			faseIniziale = gestore.getFaseIniziale();
 			faseIniziale.distribuisciDenari();
 
 			for (Giocatore g : partita.getGiocatori()) {
