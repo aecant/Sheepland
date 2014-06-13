@@ -1,5 +1,7 @@
-package it.polimi.deib.provaFinale.cantiniDignani.controller;
+package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Sorte;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.InizioPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
@@ -10,9 +12,9 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
 import java.util.Collections;
 import java.util.Stack;
 
-public class FaseIniziale extends FasePartita {
+public class PreparazionePartita extends FasePartita {
 
-	public FaseIniziale(GestorePartita gestore) {
+	public PreparazionePartita(GestorePartita gestore) {
 		super(gestore);
 	}
 

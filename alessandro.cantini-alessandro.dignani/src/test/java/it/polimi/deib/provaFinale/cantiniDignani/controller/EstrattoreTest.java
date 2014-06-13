@@ -3,6 +3,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
@@ -34,9 +35,9 @@ public class EstrattoreTest {
 		partita = new Partita(Arrays.asList("esempio1", "esempio2", "esempio3", "esempio4"));
 
 		GestorePartita gestore = new GestorePartita(partita, null, null);
-		gestore.getFaseIniziale().disponiPecore();
-		gestore.getFaseIniziale().disponiTessereIniziali();
-		gestore.getFaseIniziale().distribuisciDenari();
+		gestore.getPreparazionePartita().disponiPecore();
+		gestore.getPreparazionePartita().disponiTessereIniziali();
+		gestore.getPreparazionePartita().distribuisciDenari();
 
 		for (int i = 0; i < partita.getPastori().size(); i++) {
 			partita.getPastori().get(i).muoviIn(s[i]);

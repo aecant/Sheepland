@@ -4,7 +4,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- * Gestisce una coda del tipo passato come parametro.
+ * Gestisce una coda di elementi del tipo passato come parametro.
  * 
  * @param <T>
  *            il tipo degli elementi della coda
@@ -16,7 +16,7 @@ public class GestoreCoda<T> {
 
 	/**
 	 * Restituisce il primo elemento nella coda. Se la coda non contiene
-	 * elementi aspetta finche' non c'e' un elemento.
+	 * elementi aspetta finche' un altro thread aggiunge un elemento alla coda.
 	 * 
 	 * @return
 	 */

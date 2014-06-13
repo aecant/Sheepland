@@ -2,9 +2,9 @@ package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.FaseIniziale;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.GestorePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Sorte;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.PreparazionePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.ColorePastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
@@ -36,7 +36,7 @@ public class Gui {
 		// ClientMain.getDatiPartita()
 		Partita part = new Partita(Arrays.asList("Alessandro", "Andrea", "Luca", "Paolo"));
 		GestorePartita gest = new GestorePartita(part, null, null);
-		FaseIniziale fi = new FaseIniziale(gest);
+		PreparazionePartita fi = new PreparazionePartita(gest);
 		fi.disponiPecore();
 		fi.disponiTessereIniziali();
 		fi.distribuisciDenari();

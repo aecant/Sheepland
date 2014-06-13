@@ -1,6 +1,11 @@
-package it.polimi.deib.provaFinale.cantiniDignani.controller;
+package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
 import static org.junit.Assert.*;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.PreparazionePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
@@ -13,10 +18,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FaseInizialeTest {
+public class PreparazionPartitaTest {
 	List<String> listaNomi = new ArrayList<String>();
 	Partita partita;
-	FaseIniziale faseIniziale;
+	PreparazionePartita preparazionePartita;
 	GestorePartita gestore;
 
 	@Before
@@ -24,7 +29,7 @@ public class FaseInizialeTest {
 		Collections.addAll(listaNomi, "esempio1", "esempio2", "esempio3", "esempio4");
 		partita = new Partita(listaNomi);
 		gestore = new GestorePartita(partita, null, null);
-		faseIniziale = gestore.getFaseIniziale();
+		preparazionePartita = gestore.getPreparazionePartita();
 	}
 
 	/**
@@ -36,8 +41,8 @@ public class FaseInizialeTest {
 		for (int i = Costanti.NUM_MAX_GIOCATORI; i >= Costanti.NUM_MIN_GIOCATORI; i--) {
 			partita = new Partita(listaNomi);
 			gestore = new GestorePartita(partita, null, null);
-			faseIniziale = gestore.getFaseIniziale();
-			faseIniziale.distribuisciDenari();
+			preparazionePartita = gestore.getPreparazionePartita();
+			preparazionePartita.distribuisciDenari();
 
 			for (Giocatore g : partita.getGiocatori()) {
 				if (partita.getGiocatori().size() == 2) {
@@ -58,7 +63,7 @@ public class FaseInizialeTest {
 	 */
 	@Test
 	public void testDisponiPecore()  {
-		faseIniziale.disponiPecore();
+		preparazionePartita.disponiPecore();
 
 		DatiTerritorio[] dati = Estrattore.datiTerritori(partita);
 		
@@ -75,7 +80,7 @@ public class FaseInizialeTest {
 	 */
 	@Test
 	public void testDisponiTessereIniziali() {
-		faseIniziale.disponiTessereIniziali();
+		preparazionePartita.disponiTessereIniziali();
 
 		List<Tessera> listaTessere = new ArrayList<Tessera>();
 

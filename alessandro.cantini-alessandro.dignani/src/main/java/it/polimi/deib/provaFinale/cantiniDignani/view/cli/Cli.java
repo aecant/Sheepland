@@ -6,6 +6,7 @@ import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe
 import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.menuDiScelta;
 import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.nelTerr;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
@@ -56,10 +57,7 @@ public class Cli implements InterfacciaUtente {
 		out.println(listaDiStringhe(ClientMain.getDatiPartita().getNomiGiocatori(), "; ", "."));
 		TipoTerritorio tipoTesseraIniziale = ClientMain.getDatiPartita().getGiocatore(nome()).getTessere().get(0).getTipo();
 		out.println("La tua tessera iniziale e' di tipo " + tipoTesseraIniziale);
-		
-		for(int i = 0; i < ClientMain.getDatiPartita().getTerritori().length; i++) {
-			out.println();
-		}
+		stampaStatoTerritori();
 	}
 
 	public void lancioDado(Integer numero, MotivoLancioDado motivo) {
@@ -166,7 +164,7 @@ public class Cli implements InterfacciaUtente {
 		out.println("Devi scegliere uno dei tuoi pastori");
 		out.println(menuDiScelta(pastori));
 		Pastore scelto = in.scegliElemento(pastori);
-		
+
 		return new SceltaPastore(nome(), scelto);
 	}
 
@@ -205,7 +203,7 @@ public class Cli implements InterfacciaUtente {
 		out.println("Devi selezionare un territorio in cui far accoppiare una pecora e un montone");
 		out.println(menuDiScelta(territoriDisponibili));
 		int terrScelto = in.scegliElemento(territoriDisponibili);
-		
+
 		return new Accoppiamento(nome(), terrScelto);
 	}
 
@@ -213,7 +211,7 @@ public class Cli implements InterfacciaUtente {
 		out.println("Devi selezionare una tessera da acquistare");
 		out.println(menuDiScelta(tessereDisp));
 		Tessera tessScelta = in.scegliElemento(tessereDisp);
-		
+
 		return new AcquistoTessera(nome(), tessScelta);
 	}
 
@@ -237,7 +235,22 @@ public class Cli implements InterfacciaUtente {
 
 		return in.leggiIntero(1, oviniT1.size() + oviniT2.size()) - 1;
 	}
-	
+
+	private void stampaStatoTerritori() {
+		out.println("La situazione dei territori e' questa");
+		DatiTerritorio[] dati = ClientMain.getDatiPartita().getTerritori();
+
+		for (int i = 0; i < dati.length; i++) {
+			String animali = "";
+
+			for (TipoAnimale t : dati[i].getTipiAnimale()) {
+				animali += t + "(x" + dati[i].getNum(t) + ")";
+			}
+
+			out.println(i + ") " + animali + ";");
+		}
+	}
+
 	private String nome() {
 		return ClientMain.getNome();
 	}

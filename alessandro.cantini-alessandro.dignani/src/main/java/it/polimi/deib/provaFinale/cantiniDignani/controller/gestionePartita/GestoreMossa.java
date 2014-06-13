@@ -1,9 +1,13 @@
-package it.polimi.deib.provaFinale.cantiniDignani.controller;
+package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Sorte;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Abbattimento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Accoppiamento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.AcquistoTessera;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPastore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPecora;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Pagamento;
@@ -32,7 +36,6 @@ public class GestoreMossa {
 
 	private GestorePartita gestorePartita;
 	private Partita partita;
-	private GestoreCoda<Evento> gestoreEventi;
 	private int codT1, codT2;
 	private Collection<TipoAnimale> oviniT1, oviniT2;
 	private DatiTerritorio[] dati;
@@ -40,7 +43,6 @@ public class GestoreMossa {
 	public GestoreMossa(GestorePartita gestorePartita) {
 		this.gestorePartita = gestorePartita;
 		this.partita = gestorePartita.getPartita();
-		this.gestoreEventi = gestorePartita.getGestoreEventi();
 	}
 
 	protected void effettuaMossa(Pastore pastore, TipoMossa tipoMossa) {
@@ -93,7 +95,7 @@ public class GestoreMossa {
 
 		gestorePartita.inviaEvento(new RichiestaTesseraDaAcquistare(tessereDisp), giocatore);
 
-		AcquistoTessera acq = (AcquistoTessera) gestoreEventi.aspetta(AcquistoTessera.class);
+		AcquistoTessera acq = (AcquistoTessera) gestorePartita.aspettaEvento(AcquistoTessera.class);
 
 		TipoTerritorio tipo = acq.getTessera().getTipo();
 
@@ -119,7 +121,7 @@ public class GestoreMossa {
 
 		gestorePartita.inviaEvento(new RichiestaTerritorioPerAccoppiamento(terrDisp), giocatore);
 
-		Accoppiamento acc = (Accoppiamento) gestoreEventi.aspetta(Accoppiamento.class);
+		Accoppiamento acc = (Accoppiamento) gestorePartita.aspettaEvento(Accoppiamento.class);
 
 		int codTerr = acc.getTerritorio();
 		Territorio terr = Mappa.getMappa().getTerritori()[codTerr];
@@ -140,7 +142,7 @@ public class GestoreMossa {
 		oviniT2.remove(TipoAnimale.PECORA_NERA);
 		gestorePartita.inviaEvento(new RichiestaPecoraDaAbbattere(codT1, oviniT1, codT2, oviniT2), giocatore);
 
-		Abbattimento abb = (Abbattimento) gestoreEventi.aspetta(Abbattimento.class);
+		Abbattimento abb = (Abbattimento) gestorePartita.aspettaEvento(Abbattimento.class);
 
 		int lancio = gestorePartita.lanciaDado(MotivoLancioDado.TENTATIVO_ABBATTIMENTO);
 
@@ -169,7 +171,7 @@ public class GestoreMossa {
 	private void muoviPecora(Giocatore giocatore) {
 		gestorePartita.inviaEvento(new RichiestaPecoraDaMuovere(codT1, oviniT1, codT2, oviniT2), giocatore);
 
-		MovimentoPecora movimento = (MovimentoPecora) gestoreEventi.aspetta(MovimentoPecora.class);
+		MovimentoPecora movimento = (MovimentoPecora) gestorePartita.aspettaEvento(MovimentoPecora.class);
 		Territorio destinazione = Mappa.getMappa().getTerritori()[movimento.getDestinazione()];
 
 		if (movimento.getTipoOvino() == TipoAnimale.PECORA_NERA) {
@@ -184,7 +186,7 @@ public class GestoreMossa {
 		boolean[] stradeAPagamento = Estrattore.stradeLibereAPagamento(partita, pastore.getStrada());
 		gestorePartita.inviaEvento(new RichiestaPosizionePastore(stradeGratis, stradeAPagamento, pastore.getStrada().getCodice()), giocatore);
 
-		MovimentoPastore movimento = (MovimentoPastore) gestoreEventi.aspetta(MovimentoPastore.class);
+		MovimentoPastore movimento = (MovimentoPastore) gestorePartita.aspettaEvento(MovimentoPastore.class);
 		Strada origine = Mappa.getMappa().getStrade()[movimento.getOrigine()];
 		Strada destinazione = Mappa.getMappa().getStrade()[movimento.getDestinazione()];
 
