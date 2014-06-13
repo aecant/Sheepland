@@ -3,9 +3,9 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class DatiTerritorio implements Serializable {
 	private static final long serialVersionUID = 7966573036032987276L;
@@ -61,12 +61,12 @@ public class DatiTerritorio implements Serializable {
 	}
 
 	/**
-	 * Restituisce un set di TipoOvino contenente i tipi di ovino presenti sul
+	 * Restituisce un set di @link{TipoAnimale} contenente i tipi di ovino presenti sul
 	 * territorio
 	 * 
-	 * @return il set dei TipoOvino presenti sul territorio
+	 * @return il set dei @link{TipoAnimale} presenti sul territorio
 	 */
-	public Set<TipoAnimale> getTipiAnimale() {
+	public Collection<TipoAnimale> getTipiAnimale() {
 		return numeroAnimali.keySet();
 	}
 

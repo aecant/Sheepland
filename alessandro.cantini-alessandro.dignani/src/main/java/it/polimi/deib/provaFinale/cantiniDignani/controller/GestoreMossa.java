@@ -1,13 +1,33 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Abbattimento;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Accoppiamento;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.AcquistoTessera;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPastore;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPecora;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Pagamento;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPecoraDaAbbattere;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPecoraDaMuovere;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPosizionePastore;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTerritorioPerAccoppiamento;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTesseraDaAcquistare;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.*;
-import it.polimi.deib.provaFinale.cantiniDignani.model.*;
 
 public class GestoreMossa{
 
@@ -15,7 +35,7 @@ public class GestoreMossa{
 	private Partita partita;
 	private GestoreCoda<Evento> gestoreEventi;
 	private int codT1, codT2;
-	private Set<TipoAnimale> oviniT1, oviniT2;
+	private Collection<TipoAnimale> oviniT1, oviniT2;
 	private DatiTerritorio[] dati;
 
 	public GestoreMossa(GestorePartita gestorePartita) {
@@ -190,8 +210,8 @@ public class GestoreMossa{
 	 *            il denaro del giocatore
 	 * @return il set di mosse disponibili
 	 */
-	protected Set<TipoMossa> creaMosseDisponibili(int numMossa, boolean pastoreMosso, TipoMossa mossaPrecedente, Pastore pastoreCorrente, int denaroDisponibile) {
-		Set<TipoMossa> mosseDisponibili = new HashSet<TipoMossa>();
+	protected Collection<TipoMossa> creaMosseDisponibili(int numMossa, boolean pastoreMosso, TipoMossa mossaPrecedente, Pastore pastoreCorrente, int denaroDisponibile) {
+		List<TipoMossa> mosseDisponibili = new ArrayList<TipoMossa>();
 		boolean entrambiTerritoriLiberi = partita.territorioLibero(pastoreCorrente.getStrada().getTerritorio1()) && partita.territorioLibero(pastoreCorrente.getStrada().getTerritorio2());
 
 		mosseDisponibili.add(TipoMossa.MUOVI_PASTORE);

@@ -3,13 +3,13 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 
-import java.util.Set;
+import java.util.Collection;
 
 public class RichiestaPecoraDaAbbattere extends RichiestaPecora {
 
 	private static final long serialVersionUID = 5784350879771586522L;
 
-	public RichiestaPecoraDaAbbattere(int t1, Set<TipoAnimale> oviniT1, int t2, Set<TipoAnimale> oviniT2) {
+	public RichiestaPecoraDaAbbattere(int t1, Collection<TipoAnimale> oviniT1, int t2, Collection<TipoAnimale> oviniT2) {
 		super(t1, oviniT1, t2, oviniT2);
 	}
 

@@ -88,7 +88,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
-		out.println("Il giocatore ha acquistato una tessera di" + tessera.getTipo().toString());
+		out.println("Il giocatore ha acquistato una tessera di tipo " + tessera.getTipo().toString());
 	}
 
 	public void abbattimento(String giocatore, TipoAnimale tipo, int territorio, boolean aBuonFine) {
