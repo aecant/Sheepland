@@ -7,6 +7,6 @@ import java.rmi.RemoteException;
 
 public interface AscoltatoreRemoto extends Remote {
 
-	public void riceviEvento (Evento e) throws RemoteException;
+	void riceviEvento (Evento e) throws RemoteException;
 
 }

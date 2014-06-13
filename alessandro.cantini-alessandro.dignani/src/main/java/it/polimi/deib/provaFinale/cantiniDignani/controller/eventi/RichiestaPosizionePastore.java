@@ -8,8 +8,8 @@ public class RichiestaPosizionePastore extends Richiesta {
 	private int origine;
 
 	public RichiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento, int origine) {
-		this.stradeLibereGratis = stradeLibereGratis;
-		this.stradeLibereAPagamento = stradeLibereAPagamento;
+		this.stradeLibereGratis = stradeLibereGratis.clone();
+		this.stradeLibereAPagamento = stradeLibereAPagamento.clone();
 		this.origine = origine;
 	}
 

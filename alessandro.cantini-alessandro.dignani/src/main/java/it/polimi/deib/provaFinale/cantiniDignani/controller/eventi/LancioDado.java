@@ -1,16 +1,19 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 
 public class LancioDado implements Evento {
-
 	private static final long serialVersionUID = -7516514552097599699L;
+	
 	private Integer numero;
+	private MotivoLancioDado motivo;
 
-	public LancioDado(Integer numero) {
+	public LancioDado(Integer numero, MotivoLancioDado motivo) {
 		if(numero < 1 && numero > 6)
 			throw new IllegalArgumentException("Il numero del dado dev'essere compreso fra 1 e 6");
 		this.numero = numero;
+		this.motivo = motivo;
 	}
 
 	public Integer getNumero() {
@@ -22,12 +25,12 @@ public class LancioDado implements Evento {
 	}
 
 	public void visualizza() {
-		ClientMain.getUI().lancioDado(numero);
+		ClientMain.getUI().lancioDado(numero, motivo);
 	}
 
 	@Override
 	public String toString() {
-		return "Dado lanciato: " + numero;
+		return "Dado lanciato: " + numero + " per " + motivo ;
 	}
 
 }

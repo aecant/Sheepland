@@ -12,7 +12,7 @@ public class GestoreCodaTest {
 
 	GestoreCoda<Evento> gestore;
 
-	final static Evento EVENTO = new LancioDado(6);
+	final static Evento EVENTO = new LancioDado(6, null);
 	Evento daAspettare;
 
 	@Before
