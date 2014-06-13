@@ -33,9 +33,7 @@ public class GiocatoreView extends JPanel {
 		lblNome = new JLabel(g.getNome());
 		lblNome.setFont(CostantiGui.FONT_NOME_GIOCATORE);
 		lblNome.setVerticalAlignment(SwingConstants.CENTER);
-		
-		panelNome.setBackground(CostantiGui.COLORE_SFONDO_NOME_GIOC);
-		panelNome.add(lblNome);
+		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		lblSoldi = new JLabel(g.getDenaro().toString());
 		lblSoldi.setFont(CostantiGui.FONT_SOLDI);
@@ -47,7 +45,12 @@ public class GiocatoreView extends JPanel {
 		panelSoldi.setBackground(new Color(0, 0, 0, 0));
 		lblSoldi.setHorizontalAlignment(SwingConstants.CENTER);
 		
+		panelNome.setBackground(CostantiGui.COLORE_SFONDO_NOME_GIOC);
+		panelNome.setLayout(new BorderLayout());
+		panelNome.add(lblNome, BorderLayout.CENTER);
+		panelNome.add(panelSoldi, BorderLayout.WEST);
+		
 		add(panelNome, BorderLayout.CENTER);
-		add(panelSoldi, BorderLayout.WEST);
+		//add(panelSoldi, BorderLayout.WEST);
 	}
 }
