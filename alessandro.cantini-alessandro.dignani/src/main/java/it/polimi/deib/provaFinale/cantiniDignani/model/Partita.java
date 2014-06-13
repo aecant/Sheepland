@@ -118,8 +118,8 @@ public class Partita {
 				}
 			}
 		}
-
-		throw new RuntimeException("Problema nel ricavare il giocatore relativo a un pastore");
+ 
+		throw new RuntimeException("Problema: il pastore " + pastore + " non e' presente nella partita " + this);
 	}
 
 	public Gregge getGregge() {
@@ -160,5 +160,10 @@ public class Partita {
 			giocatori.get(i).aggiungiPastore(new Pastore(null, ColorePastore.values()[i]));
 		}
 	}
-
+	
+	@Override
+	public String toString() {
+		return "partita giocata da " + giocatori;
+	}
+	
 }

@@ -15,7 +15,6 @@ public class PartitaTest {
 	Territorio t0, t1, t4, t7;
 	List<String> nomi;
 	List<Pecora> pecore;
-	Pastore pastore;
 
 	@Before
 	public void setUp() {
@@ -27,15 +26,14 @@ public class PartitaTest {
 		s1 = new Strada(t0, t1);
 		s2 = new Strada(t0, t4);
 		s3 = new Strada(t0, t7);
-
-		pastore = new Pastore(s2, ColorePastore.BLU);
 		
 		nomi = Arrays.asList("esempio1", "esempio2", "esempio3");
 		
 		partita = new Partita(nomi);
 
 		partita.getRecinti().aggiungi(s1);
-		partita.getGiocatori().get(0).aggiungiPastore(pastore);
+		
+		partita.getGiocatori().get(0).getPastori().get(0).muoviIn(s2);
 		
 		pecore = Arrays.asList(new Pecora(t0, false), new Agnello(t1, true), new Pecora(t1, true));
 		for(Pecora pec : pecore) {
@@ -86,13 +84,11 @@ public class PartitaTest {
 	}
 	
 	@Test
-	public void testGetPastori(){
-		assertTrue(partita.getPastori().contains(pastore));
-	}
-	
-	@Test
 	public void testGetGiocatore() {
-		assertTrue(partita.getGiocatore(pastore) == partita.getGiocatori().get(0));
+		for(Giocatore g : partita.getGiocatori()) {
+			Pastore p = g.getPastori().get(0);
+			assertEquals(partita.getGiocatore(p), g);
+		}
 	}
 
 }
