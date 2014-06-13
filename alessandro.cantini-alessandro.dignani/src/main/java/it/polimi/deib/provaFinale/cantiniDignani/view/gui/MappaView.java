@@ -19,24 +19,36 @@ public class MappaView extends BackgroundMappaPanel{
 		this.setMaximumSize(CostantiGui.DIMENSIONE_MAPPA);
 		this.setMinimumSize(CostantiGui.DIMENSIONE_MAPPA);
 		this.setLayout(null);
-		addMouseListener(new java.awt.event.MouseAdapter() {
-			int i = 0;
-			public void mouseClicked(java.awt.event.MouseEvent e) {
-				if(i%5==0) {
-					System.out.print("},\n{");
-				} else {
-					System.out.print(", ");
-				}
-				System.out.print("new Point("+e.getX()+", "+e.getY()+")");
-				i++;
-			}
-		});
 	}
 	
-	public void disegnaPecora(Point coordinate) {
+	public void creaPecora(Point coordinate) {
 		PecoraView temp = new PecoraView(coordinate.x-(CostantiGui.DIMENSIONE_PECORA.width/2), coordinate.y-(CostantiGui.DIMENSIONE_PECORA.height/2));
 		pec.add(temp);
 		add(temp);
 		temp.getParent().repaint();
+	}
+
+	public void creaMontone(Point coordinate) {
+		MontoneView mont = new MontoneView(coordinate.x-(CostantiGui.DIMENSIONE_MONTONE.width/2), coordinate.y-(CostantiGui.DIMENSIONE_MONTONE.height/2));
+		add(mont);
+		mont.getParent().repaint();
+	}
+
+	public void creaAgnello(Point coordinate) {
+		AgnelloView agn = new AgnelloView(coordinate.x-(CostantiGui.DIMENSIONE_AGNELLO.width/2), coordinate.y-(CostantiGui.DIMENSIONE_AGNELLO.height/2));
+		add(agn);
+		agn.getParent().repaint();
+	}
+
+	public void creaPecoraNera(Point coordinate) {
+		PecoraNeraView mont = new PecoraNeraView(coordinate.x-(CostantiGui.DIMENSIONE_PECORA.width/2), coordinate.y-(CostantiGui.DIMENSIONE_PECORA.height/2));
+		add(mont);
+		mont.getParent().repaint();
+	}
+
+	public void creaLupo(Point coordinate) {
+		LupoView mont = new LupoView(coordinate.x-(CostantiGui.DIMENSIONE_LUPO.width/2), coordinate.y-(CostantiGui.DIMENSIONE_LUPO.height/2));
+		add(mont);
+		mont.getParent().repaint();
 	}
 }
