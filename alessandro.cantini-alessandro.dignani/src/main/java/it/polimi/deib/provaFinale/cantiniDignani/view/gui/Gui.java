@@ -4,7 +4,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.FaseIniziale;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.GestorePartita;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Sorte;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 
@@ -52,9 +51,11 @@ public class Gui {
 		}
 
 		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
-			for (int j = 0; j < 5; j++) {
-				finestraPartita.getMappa().creaPecora(coordinate[i][j]);
-			}
+				finestraPartita.getMappa().creaPecora(coordinate[i][0]);
+				finestraPartita.getMappa().creaMontone(coordinate[i][1]);
+				finestraPartita.getMappa().creaAgnello(coordinate[i][2]);
+				finestraPartita.getMappa().creaPecoraNera(coordinate[i][3]);
+				finestraPartita.getMappa().creaLupo(coordinate[i][4]);
 		}
 
 		finestraPartita.visualizza();
@@ -81,22 +82,6 @@ public class Gui {
 			for (int j = 0; j < 5; j++) {
 				coordinate[i][j] = new Point((int) (CostantiGui.COORDINATE[i][j].getX() * CostantiGui.FATTORE_DI_SCALA), (int) (CostantiGui.COORDINATE[i][j].getY() * CostantiGui.FATTORE_DI_SCALA));
 			}
-		}
-		
-		
-		for (int i = 0; i < Costanti.NUM_TERRITORI * 5; i++) {
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			gui.getPartita().getMappa().getPec().get(i).muovi(coordinate[Sorte.numeroCasuale(0, Costanti.NUM_TERRITORI - 1)][Sorte.numeroCasuale(0, 4)]);
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			gui.getPartita().getMappa().getPec().get(Costanti.NUM_TERRITORI * 5 - i - 1).elimina();
 		}
 	}
 }

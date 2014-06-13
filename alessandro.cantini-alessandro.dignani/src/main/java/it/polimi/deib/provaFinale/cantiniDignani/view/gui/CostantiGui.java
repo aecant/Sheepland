@@ -25,9 +25,9 @@ public class CostantiGui {
 	// Dimensioni delle immagini disegnate
 	public static final Dimension DIMENSIONE_MAPPA = new Dimension((int) (DIMENSIONE_SCHERMO.height * (0.75)), DIMENSIONE_SCHERMO.height);
 	public static final Dimension DIMENSIONE_PECORA = new Dimension(DIMENSIONE_MAPPA.height / 18, DIMENSIONE_MAPPA.height / 24);
-	public static final Dimension DIMENSIONE_MONTONE = new Dimension(DIMENSIONE_MAPPA.height / 15, DIMENSIONE_MAPPA.height / 20);
-	public static final Dimension DIMENSIONE_AGNELLO = new Dimension(DIMENSIONE_MAPPA.height / 15, DIMENSIONE_MAPPA.height / 20);
-	public static final Dimension DIMENSIONE_LUPO = new Dimension(DIMENSIONE_MAPPA.height / 15, DIMENSIONE_MAPPA.height / 20);
+	public static final Dimension DIMENSIONE_MONTONE = new Dimension(DIMENSIONE_MAPPA.height / 18, DIMENSIONE_MAPPA.height / 24);
+	public static final Dimension DIMENSIONE_AGNELLO = new Dimension(DIMENSIONE_MAPPA.height / 18, DIMENSIONE_MAPPA.height / 24);
+	public static final Dimension DIMENSIONE_LUPO = new Dimension(DIMENSIONE_MAPPA.height / 18, DIMENSIONE_MAPPA.height / 24);
 
 	// Panel Tessere
 	public static final Dimension DIMENSIONE_PANEL_TESSERA = new Dimension(DIMENSIONE_MAPPA.height / 6, DIMENSIONE_MAPPA.height / 6);
