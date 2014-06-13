@@ -26,8 +26,7 @@ public class PanelMossa extends JPanel {
 		percorso += tipoMossa.name().toLowerCase() + ".png";
 		sfondo = new ImageIcon(Toolkit.getDefaultToolkit().getImage(percorso).getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
 		
-		bottone = new JButton(tipoMossa.nome);
-		bottone.setIcon(sfondo);
+		bottone = new JButton(sfondo);
 		add(bottone, BorderLayout.CENTER);
 		
 		
