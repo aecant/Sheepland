@@ -1,7 +1,5 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,22 +65,12 @@ public class Giocatore implements Serializable {
 		pastori.add(pastore);
 	}
 
-	/**
-	 * Restituisce una copia delle tessere
-	 * 
-	 * @return una copia dell'ArrayList delle tessere possedute dal giocatore
-	 */
 	public List<Tessera> getTessere() {
-		return Utilita.copia(tessere);
+		return tessere;
 	}
 
-	/**
-	 * Restituisce una copia dei pastori
-	 * 
-	 * @return una copia dell'ArrayList delle tessere possedute dal giocatore
-	 */
 	public List<Pastore> getPastori() {
-		return Utilita.copia(pastori);
+		return pastori;
 	}
 
 	public String getNome() {
@@ -145,5 +133,4 @@ public class Giocatore implements Serializable {
 		return true;
 	}
 
-	
 }

@@ -1,7 +1,5 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,22 +42,12 @@ public class InsiemeDiRecinti {
 		return recinti;
 	}
 
-	/**
-	 * Restituisce una copia dei recinti iniziali
-	 * 
-	 * @return una copia della la lista dei reciniti iniziali
-	 */
 	public List<PedinaSuStrada> getRecintiIniziali() {
-		return Utilita.copia(recintiIniziali);
+		return recintiIniziali;
 	}
 
-	/**
-	 * Restituisce una copia dei recinti finali
-	 * 
-	 * @return una copia della la lista dei reciniti finali
-	 */
 	public List<PedinaSuStrada> getRecintiFinali() {
-		return Utilita.copia(recintiFinali);
+		return recintiFinali;
 	}
 
 }

@@ -1,7 +1,5 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,13 +65,8 @@ public class Gregge {
 		return pecoraNera;
 	}
 
-	/**
-	 * Restituisce una copia del gregge
-	 * 
-	 * @return una copia dell'ArrayList pecore
-	 */
 	public List<Pecora> getPecore() {
-		return Utilita.copia(pecore);
+		return pecore;
 	}
 
 	/**

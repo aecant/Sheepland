@@ -58,35 +58,6 @@ public class Utilita {
 	}
 
 	/**
-	 * Restituisce una copia di un ArrayList. Si tratta di una copia di
-	 * superficie, in modo tale che non si possano aggiungere ne' rimuovere
-	 * elementi dalla lista; invece i singoli elementi si possono modificare
-	 * 
-	 * @param lista
-	 *            l'arrayList da copiare
-	 * @return una copia dell'ArrayList passato come parametro
-	 */
-	public static <E> List<E> copia(List<E> lista) {
-		List<E> temp = new ArrayList<E>();
-		temp.addAll(lista);
-		return temp;
-	}
-
-	/**
-	 * Sospende il thread per un certo numero di millisecondi
-	 * 
-	 * @param millisecondi
-	 *            il numero di millisecondi per cui viene sospeso il thread
-	 */
-	public static void aspetta(long millisecondi) {
-		try {
-			Thread.sleep(millisecondi);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * Incrementa il valore di una certa chiave in una mappa che associa un
 	 * intero a un tipo generico. Se la chiave non e' presente nella mappa viene
 	 * aggiunta e il relativo valore viene inizializzato alla quantita passata
@@ -150,10 +121,10 @@ public class Utilita {
 	 *         parametro
 	 */
 	public static <E> Collection<E> rendiSerializzabile(Collection<E> collezione) {
-		if(collezione instanceof Serializable) {
+		if (collezione instanceof Serializable) {
 			return collezione;
 		}
-		
+
 		Collection<E> al = new ArrayList<E>();
 
 		// prova il cast, se fallisce copia gli elementi uno a uno

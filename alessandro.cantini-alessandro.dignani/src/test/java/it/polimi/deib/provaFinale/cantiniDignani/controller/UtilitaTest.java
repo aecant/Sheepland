@@ -1,10 +1,13 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import static org.junit.Assert.*;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,15 +17,11 @@ public class UtilitaTest {
 	Integer[] a2 = { 1, 2, 2 };
 	List<Integer> al1;
 	List<Integer> al2;
-	List<Object> originale, copia;
-	Object oggettoGenerico;
 
 	@Before
 	public void setUp() {
 		al1 = new ArrayList<Integer>();
 		al2 = new ArrayList<Integer>();
-		originale = new ArrayList<Object>();
-		oggettoGenerico = new Object();
 
 		al1.add(1);
 		al1.add(2);
@@ -31,8 +30,6 @@ public class UtilitaTest {
 		al2.add(2);
 		al2.add(2);
 
-		originale.add(oggettoGenerico);
-		copia = Utilita.copia(originale);
 	}
 
 	@Test
@@ -49,23 +46,27 @@ public class UtilitaTest {
 	public void testContiene() {
 		assertFalse(Utilita.contiene(a1, 4));
 		assertFalse(Utilita.contiene(a2, 4));
-
 	}
-
+	
 	@Test
-	public void testCopia() {
-		assertTrue(copia.contains(oggettoGenerico));
-		copia.remove(oggettoGenerico);
-		assertFalse(copia.contains(oggettoGenerico));
-		assertTrue(originale.contains(oggettoGenerico));
+	public void testRendiSerializzabile() {
+		// creo una mappa perche' il keyset di una mappa non e' serializzabile
+		Map<Integer, Integer> mappa = new HashMap<Integer, Integer>();
+		mappa.put(1, 2);
+		mappa.put(2, 3);
 		
-//		ArrayList<Agnello> agnelli = new ArrayList<Agnello>();
-//		Agnello agnello = new Agnello(null, false);
-//		agnelli.add(agnello);
-//		ArrayList<Agnello> agnelliCopia = Utilita.copia(agnelli);
-//		agnello.invecchia();
-//		assertEquals(agnelli.get(0).getEta(), 1);
-//		assertEquals(agnelliCopia.get(0).getEta(), 0);
+		Collection<Integer> nonSerializzabile = mappa.keySet();
+		
+		assertFalse(nonSerializzabile instanceof Serializable);
+		
+		Collection<Integer> serializzabile = Utilita.rendiSerializzabile(mappa.keySet());
+		
+		assertTrue(serializzabile instanceof Serializable);
+		
+		assertTrue(serializzabile.containsAll(nonSerializzabile));
+		for(Integer i : serializzabile) {
+			nonSerializzabile.contains(i);
+		}	
 	}
 
 }

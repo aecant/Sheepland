@@ -1,7 +1,5 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -28,7 +26,7 @@ public class Partita {
 		Collections.shuffle(giocatori);
 
 		giocatoreDiTurno = giocatori.get(0);
-		
+
 		aggiungiPastoreAiGiocatori();
 		if (giocatori.size() == 2) {
 			aggiungiPastoreAiGiocatori();
@@ -93,7 +91,7 @@ public class Partita {
 	public List<Pastore> getPastori() {
 		List<Pastore> pastori = new ArrayList<Pastore>();
 		for (Giocatore g : giocatori) {
-			for(Pastore p : g.getPastori()) {
+			for (Pastore p : g.getPastori()) {
 				if (p.getStrada() != null) {
 					pastori.add(p);
 				}
@@ -118,7 +116,7 @@ public class Partita {
 				}
 			}
 		}
- 
+
 		throw new IllegalArgumentException("Problema: il " + pastore + " non e' presente nella " + this);
 	}
 
@@ -126,13 +124,8 @@ public class Partita {
 		return gregge;
 	}
 
-	/**
-	 * Restitusice una copia della lista dei giocatori
-	 * 
-	 * @return una copia della lista dei giocatori
-	 */
 	public List<Giocatore> getGiocatori() {
-		return Utilita.copia(giocatori);
+		return giocatori;
 	}
 
 	public InsiemeDiRecinti getRecinti() {
@@ -160,10 +153,10 @@ public class Partita {
 			giocatori.get(i).aggiungiPastore(new Pastore(null, ColorePastore.values()[i]));
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		return "partita giocata da " + giocatori;
 	}
-	
+
 }
