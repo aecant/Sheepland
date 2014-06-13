@@ -20,4 +20,8 @@ public class InizioTurno extends Mossa {
 		ClientMain.getUI().inizioTurno(super.getGiocatore());
 	}
 
+	@Override
+	public String toString() {
+		return "Inizia il turno di " + getGiocatore();
+	}
 }

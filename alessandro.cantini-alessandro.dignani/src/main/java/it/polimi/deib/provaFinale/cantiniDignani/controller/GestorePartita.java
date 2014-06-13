@@ -207,4 +207,8 @@ public class GestorePartita implements Runnable {
 		return connessione;
 	}
 
+	protected List<String> getTuttiGiocatori() {
+		return tuttiGiocatori;
+	}
+
 }

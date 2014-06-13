@@ -22,7 +22,7 @@ public class FaseIniziale extends FasePartita {
 		disponiPecore();
 		disponiTessereIniziali();
 		gestore.inviaEventoATutti(new InizioPartita());
-		ServerMain.LOGGER.println("Partita iniziata.");
+		ServerMain.LOGGER.println("Partita iniziata con i giocatori: " + gestore.getTuttiGiocatori());
 	}
 
 	/**

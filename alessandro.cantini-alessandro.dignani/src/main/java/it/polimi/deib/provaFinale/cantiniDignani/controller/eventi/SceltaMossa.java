@@ -6,10 +6,14 @@ public class SceltaMossa extends Mossa {
 
 	private static final long serialVersionUID = -705406266520094747L;
 	private TipoMossa mossa;
-	
+
 	public SceltaMossa(String giocatore, TipoMossa mossa) {
 		super(giocatore);
 		this.mossa = mossa;
+	}
+
+	public TipoMossa getMossa() {
+		return mossa;
 	}
 
 	@Override
@@ -20,7 +24,8 @@ public class SceltaMossa extends Mossa {
 	public void visualizza() {
 	}
 
-	public TipoMossa getMossa() {
-		return mossa;
+	@Override
+	public String toString() {
+		return getGiocatore() + " ha deciso di effettuare la mossa: " + mossa;
 	}
 }
