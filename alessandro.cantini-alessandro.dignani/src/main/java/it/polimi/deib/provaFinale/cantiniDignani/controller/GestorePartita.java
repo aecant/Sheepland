@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class GestorePartita implements Runnable {
+public class GestorePartita extends Thread {
 
 	private final Partita partita;
 	private List<String> tuttiGiocatori;
