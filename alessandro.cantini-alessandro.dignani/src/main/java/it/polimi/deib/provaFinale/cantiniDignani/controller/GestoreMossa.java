@@ -162,7 +162,7 @@ public class GestoreMossa{
 
 	private void muoviPastore(Giocatore giocatore, Pastore pastore) {
 		boolean[] stradeGratis = Estrattore.stradeLibereGratis(partita, pastore.getStrada());
-		boolean[] stradeAPagamento = Estrattore.stradeLibereGratis(partita, pastore.getStrada());
+		boolean[] stradeAPagamento = Estrattore.stradeLibereAPagamento(partita, pastore.getStrada());
 		gestorePartita.inviaEvento(new RichiestaPosizionePastore(stradeGratis, stradeAPagamento, pastore.getStrada().getCodice()), giocatore);
 
 		MovimentoPastore movimento = (MovimentoPastore) gestoreEventi.aspetta(MovimentoPastore.class);
