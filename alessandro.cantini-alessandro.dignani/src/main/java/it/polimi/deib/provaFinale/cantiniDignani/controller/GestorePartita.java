@@ -112,7 +112,12 @@ public class GestorePartita extends Thread {
 			inviaEvento(new RichiestaTipoMossa(mosseDisponibili, numMossa), giocatore);
 
 			TipoMossa tipoMossa = ((SceltaMossa) gestoreEventi.aspetta(SceltaMossa.class)).getMossa();
-
+			
+			mossaPrecedente = tipoMossa;
+			if(tipoMossa == TipoMossa.MUOVI_PASTORE) {
+				pastoreMosso = true;
+			}
+			
 			gestoreMossa.effettuaMossa(pastore, tipoMossa);
 		}
 	}
