@@ -19,21 +19,9 @@ public class MappaView extends BackgroundMappaPanel{
 		this.setMaximumSize(CostantiGui.DIMENSIONE_MAPPA);
 		this.setMinimumSize(CostantiGui.DIMENSIONE_MAPPA);
 		this.setLayout(null);
-		addMouseListener(new java.awt.event.MouseAdapter() {
-			int i = 0;
-			public void mouseClicked(java.awt.event.MouseEvent e) {
-				if(i%5==0) {
-					System.out.print("},\n{");
-				} else {
-					System.out.print(", ");
-				}
-				System.out.print("new Point("+e.getX()+", "+e.getY()+")");
-				i++;
-			}
-		});
 	}
 	
-	public void disegnaPecora(Point coordinate) {
+	public void creaPecora(Point coordinate) {
 		PecoraView temp = new PecoraView(coordinate.x-(CostantiGui.DIMENSIONE_PECORA.width/2), coordinate.y-(CostantiGui.DIMENSIONE_PECORA.height/2));
 		pec.add(temp);
 		add(temp);
