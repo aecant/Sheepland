@@ -14,7 +14,7 @@ public class UtilitaStringhe {
 	}
 
 	/**
-	 * Crea una stringa composta dalle stringhe di una collezione.
+	 * Restituisc una stringa composta dalle stringhe di una collezione.
 	 * 
 	 * @param collezione
 	 *            la lista di stringhe
@@ -41,7 +41,22 @@ public class UtilitaStringhe {
 	}
 
 	/**
-	 * Restituisce una formattata lista di interi
+	 * Restituisce una lista formattata di stringhe
+	 * 
+	 * @param array
+	 *            l'array di stringhe da formattare
+	 * @param separatore
+	 *            la stringa fra un elemento e il successivo
+	 * @param fine
+	 *            la stringa da appendere alla fine
+	 * @return una lista formattata di stringhe
+	 */
+	public static String listaDiStringhe(String[] array, String separatore, String fine) {
+		return listaDiStringhe(Arrays.asList(array), separatore, fine);
+	}
+
+	/**
+	 * Restituisce una stringa formattata rappresentante una lista di interi
 	 * 
 	 * @param collezione
 	 *            la collezione di stringhe da formattare
@@ -56,18 +71,14 @@ public class UtilitaStringhe {
 	}
 
 	/**
-	 * Restituisce una lista formattata di stringhe
+	 * Restituisce una stringa formattata rappresentante una lista di interi
 	 * 
-	 * @param array
-	 *            l'array di stringhe da formattare
-	 * @param separatore
-	 *            la stringa fra un elemento e il successivo
-	 * @param fine
-	 *            la stringa da appendere alla fine
-	 * @return una lista formattata di stringhe
+	 * @param collezione
+	 *            la collezione di stringhe da formattare
+	 * @return una formattata lista di interi
 	 */
-	public static String listaDiStringhe(String[] array, String separatore, String fine) {
-		return listaDiStringhe(Arrays.asList(array), separatore, fine);
+	public static String listaDiInteri(Collection<Integer> collezione) {
+		return listaDiInteri(collezione, ", ", ".");
 	}
 
 	/**
@@ -213,7 +224,7 @@ public class UtilitaStringhe {
 	 * @return un menu di scelta con gli elementi di una lista
 	 */
 	public static <E> String menuDiScelta(Collection<E> lista, int indice) {
-		return menuDiScelta(lista, "): ", ";\n", ".", indice);
+		return menuDiScelta(lista, ") ", ";\n", ".", indice);
 	}
 
 	/**

@@ -26,10 +26,9 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
-public class GestoreMossa{
+public class GestoreMossa {
 
 	private GestorePartita gestorePartita;
 	private Partita partita;
@@ -78,7 +77,7 @@ public class GestoreMossa{
 	}
 
 	private void acquistaTessera(Pastore pastore, Giocatore giocatore) {
-		Collection<Tessera> tessereDisp = new HashSet<Tessera>();
+		Collection<Tessera> tessereDisp = new ArrayList<Tessera>();
 		Territorio terr1 = pastore.getStrada().getTerritorio1();
 		Territorio terr2 = pastore.getStrada().getTerritorio2();
 
@@ -189,7 +188,11 @@ public class GestoreMossa{
 		Strada origine = Mappa.getMappa().getStrade()[movimento.getOrigine()];
 		Strada destinazione = Mappa.getMappa().getStrade()[movimento.getDestinazione()];
 
-		pastore.muoviIn(destinazione);
+		for (Pastore past : partita.getPastori()) {
+			if (past.equals(pastore)) {
+				past.muoviIn(destinazione);
+			}
+		}
 		partita.getRecinti().aggiungi(origine);
 
 		gestorePartita.inviaEventoATutti(movimento);

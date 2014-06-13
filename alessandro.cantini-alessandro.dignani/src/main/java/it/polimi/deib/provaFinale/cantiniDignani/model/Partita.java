@@ -119,7 +119,7 @@ public class Partita {
 			}
 		}
  
-		throw new RuntimeException("Problema: il pastore " + pastore + " non e' presente nella partita " + this);
+		throw new IllegalArgumentException("Problema: il " + pastore + " non e' presente nella " + this);
 	}
 
 	public Gregge getGregge() {

@@ -6,9 +6,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Giocatore implements Serializable{
+public class Giocatore implements Serializable {
 	private static final long serialVersionUID = -8973926581885818571L;
-	
+
 	private String nome;
 	private Integer denaro;
 	private List<Pastore> pastori;
@@ -114,7 +114,36 @@ public class Giocatore implements Serializable{
 	public String toString() {
 		return "Giocatore [nome=" + nome + ", pastori=" + pastori + "]";
 	}
-	
-	
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Giocatore)) {
+			return false;
+		}
+		Giocatore other = (Giocatore) obj;
+		if (nome == null) {
+			if (other.nome != null) {
+				return false;
+			}
+		} else if (!nome.equals(other.nome)) {
+			return false;
+		}
+		return true;
+	}
+
+	
 }

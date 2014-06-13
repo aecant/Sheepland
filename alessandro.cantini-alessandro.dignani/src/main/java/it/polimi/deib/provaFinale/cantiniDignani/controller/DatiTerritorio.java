@@ -61,10 +61,10 @@ public class DatiTerritorio implements Serializable {
 	}
 
 	/**
-	 * Restituisce un set di @link{TipoAnimale} contenente i tipi di ovino presenti sul
+	 * Restituisce una collezione di @link{TipoAnimale} contenente i tipi di ovino presenti sul
 	 * territorio
 	 * 
-	 * @return il set dei @link{TipoAnimale} presenti sul territorio
+	 * @return la collezione dei @link{TipoAnimale} presenti sul territorio
 	 */
 	public Collection<TipoAnimale> getTipiAnimale() {
 		return numeroAnimali.keySet();
