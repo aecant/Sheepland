@@ -17,6 +17,21 @@ public class Utilita {
 	}
 
 	/**
+	 * Restituisce una copia di una collezione. Si tratta di una copia di
+	 * superficie, in modo tale che non si possano aggiungere ne' rimuovere
+	 * elementi dalla lista; invece i singoli elementi si possono modificare
+	 * 
+	 * @param lista
+	 *            l'arrayList da copiare
+	 * @return una copia dell'ArrayList passato come parametro
+	 */
+	public static <E> Collection<E> copia(Collection<E> coll) {
+		List<E> temp = new ArrayList<E>();
+		temp.addAll(coll);
+		return temp;
+	}
+
+	/**
 	 * Controlla se una lista contiene duplicati
 	 * 
 	 * @param lista

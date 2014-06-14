@@ -1,18 +1,13 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.GestoreCoda;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Sorte;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.LancioDado;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.PosizionamentoPastore;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPosizioneInizialePastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
 
 import java.util.ArrayList;
@@ -25,7 +20,9 @@ public class GestorePartita extends Thread {
 	private final GestoreCoda<Evento> gestoreEventi;
 	private List<String> tuttiGiocatori;
 	private final InterfacciaServer connessione;
+	
 	private final PreparazionePartita preparazionePartita;
+	private final FaseIniziale faseIniziale;
 	private final FasePrincipale fasePrincipale;
 	private final FaseFinale faseFinale;
 
@@ -48,9 +45,10 @@ public class GestorePartita extends Thread {
 			tuttiGiocatori.add(g.getNome());
 		}
 
-		faseFinale = new FaseFinale(this);
 		preparazionePartita = new PreparazionePartita(this);
+		faseIniziale = new FaseIniziale(this);
 		fasePrincipale = new FasePrincipale(this);
+		faseFinale = new FaseFinale(this);
 
 	}
 
@@ -58,8 +56,8 @@ public class GestorePartita extends Thread {
 
 		preparazionePartita.esegui();
 
-		selezionePosizioneIniziale();
-
+		faseIniziale.esegui();
+		
 		fasePrincipale.esegui();
 
 		faseFinale.esegui();
@@ -71,36 +69,16 @@ public class GestorePartita extends Thread {
 		return lancio;
 	}
 
-	private void selezionePosizioneIniziale() {
-		giroPosizionamentoPastore(0);
-		if (dueGiocatori) {
-			giroPosizionamentoPastore(1);
-		}
-	}
-
-	private void giroPosizionamentoPastore(int numPastore) {
-		for (Giocatore g : partita.getGiocatori()) {
-			boolean[] stradeLibere = Estrattore.stradeLibere(partita);
-			inviaEvento(new RichiestaPosizioneInizialePastore(stradeLibere), g);
-			PosizionamentoPastore risposta = (PosizionamentoPastore) aspettaEvento(PosizionamentoPastore.class);
-
-			Strada strada = Mappa.getMappa().getStrade()[risposta.getStrada()];
-			g.getPastori().get(numPastore).muoviIn(strada);
-
-			inviaEventoATutti(new PosizionamentoPastore(g.getNome(), risposta.getStrada()));
-		}
-	}
-
 	protected Evento aspettaEvento(Class<? extends Evento> classe) {
 		return gestoreEventi.aspetta(classe);
 	}
-	
+
 	protected void inviaEventoATutti(Evento e) {
-		getConnessione().inviaEvento(e, tuttiGiocatori);
+		connessione.inviaEvento(e, tuttiGiocatori);
 	}
 
 	protected void inviaEvento(Evento e, Giocatore g) {
-		getConnessione().inviaEvento(e, Collections.singletonList(g.getNome()));
+		connessione.inviaEvento(e, Collections.singletonList(g.getNome()));
 	}
 
 	protected void pagamento(int somma, Giocatore pagante, Giocatore ricevente) {
@@ -122,6 +100,14 @@ public class GestorePartita extends Thread {
 
 	public PreparazionePartita getPreparazionePartita() {
 		return preparazionePartita;
+	}
+
+	protected FaseIniziale getFaseIniziale() {
+		return faseIniziale;
+	}
+
+	protected FasePrincipale getFasePrincipale() {
+		return fasePrincipale;
 	}
 
 	protected FaseFinale getFaseFinale() {

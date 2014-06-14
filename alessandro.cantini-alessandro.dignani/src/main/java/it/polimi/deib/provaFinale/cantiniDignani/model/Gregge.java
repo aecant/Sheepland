@@ -49,11 +49,12 @@ public class Gregge {
 	 * @param agnello
 	 *            l'agnello da trasformare
 	 */
-	public void trasformaAgnelloInPecora(Agnello agnello) throws IllegalArgumentException {
+	public void trasformaAgnelloInPecora(Agnello agnello) {
 		if (!pecore.contains(agnello)) {
 			throw new IllegalArgumentException("L'agnello non e' presente");
 		}
-		pecore.set(pecore.indexOf(agnello), agnello);
+		pecore.remove(agnello);
+		pecore.add(new Pecora(agnello));
 	}
 
 	/**

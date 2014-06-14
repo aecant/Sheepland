@@ -9,6 +9,11 @@ public class Pecora extends Animale {
 		this.maschio = maschio;
 	}
 
+	public Pecora(Agnello agnello) {
+		super(agnello.getPosizione());
+		this.maschio = agnello.isMaschio();
+	}
+	
 	public boolean isMaschio() {
 		return this.maschio;
 	}

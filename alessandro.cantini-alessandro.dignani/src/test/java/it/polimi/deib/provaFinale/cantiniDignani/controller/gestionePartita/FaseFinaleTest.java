@@ -1,10 +1,11 @@
-package it.polimi.deib.provaFinale.cantiniDignani.controller;
+package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.Map;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Sorte;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.FaseFinale;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;

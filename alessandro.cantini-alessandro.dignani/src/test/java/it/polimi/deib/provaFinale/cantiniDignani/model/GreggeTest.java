@@ -53,9 +53,9 @@ public class GreggeTest {
 	@Test
 	public void testTrasformaAgnelloInPecora() {
 		assertTrue(g3.getPecore().contains(agnello));
-		assertTrue(g3.getPecore().get(0) instanceof Agnello);
+		assertEquals(g3.getPecore().get(0).getTipoAnimale(), TipoAnimale.AGNELLO);
 		g3.trasformaAgnelloInPecora(agnello);
-		assertTrue(g3.getPecore().get(0) instanceof Pecora);
+		assertTrue(g3.getPecore().get(0).getTipoAnimale() == TipoAnimale.PECORA || g3.getPecore().get(0).getTipoAnimale() == TipoAnimale.MONTONE);
 
 	}
 
