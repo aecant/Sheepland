@@ -74,11 +74,11 @@ public class GestorePartita extends Thread {
 	}
 
 	protected void inviaEventoATutti(Evento e) {
-		getConnessione().inviaEvento(e, tuttiGiocatori);
+		connessione.inviaEvento(e, tuttiGiocatori);
 	}
 
 	protected void inviaEvento(Evento e, Giocatore g) {
-		getConnessione().inviaEvento(e, Collections.singletonList(g.getNome()));
+		connessione.inviaEvento(e, Collections.singletonList(g.getNome()));
 	}
 
 	protected void pagamento(int somma, Giocatore pagante, Giocatore ricevente) {
@@ -100,6 +100,14 @@ public class GestorePartita extends Thread {
 
 	public PreparazionePartita getPreparazionePartita() {
 		return preparazionePartita;
+	}
+
+	protected FaseIniziale getFaseIniziale() {
+		return faseIniziale;
+	}
+
+	protected FasePrincipale getFasePrincipale() {
+		return fasePrincipale;
 	}
 
 	protected FaseFinale getFaseFinale() {

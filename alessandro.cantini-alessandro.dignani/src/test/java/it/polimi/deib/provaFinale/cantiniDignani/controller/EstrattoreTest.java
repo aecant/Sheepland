@@ -57,10 +57,18 @@ public class EstrattoreTest {
 		}
 
 		partita.getGregge().aggiungi(new Pecora(t1, true));
-		eliminaPecora(t2);
 		partita.getLupo().muoviIn(t1);
 		partita.getGregge().getPecoraNera().muoviIn(t3);
-
+	
+		Pecora daRimuovere = null;
+		for (Pecora p : partita.getGregge().getPecore()) {
+			if (p.getPosizione().equals(t2)) {
+				daRimuovere = p;
+			}
+		}
+		partita.getGregge().rimuovi(daRimuovere);
+		
+		
 		dati = Estrattore.datiTerritori(partita);
 
 		assertEquals(dati[1].getNumOvini(), 2);
@@ -89,14 +97,13 @@ public class EstrattoreTest {
 				assertTrue(sl[i]);
 			}
 		}
-		
+
 		Partita partita2 = new Partita(Arrays.asList("esempio1", "esempio2", "esempio3", "esempio4"));
 		sl = Estrattore.stradeLibere(partita2);
 		for (boolean b : sl) {
 			assertTrue(b);
 		}
-		
-		
+
 	}
 
 	@Test
@@ -128,25 +135,24 @@ public class EstrattoreTest {
 		assertEquals(p.getPosizione(), t1);
 		assertEquals(p.getTipoAnimale(), TipoAnimale.PECORA);
 	}
-	
-	
+
 	@Test
 	public void testTessereInCima() {
 		Tessera[] tessere = Estrattore.tessereInCima(partita);
-		for(Tessera t : tessere) {
+		for (Tessera t : tessere) {
 			assertEquals(t.getCosto(), 0);
 		}
 	}
-	
+
 	@Test
 	public void testGiocatori() {
 		Giocatore[] giocatori = Estrattore.giocatori(partita);
-		
-		for(Giocatore g : partita.getGiocatori()) {
+
+		for (Giocatore g : partita.getGiocatori()) {
 			assertTrue(Utilita.contiene(giocatori, g));
 		}
 	}
-	
+
 	@Test
 	public void recintiIniziali() {
 		Integer[] posRecIn = Estrattore.recintiIniziali(partita);
@@ -155,13 +161,5 @@ public class EstrattoreTest {
 		assertFalse(Utilita.contiene(posRecIn, 4));
 		assertFalse(Utilita.contiene(posRecIn, 5));
 	}
-	
-	private void eliminaPecora(Territorio t) {
-		for (Pecora p : partita.getGregge().getPecore()) {
-			if (p.getPosizione().equals(t)) {
-				partita.getGregge().rimuovi(p);
-			}
-		}
-	}
-	
+
 }

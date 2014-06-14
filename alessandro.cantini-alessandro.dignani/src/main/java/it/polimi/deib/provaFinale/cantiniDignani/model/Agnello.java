@@ -59,4 +59,11 @@ public class Agnello extends Pecora {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Agnello, eta' "+eta+" in territorio "+ super.getPosizione().getCodice();
+	}
+	
+	
+
 }

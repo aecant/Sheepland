@@ -1,7 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -47,26 +47,42 @@ public class UtilitaTest {
 		assertFalse(Utilita.contiene(a1, 4));
 		assertFalse(Utilita.contiene(a2, 4));
 	}
-	
+
 	@Test
 	public void testRendiSerializzabile() {
 		// creo una mappa perche' il keyset di una mappa non e' serializzabile
 		Map<Integer, Integer> mappa = new HashMap<Integer, Integer>();
 		mappa.put(1, 2);
 		mappa.put(2, 3);
-		
+
 		Collection<Integer> nonSerializzabile = mappa.keySet();
-		
+
 		assertFalse(nonSerializzabile instanceof Serializable);
-		
+
 		Collection<Integer> serializzabile = Utilita.rendiSerializzabile(mappa.keySet());
-		
+
 		assertTrue(serializzabile instanceof Serializable);
-		
+
 		assertTrue(serializzabile.containsAll(nonSerializzabile));
-		for(Integer i : serializzabile) {
+		for (Integer i : serializzabile) {
 			nonSerializzabile.contains(i);
-		}	
+		}
+	}
+
+	@Test
+	public void testCopia() {
+		Collection<Object> originale = new ArrayList<Object>();
+		Object oggettoGenerico = new Object();
+		
+		originale.add(oggettoGenerico);
+		Collection<Object> copia = Utilita.copia(originale);
+		
+		assertTrue(copia.contains(oggettoGenerico));
+		copia.remove(oggettoGenerico);
+		assertFalse(copia.contains(oggettoGenerico));
+		assertTrue(originale.contains(oggettoGenerico));
+	
+		
 	}
 
 }
