@@ -218,9 +218,8 @@ public class UtilitaStringhe {
 	 * 
 	 * @param lista
 	 *            la lista di elementi fra cui scegliere
-	 * 
 	 * @param indice
-	 *            la lista di elementi fra cui scegliere
+	 *            l'indice da cui far partire l'elenco
 	 * @return un menu di scelta con gli elementi di una lista
 	 */
 	public static <E> String menuDiScelta(Collection<E> lista, int indice) {

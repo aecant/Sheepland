@@ -2,7 +2,6 @@ package it.polimi.deib.provaFinale.cantiniDignani.rete.rmi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 
@@ -15,7 +14,7 @@ public interface InterfacciaRmi extends Remote {
 
 	void aggiungiAscoltatore(String giocatore, AscoltatoreRemoto ascoltatore) throws RemoteException;
 
-	void riceviMossa(Mossa mossa) throws RemoteException;
+	void riceviMossa(int mossa) throws RemoteException;
 
 	DatiPartita scaricaDatiPartita(String giocatore) throws RemoteException;
 

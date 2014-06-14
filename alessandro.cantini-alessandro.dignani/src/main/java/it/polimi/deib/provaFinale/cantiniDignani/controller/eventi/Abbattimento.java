@@ -10,14 +10,10 @@ public class Abbattimento extends Mossa {
 	private int territorio;
 	private boolean aBuonFine;
 
-	public Abbattimento(String giocatore, TipoAnimale tipoOvino, int territorio) {
+	public Abbattimento(String giocatore, TipoAnimale tipoOvino, int territorio, boolean aBuonFine) {
 		super(giocatore);
 		this.tipoOvino = tipoOvino;
 		this.territorio = territorio;
-	}
-
-	public Abbattimento(Abbattimento abb, boolean aBuonFine) {
-		this(abb.getGiocatore(), abb.getTipoOvino(), abb.getTerritorio());
 		this.aBuonFine = aBuonFine;
 	}
 

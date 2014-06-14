@@ -15,6 +15,9 @@ public enum TipoAnimale {
 	
 	@Override
 	public String toString() {
+		if(this == PECORA_NERA) {
+			return "pecora nera";
+		}
 		return name().toLowerCase();
 	}
 

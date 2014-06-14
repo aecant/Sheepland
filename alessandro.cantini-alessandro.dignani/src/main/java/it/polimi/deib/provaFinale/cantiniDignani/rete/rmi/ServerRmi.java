@@ -13,7 +13,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Hashtable;
 import java.util.List;
 
-public class ServerRMI implements InterfacciaServer {
+public class ServerRmi implements InterfacciaServer {
 
 	private static Hashtable<String, AscoltatoreRemoto> ascoltatori = new Hashtable<String, AscoltatoreRemoto>();
 

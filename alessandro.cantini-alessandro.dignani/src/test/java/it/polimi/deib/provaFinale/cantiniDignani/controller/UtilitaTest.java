@@ -59,7 +59,7 @@ public class UtilitaTest {
 
 		assertFalse(nonSerializzabile instanceof Serializable);
 
-		Collection<Integer> serializzabile = Utilita.rendiSerializzabile(mappa.keySet());
+		Collection<Integer> serializzabile = Utilita.rendiSerializzabile(nonSerializzabile);
 
 		assertTrue(serializzabile instanceof Serializable);
 

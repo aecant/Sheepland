@@ -4,7 +4,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneClient;
@@ -64,7 +63,7 @@ public class ConnessioneClientRmi implements ConnessioneClient, AscoltatoreRemot
 		return dati;
 	}
 
-	public void inviaMossa(Mossa mossaScelta) {
+	public void inviaMossa(int mossaScelta) {
 		try {
 			server.riceviMossa(mossaScelta);
 		} catch (RemoteException e) {
