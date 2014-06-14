@@ -1,8 +1,12 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Giocatore implements Serializable {
 	private static final long serialVersionUID = -8973926581885818571L;
@@ -56,6 +60,24 @@ public class Giocatore implements Serializable {
 	}
 
 	/**
+	 * Restituisce una mappa che associa a ogni tipo di tessera il numero di
+	 * tessere di quel tipo possedute dal giocatore
+	 * 
+	 * @return una mappa delle occorrenze delle tessere del giocatore
+	 */
+	public Map<TipoTerritorio, Integer> numeroTesserePerTipo() {		
+		Map<TipoTerritorio, Integer> mappa = new HashMap<TipoTerritorio, Integer>();
+		for (TipoTerritorio t : TipoTerritorio.valoriTessere()) {
+			mappa.put(t, 0);
+		}
+		for (Tessera tess : tessere) {
+			Utilita.incrementa(mappa, tess.getTipo());
+		}
+
+		return mappa;
+	}
+
+	/**
 	 * Aggiunge un pastore
 	 * 
 	 * @param pastore
@@ -79,23 +101,6 @@ public class Giocatore implements Serializable {
 
 	public Integer getDenaro() {
 		return this.denaro;
-	}
-
-	/**
-	 * Eccezione che segnala che il denaro del pastore e' insufficiente per
-	 * effettuare un'operazione che richiede un costo
-	 */
-	public class DenaroInsufficienteException extends IllegalArgumentException {
-
-		private static final long serialVersionUID = -270481645032368246L;
-
-		public DenaroInsufficienteException() {
-			super();
-		}
-
-		public DenaroInsufficienteException(String s) {
-			super(s);
-		}
 	}
 
 	@Override
@@ -131,6 +136,23 @@ public class Giocatore implements Serializable {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * Eccezione che segnala che il denaro del pastore e' insufficiente per
+	 * effettuare un'operazione che richiede un costo
+	 */
+	public class DenaroInsufficienteException extends IllegalArgumentException {
+
+		private static final long serialVersionUID = -270481645032368246L;
+
+		public DenaroInsufficienteException() {
+			super();
+		}
+
+		public DenaroInsufficienteException(String s) {
+			super(s);
+		}
 	}
 
 }
