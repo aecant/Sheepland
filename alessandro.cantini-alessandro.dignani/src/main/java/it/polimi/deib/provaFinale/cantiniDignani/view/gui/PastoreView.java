@@ -17,9 +17,9 @@ public class PastoreView extends PedinaView {
 	private JLabel immagine;
 
 	public PastoreView(int posizioneX, int posizioneY, ColorePastore colore) {
-		super(posizioneX, posizioneY);
+		super(posizioneX, posizioneY, CostantiGui.DIMENSIONE_PASTORE);
 
-		setPreferredSize(CostantiGui.DIMENSIONE_PASTORE);
+		//setPreferredSize(CostantiGui.DIMENSIONE_PASTORE);
 		
 		String percorso = CostantiGui.PERCORSO_IMMAGINI;
 		
@@ -37,5 +37,9 @@ public class PastoreView extends PedinaView {
 		immagine = new JLabel(new ImageIcon(Toolkit.getDefaultToolkit().getImage(percorso).getScaledInstance(CostantiGui.DIMENSIONE_PASTORE.width, CostantiGui.DIMENSIONE_PASTORE.height, Image.SCALE_SMOOTH)));
 		immagine.setBounds(new Rectangle(new Point(0, 0), CostantiGui.DIMENSIONE_PASTORE));
 		add(immagine);
+	}
+	
+	public PastoreView(Point coordinate, ColorePastore colore) {
+		this(coordinate.x, coordinate.y, colore);
 	}
 }

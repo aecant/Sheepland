@@ -1,6 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 
@@ -10,10 +11,26 @@ public class PedinaView extends JPanel {
 
 	private static final long serialVersionUID = 3540874383960169152L;
 	
-	public PedinaView(int posizioneX, int posizioneY) {
-		this.setBounds(new Rectangle(new Point(posizioneX, posizioneY), CostantiGui.DIMENSIONE_PECORA));
+	/**
+	 * Costruttore della pedina nella posizione e delle dimensioni specifitate nel rettangolo
+	 * @param r
+	 */
+	public PedinaView(Rectangle r) {
+		this.setBounds(r);
 		this.setLayout(null);
 		this.setOpaque(false);
+	}
+	
+	public PedinaView(int posizioneX, int posizioneY, int larghezza, int altezza) {
+		this(new Rectangle(posizioneX, posizioneY, larghezza, altezza));
+	}
+	
+	public PedinaView(int posizioneX, int posizioneY, Dimension dimensione) {
+		this(new Rectangle(posizioneX, posizioneY, dimensione.width, dimensione.height));
+	}
+	
+	public PedinaView(Point coordinate, Dimension dimensione) {
+		this(new Rectangle(coordinate.x, coordinate.y, dimensione.width, dimensione.height));
 	}
 	
 	/**

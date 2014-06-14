@@ -30,19 +30,7 @@ public class Gui {
 	/**
 	 * Metodo che avvia la partita
 	 */
-	public void inizioPartita() {
-
-		// TODO questo è un test, andrà mofificato con
-		// ClientMain.getDatiPartita()
-		Partita part = new Partita(Arrays.asList("Alessandro", "Andrea", "Luca", "Paolo"));
-		GestorePartita gest = new GestorePartita(part, null, null);
-		PreparazionePartita fi = new PreparazionePartita(gest);
-		fi.disponiPecore();
-		fi.disponiTessereIniziali();
-		fi.distribuisciDenari();
-		DatiPartita dati = Estrattore.datiPartita(part);
-		// Fine test
-
+	public void inizioPartita(DatiPartita dati) {
 		finestraPartita = new PartitaView(dati);
 
 		Point[][] coordinateTerritori = new Point[Costanti.NUM_TERRITORI][5];
@@ -60,19 +48,17 @@ public class Gui {
 		}
 
 		for (int i = 0; i < dati.getGiocatori().length; i++) {
-			finestraPartita.getMappa().creaPastore(coordinateStrade[Sorte.numeroCasuale(0, Costanti.NUM_STRADE -1)], ColorePastore.values()[i]);
+			finestraPartita.getMappa().creaPastore(coordinateStrade[Sorte.numeroCasuale(0, Costanti.NUM_STRADE - 1)], ColorePastore.values()[i]);
 		}
-		
+
 		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
-			finestraPartita.getMappa().creaPecora(coordinateTerritori[i][0]);
-			finestraPartita.getMappa().creaMontone(coordinateTerritori[i][1]);
-			finestraPartita.getMappa().creaAgnello(coordinateTerritori[i][2]);
-			finestraPartita.getMappa().creaPecoraNera(coordinateTerritori[i][3]);
-			finestraPartita.getMappa().creaLupo(coordinateTerritori[i][4]);
+			finestraPartita.getMappa().creaPecoraNera(coordinateTerritori[i][0]);
+			finestraPartita.getMappa().creaLupo(coordinateTerritori[i][1]);
+			finestraPartita.getMappa().creaPecora(coordinateTerritori[i][2]);
+			finestraPartita.getMappa().creaMontone(coordinateTerritori[i][3]);
+			finestraPartita.getMappa().creaAgnello(coordinateTerritori[i][4]);
 		}
 		finestraPartita.visualizza();
-		
-		finestraPartita.getPanelMessaggi().visualizzaMessaggio("E' il turno di " + dati.getGiocatoreDiTurno());
 	}
 
 	/**
@@ -85,11 +71,27 @@ public class Gui {
 		return this.finestraPartita;
 	}
 
+	public void inizioTurno(String giocatore) {
+		getPartita().getPanelMessaggi().visualizzaMessaggio("E' il turno di " + giocatore + "!");
+	}
+
 	// Test
 	public static void main(String[] args) {
 		Gui gui = new Gui();
 		// System.out.println(gui.chiediNome());
-		gui.inizioPartita();
+
+		// TODO questo è un test, andrà mofificato con
+		// ClientMain.getDatiPartita()
+		Partita part = new Partita(Arrays.asList("Alessandro", "Andrea", "Luca", "Paolo"));
+		GestorePartita gest = new GestorePartita(part, null, null);
+		PreparazionePartita fi = new PreparazionePartita(gest);
+		fi.disponiPecore();
+		fi.disponiTessereIniziali();
+		fi.distribuisciDenari();
+		DatiPartita dati = Estrattore.datiPartita(part);
+		// Fine test
+
+		gui.inizioPartita(dati);
 
 		Point[][] coordinate = new Point[Costanti.NUM_TERRITORI][5];
 		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
@@ -98,5 +100,7 @@ public class Gui {
 						(int) (CostantiGui.COORDINATE_TERRITORI[i][j].getY() * CostantiGui.FATTORE_DI_SCALA));
 			}
 		}
+
+		gui.inizioTurno(dati.getGiocatoreDiTurno());
 	}
 }

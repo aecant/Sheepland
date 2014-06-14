@@ -2,6 +2,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
 import it.polimi.deib.provaFinale.cantiniDignani.model.ColorePastore;
 
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class MappaView extends BackgroundMappaPanel{
 	}
 
 	public MappaView() {
-		super(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "mappaSheepland.png"));
+		super(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "mappaSheepland.png").getScaledInstance(CostantiGui.DIMENSIONE_MAPPA.width, CostantiGui.DIMENSIONE_MAPPA.height, Image.SCALE_SMOOTH));
 		this.setPreferredSize(CostantiGui.DIMENSIONE_MAPPA);
 		this.setMaximumSize(CostantiGui.DIMENSIONE_MAPPA);
 		this.setMinimumSize(CostantiGui.DIMENSIONE_MAPPA);

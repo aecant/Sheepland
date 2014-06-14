@@ -28,7 +28,7 @@ public class CostantiGui {
 	public static final Dimension DIMENSIONE_PECORA = new Dimension(DIMENSIONE_MAPPA.height / 18, DIMENSIONE_MAPPA.height / 24);
 	public static final Dimension DIMENSIONE_MONTONE = new Dimension(DIMENSIONE_MAPPA.height / 18, DIMENSIONE_MAPPA.height / 24);
 	public static final Dimension DIMENSIONE_AGNELLO = new Dimension(DIMENSIONE_MAPPA.height / 21, DIMENSIONE_MAPPA.height / 28);
-	public static final Dimension DIMENSIONE_LUPO = new Dimension(DIMENSIONE_MAPPA.height / 18, DIMENSIONE_MAPPA.height / 24);
+	public static final Dimension DIMENSIONE_LUPO = new Dimension(DIMENSIONE_MAPPA.height / 12, DIMENSIONE_MAPPA.height / 16);
 	public static final Dimension DIMENSIONE_PASTORE = new Dimension(DIMENSIONE_MAPPA.height / 24, DIMENSIONE_MAPPA.height / 24);
 
 	// Panel Tessere
@@ -42,10 +42,10 @@ public class CostantiGui {
 	public static final Dimension DIMENSIONE_PANEL_SOLDI = new Dimension(50, 50);
 	
 	// Panel messaggi
-	public static final Color COLORE_SFONDO_MESSAGGI = new Color(152, 215, 244);
 	public static final Dimension DIMENSIONE_PANEL_MESSAGGI = new Dimension(DIMENSIONE_SCHERMO.width, DIMENSIONE_SCHERMO.height / 3);
 	public static final int TEMPO_VISUALIZZAZIONE_MESSAGGIO = 3000;
 	public static final Font FONT_MESSAGGI = new Font("Arial", Font.BOLD, 40);
+	public static final Color COLORE_SFONDO_MESSAGGI = new Color(252, 189, 73);
 	public static final Color COLORE_TESTO_MESSAGGI = new Color(80, 80, 80);
 
 	// panels laterali mappa
@@ -69,17 +69,17 @@ public class CostantiGui {
 			// Deserto
 			{ new Point(420, 312), new Point(418, 281), new Point(455, 300), new Point(385, 312), new Point(434, 353) },
 			{ new Point(524, 364), new Point(518, 408), new Point(477, 366), new Point(499, 313), new Point(551, 324) },
-			{ new Point(520, 526), new Point(460, 504), new Point(478, 543), new Point(483, 450), new Point(522, 476) },
+			{ new Point(520, 526), new Point(469, 502), new Point(478, 543), new Point(483, 450), new Point(522, 476) },
 			// Lago
 			{ new Point(408, 455), new Point(415, 404), new Point(403, 486), new Point(374, 423), new Point(454, 420) },
 			{ new Point(386, 594), new Point(410, 550), new Point(397, 637), new Point(404, 688), new Point(450, 608) },
-			{ new Point(277, 678), new Point(302, 652), new Point(239, 715), new Point(321, 613), new Point(200, 750) },
+			{ new Point(277, 685), new Point(302, 652), new Point(239, 715), new Point(321, 613), new Point(200, 750) },
 			// Bosco
 			{ new Point(318, 510), new Point(290, 526), new Point(330, 554), new Point(306, 449), new Point(348, 491) },
-			{ new Point(207, 600), new Point(204, 558), new Point(260, 595), new Point(147, 634), new Point(179, 668) },
+			{ new Point(207, 610), new Point(215, 558), new Point(260, 595), new Point(147, 634), new Point(179, 668) },
 			{ new Point(130, 511), new Point(83, 486), new Point(170, 521), new Point(148, 473), new Point(112, 572) },
 			// Pascolo
-			{ new Point(234, 462), new Point(231, 403), new Point(233, 504), new Point(195, 438), new Point(270, 435) },
+			{ new Point(234, 462), new Point(231, 403), new Point(233, 504), new Point(200, 434), new Point(270, 435) },
 			{ new Point(151, 364), new Point(143, 306), new Point(145, 402), new Point(97, 324), new Point(93, 429) },
 			{ new Point(86, 205), new Point(119, 152), new Point(154, 246), new Point(64, 145), new Point(105, 250) },
 			// Campo
@@ -145,10 +145,12 @@ public class CostantiGui {
 
 	// Fonts
 	public static final Font FONT_PULSANTI_MOSSE = new Font("Chalkduster", Font.PLAIN, 18);
-	public static final Font FONT_NOME_GIOCATORE = new Font("Chalkduster", Font.PLAIN, 16);
+	public static final Font FONT_NOME_GIOCATORE = new Font("Trajan Pro 3", Font.BOLD, 16);
 	public static final Font FONT_SOLDI = new Font("Farisi", Font.PLAIN, 30);
 	public static final Font FONT_CONTATORI_ANIMALI = new Font("Farisi", Font.PLAIN, 20);
 	public static final Font FONT_TERRENI = new Font("Arial", Font.BOLD, 14);
+
+	public static final int NUM_FRAME_ANIM_MESS = 50;
 
 	/**
 	 * Costruttore privato per nascondere quello di default

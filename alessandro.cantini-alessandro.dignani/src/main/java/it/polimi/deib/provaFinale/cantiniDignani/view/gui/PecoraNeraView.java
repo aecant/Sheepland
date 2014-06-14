@@ -15,12 +15,14 @@ public class PecoraNeraView extends PedinaView {
 	private JLabel immagine;
 
 	public PecoraNeraView(int posizioneX, int posizioneY) {
-		super(posizioneX, posizioneY);
-
-		setPreferredSize(CostantiGui.DIMENSIONE_PECORA);
+		super(posizioneX, posizioneY, CostantiGui.DIMENSIONE_PECORA);
 
 		immagine = new JLabel(new ImageIcon(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "pecora_nera.png").getScaledInstance(CostantiGui.DIMENSIONE_PECORA.width, CostantiGui.DIMENSIONE_PECORA.height, Image.SCALE_SMOOTH)));
 		immagine.setBounds(new Rectangle(new Point(0, 0), CostantiGui.DIMENSIONE_PECORA));
 		add(immagine);
+	}
+	
+	public PecoraNeraView(Point coordinate) {
+		this(coordinate.x, coordinate.y);
 	}
 }
