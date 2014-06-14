@@ -19,7 +19,6 @@ import javax.swing.JTextField;
 public class FinestraChiediNome extends JFrame {
 
 	private static final long serialVersionUID = -2198792582824078626L;
-	private static int numTentativi = 0;
 
 	private JPanel contentPane;
 	private JTextField txtNome;
@@ -27,9 +26,8 @@ public class FinestraChiediNome extends JFrame {
 	private JLabel lblIlNomeScelto;
 
 	private BlockingQueue<String> coda = new LinkedBlockingQueue<String>();
-	Gui gui;
 
-	public FinestraChiediNome(final Gui gui) {
+	public FinestraChiediNome(boolean visualizzaMessaggioErrore) {
 		super("Sheepland - Inserisci il nome");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 150, 400, 400);
@@ -50,7 +48,7 @@ public class FinestraChiediNome extends JFrame {
 		lblIlNomeScelto = new JLabel("<html>Il nome scelto è già occupato,<br />scegliere un altro nome e riprovare!</html>");
 		lblIlNomeScelto.setForeground(Color.RED);
 		lblIlNomeScelto.setBounds(50, 61, 250, 38);
-		if (numTentativi >= 1) {
+		if (visualizzaMessaggioErrore) {
 			lblIlNomeScelto.setVisible(true);
 		} else {
 			lblIlNomeScelto.setVisible(false);
@@ -72,7 +70,6 @@ public class FinestraChiediNome extends JFrame {
 	}
 
 	public String riceviNome() {
-		numTentativi++;
 		setVisible(true);
 		String temp = null;
 		try {
