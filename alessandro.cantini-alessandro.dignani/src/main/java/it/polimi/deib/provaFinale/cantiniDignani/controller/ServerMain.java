@@ -1,13 +1,12 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ServerRMI;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ServerRmi;
 
 import java.io.PrintStream;
 import java.util.List;
@@ -19,7 +18,7 @@ public class ServerMain {
 	private static List<GestorePartita> gestoriPartita = new Vector<GestorePartita>();
 	private static List<String> giocatoriInAttesa = new Vector<String>();
 	private static InterfacciaServer connessione;
-	private static GestoreCoda<Evento> gestoreEventi = new GestoreCoda<Evento>();
+	private static GestoreCoda<Integer> gestoreEventi = new GestoreCoda<Integer>();
 	private static TimerPartita timerPartita = new TimerPartita(CostantiRete.MILLISECONDI_TIMER_PARTITA);
 
 	public static void main(String[] args) {
@@ -88,7 +87,7 @@ public class ServerMain {
 		// TODO chiedo all'utente che tipo di server vuole e creo l'oggetto
 
 		// TODO da rimuovere, test
-		connessione = new ServerRMI();
+		connessione = new ServerRmi();
 	}
 
 	/**
@@ -115,7 +114,7 @@ public class ServerMain {
 		return connessione;
 	}
 
-	public static GestoreCoda<Evento> getGestoreEventi() {
+	public static GestoreCoda<Integer> getGestoreEventi() {
 		return gestoreEventi;
 	}
 

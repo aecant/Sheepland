@@ -8,8 +8,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoLupo
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPecoraNera;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPastore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTipoMossa;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SceltaMossa;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SceltaPastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Agnello;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
@@ -20,7 +18,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 
-import java.util.Collection;
+import java.util.List;
 
 public class FasePrincipale extends FasePartita {
 
@@ -76,10 +74,10 @@ public class FasePrincipale extends FasePartita {
 
 		if (gestore.dueGiocatori) {
 			gestore.inviaEvento(new RichiestaPastore(), giocatore);
-			SceltaPastore scelta = (SceltaPastore) gestore.aspettaEvento(SceltaPastore.class);
-			Pastore temp = scelta.getPastore();
+			int codStrada = gestore.aspettaEvento();
+
 			for (Pastore p : partita.getPastori()) {
-				if (temp.equals(p)) {
+				if (p.getStrada().getCodice() == codStrada) {
 					pastore = p;
 				}
 			}
@@ -92,11 +90,12 @@ public class FasePrincipale extends FasePartita {
 		}
 
 		for (int numMossa = 1; numMossa <= Costanti.NUM_MOSSE; numMossa++) {
-			Collection<TipoMossa> mosseDisponibili = gestoreMossa.creaMosseDisponibili(numMossa, pastoreMosso, mossaPrecedente, pastore, giocatore.getDenaro());
+			List<TipoMossa> mosseDisponibili = gestoreMossa.creaMosseDisponibili(numMossa, pastoreMosso, mossaPrecedente, pastore, giocatore.getDenaro());
 
 			gestore.inviaEvento(new RichiestaTipoMossa(mosseDisponibili, numMossa), giocatore);
 
-			TipoMossa tipoMossa = ((SceltaMossa) gestore.aspettaEvento(SceltaMossa.class)).getMossa();
+			int indice = gestore.aspettaEvento();
+			TipoMossa tipoMossa = mosseDisponibili.get(indice);
 
 			mossaPrecedente = tipoMossa;
 			if (tipoMossa == TipoMossa.MUOVI_PASTORE) {

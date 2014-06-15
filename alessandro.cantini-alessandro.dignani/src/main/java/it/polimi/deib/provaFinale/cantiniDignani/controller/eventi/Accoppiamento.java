@@ -8,13 +8,9 @@ public class Accoppiamento extends Mossa {
 	private int territorio;
 	private boolean aBuonFine;
 
-	public Accoppiamento(String giocatore, int territorio) {
+	public Accoppiamento(String giocatore, int territorio, boolean aBuonFine) {
 		super(giocatore);
 		this.territorio = territorio;
-	}
-
-	public Accoppiamento(Accoppiamento acc, boolean aBuonFine) {
-		this(acc.getGiocatore(), acc.getTerritorio());
 		this.aBuonFine = aBuonFine;
 	}
 

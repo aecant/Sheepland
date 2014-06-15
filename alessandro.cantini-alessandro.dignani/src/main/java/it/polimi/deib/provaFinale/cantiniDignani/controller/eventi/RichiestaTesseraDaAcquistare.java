@@ -1,23 +1,22 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 
-import java.util.Collection;
+import java.util.List;
 
 public class RichiestaTesseraDaAcquistare extends Richiesta {
 
 	private static final long serialVersionUID = 2560438399810730711L;
 
-	private Collection<Tessera> tessereDisp;
+	private List<Tessera> tessereDisp;
 		
-	public RichiestaTesseraDaAcquistare(Collection<Tessera> tessereDisp) {
-		this.tessereDisp = Utilita.rendiSerializzabile(tessereDisp);
+	public RichiestaTesseraDaAcquistare(List<Tessera> tessereDisp) {
+		this.tessereDisp =tessereDisp;
 	}
 
 	@Override
-	protected Mossa interagisci() {
+	protected int interagisci() {
 		return ClientMain.getUI().richiestaTesseraDaAcquistare(tessereDisp);
 	}
 

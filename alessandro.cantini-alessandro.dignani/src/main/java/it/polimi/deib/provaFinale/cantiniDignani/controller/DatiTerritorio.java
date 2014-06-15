@@ -3,8 +3,9 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DatiTerritorio implements Serializable {
@@ -66,8 +67,14 @@ public class DatiTerritorio implements Serializable {
 	 * 
 	 * @return la collezione dei @link{TipoAnimale} presenti sul territorio
 	 */
-	public Collection<TipoAnimale> getTipiAnimale() {
-		return numeroAnimali.keySet();
+	public List<TipoAnimale> getTipiAnimale() {
+		List<TipoAnimale> listaTipi = new ArrayList<TipoAnimale>();
+		for(TipoAnimale tipo : TipoAnimale.values()) {
+			if(numeroAnimali.containsKey(tipo)) {
+				listaTipi.add(tipo);
+			}
+		}
+		return listaTipi;
 	}
 	
 	/**
@@ -75,8 +82,8 @@ public class DatiTerritorio implements Serializable {
 	 * 
 	 * @return i tipi di ovino sul territorio, la pecora nera e' inclusa
 	 */
-	public Collection<TipoAnimale> getTipiOvino(){
-		Collection<TipoAnimale> tipiOvino = getTipiAnimale();
+	public List<TipoAnimale> getTipiOvino(){
+		List<TipoAnimale> tipiOvino = getTipiAnimale();
 		tipiOvino.remove(TipoAnimale.LUPO);
 		return tipiOvino;
 	}

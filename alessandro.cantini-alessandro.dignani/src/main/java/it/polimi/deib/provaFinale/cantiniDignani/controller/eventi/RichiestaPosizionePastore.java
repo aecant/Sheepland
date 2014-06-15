@@ -5,17 +5,15 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 public class RichiestaPosizionePastore extends Richiesta {
 	private static final long serialVersionUID = -3895425016270580277L;
 	boolean[] stradeLibereGratis, stradeLibereAPagamento;
-	private int origine;
 
-	public RichiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento, int origine) {
+	public RichiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento) {
 		this.stradeLibereGratis = stradeLibereGratis.clone();
 		this.stradeLibereAPagamento = stradeLibereAPagamento.clone();
-		this.origine = origine;
 	}
 
 	@Override
-	protected Mossa interagisci() {
-		return ClientMain.getUI().richiestaPosizionePastore(stradeLibereGratis, stradeLibereAPagamento, origine);
+	protected int interagisci() {
+		return ClientMain.getUI().richiestaPosizionePastore(stradeLibereGratis, stradeLibereAPagamento);
 	}
 
 }

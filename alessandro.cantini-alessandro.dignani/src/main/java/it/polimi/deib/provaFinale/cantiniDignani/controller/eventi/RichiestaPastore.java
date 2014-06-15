@@ -7,7 +7,7 @@ public class RichiestaPastore extends Richiesta {
 	private static final long serialVersionUID = -175401506291334931L;
 
 	@Override
-	protected Mossa interagisci() {
+	protected int interagisci() {
 		return ClientMain.getUI().richiestaPastore();
 	}
 

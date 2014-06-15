@@ -13,7 +13,7 @@ public class RichiestaPosizioneInizialePastore extends Richiesta {
 	}
 
 	@Override
-	protected Mossa interagisci() {
+	protected int interagisci() {
 		return ClientMain.getUI().richiestaPosizioneInizialePastore(stradeLibere);
 	}
 

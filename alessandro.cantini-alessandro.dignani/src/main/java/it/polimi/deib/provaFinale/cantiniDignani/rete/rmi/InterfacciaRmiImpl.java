@@ -5,8 +5,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.GestoreCoda;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerMain;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Mossa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
@@ -18,7 +16,7 @@ import java.rmi.RemoteException;
 public class InterfacciaRmiImpl implements InterfacciaRmi {
 
 	private final PrintStream logger = ServerMain.LOGGER;
-	private final GestoreCoda<Evento> gestoreEventi = ServerMain.getGestoreEventi();
+	private final GestoreCoda<Integer> gestoreEventi = ServerMain.getGestoreEventi();
 
 	// TODO verificare se si riesce a fare qualcosa di più efficiente
 	private Partita getPartita(String nome) {
@@ -33,11 +31,11 @@ public class InterfacciaRmiImpl implements InterfacciaRmi {
 	}
 
 	public void aggiungiAscoltatore(String nome, AscoltatoreRemoto ascoltatore) throws RemoteException {
-		ServerRMI.getAscoltatori().put(nome, ascoltatore);
+		ServerRmi.getAscoltatori().put(nome, ascoltatore);
 		logger.println("Ascoltatore aggiunto: " + ascoltatore);
 	}
 
-	public void riceviMossa(Mossa mossa) {
+	public void riceviMossa(int mossa) {
 		gestoreEventi.aggiungi(mossa);
 		logger.println("Mossa ricevuta : " + mossa);
 	}

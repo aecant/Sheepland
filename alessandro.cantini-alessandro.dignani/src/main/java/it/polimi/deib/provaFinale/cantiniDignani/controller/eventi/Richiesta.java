@@ -16,9 +16,9 @@ public abstract class Richiesta implements Evento {
 	}
 
 	final public void visualizza() {
-		Mossa risposta = interagisci();
+		int risposta = interagisci();
 		ClientMain.getConnessione().inviaMossa(risposta);
 	}
 
-	abstract protected Mossa interagisci();
+	abstract protected int interagisci();
 }

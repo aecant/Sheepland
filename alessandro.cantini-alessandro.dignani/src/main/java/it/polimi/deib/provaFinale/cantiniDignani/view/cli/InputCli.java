@@ -63,7 +63,7 @@ public class InputCli {
 	}
 
 	/**
-	 * Chiede un intero che deve appartenere a un inseme di numeri
+	 * Chiede un intero che deve appartenere alla collezione passata come parametro
 	 * 
 	 * @param insieme
 	 *            l'insieme di numeri di cui l'intero deve far parte

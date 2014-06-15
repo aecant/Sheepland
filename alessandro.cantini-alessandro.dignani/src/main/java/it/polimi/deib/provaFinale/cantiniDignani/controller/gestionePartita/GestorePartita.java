@@ -17,7 +17,7 @@ import java.util.List;
 public class GestorePartita extends Thread {
 
 	private final Partita partita;
-	private final GestoreCoda<Evento> gestoreEventi;
+	private final GestoreCoda<Integer> gestoreEventi;
 	private List<String> tuttiGiocatori;
 	private final InterfacciaServer connessione;
 	
@@ -29,7 +29,7 @@ public class GestorePartita extends Thread {
 	public final boolean dueGiocatori;
 	public final int denaroIniziale;
 
-	public GestorePartita(Partita partita, InterfacciaServer connessione, GestoreCoda<Evento> gestoreEventi) {
+	public GestorePartita(Partita partita, InterfacciaServer connessione, GestoreCoda<Integer> gestoreEventi) {
 		this.partita = partita;
 		this.connessione = connessione;
 		this.gestoreEventi = gestoreEventi;
@@ -69,8 +69,8 @@ public class GestorePartita extends Thread {
 		return lancio;
 	}
 
-	protected Evento aspettaEvento(Class<? extends Evento> classe) {
-		return gestoreEventi.aspetta(classe);
+	protected int aspettaEvento() {
+		return gestoreEventi.aspetta();
 	}
 
 	protected void inviaEventoATutti(Evento e) {
