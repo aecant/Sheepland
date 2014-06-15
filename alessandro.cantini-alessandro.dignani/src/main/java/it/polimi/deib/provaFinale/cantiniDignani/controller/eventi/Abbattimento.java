@@ -23,18 +23,6 @@ public class Abbattimento extends Mossa {
 		this.giocDaAggiornare = giocDaAggiornare;
 	}
 
-	public TipoAnimale getTipoOvino() {
-		return tipoOvino;
-	}
-
-	public int getTerritorio() {
-		return territorio;
-	}
-
-	public boolean isaBuonFine() {
-		return aBuonFine;
-	}
-
 	@Override
 	public void aggiornaDati() {
 		if (aBuonFine) {
@@ -45,7 +33,7 @@ public class Abbattimento extends Mossa {
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().abbattimento(super.getGiocatore(), tipoOvino, territorio, aBuonFine);
+		ClientMain.getUI().abbattimento(giocatore, tipoOvino, territorio, aBuonFine);
 	}
 
 }

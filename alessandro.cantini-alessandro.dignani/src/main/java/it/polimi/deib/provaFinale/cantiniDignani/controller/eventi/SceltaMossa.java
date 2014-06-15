@@ -12,10 +12,6 @@ public class SceltaMossa extends Mossa {
 		this.mossa = mossa;
 	}
 
-	public TipoMossa getMossa() {
-		return mossa;
-	}
-
 	@Override
 	public void aggiornaDati() {
 	}
@@ -26,6 +22,6 @@ public class SceltaMossa extends Mossa {
 
 	@Override
 	public String toString() {
-		return getGiocatore() + " ha deciso di effettuare la mossa: " + mossa;
+		return giocatore + " ha deciso di effettuare la mossa: " + mossa;
 	}
 }

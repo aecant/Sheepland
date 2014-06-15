@@ -16,18 +16,6 @@ public class MovimentoPecora extends Mossa {
 		this.destinazione = destinazione;
 	}
 	
-	public TipoAnimale getTipoOvino() {
-		return tipo;
-	}
-
-	public int getOrigine() {
-		return origine;
-	}
-
-	public int getDestinazione() {
-		return destinazione;
-	}
-
 	@Override
 	public void aggiornaDati() {
 		ClientMain.getDatiPartita();
@@ -35,7 +23,7 @@ public class MovimentoPecora extends Mossa {
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().movimentoPecora(getGiocatore(), tipo, origine, destinazione);
+		ClientMain.getUI().movimentoPecora(giocatore, tipo, origine, destinazione);
 	}
 
 }

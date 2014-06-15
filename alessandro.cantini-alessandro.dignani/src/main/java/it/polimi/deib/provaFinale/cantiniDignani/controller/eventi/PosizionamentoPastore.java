@@ -14,10 +14,6 @@ public class PosizionamentoPastore extends Mossa {
 		this.strada = strada;
 	}
 
-	public int getStrada() {
-		return strada;
-	}
-
 	@Override
 	public void aggiornaDati() {
 		ClientMain.getDatiPartita().setGiocatori(giocDaAggiornare);
@@ -25,12 +21,12 @@ public class PosizionamentoPastore extends Mossa {
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().selezionePosizioneInizialePastore(super.getGiocatore(), strada);
+		ClientMain.getUI().selezionePosizioneInizialePastore(giocatore, strada);
 	}
 
 	@Override
 	public String toString() {
-		return getGiocatore() + " ha posizionato il pastore sulla strada " + strada;
+		return giocatore + " ha posizionato il pastore sulla strada " + strada;
 	}
 
 }
