@@ -1,23 +1,19 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 
 public class MovimentoPecoraNera extends MovimentoAnimale {
 
 	private static final long serialVersionUID = -742787287192836056L;
 
-	public MovimentoPecoraNera(int origine, int destinazione) {
-		super(origine, destinazione);
-	}
-
-	@Override
-	public void aggiornaDati() {
-		ClientMain.getDatiPartita().aggiornaTerritori();
+	public MovimentoPecoraNera(int origine, int destinazione, DatiTerritorio[] terrDaAggiornare) {
+		super(origine, destinazione, terrDaAggiornare);
 	}
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().movimentoPecoraNera(super.getOrigine(), super.getDestinazione());
+		ClientMain.getUI().movimentoPecoraNera(origine, destinazione);
 	}
 
 }

@@ -11,6 +11,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
@@ -79,7 +80,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void movimentoPastore(String giocatore, int origine, int destinazione) {
-		String tipoRecinto = ClientMain.getDatiPartita().getRecintiFinali().length == 0 ? "iniziale" : "finale";
+		String tipoRecinto = ClientMain.getDatiPartita().getRecinti().length > Costanti.NUM_RECINTI_INIZIALI ? "iniziale" : "finale";
 		out.println(giocatore + " ha spostato il pastore " + daA(origine, destinazione) + " .");
 		out.println("E' stato posizionato un recinto " + tipoRecinto + " " + nelTerr(origine));
 	}

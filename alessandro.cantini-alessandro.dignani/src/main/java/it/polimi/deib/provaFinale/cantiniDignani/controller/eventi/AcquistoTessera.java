@@ -6,11 +6,13 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 public class AcquistoTessera extends Mossa {
 	private static final long serialVersionUID = -8771805864958018539L;
 	
-	Tessera tessera;
+	private Tessera tessera;
+	private Tessera[] tessInCimaDaAggiornare;
 
-	public AcquistoTessera(String giocatore, Tessera tessera) {
+	public AcquistoTessera(String giocatore, Tessera tessera, Tessera[] tessInCimaDaAggiornare) {
 		super(giocatore);
 		this.tessera = tessera;
+		this.tessInCimaDaAggiornare = tessInCimaDaAggiornare;
 	}
 
 	public Tessera getTessera() {
@@ -19,7 +21,7 @@ public class AcquistoTessera extends Mossa {
 
 	@Override
 	public void aggiornaDati() {
-		ClientMain.getDatiPartita().aggiornaTessereInCima();
+		ClientMain.getDatiPartita().setTessereInCima(tessInCimaDaAggiornare);
 	}
 
 	@Override

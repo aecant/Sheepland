@@ -1,27 +1,23 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 
 public class MovimentoLupo extends MovimentoAnimale {
 
 	private static final long serialVersionUID = -2442027714276181519L;
-
-	public MovimentoLupo(int origine, int destinazione) {
-		super(origine, destinazione);
-	}
-
-	@Override
-	public void aggiornaDati() {
-		ClientMain.getDatiPartita().aggiornaTerritori();
+	
+	public MovimentoLupo(int origine, int destinazione, DatiTerritorio[] terrDaAggiornare) {
+		super(origine, destinazione, terrDaAggiornare);
 	}
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().movimentoLupo(super.getOrigine(), super.getDestinazione());
+		ClientMain.getUI().movimentoLupo(origine, destinazione);
 	}
 
 	@Override
 	public String toString() {
-		return "Movimento lupo da " + super.getOrigine() + " a " + super.getDestinazione();
+		return "Movimento lupo da " + origine + " a " + destinazione;
 	}
 }

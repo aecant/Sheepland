@@ -12,16 +12,14 @@ public class DatiPartita implements Serializable {
 	private static final long serialVersionUID = -4880327134106355480L;
 
 	private DatiTerritorio[] territori;
-	private Integer[] recintiIniziali;
-	private Integer[] recintiFinali;
+	private Integer[] recinti;
 	private String giocatoreDiTurno;
 	private Tessera[] tessereInCima;
 	private Giocatore[] giocatori;
 
 	protected DatiPartita(Partita partita) {
 		territori = Estrattore.datiTerritori(partita);
-		recintiIniziali = Estrattore.recintiIniziali(partita);
-		recintiFinali = Estrattore.recintiFinali(partita);
+		recinti = Estrattore.recinti(partita);
 		giocatoreDiTurno = partita.getGiocatoreDiTurno().getNome();
 		tessereInCima = Estrattore.tessereInCima(partita);
 		giocatori = Estrattore.giocatori(partita);
@@ -48,49 +46,40 @@ public class DatiPartita implements Serializable {
 		return nomi;
 	}
 
-	public void aggiornaGiocatori() {
-		giocatori = ClientMain.getConnessione().chiediGiocatori();
-	}
-
-	public void aggiornaTerritori() {
-		territori = ClientMain.getConnessione().chiediDatiTerritori();
-	}
-
-	public void aggiornaRecinti() {
-		recintiIniziali = ClientMain.getConnessione().chiediRecintiIniziali();
-		recintiFinali = ClientMain.getConnessione().chiediRecintiFinali();
-	}
-
-	public void setGiocatoreDiTurno(String giocatore) {
-		this.giocatoreDiTurno = giocatore;
-	}
-
-	public void aggiornaGiocatoreDiTurno() {
-		giocatoreDiTurno = ClientMain.getConnessione().chiediGiocatoreDiTurno();
-	}
-
-	public void aggiornaTessereInCima() {
-		tessereInCima = ClientMain.getConnessione().chiediTessereInCima();
-	}
-
 	public DatiTerritorio[] getTerritori() {
 		return territori;
 	}
 
-	public Integer[] getRecintiIniziali() {
-		return recintiIniziali;
+	public void setTerritori(DatiTerritorio[] territori) {
+		this.territori = territori;
 	}
 
-	public Integer[] getRecintiFinali() {
-		return recintiFinali;
+	public Integer[] getRecinti() {
+		return recinti;
+	}
+
+	public void setRecinti(Integer[] recinti) {
+		this.recinti = recinti;
 	}
 
 	public String getGiocatoreDiTurno() {
 		return giocatoreDiTurno;
 	}
 
+	public void setGiocatoreDiTurno(String giocatoreDiTurno) {
+		this.giocatoreDiTurno = giocatoreDiTurno;
+	}
+
 	public Tessera[] getTessereInCima() {
 		return tessereInCima;
+	}
+
+	public void setTessereInCima(Tessera[] tessereInCima) {
+		this.tessereInCima = tessereInCima;
+	}
+
+	public void setGiocatori(Giocatore[] giocatori) {
+		this.giocatori = giocatori;
 	}
 
 }

@@ -30,7 +30,7 @@ public class FaseIniziale extends FasePartita {
 			Strada strada = Mappa.getMappa().getStrade()[codStrada];
 			g.getPastori().get(numPastore).muoviIn(strada);
 
-			gestore.inviaEventoATutti(new PosizionamentoPastore(g.getNome(), codStrada));
+			gestore.inviaEventoATutti(new PosizionamentoPastore(g.getNome(), codStrada, Estrattore.giocatori(partita)));
 		}
 	}
 	

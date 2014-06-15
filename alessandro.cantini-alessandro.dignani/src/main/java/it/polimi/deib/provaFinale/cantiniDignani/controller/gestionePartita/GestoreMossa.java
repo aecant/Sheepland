@@ -100,7 +100,7 @@ public class GestoreMossa {
 
 		giocatore.aggiungiTessera(tesseraAcquistata);
 
-		gestorePartita.inviaEventoATutti(new AcquistoTessera(giocatore.getNome(), tesseraAcquistata));
+		gestorePartita.inviaEventoATutti(new AcquistoTessera(giocatore.getNome(), tesseraAcquistata, Estrattore.tessereInCima(partita)));
 	}
 
 	private void accoppia(Pastore pastore, Giocatore giocatore) {
@@ -131,7 +131,7 @@ public class GestoreMossa {
 			partita.getGregge().aggiungi(Sorte.agnelloRandom(terr));
 		}
 
-		gestorePartita.inviaEventoATutti(new Accoppiamento(giocatore.getNome(), codTerr, aBuonFine));
+		gestorePartita.inviaEventoATutti(new Accoppiamento(giocatore.getNome(), codTerr, aBuonFine, Estrattore.datiTerritori(partita)));
 	}
 
 	private void abbatti(Pastore pastore, Giocatore giocatore) {
@@ -159,13 +159,13 @@ public class GestoreMossa {
 						int somma = Costanti.COSTO_SILENZIO;
 						Giocatore ricevente = partita.getGiocatore(pastoreVicino);
 						gestorePartita.pagamento(somma, giocatore, ricevente);
-						gestorePartita.inviaEventoATutti(new Pagamento(somma, giocatore.getNome(), ricevente.getNome()));
+						gestorePartita.inviaEventoATutti(new Pagamento(somma, giocatore.getNome(), ricevente.getNome(), Estrattore.giocatori(partita)));
 					}
 				}
 			}
 		}
 
-		gestorePartita.inviaEventoATutti(new Abbattimento(giocatore.getNome(), animScelto, terrScelto, aBuonFine));
+		gestorePartita.inviaEventoATutti(new Abbattimento(giocatore.getNome(), animScelto, terrScelto, aBuonFine, Estrattore.datiTerritori(partita), Estrattore.giocatori(partita)));
 	}
 
 	private void muoviPecora(Pastore pastore, Giocatore giocatore) {
@@ -213,7 +213,7 @@ public class GestoreMossa {
 
 		partita.getRecinti().aggiungi(origine);
 
-		gestorePartita.inviaEventoATutti(new MovimentoPastore(giocatore.getNome(), origine.getCodice(), destinazione.getCodice()));
+		gestorePartita.inviaEventoATutti(new MovimentoPastore(giocatore.getNome(), origine.getCodice(), destinazione.getCodice(), Estrattore.giocatori(partita), Estrattore.recinti(partita)));
 	}
 
 	/**

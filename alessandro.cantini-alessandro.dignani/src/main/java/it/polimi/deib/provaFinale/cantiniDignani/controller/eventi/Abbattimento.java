@@ -1,6 +1,8 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 
 public class Abbattimento extends Mossa {
@@ -9,12 +11,16 @@ public class Abbattimento extends Mossa {
 	private TipoAnimale tipoOvino;
 	private int territorio;
 	private boolean aBuonFine;
+	private DatiTerritorio[] terrDaAggiornare;
+	private Giocatore[] giocDaAggiornare;
 
-	public Abbattimento(String giocatore, TipoAnimale tipoOvino, int territorio, boolean aBuonFine) {
+	public Abbattimento(String giocatore, TipoAnimale tipoOvino, int territorio, boolean aBuonFine, DatiTerritorio[] terrDaAggiornare, Giocatore[] giocDaAggiornare) {
 		super(giocatore);
 		this.tipoOvino = tipoOvino;
 		this.territorio = territorio;
 		this.aBuonFine = aBuonFine;
+		this.terrDaAggiornare = terrDaAggiornare;
+		this.giocDaAggiornare = giocDaAggiornare;
 	}
 
 	public TipoAnimale getTipoOvino() {
@@ -32,8 +38,8 @@ public class Abbattimento extends Mossa {
 	@Override
 	public void aggiornaDati() {
 		if (aBuonFine) {
-			ClientMain.getDatiPartita().aggiornaTerritori();
-			ClientMain.getDatiPartita().aggiornaGiocatori();
+			ClientMain.getDatiPartita().setTerritori(terrDaAggiornare);
+			ClientMain.getDatiPartita().setGiocatori(giocDaAggiornare);
 		}
 	}
 
