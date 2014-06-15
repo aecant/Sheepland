@@ -1,40 +1,27 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 
 public class MovimentoPastore extends Mossa {
 	private static final long serialVersionUID = -8968808141497412233L;
+	
 	private int origine, destinazione;
+	private Giocatore[] giocDaAggiornare;
+	private Integer[] recintiDaAggiornare;
 
-	/**
-	 * 
-	 * @param giocatore
-	 *            il nome del giocatore che ha effettuato la mossa
-	 * @param pastore
-	 *            il pastore che si muove
-	 * @param origine
-	 *            da dove parte il pastore
-	 * @param destinazione
-	 *            dove arriva il pastore
-	 */
-	public MovimentoPastore(String giocatore, int origine, int destinazione) {
+	public MovimentoPastore(String giocatore, int origine, int destinazione, Giocatore[] giocDaAggiornare, Integer[] recintiDaAggiornare) {
 		super(giocatore);
 		this.origine = origine;
 		this.destinazione = destinazione;
-	}
-
-	public int getOrigine() {
-		return origine;
-	}
-
-	public int getDestinazione() {
-		return destinazione;
+		this.giocDaAggiornare = giocDaAggiornare;
+		this.recintiDaAggiornare = recintiDaAggiornare;
 	}
 
 	@Override
 	public void aggiornaDati() {
-		ClientMain.getDatiPartita().aggiornaGiocatori();
-		ClientMain.getDatiPartita().aggiornaRecinti();
+		ClientMain.getDatiPartita().setGiocatori(giocDaAggiornare);
+		ClientMain.getDatiPartita().setRecinti(recintiDaAggiornare);
 	}
 
 	@Override

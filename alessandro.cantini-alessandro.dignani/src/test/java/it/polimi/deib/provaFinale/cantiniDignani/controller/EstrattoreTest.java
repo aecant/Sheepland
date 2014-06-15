@@ -154,8 +154,8 @@ public class EstrattoreTest {
 	}
 
 	@Test
-	public void recintiIniziali() {
-		Integer[] posRecIn = Estrattore.recintiIniziali(partita);
+	public void recinti() {
+		Integer[] posRecIn = Estrattore.recinti(partita);
 		partita.getRecinti().aggiungi(s[4]);
 		partita.getRecinti().aggiungi(s[5]);
 		assertFalse(Utilita.contiene(posRecIn, 4));

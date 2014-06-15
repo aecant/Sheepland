@@ -64,19 +64,8 @@ public class Estrattore {
 	 *            la partita di cui si vogliono conoscere i recinti iniziali
 	 * @return l'array delle posizioni dei recinti iniziali
 	 */
-	public static Integer[] recintiIniziali(Partita partita) {
-		return arrayDiPosizioni(partita.getRecinti().getRecintiIniziali());
-	}
-
-	/**
-	 * Restituisc l'array delle posizioni dei recinti finale.
-	 * 
-	 * @param partita
-	 *            la partita di cui si vogliono conoscere i recinti finali
-	 * @return l'array delle posizioni dei recinti finali
-	 */
-	public static Integer[] recintiFinali(Partita partita) {
-		return arrayDiPosizioni(partita.getRecinti().getRecintiFinali());
+	public static Integer[] recinti(Partita partita) {
+		return arrayDiPosizioni(partita.getRecinti().getListaRecinti());
 	}
 
 	/**

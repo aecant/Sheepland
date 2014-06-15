@@ -1,5 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
@@ -128,7 +129,7 @@ public class FasePrincipale extends FasePartita {
 
 		if (movimentoPossibile(origine, lancio) || tutteStradeOccupate) {
 			partita.getLupo().muoviIn(destinazione);
-			gestore.inviaEventoATutti(new MovimentoLupo(origine.getCodice(), destinazione.getCodice()));
+			gestore.inviaEventoATutti(new MovimentoLupo(origine.getCodice(), destinazione.getCodice(), Estrattore.datiTerritori(partita)));
 		}
 	}
 
@@ -139,7 +140,7 @@ public class FasePrincipale extends FasePartita {
 		Territorio destinazione = Mappa.getMappa().transizione(origine, lancio);
 		if (movimentoPossibile(origine, lancio)) {
 			partita.getGregge().getPecoraNera().muoviIn(destinazione);
-			gestore.inviaEventoATutti(new MovimentoPecoraNera(origine.getCodice(), destinazione.getCodice()));
+			gestore.inviaEventoATutti(new MovimentoPecoraNera(origine.getCodice(), destinazione.getCodice(), Estrattore.datiTerritori(partita)));
 		}
 	}
 
