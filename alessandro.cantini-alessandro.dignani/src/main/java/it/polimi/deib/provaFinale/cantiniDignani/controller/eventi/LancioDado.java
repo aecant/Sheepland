@@ -16,10 +16,6 @@ public class LancioDado implements Evento {
 		this.motivo = motivo;
 	}
 
-	public Integer getNumero() {
-		return numero;
-	}
-
 	public void aggiornaDati() {
 		;
 	}

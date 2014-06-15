@@ -12,16 +12,16 @@ public class InizioTurno extends Mossa {
 
 	@Override
 	public void aggiornaDati() {
-		ClientMain.getDatiPartita().setGiocatoreDiTurno(super.getGiocatore());
+		ClientMain.getDatiPartita().setGiocatoreDiTurno(giocatore);
 	}
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().inizioTurno(super.getGiocatore());
+		ClientMain.getUI().inizioTurno(giocatore);
 	}
 
 	@Override
 	public String toString() {
-		return "Inizia il turno di " + getGiocatore();
+		return "Inizia il turno di " + giocatore;
 	}
 }

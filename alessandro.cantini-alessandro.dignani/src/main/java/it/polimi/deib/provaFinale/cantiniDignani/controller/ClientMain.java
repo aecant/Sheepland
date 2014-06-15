@@ -83,4 +83,8 @@ public class ClientMain {
 		datiPartita = connessione.scaricaDatiPartita();
 	}
 
+	public static void setDatiPartita(DatiPartita datiPartita) {
+		ClientMain.datiPartita = datiPartita;
+	}
+
 }

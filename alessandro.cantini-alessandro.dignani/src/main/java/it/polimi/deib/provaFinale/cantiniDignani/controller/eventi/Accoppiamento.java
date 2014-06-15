@@ -26,15 +26,7 @@ public class Accoppiamento extends Mossa {
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().accoppiamento(super.getGiocatore(), territorio, aBuonFine);
-	}
-
-	public int getTerritorio() {
-		return territorio;
-	}
-
-	public boolean isaBuonFine() {
-		return aBuonFine;
+		ClientMain.getUI().accoppiamento(giocatore, territorio, aBuonFine);
 	}
 
 }

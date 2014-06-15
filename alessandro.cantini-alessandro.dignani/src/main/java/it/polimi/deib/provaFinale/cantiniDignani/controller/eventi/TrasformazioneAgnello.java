@@ -16,14 +16,6 @@ public class TrasformazioneAgnello implements Evento {
 		this.terrDaAggiornare = terrDaAggiornare;
 	}
 
-	public boolean isMaschio() {
-		return maschio;
-	}
-
-	public Integer getTerritorio() {
-		return territorio;
-	}
-
 	public void aggiornaDati() {
 		ClientMain.getDatiPartita().setTerritori(terrDaAggiornare);;
 	}

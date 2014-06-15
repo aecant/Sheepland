@@ -24,7 +24,7 @@ public class Pagamento extends Mossa {
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().pagamento(denaro, super.getGiocatore(), ricevente);
+		ClientMain.getUI().pagamento(denaro, giocatore, ricevente);
 	}
 
 }
