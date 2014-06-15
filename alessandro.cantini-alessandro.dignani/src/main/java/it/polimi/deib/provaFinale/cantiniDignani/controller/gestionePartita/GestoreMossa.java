@@ -10,6 +10,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Abbattimento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Accoppiamento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.AcquistoTessera;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPastore;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPecora;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Pagamento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPecoraDaAbbattere;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPecoraDaMuovere;
@@ -80,7 +81,7 @@ public class GestoreMossa {
 		if (tess1 != null) {
 			tessereDisp.add(tess1);
 		}
-		if (tess2 != null) {
+		if (tess2 != null && !tess2.equals(tess1)) {
 			tessereDisp.add(tess2);
 		}
 
@@ -178,14 +179,14 @@ public class GestoreMossa {
 
 		int indiceScelto = gestorePartita.aspettaEvento();
 
-		int codDest = listaOviniSuTerritorio.get(indiceScelto).primo;
-		int codOrig;
-		if (codDest == t1) {
-			codOrig = t2;
-		} else if (codDest == t2) {
-			codOrig = t1;
+		int codOrig = listaOviniSuTerritorio.get(indiceScelto).primo;
+		int codDest;
+		if (codOrig == t1) {
+			codDest = t2;
+		} else if (codOrig == t2) {
+			codDest = t1;
 		} else {
-			throw new MossaNonValidaException("Il territorio " + codDest + " in cui " + giocatore + " vuole spostare la pecora non e' valido");
+			throw new MossaNonValidaException("Il territorio " + codOrig + " in cui " + giocatore + " vuole spostare la pecora non e' valido");
 		}
 
 		TipoAnimale animScelto = listaOviniSuTerritorio.get(indiceScelto).secondo;
@@ -196,7 +197,8 @@ public class GestoreMossa {
 		} else {
 			Estrattore.getPecora(partita, codOrig, animScelto).muoviIn(destinazione);
 		}
-
+		
+		gestorePartita.inviaEventoATutti(new MovimentoPecora(giocatore.getNome(), animScelto, codOrig, codDest, Estrattore.datiTerritori(partita)));
 	}
 
 	private void muoviPastore(Pastore pastore, Giocatore giocatore) {

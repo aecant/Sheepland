@@ -12,6 +12,7 @@ public class PosizionamentoPastore extends Mossa {
 	public PosizionamentoPastore(String giocatore, int strada, Giocatore[] giocDaAggiornare) {
 		super(giocatore);
 		this.strada = strada;
+		this.giocDaAggiornare = giocDaAggiornare;
 	}
 
 	@Override

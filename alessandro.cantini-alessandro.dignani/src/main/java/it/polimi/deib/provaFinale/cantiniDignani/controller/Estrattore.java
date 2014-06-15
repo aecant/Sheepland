@@ -162,7 +162,7 @@ public class Estrattore {
 			}
 		}
 
-		throw new IllegalArgumentException("La pecora non esiste");
+		throw new IllegalArgumentException("Non esiste " + tipo.nomeGenerico + " nel territorio "+codTerritorio);
 	}
 
 	/**

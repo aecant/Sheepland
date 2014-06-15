@@ -29,6 +29,13 @@ public class DatiPartita implements Serializable {
 		return giocatori;
 	}
 
+	public void setGiocatori(Giocatore[] giocatori) {
+		if (giocatori == null) {
+			throw new NullPointerException();
+		}
+		this.giocatori = giocatori;
+	}
+
 	public Giocatore getGiocatore(String nome) {
 		for (Giocatore g : giocatori) {
 			if (g.getNome().equals(nome)) {
@@ -51,6 +58,9 @@ public class DatiPartita implements Serializable {
 	}
 
 	public void setTerritori(DatiTerritorio[] territori) {
+		if (territori == null) {
+			throw new NullPointerException();
+		}
 		this.territori = territori;
 	}
 
@@ -59,6 +69,9 @@ public class DatiPartita implements Serializable {
 	}
 
 	public void setRecinti(Integer[] recinti) {
+		if (territori == null) {
+			throw new NullPointerException();
+		}
 		this.recinti = recinti;
 	}
 
@@ -67,6 +80,9 @@ public class DatiPartita implements Serializable {
 	}
 
 	public void setGiocatoreDiTurno(String giocatoreDiTurno) {
+		if (giocatoreDiTurno == null) {
+			throw new NullPointerException();
+		}
 		this.giocatoreDiTurno = giocatoreDiTurno;
 	}
 
@@ -75,11 +91,10 @@ public class DatiPartita implements Serializable {
 	}
 
 	public void setTessereInCima(Tessera[] tessereInCima) {
+		if (tessereInCima == null) {
+			throw new NullPointerException();
+		}
 		this.tessereInCima = tessereInCima;
-	}
-
-	public void setGiocatori(Giocatore[] giocatori) {
-		this.giocatori = giocatori;
 	}
 
 }

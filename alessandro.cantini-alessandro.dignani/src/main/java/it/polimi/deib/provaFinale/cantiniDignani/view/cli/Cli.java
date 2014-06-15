@@ -64,7 +64,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void lancioDado(Integer numero, MotivoLancioDado motivo) {
-		out.println("Dado lanciato: " + numero + "per il motivo: " + motivo);
+		out.println("Dado lanciato: " + numero + " per il motivo: " + motivo);
 	}
 
 	public void selezionePosizioneInizialePastore(String giocatore, int strada) {
@@ -80,7 +80,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void movimentoPastore(String giocatore, int origine, int destinazione) {
-		String tipoRecinto = ClientMain.getDatiPartita().getRecinti().length > Costanti.NUM_RECINTI_INIZIALI ? "iniziale" : "finale";
+		String tipoRecinto = ClientMain.getDatiPartita().getRecinti().length > Costanti.NUM_RECINTI_INIZIALI ? "finale" : "iniziale";
 		out.println(giocatore + " ha spostato il pastore " + daA(origine, destinazione) + " .");
 		out.println("E' stato posizionato un recinto " + tipoRecinto + " " + nelTerr(origine));
 	}
@@ -193,7 +193,7 @@ public class Cli implements InterfacciaUtente {
 		int numRiga = 1;
 		while (iter.hasNext()) {
 			Coppia<Integer, TipoAnimale> coppia = iter.next();
-			out.print(numRiga + ") " + coppia.secondo + " " + nelTerr(coppia.primo));
+			out.print(numRiga + ") " + coppia.secondo +" che ora si trova "+ nelTerr(coppia.primo));
 			out.println(iter.hasNext() ? ";" : ".");
 			numRiga++;
 		}
