@@ -83,6 +83,7 @@ public class Gui {
 			finestraPartita.getMappa().creaAgnello(coordinateTerritori[i][4]);
 		}
 		finestraPartita.visualizza();
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio("La tua tessera iniziale è di tipo " + Gui.getDati().getGiocatore(Gui.getNome()).getTessere().get(0).getTipo().toString());
 	}
 
 	/**
@@ -103,14 +104,6 @@ public class Gui {
 		Gui gui = new Gui();
 
 		gui.inizioPartita();
-
-		Point[][] coordinate = new Point[Costanti.NUM_TERRITORI][5];
-		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
-			for (int j = 0; j < 5; j++) {
-				coordinate[i][j] = new Point((int) (CostantiGui.COORDINATE_TERRITORI[i][j].getX() * CostantiGui.FATTORE_DI_SCALA),
-						(int) (CostantiGui.COORDINATE_TERRITORI[i][j].getY() * CostantiGui.FATTORE_DI_SCALA));
-			}
-		}
 
 		gui.inizioTurno(getDati().getGiocatoreDiTurno());
 	}

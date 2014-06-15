@@ -15,8 +15,8 @@ public class PecoraView extends PedinaConContatoreView {
 	
 	private JLabel pi;
 
-	public PecoraView(int posizioneX, int posizioneY) {
-		super(posizioneX, posizioneY, CostantiGui.DIMENSIONE_PECORA);
+	public PecoraView(int posizioneX, int posizioneY, Integer n) {
+		super(posizioneX, posizioneY, CostantiGui.DIMENSIONE_PECORA, n);
 		
 		pi = new JLabel(new ImageIcon(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "pecora.png").getScaledInstance(CostantiGui.DIMENSIONE_PECORA.width, CostantiGui.DIMENSIONE_PECORA.height, Image.SCALE_SMOOTH)));
 		pi.setBounds(new Rectangle(new Point(0, 0), CostantiGui.DIMENSIONE_PECORA));
@@ -34,7 +34,7 @@ public class PecoraView extends PedinaConContatoreView {
 		});
 	}
 	
-	public PecoraView(Point coordinate) {
-		this(coordinate.x, coordinate.y);
+	public PecoraView(Point coordinate, Integer n) {
+		this(coordinate.x, coordinate.y, n);
 	}
 }

@@ -11,10 +11,12 @@ public class PedinaConContatoreView extends PedinaView {
 	
 	private static final long serialVersionUID = 6864251732112605373L;
 	
-	private JLabel lblContatore= new JLabel("0");
+	private JLabel lblContatore;
 
-	public PedinaConContatoreView(Rectangle r) {
+	public PedinaConContatoreView(Rectangle r, Integer n) {
 		super(r);
+		
+		lblContatore = new JLabel(n.toString());
 		
 		lblContatore.setBounds((CostantiGui.DIMENSIONE_PECORA.width / 2), (CostantiGui.DIMENSIONE_PECORA.height / 2) - 5, 15, 15);
 		lblContatore.setFont(CostantiGui.FONT_CONTATORI_ANIMALI);
@@ -22,16 +24,16 @@ public class PedinaConContatoreView extends PedinaView {
 		add(lblContatore);
 	}
 	
-	public PedinaConContatoreView(int posizioneX, int posizioneY, int larghezza, int altezza) {
-		this(new Rectangle(posizioneX, posizioneY, larghezza, altezza));
+	public PedinaConContatoreView(int posizioneX, int posizioneY, int larghezza, int altezza, Integer n) {
+		this(new Rectangle(posizioneX, posizioneY, larghezza, altezza), n);
 	}
 	
-	public PedinaConContatoreView(int posizioneX, int posizioneY, Dimension dimensione) {
-		this(new Rectangle(posizioneX, posizioneY, dimensione.width, dimensione.height));
+	public PedinaConContatoreView(int posizioneX, int posizioneY, Dimension dimensione, Integer n) {
+		this(new Rectangle(posizioneX, posizioneY, dimensione.width, dimensione.height), n);
 	}
 	
-	public PedinaConContatoreView(Point coordinate, Dimension dimensione) {
-		this(new Rectangle(coordinate.x, coordinate.y, dimensione.width, dimensione.height));
+	public PedinaConContatoreView(Point coordinate, Dimension dimensione, Integer n) {
+		this(new Rectangle(coordinate.x, coordinate.y, dimensione.width, dimensione.height), n);
 	}
 	
 	public void incrementa() {

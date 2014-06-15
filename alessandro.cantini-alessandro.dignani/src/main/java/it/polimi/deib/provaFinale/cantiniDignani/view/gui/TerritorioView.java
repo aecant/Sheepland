@@ -33,7 +33,6 @@ public class TerritorioView {
 				indice++;
 			}
 		}
-
 	}
 	
 	public Point getCoordinate(TipoAnimale tipo) {

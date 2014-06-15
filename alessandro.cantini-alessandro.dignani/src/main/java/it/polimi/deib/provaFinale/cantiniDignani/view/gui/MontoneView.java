@@ -14,15 +14,15 @@ public class MontoneView extends PedinaConContatoreView {
 	
 	private JLabel immagine;
 
-	public MontoneView(int posizioneX, int posizioneY) {
-		super(posizioneX, posizioneY, CostantiGui.DIMENSIONE_MONTONE);
+	public MontoneView(int posizioneX, int posizioneY, Integer n) {
+		super(posizioneX, posizioneY, CostantiGui.DIMENSIONE_MONTONE, n);
 		
 		immagine = new JLabel(new ImageIcon(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "montone.png").getScaledInstance(CostantiGui.DIMENSIONE_MONTONE.width, CostantiGui.DIMENSIONE_MONTONE.height, Image.SCALE_SMOOTH)));
 		immagine.setBounds(new Rectangle(new Point(0, 0), CostantiGui.DIMENSIONE_MONTONE));
 		add(immagine);
 	}
 	
-	public MontoneView(Point coordinate) {
-		this(coordinate.x, coordinate.y);
+	public MontoneView(Point coordinate, Integer n) {
+		this(coordinate.x, coordinate.y, n);
 	}
 }

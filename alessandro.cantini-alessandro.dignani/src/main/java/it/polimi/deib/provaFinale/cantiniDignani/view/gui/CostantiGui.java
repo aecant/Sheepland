@@ -154,7 +154,7 @@ public class CostantiGui {
 
 	public static final int NUM_FRAME_ANIM_MESS = 50;
 
-	public static final Color COLORE_TESTO_ANGOLINI = Color.RED;
+	public static final Color COLORE_TESTO_ANGOLINI = Color.DARK_GRAY;
 
 	public static final Dimension DIMENSIONE_MONETA_TESSERA = new Dimension(20, 20);
 

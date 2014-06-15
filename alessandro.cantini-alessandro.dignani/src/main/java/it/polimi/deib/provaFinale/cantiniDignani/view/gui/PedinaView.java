@@ -42,14 +42,14 @@ public class PedinaView extends JPanel {
 	protected void muovi(Point destinazione) {
 		Point[] posizioni = creaArrayPosizioniSpostamento(destinazione);
 		for (Point p : posizioni) {
-			muoviIn(p);
+			setPosizione(p);
 			try {
 				Thread.sleep(10);
 			} catch (Exception e) {
 				System.err.println(e);
 			}
 		}
-		muoviIn(destinazione);
+		setPosizione(destinazione);
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class PedinaView extends JPanel {
 	 * @param coordinate
 	 *            punto centrale di dove disegnare l'immagine
 	 */
-	private void muoviIn(Point coordinate) {
+	private void setPosizione(Point coordinate) {
 		this.setLocation(coordinate.x - (CostantiGui.DIMENSIONE_PECORA.width / 2), coordinate.y - (CostantiGui.DIMENSIONE_PECORA.height / 2));
 	}
 

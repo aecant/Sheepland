@@ -15,8 +15,8 @@ public class AgnelloView extends PedinaConContatoreView {
 
 	private JLabel immagine;
 
-	public AgnelloView(int posizioneX, int posizioneY) {
-		super(posizioneX, posizioneY, CostantiGui.DIMENSIONE_AGNELLO);
+	public AgnelloView(int posizioneX, int posizioneY, Integer n) {
+		super(posizioneX, posizioneY, CostantiGui.DIMENSIONE_AGNELLO, n);
 		
 		immagine = new JLabel(new ImageIcon(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "agnello.png")
 				.getScaledInstance(CostantiGui.DIMENSIONE_AGNELLO.width, CostantiGui.DIMENSIONE_AGNELLO.height, Image.SCALE_SMOOTH)));
@@ -32,7 +32,7 @@ public class AgnelloView extends PedinaConContatoreView {
 		}
 	}
 	
-	public AgnelloView(Point coordinate) {
-		this(coordinate.x, coordinate.y);
+	public AgnelloView(Point coordinate, Integer n) {
+		this(coordinate.x, coordinate.y, n);
 	}
 }
