@@ -2,6 +2,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 import java.util.EmptyStackException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Stack;
  * 
  */
 public class Mazzo {
-	private HashMap<TipoTerritorio, Stack<Tessera>> mazzo;
+	private Map<TipoTerritorio, Stack<Tessera>> mazzo;
 
 	/**
 	 * Crea uno stack di carte per ogni tipo contenuto in TipoTerritorio,

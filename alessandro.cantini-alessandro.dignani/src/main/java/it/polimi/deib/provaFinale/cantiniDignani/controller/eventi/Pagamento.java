@@ -8,18 +8,18 @@ public class Pagamento extends Mossa {
 
 	private Integer denaro;
 	private String ricevente;
-	private Giocatore[] giocatori;
+	private Giocatore[] giocDaAggiornare;
 
-	public Pagamento(int denaro, String pagante, String ricevente, Giocatore[] giocatori) {
+	public Pagamento(int denaro, String pagante, String ricevente, Giocatore[] giocDaAggiornare) {
 		super(pagante);
 		this.denaro = denaro;
 		this.ricevente = ricevente;
-		this.giocatori = giocatori;
+		this.giocDaAggiornare = giocDaAggiornare;
 	}
 
 	@Override
 	public void aggiornaDati() {
-		ClientMain.getDatiPartita().setGiocatori(giocatori);
+		ClientMain.getDatiPartita().setGiocatori(giocDaAggiornare);
 	}
 
 	@Override

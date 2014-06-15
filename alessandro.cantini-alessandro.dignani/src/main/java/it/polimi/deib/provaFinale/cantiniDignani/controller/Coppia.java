@@ -1,5 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
+import java.io.Serializable;
+
 /**
  * Rappresenta una coppia di due elementi generici
  * 
@@ -8,7 +10,9 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
  * @param <S>
  *            il tipo del secondo elemento
  */
-public class Coppia<P, S> {
+public class Coppia<P, S> implements Serializable{
+	private static final long serialVersionUID = 2945128168506394320L;
+	
 	public final P primo;
 	public final S secondo;
 
