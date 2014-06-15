@@ -1,5 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -32,8 +34,8 @@ public class CostantiGui {
 	public static final Dimension DIMENSIONE_PASTORE = new Dimension(DIMENSIONE_MAPPA.height / 24, DIMENSIONE_MAPPA.height / 24);
 
 	// Panel Tessere
-	public static final Dimension DIMENSIONE_PANEL_TESSERA = new Dimension(DIMENSIONE_MAPPA.height / 6, DIMENSIONE_MAPPA.height / 6);
-	public static final int DIMENSIONE_ANGOLINI = DIMENSIONE_MAPPA.height / (6 * 5);
+	public static final Dimension DIMENSIONE_PANEL_TESSERA = new Dimension(DIMENSIONE_MAPPA.height / TipoTerritorio.valoriTessere().length, DIMENSIONE_MAPPA.height / TipoTerritorio.valoriTessere().length);
+	public static final int DIMENSIONE_ANGOLINI = DIMENSIONE_MAPPA.height / (TipoTerritorio.valoriTessere().length * 5);
 	public static final Color COLORE_SFONDO_ANGOLINI = new Color(255, 255, 255, 180);
 
 	// Panel giocatori
@@ -148,9 +150,13 @@ public class CostantiGui {
 	public static final Font FONT_NOME_GIOCATORE = new Font("Trajan Pro 3", Font.BOLD, 16);
 	public static final Font FONT_SOLDI = new Font("Farisi", Font.PLAIN, 30);
 	public static final Font FONT_CONTATORI_ANIMALI = new Font("Farisi", Font.PLAIN, 20);
-	public static final Font FONT_TERRENI = new Font("Arial", Font.BOLD, 14);
+	public static final Font FONT_ANGOLINI = new Font("Arial", Font.BOLD, 14);
 
 	public static final int NUM_FRAME_ANIM_MESS = 50;
+
+	public static final Color COLORE_TESTO_ANGOLINI = Color.RED;
+
+	public static final Dimension DIMENSIONE_MONETA_TESSERA = new Dimension(20, 20);
 
 	/**
 	 * Costruttore privato per nascondere quello di default

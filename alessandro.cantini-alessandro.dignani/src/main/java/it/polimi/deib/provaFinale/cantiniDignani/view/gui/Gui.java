@@ -16,6 +16,10 @@ public class Gui {
 	private FinestraChiediNome fcn;
 	PartitaView finestraPartita;
 
+	// Tempornei
+	static public Partita part;
+	static public GestorePartita gest;
+
 	/**
 	 * Implementazione del metodo che chiede all'utente il nome per connettersi
 	 * tramite una nuova finestra
@@ -23,15 +27,35 @@ public class Gui {
 	 * @return una String con il nome
 	 */
 	public String chiediNome() {
-		fcn = new FinestraChiediNome(this);
+		fcn = new FinestraChiediNome(false);
+		return fcn.riceviNome();
+	}
+
+	/**
+	 * Implementazione del metodo che chiede all'utente il nome per connettersi
+	 * avvisandolo che il nome scelto in precedenza non è valido
+	 * 
+	 * @return String del nome scelto
+	 */
+	public String nomeGiaPresente() {
+		fcn = new FinestraChiediNome(true);
 		return fcn.riceviNome();
 	}
 
 	/**
 	 * Metodo che avvia la partita
 	 */
-	public void inizioPartita(DatiPartita dati) {
-		finestraPartita = new PartitaView(dati);
+	public void inizioPartita() {
+		// TODO questo è un test, andrà mofificato con
+		// ClientMain.getDatiPartita()
+		part = new Partita(Arrays.asList("Dig", "Andre", "Luca", "Cant"));
+		gest = new GestorePartita(part, null, null);
+		PreparazionePartita fi = new PreparazionePartita(gest);
+		fi.disponiPecore();
+		fi.disponiTessereIniziali();
+		fi.distribuisciDenari();
+
+		finestraPartita = new PartitaView(getDati());
 
 		Point[][] coordinateTerritori = new Point[Costanti.NUM_TERRITORI][5];
 		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
@@ -47,7 +71,7 @@ public class Gui {
 					(int) (CostantiGui.COORDINATE_STRADE[i].getY() * CostantiGui.FATTORE_DI_SCALA));
 		}
 
-		for (int i = 0; i < dati.getGiocatori().length; i++) {
+		for (int i = 0; i < getDati().getGiocatori().length; i++) {
 			finestraPartita.getMappa().creaPastore(coordinateStrade[Sorte.numeroCasuale(0, Costanti.NUM_STRADE - 1)], ColorePastore.values()[i]);
 		}
 
@@ -65,7 +89,6 @@ public class Gui {
 	 * Metodo che restituisce la finestra che contiene a sua volta tutte le
 	 * componenti della partita
 	 * 
-	 * @param
 	 */
 	public PartitaView getPartita() {
 		return this.finestraPartita;
@@ -78,20 +101,8 @@ public class Gui {
 	// Test
 	public static void main(String[] args) {
 		Gui gui = new Gui();
-		// System.out.println(gui.chiediNome());
 
-		// TODO questo è un test, andrà mofificato con
-		// ClientMain.getDatiPartita()
-		Partita part = new Partita(Arrays.asList("Alessandro", "Andrea", "Luca", "Paolo"));
-		GestorePartita gest = new GestorePartita(part, null, null);
-		PreparazionePartita fi = new PreparazionePartita(gest);
-		fi.disponiPecore();
-		fi.disponiTessereIniziali();
-		fi.distribuisciDenari();
-		DatiPartita dati = Estrattore.datiPartita(part);
-		// Fine test
-
-		gui.inizioPartita(dati);
+		gui.inizioPartita();
 
 		Point[][] coordinate = new Point[Costanti.NUM_TERRITORI][5];
 		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
@@ -101,6 +112,16 @@ public class Gui {
 			}
 		}
 
-		gui.inizioTurno(dati.getGiocatoreDiTurno());
+		gui.inizioTurno(getDati().getGiocatoreDiTurno());
+	}
+
+	private static DatiPartita getDati() {
+
+		return Estrattore.datiPartita(part);
+		// Fine test
+	}
+
+	protected static String getNome() {
+		return "Dig";
 	}
 }

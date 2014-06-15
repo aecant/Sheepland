@@ -31,6 +31,8 @@ public class PartitaView {
 	private JPanel panelMessaggi;
 
 	private DatiPartita datiPartita;
+	
+	String io;
 
 	/**
 	 * classe che crea la finestra con tutta la grafica del gioco
@@ -52,9 +54,9 @@ public class PartitaView {
 		panelMappa.add(mappa, BorderLayout.CENTER);
 		panelMappa.add(panelMappaSinistra, BorderLayout.WEST);
 		panelMappa.add(panelMappaDestra, BorderLayout.EAST);
-
+		
 		// imposto il panel delle tessere
-		panelTessere = new PannelloTessere();
+		panelTessere = new PannelloTessere(this.datiPartita.getTessereInCima(), datiPartita.getGiocatore(Gui.getNome()).numeroTesserePerTipo());
 
 		// imposto il panel dei giocatori
 		panelGiocatori = new PannelloGiocatori(this.datiPartita.getGiocatori());
