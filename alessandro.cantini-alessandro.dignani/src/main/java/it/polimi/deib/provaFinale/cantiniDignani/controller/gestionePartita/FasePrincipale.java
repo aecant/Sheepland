@@ -33,11 +33,12 @@ public class FasePrincipale extends FasePartita {
 	@Override
 	public void esegui() {
 		while (!recintiInizialiFiniti()) {
-			for (Giocatore g : partita.getGiocatori()) {
-				gestioneTurno(g);
-				movimentoLupo();
-				market();
+			for (Giocatore giocatore : partita.getGiocatori()) {
+				movimentoPecoraNera();
+				turnoGiocatore(giocatore);
 			}
+			movimentoLupo();
+			market();
 		}
 	}
 
@@ -53,13 +54,6 @@ public class FasePrincipale extends FasePartita {
 				}
 			}
 		}
-	}
-
-	private void gestioneTurno(Giocatore giocatore) {
-
-		movimentoPecoraNera();
-
-		turnoGiocatore(giocatore);
 	}
 
 	private void turnoGiocatore(Giocatore giocatore) {
