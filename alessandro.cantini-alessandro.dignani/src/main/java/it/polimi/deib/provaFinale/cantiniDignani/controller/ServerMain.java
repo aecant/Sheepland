@@ -5,30 +5,33 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ServerRmi;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.socket.ServerSocketImpl;
+import it.polimi.deib.provaFinale.cantiniDignani.view.cli.CostantiCli;
 
 import java.io.PrintStream;
 import java.util.List;
 import java.util.Vector;
 
 public class ServerMain {
-	public final static PrintStream LOGGER = System.out;
-	
-	private static List<GestorePartita> gestoriPartita = new Vector<GestorePartita>();
-	private static List<String> giocatoriInAttesa = new Vector<String>();
-	private static InterfacciaServer connessione;
-	private static GestoreCoda<Integer> gestoreEventi = new GestoreCoda<Integer>();
-	private static TimerPartita timerPartita = new TimerPartita(CostantiRete.MILLISECONDI_TIMER_PARTITA);
+	public final static PrintStream LOGGER = CostantiCli.DEFAULT_OUTPUT;
+
+	private static final List<GestorePartita> gestoriPartita = new Vector<GestorePartita>();
+	private static final List<String> giocatoriInAttesa = new Vector<String>();
+	private static final GestoreCoda<Integer> gestoreEventi = new GestoreCoda<Integer>();
+	private static final TimerPartita timerPartita = new TimerPartita(CostantiRete.MILLISECONDI_TIMER_PARTITA);
+
+	private static InterfacciaConnessioneServer connessione;
 
 	public static void main(String[] args) {
 		timerPartita.start();
 
 		impostaTipoConnessione();
-		connessione.inizializza();
+		connessione.inizia();
 	}
-	
-	public synchronized static boolean aggiungiGiocatore(String nome) {
+
+	public static synchronized boolean aggiungiGiocatore(String nome) {
 		if (nomeGiaRegistrato(nome)) {
 			return false;
 		}
@@ -39,17 +42,17 @@ public class ServerMain {
 			iniziaPartita();
 		}
 
-		if (giocatoriInAttesa.size() >= 2) {
+		if (giocatoriInAttesa.size() >= Costanti.NUM_MIN_GIOCATORI) {
 			timerPartita.inizia();
 		}
 
 		return true;
 	}
 
-	protected synchronized static void iniziaPartita() {
+	public synchronized static void iniziaPartita() {
 
 		if (giocatoriInAttesa.size() < 2 || giocatoriInAttesa.size() > Costanti.NUM_MAX_GIOCATORI) {
-			throw new RuntimeException("La partita non puo' iniziare con " + giocatoriInAttesa.size() + "giocatori");
+			throw new SheeplandException("La partita non puo' iniziare con " + giocatoriInAttesa.size() + "giocatori");
 		}
 
 		timerPartita.ferma();
@@ -87,7 +90,12 @@ public class ServerMain {
 		// TODO chiedo all'utente che tipo di server vuole e creo l'oggetto
 
 		// TODO da rimuovere, test
-		connessione = new ServerRmi();
+
+		if (CostantiRete.RMI) {
+			connessione = new ServerRmi(gestoreEventi);
+		} else {
+			connessione = new ServerSocketImpl(gestoreEventi);
+		}
 	}
 
 	/**
@@ -108,14 +116,6 @@ public class ServerMain {
 
 		throw new IllegalArgumentException("Il giocatore non è presente");
 
-	}
-
-	public static InterfacciaServer getConnessione() {
-		return connessione;
-	}
-
-	public static GestoreCoda<Integer> getGestoreEventi() {
-		return gestoreEventi;
 	}
 
 }

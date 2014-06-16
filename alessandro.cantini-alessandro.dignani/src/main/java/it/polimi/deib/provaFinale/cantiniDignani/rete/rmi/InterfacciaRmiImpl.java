@@ -9,31 +9,38 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 
 import java.io.PrintStream;
 import java.rmi.RemoteException;
+import java.util.Hashtable;
 
 public class InterfacciaRmiImpl implements InterfacciaRmi {
 
 	private final PrintStream logger = ServerMain.LOGGER;
-	private final GestoreCoda<Integer> gestoreEventi = ServerMain.getGestoreEventi();
+	private final GestoreCoda<Integer> codaMosse;
+	private final Hashtable<String, AscoltatoreEventiRmi> ascoltatori;
+
+	public InterfacciaRmiImpl(Hashtable<String, AscoltatoreEventiRmi> ascoltatori, GestoreCoda<Integer> codaMosse) {
+		this.ascoltatori = ascoltatori;
+		this.codaMosse = codaMosse;
+	}
 
 	// TODO verificare se si riesce a fare qualcosa di più efficiente
 	private Partita getPartita(String nome) {
 		return ServerMain.getPartita(nome);
 	}
 
-	public void registraGiocatore(String nome) throws NomeGiaPresenteException, RemoteException {
+	public void registraGiocatore(String nome) throws RemoteException, NomeGiaPresenteException {
 		if (!ServerMain.aggiungiGiocatore(nome)) {
 			throw new NomeGiaPresenteException();
 		}
 		logger.println("Giocatore registrato: " + nome);
 	}
 
-	public void aggiungiAscoltatore(String nome, AscoltatoreRemoto ascoltatore) throws RemoteException {
-		ServerRmi.getAscoltatori().put(nome, ascoltatore);
+	public void aggiungiAscoltatore(String nome, AscoltatoreEventiRmi ascoltatore) throws RemoteException {
+		ascoltatori.put(nome, ascoltatore);
 		logger.println("Ascoltatore aggiunto: " + ascoltatore);
 	}
 
 	public void riceviMossa(int mossa) {
-		gestoreEventi.aggiungi(mossa);
+		codaMosse.aggiungi(mossa);
 		logger.println("Mossa ricevuta : " + mossa);
 	}
 

@@ -8,7 +8,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.LancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaServer;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,7 +19,7 @@ public class GestorePartita extends Thread {
 	private final Partita partita;
 	private final GestoreCoda<Integer> gestoreEventi;
 	private List<String> tuttiGiocatori;
-	private final InterfacciaServer connessione;
+	private final InterfacciaConnessioneServer connessione;
 	
 	private final PreparazionePartita preparazionePartita;
 	private final FaseIniziale faseIniziale;
@@ -29,7 +29,7 @@ public class GestorePartita extends Thread {
 	public final boolean dueGiocatori;
 	public final int denaroIniziale;
 
-	public GestorePartita(Partita partita, InterfacciaServer connessione, GestoreCoda<Integer> gestoreEventi) {
+	public GestorePartita(Partita partita, InterfacciaConnessioneServer connessione, GestoreCoda<Integer> gestoreEventi) {
 		this.partita = partita;
 		this.connessione = connessione;
 		this.gestoreEventi = gestoreEventi;
@@ -40,6 +40,7 @@ public class GestorePartita extends Thread {
 			dueGiocatori = false;
 			denaroIniziale = Costanti.DENARO_INIZIALE;
 		}
+		
 		tuttiGiocatori = new ArrayList<String>();
 		for (Giocatore g : partita.getGiocatori()) {
 			tuttiGiocatori.add(g.getNome());
@@ -69,7 +70,7 @@ public class GestorePartita extends Thread {
 		return lancio;
 	}
 
-	protected int aspettaEvento() {
+	protected int aspettaMossa() {
 		return gestoreEventi.aspetta();
 	}
 
@@ -90,7 +91,7 @@ public class GestorePartita extends Thread {
 		return partita;
 	}
 
-	protected InterfacciaServer getConnessione() {
+	protected InterfacciaConnessioneServer getConnessione() {
 		return connessione;
 	}
 

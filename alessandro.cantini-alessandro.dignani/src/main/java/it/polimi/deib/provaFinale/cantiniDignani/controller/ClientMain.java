@@ -1,16 +1,18 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneClient;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ConnessioneClientRmi;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.socket.ConnessioneClientSocket;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 import it.polimi.deib.provaFinale.cantiniDignani.view.cli.Cli;
 
 public class ClientMain {
 	private static String nome;
 	private static InterfacciaUtente ui;
-	private static ConnessioneClient connessione;
+	private static InterfacciaConnessioneClient connessione;
 	private static DatiPartita datiPartita;
 	private static GestoreCoda<Evento> gestoreEventi = new GestoreCoda<Evento>();
 
@@ -18,9 +20,9 @@ public class ClientMain {
 		connessione = chiediTipoConnessione();
 		ui = chiediTipoInterfaccia();
 
-		connessione.inizializza();
+		connessione.inizia();
 
-		registraGiocatore();
+		chiediNomeERegistraGiocatore();
 		
 		effettuaPartita();
 	}
@@ -37,21 +39,26 @@ public class ClientMain {
 		evento.visualizza();
 	}
 
-	private static void registraGiocatore() {
-		while (true) {
+	private static void chiediNomeERegistraGiocatore() {
+		boolean registrato = false;
+		while (!registrato) {
 			try {
 				nome = ui.chiediNome();
 				connessione.registraGiocatore(nome);
-				break;
+				registrato = true;
 			} catch (NomeGiaPresenteException e) {
 				ui.nomeGiaPresente();
 			}
 		}
 	}
 
-	private static ConnessioneClient chiediTipoConnessione() {
+	private static InterfacciaConnessioneClient chiediTipoConnessione() {
 		// TODO test da rimuovere
-		return new ConnessioneClientRmi();
+		if(CostantiRete.RMI) {
+			return new ConnessioneClientRmi();
+		} else {
+			return new ConnessioneClientSocket();
+		}
 	}
 
 	private static InterfacciaUtente chiediTipoInterfaccia() {
@@ -67,7 +74,7 @@ public class ClientMain {
 		return ui;
 	}
 
-	public static ConnessioneClient getConnessione() {
+	public static InterfacciaConnessioneClient getConnessione() {
 		return connessione;
 	}
 

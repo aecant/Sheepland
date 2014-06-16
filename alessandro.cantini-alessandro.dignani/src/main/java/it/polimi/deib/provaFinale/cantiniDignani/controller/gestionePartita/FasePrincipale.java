@@ -75,7 +75,7 @@ public class FasePrincipale extends FasePartita {
 
 		if (gestore.dueGiocatori) {
 			gestore.inviaEvento(new RichiestaPastore(), giocatore);
-			int codStrada = gestore.aspettaEvento();
+			int codStrada = gestore.aspettaMossa();
 
 			for (Pastore p : partita.getPastori()) {
 				if (p.getStrada().getCodice() == codStrada) {
@@ -90,12 +90,12 @@ public class FasePrincipale extends FasePartita {
 			throw new NullPointerException("A questo punto il pastore deve essere assegnato");
 		}
 
-		for (int numMossa = 1; numMossa <= Costanti.NUM_MOSSE; numMossa++) {
+		for (int numMossa = 1; numMossa <= Costanti.NUM_MOSSE_PER_TURNO; numMossa++) {
 			List<TipoMossa> mosseDisponibili = gestoreMossa.creaMosseDisponibili(numMossa, pastoreMosso, mossaPrecedente, pastore, giocatore.getDenaro());
 
 			gestore.inviaEvento(new RichiestaTipoMossa(mosseDisponibili, numMossa), giocatore);
 
-			int indice = gestore.aspettaEvento();
+			int indice = gestore.aspettaMossa();
 			TipoMossa tipoMossa = mosseDisponibili.get(indice);
 
 			mossaPrecedente = tipoMossa;

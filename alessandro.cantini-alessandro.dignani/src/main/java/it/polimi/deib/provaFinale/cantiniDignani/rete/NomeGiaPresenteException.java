@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete;
 
-public class NomeGiaPresenteException extends IllegalArgumentException {
+public class NomeGiaPresenteException extends Exception {
 
 	private static final long serialVersionUID = 4955266557899050412L;
 

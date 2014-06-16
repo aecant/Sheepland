@@ -4,9 +4,12 @@ import java.util.List;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 
-public interface InterfacciaServer {
+public interface InterfacciaConnessioneServer {
 
-	void inizializza();
+	/**
+	 * Inizializza il server e comincia ad accettare le connessioni in ingresso
+	 */
+	void inizia();
 
 	/**
 	 * Invia un evento a determinati giocatori
@@ -17,5 +20,10 @@ public interface InterfacciaServer {
 	 *            la lista dei giocatori a cui inviare l'evento
 	 */
 	void inviaEvento(Evento evento, List<String> giocatori);
+
+	/**
+	 * Chiude la connessione
+	 */
+	void termina();
 
 }

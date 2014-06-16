@@ -87,7 +87,7 @@ public class GestoreMossa {
 
 		gestorePartita.inviaEvento(new RichiestaTesseraDaAcquistare(tessereDisp), giocatore);
 
-		int indiceScelta = gestorePartita.aspettaEvento();
+		int indiceScelta = gestorePartita.aspettaMossa();
 
 		Tessera tessScelta = tessereDisp.get(indiceScelta);
 
@@ -120,7 +120,7 @@ public class GestoreMossa {
 
 		gestorePartita.inviaEvento(new RichiestaTerritorioPerAccoppiamento(terrDisp), giocatore);
 
-		int codTerr = gestorePartita.aspettaEvento();
+		int codTerr = gestorePartita.aspettaMossa();
 
 		Territorio terr = Mappa.getMappa().getTerritori()[codTerr];
 
@@ -141,7 +141,7 @@ public class GestoreMossa {
 
 		gestorePartita.inviaEvento(new RichiestaPecoraDaAbbattere(listaOviniSuTerritorio), giocatore);
 
-		int indiceScelto = gestorePartita.aspettaEvento();
+		int indiceScelto = gestorePartita.aspettaMossa();
 		int terrScelto = listaOviniSuTerritorio.get(indiceScelto).primo;
 		TipoAnimale animScelto = listaOviniSuTerritorio.get(indiceScelto).secondo;
 
@@ -177,7 +177,7 @@ public class GestoreMossa {
 
 		gestorePartita.inviaEvento(new RichiestaPecoraDaMuovere(listaOviniSuTerritorio), giocatore);
 
-		int indiceScelto = gestorePartita.aspettaEvento();
+		int indiceScelto = gestorePartita.aspettaMossa();
 
 		int codOrig = listaOviniSuTerritorio.get(indiceScelto).primo;
 		int codDest;
@@ -206,7 +206,7 @@ public class GestoreMossa {
 		boolean[] stradeAPagamento = Estrattore.stradeLibereAPagamento(partita, pastore.getStrada());
 		gestorePartita.inviaEvento(new RichiestaPosizionePastore(stradeGratis, stradeAPagamento), giocatore);
 
-		int codDest = gestorePartita.aspettaEvento();
+		int codDest = gestorePartita.aspettaMossa();
 		
 		Strada origine = pastore.getStrada();
 		Strada destinazione = Mappa.getMappa().getStrade()[codDest];
@@ -241,7 +241,7 @@ public class GestoreMossa {
 
 		// se e' l'ultima mossa e il giocatore non ha ancora mosso il
 		// pastore, si puo' solo muovere il pastore
-		if (numMossa == Costanti.NUM_MOSSE && pastoreMosso == false) {
+		if (numMossa == Costanti.NUM_MOSSE_PER_TURNO && pastoreMosso == false) {
 			return mosseDisponibili;
 		}
 
