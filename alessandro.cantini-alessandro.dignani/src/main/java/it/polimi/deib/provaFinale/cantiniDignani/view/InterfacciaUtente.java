@@ -170,6 +170,16 @@ public interface InterfacciaUtente {
 	void pagamento(Integer denaro, String pagante, String pagato);
 
 	/**
+	 * Viene presentata l'uccisione di un ovino da parte del lupo
+	 * 
+	 * @param territorio
+	 *            il territorio in cui l'ovino e' stato ucciso
+	 * @param tipoUcciso
+	 *            il tipo dell'ovino ucciso
+	 */
+	void uccisioneLupo(int territorio, TipoAnimale tipoOvino);
+
+	/**
 	 * L'utente sceglie la strada su cui posizionare il pastore all'inizio della
 	 * partita
 	 * 

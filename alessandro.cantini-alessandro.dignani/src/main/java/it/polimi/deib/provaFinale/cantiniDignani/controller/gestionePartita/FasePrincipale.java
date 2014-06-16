@@ -8,6 +8,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoLupo
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPecoraNera;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPastore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTipoMossa;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.UccisioneLupo;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Agnello;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
@@ -17,8 +18,10 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FasePrincipale extends FasePartita {
@@ -124,6 +127,18 @@ public class FasePrincipale extends FasePartita {
 		if (movimentoPossibile(origine, lancio) || tutteStradeOccupate) {
 			partita.getLupo().muoviIn(destinazione);
 			gestore.inviaEventoATutti(new MovimentoLupo(origine.getCodice(), destinazione.getCodice(), Estrattore.datiTerritori(partita)));
+			
+			List<Pecora> pecoreSulTerr = new ArrayList<Pecora>();
+			for(Pecora pec : partita.getGregge().getPecore()) {
+				if(destinazione.equals(pec.getPosizione())){
+					pecoreSulTerr.add(pec);
+				}
+			}
+			if(!pecoreSulTerr.isEmpty()) {
+				Pecora uccisa = pecoreSulTerr.get(Sorte.numeroCasuale(0, pecoreSulTerr.size()-1));
+				partita.getGregge().rimuovi(uccisa);
+				gestore.inviaEventoATutti(new UccisioneLupo(destinazione.getCodice(),uccisa.getTipoAnimale(), Estrattore.datiTerritori(partita)));
+			}
 		}
 	}
 

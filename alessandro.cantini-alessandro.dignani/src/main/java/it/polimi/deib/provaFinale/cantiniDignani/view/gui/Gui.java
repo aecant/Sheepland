@@ -141,6 +141,11 @@ public class Gui implements InterfacciaUtente {
 
 	}
 
+	public void uccisioneLupo(int territorio, TipoAnimale tipoOvino) {
+		// TODO Auto-generated method stub
+
+	}
+
 	public int richiestaPosizioneInizialePastore(boolean[] stradeLibere) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -180,4 +185,5 @@ public class Gui implements InterfacciaUtente {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 }
