@@ -90,10 +90,6 @@ public class ClientMain {
 		return gestoreEventi;
 	}
 
-	public static void aggiornaDatiPartita() {
-		datiPartita = connessione.scaricaDatiPartita();
-	}
-
 	public static void setDatiPartita(DatiPartita datiPartita) {
 		ClientMain.datiPartita = datiPartita;
 	}

@@ -108,6 +108,10 @@ public class Cli implements InterfacciaUtente {
 		out.println(pagante + " ha pagato a " + pagato + " " + denaro + " denari.");
 	}
 
+	public void uccisioneLupo(int territorio, TipoAnimale tipoOvino) {
+		out.println("Il lupo ha ucciso " + tipoOvino.nomeGenerico + " "+nelTerr(territorio));
+	}
+
 	public int richiestaPosizioneInizialePastore(boolean[] stradeLibere) {
 		List<Integer> stradeDisponibili = Utilita.indiciTrue(stradeLibere);
 		out.println("Inserisci la posizione iniziale del pastore");
