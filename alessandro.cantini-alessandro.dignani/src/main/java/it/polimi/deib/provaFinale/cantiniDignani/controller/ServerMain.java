@@ -91,7 +91,7 @@ public class ServerMain {
 
 		// TODO da rimuovere, test
 
-		if (CostantiRete.RMI) {
+		if (CostantiTest.RMI) {
 			connessione = new ServerRmi(gestoreEventi);
 		} else {
 			connessione = new ServerSocketImpl(gestoreEventi);

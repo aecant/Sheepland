@@ -10,9 +10,6 @@ public class CostantiRete {
 	public static final int PORTA_SERVER = 12844;
 
 	public static final String NOME_SERVER = "sheepland";
-
-	//variabile che serve solo nei test
-	public static final boolean RMI = false;
 	
 	/**
 	 * Costruttore private per nascondere quello di default

@@ -1,13 +1,13 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ConnessioneClientRmi;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.socket.ConnessioneClientSocket;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 import it.polimi.deib.provaFinale.cantiniDignani.view.cli.Cli;
+import it.polimi.deib.provaFinale.cantiniDignani.view.gui.Gui;
 
 public class ClientMain {
 	private static String nome;
@@ -54,7 +54,7 @@ public class ClientMain {
 
 	private static InterfacciaConnessioneClient chiediTipoConnessione() {
 		// TODO test da rimuovere
-		if(CostantiRete.RMI) {
+		if(CostantiTest.RMI) {
 			return new ConnessioneClientRmi();
 		} else {
 			return new ConnessioneClientSocket();
@@ -63,7 +63,11 @@ public class ClientMain {
 
 	private static InterfacciaUtente chiediTipoInterfaccia() {
 		// TODO test da rimuovere
-		return new Cli();
+		if(CostantiTest.CLI) {
+			return new Cli();
+		} else {
+			return new Gui();
+		}
 	}
 
 	public static String getNome() {
