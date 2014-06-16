@@ -1,11 +1,10 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete.rmi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.GestoreCoda;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 
 import java.rmi.NoSuchObjectException;
@@ -50,17 +49,6 @@ public class ConnessioneClientRmi implements InterfacciaConnessioneClient, Ascol
 
 	public void riceviEvento(Evento e) {
 		gestoreEventi.aggiungi(e);
-	}
-
-	public DatiPartita scaricaDatiPartita() {
-		DatiPartita dati = null;
-		try {
-			dati = server.scaricaDatiPartita(ClientMain.getNome());
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return dati;
 	}
 
 	public void inviaMossa(Integer mossaScelta) {

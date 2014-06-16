@@ -1,7 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete.socket;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.GestoreCoda;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
@@ -55,7 +54,6 @@ public class ConnessioneClientSocket implements InterfacciaConnessioneClient {
 			}
 			ascoltatoreEventi = new AscoltatoreSocket<Evento>(in, codaEventi);
 			ascoltatoreEventi.start();
-			
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -76,11 +74,6 @@ public class ConnessioneClientSocket implements InterfacciaConnessioneClient {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	public DatiPartita scaricaDatiPartita() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public void termina() {

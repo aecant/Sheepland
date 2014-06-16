@@ -1,6 +1,5 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 
 public interface InterfacciaConnessioneClient {
 
@@ -25,13 +24,6 @@ public interface InterfacciaConnessioneClient {
 	 *            passata dal server see{@InterfacciaUtente}
 	 */
 	void inviaMossa(Integer mossaScelta);
-
-	/**
-	 * Scarica dal server tutti i dati della partita
-	 * 
-	 * @return i dati della partita inviati dal server
-	 */
-	DatiPartita scaricaDatiPartita();
 
 	void termina();
 

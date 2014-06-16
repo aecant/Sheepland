@@ -1,6 +1,5 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete.rmi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 
 import java.rmi.Remote;
@@ -13,7 +12,5 @@ public interface InterfacciaRmi extends Remote {
 	void aggiungiAscoltatore(String giocatore, AscoltatoreEventiRmi ascoltatore) throws RemoteException;
 
 	void riceviMossa(int mossa) throws RemoteException;
-
-	DatiPartita scaricaDatiPartita(String giocatore) throws RemoteException;
 
 }
