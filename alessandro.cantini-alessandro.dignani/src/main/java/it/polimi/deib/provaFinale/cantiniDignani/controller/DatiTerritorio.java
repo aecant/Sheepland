@@ -96,4 +96,7 @@ public class DatiTerritorio implements Serializable {
 		return numeroAnimali.containsKey(TipoAnimale.PECORA_NERA) ? numeroAnimali.get(TipoAnimale.PECORA_NERA) > 0 : false;
 	}
 
+	public String toString() {
+		return numeroAnimali.toString();
+	}
 }
