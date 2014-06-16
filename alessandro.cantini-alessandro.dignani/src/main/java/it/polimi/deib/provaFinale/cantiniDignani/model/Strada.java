@@ -69,6 +69,9 @@ public class Strada implements Serializable{
 
 	@Override
 	public String toString() {
+		if(this.equals(Mappa.STRADA_INESISTENTE)) {
+			return "Strada inesistente";
+		}
 		return "Strada " + codice;
 	}
 

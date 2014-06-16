@@ -10,9 +10,9 @@ import java.io.Serializable;
  * @param <S>
  *            il tipo del secondo elemento
  */
-public class Coppia<P, S> implements Serializable{
+public class Coppia<P extends Serializable, S extends Serializable> implements Serializable {
 	private static final long serialVersionUID = 2945128168506394320L;
-	
+
 	public final P primo;
 	public final S secondo;
 
@@ -30,7 +30,7 @@ public class Coppia<P, S> implements Serializable{
 	 *            il secondo membro della coppia
 	 * @return una coppia composta dagli elementi passati come parametro
 	 */
-	public static <E, F> Coppia<E, F> creaCoppia(E primo, F secondo) {
+	public static <E extends Serializable, F extends Serializable> Coppia<E, F> creaCoppia(E primo, F secondo) {
 		return new Coppia<E, F>(primo, secondo);
 	}
 

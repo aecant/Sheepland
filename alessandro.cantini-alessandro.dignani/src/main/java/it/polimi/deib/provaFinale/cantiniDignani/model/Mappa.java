@@ -9,6 +9,8 @@ import java.util.List;
  * Singleton che gestisce la mappa di Sheepland
  */
 public class Mappa {
+	public static final Strada STRADA_INESISTENTE = new Strada(new Territorio(-1, null), new Territorio(-2, null), -1);
+	
 	private static Mappa istanza = null;
 	private Territorio[] territori;
 	private Strada[] strade;

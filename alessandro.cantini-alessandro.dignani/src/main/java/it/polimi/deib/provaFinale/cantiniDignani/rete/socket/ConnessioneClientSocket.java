@@ -24,12 +24,13 @@ public class ConnessioneClientSocket implements InterfacciaConnessioneClient {
 	private ObjectOutputStream out;
 	private GestoreCoda<Evento> codaEventi = ClientMain.getGestoreEventi();
 	private AscoltatoreSocket<Evento> ascoltatoreEventi;
-	
+
 	public void inizia() {
 		try {
 			socket = new Socket(INDIRIZZO, PORTA);
-			System.out.println("Connessione stabilita: " + socket); // TODO da rimuovere
-			
+			System.out.println("Connessione stabilita: " + socket); // TODO da
+																	// rimuovere
+
 			out = new ObjectOutputStream(socket.getOutputStream());
 			in = new ObjectInputStream(socket.getInputStream());
 
@@ -40,24 +41,12 @@ public class ConnessioneClientSocket implements InterfacciaConnessioneClient {
 
 	}
 
-	public void termina() {
-		ascoltatoreEventi.ferma();
-		try {
-			out.close();
-			in.close();
-			socket.close();
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 	public void registraGiocatore(String nome) throws NomeGiaPresenteException {
 		try {
+			out.reset();
 			out.writeObject(nome);
 			out.flush();
-			char rispostaServer = in.readChar();
+			Character rispostaServer = (Character) in.readObject();
 			if (rispostaServer == CostantiSocket.NOME_GIA_PRESENTE) {
 				throw new NomeGiaPresenteException();
 			}
@@ -66,16 +55,22 @@ public class ConnessioneClientSocket implements InterfacciaConnessioneClient {
 			}
 			ascoltatoreEventi = new AscoltatoreSocket<Evento>(in, codaEventi);
 			ascoltatoreEventi.start();
+			
+
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
-	public void inviaMossa(int mossaScelta) {
+	public void inviaMossa(Integer mossaScelta) {
 		try {
-			out.writeInt(mossaScelta);
+			out.reset();
+			out.writeObject(mossaScelta);
 			out.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -86,6 +81,19 @@ public class ConnessioneClientSocket implements InterfacciaConnessioneClient {
 	public DatiPartita scaricaDatiPartita() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public void termina() {
+		ascoltatoreEventi.ferma();
+		try {
+			out.close();
+			in.close();
+			socket.close();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

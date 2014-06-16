@@ -1,10 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.cli;
 
-import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.daA;
-import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.listaDiInteri;
-import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.listaDiStringhe;
-import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.menuDiScelta;
-import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.nelTerr;
+import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.*;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Coppia;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
@@ -157,13 +153,13 @@ public class Cli implements InterfacciaUtente {
 		out.println("Devi effettuare la mossa numero " + numMossa + ".");
 		out.println("Scegli la mossa da effettuare fra le seguenti:");
 		out.println(menuDiScelta(mosseDisponibili));
-		
+
 		return scegliIndice(mosseDisponibili);
 	}
 
 	public int richiestaPecoraDaMuovere(List<Coppia<Integer, TipoAnimale>> oviniSpostabili) {
 		out.println("Devi selezionare una pecora da spostare");
-		
+
 		return selezionaIndicePecora(oviniSpostabili);
 	}
 
@@ -193,7 +189,7 @@ public class Cli implements InterfacciaUtente {
 		int numRiga = 1;
 		while (iter.hasNext()) {
 			Coppia<Integer, TipoAnimale> coppia = iter.next();
-			out.print(numRiga + ") " + coppia.secondo +" che ora si trova "+ nelTerr(coppia.primo));
+			out.print(numRiga + ") " + coppia.secondo + " che ora si trova " + nelTerr(coppia.primo));
 			out.println(iter.hasNext() ? ";" : ".");
 			numRiga++;
 		}

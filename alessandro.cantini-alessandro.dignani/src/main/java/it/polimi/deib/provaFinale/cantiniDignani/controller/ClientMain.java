@@ -23,12 +23,12 @@ public class ClientMain {
 		connessione.inizia();
 
 		chiediNomeERegistraGiocatore();
-		
+
 		effettuaPartita();
 	}
 
 	private static void effettuaPartita() {
-		while(true) {
+		while (true) {
 			Evento eventoCorrente = gestoreEventi.aspetta();
 			gestisciEvento(eventoCorrente);
 		}
@@ -54,7 +54,7 @@ public class ClientMain {
 
 	private static InterfacciaConnessioneClient chiediTipoConnessione() {
 		// TODO test da rimuovere
-		if(CostantiTest.RMI) {
+		if (CostantiTest.RMI) {
 			return new ConnessioneClientRmi();
 		} else {
 			return new ConnessioneClientSocket();
@@ -63,7 +63,7 @@ public class ClientMain {
 
 	private static InterfacciaUtente chiediTipoInterfaccia() {
 		// TODO test da rimuovere
-		if(CostantiTest.CLI) {
+		if (CostantiTest.CLI) {
 			return new Cli();
 		} else {
 			return new Gui();

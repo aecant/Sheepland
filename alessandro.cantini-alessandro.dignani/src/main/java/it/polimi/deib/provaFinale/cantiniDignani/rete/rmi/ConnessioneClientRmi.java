@@ -63,7 +63,7 @@ public class ConnessioneClientRmi implements InterfacciaConnessioneClient, Ascol
 		return dati;
 	}
 
-	public void inviaMossa(int mossaScelta) {
+	public void inviaMossa(Integer mossaScelta) {
 		try {
 			server.riceviMossa(mossaScelta);
 		} catch (RemoteException e) {
