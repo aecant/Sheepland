@@ -87,7 +87,7 @@ public class Gui implements InterfacciaUtente{
 		disegnaStatoTerritori();
 		
 		finestraPartita.visualizza();
-		finestraPartita.getPanelMessaggi().visualizzaMessaggio("La tua tessera iniziale è di tipo " + Gui.getDati().getGiocatore(Gui.getNome()).getTessere().get(0).getTipo().toString());
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio("La tua tessera iniziale è di tipo " + Gui.getDati().getGiocatore(Gui.nome()).getTessere().get(0).getTipo().toString());
 	}
 
 	private void disegnaStatoTerritori() {
@@ -106,7 +106,12 @@ public class Gui implements InterfacciaUtente{
 	}
 
 	public void inizioTurno(String giocatore) {
-		getPartita().getPanelMessaggi().visualizzaMessaggio("E' il turno di " + giocatore + "!");
+		if (giocatore.equals(nome())) {
+			getPartita().getPanelMessaggi().visualizzaMessaggio("E' il tuo turno!");
+		} else {
+			getPartita().getPanelMessaggi().visualizzaMessaggio("E' il turno di " + giocatore + "!");
+		}
+		
 	}
 
 	// Test
@@ -123,7 +128,7 @@ public class Gui implements InterfacciaUtente{
 		return ClientMain.getDatiPartita();
 	}
 
-	protected static String getNome() {
+	protected static String nome() {
 		return ClientMain.getNome();
 	}
 
@@ -132,8 +137,7 @@ public class Gui implements InterfacciaUtente{
 	}
 
 	public void lancioDado(Integer numero, MotivoLancioDado motivo) {
-		// TODO Auto-generated method stub
-		
+		finestraPartita.getPanelMessaggi().visualizzaLancioDado(numero, motivo);
 	}
 
 	public void selezionePosizioneInizialePastore(String giocatore, int strada) {
