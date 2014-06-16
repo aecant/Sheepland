@@ -102,6 +102,22 @@ public class MappaView extends BackgroundMappaPanel {
 	public void movimentoPecora(TipoAnimale tipoOvino, int origine, int destinazione) {
 		Point orig = territoriView.get(origine).getCoordinate(tipoOvino);
 		Point dest = territoriView.get(destinazione).getCoordinate(tipoOvino);
+		PedinaView pedina;
+		switch (tipoOvino) {
+		case AGNELLO: pedina = new AgnelloView(orig, 0);
+			break;
+		case MONTONE: pedina = new MontoneView(orig, 0);
+			break;
+		case PECORA: pedina = new PecoraView(orig, 0);
+			break;
+		default: pedina = null;
+			break;
+		}
 		
+		territoriView.get(origine).aggiorna();
+		territoriView.get(origine).disegna();
+		pedina.muovi(dest);
+		territoriView.get(destinazione).aggiorna();
+		territoriView.get(destinazione).disegna();
 	}
 }
