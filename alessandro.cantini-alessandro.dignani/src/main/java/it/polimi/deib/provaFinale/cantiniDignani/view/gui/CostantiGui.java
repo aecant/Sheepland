@@ -52,9 +52,11 @@ public class CostantiGui {
 	public static final Dimension DIMENSIONE_PANEL_LANCIO_DADO = new Dimension(DIMENSIONE_IMG_MOTIVO_LANCIO.width + 10, DIMENSIONE_IMG_MOTIVO_LANCIO.height + DIMENSIONE_IMG_DADO.height + 15); // TODO da modificare!
 	public static final int TEMPO_VISUALIZZAZIONE_MESSAGGIO = 3000;
 	public static final Font FONT_MESSAGGI = new Font("Arial", Font.BOLD, 40);
-	public static final Color COLORE_SFONDO_MESSAGGI = new Color(252, 189, 73);
+	public static final Color COLORE_SFONDO_MESSAGGI = new Color(252, 189, 73, 200);
 	public static final Color COLORE_TESTO_MESSAGGI = new Color(80, 80, 80);
 	public static final String PERCORSO_IMMAGINI_DADO = PERCORSO_IMMAGINI + "dado/";
+	public static final Color COLORE_SFONDO_LANCIO_DADO = new Color(186, 227, 248);
+
 
 	// panels laterali mappa
 	public static final Dimension DIMENSIONE_PAN_LATERALI_MAPPA = new Dimension(
@@ -163,6 +165,7 @@ public class CostantiGui {
 	public static final Color COLORE_TESTO_ANGOLINI = Color.DARK_GRAY;
 
 	public static final Dimension DIMENSIONE_MONETA_TESSERA = new Dimension(20, 20);
+
 
 
 	/**
