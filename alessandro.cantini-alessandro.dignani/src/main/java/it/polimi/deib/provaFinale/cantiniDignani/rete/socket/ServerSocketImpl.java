@@ -24,7 +24,7 @@ public class ServerSocketImpl implements InterfacciaConnessioneServer {
 	private Socket socket;
 	private ExecutorService esecutore;
 	private Map<String, GestoreClient> mappaNomiSocket = new Hashtable<String, GestoreClient>();
-	
+
 	private GestoreCoda<Integer> codaMosse;
 
 	public ServerSocketImpl(GestoreCoda<Integer> gestoreCoda) {
@@ -46,7 +46,8 @@ public class ServerSocketImpl implements InterfacciaConnessioneServer {
 			try {
 				socket = server.accept();
 				esecutore.submit(new GestoreClient(socket, codaMosse, mappaNomiSocket));
-				//new GestoreClient(socket, codaMosse, mappaNomiSocket).start();
+				// new GestoreClient(socket, codaMosse,
+				// mappaNomiSocket).start();
 				LOGGER.println("Connessione iniziata con " + socket);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -63,10 +64,11 @@ public class ServerSocketImpl implements InterfacciaConnessioneServer {
 	}
 
 	public void inviaEvento(Evento evento, List<String> giocatori) {
-
+	
 		for (String giocatore : giocatori) {
 			try {
 				mappaNomiSocket.get(giocatore).inviaEvento(evento);
+				LOGGER.println(evento + " inviato a " + giocatore);
 			} catch (NullPointerException e) {
 				throw new NullPointerException(giocatore + " non presente in " + giocatori);
 			}

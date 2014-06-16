@@ -24,7 +24,7 @@ public interface InterfacciaConnessioneClient {
 	 *            territorio, oppure l'indice di un elemento in una lista
 	 *            passata dal server see{@InterfacciaUtente}
 	 */
-	void inviaMossa(int mossaScelta);
+	void inviaMossa(Integer mossaScelta);
 
 	/**
 	 * Scarica dal server tutti i dati della partita

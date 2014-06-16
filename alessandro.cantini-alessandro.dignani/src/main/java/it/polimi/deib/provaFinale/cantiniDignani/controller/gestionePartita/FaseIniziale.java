@@ -31,7 +31,8 @@ public class FaseIniziale extends FasePartita {
 			g.getPastori().get(numPastore).muoviIn(strada);
 
 			gestore.inviaEventoATutti(new PosizionamentoPastore(g.getNome(), codStrada, Estrattore.giocatori(partita)));
+
 		}
 	}
-	
+
 }

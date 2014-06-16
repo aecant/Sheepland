@@ -92,7 +92,7 @@ public class Partita {
 		List<Pastore> pastori = new ArrayList<Pastore>();
 		for (Giocatore g : giocatori) {
 			for (Pastore p : g.getPastori()) {
-				if (p.getStrada() != null) {
+				if (p.getStrada() != Mappa.STRADA_INESISTENTE) {
 					pastori.add(p);
 				}
 			}
@@ -150,7 +150,7 @@ public class Partita {
 
 	private void aggiungiPastoreAiGiocatori() {
 		for (int i = 0; i < giocatori.size(); i++) {
-			giocatori.get(i).aggiungiPastore(new Pastore(null, ColorePastore.values()[i]));
+			giocatori.get(i).aggiungiPastore(new Pastore(Mappa.STRADA_INESISTENTE, ColorePastore.values()[i]));
 		}
 	}
 

@@ -74,8 +74,8 @@ public class GestorePartita extends Thread {
 		return gestoreEventi.aspetta();
 	}
 
-	protected void inviaEventoATutti(Evento e) {
-		connessione.inviaEvento(e, tuttiGiocatori);
+	protected void inviaEventoATutti(Evento evento) {
+		connessione.inviaEvento(evento, tuttiGiocatori);
 	}
 
 	protected void inviaEvento(Evento e, Giocatore g) {

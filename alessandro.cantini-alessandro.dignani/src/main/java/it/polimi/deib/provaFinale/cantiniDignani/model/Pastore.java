@@ -11,6 +11,9 @@ public class Pastore extends PedinaSuStrada {
 	}
 
 	public void muoviIn(Strada posizione) {
+		if(posizione == null) {
+			throw new NullPointerException();
+		}
 		super.setStrada(posizione);
 	}
 

@@ -39,8 +39,6 @@ public class GestoreClient extends Thread {
 		registrazioneGiocatore();
 
 		riceviMosse();
-
-		terminaConnessione();
 	}
 
 	private void riceviMosse() {
@@ -50,6 +48,7 @@ public class GestoreClient extends Thread {
 
 	public void inviaEvento(Evento evento) {
 		try {
+			out.reset();
 			out.writeObject(evento);
 			out.flush();
 		} catch (IOException e) {
@@ -66,12 +65,11 @@ public class GestoreClient extends Thread {
 			}
 			String nome = (String) oggettoNome;
 			if (ServerMain.aggiungiGiocatore(nome)) {
-				out.writeChar(CostantiSocket.REGISTRAZIONE_OK);
-				out.flush();
+				out.writeObject(CostantiSocket.REGISTRAZIONE_OK);
 				mappaNomiSocket.put(nome, this);
 				LOGGER.println(nome + " registrato");
 			} else {
-				out.writeChar(CostantiSocket.NOME_GIA_PRESENTE);
+				out.writeObject(CostantiSocket.NOME_GIA_PRESENTE);
 			}
 			out.flush();
 
@@ -84,7 +82,7 @@ public class GestoreClient extends Thread {
 		}
 	}
 
-	private void terminaConnessione() {
+	public void terminaConnessione() {
 		ascoltatoreMosse.ferma();
 		try {
 			in.close();
