@@ -63,7 +63,7 @@ public class CostantiGui {
 	 */
 	public static final Point[][] COORDINATE_TERRITORI = {
 			// Sheepsburg
-			{ new Point(313, 366), new Point(316, 392), new Point(316, 340), new Point(276, 367), new Point(347, 372) },
+			{ new Point(316, 340), new Point(316, 392), new Point(313, 366), new Point(276, 367), new Point(347, 372) },
 			// Montagna
 			{ new Point(338, 249), new Point(306, 236), new Point(343, 221), new Point(307, 289), new Point(348, 289) },
 			{ new Point(459, 173), new Point(440, 222), new Point(487, 124), new Point(420, 188), new Point(512, 165) },

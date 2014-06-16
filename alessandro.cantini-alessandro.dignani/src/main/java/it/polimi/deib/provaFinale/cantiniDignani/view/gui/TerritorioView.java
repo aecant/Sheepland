@@ -46,4 +46,37 @@ public class TerritorioView {
 	public DatiTerritorio getDati() {
 		return dati;
 	}
+	
+	public void disegna() {
+		for(TipoAnimale tipo : TipoAnimale.values()) {
+			if(dati.getTipiAnimale().contains(tipo)) {
+				disegnaAnimale(tipo, coordAnimali.get(tipo), dati.getNum(tipo));
+			}
+		}
+	}
+
+	private void disegnaAnimale(TipoAnimale tipo, Point point, int num) {
+		switch (tipo) {
+		case AGNELLO:
+			Gui.getFinestraPartita().getMappa().creaAgnello(point, num);
+			Gui.getFinestraPartita().getMappa().repaint();
+			break;
+		case LUPO:
+			Gui.getFinestraPartita().getMappa().creaLupo(point);
+			Gui.getFinestraPartita().getMappa().repaint();
+			break;
+		case MONTONE:
+			Gui.getFinestraPartita().getMappa().creaMontone(point, num);
+			Gui.getFinestraPartita().getMappa().repaint();
+			break;
+		case PECORA:
+			Gui.getFinestraPartita().getMappa().creaPecora(point, num);
+			Gui.getFinestraPartita().getMappa().repaint();
+			break;
+		case PECORA_NERA:
+			Gui.getFinestraPartita().getMappa().creaPecoraNera(point);
+			Gui.getFinestraPartita().getMappa().repaint();
+			break;
+		}
+	}
 }

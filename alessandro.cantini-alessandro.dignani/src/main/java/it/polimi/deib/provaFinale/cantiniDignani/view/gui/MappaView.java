@@ -1,7 +1,5 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.ColorePastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
@@ -37,24 +35,24 @@ public class MappaView extends BackgroundMappaPanel{
 		}
 		
 		for(int i = 0; i < Costanti.NUM_TERRITORI; i++) {
-			territoriView.add(new TerritorioView(i, coordinateTerritori[i], ClientMain.getDatiPartita().getTerritori()[i]));
+			territoriView.add(new TerritorioView(i, coordinateTerritori[i], Gui.getDati().getTerritori()[i]));
 		}
 	}
 	
-	public void creaPecora(Point coordinate) {
-		PecoraView pecor = new PecoraView(coordinate.x-(CostantiGui.DIMENSIONE_PECORA.width/2), coordinate.y-(CostantiGui.DIMENSIONE_PECORA.height/2), 1);
+	public void creaPecora(Point coordinate, int n) {
+		PecoraView pecor = new PecoraView(coordinate.x-(CostantiGui.DIMENSIONE_PECORA.width/2), coordinate.y-(CostantiGui.DIMENSIONE_PECORA.height/2), n);
 		add(pecor);
 		pecor.getParent().repaint();
 	}
 
-	public void creaMontone(Point coordinate) {
-		MontoneView mont = new MontoneView(coordinate.x-(CostantiGui.DIMENSIONE_MONTONE.width/2), coordinate.y-(CostantiGui.DIMENSIONE_MONTONE.height/2), 1);
+	public void creaMontone(Point coordinate, int n) {
+		MontoneView mont = new MontoneView(coordinate.x-(CostantiGui.DIMENSIONE_MONTONE.width/2), coordinate.y-(CostantiGui.DIMENSIONE_MONTONE.height/2), n);
 		add(mont);
 		mont.getParent().repaint();
 	}
 
-	public void creaAgnello(Point coordinate) {
-		AgnelloView agn = new AgnelloView(coordinate.x-(CostantiGui.DIMENSIONE_AGNELLO.width/2), coordinate.y-(CostantiGui.DIMENSIONE_AGNELLO.height/2), 1);
+	public void creaAgnello(Point coordinate, int n) {
+		AgnelloView agn = new AgnelloView(coordinate.x-(CostantiGui.DIMENSIONE_AGNELLO.width/2), coordinate.y-(CostantiGui.DIMENSIONE_AGNELLO.height/2), n);
 		add(agn);
 		agn.getParent().repaint();
 	}
@@ -78,6 +76,7 @@ public class MappaView extends BackgroundMappaPanel{
 	}
 	
 	protected void disegnaTerritorio(Integer codTerritorio) {
-		
+		territoriView.get(codTerritorio).aggiorna();
+		territoriView.get(codTerritorio).disegna();
 	}
 }

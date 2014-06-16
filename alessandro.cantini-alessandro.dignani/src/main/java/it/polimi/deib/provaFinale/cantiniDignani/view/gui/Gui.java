@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 public class Gui {
 	private FinestraChiediNome fcn;
-	PartitaView finestraPartita;
+	static PartitaView finestraPartita;
 
 	// Tempornei
 	static public Partita part;
@@ -54,6 +54,7 @@ public class Gui {
 		fi.disponiPecore();
 		fi.disponiTessereIniziali();
 		fi.distribuisciDenari();
+		
 
 		finestraPartita = new PartitaView(getDati());
 
@@ -71,17 +72,17 @@ public class Gui {
 					(int) (CostantiGui.COORDINATE_STRADE[i].getY() * CostantiGui.FATTORE_DI_SCALA));
 		}
 
+		// Creo le pedine dei giocatori
+		// TODO da modificare
 		for (int i = 0; i < getDati().getGiocatori().length; i++) {
 			finestraPartita.getMappa().creaPastore(coordinateStrade[Sorte.numeroCasuale(0, Costanti.NUM_STRADE - 1)], ColorePastore.values()[i]);
 		}
 
 		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
-			finestraPartita.getMappa().creaPecoraNera(coordinateTerritori[i][0]);
-			finestraPartita.getMappa().creaLupo(coordinateTerritori[i][1]);
-			finestraPartita.getMappa().creaPecora(coordinateTerritori[i][2]);
-			finestraPartita.getMappa().creaMontone(coordinateTerritori[i][3]);
-			finestraPartita.getMappa().creaAgnello(coordinateTerritori[i][4]);
+			finestraPartita.getMappa().disegnaTerritorio(i);
+			System.out.println("Territorio " + i + getDati().getTerritori()[i].toString());
 		}
+		
 		finestraPartita.visualizza();
 		finestraPartita.getPanelMessaggi().visualizzaMessaggio("La tua tessera iniziale è di tipo " + Gui.getDati().getGiocatore(Gui.getNome()).getTessere().get(0).getTipo().toString());
 	}
@@ -92,7 +93,7 @@ public class Gui {
 	 * 
 	 */
 	public PartitaView getPartita() {
-		return this.finestraPartita;
+		return finestraPartita;
 	}
 
 	public void inizioTurno(String giocatore) {
@@ -108,7 +109,7 @@ public class Gui {
 		gui.inizioTurno(getDati().getGiocatoreDiTurno());
 	}
 
-	private static DatiPartita getDati() {
+	static DatiPartita getDati() {
 
 		return Estrattore.datiPartita(part);
 		// Fine test
@@ -116,5 +117,9 @@ public class Gui {
 
 	protected static String getNome() {
 		return "Dig";
+	}
+
+	public static PartitaView getFinestraPartita() {
+		return finestraPartita;
 	}
 }
