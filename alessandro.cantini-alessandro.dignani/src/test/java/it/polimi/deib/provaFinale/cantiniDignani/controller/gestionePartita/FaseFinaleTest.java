@@ -5,12 +5,12 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 import java.util.Map;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Sorte;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.FaseFinale;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 
 import org.junit.Before;
 import org.junit.Test;

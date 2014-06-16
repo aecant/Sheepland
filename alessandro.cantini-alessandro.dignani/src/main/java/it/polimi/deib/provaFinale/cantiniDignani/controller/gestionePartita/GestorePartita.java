@@ -2,13 +2,13 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.GestoreCoda;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Sorte;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.LancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 
 import java.util.ArrayList;
 import java.util.Collections;

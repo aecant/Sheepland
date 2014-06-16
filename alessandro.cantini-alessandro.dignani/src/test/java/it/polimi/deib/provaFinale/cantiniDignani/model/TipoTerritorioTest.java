@@ -1,7 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 import static org.junit.Assert.*;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 
 import org.junit.Test;
 

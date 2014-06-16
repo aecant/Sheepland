@@ -3,7 +3,6 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.InizioTurno;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoLupo;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPecoraNera;
@@ -18,6 +17,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 
 import java.util.List;
 

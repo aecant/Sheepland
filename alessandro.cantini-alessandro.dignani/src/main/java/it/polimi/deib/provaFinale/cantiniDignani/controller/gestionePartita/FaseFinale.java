@@ -1,9 +1,9 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Animale;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 
 import java.util.HashMap;
 import java.util.Map;

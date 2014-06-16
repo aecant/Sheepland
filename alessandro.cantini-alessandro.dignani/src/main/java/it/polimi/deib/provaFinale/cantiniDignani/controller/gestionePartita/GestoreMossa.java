@@ -4,7 +4,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.Coppia;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Sorte;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Abbattimento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Accoppiamento;
@@ -28,6 +27,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 
 import java.util.ArrayList;
 import java.util.List;

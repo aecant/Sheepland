@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
-import it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.UtilitaStringhe;
 
 public enum TipoTerritorio {
 	SHEEPSBURG,

@@ -1,12 +1,12 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import static org.junit.Assert.*;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Sorte;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Agnello;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 
 import org.junit.Before;
 import org.junit.Ignore;

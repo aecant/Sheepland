@@ -1,4 +1,4 @@
-package it.polimi.deib.provaFinale.cantiniDignani.controller;
+package it.polimi.deib.provaFinale.cantiniDignani.utilita;
 
 import it.polimi.deib.provaFinale.cantiniDignani.model.Agnello;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;

@@ -1,11 +1,11 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 import static org.junit.Assert.*;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 
 import org.junit.Before;
 import org.junit.Test;

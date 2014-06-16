@@ -1,6 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,7 +1,9 @@
-package it.polimi.deib.provaFinale.cantiniDignani.controller;
+package it.polimi.deib.provaFinale.cantiniDignani.utilita;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;

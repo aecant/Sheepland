@@ -1,17 +1,17 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.cli;
 
-import static it.polimi.deib.provaFinale.cantiniDignani.view.cli.UtilitaStringhe.*;
+import static it.polimi.deib.provaFinale.cantiniDignani.utilita.UtilitaStringhe.*;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Coppia;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 
 import java.io.InputStream;

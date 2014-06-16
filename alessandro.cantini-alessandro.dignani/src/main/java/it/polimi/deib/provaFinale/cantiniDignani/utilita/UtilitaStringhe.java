@@ -1,4 +1,4 @@
-package it.polimi.deib.provaFinale.cantiniDignani.view.cli;
+package it.polimi.deib.provaFinale.cantiniDignani.utilita;
 
 import java.util.ArrayList;
 import java.util.Arrays;

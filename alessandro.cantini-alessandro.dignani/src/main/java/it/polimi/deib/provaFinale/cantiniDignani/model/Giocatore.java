@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Utilita;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 
 import java.io.Serializable;
 import java.util.ArrayList;
