@@ -1,5 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 
 import java.awt.BorderLayout;
@@ -55,7 +56,7 @@ public class PartitaView {
 		panelMappa.add(panelMappaDestra, BorderLayout.EAST);
 		
 		// imposto il panel delle tessere
-		panelTessere = new PannelloTessere(this.datiPartita.getTessereInCima(), datiPartita.getGiocatore(Gui.nome()).numeroTesserePerTipo());
+		panelTessere = new PannelloTessere(this.datiPartita.getTessereInCima(), datiPartita.getGiocatore(ClientMain.getNome()).numeroTesserePerTipo());
 
 		// imposto il panel dei giocatori
 		panelGiocatori = new PannelloGiocatori(this.datiPartita.getGiocatori());

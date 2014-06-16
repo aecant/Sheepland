@@ -2,23 +2,19 @@ package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Coppia;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Sorte;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
-import it.polimi.deib.provaFinale.cantiniDignani.model.ColorePastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 
-import java.awt.Point;
 import java.util.Collection;
 import java.util.List;
 
-public class Gui implements InterfacciaUtente{
+public class Gui implements InterfacciaUtente {
 	private FinestraChiediNome fcn;
 	static PartitaView finestraPartita;
 	boolean messErrore = false;
@@ -26,6 +22,9 @@ public class Gui implements InterfacciaUtente{
 	// Tempornei
 	static public Partita part;
 	static public GestorePartita gest;
+
+	public Gui() {
+	}
 
 	/**
 	 * Implementazione del metodo che chiede all'utente il nome per connettersi
@@ -52,42 +51,14 @@ public class Gui implements InterfacciaUtente{
 	 * Metodo che avvia la partita
 	 */
 	public void inizioPartita() {
-		// TODO questo è un test, andrà mofificato con
-		// ClientMain.getDatiPartita()
-//		part = new Partita(Arrays.asList("Dig", "Andre", "Luca", "Cant"));
-//		gest = new GestorePartita(part, null, null);
-//		PreparazionePartita fi = new PreparazionePartita(gest);
-//		fi.disponiPecore();
-//		fi.disponiTessereIniziali();
-//		fi.distribuisciDenari();
-		
 
-		finestraPartita = new PartitaView(getDati());
-
-		Point[][] coordinateTerritori = new Point[Costanti.NUM_TERRITORI][5];
-		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
-			for (int j = 0; j < 5; j++) {
-				coordinateTerritori[i][j] = new Point((int) (CostantiGui.COORDINATE_TERRITORI[i][j].getX() * CostantiGui.FATTORE_DI_SCALA),
-						(int) (CostantiGui.COORDINATE_TERRITORI[i][j].getY() * CostantiGui.FATTORE_DI_SCALA));
-			}
-		}
-
-		Point[] coordinateStrade = new Point[Costanti.NUM_STRADE];
-		for (int i = 0; i < Costanti.NUM_STRADE; i++) {
-			coordinateStrade[i] = new Point((int) (CostantiGui.COORDINATE_STRADE[i].getX() * CostantiGui.FATTORE_DI_SCALA),
-					(int) (CostantiGui.COORDINATE_STRADE[i].getY() * CostantiGui.FATTORE_DI_SCALA));
-		}
-
-		// Creo le pedine dei giocatori
-		// TODO da modificare
-		for (int i = 0; i < getDati().getGiocatori().length; i++) {
-			finestraPartita.getMappa().creaPastore(coordinateStrade[Sorte.numeroCasuale(0, Costanti.NUM_STRADE - 1)], ColorePastore.values()[i]);
-		}
+		finestraPartita = new PartitaView(ClientMain.getDatiPartita());
 
 		disegnaStatoTerritori();
-		
+
 		finestraPartita.visualizza();
-		finestraPartita.getPanelMessaggi().visualizzaMessaggio("La tua tessera iniziale è di tipo " + Gui.getDati().getGiocatore(Gui.nome()).getTessere().get(0).getTipo().toString());
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio(
+				"La tua tessera iniziale è di tipo " + ClientMain.getDatiPartita().getGiocatore(ClientMain.getNome()).getTessere().get(0).getTipo().toString());
 	}
 
 	private void disegnaStatoTerritori() {
@@ -106,30 +77,12 @@ public class Gui implements InterfacciaUtente{
 	}
 
 	public void inizioTurno(String giocatore) {
-		if (giocatore.equals(nome())) {
+		if (giocatore.equals(ClientMain.getNome())) {
 			getPartita().getPanelMessaggi().visualizzaMessaggio("E' il tuo turno!");
 		} else {
 			getPartita().getPanelMessaggi().visualizzaMessaggio("E' il turno di " + giocatore + "!");
 		}
-		
-	}
 
-	// Test
-//	public static void main(String[] args) {
-//		Gui gui = new Gui();
-//
-//		gui.inizioPartita();
-//
-//		gui.inizioTurno(getDati().getGiocatoreDiTurno());
-//	}
-
-	static DatiPartita getDati() {
-
-		return ClientMain.getDatiPartita();
-	}
-
-	protected static String nome() {
-		return ClientMain.getNome();
 	}
 
 	public static PartitaView getFinestraPartita() {
@@ -141,53 +94,51 @@ public class Gui implements InterfacciaUtente{
 	}
 
 	public void selezionePosizioneInizialePastore(String giocatore, int strada) {
-		// TODO Auto-generated method stub
-		
+		finestraPartita.getMappa().creaPastore(strada, ClientMain.getDatiPartita().getGiocatore(giocatore).getPastori().get(0).getColore());
 	}
 
-	public void movimentoPecora(String giocatore, TipoAnimale pecora, int origine, int destinazione) {
-		// TODO Auto-generated method stub
-		
+	public void movimentoPecora(String giocatore, TipoAnimale tipoOvino, int origine, int destinazione) {
+		getPartita().getMappa().movimentoPecora(tipoOvino, origine, destinazione);
 	}
 
 	public void movimentoPecoraNera(int origine, int destinazione) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void movimentoPastore(String giocatore, int origine, int destinazione) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void movimentoLupo(int origine, int destinazione) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void abbattimento(String giocatore, TipoAnimale tipo, int territorio, boolean aBuonFine) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void accoppiamento(String giocatore, int territorio, boolean aBuonFine) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void trasformazioneAgnello(boolean maschio, Integer territorio) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void pagamento(Integer denaro, String pagante, String pagato) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public int richiestaPosizioneInizialePastore(boolean[] stradeLibere) {
