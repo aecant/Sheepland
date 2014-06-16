@@ -17,6 +17,9 @@ public class MappaView extends BackgroundMappaPanel {
 
 	Point[][] coordinateTerritori;
 	Point[] coordinateStrade;
+	
+	PecoraNeraView pecoraNera;
+	LupoView lupo;
 
 	List<TerritorioView> territoriView = new ArrayList<TerritorioView>();
 
@@ -68,13 +71,13 @@ public class MappaView extends BackgroundMappaPanel {
 	}
 
 	public void creaPecoraNera(Point coordinate) {
-		PecoraNeraView pecoraNera = new PecoraNeraView(coordinate.x - (CostantiGui.DIMENSIONE_PECORA.width / 2), coordinate.y - (CostantiGui.DIMENSIONE_PECORA.height / 2));
+		pecoraNera = new PecoraNeraView(coordinate.x - (CostantiGui.DIMENSIONE_PECORA.width / 2), coordinate.y - (CostantiGui.DIMENSIONE_PECORA.height / 2));
 		add(pecoraNera);
 		pecoraNera.getParent().repaint();
 	}
 
 	public void creaLupo(Point coordinate) {
-		LupoView lupo = new LupoView(coordinate.x - (CostantiGui.DIMENSIONE_LUPO.width / 2), coordinate.y - (CostantiGui.DIMENSIONE_LUPO.height / 2));
+		lupo = new LupoView(coordinate.x - (CostantiGui.DIMENSIONE_LUPO.width / 2), coordinate.y - (CostantiGui.DIMENSIONE_LUPO.height / 2));
 		add(lupo);
 		lupo.getParent().repaint();
 	}
@@ -119,5 +122,21 @@ public class MappaView extends BackgroundMappaPanel {
 		pedina.muovi(dest);
 		territoriView.get(destinazione).aggiorna();
 		territoriView.get(destinazione).disegna();
+	}
+
+	public PecoraNeraView getPecoraNera() {
+		return pecoraNera;
+	}
+
+	public void setPecoraNera(PecoraNeraView pecoraNera) {
+		this.pecoraNera = pecoraNera;
+	}
+
+	public void movimentoPecoraNera(int destinazione) {
+		pecoraNera.muovi(territoriView.get(destinazione).getCoordinate(TipoAnimale.PECORA_NERA));
+	}
+
+	public void movimentoLupo(int destinazione) {
+		lupo.muovi(territoriView.get(destinazione).getCoordinate(TipoAnimale.PECORA_NERA));
 	}
 }

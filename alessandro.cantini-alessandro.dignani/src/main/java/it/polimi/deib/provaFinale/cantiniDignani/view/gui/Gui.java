@@ -102,8 +102,7 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void movimentoPecoraNera(int origine, int destinazione) {
-		// TODO Auto-generated method stub
-
+		getFinestraPartita().getMappa().movimentoPecoraNera(destinazione);
 	}
 
 	public void movimentoPastore(String giocatore, int origine, int destinazione) {
@@ -112,8 +111,7 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void movimentoLupo(int origine, int destinazione) {
-		// TODO Auto-generated method stub
-
+		getFinestraPartita().getMappa().movimentoLupo(destinazione);
 	}
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
