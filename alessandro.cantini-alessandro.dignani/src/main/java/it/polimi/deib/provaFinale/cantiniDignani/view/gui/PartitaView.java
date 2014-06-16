@@ -1,7 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 
 import java.awt.BorderLayout;
 import java.awt.GraphicsDevice;
@@ -56,7 +55,7 @@ public class PartitaView {
 		panelMappa.add(panelMappaDestra, BorderLayout.EAST);
 		
 		// imposto il panel delle tessere
-		panelTessere = new PannelloTessere(this.datiPartita.getTessereInCima(), datiPartita.getGiocatore(Gui.getNome()).numeroTesserePerTipo());
+		panelTessere = new PannelloTessere(this.datiPartita.getTessereInCima(), datiPartita.getGiocatore(Gui.nome()).numeroTesserePerTipo());
 
 		// imposto il panel dei giocatori
 		panelGiocatori = new PannelloGiocatori(this.datiPartita.getGiocatori());
@@ -96,7 +95,7 @@ public class PartitaView {
 		finestra.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		if (Costanti.SCHERMO_INTERO) {
+		if (CostantiGui.SCHERMO_INTERO) {
 			java.awt.GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			GraphicsDevice cc = ge.getDefaultScreenDevice();
 			cc.setFullScreenWindow(finestra);

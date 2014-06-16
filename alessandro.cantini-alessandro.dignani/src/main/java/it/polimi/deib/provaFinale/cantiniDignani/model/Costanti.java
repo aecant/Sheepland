@@ -85,8 +85,7 @@ public class Costanti {
 	
 	public static final int COSTO_SILENZIO = 2;
 	public static final int DADO_MIN_PER_SILENZIO = 5;
-
-	public static final boolean SCHERMO_INTERO = true;
+	
 	
 	/**
 	 * Costruttore privato per nascondere quello di default
