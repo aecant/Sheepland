@@ -17,6 +17,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import org.junit.Before;
@@ -33,9 +34,10 @@ public class EstrattoreTest {
 
 	@Before
 	public void setUp() {
-		partita = new Partita(Arrays.asList("esempio1", "esempio2", "esempio3", "esempio4"));
+		List<String> nomi =Arrays.asList("esempio1", "esempio2", "esempio3", "esempio4");
 
-		GestorePartita gestore = new GestorePartita(partita, null, null);
+		GestorePartita gestore = new GestorePartita(EstrattoreTest.listaUtenti(nomi), null);
+		partita = gestore.getPartita();
 		gestore.getPreparazionePartita().disponiPecore();
 		gestore.getPreparazionePartita().disponiTessereIniziali();
 		gestore.getPreparazionePartita().distribuisciDenari();
@@ -161,6 +163,15 @@ public class EstrattoreTest {
 		partita.getRecinti().aggiungi(s[5]);
 		assertFalse(Utilita.contiene(posRecIn, 4));
 		assertFalse(Utilita.contiene(posRecIn, 5));
+	}
+	
+	
+	public static List<Utente> listaUtenti(Collection<String> nomi) {
+		List<Utente> listaUtenti = new ArrayList<Utente>();
+		for(String s : nomi) {
+			listaUtenti.add(new Utente(s, "default"));
+		}
+		return listaUtenti;
 	}
 
 }

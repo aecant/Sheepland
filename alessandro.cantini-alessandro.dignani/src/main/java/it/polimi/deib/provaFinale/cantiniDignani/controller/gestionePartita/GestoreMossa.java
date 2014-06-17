@@ -87,7 +87,7 @@ public class GestoreMossa {
 
 		gestorePartita.inviaEvento(new RichiestaTesseraDaAcquistare(tessereDisp), giocatore);
 
-		int indiceScelta = gestorePartita.aspettaMossa();
+		int indiceScelta = gestorePartita.aspettaMossa(giocatore);
 
 		Tessera tessScelta = tessereDisp.get(indiceScelta);
 
@@ -120,7 +120,7 @@ public class GestoreMossa {
 
 		gestorePartita.inviaEvento(new RichiestaTerritorioPerAccoppiamento(terrDisp), giocatore);
 
-		int codTerr = gestorePartita.aspettaMossa();
+		int codTerr = gestorePartita.aspettaMossa(giocatore);
 
 		Territorio terr = Mappa.getMappa().getTerritori()[codTerr];
 
@@ -141,7 +141,7 @@ public class GestoreMossa {
 
 		gestorePartita.inviaEvento(new RichiestaPecoraDaAbbattere(listaOviniSuTerritorio), giocatore);
 
-		int indiceScelto = gestorePartita.aspettaMossa();
+		int indiceScelto = gestorePartita.aspettaMossa(giocatore);
 		int terrScelto = listaOviniSuTerritorio.get(indiceScelto).primo;
 		TipoAnimale animScelto = listaOviniSuTerritorio.get(indiceScelto).secondo;
 
@@ -177,7 +177,7 @@ public class GestoreMossa {
 
 		gestorePartita.inviaEvento(new RichiestaPecoraDaMuovere(listaOviniSuTerritorio), giocatore);
 
-		int indiceScelto = gestorePartita.aspettaMossa();
+		int indiceScelto = gestorePartita.aspettaMossa(giocatore);
 
 		int codOrig = listaOviniSuTerritorio.get(indiceScelto).primo;
 		int codDest;
@@ -206,7 +206,7 @@ public class GestoreMossa {
 		boolean[] stradeAPagamento = Estrattore.stradeLibereAPagamento(partita, pastore.getStrada());
 		gestorePartita.inviaEvento(new RichiestaPosizionePastore(stradeGratis, stradeAPagamento), giocatore);
 
-		int codDest = gestorePartita.aspettaMossa();
+		int codDest = gestorePartita.aspettaMossa(giocatore);
 		
 		Strada origine = pastore.getStrada();
 		Strada destinazione = Mappa.getMappa().getStrade()[codDest];

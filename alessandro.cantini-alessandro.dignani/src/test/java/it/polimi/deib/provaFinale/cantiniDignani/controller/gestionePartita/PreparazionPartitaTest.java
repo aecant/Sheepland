@@ -3,6 +3,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 import static org.junit.Assert.*;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.EstrattoreTest;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.PreparazionePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
@@ -19,16 +20,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class PreparazionPartitaTest {
-	List<String> listaNomi = new ArrayList<String>();
+	List<String> listaNomi;
 	Partita partita;
 	PreparazionePartita preparazionePartita;
 	GestorePartita gestore;
 
 	@Before
 	public void setUp() {
+		listaNomi = new ArrayList<String>();
 		Collections.addAll(listaNomi, "esempio1", "esempio2", "esempio3", "esempio4");
-		partita = new Partita(listaNomi);
-		gestore = new GestorePartita(partita, null, null);
+		gestore = new GestorePartita(EstrattoreTest.listaUtenti(listaNomi), null);
+		partita = gestore.getPartita();
+
 		preparazionePartita = gestore.getPreparazionePartita();
 	}
 
@@ -39,8 +42,8 @@ public class PreparazionPartitaTest {
 	@Test
 	public void testDistribuisciDenari() {
 		for (int i = Costanti.NUM_MAX_GIOCATORI; i >= Costanti.NUM_MIN_GIOCATORI; i--) {
-			partita = new Partita(listaNomi);
-			gestore = new GestorePartita(partita, null, null);
+			gestore = new GestorePartita(EstrattoreTest.listaUtenti(listaNomi), null);
+			partita = gestore.getPartita();
 			preparazionePartita = gestore.getPreparazionePartita();
 			preparazionePartita.distribuisciDenari();
 

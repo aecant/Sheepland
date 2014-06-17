@@ -2,7 +2,6 @@ package it.polimi.deib.provaFinale.cantiniDignani.rete.rmi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerMain;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
-import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 
 import java.io.PrintStream;
 import java.rmi.RemoteException;
@@ -11,16 +10,14 @@ import java.util.Hashtable;
 public class InterfacciaRmiImpl implements InterfacciaRmi {
 
 	private final PrintStream logger = ServerMain.LOGGER;
-	private final GestoreCoda<Integer> codaMosse;
 	private final Hashtable<String, AscoltatoreEventiRmi> ascoltatori;
 
-	public InterfacciaRmiImpl(Hashtable<String, AscoltatoreEventiRmi> ascoltatori, GestoreCoda<Integer> codaMosse) {
+	public InterfacciaRmiImpl(Hashtable<String, AscoltatoreEventiRmi> ascoltatori) {
 		this.ascoltatori = ascoltatori;
-		this.codaMosse = codaMosse;
 	}
 
-	public void registraGiocatore(String nome) throws RemoteException, NomeGiaPresenteException {
-		if (!ServerMain.aggiungiGiocatore(nome)) {
+	public void registraGiocatore(String nome, String password) throws RemoteException, NomeGiaPresenteException {
+		if (!ServerMain.aggiungiUtente(nome, password)) {
 			throw new NomeGiaPresenteException();
 		}
 		logger.println("Giocatore registrato: " + nome);
@@ -31,9 +28,10 @@ public class InterfacciaRmiImpl implements InterfacciaRmi {
 		logger.println("Ascoltatore aggiunto: " + ascoltatore);
 	}
 
-	public void riceviMossa(int mossa) {
-		codaMosse.aggiungi(mossa);
-		logger.println("Mossa ricevuta : " + mossa);
+	public void riceviMossa(String nome, int mossa) {
+		ServerMain.getUtente(nome).aggiungiMossa(mossa);
+
+		logger.println("Mossa ricevuta da " + nome + " : " + mossa);
 	}
 
 }

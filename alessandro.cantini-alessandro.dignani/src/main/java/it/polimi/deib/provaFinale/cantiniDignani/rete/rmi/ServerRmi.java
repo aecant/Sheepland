@@ -5,7 +5,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Richiesta;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
-import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 
 import java.rmi.NoSuchObjectException;
 import java.rmi.NotBoundException;
@@ -20,15 +19,10 @@ public class ServerRmi implements InterfacciaConnessioneServer {
 
 	private final Hashtable<String, AscoltatoreEventiRmi> ascoltatori = new Hashtable<String, AscoltatoreEventiRmi>();
 	private Registry registro;
-	private final GestoreCoda<Integer> codaMosse;
 
-	public ServerRmi(GestoreCoda<Integer> codaMosse) {
-		this.codaMosse = codaMosse;
-	}
-	
 	public void inizia() {
 		try {
-			InterfacciaRmi server = new InterfacciaRmiImpl(ascoltatori, codaMosse);
+			InterfacciaRmi server = new InterfacciaRmiImpl(ascoltatori);
 			InterfacciaRmi stub = (InterfacciaRmi) UnicastRemoteObject.exportObject(server, 0);
 			registro = LocateRegistry.createRegistry(CostantiRete.PORTA_SERVER);
 			registro.rebind(CostantiRete.NOME_SERVER, stub);
