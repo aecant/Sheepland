@@ -29,7 +29,7 @@ public class Gui implements InterfacciaUtente {
 	 * 
 	 * @return una String con il nome
 	 */
-	public String chiediNome() {
+	public Coppia<String, String> chiediNomeEPassword() {
 		fcn = new FinestraChiediNome(messErrore);
 		return fcn.riceviNome();
 	}

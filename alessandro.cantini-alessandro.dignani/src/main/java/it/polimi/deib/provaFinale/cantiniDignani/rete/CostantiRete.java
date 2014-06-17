@@ -13,6 +13,8 @@ public class CostantiRete {
 
 	public static final String NOME_SERVER_RMI = "sheepland";
 
+	public static int MOSSA_DISCONNESSIONE = Integer.MIN_VALUE;
+	
 	/**
 	 * Costruttore private per nascondere quello di default
 	 */

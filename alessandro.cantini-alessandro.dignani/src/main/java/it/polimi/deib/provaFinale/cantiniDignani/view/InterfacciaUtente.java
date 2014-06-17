@@ -17,7 +17,7 @@ public interface InterfacciaUtente {
 	 * 
 	 * @return il nome scelto dal giocatore
 	 */
-	String chiediNome();
+	Coppia<String, String> chiediNomeEPassword();
 
 	/**
 	 * L'utente viene avvisato che il nome inserito in precedenza non va bene

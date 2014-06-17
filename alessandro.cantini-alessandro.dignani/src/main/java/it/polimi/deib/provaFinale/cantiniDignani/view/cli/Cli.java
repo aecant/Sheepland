@@ -38,10 +38,14 @@ public class Cli implements InterfacciaUtente {
 		this(CostantiCli.DEFAULT_INPUT);
 	}
 
-	public String chiediNome() {
+	public Coppia<String, String> chiediNomeEPassword() {
 		pulisci();
 		out.println("Inserisci il tuo nome");
-		return in.leggiStringa();
+		String nome =  in.leggiStringa();
+		out.println("Inserisci la password");
+		String password = in.leggiStringa();
+		
+		return Coppia.creaCoppia(nome, password);
 	}
 
 	public void nomeGiaPresente() {

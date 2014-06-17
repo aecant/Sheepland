@@ -5,6 +5,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClie
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ConnessioneClientRmi;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.socket.ConnessioneClientSocket;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 import it.polimi.deib.provaFinale.cantiniDignani.view.cli.Cli;
@@ -45,8 +46,8 @@ public class ClientMain {
 		boolean registrato = false;
 		while (!registrato) {
 			try {
-				nome = ui.chiediNome();
-				connessione.registraGiocatore(nome);
+				Coppia<String, String> nomeEPassword = ui.chiediNomeEPassword();
+				connessione.registraGiocatore(nomeEPassword.primo);
 				registrato = true;
 			} catch (NomeGiaPresenteException e) {
 				ui.nomeGiaPresente();

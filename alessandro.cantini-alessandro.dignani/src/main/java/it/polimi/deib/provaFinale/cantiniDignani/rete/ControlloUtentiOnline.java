@@ -22,7 +22,8 @@ public class ControlloUtentiOnline extends Thread{
 		while(on) {
 			for(Utente ut : utenti) {
 				if(!ut.isOnline()) {
-					
+					//TODO continuare qua
+					ut.getCodaMosse().aggiungi(CostantiRete.MOSSA_DISCONNESSIONE);
 				}
 			}
 		}
