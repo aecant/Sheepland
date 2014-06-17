@@ -15,7 +15,7 @@ public class UtenteTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		utente = new Utente(nome, password);
+		utente = new Utente(nome, password, null);
 	}
 
 	@Test
@@ -29,8 +29,8 @@ public class UtenteTest {
 		utente.setOnline(false);
 		assertFalse(utente.isOnline());
 		
-		utente.aggiungiMossa(mossa);
-		assertTrue(utente.aspettaMossa() == mossa);
+		utente.getCodaMosse().aggiungi(mossa);
+		assertTrue(utente.getCodaMosse().aspetta() == mossa);
 	}
 
 }

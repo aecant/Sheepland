@@ -6,8 +6,8 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ServerRmi;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.socket.ServerSocketImpl;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ConnessioneServerRmi;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.socket.ConnessioneServerSocket;
 import it.polimi.deib.provaFinale.cantiniDignani.view.cli.CostantiCli;
 
 import java.io.PrintStream;
@@ -22,17 +22,18 @@ public class ServerMain {
 	private static final List<Utente> utentiInAttesa = new Vector<Utente>();
 	private static final TimerPartita timerPartita = new TimerPartita(CostantiRete.MILLISECONDI_TIMER_PARTITA);
 
-	private static InterfacciaConnessioneServer connessione;
+	private static final ConnessioneServerRmi connessioneRmi = new ConnessioneServerRmi();
+	private static final ConnessioneServerSocket connessioneSocket = new ConnessioneServerSocket();
 
 	public static void main(String[] args) {
 		timerPartita.start();
-
-		impostaTipoConnessione();
-		connessione.inizia();
+		
+		connessioneRmi.start();
+		connessioneSocket.start();
 	}
 
-	public static synchronized boolean aggiungiUtente(String nome, String password) {
-		Utente utente = new Utente(nome, password);
+	public static synchronized boolean aggiungiUtente(String nome, InterfacciaConnessioneServer connessione) {
+		Utente utente = new Utente(nome, "", connessione);
 		if (utenteGiaRegistrato(utente)) {
 			return false;
 		}
@@ -65,7 +66,7 @@ public class ServerMain {
 		
 		List<Utente> utentiPartita = new ArrayList<Utente>();
 		utentiPartita.addAll(utentiInAttesa);
-		GestorePartita gestore = new GestorePartita(utentiPartita, connessione);
+		GestorePartita gestore = new GestorePartita(utentiPartita);
 		gestoriPartita.add(gestore);
 		gestore.start();
 		utentiInAttesa.clear();
@@ -94,17 +95,6 @@ public class ServerMain {
 		return false;
 	}
 
-	private static void impostaTipoConnessione() {
-		// TODO chiedo all'utente che tipo di server vuole e creo l'oggetto
-
-		// TODO da rimuovere, test
-
-		if (CostantiTest.RMI) {
-			connessione = new ServerRmi();
-		} else {
-			connessione = new ServerSocketImpl();
-		}
-	}
 
 	/**
 	 * Restituisce la partita giocata da un giocatore

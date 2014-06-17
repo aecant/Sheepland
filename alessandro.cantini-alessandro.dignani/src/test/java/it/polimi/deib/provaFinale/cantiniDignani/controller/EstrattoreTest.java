@@ -36,7 +36,7 @@ public class EstrattoreTest {
 	public void setUp() {
 		List<String> nomi =Arrays.asList("esempio1", "esempio2", "esempio3", "esempio4");
 
-		GestorePartita gestore = new GestorePartita(EstrattoreTest.listaUtenti(nomi), null);
+		GestorePartita gestore = new GestorePartita(EstrattoreTest.listaUtenti(nomi));
 		partita = gestore.getPartita();
 		gestore.getPreparazionePartita().disponiPecore();
 		gestore.getPreparazionePartita().disponiTessereIniziali();
@@ -169,7 +169,7 @@ public class EstrattoreTest {
 	public static List<Utente> listaUtenti(Collection<String> nomi) {
 		List<Utente> listaUtenti = new ArrayList<Utente>();
 		for(String s : nomi) {
-			listaUtenti.add(new Utente(s, "default"));
+			listaUtenti.add(new Utente(s, "default", null));
 		}
 		return listaUtenti;
 	}

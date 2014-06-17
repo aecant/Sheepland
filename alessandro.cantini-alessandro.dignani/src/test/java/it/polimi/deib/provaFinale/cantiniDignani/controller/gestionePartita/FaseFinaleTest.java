@@ -27,7 +27,7 @@ public class FaseFinaleTest {
 	@Before
 	public void setUp() {
 	
-		fase = new FaseFinale(new GestorePartita(EstrattoreTest.listaUtenti(Arrays.asList("esempio1", "esempio2")), null));
+		fase = new FaseFinale(new GestorePartita(EstrattoreTest.listaUtenti(Arrays.asList("esempio1", "esempio2"))));
 		
 		partita = fase.partita;
 		

@@ -15,7 +15,7 @@ import java.net.Socket;
 
 public class ConnessioneClientSocket implements InterfacciaConnessioneClient {
 
-	private final int PORTA = CostantiRete.PORTA_SERVER;
+	private final int PORTA = CostantiRete.PORTA_SERVER_SOCKET;
 	private final String INDIRIZZO = CostantiRete.INDIRIZZO_SERVER;
 
 	private Socket socket;

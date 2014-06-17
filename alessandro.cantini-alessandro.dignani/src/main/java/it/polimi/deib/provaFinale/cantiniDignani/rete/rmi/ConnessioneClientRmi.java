@@ -23,8 +23,8 @@ public class ConnessioneClientRmi implements InterfacciaConnessioneClient, Ascol
 
 	public void inizia() {
 		try {
-			registry = LocateRegistry.getRegistry(CostantiRete.INDIRIZZO_SERVER, CostantiRete.PORTA_SERVER);
-			server = (InterfacciaRmi) registry.lookup(CostantiRete.NOME_SERVER);
+			registry = LocateRegistry.getRegistry(CostantiRete.INDIRIZZO_SERVER, CostantiRete.PORTA_SERVER_RMI);
+			server = (InterfacciaRmi) registry.lookup(CostantiRete.NOME_SERVER_RMI);
 
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

@@ -8,6 +8,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.socket.ConnessioneClientSo
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 import it.polimi.deib.provaFinale.cantiniDignani.view.cli.Cli;
+import it.polimi.deib.provaFinale.cantiniDignani.view.cli.InputCli;
 import it.polimi.deib.provaFinale.cantiniDignani.view.gui.Gui;
 
 public class ClientMain {
@@ -55,19 +56,49 @@ public class ClientMain {
 
 	private static InterfacciaConnessioneClient chiediTipoConnessione() {
 		// TODO test da rimuovere
-		if (CostantiTest.RMI) {
-			return new ConnessioneClientRmi();
+		if (CostantiTest.SCELTA_RETE) {
+			InputCli input = new InputCli(System.in);
+			System.out.println("1) Socket");
+			System.out.println("2) RMI");
+
+			int scelta = input.leggiIntero(1, 2);
+
+			if (scelta == 1) {
+				return new ConnessioneClientRmi();
+			} else {
+				return new ConnessioneClientSocket();
+			}
+
 		} else {
-			return new ConnessioneClientSocket();
+
+			if (CostantiTest.RMI) {
+				return new ConnessioneClientRmi();
+			} else {
+				return new ConnessioneClientSocket();
+			}
 		}
 	}
 
 	private static InterfacciaUtente chiediTipoInterfaccia() {
-		// TODO test da rimuovere
-		if (CostantiTest.CLI) {
-			return new Cli();
+		if (CostantiTest.SCELTA_INTERFACCIA) {
+			InputCli input = new InputCli(System.in);
+			System.out.println("1) CLI");
+			System.out.println("2) GUI");
+
+			int scelta = input.leggiIntero(1, 2);
+
+			if (scelta == 1) {
+				return new Cli();
+			} else {
+				return new Gui();
+			}
+
 		} else {
-			return new Gui();
+			if (CostantiTest.CLI) {
+				return new Cli();
+			} else {
+				return new Gui();
+			}
 		}
 	}
 

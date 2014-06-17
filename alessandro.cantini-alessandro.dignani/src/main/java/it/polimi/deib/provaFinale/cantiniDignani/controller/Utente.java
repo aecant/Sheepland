@@ -1,5 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 
 public class Utente {
@@ -7,11 +9,13 @@ public class Utente {
 	private final String nome;
 	private final String password;
 	private final GestoreCoda<Integer> codaMosse;
+	private InterfacciaConnessioneServer connessione;
 	private boolean online;
 
-	public Utente(String nome, String password) {
+	public Utente(String nome, String password, InterfacciaConnessioneServer connessione) {
 		this.nome = nome;
 		this.password = password;
+		this.connessione = connessione;
 		online = true;
 		codaMosse = new GestoreCoda<Integer>();
 	}
@@ -24,6 +28,10 @@ public class Utente {
 		return password;
 	}
 
+	public GestoreCoda<Integer> getCodaMosse() {
+		return codaMosse;
+	}
+
 	public boolean isOnline() {
 		return online;
 	}
@@ -32,18 +40,18 @@ public class Utente {
 		this.online = online;
 	}
 
-	public Integer aspettaMossa() {
-		return codaMosse.aspetta();
+	public void inviaEvento(Evento evento) {
+		connessione.inviaEvento(evento, this);
 	}
 
-	public void aggiungiMossa(Integer elemento) {
-		codaMosse.aggiungi(elemento);
+	public void setConnessione(InterfacciaConnessioneServer connessione) {
+		this.connessione = connessione;
 	}
 
-	public GestoreCoda<Integer> getCodaMosse() {
-		return codaMosse;
+	public InterfacciaConnessioneServer getConnessione() {
+		return connessione;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

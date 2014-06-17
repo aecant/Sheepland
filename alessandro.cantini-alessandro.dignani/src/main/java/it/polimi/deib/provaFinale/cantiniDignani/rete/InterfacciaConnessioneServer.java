@@ -1,7 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete;
 
-import java.util.List;
-
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 
 public interface InterfacciaConnessioneServer {
@@ -16,10 +15,10 @@ public interface InterfacciaConnessioneServer {
 	 * 
 	 * @param evento
 	 *            l'evento da inviare
-	 * @param giocatori
-	 *            la lista dei giocatori a cui inviare l'evento
+	 * @param giocatore
+	 *            il giocatore a cui inviare l'evento
 	 */
-	void inviaEvento(Evento evento, List<String> giocatori);
+	void inviaEvento(Evento evento, Utente utente);
 
 	/**
 	 * Chiude la connessione

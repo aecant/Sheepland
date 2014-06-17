@@ -21,7 +21,7 @@ public class FasePrincipaleTest {
 
 	@Before
 	public void setUp() {
-		gestore = new GestorePartita(EstrattoreTest.listaUtenti(Arrays.asList("esempio1", "esempio2", "esempio3")), null);
+		gestore = new GestorePartita(EstrattoreTest.listaUtenti(Arrays.asList("esempio1", "esempio2", "esempio3")));
 
 		partita = gestore.getPartita();
 	}

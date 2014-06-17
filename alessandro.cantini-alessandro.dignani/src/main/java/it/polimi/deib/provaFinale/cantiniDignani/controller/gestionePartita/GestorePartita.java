@@ -7,11 +7,9 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.LancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class GestorePartita extends Thread {
@@ -19,7 +17,6 @@ public class GestorePartita extends Thread {
 	private List<Utente> utenti;
 	private final Partita partita;
 	private List<String> tuttiGiocatori;
-	private final InterfacciaConnessioneServer connessione;
 
 	private final PreparazionePartita preparazionePartita;
 	private final FaseIniziale faseIniziale;
@@ -29,17 +26,16 @@ public class GestorePartita extends Thread {
 	public final boolean dueGiocatori;
 	public final int denaroIniziale;
 
-	public GestorePartita(List<Utente> utenti, InterfacciaConnessioneServer connessione) {
-		this.connessione = connessione;
+	public GestorePartita(List<Utente> utenti) {
 		this.utenti = utenti;
-		
+
 		tuttiGiocatori = new ArrayList<String>();
 		for (Utente u : utenti) {
 			tuttiGiocatori.add(u.getNome());
 		}
 
 		partita = new Partita(tuttiGiocatori);
-		
+
 		if (partita.getGiocatori().size() == 2) {
 			dueGiocatori = true;
 			denaroIniziale = Costanti.DENARO_INIZIALE_DUE_GIOCATORI;
@@ -48,7 +44,6 @@ public class GestorePartita extends Thread {
 			denaroIniziale = Costanti.DENARO_INIZIALE;
 		}
 
-	
 		preparazionePartita = new PreparazionePartita(this);
 		faseIniziale = new FaseIniziale(this);
 		fasePrincipale = new FasePrincipale(this);
@@ -74,18 +69,22 @@ public class GestorePartita extends Thread {
 	}
 
 	protected int aspettaMossa(Giocatore giocatore) {
-
-		return getUtente(giocatore).aspettaMossa();
+		return getUtente(giocatore).getCodaMosse().aspetta();
 	}
 
 	protected void inviaEventoATutti(Evento evento) {
-		if (connessione != null) {
-			connessione.inviaEvento(evento, tuttiGiocatori);
+		for (Utente ut : utenti) {
+			if (ut.getConnessione() != null) {
+				ut.inviaEvento(evento);
+			}
 		}
 	}
 
 	protected void inviaEvento(Evento e, Giocatore g) {
-		connessione.inviaEvento(e, Collections.singletonList(g.getNome()));
+		Utente ut = getUtente(g);
+		if(ut.getConnessione() != null) {
+			ut.inviaEvento(e);
+		}
 	}
 
 	protected void pagamento(int somma, Giocatore pagante, Giocatore ricevente) {
@@ -95,10 +94,6 @@ public class GestorePartita extends Thread {
 
 	public Partita getPartita() {
 		return partita;
-	}
-
-	protected InterfacciaConnessioneServer getConnessione() {
-		return connessione;
 	}
 
 	protected List<String> getTuttiGiocatori() {

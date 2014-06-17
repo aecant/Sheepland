@@ -29,7 +29,7 @@ public class PreparazionPartitaTest {
 	public void setUp() {
 		listaNomi = new ArrayList<String>();
 		Collections.addAll(listaNomi, "esempio1", "esempio2", "esempio3", "esempio4");
-		gestore = new GestorePartita(EstrattoreTest.listaUtenti(listaNomi), null);
+		gestore = new GestorePartita(EstrattoreTest.listaUtenti(listaNomi));
 		partita = gestore.getPartita();
 
 		preparazionePartita = gestore.getPreparazionePartita();
@@ -42,7 +42,7 @@ public class PreparazionPartitaTest {
 	@Test
 	public void testDistribuisciDenari() {
 		for (int i = Costanti.NUM_MAX_GIOCATORI; i >= Costanti.NUM_MIN_GIOCATORI; i--) {
-			gestore = new GestorePartita(EstrattoreTest.listaUtenti(listaNomi), null);
+			gestore = new GestorePartita(EstrattoreTest.listaUtenti(listaNomi));
 			partita = gestore.getPartita();
 			preparazionePartita = gestore.getPreparazionePartita();
 			preparazionePartita.distribuisciDenari();

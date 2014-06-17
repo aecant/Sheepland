@@ -11,22 +11,25 @@ import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class ServerSocketImpl implements InterfacciaConnessioneServer {
-	private final int PORTA = CostantiRete.PORTA_SERVER;
+public class ConnessioneServerSocket extends Thread implements InterfacciaConnessioneServer {
+	
+	private final int PORTA = CostantiRete.PORTA_SERVER_SOCKET;
 	private final PrintStream LOGGER = ServerMain.LOGGER;
 
 	private ServerSocket server;
-	private Socket socket;
-	private ExecutorService esecutore;
-	private Map<Utente, GestoreClient> mappaNomiSocket = new Hashtable<Utente, GestoreClient>();
+	private final ExecutorService esecutore = Executors.newCachedThreadPool();
+	private final Map<Utente, GestoreClient> gestoriUtenti = new Hashtable<Utente, GestoreClient>();
 
+	@Override
+	public void run() {
+		inizia();
+	}
+	
 	public void inizia() {
-		esecutore = Executors.newCachedThreadPool();
 
 		try {
 			server = new ServerSocket(PORTA);
@@ -35,12 +38,12 @@ public class ServerSocketImpl implements InterfacciaConnessioneServer {
 			e.printStackTrace();
 			return;
 		}
-		LOGGER.println("Server pronto");
+		LOGGER.println("Server socket pronto");
 		while (true) {
 			try {
-				socket = server.accept();
-				esecutore.submit(new GestoreClient(socket, mappaNomiSocket));
-				
+				Socket socket = server.accept();
+				esecutore.submit(new GestoreClient(socket, this));
+
 				LOGGER.println("Connessione iniziata con " + socket);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -56,27 +59,22 @@ public class ServerSocketImpl implements InterfacciaConnessioneServer {
 		}
 	}
 
-	public void inviaEvento(Evento evento, List<String> giocatori) {
+	public void inviaEvento(Evento evento, Utente utente) {
 
-		for (String giocatore : giocatori) {
-			try {
-				mappaNomiSocket.get(ServerMain.getUtente(giocatore)).inviaEvento(evento);
-				LOGGER.println(evento + " inviato a " + giocatore);
-			} catch (NullPointerException e) {
-				throw new IllegalArgumentException(giocatore + " non presente in " + giocatori);
-			}
-		}
+		gestoriUtenti.get(utente).inviaEvento(evento);
+		LOGGER.println(evento + " inviato a " + utente);
 
 	}
 
 	public void termina() {
-		esecutore.shutdown();
-		try {
-			socket.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		for(Utente u : gestoriUtenti.keySet()) {
+			gestoriUtenti.get(u).terminaConnessione();
 		}
+		esecutore.shutdown();
 	}
-	
+
+	public Map<Utente, GestoreClient> getGestoriUtenti() {
+		return gestoriUtenti;
+	}
+
 }
