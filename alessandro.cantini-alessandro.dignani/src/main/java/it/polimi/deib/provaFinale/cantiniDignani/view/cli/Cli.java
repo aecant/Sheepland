@@ -18,8 +18,10 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class Cli implements InterfacciaUtente {
 	private final InputCli in;
@@ -109,7 +111,16 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void uccisioneLupo(int territorio, TipoAnimale tipoOvino) {
-		out.println("Il lupo ha ucciso " + tipoOvino.nomeGenerico + " "+nelTerr(territorio));
+		out.println("Il lupo ha ucciso " + tipoOvino.nomeGenerico + " " + nelTerr(territorio));
+	}
+
+	public void finePartita(Map<String, Integer> punteggio) {
+		out.println("La partita e' finita!");
+		for (String gioc : punteggio.keySet()) {
+			out.println(gioc + ": " + punteggio.get(gioc) + " punti");
+		}
+		String vincitore = Collections.max(punteggio.keySet());
+		out.println("Ha vinto " + vincitore);
 	}
 
 	public int richiestaPosizioneInizialePastore(boolean[] stradeLibere) {

@@ -37,7 +37,7 @@ public class FaseFinaleTest {
 
 	@Test
 	public void testGetValoriTerritori() {
-		Map<TipoTerritorio, Integer> valori = fase.getValoriTerritori();
+		Map<TipoTerritorio, Integer> valori = fase.valoreTerritori();
 		
 		assertTrue(valori.get(TipoTerritorio.BOSCO) == 0);
 		assertTrue(valori.get(TipoTerritorio.PASCOLO) == 0);
@@ -46,7 +46,7 @@ public class FaseFinaleTest {
 		
 		partita.getGregge().getPecoraNera().muoviIn(t1);
 		
-		valori = fase.getValoriTerritori();
+		valori = fase.valoreTerritori();
 		
 		assertTrue(valori.get(TipoTerritorio.DESERTO) == 4);
 		

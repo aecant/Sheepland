@@ -8,6 +8,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public interface InterfacciaUtente {
 
@@ -178,6 +179,14 @@ public interface InterfacciaUtente {
 	 *            il tipo dell'ovino ucciso
 	 */
 	void uccisioneLupo(int territorio, TipoAnimale tipoOvino);
+
+	/**
+	 * Presenta il punteggio finale della partita e comunica il vincitore
+	 * 
+	 * @param punteggio
+	 *            la mappa che contiene il punteggio di ogni giocatore
+	 */
+	void finePartita(Map<String, Integer> punteggio);
 
 	/**
 	 * L'utente sceglie la strada su cui posizionare il pastore all'inizio della

@@ -13,6 +13,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public class Gui implements InterfacciaUtente {
 	private FinestraChiediNome fcn;
@@ -116,6 +117,11 @@ public class Gui implements InterfacciaUtente {
 
 	}
 
+	public void finePartita(Map<String, Integer> punteggio) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	public void acquistoTessera(String giocatore, Tessera tessera) {
 		// TODO Auto-generated method stub
 
