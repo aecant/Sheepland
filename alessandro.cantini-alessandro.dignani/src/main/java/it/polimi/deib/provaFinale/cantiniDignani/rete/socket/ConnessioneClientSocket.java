@@ -1,11 +1,11 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete.socket;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.GestoreCoda;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 
 import java.io.IOError;
 import java.io.IOException;

@@ -1,8 +1,8 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Coppia;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 
 import java.util.List;
 

@@ -5,6 +5,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClie
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ConnessioneClientRmi;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.socket.ConnessioneClientSocket;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 import it.polimi.deib.provaFinale.cantiniDignani.view.cli.Cli;
 import it.polimi.deib.provaFinale.cantiniDignani.view.gui.Gui;

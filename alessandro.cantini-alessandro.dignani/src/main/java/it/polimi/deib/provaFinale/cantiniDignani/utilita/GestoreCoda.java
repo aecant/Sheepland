@@ -1,4 +1,4 @@
-package it.polimi.deib.provaFinale.cantiniDignani.controller;
+package it.polimi.deib.provaFinale.cantiniDignani.utilita;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;

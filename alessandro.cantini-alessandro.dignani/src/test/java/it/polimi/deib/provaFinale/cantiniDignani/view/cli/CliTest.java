@@ -1,10 +1,10 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.cli;
 
 import static org.junit.Assert.assertEquals;
-import static it.polimi.deib.provaFinale.cantiniDignani.controller.Coppia.*;
 import static it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale.*;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.Coppia;
+import static it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia.*;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

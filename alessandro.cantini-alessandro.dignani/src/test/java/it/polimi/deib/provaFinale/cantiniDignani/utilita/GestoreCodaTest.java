@@ -1,9 +1,10 @@
-package it.polimi.deib.provaFinale.cantiniDignani.controller;
+package it.polimi.deib.provaFinale.cantiniDignani.utilita;
 
 import static org.junit.Assert.*;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.LancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPecora;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 
 import org.junit.Before;
 import org.junit.Test;

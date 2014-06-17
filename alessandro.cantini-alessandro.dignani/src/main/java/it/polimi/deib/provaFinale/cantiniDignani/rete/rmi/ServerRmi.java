@@ -1,11 +1,11 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete.rmi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.GestoreCoda;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Richiesta;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 
 import java.rmi.NoSuchObjectException;
 import java.rmi.NotBoundException;
