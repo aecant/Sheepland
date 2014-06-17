@@ -77,8 +77,8 @@ public class Sorte {
 	 *             se min e' maggiore o uguale a max
 	 */
 	public static int numeroCasuale(int min, int max) throws IllegalArgumentException {
-		if (min >= max) {
-			throw new IllegalArgumentException("il primo parametro deve essere minore del secondo");
+		if (min > max) {
+			throw new IllegalArgumentException("il primo parametro deve essere minore o uguale al secondo");
 		}
 
 		return new Random().nextInt(max - min + 1) + min;

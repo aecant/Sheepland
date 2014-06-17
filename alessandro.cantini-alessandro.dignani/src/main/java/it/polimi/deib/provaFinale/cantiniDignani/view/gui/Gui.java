@@ -107,7 +107,6 @@ public class Gui implements InterfacciaUtente {
 
 	public void movimentoPastore(String giocatore, int origine, int destinazione) {
 		// TODO Auto-generated method stub
-
 	}
 
 	public void movimentoLupo(int origine, int destinazione) {
@@ -130,8 +129,8 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void trasformazioneAgnello(boolean maschio, Integer territorio) {
-		// TODO Auto-generated method stub
-
+		getFinestraPartita().getMappa().territoriView.get(territorio).aggiorna();
+		getFinestraPartita().getMappa().territoriView.get(territorio).disegna();
 	}
 
 	public void pagamento(Integer denaro, String pagante, String pagato) {

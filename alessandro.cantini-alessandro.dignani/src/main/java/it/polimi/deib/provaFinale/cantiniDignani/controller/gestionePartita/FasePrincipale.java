@@ -18,10 +18,10 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
-import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FasePrincipale extends FasePartita {
@@ -135,7 +135,8 @@ public class FasePrincipale extends FasePartita {
 				}
 			}
 			if(!pecoreSulTerr.isEmpty()) {
-				Pecora uccisa = pecoreSulTerr.get(Sorte.numeroCasuale(0, pecoreSulTerr.size()-1));
+				Collections.shuffle(pecoreSulTerr);
+				Pecora uccisa = pecoreSulTerr.get(0);
 				partita.getGregge().rimuovi(uccisa);
 				gestore.inviaEventoATutti(new UccisioneLupo(destinazione.getCodice(),uccisa.getTipoAnimale(), Estrattore.datiTerritori(partita)));
 			}
