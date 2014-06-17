@@ -1,6 +1,5 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.model.ColorePastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
@@ -48,7 +47,7 @@ public class MappaView extends BackgroundMappaPanel {
 		}
 
 		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
-			territoriView.add(new TerritorioView(i, coordinateTerritori[i], ClientMain.getDatiPartita().getTerritori()[i]));
+			territoriView.add(new TerritorioView(i, coordinateTerritori[i]));
 		}
 	}
 

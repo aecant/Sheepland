@@ -103,7 +103,7 @@ public class Cli implements InterfacciaUtente {
 
 	public void trasformazioneAgnello(boolean maschio, Integer territorio) {
 		TipoAnimale adulto = maschio ? TipoAnimale.MONTONE : TipoAnimale.PECORA;
-		out.println("Un agnello e' diventato " + adulto.nomeGenerico + nelTerr(territorio, "."));
+		out.println("Un agnello e' diventato " + adulto.nomeGenerico + " " + nelTerr(territorio, "."));
 	}
 
 	public void pagamento(Integer denaro, String pagante, String pagato) {
