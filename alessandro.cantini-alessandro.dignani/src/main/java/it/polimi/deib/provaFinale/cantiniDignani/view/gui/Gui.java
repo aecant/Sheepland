@@ -3,12 +3,11 @@ package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 
 import java.util.Collection;
@@ -19,10 +18,7 @@ public class Gui implements InterfacciaUtente {
 	private FinestraChiediNome fcn;
 	static PartitaView finestraPartita;
 	boolean messErrore = false;
-
-	// Tempornei
-	static public Partita part;
-	static public GestorePartita gest;
+	private static GestoreCoda<Integer> coda = new GestoreCoda<Integer>();
 
 	public Gui() {
 	}
@@ -103,7 +99,7 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void movimentoPecoraNera(int origine, int destinazione) {
-		getFinestraPartita().getMappa().movimentoPecoraNera(destinazione);
+		getFinestraPartita().getMappa().movimentoPecoraNera(origine, destinazione);
 	}
 
 	public void movimentoPastore(String giocatore, int origine, int destinazione) {
@@ -111,7 +107,7 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void movimentoLupo(int origine, int destinazione) {
-		getFinestraPartita().getMappa().movimentoLupo(destinazione);
+		getFinestraPartita().getMappa().movimentoLupo(origine, destinazione);
 	}
 
 	public void finePartita(Map<String, Integer> punteggio) {
@@ -141,17 +137,16 @@ public class Gui implements InterfacciaUtente {
 
 	public void pagamento(Integer denaro, String pagante, String pagato) {
 		// TODO Auto-generated method stub
-
 	}
 
 	public void uccisioneLupo(int territorio, TipoAnimale tipoOvino) {
-		// TODO Auto-generated method stub
-
+		getFinestraPartita().getMappa().territoriView.get(territorio).aggiorna();
+		getFinestraPartita().getMappa().territoriView.get(territorio).disegna();
 	}
 
 	public int richiestaPosizioneInizialePastore(boolean[] stradeLibere) {
-		// TODO Auto-generated method stub
-		return 0;
+		finestraPartita.getMappa().inserisciSegnaliniIniziali(stradeLibere);
+		return coda.aspetta();
 	}
 
 	public int richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento) {
@@ -189,4 +184,9 @@ public class Gui implements InterfacciaUtente {
 		return 0;
 	}
 
+	public static GestoreCoda<Integer> getCoda() {
+		return coda;
+	}
+
+	
 }

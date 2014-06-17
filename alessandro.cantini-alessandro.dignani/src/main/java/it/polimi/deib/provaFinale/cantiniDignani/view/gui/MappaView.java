@@ -14,13 +14,12 @@ public class MappaView extends BackgroundMappaPanel {
 
 	private static final long serialVersionUID = 7034340670757736701L;
 
-	Point[][] coordinateTerritori;
-	Point[] coordinateStrade;
+	protected Point[][] coordinateTerritori;
+	protected Point[] coordinateStrade;
 	
-	PecoraNeraView pecoraNera;
-	LupoView lupo;
+	protected List<SegnalinoStrada> segnalini = new ArrayList<SegnalinoStrada>();
 
-	List<TerritorioView> territoriView = new ArrayList<TerritorioView>();
+	protected List<TerritorioView> territoriView = new ArrayList<TerritorioView>();
 
 	public MappaView() {
 		super(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "mappaSheepland.png")
@@ -51,35 +50,7 @@ public class MappaView extends BackgroundMappaPanel {
 		}
 	}
 
-	public void creaPecora(Point coordinate, int n) {
-		PecoraView pecor = new PecoraView(coordinate.x - (CostantiGui.DIMENSIONE_PECORA.width / 2), coordinate.y - (CostantiGui.DIMENSIONE_PECORA.height / 2), n);
-		add(pecor);
-		pecor.getParent().repaint();
-	}
-
-	public void creaMontone(Point coordinate, int n) {
-		MontoneView mont = new MontoneView(coordinate.x - (CostantiGui.DIMENSIONE_MONTONE.width / 2), coordinate.y - (CostantiGui.DIMENSIONE_MONTONE.height / 2), n);
-		add(mont);
-		mont.getParent().repaint();
-	}
-
-	public void creaAgnello(Point coordinate, int n) {
-		AgnelloView agn = new AgnelloView(coordinate.x - (CostantiGui.DIMENSIONE_AGNELLO.width / 2), coordinate.y - (CostantiGui.DIMENSIONE_AGNELLO.height / 2), n);
-		add(agn);
-		agn.getParent().repaint();
-	}
-
-	public void creaPecoraNera(Point coordinate) {
-		pecoraNera = new PecoraNeraView(coordinate.x - (CostantiGui.DIMENSIONE_PECORA.width / 2), coordinate.y - (CostantiGui.DIMENSIONE_PECORA.height / 2));
-		add(pecoraNera);
-		pecoraNera.getParent().repaint();
-	}
-
-	public void creaLupo(Point coordinate) {
-		lupo = new LupoView(coordinate.x - (CostantiGui.DIMENSIONE_LUPO.width / 2), coordinate.y - (CostantiGui.DIMENSIONE_LUPO.height / 2));
-		add(lupo);
-		lupo.getParent().repaint();
-	}
+	
 
 	public void creaPastore(int strada, ColorePastore colore) {
 		Point coordinataStrada = coordinateStrade[strada];
@@ -118,24 +89,39 @@ public class MappaView extends BackgroundMappaPanel {
 		
 		territoriView.get(origine).aggiorna();
 		territoriView.get(origine).disegna();
+		add(pedina);
 		pedina.muovi(dest);
+		remove(pedina);
 		territoriView.get(destinazione).aggiorna();
 		territoriView.get(destinazione).disegna();
 	}
 
-	public PecoraNeraView getPecoraNera() {
-		return pecoraNera;
+	public void movimentoPecoraNera(int origine, int destinazione) {
+		territoriView.get(origine).getPecoraNera().muovi(territoriView.get(destinazione).getCoordinate(TipoAnimale.PECORA_NERA));
+		territoriView.get(origine).aggiorna();
+		territoriView.get(origine).disegna();
+		territoriView.get(destinazione).aggiorna();
+		territoriView.get(destinazione).disegna();
 	}
 
-	public void setPecoraNera(PecoraNeraView pecoraNera) {
-		this.pecoraNera = pecoraNera;
+	public void movimentoLupo(int origine, int destinazione) {
+		territoriView.get(origine).getLupo().muovi(territoriView.get(destinazione).getCoordinate(TipoAnimale.LUPO));
+		territoriView.get(origine).aggiorna();
+		territoriView.get(origine).disegna();
+		territoriView.get(destinazione).aggiorna();
+		territoriView.get(destinazione).disegna();
 	}
 
-	public void movimentoPecoraNera(int destinazione) {
-		pecoraNera.muovi(territoriView.get(destinazione).getCoordinate(TipoAnimale.PECORA_NERA));
-	}
 
-	public void movimentoLupo(int destinazione) {
-		lupo.muovi(territoriView.get(destinazione).getCoordinate(TipoAnimale.PECORA_NERA));
+
+	public void inserisciSegnaliniIniziali(boolean[] stradeLibere) {
+		for(int i = 0; i < Costanti.NUM_STRADE; i++) {
+			if(stradeLibere[i]) {
+				SegnalinoStrada segnalinoTemp = new SegnalinoStrada(coordinateStrade[i], false, i);
+				segnalini.add(segnalinoTemp);
+				add(segnalinoTemp);
+				repaint();
+			}
+		}
 	}
 }

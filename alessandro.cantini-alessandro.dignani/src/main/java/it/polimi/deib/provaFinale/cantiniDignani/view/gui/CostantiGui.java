@@ -10,10 +10,10 @@ import java.awt.Toolkit;
 
 public class CostantiGui {
 
-	public static final boolean SCHERMO_INTERO = true;
+	public static final boolean SCHERMO_INTERO = false;
 	
 	// Risoluzione spostamento
-	public static int NUM_PASSI_SPOSTAMENTO = 100;
+	public static int NUM_PASSI_SPOSTAMENTO = 60;
 
 	public static String PERCORSO_IMMAGINI = new String("immagini/");
 
@@ -152,6 +152,9 @@ public class CostantiGui {
 
 	// Panel mosse
 	public static final Dimension DIMENSIONE_PANEL_MOSSA = new Dimension(DIMENSIONE_PANEL_GIOCATORE.width, 80);
+	
+	// Segnalini Strade
+	public static final Dimension DIMENSIONE_SEGNALINO_STRADA = new Dimension(DIMENSIONE_MAPPA.height / 20, DIMENSIONE_MAPPA.height / 20);
 
 	// Fonts
 	public static final Font FONT_PULSANTI_MOSSE = new Font("Chalkduster", Font.PLAIN, 18);
