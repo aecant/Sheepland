@@ -14,11 +14,11 @@ public class SegnalinoStrada extends JPanel {
 
 	private static final long serialVersionUID = 5190080600406868477L;
 	
-	int codTerr;
+	int codStrada;
 	JLabel lblImmagine;
 	
-	public SegnalinoStrada(Point posizione, boolean aPagamento, int codTerr) {
-		this.codTerr = codTerr;
+	public SegnalinoStrada(Point posizione, boolean aPagamento, int codStrada) {
+		this.codStrada = codStrada;
 		this.setLayout(null);
 		this.setBounds((posizione.x - CostantiGui.DIMENSIONE_SEGNALINO_STRADA.width / 2), (posizione.y - CostantiGui.DIMENSIONE_SEGNALINO_STRADA.height / 2), CostantiGui.DIMENSIONE_SEGNALINO_STRADA.width, CostantiGui.DIMENSIONE_SEGNALINO_STRADA.height);
 		this.setOpaque(false);
@@ -56,6 +56,6 @@ public class SegnalinoStrada extends JPanel {
 	}
 
 	public int getCodTerr() {
-		return codTerr;
+		return codStrada;
 	}
 }
