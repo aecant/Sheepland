@@ -1,5 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete;
 
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
+
 
 public interface InterfacciaConnessioneClient {
 
@@ -13,7 +15,7 @@ public interface InterfacciaConnessioneClient {
 	 * 
 	 * @param nome
 	 */
-	void registraGiocatore(String nome) throws NomeGiaPresenteException;
+	void registraGiocatore(Coppia<String, String> nomeEPassword) throws NomeGiaPresenteException;
 
 	/**
 	 * Invia una mossa al server

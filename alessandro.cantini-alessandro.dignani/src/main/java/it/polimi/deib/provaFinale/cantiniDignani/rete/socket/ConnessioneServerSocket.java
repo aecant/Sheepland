@@ -22,7 +22,7 @@ public class ConnessioneServerSocket extends Thread implements InterfacciaConnes
 
 	private ServerSocket server;
 	private final ExecutorService esecutore = Executors.newCachedThreadPool();
-	private final Map<Utente, GestoreClient> gestoriUtenti = new Hashtable<Utente, GestoreClient>();
+	private final Map<Utente, GestoreClientSocket> gestoriUtenti = new Hashtable<Utente, GestoreClientSocket>();
 
 	@Override
 	public void run() {
@@ -42,7 +42,7 @@ public class ConnessioneServerSocket extends Thread implements InterfacciaConnes
 		while (true) {
 			try {
 				Socket socket = server.accept();
-				esecutore.submit(new GestoreClient(socket, this));
+				esecutore.submit(new GestoreClientSocket(socket, this));
 
 				LOGGER.println("Connessione iniziata con " + socket);
 			} catch (IOException e) {
@@ -73,7 +73,7 @@ public class ConnessioneServerSocket extends Thread implements InterfacciaConnes
 		esecutore.shutdown();
 	}
 
-	public Map<Utente, GestoreClient> getGestoriUtenti() {
+	public Map<Utente, GestoreClientSocket> getGestoriUtenti() {
 		return gestoriUtenti;
 	}
 

@@ -32,8 +32,8 @@ public class ServerMain {
 		connessioneSocket.start();
 	}
 
-	public static synchronized boolean aggiungiUtente(String nome, InterfacciaConnessioneServer connessione) {
-		Utente utente = new Utente(nome, "", connessione);
+	public static synchronized boolean aggiungiUtente(String nome, String password,InterfacciaConnessioneServer connessione) {
+		Utente utente = new Utente(nome, password, connessione);
 		if (utenteGiaRegistrato(utente)) {
 			return false;
 		}

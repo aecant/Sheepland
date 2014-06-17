@@ -5,6 +5,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 
 import java.io.IOError;
@@ -40,10 +41,10 @@ public class ConnessioneClientSocket implements InterfacciaConnessioneClient {
 
 	}
 
-	public void registraGiocatore(String nome) throws NomeGiaPresenteException {
+	public void registraGiocatore(Coppia<String, String> nomeEPassword) throws NomeGiaPresenteException {
 		try {
 			out.reset();
-			out.writeObject(nome);
+			out.writeObject(nomeEPassword);
 			out.flush();
 			Character rispostaServer = (Character) in.readObject();
 			if (rispostaServer == CostantiSocket.NOME_GIA_PRESENTE) {
