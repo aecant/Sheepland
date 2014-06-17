@@ -155,8 +155,8 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public int richiestaPastore() {
-		// TODO Auto-generated method stub
-		return 0;
+		finestraPartita.getMappa().aggiungiSegnaliniPastori();
+		return coda.aspetta();
 	}
 
 	public int richiestaTerritorioPerAccoppiamento(Collection<Integer> territoriDisponibili) {

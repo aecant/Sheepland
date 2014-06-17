@@ -15,31 +15,26 @@ public class PastoreView extends PedinaView {
 	private static final long serialVersionUID = -335615034409783586L;
 
 	private JLabel immagine;
+	int codStrada;
 
-	public PastoreView(int posizioneX, int posizioneY, ColorePastore colore) {
+	public PastoreView(int posizioneX, int posizioneY, ColorePastore colore, int codStrada) {
 		super(posizioneX, posizioneY, CostantiGui.DIMENSIONE_PASTORE);
 
-		//setPreferredSize(CostantiGui.DIMENSIONE_PASTORE);
+		this.codStrada = codStrada;
 		
 		String percorso = CostantiGui.PERCORSO_IMMAGINI;
-		
-		switch(colore) {
-		case BLU: percorso += "pedina_blu.png";
-		break;
-		case ROSSO: percorso += "pedina_rosso.png";
-		break;
-		case GIALLO: percorso += "pedina_giallo.png";
-		break;
-		case VERDE: percorso += "pedina_verde.png";
-		break;
-		}
+		percorso += "pedina_" + colore + ".png";
 		
 		immagine = new JLabel(new ImageIcon(Toolkit.getDefaultToolkit().getImage(percorso).getScaledInstance(CostantiGui.DIMENSIONE_PASTORE.width, CostantiGui.DIMENSIONE_PASTORE.height, Image.SCALE_SMOOTH)));
 		immagine.setBounds(new Rectangle(new Point(0, 0), CostantiGui.DIMENSIONE_PASTORE));
 		add(immagine);
 	}
 	
-	public PastoreView(Point coordinate, ColorePastore colore) {
-		this(coordinate.x, coordinate.y, colore);
+	public PastoreView(Point coordinate, ColorePastore colore, int codStrada) {
+		this(coordinate.x, coordinate.y, colore, codStrada);
+	}
+
+	public int getCodStrada() {
+		return codStrada;
 	}
 }

@@ -1,7 +1,9 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.model.ColorePastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 
 import java.awt.Image;
@@ -18,8 +20,8 @@ public class MappaView extends BackgroundMappaPanel {
 	protected Point[] coordinateStrade;
 	
 	protected List<SegnalinoStrada> segnalini = new ArrayList<SegnalinoStrada>();
-
 	protected List<TerritorioView> territoriView = new ArrayList<TerritorioView>();
+	protected List<PastoreView> pastori = new ArrayList<PastoreView>();
 
 	public MappaView() {
 		super(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "mappaSheepland.png")
@@ -54,7 +56,8 @@ public class MappaView extends BackgroundMappaPanel {
 
 	public void creaPastore(int strada, ColorePastore colore) {
 		Point coordinataStrada = coordinateStrade[strada];
-		PastoreView past = new PastoreView(coordinataStrada.x - (CostantiGui.DIMENSIONE_PASTORE.width / 2), coordinataStrada.y - (CostantiGui.DIMENSIONE_PASTORE.height / 2), colore);
+		PastoreView past = new PastoreView(coordinataStrada.x - (CostantiGui.DIMENSIONE_PASTORE.width / 2), coordinataStrada.y - (CostantiGui.DIMENSIONE_PASTORE.height / 2), colore, strada);
+		pastori.add(past);
 		add(past);
 		past.getParent().repaint();
 	}
@@ -122,6 +125,17 @@ public class MappaView extends BackgroundMappaPanel {
 				add(segnalinoTemp);
 				repaint();
 			}
+		}
+	}
+
+
+
+	public void aggiungiSegnaliniPastori() {
+		for(Pastore p : ClientMain.getDatiPartita().getGiocatore(ClientMain.getDatiPartita().getGiocatoreDiTurno()).getPastori()) {
+			SegnalinoStrada segnalinoTemp = new SegnalinoStrada(coordinateStrade[p.getStrada().getCodice()], false, p.getStrada().getCodice());
+			segnalini.add(segnalinoTemp);
+			add(segnalinoTemp);
+			repaint();
 		}
 	}
 }

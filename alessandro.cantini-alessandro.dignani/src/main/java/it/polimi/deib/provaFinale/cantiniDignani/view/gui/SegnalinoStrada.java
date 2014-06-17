@@ -43,7 +43,7 @@ public class SegnalinoStrada extends JPanel {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
 				Component c = e.getComponent();
 				if(c  instanceof SegnalinoStrada) {
-					Gui.getCoda().aggiungi(((SegnalinoStrada) c).getCodTerr());
+					Gui.getCoda().aggiungi(((SegnalinoStrada) c).getCodStrada());
 					for(SegnalinoStrada s : Gui.getFinestraPartita().getMappa().segnalini) {
 						Gui.getFinestraPartita().getMappa().remove(s);
 					}
@@ -55,7 +55,7 @@ public class SegnalinoStrada extends JPanel {
 		});
 	}
 
-	public int getCodTerr() {
+	public int getCodStrada() {
 		return codStrada;
 	}
 }
