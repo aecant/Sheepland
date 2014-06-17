@@ -1,10 +1,10 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete.socket;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.GestoreCoda;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 
 import java.io.IOException;
 import java.io.PrintStream;
