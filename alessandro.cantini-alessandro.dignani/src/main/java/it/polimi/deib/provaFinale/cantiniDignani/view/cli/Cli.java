@@ -1,6 +1,10 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.cli;
 
-import static it.polimi.deib.provaFinale.cantiniDignani.utilita.UtilitaStringhe.*;
+import static it.polimi.deib.provaFinale.cantiniDignani.utilita.UtilitaStringhe.daA;
+import static it.polimi.deib.provaFinale.cantiniDignani.utilita.UtilitaStringhe.listaDiInteri;
+import static it.polimi.deib.provaFinale.cantiniDignani.utilita.UtilitaStringhe.listaDiStringhe;
+import static it.polimi.deib.provaFinale.cantiniDignani.utilita.UtilitaStringhe.menuDiScelta;
+import static it.polimi.deib.provaFinale.cantiniDignani.utilita.UtilitaStringhe.nelTerr;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
@@ -18,7 +22,6 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -119,7 +122,7 @@ public class Cli implements InterfacciaUtente {
 		for (String gioc : punteggio.keySet()) {
 			out.println(gioc + ": " + punteggio.get(gioc) + " punti");
 		}
-		String vincitore = Collections.max(punteggio.keySet());
+		String vincitore = ""; //TODO implementare il vincitore
 		out.println("Ha vinto " + vincitore);
 	}
 

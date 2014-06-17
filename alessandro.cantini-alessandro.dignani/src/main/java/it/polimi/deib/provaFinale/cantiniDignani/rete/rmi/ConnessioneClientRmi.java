@@ -37,7 +37,7 @@ public class ConnessioneClientRmi implements InterfacciaConnessioneClient, Ascol
 
 	public void registraGiocatore(String nome) throws NomeGiaPresenteException {
 		try {
-			server.registraGiocatore(nome);
+			server.registraGiocatore(nome, ""); //TODO da aggiungere la password
 			ascoltatore = (AscoltatoreEventiRmi) UnicastRemoteObject.exportObject(this, 0);
 			server.aggiungiAscoltatore(nome, ascoltatore);
 		} catch (RemoteException e) {
@@ -53,7 +53,7 @@ public class ConnessioneClientRmi implements InterfacciaConnessioneClient, Ascol
 
 	public void inviaMossa(Integer mossaScelta) {
 		try {
-			server.riceviMossa(mossaScelta);
+			server.riceviMossa(ClientMain.getNome(), mossaScelta);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 import java.util.Map;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.EstrattoreTest;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.FaseFinale;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
@@ -25,14 +26,15 @@ public class FaseFinaleTest {
 
 	@Before
 	public void setUp() {
-		partita = new Partita(Arrays.asList("esempio1", "esempio2"));
+	
+		fase = new FaseFinale(new GestorePartita(EstrattoreTest.listaUtenti(Arrays.asList("esempio1", "esempio2")), null));
+		
+		partita = fase.partita;
 		
 		partita.getGregge().aggiungi(Sorte.pecoraRandom(t1));
 		partita.getGregge().aggiungi(Sorte.pecoraRandom(t2));
 		partita.getGregge().aggiungi(Sorte.pecoraRandom(t3));
 		
-		fase = new FaseFinale(new GestorePartita(partita, null, null));
-
 	}
 
 	@Test

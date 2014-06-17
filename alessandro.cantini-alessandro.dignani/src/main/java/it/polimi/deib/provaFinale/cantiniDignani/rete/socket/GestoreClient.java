@@ -1,8 +1,8 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete.socket;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
-import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 
 import java.io.IOError;
 import java.io.IOException;
@@ -18,11 +18,11 @@ public class GestoreClient extends Thread {
 	private Socket socket;
 	private ObjectInputStream in;
 	private ObjectOutputStream out;
-	private GestoreCoda<Integer> codaMosse;
 	private AscoltatoreSocket<Integer> ascoltatoreMosse;
-	private Map<String, GestoreClient> mappaNomiSocket;
+	private Map<Utente, GestoreClient> mappaNomiSocket;
+	private Utente utente;
 
-	public GestoreClient(Socket socket, GestoreCoda<Integer> codaMosse, Map<String, GestoreClient> mappaNomiSocket) {
+	public GestoreClient(Socket socket, Map<Utente, GestoreClient> mappaNomiSocket) {
 		this.socket = socket;
 		try {
 			out = new ObjectOutputStream(socket.getOutputStream());
@@ -31,7 +31,6 @@ public class GestoreClient extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.codaMosse = codaMosse;
 		this.mappaNomiSocket = mappaNomiSocket;
 	}
 
@@ -42,7 +41,7 @@ public class GestoreClient extends Thread {
 	}
 
 	private void riceviMosse() {
-		ascoltatoreMosse = new AscoltatoreSocket<Integer>(in, codaMosse);
+		ascoltatoreMosse = new AscoltatoreSocket<Integer>(in, utente.getCodaMosse());
 		ascoltatoreMosse.start();
 	}
 
@@ -57,16 +56,19 @@ public class GestoreClient extends Thread {
 		}
 	}
 
-	private void registrazioneGiocatore() throws IOError {
+	private void registrazioneGiocatore() {
 		try {
 			Object oggettoNome = in.readObject();
 			if (!(oggettoNome instanceof String)) {
 				throw new IOError(null);
 			}
 			String nome = (String) oggettoNome;
-			if (ServerMain.aggiungiGiocatore(nome)) {
+			out.reset();
+			if (ServerMain.aggiungiUtente(nome, "")) { // TODO da aggiungere la
+														// password
 				out.writeObject(CostantiSocket.REGISTRAZIONE_OK);
-				mappaNomiSocket.put(nome, this);
+				utente = ServerMain.getUtente(nome);
+				mappaNomiSocket.put(utente, this);
 				LOGGER.println(nome + " registrato");
 			} else {
 				out.writeObject(CostantiSocket.NOME_GIA_PRESENTE);

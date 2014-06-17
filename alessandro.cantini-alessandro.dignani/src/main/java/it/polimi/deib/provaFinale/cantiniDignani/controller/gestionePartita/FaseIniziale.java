@@ -22,15 +22,15 @@ public class FaseIniziale extends FasePartita {
 	}
 
 	private void giroPosizionamentoPastore(int numPastore) {
-		for (Giocatore g : partita.getGiocatori()) {
+		for (Giocatore giocatore : partita.getGiocatori()) {
 			boolean[] stradeLibere = Estrattore.stradeLibere(partita);
-			gestore.inviaEvento(new RichiestaPosizioneInizialePastore(stradeLibere), g);
-			int codStrada = gestore.aspettaMossa();
+			gestore.inviaEvento(new RichiestaPosizioneInizialePastore(stradeLibere), giocatore);
+			int codStrada = gestore.aspettaMossa(giocatore);
 
 			Strada strada = Mappa.getMappa().getStrade()[codStrada];
-			g.getPastori().get(numPastore).muoviIn(strada);
+			giocatore.getPastori().get(numPastore).muoviIn(strada);
 
-			gestore.inviaEventoATutti(new PosizionamentoPastore(g.getNome(), codStrada, Estrattore.giocatori(partita)));
+			gestore.inviaEventoATutti(new PosizionamentoPastore(giocatore.getNome(), codStrada, Estrattore.giocatori(partita)));
 
 		}
 	}

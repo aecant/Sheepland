@@ -1,10 +1,10 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete.socket;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
-import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -23,13 +23,7 @@ public class ServerSocketImpl implements InterfacciaConnessioneServer {
 	private ServerSocket server;
 	private Socket socket;
 	private ExecutorService esecutore;
-	private Map<String, GestoreClient> mappaNomiSocket = new Hashtable<String, GestoreClient>();
-
-	private GestoreCoda<Integer> codaMosse;
-
-	public ServerSocketImpl(GestoreCoda<Integer> gestoreCoda) {
-		this.codaMosse = gestoreCoda;
-	}
+	private Map<Utente, GestoreClient> mappaNomiSocket = new Hashtable<Utente, GestoreClient>();
 
 	public void inizia() {
 		esecutore = Executors.newCachedThreadPool();
@@ -45,9 +39,8 @@ public class ServerSocketImpl implements InterfacciaConnessioneServer {
 		while (true) {
 			try {
 				socket = server.accept();
-				esecutore.submit(new GestoreClient(socket, codaMosse, mappaNomiSocket));
-				// new GestoreClient(socket, codaMosse,
-				// mappaNomiSocket).start();
+				esecutore.submit(new GestoreClient(socket, mappaNomiSocket));
+				
 				LOGGER.println("Connessione iniziata con " + socket);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -64,13 +57,13 @@ public class ServerSocketImpl implements InterfacciaConnessioneServer {
 	}
 
 	public void inviaEvento(Evento evento, List<String> giocatori) {
-	
+
 		for (String giocatore : giocatori) {
 			try {
-				mappaNomiSocket.get(giocatore).inviaEvento(evento);
+				mappaNomiSocket.get(ServerMain.getUtente(giocatore)).inviaEvento(evento);
 				LOGGER.println(evento + " inviato a " + giocatore);
 			} catch (NullPointerException e) {
-				throw new NullPointerException(giocatore + " non presente in " + giocatori);
+				throw new IllegalArgumentException(giocatore + " non presente in " + giocatori);
 			}
 		}
 
@@ -85,5 +78,5 @@ public class ServerSocketImpl implements InterfacciaConnessioneServer {
 			e.printStackTrace();
 		}
 	}
-
+	
 }

@@ -8,10 +8,10 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ServerRmi;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.socket.ServerSocketImpl;
-import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 import it.polimi.deib.provaFinale.cantiniDignani.view.cli.CostantiCli;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -19,8 +19,7 @@ public class ServerMain {
 	public final static PrintStream LOGGER = CostantiCli.DEFAULT_OUTPUT;
 
 	private static final List<GestorePartita> gestoriPartita = new Vector<GestorePartita>();
-	private static final List<String> giocatoriInAttesa = new Vector<String>();
-	private static final GestoreCoda<Integer> gestoreEventi = new GestoreCoda<Integer>();
+	private static final List<Utente> utentiInAttesa = new Vector<Utente>();
 	private static final TimerPartita timerPartita = new TimerPartita(CostantiRete.MILLISECONDI_TIMER_PARTITA);
 
 	private static InterfacciaConnessioneServer connessione;
@@ -32,18 +31,20 @@ public class ServerMain {
 		connessione.inizia();
 	}
 
-	public static synchronized boolean aggiungiGiocatore(String nome) {
-		if (nomeGiaRegistrato(nome)) {
+	public static synchronized boolean aggiungiUtente(String nome, String password) {
+		Utente utente = new Utente(nome, password);
+		if (utenteGiaRegistrato(utente)) {
 			return false;
 		}
+		
+		utentiInAttesa.add(utente);
+		LOGGER.println(utente + "registrato");
 
-		giocatoriInAttesa.add(nome);
-
-		if (giocatoriInAttesa.size() == Costanti.NUM_MAX_GIOCATORI) {
+		if (utentiInAttesa.size() == Costanti.NUM_MAX_GIOCATORI) {
 			iniziaPartita();
 		}
 
-		if (giocatoriInAttesa.size() >= Costanti.NUM_MIN_GIOCATORI) {
+		if (utentiInAttesa.size() >= Costanti.NUM_MIN_GIOCATORI) {
 			timerPartita.inizia();
 		}
 
@@ -52,16 +53,22 @@ public class ServerMain {
 
 	public synchronized static void iniziaPartita() {
 
-		if (giocatoriInAttesa.size() < 2 || giocatoriInAttesa.size() > Costanti.NUM_MAX_GIOCATORI) {
-			throw new SheeplandException("La partita non puo' iniziare con " + giocatoriInAttesa.size() + "giocatori");
+		if (utentiInAttesa.size() < 2 || utentiInAttesa.size() > Costanti.NUM_MAX_GIOCATORI) {
+			throw new SheeplandException("La partita non puo' iniziare con " + utentiInAttesa.size() + "giocatori");
 		}
 
 		timerPartita.ferma();
-		Partita partita = new Partita(giocatoriInAttesa);
-		GestorePartita gestore = new GestorePartita(partita, connessione, gestoreEventi);
+		List<String> nomi = new ArrayList<String>();
+		for(Utente u : utentiInAttesa) {
+			nomi.add(u.getNome());
+		}
+		
+		List<Utente> utentiPartita = new ArrayList<Utente>();
+		utentiPartita.addAll(utentiInAttesa);
+		GestorePartita gestore = new GestorePartita(utentiPartita, connessione);
 		gestoriPartita.add(gestore);
 		gestore.start();
-		giocatoriInAttesa.clear();
+		utentiInAttesa.clear();
 	}
 
 	/**
@@ -71,16 +78,16 @@ public class ServerMain {
 	 *            il nome da controllare
 	 * @return true se e' gia' stato registrato, false se il nome e' disponibile
 	 */
-	private static boolean nomeGiaRegistrato(String nome) {
+	private static boolean utenteGiaRegistrato(Utente utente) {
 		for (GestorePartita gest : gestoriPartita) {
-			for (Giocatore gioc : gest.getPartita().getGiocatori()) {
-				if (nome.equals(gioc.getNome())) {
+			for (Utente u : gest.getUtenti()) {
+				if (utente.equals(u)) {
 					return true;
 				}
 			}
 		}
-		for (String s : giocatoriInAttesa) {
-			if (nome.equals(s)) {
+		for (Utente u : utentiInAttesa) {
+			if (utente.equals(u)) {
 				return true;
 			}
 		}
@@ -93,9 +100,9 @@ public class ServerMain {
 		// TODO da rimuovere, test
 
 		if (CostantiTest.RMI) {
-			connessione = new ServerRmi(gestoreEventi);
+			connessione = new ServerRmi();
 		} else {
-			connessione = new ServerSocketImpl(gestoreEventi);
+			connessione = new ServerSocketImpl();
 		}
 	}
 
@@ -117,6 +124,23 @@ public class ServerMain {
 
 		throw new IllegalArgumentException("Il giocatore non è presente");
 
+	}
+	
+	public static Utente getUtente(String nome) {
+		for(GestorePartita gest : gestoriPartita) {
+			for(Utente ut : gest.getUtenti()) {
+				if(ut.getNome().equals(nome)) {
+					return ut;
+				}
+			}
+		}
+		for(Utente ut : utentiInAttesa) {
+			if(ut.getNome().equals(nome)) {
+				return ut;
+			}
+		}
+		
+		throw new IllegalArgumentException(nome + " non presente ");
 	}
 
 }

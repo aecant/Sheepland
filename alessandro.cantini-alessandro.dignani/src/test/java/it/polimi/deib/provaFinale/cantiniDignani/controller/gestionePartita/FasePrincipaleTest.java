@@ -1,6 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
 import static org.junit.Assert.assertEquals;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.EstrattoreTest;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
@@ -20,8 +21,9 @@ public class FasePrincipaleTest {
 
 	@Before
 	public void setUp() {
-		partita = new Partita(Arrays.asList("esempio1", "esempio2", "esempio3"));
-		gestore = new GestorePartita(partita, null, null);
+		gestore = new GestorePartita(EstrattoreTest.listaUtenti(Arrays.asList("esempio1", "esempio2", "esempio3")), null);
+
+		partita = gestore.getPartita();
 	}
 
 	@Test

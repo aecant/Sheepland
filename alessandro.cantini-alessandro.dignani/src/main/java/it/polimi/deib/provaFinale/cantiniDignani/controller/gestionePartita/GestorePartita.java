@@ -1,13 +1,13 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.LancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
-import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 
 import java.util.ArrayList;
@@ -16,11 +16,11 @@ import java.util.List;
 
 public class GestorePartita extends Thread {
 
+	private List<Utente> utenti;
 	private final Partita partita;
-	private final GestoreCoda<Integer> gestoreEventi;
 	private List<String> tuttiGiocatori;
 	private final InterfacciaConnessioneServer connessione;
-	
+
 	private final PreparazionePartita preparazionePartita;
 	private final FaseIniziale faseIniziale;
 	private final FasePrincipale fasePrincipale;
@@ -29,10 +29,17 @@ public class GestorePartita extends Thread {
 	public final boolean dueGiocatori;
 	public final int denaroIniziale;
 
-	public GestorePartita(Partita partita, InterfacciaConnessioneServer connessione, GestoreCoda<Integer> gestoreEventi) {
-		this.partita = partita;
+	public GestorePartita(List<Utente> utenti, InterfacciaConnessioneServer connessione) {
 		this.connessione = connessione;
-		this.gestoreEventi = gestoreEventi;
+		this.utenti = utenti;
+		
+		tuttiGiocatori = new ArrayList<String>();
+		for (Utente u : utenti) {
+			tuttiGiocatori.add(u.getNome());
+		}
+
+		partita = new Partita(tuttiGiocatori);
+		
 		if (partita.getGiocatori().size() == 2) {
 			dueGiocatori = true;
 			denaroIniziale = Costanti.DENARO_INIZIALE_DUE_GIOCATORI;
@@ -40,12 +47,8 @@ public class GestorePartita extends Thread {
 			dueGiocatori = false;
 			denaroIniziale = Costanti.DENARO_INIZIALE;
 		}
-		
-		tuttiGiocatori = new ArrayList<String>();
-		for (Giocatore g : partita.getGiocatori()) {
-			tuttiGiocatori.add(g.getNome());
-		}
 
+	
 		preparazionePartita = new PreparazionePartita(this);
 		faseIniziale = new FaseIniziale(this);
 		fasePrincipale = new FasePrincipale(this);
@@ -58,7 +61,7 @@ public class GestorePartita extends Thread {
 		preparazionePartita.esegui();
 
 		faseIniziale.esegui();
-		
+
 		fasePrincipale.esegui();
 
 		faseFinale.esegui();
@@ -70,12 +73,15 @@ public class GestorePartita extends Thread {
 		return lancio;
 	}
 
-	protected int aspettaMossa() {
-		return gestoreEventi.aspetta();
+	protected int aspettaMossa(Giocatore giocatore) {
+
+		return getUtente(giocatore).aspettaMossa();
 	}
 
 	protected void inviaEventoATutti(Evento evento) {
-		connessione.inviaEvento(evento, tuttiGiocatori);
+		if (connessione != null) {
+			connessione.inviaEvento(evento, tuttiGiocatori);
+		}
 	}
 
 	protected void inviaEvento(Evento e, Giocatore g) {
@@ -113,6 +119,19 @@ public class GestorePartita extends Thread {
 
 	protected FaseFinale getFaseFinale() {
 		return faseFinale;
+	}
+
+	public List<Utente> getUtenti() {
+		return utenti;
+	}
+
+	private Utente getUtente(Giocatore giocatore) {
+		for (Utente u : utenti) {
+			if (u.getNome().equals(giocatore.getNome())) {
+				return u;
+			}
+		}
+		throw new IllegalArgumentException(giocatore + " non presente in " + utenti);
 	}
 
 }
