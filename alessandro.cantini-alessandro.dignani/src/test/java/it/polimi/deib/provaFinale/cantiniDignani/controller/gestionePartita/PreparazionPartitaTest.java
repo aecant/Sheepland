@@ -65,12 +65,12 @@ public class PreparazionPartitaTest {
 	 * un agnello
 	 */
 	@Test
-	public void testDisponiPecore()  {
+	public void testDisponiPecore() {
 		preparazionePartita.disponiPecore();
 
 		DatiTerritorio[] dati = Estrattore.datiTerritori(partita);
-		
-		//parto da 1 perche' su Sheepsburg c'e' solo la pecora nera
+
+		// parto da 1 perche' su Sheepsburg c'e' solo la pecora nera
 		for (int i = 1; i < dati.length; i++) {
 			assertEquals(dati[i].getNumOvini(), 1);
 		}
