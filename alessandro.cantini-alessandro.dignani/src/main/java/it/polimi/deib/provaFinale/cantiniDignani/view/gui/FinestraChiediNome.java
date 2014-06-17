@@ -66,7 +66,7 @@ public class FinestraChiediNome extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				// Controllo che il campo testo non sia vuoto (sarebbe meglio aggiungere altri controlli)
 				if(txtNome.getText().length() != 0 && passwordField.getPassword().toString().length() != 0) {
-					coda.aggiungi(Coppia.creaCoppia(txtNome.getText(), passwordField.getPassword().toString()));
+					coda.aggiungi(Coppia.creaCoppia(txtNome.getText(), String.valueOf(passwordField.getPassword())));
 				}
 			}
 		});
