@@ -9,11 +9,9 @@ import java.io.IOError;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintStream;
 import java.net.Socket;
 
 public class GestoreClientSocket extends Thread {
-	private final PrintStream LOGGER = ServerMain.LOGGER;
 
 	private Socket socket;
 	private ConnessioneServerSocket connessione;
@@ -70,7 +68,6 @@ public class GestoreClientSocket extends Thread {
 				out.writeObject(CostantiSocket.REGISTRAZIONE_OK);
 				utente = ServerMain.getUtente(nomeEPassword.primo);
 				connessione.getGestoriUtenti().put(utente, this);
-				LOGGER.println(nomeEPassword.primo + " registrato");
 			} else {
 				out.writeObject(CostantiSocket.NOME_GIA_PRESENTE);
 			}
