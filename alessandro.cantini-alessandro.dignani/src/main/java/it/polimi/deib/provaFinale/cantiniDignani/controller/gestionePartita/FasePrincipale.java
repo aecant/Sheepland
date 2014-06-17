@@ -8,6 +8,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoLupo
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPecoraNera;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPastore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTipoMossa;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.TrasformazioneAgnello;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.UccisioneLupo;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Agnello;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
@@ -37,6 +38,7 @@ public class FasePrincipale extends FasePartita {
 	public void esegui() {
 		while (!recintiInizialiFiniti()) {
 			for (Giocatore giocatore : partita.getGiocatori()) {
+				trasformaEInvecchiaAgnelli();
 				movimentoPecoraNera();
 				turnoGiocatore(giocatore);
 			}
@@ -52,6 +54,7 @@ public class FasePrincipale extends FasePartita {
 				Agnello a = (Agnello) pec;
 				if (a.getEta() == Costanti.ETA_MAX_AGNELLO) {
 					partita.getGregge().trasformaAgnelloInPecora(a);
+					gestore.inviaEventoATutti(new TrasformazioneAgnello(a.isMaschio(), a.getPosizione().getCodice(), Estrattore.datiTerritori(partita)));
 				} else {
 					a.invecchia();
 				}
@@ -63,8 +66,6 @@ public class FasePrincipale extends FasePartita {
 		TipoMossa mossaPrecedente = null;
 		boolean pastoreMosso = false;
 		Pastore pastore = null;
-
-		trasformaEInvecchiaAgnelli();
 
 		partita.setGiocatoreDiTurno(giocatore);
 
