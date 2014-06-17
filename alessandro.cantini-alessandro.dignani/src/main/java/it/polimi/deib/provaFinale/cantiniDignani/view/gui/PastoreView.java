@@ -37,4 +37,8 @@ public class PastoreView extends PedinaView {
 	public int getCodStrada() {
 		return codStrada;
 	}
+
+	public void setCodStrada(int codStrada) {
+		this.codStrada = codStrada;
+	}
 }

@@ -18,10 +18,11 @@ public class MappaView extends BackgroundMappaPanel {
 
 	protected Point[][] coordinateTerritori;
 	protected Point[] coordinateStrade;
-	
+
 	protected List<SegnalinoStrada> segnalini = new ArrayList<SegnalinoStrada>();
 	protected List<TerritorioView> territoriView = new ArrayList<TerritorioView>();
 	protected List<PastoreView> pastori = new ArrayList<PastoreView>();
+	protected List<RecintoView> recinti = new ArrayList<RecintoView>();
 
 	public MappaView() {
 		super(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "mappaSheepland.png")
@@ -52,8 +53,6 @@ public class MappaView extends BackgroundMappaPanel {
 		}
 	}
 
-	
-
 	public void creaPastore(int strada, ColorePastore colore) {
 		Point coordinataStrada = coordinateStrade[strada];
 		PastoreView past = new PastoreView(coordinataStrada.x - (CostantiGui.DIMENSIONE_PASTORE.width / 2), coordinataStrada.y - (CostantiGui.DIMENSIONE_PASTORE.height / 2), colore, strada);
@@ -80,16 +79,20 @@ public class MappaView extends BackgroundMappaPanel {
 		Point dest = territoriView.get(destinazione).getCoordinate(tipoOvino);
 		PedinaView pedina;
 		switch (tipoOvino) {
-		case AGNELLO: pedina = new AgnelloView(orig, 0);
+		case AGNELLO:
+			pedina = new AgnelloView(orig, 0);
 			break;
-		case MONTONE: pedina = new MontoneView(orig, 0);
+		case MONTONE:
+			pedina = new MontoneView(orig, 0);
 			break;
-		case PECORA: pedina = new PecoraView(orig, 0);
+		case PECORA:
+			pedina = new PecoraView(orig, 0);
 			break;
-		default: pedina = null;
+		default:
+			pedina = null;
 			break;
 		}
-		
+
 		territoriView.get(origine).aggiorna();
 		territoriView.get(origine).disegna();
 		add(pedina);
@@ -115,11 +118,9 @@ public class MappaView extends BackgroundMappaPanel {
 		territoriView.get(destinazione).disegna();
 	}
 
-
-
 	public void inserisciSegnaliniIniziali(boolean[] stradeLibere) {
-		for(int i = 0; i < Costanti.NUM_STRADE; i++) {
-			if(stradeLibere[i]) {
+		for (int i = 0; i < Costanti.NUM_STRADE; i++) {
+			if (stradeLibere[i]) {
 				SegnalinoStrada segnalinoTemp = new SegnalinoStrada(coordinateStrade[i], false, i);
 				segnalini.add(segnalinoTemp);
 				add(segnalinoTemp);
@@ -128,13 +129,45 @@ public class MappaView extends BackgroundMappaPanel {
 		}
 	}
 
-
-
 	public void aggiungiSegnaliniPastori() {
-		for(Pastore p : ClientMain.getDatiPartita().getGiocatore(ClientMain.getDatiPartita().getGiocatoreDiTurno()).getPastori()) {
+		for (Pastore p : ClientMain.getDatiPartita().getGiocatore(ClientMain.getDatiPartita().getGiocatoreDiTurno()).getPastori()) {
 			SegnalinoStrada segnalinoTemp = new SegnalinoStrada(coordinateStrade[p.getStrada().getCodice()], false, p.getStrada().getCodice());
 			segnalini.add(segnalinoTemp);
 			add(segnalinoTemp);
+			repaint();
+		}
+	}
+
+	public void movimentoPastore(int origine, int destinazione) {
+		for (PastoreView p : pastori) {
+			if (p.getCodStrada() == origine) {
+				p.muovi(coordinateStrade[destinazione]);
+				p.setCodStrada(destinazione);
+				RecintoView recintoTemp = null;
+				if(ClientMain.getDatiPartita().getRecinti().length > Costanti.NUM_RECINTI_INIZIALI) {
+					recintoTemp = new RecintoView(coordinateStrade[origine], true);
+				} else {
+					recintoTemp = new RecintoView(coordinateStrade[origine], false);
+				}
+				recinti.add(recintoTemp);
+				add(recintoTemp);
+				repaint();
+			}
+		}
+	}
+
+	public void inserisciSegnalini(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento) {
+		for (int i = 0; i < Costanti.NUM_STRADE; i++) {
+			SegnalinoStrada segnalinoTemp = null;
+			if (stradeLibereGratis[i]) {
+				segnalinoTemp = new SegnalinoStrada(coordinateStrade[i], false, i);
+			} else if (stradeLibereAPagamento[i]) {
+				segnalinoTemp = new SegnalinoStrada(coordinateStrade[i], true, i);
+			}
+			if (segnalinoTemp != null) {
+				segnalini.add(segnalinoTemp);
+				add(segnalinoTemp);
+			}
 			repaint();
 		}
 	}

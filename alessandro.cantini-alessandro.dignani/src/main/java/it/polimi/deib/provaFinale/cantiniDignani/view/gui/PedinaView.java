@@ -78,7 +78,7 @@ public class PedinaView extends JPanel {
 	 *            punto centrale di dove disegnare l'immagine
 	 */
 	private void setPosizione(Point coordinate) {
-		this.setLocation(coordinate.x - (CostantiGui.DIMENSIONE_PECORA.width / 2), coordinate.y - (CostantiGui.DIMENSIONE_PECORA.height / 2));
+		this.setLocation(coordinate.x - (getWidth() / 2), coordinate.y - (getHeight() / 2));
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class PedinaView extends JPanel {
 	 * @return coordinata centrale animale
 	 */
 	private Point getPosizione() {
-		return new Point(getLocation().x + (CostantiGui.DIMENSIONE_PECORA.width / 2), getLocation().y + (CostantiGui.DIMENSIONE_PECORA.height / 2));
+		return new Point(getLocation().x + (getWidth() / 2), getLocation().y + (getHeight() / 2));
 	}
 
 	/**

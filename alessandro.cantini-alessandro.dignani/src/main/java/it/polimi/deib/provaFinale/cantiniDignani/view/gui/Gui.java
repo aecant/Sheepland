@@ -103,11 +103,11 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void movimentoPastore(String giocatore, int origine, int destinazione) {
-		// TODO Auto-generated method stub
+		finestraPartita.getMappa().movimentoPastore(origine, destinazione);
 	}
 
 	public void movimentoLupo(int origine, int destinazione) {
-		getFinestraPartita().getMappa().movimentoLupo(origine, destinazione);
+		finestraPartita.getMappa().movimentoLupo(origine, destinazione);
 	}
 
 	public void finePartita(Map<String, Integer> punteggio) {
@@ -150,8 +150,8 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public int richiestaPosizionePastore(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento) {
-		// TODO Auto-generated method stub
-		return 0;
+		finestraPartita.getMappa().inserisciSegnalini(stradeLibereGratis, stradeLibereAPagamento);
+		return coda.aspetta();
 	}
 
 	public int richiestaPastore() {

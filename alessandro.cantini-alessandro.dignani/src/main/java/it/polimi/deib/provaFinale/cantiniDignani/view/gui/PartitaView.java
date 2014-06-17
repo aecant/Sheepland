@@ -71,7 +71,7 @@ public class PartitaView {
 		panelGiocatoriMosse.setBackground(CostantiGui.COLORE_ACQUA);
 
 		// imposto la finestra
-		finestra = new JFrame("Sheepland - The Videogame");
+		finestra = new JFrame("Sheepland - The Videogame - " + ClientMain.getNome());
 		finestra.setLayout(null);
 		finestra.setVisible(false);
 
