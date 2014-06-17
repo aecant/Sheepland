@@ -47,7 +47,7 @@ public class ClientMain {
 		while (!registrato) {
 			try {
 				Coppia<String, String> nomeEPassword = ui.chiediNomeEPassword();
-				connessione.registraGiocatore(nomeEPassword.primo);
+				connessione.registraGiocatore(nomeEPassword);
 				registrato = true;
 			} catch (NomeGiaPresenteException e) {
 				ui.nomeGiaPresente();

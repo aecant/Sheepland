@@ -3,6 +3,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.rete.socket;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerMain;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 
 import java.io.IOError;
 import java.io.IOException;
@@ -11,7 +12,7 @@ import java.io.ObjectOutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
 
-public class GestoreClient extends Thread {
+public class GestoreClientSocket extends Thread {
 	private final PrintStream LOGGER = ServerMain.LOGGER;
 
 	private Socket socket;
@@ -22,7 +23,7 @@ public class GestoreClient extends Thread {
 	private AscoltatoreSocket<Integer> ascoltatoreMosse;
 	private Utente utente;
 
-	public GestoreClient(Socket socket, ConnessioneServerSocket connessione) {
+	public GestoreClientSocket(Socket socket, ConnessioneServerSocket connessione) {
 		this.socket = socket;
 		this.connessione = connessione;
 		try {
@@ -58,17 +59,18 @@ public class GestoreClient extends Thread {
 
 	private void registrazioneGiocatore() {
 		try {
-			Object oggettoNome = in.readObject();
-			if (!(oggettoNome instanceof String)) {
+			Object oggettoRicevuto = in.readObject();
+			if (!(oggettoRicevuto instanceof Coppia<?, ?>)) {
 				throw new IOError(null);
 			}
-			String nome = (String) oggettoNome;
+			@SuppressWarnings("unchecked")
+			Coppia<String, String> nomeEPassword = (Coppia<String, String>) oggettoRicevuto;
 			out.reset();
-			if (ServerMain.aggiungiUtente(nome, connessione)) {
+			if (ServerMain.aggiungiUtente(nomeEPassword.primo, nomeEPassword.secondo, connessione)) {
 				out.writeObject(CostantiSocket.REGISTRAZIONE_OK);
-				utente = ServerMain.getUtente(nome);
+				utente = ServerMain.getUtente(nomeEPassword.primo);
 				connessione.getGestoriUtenti().put(utente, this);
-				LOGGER.println(nome + " registrato");
+				LOGGER.println(nomeEPassword.primo + " registrato");
 			} else {
 				out.writeObject(CostantiSocket.NOME_GIA_PRESENTE);
 			}

@@ -5,6 +5,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 
 import java.rmi.NoSuchObjectException;
@@ -35,11 +36,11 @@ public class ConnessioneClientRmi implements InterfacciaConnessioneClient, Ascol
 		}
 	}
 
-	public void registraGiocatore(String nome) throws NomeGiaPresenteException {
+	public void registraGiocatore(Coppia<String, String> nomeEPassword) throws NomeGiaPresenteException {
 		try {
-			server.registraGiocatore(nome, ""); //TODO da aggiungere la password
+			server.registraGiocatore(nomeEPassword.primo, nomeEPassword.secondo); //TODO da aggiungere la password
 			ascoltatore = (AscoltatoreEventiRmi) UnicastRemoteObject.exportObject(this, 0);
-			server.aggiungiAscoltatore(nome, ascoltatore);
+			server.aggiungiAscoltatore(nomeEPassword.primo, ascoltatore);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
