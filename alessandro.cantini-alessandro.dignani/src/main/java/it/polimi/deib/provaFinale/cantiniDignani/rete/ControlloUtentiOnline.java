@@ -1,6 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.GiocatoreDisconnesso;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public class ControlloUtentiOnline extends Thread {
 					GestorePartita gestore = getGestore(utente);
 					try {
 						gestore.wait();
+						for(Utente utentePartita : gestore.getUtenti()) {
+							utentePartita.inviaEvento(new GiocatoreDisconnesso(utente.getNome()));
+						}
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

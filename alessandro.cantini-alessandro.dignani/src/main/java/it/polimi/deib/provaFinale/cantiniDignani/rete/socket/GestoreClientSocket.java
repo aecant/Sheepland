@@ -18,7 +18,7 @@ public class GestoreClientSocket extends Thread {
 	
 	private ObjectInputStream in;
 	private ObjectOutputStream out;
-	private AscoltatoreSocket<Integer> ascoltatoreMosse;
+	private AscoltatoreSocketServer ascoltatoreMosse;
 	private Utente utente;
 
 	public GestoreClientSocket(Socket socket, ConnessioneServerSocket connessione) {
@@ -40,7 +40,7 @@ public class GestoreClientSocket extends Thread {
 	}
 
 	private void riceviMosse() {
-		ascoltatoreMosse = new AscoltatoreSocket<Integer>(in, utente.getCodaMosse());
+		ascoltatoreMosse = new AscoltatoreSocketServer(in, utente);
 		ascoltatoreMosse.start();
 	}
 

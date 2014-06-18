@@ -73,18 +73,13 @@ public class GestorePartita extends Thread {
 	}
 
 	protected void inviaEventoATutti(Evento evento) {
-		for (Utente ut : utenti) {
-			if (ut.getConnessione() != null) {
-				ut.inviaEvento(evento);
-			}
+		for (Giocatore g : partita.getGiocatori()) {
+			inviaEvento(evento, g);
 		}
 	}
 
-	protected void inviaEvento(Evento e, Giocatore g) {
-		Utente ut = getUtente(g);
-		if(ut.getConnessione() != null) {
-			ut.inviaEvento(e);
-		}
+	protected void inviaEvento(Evento evento, Giocatore g) {
+		getUtente(g).inviaEvento(evento);
 	}
 
 	protected void pagamento(int somma, Giocatore pagante, Giocatore ricevente) {

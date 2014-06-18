@@ -14,9 +14,9 @@ import java.io.Serializable;
  */
 public class AscoltatoreSocket<T extends Serializable> extends Thread {
 
-	private ObjectInputStream in;
-	private GestoreCoda<T> coda;
-	private boolean on;
+	protected ObjectInputStream in;
+	protected GestoreCoda<T> coda;
+	protected boolean on;
 
 	public AscoltatoreSocket(ObjectInputStream in, GestoreCoda<T> coda) {
 		this.in = in;
@@ -35,8 +35,7 @@ public class AscoltatoreSocket<T extends Serializable> extends Thread {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				gestisciInterruzione(e);
 			}
 			if (elemento == null) {
 				throw new NullPointerException();
@@ -47,8 +46,14 @@ public class AscoltatoreSocket<T extends Serializable> extends Thread {
 		}
 	}
 
+	protected void gestisciInterruzione(IOException e) {
+		// TODO gestire meglio eccezione
+		e.printStackTrace();
+	}
+
 	public void ferma() {
 		this.on = false;
 	}
+	
 
 }
