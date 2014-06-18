@@ -27,6 +27,9 @@ public interface InterfacciaConnessioneClient {
 	 */
 	void inviaMossa(Integer mossaScelta);
 
+	/**
+	 * Chiude la connessione
+	 */
 	void termina();
 
 }

@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete.rmi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerSheepland;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 
 import java.io.PrintStream;
@@ -8,15 +8,17 @@ import java.rmi.RemoteException;
 
 public class InterfacciaRmiImpl implements InterfacciaRmi {
 
-	private final PrintStream logger = ServerMain.LOGGER;
+	private final PrintStream logger = ServerSheepland.LOGGER;
 	private final ConnessioneServerRmi connessione;
+	private final ServerSheepland server;
 	
-	public InterfacciaRmiImpl(ConnessioneServerRmi connessione) {
+	public InterfacciaRmiImpl(ConnessioneServerRmi connessione, ServerSheepland server) {
 		this.connessione = connessione;
+		this.server = server;
 	}
 
 	public void registraGiocatore(String nome, String password) throws RemoteException, NomeGiaPresenteException {
-		if (!ServerMain.aggiungiUtente(nome, password, connessione)) {
+		if (!server.aggiungiUtente(nome, password, connessione)) {
 			throw new NomeGiaPresenteException();
 		}
 	}
@@ -27,7 +29,7 @@ public class InterfacciaRmiImpl implements InterfacciaRmi {
 	}
 
 	public void riceviMossa(String nome, int mossa) {
-		ServerMain.getUtente(nome).getCodaMosse().aggiungi(mossa);
+		server.getUtente(nome).getCodaMosse().aggiungi(mossa);
 
 		logger.println("Mossa ricevuta da " + nome + " : " + mossa);
 	}

@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete.socket;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerSheepland;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
@@ -15,15 +15,17 @@ public class GestoreClientSocket extends Thread {
 
 	private Socket socket;
 	private ConnessioneServerSocket connessione;
-	
+	private ServerSheepland server;
+
 	private ObjectInputStream in;
 	private ObjectOutputStream out;
 	private AscoltatoreSocketServer ascoltatoreMosse;
 	private Utente utente;
 
-	public GestoreClientSocket(Socket socket, ConnessioneServerSocket connessione) {
+	public GestoreClientSocket(Socket socket, ConnessioneServerSocket connessione, ServerSheepland server) {
 		this.socket = socket;
 		this.connessione = connessione;
+		this.server = server;
 		try {
 			out = new ObjectOutputStream(socket.getOutputStream());
 			in = new ObjectInputStream(socket.getInputStream());
@@ -64,9 +66,9 @@ public class GestoreClientSocket extends Thread {
 			@SuppressWarnings("unchecked")
 			Coppia<String, String> nomeEPassword = (Coppia<String, String>) oggettoRicevuto;
 			out.reset();
-			if (ServerMain.aggiungiUtente(nomeEPassword.primo, nomeEPassword.secondo, connessione)) {
+			if (server.aggiungiUtente(nomeEPassword.primo, nomeEPassword.secondo, connessione)) {
 				out.writeObject(CostantiSocket.REGISTRAZIONE_OK);
-				utente = ServerMain.getUtente(nomeEPassword.primo);
+				utente = server.getUtente(nomeEPassword.primo);
 				connessione.getGestoriUtenti().put(utente, this);
 			} else {
 				out.writeObject(CostantiSocket.NOME_GIA_PRESENTE);

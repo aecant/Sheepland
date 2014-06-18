@@ -25,4 +25,11 @@ public interface InterfacciaConnessioneServer {
 	 */
 	void termina();
 
+	/**
+	 * Gestisce la disconnessione di un utente
+	 * 
+	 * @param utente
+	 *            l'utente di cui va gestita la disconnessione
+	 */
+//	void gestisciDisconnessione(Utente utente);
 }

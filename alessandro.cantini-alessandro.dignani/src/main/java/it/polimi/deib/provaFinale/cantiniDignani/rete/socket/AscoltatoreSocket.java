@@ -31,17 +31,16 @@ public class AscoltatoreSocket<T extends Serializable> extends Thread {
 			T elemento = null;
 			try {
 				elemento = (T) in.readObject();
+				if (elemento == null) {
+					throw new NullPointerException();
+				}
+				coda.aggiungi(elemento);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
 				gestisciInterruzione(e);
 			}
-			if (elemento == null) {
-				throw new NullPointerException();
-			}
-
-			coda.aggiungi(elemento);
 
 		}
 	}
@@ -54,6 +53,5 @@ public class AscoltatoreSocket<T extends Serializable> extends Thread {
 	public void ferma() {
 		this.on = false;
 	}
-	
 
 }

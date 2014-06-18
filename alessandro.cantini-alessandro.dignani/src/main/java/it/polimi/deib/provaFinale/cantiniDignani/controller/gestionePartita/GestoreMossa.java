@@ -208,6 +208,10 @@ public class GestoreMossa {
 
 		int codDest = gestorePartita.aspettaMossa(giocatore);
 		
+		if(stradeAPagamento[codDest] && giocatore.getDenaro() >= 1) {
+			giocatore.sottraiDenaro(1);
+		}
+		
 		Strada origine = pastore.getStrada();
 		Strada destinazione = Mappa.getMappa().getStrade()[codDest];
 

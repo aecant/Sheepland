@@ -58,4 +58,11 @@ public class GestoreCoda<T> {
 		coda.add(elemento);
 	}
 
+	/**
+	 * Elimina tutti gli elementi eventualmente presenti nella coda
+	 */
+	public void svuota() {
+		coda.clear();
+	}
+
 }

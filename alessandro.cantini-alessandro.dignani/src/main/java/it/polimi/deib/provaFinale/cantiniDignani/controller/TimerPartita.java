@@ -2,17 +2,16 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 public class TimerPartita extends Timer {
 
-	public TimerPartita(long millisecondi, long precisione) {
-		super(millisecondi, precisione);
-	}
+	private ServerSheepland server;
 
-	public TimerPartita(long millisecondi) {
+	public TimerPartita(long millisecondi, ServerSheepland server) {
 		super(millisecondi);
+		this.server = server;
 	}
 
 	@Override
 	public void agisci() {
-		ServerMain.iniziaPartita();
+		server.iniziaPartita();
 	}
 	
 }

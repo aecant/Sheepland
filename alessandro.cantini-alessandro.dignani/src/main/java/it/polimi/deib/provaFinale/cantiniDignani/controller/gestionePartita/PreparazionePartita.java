@@ -1,7 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerSheepland;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.InizioPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
@@ -25,7 +25,7 @@ public class PreparazionePartita extends FasePartita {
 		disponiPecore();
 		disponiTessereIniziali();
 		gestore.inviaEventoATutti(new InizioPartita(Estrattore.datiPartita(partita)));
-		ServerMain.LOGGER.println("Partita iniziata con i giocatori: " + gestore.getTuttiGiocatori());
+		ServerSheepland.LOGGER.println("Partita iniziata con i giocatori: " + gestore.getTuttiGiocatori());
 	}
 
 	/**

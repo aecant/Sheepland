@@ -1,8 +1,9 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete.rmi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerSheepland;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneServer;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 
@@ -14,23 +15,27 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Hashtable;
 
-public class ConnessioneServerRmi extends Thread implements InterfacciaConnessioneServer{
+public class ConnessioneServerRmi extends ConnessioneServer implements InterfacciaConnessioneServer {
 
 	private final Hashtable<String, AscoltatoreEventiRmi> ascoltatori = new Hashtable<String, AscoltatoreEventiRmi>();
 	private Registry registro;
 
+	public ConnessioneServerRmi(ServerSheepland server) {
+		super(server);
+	}
+
 	public void run() {
 		inizia();
 	}
-	
+
 	public void inizia() {
 		try {
-			InterfacciaRmi server = new InterfacciaRmiImpl(this);
-			InterfacciaRmi stub = (InterfacciaRmi) UnicastRemoteObject.exportObject(server, 0);
+			InterfacciaRmi interfacciaMetodi = new InterfacciaRmiImpl(this, serverSheepland);
+			InterfacciaRmi stub = (InterfacciaRmi) UnicastRemoteObject.exportObject(interfacciaMetodi, 0);
 			registro = LocateRegistry.createRegistry(CostantiRete.PORTA_SERVER_RMI);
 			registro.rebind(CostantiRete.NOME_SERVER_RMI, stub);
 
-			ServerMain.LOGGER.println("Server RMI pronto");
+			ServerSheepland.LOGGER.println("Server RMI pronto");
 		} catch (RemoteException e) {
 			System.err.println("Eccezione server RMI:");
 			e.printStackTrace();
@@ -39,7 +44,7 @@ public class ConnessioneServerRmi extends Thread implements InterfacciaConnessio
 
 	public void inviaEvento(Evento evento, Utente utente) {
 		try {
-			ServerMain.LOGGER.println("Evento inviato a " + utente + ": " + evento);
+			ServerSheepland.LOGGER.println("Evento inviato a " + utente + ": " + evento);
 			ascoltatori.get(utente.getNome()).riceviEvento(evento);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

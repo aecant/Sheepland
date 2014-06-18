@@ -1,8 +1,9 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete.socket;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerSheepland;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneServer;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 
@@ -15,19 +16,18 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class ConnessioneServerSocket extends Thread implements InterfacciaConnessioneServer {
+public class ConnessioneServerSocket extends ConnessioneServer implements InterfacciaConnessioneServer {
+
+	public ConnessioneServerSocket(ServerSheepland serverSheepland) {
+		super(serverSheepland);
+	}
 
 	private final int PORTA = CostantiRete.PORTA_SERVER_SOCKET;
-	private final PrintStream LOGGER = ServerMain.LOGGER;
+	private final PrintStream LOGGER = ServerSheepland.LOGGER;
 
 	private ServerSocket server;
 	private final ExecutorService esecutore = Executors.newCachedThreadPool();
 	private final Map<Utente, GestoreClientSocket> gestoriUtenti = new Hashtable<Utente, GestoreClientSocket>();
-
-	@Override
-	public void run() {
-		inizia();
-	}
 
 	public void inizia() {
 
@@ -42,7 +42,7 @@ public class ConnessioneServerSocket extends Thread implements InterfacciaConnes
 		while (true) {
 			try {
 				Socket socket = server.accept();
-				esecutore.submit(new GestoreClientSocket(socket, this));
+				esecutore.submit(new GestoreClientSocket(socket, this, serverSheepland));
 
 				LOGGER.println("Connessione iniziata con " + socket);
 			} catch (IOException e) {
