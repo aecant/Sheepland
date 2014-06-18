@@ -79,7 +79,10 @@ public class GestorePartita extends Thread {
 	}
 
 	protected void inviaEvento(Evento evento, Giocatore g) {
-		getUtente(g).inviaEvento(evento);
+		Utente utente = getUtente(g);
+		if (utente.getConnessione() != null) {
+			utente.inviaEvento(evento);
+		}
 	}
 
 	protected void pagamento(int somma, Giocatore pagante, Giocatore ricevente) {
