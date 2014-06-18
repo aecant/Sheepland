@@ -137,4 +137,8 @@ public class TerritorioView {
 		}
 		return null;
 	}
+
+	public Point getCoordinataCentrale() {
+		return coordinate[0];
+	}
 }

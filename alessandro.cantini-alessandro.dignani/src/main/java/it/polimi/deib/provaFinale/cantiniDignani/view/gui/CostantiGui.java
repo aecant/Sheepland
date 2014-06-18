@@ -169,7 +169,8 @@ public class CostantiGui {
 
 	public static final Dimension DIMENSIONE_MONETA_TESSERA = new Dimension(20, 20);
 
-	public static final Dimension DIMENSIONE_ASCOLTATORE = DIMENSIONE_PECORA;
+	public static final Dimension DIMENSIONE_ASCOLTATORE_ANIMALE = DIMENSIONE_PECORA;
+	public static final Dimension DIMENSIONE_ASCOLTATORE_TERRITORIO = new Dimension(DIMENSIONE_MAPPA.height / 8, DIMENSIONE_MAPPA.height / 12);
 
 
 

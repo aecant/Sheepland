@@ -132,25 +132,30 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void abbattimento(String giocatore, TipoAnimale tipo, int territorio, boolean aBuonFine) {
-		// TODO Auto-generated method stub
-
+		if(aBuonFine) {
+			finestraPartita.getMappa().disegnaTerritorio(territorio);
+		}
+		// TODO da integrare con l'immagine animata dell'accoppiamneto
 	}
 
 	public void accoppiamento(String giocatore, int territorio, boolean aBuonFine) {
-		// TODO Auto-generated method stub
-
+		if(aBuonFine) {
+			finestraPartita.getMappa().disegnaTerritorio(territorio);
+		}
+		// TODO da integrare con l'immagine animata dell'accoppiamneto
 	}
 
 	public void trasformazioneAgnello(boolean maschio, Integer territorio) {
-		getFinestraPartita().getMappa().aggiornaTerritorio(territorio);
+		getFinestraPartita().getMappa().disegnaTerritorio(territorio);
 	}
 
 	public void pagamento(Integer denaro, String pagante, String pagato) {
 		// TODO Auto-generated method stub
+		// ####################################################################################
 	}
 
 	public void uccisioneLupo(int territorio, TipoAnimale tipoOvino) {
-		getFinestraPartita().getMappa().aggiornaTerritorio(territorio);
+		getFinestraPartita().getMappa().disegnaTerritorio(territorio);
 	}
 
 	public int richiestaPosizioneInizialePastore(boolean[] stradeLibere) {
@@ -169,9 +174,9 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public int richiestaTerritorioPerAccoppiamento(Collection<Integer> territoriDisponibili) {
-		
-		// TODO migliorare
-		return 0;
+		finestraPartita.getMappa().aggiungiAscoltatoriTerritori(territoriDisponibili);
+		// TODO da migliorare
+		return coda.aspetta();
 	}
 
 	public int richiestaTipoMossa(List<TipoMossa> mosseDisponibili, int numMossa) {
@@ -181,19 +186,21 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public int richiestaPecoraDaMuovere(List<Coppia<Integer, TipoAnimale>> oviniSpostabili) {
-		finestraPartita.getMappa().aggiungiAscoltatori(oviniSpostabili);
+		finestraPartita.getMappa().aggiungiAscoltatoriAnimali(oviniSpostabili);
 		// TODO Far illuminare i territori disponibili
 		return coda.aspetta();
 	}
 
 	public int richiestaPecoraDaAbbattere(List<Coppia<Integer, TipoAnimale>> oviniAbbattibili) {
-		finestraPartita.getMappa().aggiungiAscoltatori(oviniAbbattibili);
+		finestraPartita.getMappa().aggiungiAscoltatoriAnimali(oviniAbbattibili);
 		// TODO Far illuminare i territori disponibili
 		return coda.aspetta();
 	}
 
 	public int richiestaTesseraDaAcquistare(List<Tessera> tessereDisponibili) {
 		// TODO Auto-generated method stub
+		// ##################################################################################
+		
 		return 0;
 	}
 

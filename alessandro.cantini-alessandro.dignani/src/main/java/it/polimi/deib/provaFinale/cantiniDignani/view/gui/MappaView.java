@@ -11,6 +11,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class MappaView extends BackgroundMappaPanel {
@@ -176,15 +177,21 @@ public class MappaView extends BackgroundMappaPanel {
 		}
 	}
 
-	public void aggiornaTerritorio(Integer territorio) {
-		territoriView.get(territorio).aggiorna();
-		territoriView.get(territorio).disegna();		
-	}
-
-	public void aggiungiAscoltatori(List<Coppia<Integer, TipoAnimale>> oviniSpostabili) {
+	public void aggiungiAscoltatoriAnimali(List<Coppia<Integer, TipoAnimale>> oviniSpostabili) {
 		Integer indice = 0;
 		for(Coppia<Integer, TipoAnimale> coppia : oviniSpostabili) {
-			PedinaListener temp = new PedinaListener(territoriView.get(coppia.primo).getCoordinate(coppia.secondo), CostantiGui.DIMENSIONE_ASCOLTATORE, indice);
+			PedinaListener temp = new PedinaListener(territoriView.get(coppia.primo).getCoordinate(coppia.secondo), CostantiGui.DIMENSIONE_ASCOLTATORE_ANIMALE, indice);
+			ascoltatori.add(temp);
+			add(temp);
+			indice++;
+		}
+		repaint();
+	}
+
+	public void aggiungiAscoltatoriTerritori(Collection<Integer> territoriDisponibili) {
+		Integer indice = 0;
+		for(Integer codTerritorio : territoriDisponibili) {
+			PedinaListener temp = new PedinaListener(territoriView.get(codTerritorio).getCoordinataCentrale(), CostantiGui.DIMENSIONE_ASCOLTATORE_TERRITORIO, indice);
 			ascoltatori.add(temp);
 			add(temp);
 			indice++;
