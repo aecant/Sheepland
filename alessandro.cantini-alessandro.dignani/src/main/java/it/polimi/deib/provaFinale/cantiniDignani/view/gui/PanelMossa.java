@@ -1,10 +1,10 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
+
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
-
-import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,9 +27,32 @@ public class PanelMossa extends JPanel {
 		sfondo = new ImageIcon(Toolkit.getDefaultToolkit().getImage(percorso).getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
 		
 		bottone = new JButton(sfondo);
+		bottone.setEnabled(false);
+		bottone.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent e) {
+				
+			}
+		});
 		add(bottone, BorderLayout.CENTER);
 		
 		
 		setOpaque(false);
+	}
+	
+	protected void abilitaBottone() {
+		bottone.setEnabled(true);
+	}
+	
+	protected void disabilitaBottone() {
+		bottone.setEnabled(false);
+	}
+	
+	protected void impostaAscoltatore(final int n) {
+		bottone.removeMouseListener(getMouseListeners()[0]);
+		bottone.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent e) {
+				Gui.getCoda().aggiungi(n);
+			}
+		});
 	}
 }

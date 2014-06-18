@@ -112,9 +112,9 @@ public class Gui implements InterfacciaUtente {
 
 	public void finePartita(Map<String, Integer> punteggio) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public void acquistoTessera(String giocatore, Tessera tessera) {
 		// TODO Auto-generated method stub
 
@@ -131,8 +131,7 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void trasformazioneAgnello(boolean maschio, Integer territorio) {
-		getFinestraPartita().getMappa().territoriView.get(territorio).aggiorna();
-		getFinestraPartita().getMappa().territoriView.get(territorio).disegna();
+		getFinestraPartita().getMappa().aggiornaTerritorio(territorio);
 	}
 
 	public void pagamento(Integer denaro, String pagante, String pagato) {
@@ -140,8 +139,7 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void uccisioneLupo(int territorio, TipoAnimale tipoOvino) {
-		getFinestraPartita().getMappa().territoriView.get(territorio).aggiorna();
-		getFinestraPartita().getMappa().territoriView.get(territorio).disegna();
+		getFinestraPartita().getMappa().aggiornaTerritorio(territorio);
 	}
 
 	public int richiestaPosizioneInizialePastore(boolean[] stradeLibere) {
@@ -165,8 +163,9 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public int richiestaTipoMossa(List<TipoMossa> mosseDisponibili, int numMossa) {
-		// TODO Auto-generated method stub
-		return 0;
+		finestraPartita.getPanelMosse().abilitaMosse(mosseDisponibili);
+		// TODO Visualizzare anche il numero di mossa corrente
+		return coda.aspetta();
 	}
 
 	public int richiestaPecoraDaMuovere(List<Coppia<Integer, TipoAnimale>> oviniSpostabili) {
@@ -184,9 +183,13 @@ public class Gui implements InterfacciaUtente {
 		return 0;
 	}
 
+	public void disconnessioneGiocatore(String giocatore) {
+		// TODO Auto-generated method stub
+
+	}
+
 	public static GestoreCoda<Integer> getCoda() {
 		return coda;
 	}
 
-	
 }

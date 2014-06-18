@@ -171,4 +171,9 @@ public class MappaView extends BackgroundMappaPanel {
 			repaint();
 		}
 	}
+
+	public void aggiornaTerritorio(Integer territorio) {
+		territoriView.get(territorio).aggiorna();
+		territoriView.get(territorio).disegna();		
+	}
 }
