@@ -128,8 +128,7 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
-		// TODO Auto-generated method stub
-
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio("" + giocatore + " ha comprato una tessera di tipo " + tessera.getTipo());
 	}
 
 	public void abbattimento(String giocatore, TipoAnimale tipo, int territorio, boolean aBuonFine) {
@@ -170,7 +169,8 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public int richiestaTerritorioPerAccoppiamento(Collection<Integer> territoriDisponibili) {
-		// TODO Auto-generated method stub
+		
+		// TODO migliorare
 		return 0;
 	}
 
