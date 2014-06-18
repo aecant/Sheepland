@@ -1,6 +1,5 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
-import java.awt.Component;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -23,15 +22,15 @@ public class PecoraView extends PedinaConContatoreView {
 
 		this.add(pi);
 
-		this.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent e) {
-				Component c = e.getComponent();
-				if(c  instanceof PecoraView) {
-					((PecoraView) c).incrementa();
-				}
-				
-			}
-		});
+//		this.addMouseListener(new java.awt.event.MouseAdapter() {
+//			public void mouseClicked(java.awt.event.MouseEvent e) {
+//				Component c = e.getComponent();
+//				if(c  instanceof PecoraView) {
+//					((PecoraView) c).incrementa();
+//				}
+//				
+//			}
+//		});
 	}
 	
 	public PecoraView(Point coordinate, Integer n) {

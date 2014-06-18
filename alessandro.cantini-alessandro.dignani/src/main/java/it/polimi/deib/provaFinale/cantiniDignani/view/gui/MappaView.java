@@ -5,6 +5,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.ColorePastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 
 import java.awt.Image;
 import java.awt.Point;
@@ -23,6 +24,7 @@ public class MappaView extends BackgroundMappaPanel {
 	protected List<TerritorioView> territoriView = new ArrayList<TerritorioView>();
 	protected List<PastoreView> pastori = new ArrayList<PastoreView>();
 	protected List<RecintoView> recinti = new ArrayList<RecintoView>();
+	protected List<PedinaListener> ascoltatori = new ArrayList<PedinaListener>();
 
 	public MappaView() {
 		super(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "mappaSheepland.png")
@@ -124,9 +126,10 @@ public class MappaView extends BackgroundMappaPanel {
 				SegnalinoStrada segnalinoTemp = new SegnalinoStrada(coordinateStrade[i], false, i);
 				segnalini.add(segnalinoTemp);
 				add(segnalinoTemp);
-				repaint();
+				// repaint();
 			}
 		}
+		repaint();
 	}
 
 	public void aggiungiSegnaliniPastori() {
@@ -134,8 +137,9 @@ public class MappaView extends BackgroundMappaPanel {
 			SegnalinoStrada segnalinoTemp = new SegnalinoStrada(coordinateStrade[p.getStrada().getCodice()], false, p.getStrada().getCodice());
 			segnalini.add(segnalinoTemp);
 			add(segnalinoTemp);
-			repaint();
+			// repaint();
 		}
+		repaint();
 	}
 
 	public void movimentoPastore(int origine, int destinazione) {
@@ -175,5 +179,16 @@ public class MappaView extends BackgroundMappaPanel {
 	public void aggiornaTerritorio(Integer territorio) {
 		territoriView.get(territorio).aggiorna();
 		territoriView.get(territorio).disegna();		
+	}
+
+	public void aggiungiAscoltatori(List<Coppia<Integer, TipoAnimale>> oviniSpostabili) {
+		Integer indice = 0;
+		for(Coppia<Integer, TipoAnimale> coppia : oviniSpostabili) {
+			PedinaListener temp = new PedinaListener(territoriView.get(coppia.primo).getCoordinate(coppia.secondo), CostantiGui.DIMENSIONE_ASCOLTATORE, indice);
+			ascoltatori.add(temp);
+			add(temp);
+			indice++;
+		}
+		repaint();
 	}
 }

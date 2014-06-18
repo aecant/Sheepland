@@ -169,6 +169,8 @@ public class CostantiGui {
 
 	public static final Dimension DIMENSIONE_MONETA_TESSERA = new Dimension(20, 20);
 
+	public static final Dimension DIMENSIONE_ASCOLTATORE = DIMENSIONE_PECORA;
+
 
 
 	/**

@@ -14,8 +14,8 @@ public class SegnalinoStrada extends JPanel {
 
 	private static final long serialVersionUID = 5190080600406868477L;
 	
-	int codStrada;
-	JLabel lblImmagine;
+	private int codStrada;
+	private JLabel lblImmagine;
 	
 	public SegnalinoStrada(Point posizione, boolean aPagamento, int codStrada) {
 		this.codStrada = codStrada;

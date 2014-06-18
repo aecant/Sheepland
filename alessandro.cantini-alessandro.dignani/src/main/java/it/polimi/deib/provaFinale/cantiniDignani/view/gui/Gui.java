@@ -181,8 +181,8 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public int richiestaPecoraDaMuovere(List<Coppia<Integer, TipoAnimale>> oviniSpostabili) {
-		// TODO Auto-generated method stub
-		return 0;
+		finestraPartita.getMappa().aggiungiAscoltatori(oviniSpostabili);
+		return coda.aspetta();
 	}
 
 	public int richiestaPecoraDaAbbattere(List<Coppia<Integer, TipoAnimale>> oviniAbbattibili) {
