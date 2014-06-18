@@ -4,6 +4,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.Gest
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.ControlloUtentiOnline;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ConnessioneServerRmi;
@@ -15,31 +16,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-public class ServerMain {
+public class ServerSheepland {
 	public final static PrintStream LOGGER = CostantiCli.DEFAULT_OUTPUT;
 
-	private static final List<GestorePartita> gestoriPartita = new Vector<GestorePartita>();
-	private static final List<Utente> utentiInAttesa = new Vector<Utente>();
-	private static final TimerPartita timerPartita = new TimerPartita(CostantiRete.MILLISECONDI_TIMER_PARTITA);
+	private final List<GestorePartita> gestoriPartita = new Vector<GestorePartita>();
+	private final List<Utente> utentiInAttesa = new Vector<Utente>();
+	private final List<Utente> utenti = new Vector<Utente>();
+	private final TimerPartita timerPartita = new TimerPartita(CostantiRete.MILLISECONDI_TIMER_PARTITA, this);
+	private final ControlloUtentiOnline controlloUtentiOnline = new ControlloUtentiOnline(utenti, gestoriPartita);
 
-	private static final ConnessioneServerRmi connessioneRmi = new ConnessioneServerRmi();
-	private static final ConnessioneServerSocket connessioneSocket = new ConnessioneServerSocket();
+	private final ConnessioneServerRmi connessioneRmi = new ConnessioneServerRmi(this);
+	private final ConnessioneServerSocket connessioneSocket = new ConnessioneServerSocket(this);
 
-	public static void main(String[] args) {
+	public void inizia() {
 		timerPartita.start();
+		controlloUtentiOnline.start();
 
 		connessioneRmi.start();
 		connessioneSocket.start();
 
 	}
 
-	public static synchronized boolean aggiungiUtente(String nome, String password, InterfacciaConnessioneServer connessione) {
+	public synchronized boolean aggiungiUtente(String nome, String password, InterfacciaConnessioneServer connessione) {
 		Utente utente = new Utente(nome, password, connessione);
 		if (utenteGiaRegistrato(utente)) {
 			return false;
 		}
 
 		utentiInAttesa.add(utente);
+		utenti.add(utente);
 		LOGGER.println("Registrato " + utente);
 
 		if (utentiInAttesa.size() == Costanti.NUM_MAX_GIOCATORI) {
@@ -53,7 +58,7 @@ public class ServerMain {
 		return true;
 	}
 
-	public synchronized static void iniziaPartita() {
+	public synchronized void iniziaPartita() {
 
 		if (utentiInAttesa.size() < 2 || utentiInAttesa.size() > Costanti.NUM_MAX_GIOCATORI) {
 			throw new SheeplandException("La partita non puo' iniziare con " + utentiInAttesa.size() + "giocatori");
@@ -80,7 +85,7 @@ public class ServerMain {
 	 *            il nome da controllare
 	 * @return true se e' gia' stato registrato, false se il nome e' disponibile
 	 */
-	private static boolean utenteGiaRegistrato(Utente utente) {
+	private boolean utenteGiaRegistrato(Utente utente) {
 		for (GestorePartita gest : gestoriPartita) {
 			for (Utente u : gest.getUtenti()) {
 				if (utente.equals(u)) {
@@ -103,7 +108,7 @@ public class ServerMain {
 	 *            il nome del giocatore
 	 * @return la partita giocata dal giocatore
 	 */
-	public static Partita getPartita(String giocatore) {
+	public Partita getPartita(String giocatore) {
 		for (GestorePartita gest : gestoriPartita) {
 			for (Giocatore g : gest.getPartita().getGiocatori()) {
 				if (giocatore.equals(g.getNome())) {
@@ -116,7 +121,7 @@ public class ServerMain {
 
 	}
 
-	public static Utente getUtente(String nome) {
+	public Utente getUtente(String nome) {
 		for (GestorePartita gest : gestoriPartita) {
 			for (Utente ut : gest.getUtenti()) {
 				if (ut.getNome().equals(nome)) {
