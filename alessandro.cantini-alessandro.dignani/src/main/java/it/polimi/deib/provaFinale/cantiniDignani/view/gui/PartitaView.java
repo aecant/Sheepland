@@ -21,14 +21,14 @@ public class PartitaView {
 	private JPanel panelMappaDestra;
 	private MappaView mappa;
 
-	private JPanel panelTessere;
+	private PannelloTessere panelTessere;
 
 	private JPanel contenitore;
 	private JPanel panelGiocatoriMosse;
-	private JPanel panelGiocatori;
-	private JPanel panelMosse;
+	private PannelloGiocatori panelGiocatori;
+	private PannelloMosse panelMosse;
 
-	private JPanel panelMessaggi;
+	private PanelMessaggi panelMessaggi;
 
 	private DatiPartita datiPartita;
 	
@@ -112,6 +112,18 @@ public class PartitaView {
 	}
 	
 	public PanelMessaggi getPanelMessaggi() {
-		return (PanelMessaggi) this.panelMessaggi;
+		return this.panelMessaggi;
+	}
+
+	public PannelloTessere getPanelTessere() {
+		return panelTessere;
+	}
+
+	public PannelloGiocatori getPanelGiocatori() {
+		return panelGiocatori;
+	}
+
+	public PannelloMosse getPanelMosse() {
+		return panelMosse;
 	}
 }
