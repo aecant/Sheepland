@@ -27,19 +27,20 @@ public class ServerMain {
 
 	public static void main(String[] args) {
 		timerPartita.start();
-		
+
 		connessioneRmi.start();
 		connessioneSocket.start();
+
 	}
 
-	public static synchronized boolean aggiungiUtente(String nome, String password,InterfacciaConnessioneServer connessione) {
+	public static synchronized boolean aggiungiUtente(String nome, String password, InterfacciaConnessioneServer connessione) {
 		Utente utente = new Utente(nome, password, connessione);
 		if (utenteGiaRegistrato(utente)) {
 			return false;
 		}
-		
+
 		utentiInAttesa.add(utente);
-		LOGGER.println(utente + "registrato");
+		LOGGER.println("Registrato " + utente);
 
 		if (utentiInAttesa.size() == Costanti.NUM_MAX_GIOCATORI) {
 			iniziaPartita();
@@ -60,10 +61,10 @@ public class ServerMain {
 
 		timerPartita.ferma();
 		List<String> nomi = new ArrayList<String>();
-		for(Utente u : utentiInAttesa) {
+		for (Utente u : utentiInAttesa) {
 			nomi.add(u.getNome());
 		}
-		
+
 		List<Utente> utentiPartita = new ArrayList<Utente>();
 		utentiPartita.addAll(utentiInAttesa);
 		GestorePartita gestore = new GestorePartita(utentiPartita);
@@ -95,7 +96,6 @@ public class ServerMain {
 		return false;
 	}
 
-
 	/**
 	 * Restituisce la partita giocata da un giocatore
 	 * 
@@ -115,21 +115,21 @@ public class ServerMain {
 		throw new IllegalArgumentException("Il giocatore non è presente");
 
 	}
-	
+
 	public static Utente getUtente(String nome) {
-		for(GestorePartita gest : gestoriPartita) {
-			for(Utente ut : gest.getUtenti()) {
-				if(ut.getNome().equals(nome)) {
+		for (GestorePartita gest : gestoriPartita) {
+			for (Utente ut : gest.getUtenti()) {
+				if (ut.getNome().equals(nome)) {
 					return ut;
 				}
 			}
 		}
-		for(Utente ut : utentiInAttesa) {
-			if(ut.getNome().equals(nome)) {
+		for (Utente ut : utentiInAttesa) {
+			if (ut.getNome().equals(nome)) {
 				return ut;
 			}
 		}
-		
+
 		throw new IllegalArgumentException(nome + " non presente ");
 	}
 

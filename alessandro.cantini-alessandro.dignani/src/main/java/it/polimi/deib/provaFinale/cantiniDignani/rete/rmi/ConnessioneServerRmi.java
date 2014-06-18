@@ -68,4 +68,9 @@ public class ConnessioneServerRmi extends Thread implements InterfacciaConnessio
 		return ascoltatori;
 	}
 
+	@Override
+	public String toString() {
+		return "Connessione RMI";
+	}
+
 }

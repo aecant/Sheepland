@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ConnessioneServerSocket extends Thread implements InterfacciaConnessioneServer {
-	
+
 	private final int PORTA = CostantiRete.PORTA_SERVER_SOCKET;
 	private final PrintStream LOGGER = ServerMain.LOGGER;
 
@@ -28,7 +28,7 @@ public class ConnessioneServerSocket extends Thread implements InterfacciaConnes
 	public void run() {
 		inizia();
 	}
-	
+
 	public void inizia() {
 
 		try {
@@ -67,7 +67,7 @@ public class ConnessioneServerSocket extends Thread implements InterfacciaConnes
 	}
 
 	public void termina() {
-		for(Utente u : gestoriUtenti.keySet()) {
+		for (Utente u : gestoriUtenti.keySet()) {
 			gestoriUtenti.get(u).terminaConnessione();
 		}
 		esecutore.shutdown();
@@ -75,6 +75,11 @@ public class ConnessioneServerSocket extends Thread implements InterfacciaConnes
 
 	public Map<Utente, GestoreClientSocket> getGestoriUtenti() {
 		return gestoriUtenti;
+	}
+
+	@Override
+	public String toString() {
+		return "Connessione Socket";
 	}
 
 }

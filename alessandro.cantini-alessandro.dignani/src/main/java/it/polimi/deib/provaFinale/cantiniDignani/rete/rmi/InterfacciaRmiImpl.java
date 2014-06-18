@@ -19,7 +19,6 @@ public class InterfacciaRmiImpl implements InterfacciaRmi {
 		if (!ServerMain.aggiungiUtente(nome, password, connessione)) {
 			throw new NomeGiaPresenteException();
 		}
-		logger.println("Giocatore registrato: " + nome);
 	}
 
 	public void aggiungiAscoltatore(String nome, AscoltatoreEventiRmi ascoltatore) throws RemoteException {
