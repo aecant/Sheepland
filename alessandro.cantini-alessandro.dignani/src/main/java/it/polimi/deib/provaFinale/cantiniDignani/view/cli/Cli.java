@@ -41,10 +41,10 @@ public class Cli implements InterfacciaUtente {
 	public Coppia<String, String> chiediNomeEPassword() {
 		pulisci();
 		out.println("Inserisci il tuo nome");
-		String nome =  in.leggiStringa();
+		String nome = in.leggiStringa();
 		out.println("Inserisci la password");
 		String password = in.leggiStringa();
-		
+
 		return Coppia.creaCoppia(nome, password);
 	}
 
@@ -126,8 +126,12 @@ public class Cli implements InterfacciaUtente {
 		for (String gioc : punteggio.keySet()) {
 			out.println(gioc + ": " + punteggio.get(gioc) + " punti");
 		}
-		String vincitore = ""; //TODO implementare il vincitore
+		String vincitore = ""; // TODO implementare il vincitore
 		out.println("Ha vinto " + vincitore);
+	}
+
+	public void disconnessioneGiocatore(String giocatore) {
+		out.println(giocatore + "si è disconnesso");
 	}
 
 	public int richiestaPosizioneInizialePastore(boolean[] stradeLibere) {

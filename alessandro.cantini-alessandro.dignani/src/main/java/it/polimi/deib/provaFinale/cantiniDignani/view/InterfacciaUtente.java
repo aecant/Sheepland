@@ -189,6 +189,14 @@ public interface InterfacciaUtente {
 	void finePartita(Map<String, Integer> punteggio);
 
 	/**
+	 * Avverte l'utente che un giocatore si e' disconnesso
+	 * 
+	 * @param giocatore
+	 *            il giocatore che si e' disconnesso
+	 */
+	void disconnessioneGiocatore(String giocatore);
+
+	/**
 	 * L'utente sceglie la strada su cui posizionare il pastore all'inizio della
 	 * partita
 	 * 
