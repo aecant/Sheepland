@@ -182,12 +182,14 @@ public class Gui implements InterfacciaUtente {
 
 	public int richiestaPecoraDaMuovere(List<Coppia<Integer, TipoAnimale>> oviniSpostabili) {
 		finestraPartita.getMappa().aggiungiAscoltatori(oviniSpostabili);
+		// TODO Far illuminare i territori disponibili
 		return coda.aspetta();
 	}
 
 	public int richiestaPecoraDaAbbattere(List<Coppia<Integer, TipoAnimale>> oviniAbbattibili) {
-		// TODO Auto-generated method stub
-		return 0;
+		finestraPartita.getMappa().aggiungiAscoltatori(oviniAbbattibili);
+		// TODO Far illuminare i territori disponibili
+		return coda.aspetta();
 	}
 
 	public int richiestaTesseraDaAcquistare(List<Tessera> tessereDisponibili) {
@@ -196,12 +198,11 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void disconnessioneGiocatore(String giocatore) {
-		// TODO Auto-generated method stub
-
+		// TODO migliorare
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio("Il giocatore " + giocatore + " si è disconnesso!");
 	}
 
 	public static GestoreCoda<Integer> getCoda() {
 		return coda;
 	}
-
 }
