@@ -116,7 +116,9 @@ public class Gui implements InterfacciaUtente {
 		int max = 0;
 		for (String gioc : punteggio.keySet()) {
 			messaggio += gioc + ": " + punteggio.get(gioc) + " punti<br />";
-			if (punteggio.get(gioc) > max) {
+			if(punteggio.get(gioc) == max) {
+				vincitore += " " + gioc;
+			} else if (punteggio.get(gioc) > max) {
 				vincitore = gioc;
 				max = punteggio.get(gioc);
 			}
