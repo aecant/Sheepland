@@ -17,6 +17,9 @@ public class Giocatore implements Serializable {
 	private List<Tessera> tessere;
 
 	public Giocatore(String nome) {
+		if (nome == null) {
+			throw new IllegalArgumentException("Il nome del giocatore non puo' essere null");
+		}
 		this.nome = nome;
 		this.denaro = 0;
 
@@ -65,7 +68,7 @@ public class Giocatore implements Serializable {
 	 * 
 	 * @return una mappa delle occorrenze delle tessere del giocatore
 	 */
-	public Map<TipoTerritorio, Integer> numeroTesserePerTipo() {		
+	public Map<TipoTerritorio, Integer> numeroTesserePerTipo() {
 		Map<TipoTerritorio, Integer> mappa = new HashMap<TipoTerritorio, Integer>();
 		for (TipoTerritorio t : TipoTerritorio.valoriTessere()) {
 			mappa.put(t, 0);

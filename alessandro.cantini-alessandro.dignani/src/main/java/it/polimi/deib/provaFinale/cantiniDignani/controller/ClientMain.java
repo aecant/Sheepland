@@ -49,6 +49,7 @@ public class ClientMain {
 				Coppia<String, String> nomeEPassword = ui.chiediNomeEPassword();
 				connessione.registraGiocatore(nomeEPassword);
 				registrato = true;
+				nome = nomeEPassword.primo;
 			} catch (NomeGiaPresenteException e) {
 				ui.nomeGiaPresente();
 			}

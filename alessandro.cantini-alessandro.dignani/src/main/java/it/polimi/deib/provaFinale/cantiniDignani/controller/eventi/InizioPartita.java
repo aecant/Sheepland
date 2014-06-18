@@ -7,11 +7,11 @@ public class InizioPartita implements Evento {
 	private static final long serialVersionUID = -5582597000875121887L;
 
 	private DatiPartita datiDaAggiornare;
-	
+
 	public InizioPartita(DatiPartita datiDaAggiornare) {
 		this.datiDaAggiornare = datiDaAggiornare;
 	}
-	
+
 	public void aggiornaDati() {
 		ClientMain.setDatiPartita(datiDaAggiornare);
 	}
@@ -21,8 +21,8 @@ public class InizioPartita implements Evento {
 	}
 
 	@Override
-	public String toString(){
+	public String toString() {
 		return "Inizio partita";
 	}
-	
+
 }
