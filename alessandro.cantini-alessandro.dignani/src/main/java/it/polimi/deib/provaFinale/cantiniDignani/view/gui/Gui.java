@@ -111,8 +111,18 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void finePartita(Map<String, Integer> punteggio) {
-		// TODO Auto-generated method stub
-
+		String messaggio = "<html>La partita e' finita!<br />";
+		String vincitore = null;
+		int max = 0;
+		for (String gioc : punteggio.keySet()) {
+			messaggio += gioc + ": " + punteggio.get(gioc) + " punti<br />";
+			if (punteggio.get(gioc) > max) {
+				vincitore = gioc;
+				max = punteggio.get(gioc);
+			}
+		}
+		messaggio += "<br />Ha vinto " + vincitore + " con un punteggio di " + max + "!</html>";
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio(messaggio);
 	}
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {

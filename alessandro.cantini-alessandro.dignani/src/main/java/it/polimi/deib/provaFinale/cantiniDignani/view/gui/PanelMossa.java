@@ -28,11 +28,7 @@ public class PanelMossa extends JPanel {
 		
 		bottone = new JButton(sfondo);
 		bottone.setEnabled(false);
-		bottone.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent e) {
-				
-			}
-		});
+		
 		add(bottone, BorderLayout.CENTER);
 		
 		
@@ -48,10 +44,14 @@ public class PanelMossa extends JPanel {
 	}
 	
 	protected void impostaAscoltatore(final int n) {
-		bottone.removeMouseListener(getMouseListeners()[0]);
+		if(bottone.getMouseListeners().length != 0) {
+			bottone.removeMouseListener(bottone.getMouseListeners()[0]);
+			//Gui.finestraPartita.getPanelMessaggi().visualizzaMessaggio("ho rimosso il listener 0 di " + bottone.getMouseListeners().length);
+		}
 		bottone.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
 				Gui.getCoda().aggiungi(n);
+				Gui.getFinestraPartita().getPanelMosse().disabilitaMosse();
 			}
 		});
 	}
