@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public class RichiestaTipoMossa extends Richiesta {
 
 	@Override
 	protected int interagisci() {
-		return ClientMain.getUI().richiestaTipoMossa(mosseDisponibili, numMossa);
+		return MainClient.getUI().richiestaTipoMossa(mosseDisponibili, numMossa);
 	}
 
 }

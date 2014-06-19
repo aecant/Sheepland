@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 
 public class RichiestaPastore extends Richiesta {
 
@@ -8,7 +8,7 @@ public class RichiestaPastore extends Richiesta {
 
 	@Override
 	protected int interagisci() {
-		return ClientMain.getUI().richiestaPastore();
+		return MainClient.getUI().richiestaPastore();
 	}
 
 }

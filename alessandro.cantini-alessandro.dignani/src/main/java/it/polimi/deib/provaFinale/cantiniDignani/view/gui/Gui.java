@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
@@ -49,13 +49,13 @@ public class Gui implements InterfacciaUtente {
 	 */
 	public void inizioPartita() {
 
-		finestraPartita = new PartitaView(ClientMain.getDatiPartita());
+		finestraPartita = new PartitaView(MainClient.getDatiPartita());
 
 		disegnaStatoTerritori();
 
 		finestraPartita.visualizza();
 		finestraPartita.getPanelMessaggi().visualizzaMessaggio(
-				"La tua tessera iniziale è di tipo " + ClientMain.getDatiPartita().getGiocatore(ClientMain.getNome()).getTessere().get(0).getTipo().toString());
+				"La tua tessera iniziale è di tipo " + MainClient.getDatiPartita().getGiocatore(MainClient.getNome()).getTessere().get(0).getTipo().toString());
 	}
 
 	private void disegnaStatoTerritori() {
@@ -74,7 +74,7 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void inizioTurno(String giocatore) {
-		if (giocatore.equals(ClientMain.getNome())) {
+		if (giocatore.equals(MainClient.getNome())) {
 			getPartita().getPanelMessaggi().visualizzaMessaggio("E' il tuo turno!");
 		} else {
 			getPartita().getPanelMessaggi().visualizzaMessaggio("E' il turno di " + giocatore + "!");
@@ -91,7 +91,7 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void selezionePosizioneInizialePastore(String giocatore, int strada) {
-		finestraPartita.getMappa().creaPastore(strada, ClientMain.getDatiPartita().getGiocatore(giocatore).getPastori().get(0).getColore());
+		finestraPartita.getMappa().creaPastore(strada, MainClient.getDatiPartita().getGiocatore(giocatore).getPastori().get(0).getColore());
 	}
 
 	public void movimentoPecora(String giocatore, TipoAnimale tipoOvino, int origine, int destinazione) {

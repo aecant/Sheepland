@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 
 public class Accoppiamento extends Mossa {
@@ -20,13 +20,13 @@ public class Accoppiamento extends Mossa {
 	@Override
 	public void aggiornaDati() {
 		if (aBuonFine) {
-			ClientMain.getDatiPartita().setTerritori(terrDaAggiornare);
+			MainClient.getDatiPartita().setTerritori(terrDaAggiornare);
 		}
 	}
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().accoppiamento(giocatore, territorio, aBuonFine);
+		MainClient.getUI().accoppiamento(giocatore, territorio, aBuonFine);
 	}
 
 }

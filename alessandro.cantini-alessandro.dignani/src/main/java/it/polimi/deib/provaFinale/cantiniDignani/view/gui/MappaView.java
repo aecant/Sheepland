@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.model.ColorePastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
@@ -134,7 +134,7 @@ public class MappaView extends BackgroundMappaPanel {
 	}
 
 	public void aggiungiSegnaliniPastori() {
-		for (Pastore p : ClientMain.getDatiPartita().getGiocatore(ClientMain.getDatiPartita().getGiocatoreDiTurno()).getPastori()) {
+		for (Pastore p : MainClient.getDatiPartita().getGiocatore(MainClient.getDatiPartita().getGiocatoreDiTurno()).getPastori()) {
 			SegnalinoStrada segnalinoTemp = new SegnalinoStrada(coordinateStrade[p.getStrada().getCodice()], false, p.getStrada().getCodice());
 			segnalini.add(segnalinoTemp);
 			add(segnalinoTemp);
@@ -149,7 +149,7 @@ public class MappaView extends BackgroundMappaPanel {
 				p.muovi(coordinateStrade[destinazione]);
 				p.setCodStrada(destinazione);
 				RecintoView recintoTemp = null;
-				if(ClientMain.getDatiPartita().getRecinti().length > Costanti.NUM_RECINTI_INIZIALI) {
+				if(MainClient.getDatiPartita().getRecinti().length > Costanti.NUM_RECINTI_INIZIALI) {
 					recintoTemp = new RecintoView(coordinateStrade[origine], true);
 				} else {
 					recintoTemp = new RecintoView(coordinateStrade[origine], false);

@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 
 public abstract class MovimentoAnimale implements Evento {
@@ -16,7 +16,7 @@ public abstract class MovimentoAnimale implements Evento {
 	}
 
 	public final void aggiornaDati() {
-		ClientMain.getDatiPartita().setTerritori(terrDaAggiornare);
+		MainClient.getDatiPartita().setTerritori(terrDaAggiornare);
 	}
 
 	public abstract void visualizza();

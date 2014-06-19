@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 
 public class Pagamento extends Mossa {
@@ -19,12 +19,12 @@ public class Pagamento extends Mossa {
 
 	@Override
 	public void aggiornaDati() {
-		ClientMain.getDatiPartita().setGiocatori(giocDaAggiornare);
+		MainClient.getDatiPartita().setGiocatori(giocDaAggiornare);
 	}
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().pagamento(denaro, giocatore, ricevente);
+		MainClient.getUI().pagamento(denaro, giocatore, ricevente);
 	}
 
 }

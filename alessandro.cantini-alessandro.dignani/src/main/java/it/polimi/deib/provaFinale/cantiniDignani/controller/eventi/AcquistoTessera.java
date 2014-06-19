@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 
 public class AcquistoTessera extends Mossa {
@@ -17,12 +17,12 @@ public class AcquistoTessera extends Mossa {
 
 	@Override
 	public void aggiornaDati() {
-		ClientMain.getDatiPartita().setTessereInCima(tessInCimaDaAggiornare);
+		MainClient.getDatiPartita().setTessereInCima(tessInCimaDaAggiornare);
 	}
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().acquistoTessera(giocatore, tessera);
+		MainClient.getUI().acquistoTessera(giocatore, tessera);
 	}
 
 }

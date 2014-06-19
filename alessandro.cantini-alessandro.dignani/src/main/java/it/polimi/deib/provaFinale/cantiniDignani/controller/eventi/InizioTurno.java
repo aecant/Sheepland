@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 
 public class InizioTurno extends Mossa {
 
@@ -12,12 +12,12 @@ public class InizioTurno extends Mossa {
 
 	@Override
 	public void aggiornaDati() {
-		ClientMain.getDatiPartita().setGiocatoreDiTurno(giocatore);
+		MainClient.getDatiPartita().setGiocatoreDiTurno(giocatore);
 	}
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().inizioTurno(giocatore);
+		MainClient.getUI().inizioTurno(giocatore);
 	}
 
 	@Override

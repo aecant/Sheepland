@@ -1,10 +1,10 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.GiocatoreDisconnesso;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.ControlloUtentiOnline;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ConnessioneServerRmi;
@@ -23,14 +23,12 @@ public class ServerSheepland {
 	private final List<Utente> utentiInAttesa = new Vector<Utente>();
 	private final List<Utente> utenti = new Vector<Utente>();
 	private final TimerPartita timerPartita = new TimerPartita(CostantiRete.MILLISECONDI_TIMER_PARTITA, this);
-	private final ControlloUtentiOnline controlloUtentiOnline = new ControlloUtentiOnline(utenti, gestoriPartita);
 
 	private final ConnessioneServerRmi connessioneRmi = new ConnessioneServerRmi(this);
 	private final ConnessioneServerSocket connessioneSocket = new ConnessioneServerSocket(this);
 
 	public void inizia() {
 		timerPartita.start();
-		controlloUtentiOnline.start();
 
 		connessioneRmi.start();
 		connessioneSocket.start();
@@ -137,5 +135,35 @@ public class ServerSheepland {
 
 		throw new IllegalArgumentException(nome + " non presente ");
 	}
+	
+	public void gestisciDisconnessione(Utente utente) {
+		utente.getConnessione().gestisciDisconnessione(utente);
+		utente.setConnessione(null);
+		utente.getCodaMosse().aggiungi(CostantiRete.MOSSA_DISCONNESSIONE);
+		
+		GestorePartita gestore = getGestorePartita(utente);
+		try {
+			synchronized(gestore) {
+				gestore.wait();
+			}
+			for(Utente utentePartita : gestore.getUtenti()) {
+				utentePartita.inviaEvento(new GiocatoreDisconnesso(utente.getNome()));
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		LOGGER.println(utente + "disconnesso");
+	}
+	
+	private GestorePartita getGestorePartita(Utente utente) {
+		for (GestorePartita gestore : gestoriPartita) {
+			if (gestore.getUtenti().contains(utente)) {
+				return gestore;
+			}
+		}
+		throw new IllegalArgumentException(utente + " non trovato");
+	}
+	
 
 }

@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 
 import java.util.Map;
 
@@ -20,7 +20,7 @@ public class FinePartita implements Evento {
 
 	
 	public void visualizza() {
-		ClientMain.getUI().finePartita(punteggio);
+		MainClient.getUI().finePartita(punteggio);
 	}
 
 }

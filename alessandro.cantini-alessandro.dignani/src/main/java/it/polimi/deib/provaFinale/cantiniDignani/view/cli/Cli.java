@@ -5,7 +5,7 @@ import static it.polimi.deib.provaFinale.cantiniDignani.utilita.UtilitaStringhe.
 import static it.polimi.deib.provaFinale.cantiniDignani.utilita.UtilitaStringhe.listaDiStringhe;
 import static it.polimi.deib.provaFinale.cantiniDignani.utilita.UtilitaStringhe.menuDiScelta;
 import static it.polimi.deib.provaFinale.cantiniDignani.utilita.UtilitaStringhe.nelTerr;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
@@ -54,8 +54,8 @@ public class Cli implements InterfacciaUtente {
 
 	public void inizioPartita() {
 		out.println("Partita iniziata con i giocatori:");
-		out.println(listaDiStringhe(ClientMain.getDatiPartita().getNomiGiocatori(), "; ", "."));
-		TipoTerritorio tipoTesseraIniziale = ClientMain.getDatiPartita().getGiocatore(nome()).getTessere().get(0).getTipo();
+		out.println(listaDiStringhe(MainClient.getDatiPartita().getNomiGiocatori(), "; ", "."));
+		TipoTerritorio tipoTesseraIniziale = MainClient.getDatiPartita().getGiocatore(nome()).getTessere().get(0).getTipo();
 		out.println("La tua tessera iniziale e' di tipo " + tipoTesseraIniziale);
 		stampaStatoTerritori();
 	}
@@ -85,7 +85,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void movimentoPastore(String giocatore, int origine, int destinazione) {
-		String tipoRecinto = ClientMain.getDatiPartita().getRecinti().length > Costanti.NUM_RECINTI_INIZIALI ? "finale" : "iniziale";
+		String tipoRecinto = MainClient.getDatiPartita().getRecinti().length > Costanti.NUM_RECINTI_INIZIALI ? "finale" : "iniziale";
 		out.println(giocatore + " ha spostato il pastore " + daA(origine, destinazione) + " .");
 		out.println("E' stato posizionato un recinto " + tipoRecinto + " " + nelTerr(origine));
 	}
@@ -160,7 +160,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public int richiestaPastore() {
-		List<Pastore> pastori = ClientMain.getDatiPartita().getGiocatore(nome()).getPastori();
+		List<Pastore> pastori = MainClient.getDatiPartita().getGiocatore(nome()).getPastori();
 		out.println("Devi scegliere uno dei tuoi pastori");
 		out.println(menuDiScelta(pastori));
 		Pastore scelto = in.scegliElemento(pastori);
@@ -224,7 +224,7 @@ public class Cli implements InterfacciaUtente {
 
 	private void stampaStatoTerritori() {
 		out.println("La situazione dei territori e' questa");
-		DatiTerritorio[] dati = ClientMain.getDatiPartita().getTerritori();
+		DatiTerritorio[] dati = MainClient.getDatiPartita().getTerritori();
 
 		for (int i = 0; i < dati.length; i++) {
 			String animali = "";
@@ -242,7 +242,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	private String nome() {
-		return ClientMain.getNome();
+		return MainClient.getNome();
 	}
 
 }

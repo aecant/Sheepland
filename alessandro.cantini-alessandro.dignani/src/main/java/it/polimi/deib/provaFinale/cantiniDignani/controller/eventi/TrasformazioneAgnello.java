@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 
 public class TrasformazioneAgnello implements Evento {
@@ -17,11 +17,11 @@ public class TrasformazioneAgnello implements Evento {
 	}
 
 	public void aggiornaDati() {
-		ClientMain.getDatiPartita().setTerritori(terrDaAggiornare);;
+		MainClient.getDatiPartita().setTerritori(terrDaAggiornare);;
 	}
 
 	public void visualizza() {
-		ClientMain.getUI().trasformazioneAgnello(maschio, territorio);
+		MainClient.getUI().trasformazioneAgnello(maschio, territorio);
 	}
 
 }

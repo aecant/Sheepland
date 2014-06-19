@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 
 public class MovimentoLupo extends MovimentoAnimale {
@@ -13,7 +13,7 @@ public class MovimentoLupo extends MovimentoAnimale {
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().movimentoLupo(origine, destinazione);
+		MainClient.getUI().movimentoLupo(origine, destinazione);
 	}
 
 	@Override

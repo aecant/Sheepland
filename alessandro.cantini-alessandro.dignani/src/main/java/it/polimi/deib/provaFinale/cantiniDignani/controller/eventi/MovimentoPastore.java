@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 
 public class MovimentoPastore extends Mossa {
@@ -20,13 +20,13 @@ public class MovimentoPastore extends Mossa {
 
 	@Override
 	public void aggiornaDati() {
-		ClientMain.getDatiPartita().setGiocatori(giocDaAggiornare);
-		ClientMain.getDatiPartita().setRecinti(recintiDaAggiornare);
+		MainClient.getDatiPartita().setGiocatori(giocDaAggiornare);
+		MainClient.getDatiPartita().setRecinti(recintiDaAggiornare);
 	}
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().movimentoPastore(giocatore, origine, destinazione);
+		MainClient.getUI().movimentoPastore(giocatore, origine, destinazione);
 	}
 
 }

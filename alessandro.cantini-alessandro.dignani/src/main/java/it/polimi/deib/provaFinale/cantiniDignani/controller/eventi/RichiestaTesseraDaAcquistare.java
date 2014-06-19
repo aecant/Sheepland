@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class RichiestaTesseraDaAcquistare extends Richiesta {
 
 	@Override
 	protected int interagisci() {
-		return ClientMain.getUI().richiestaTesseraDaAcquistare(tessereDisp);
+		return MainClient.getUI().richiestaTesseraDaAcquistare(tessereDisp);
 	}
 
 }

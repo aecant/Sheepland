@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 
 public class InizioPartita implements Evento {
@@ -13,11 +13,11 @@ public class InizioPartita implements Evento {
 	}
 
 	public void aggiornaDati() {
-		ClientMain.setDatiPartita(datiDaAggiornare);
+		MainClient.setDatiPartita(datiDaAggiornare);
 	}
 
 	public void visualizza() {
-		ClientMain.getUI().inizioPartita();
+		MainClient.getUI().inizioPartita();
 	}
 
 	@Override

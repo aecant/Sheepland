@@ -10,13 +10,11 @@ public class Utente {
 	private final String password;
 	private final GestoreCoda<Integer> codaMosse;
 	private InterfacciaConnessioneServer connessione;
-	private boolean online;
 
 	public Utente(String nome, String password, InterfacciaConnessioneServer connessione) {
 		this.nome = nome;
 		this.password = password;
 		this.connessione = connessione;
-		online = true;
 		codaMosse = new GestoreCoda<Integer>();
 	}
 
@@ -32,13 +30,7 @@ public class Utente {
 		return codaMosse;
 	}
 
-	public boolean isOnline() {
-		return online;
-	}
-
-	public void setOnline(boolean online) {
-		this.online = online;
-	}
+	
 
 	public void inviaEvento(Evento evento) {
 		connessione.inviaEvento(evento, this);

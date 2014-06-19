@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 
 public class RichiestaPosizioneInizialePastore extends Richiesta {
 
@@ -14,7 +14,7 @@ public class RichiestaPosizioneInizialePastore extends Richiesta {
 
 	@Override
 	protected int interagisci() {
-		return ClientMain.getUI().richiestaPosizioneInizialePastore(stradeLibere);
+		return MainClient.getUI().richiestaPosizioneInizialePastore(stradeLibere);
 	}
 
 	@Override

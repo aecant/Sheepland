@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class RichiestaTerritorioPerAccoppiamento extends Richiesta {
 
 	@Override
 	protected int interagisci() {
-		return ClientMain.getUI().richiestaTerritorioPerAccoppiamento(terrDisponibili);
+		return MainClient.getUI().richiestaTerritorioPerAccoppiamento(terrDisponibili);
 	}
 
 }

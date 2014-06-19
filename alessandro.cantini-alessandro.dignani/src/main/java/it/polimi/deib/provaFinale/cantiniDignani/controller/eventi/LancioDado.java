@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 
 public class LancioDado implements Evento {
@@ -21,7 +21,7 @@ public class LancioDado implements Evento {
 	}
 
 	public void visualizza() {
-		ClientMain.getUI().lancioDado(numero, motivo);
+		MainClient.getUI().lancioDado(numero, motivo);
 	}
 
 	@Override

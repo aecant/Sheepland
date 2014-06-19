@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 
@@ -82,7 +82,7 @@ public class TerritorioView {
 	}
 
 	private DatiTerritorio dati() {
-		return ClientMain.getDatiPartita().getTerritori()[codTerr];
+		return MainClient.getDatiPartita().getTerritori()[codTerr];
 	}
 	
 	public void creaPecora(Point coordinate, int n) {

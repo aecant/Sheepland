@@ -23,7 +23,7 @@ public class InterfacciaRmiImpl implements InterfacciaRmi {
 		}
 	}
 
-	public void aggiungiAscoltatore(String nome, AscoltatoreEventiRmi ascoltatore) throws RemoteException {
+	public void aggiungiAscoltatore(String nome, InterfacciaAscoltatoreRmi ascoltatore) throws RemoteException {
 		connessione.getAscoltatori().put(nome, ascoltatore);
 		logger.println("Ascoltatore aggiunto: " + ascoltatore);
 	}

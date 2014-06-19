@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
@@ -26,14 +26,14 @@ public class Abbattimento extends Mossa {
 	@Override
 	public void aggiornaDati() {
 		if (aBuonFine) {
-			ClientMain.getDatiPartita().setTerritori(terrDaAggiornare);
-			ClientMain.getDatiPartita().setGiocatori(giocDaAggiornare);
+			MainClient.getDatiPartita().setTerritori(terrDaAggiornare);
+			MainClient.getDatiPartita().setGiocatori(giocDaAggiornare);
 		}
 	}
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().abbattimento(giocatore, tipoOvino, territorio, aBuonFine);
+		MainClient.getUI().abbattimento(giocatore, tipoOvino, territorio, aBuonFine);
 	}
 
 }

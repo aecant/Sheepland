@@ -17,7 +17,7 @@ import java.util.Hashtable;
 
 public class ConnessioneServerRmi extends ConnessioneServer implements InterfacciaConnessioneServer {
 
-	private final Hashtable<String, AscoltatoreEventiRmi> ascoltatori = new Hashtable<String, AscoltatoreEventiRmi>();
+	private final Hashtable<String, InterfacciaAscoltatoreRmi> ascoltatori = new Hashtable<String, InterfacciaAscoltatoreRmi>();
 	private Registry registro;
 
 	public ConnessioneServerRmi(ServerSheepland server) {
@@ -69,13 +69,17 @@ public class ConnessioneServerRmi extends ConnessioneServer implements Interfacc
 		}
 	}
 
-	protected Hashtable<String, AscoltatoreEventiRmi> getAscoltatori() {
+	protected Hashtable<String, InterfacciaAscoltatoreRmi> getAscoltatori() {
 		return ascoltatori;
 	}
 
 	@Override
 	public String toString() {
 		return "Connessione RMI";
+	}
+
+	public void gestisciDisconnessione(Utente utente) {
+		ascoltatori.remove(utente.getNome());
 	}
 
 }

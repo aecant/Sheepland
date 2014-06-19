@@ -9,7 +9,7 @@ public interface InterfacciaRmi extends Remote {
 
 	void registraGiocatore(String giocatore, String password) throws RemoteException, NomeGiaPresenteException;
 
-	void aggiungiAscoltatore(String giocatore, AscoltatoreEventiRmi ascoltatore) throws RemoteException;
+	void aggiungiAscoltatore(String giocatore, InterfacciaAscoltatoreRmi ascoltatore) throws RemoteException;
 
 	void riceviMossa(String giocatore, int mossa) throws RemoteException;
 

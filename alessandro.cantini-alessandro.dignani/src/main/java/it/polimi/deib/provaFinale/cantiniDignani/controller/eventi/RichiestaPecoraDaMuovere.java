@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 
@@ -15,7 +15,7 @@ public class RichiestaPecoraDaMuovere extends RichiestaPecora {
 
 	@Override
 	protected int interagisci() {
-		return ClientMain.getUI().richiestaPecoraDaMuovere(ovini);
+		return MainClient.getUI().richiestaPecoraDaMuovere(ovini);
 	}
 
 }

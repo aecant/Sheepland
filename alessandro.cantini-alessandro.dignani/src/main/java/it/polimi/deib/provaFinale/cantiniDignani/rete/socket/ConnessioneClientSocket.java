@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete.socket;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClient;
@@ -22,7 +22,7 @@ public class ConnessioneClientSocket implements InterfacciaConnessioneClient {
 	private Socket socket;
 	private ObjectInputStream in;
 	private ObjectOutputStream out;
-	private GestoreCoda<Evento> codaEventi = ClientMain.getGestoreEventi();
+	private GestoreCoda<Evento> codaEventi = MainClient.getGestoreEventi();
 	private AscoltatoreSocket<Evento> ascoltatoreEventi;
 
 	public void inizia() {

@@ -12,7 +12,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.view.cli.Cli;
 import it.polimi.deib.provaFinale.cantiniDignani.view.cli.InputCli;
 import it.polimi.deib.provaFinale.cantiniDignani.view.gui.Gui;
 
-public class ClientMain {
+public class MainClient {
 	private static String nome;
 	private static InterfacciaUtente ui;
 	private static InterfacciaConnessioneClient connessione;
@@ -125,7 +125,7 @@ public class ClientMain {
 	}
 
 	public static void setDatiPartita(DatiPartita datiPartita) {
-		ClientMain.datiPartita = datiPartita;
+		MainClient.datiPartita = datiPartita;
 	}
 
 }

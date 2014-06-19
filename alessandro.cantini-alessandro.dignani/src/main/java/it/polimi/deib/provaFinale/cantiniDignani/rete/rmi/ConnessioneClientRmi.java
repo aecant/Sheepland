@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete.rmi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClient;
@@ -15,12 +15,12 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class ConnessioneClientRmi implements InterfacciaConnessioneClient, AscoltatoreEventiRmi {
+public class ConnessioneClientRmi implements InterfacciaConnessioneClient, InterfacciaAscoltatoreRmi {
 
 	private Registry registry;
 	private InterfacciaRmi server;
-	private AscoltatoreEventiRmi ascoltatore;
-	private GestoreCoda<Evento> gestoreEventi = ClientMain.getGestoreEventi();
+	private InterfacciaAscoltatoreRmi ascoltatore;
+	private GestoreCoda<Evento> gestoreEventi = MainClient.getGestoreEventi();
 
 	public void inizia() {
 		try {
@@ -38,8 +38,8 @@ public class ConnessioneClientRmi implements InterfacciaConnessioneClient, Ascol
 
 	public void registraGiocatore(Coppia<String, String> nomeEPassword) throws NomeGiaPresenteException {
 		try {
-			server.registraGiocatore(nomeEPassword.primo, nomeEPassword.secondo); //TODO da aggiungere la password
-			ascoltatore = (AscoltatoreEventiRmi) UnicastRemoteObject.exportObject(this, 0);
+			server.registraGiocatore(nomeEPassword.primo, nomeEPassword.secondo);
+			ascoltatore = (InterfacciaAscoltatoreRmi) UnicastRemoteObject.exportObject(this, 0);
 			server.aggiungiAscoltatore(nomeEPassword.primo, ascoltatore);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -48,13 +48,17 @@ public class ConnessioneClientRmi implements InterfacciaConnessioneClient, Ascol
 
 	}
 
-	public void riceviEvento(Evento e) {
-		gestoreEventi.aggiungi(e);
+	public void riceviEvento(Evento evento) {
+		gestoreEventi.aggiungi(evento);
+	}
+
+	public boolean seiOnline() {
+		return true;
 	}
 
 	public void inviaMossa(Integer mossaScelta) {
 		try {
-			server.riceviMossa(ClientMain.getNome(), mossaScelta);
+			server.riceviMossa(MainClient.getNome(), mossaScelta);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

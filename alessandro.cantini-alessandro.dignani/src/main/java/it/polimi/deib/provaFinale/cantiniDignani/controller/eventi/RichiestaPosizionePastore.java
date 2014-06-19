@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 
 public class RichiestaPosizionePastore extends Richiesta {
 	private static final long serialVersionUID = -3895425016270580277L;
@@ -13,7 +13,7 @@ public class RichiestaPosizionePastore extends Richiesta {
 
 	@Override
 	protected int interagisci() {
-		return ClientMain.getUI().richiestaPosizionePastore(stradeLibereGratis, stradeLibereAPagamento);
+		return MainClient.getUI().richiestaPosizionePastore(stradeLibereGratis, stradeLibereAPagamento);
 	}
 
 }

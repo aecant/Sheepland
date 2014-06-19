@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 
@@ -18,11 +18,11 @@ public class UccisioneLupo implements Evento {
 	}
 
 	public void aggiornaDati() {
-		ClientMain.getDatiPartita().setTerritori(terrDaAggiornare);
+		MainClient.getDatiPartita().setTerritori(terrDaAggiornare);
 	}
 
 	public void visualizza() {
-		ClientMain.getUI().uccisioneLupo(territorio, tipoUcciso);
+		MainClient.getUI().uccisioneLupo(territorio, tipoUcciso);
 	}
 
 	@Override

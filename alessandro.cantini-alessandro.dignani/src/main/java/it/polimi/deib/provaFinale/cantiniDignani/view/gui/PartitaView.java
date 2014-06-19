@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
 
 import java.awt.BorderLayout;
@@ -54,7 +54,7 @@ public class PartitaView {
 		panelMappa.add(panelMappaDestra, BorderLayout.EAST);
 		
 		// imposto il panel delle tessere
-		panelTessere = new PannelloTessere(this.datiPartita.getTessereInCima(), datiPartita.getGiocatore(ClientMain.getNome()).numeroTesserePerTipo());
+		panelTessere = new PannelloTessere(this.datiPartita.getTessereInCima(), datiPartita.getGiocatore(MainClient.getNome()).numeroTesserePerTipo());
 
 		// imposto il panel dei giocatori
 		panelGiocatori = new PannelloGiocatori(this.datiPartita.getGiocatori());
@@ -69,7 +69,7 @@ public class PartitaView {
 		panelGiocatoriMosse.setBackground(CostantiGui.COLORE_ACQUA);
 
 		// imposto la finestra
-		finestra = new JFrame("Sheepland - The Videogame - " + ClientMain.getNome());
+		finestra = new JFrame("Sheepland - The Videogame - " + MainClient.getNome());
 		finestra.setLayout(null);
 		finestra.setVisible(false);
 

@@ -43,7 +43,6 @@ public class ConnessioneServerSocket extends ConnessioneServer implements Interf
 			try {
 				Socket socket = server.accept();
 				esecutore.submit(new GestoreClientSocket(socket, this, serverSheepland));
-
 				LOGGER.println("Connessione iniziata con " + socket);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -75,6 +74,11 @@ public class ConnessioneServerSocket extends ConnessioneServer implements Interf
 
 	public Map<Utente, GestoreClientSocket> getGestoriUtenti() {
 		return gestoriUtenti;
+	}
+
+	public void gestisciDisconnessione(Utente utente) {
+		gestoriUtenti.get(utente).terminaConnessione();
+		gestoriUtenti.remove(utente);
 	}
 
 	@Override

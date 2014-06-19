@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 
 public class MovimentoPecoraNera extends MovimentoAnimale {
@@ -13,7 +13,7 @@ public class MovimentoPecoraNera extends MovimentoAnimale {
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().movimentoPecoraNera(origine, destinazione);
+		MainClient.getUI().movimentoPecoraNera(origine, destinazione);
 	}
 
 }

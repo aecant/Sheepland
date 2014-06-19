@@ -15,17 +15,17 @@ public class GestoreClientSocket extends Thread {
 
 	private Socket socket;
 	private ConnessioneServerSocket connessione;
-	private ServerSheepland server;
+	private ServerSheepland serverSheepland;
 
 	private ObjectInputStream in;
 	private ObjectOutputStream out;
 	private AscoltatoreSocketServer ascoltatoreMosse;
 	private Utente utente;
 
-	public GestoreClientSocket(Socket socket, ConnessioneServerSocket connessione, ServerSheepland server) {
+	public GestoreClientSocket(Socket socket, ConnessioneServerSocket connessione, ServerSheepland serverSheepland) {
 		this.socket = socket;
 		this.connessione = connessione;
-		this.server = server;
+		this.serverSheepland = serverSheepland;
 		try {
 			out = new ObjectOutputStream(socket.getOutputStream());
 			in = new ObjectInputStream(socket.getInputStream());
@@ -42,7 +42,7 @@ public class GestoreClientSocket extends Thread {
 	}
 
 	private void riceviMosse() {
-		ascoltatoreMosse = new AscoltatoreSocketServer(in, utente);
+		ascoltatoreMosse = new AscoltatoreSocketServer(in, utente, serverSheepland);
 		ascoltatoreMosse.start();
 	}
 
@@ -66,9 +66,9 @@ public class GestoreClientSocket extends Thread {
 			@SuppressWarnings("unchecked")
 			Coppia<String, String> nomeEPassword = (Coppia<String, String>) oggettoRicevuto;
 			out.reset();
-			if (server.aggiungiUtente(nomeEPassword.primo, nomeEPassword.secondo, connessione)) {
+			if (serverSheepland.aggiungiUtente(nomeEPassword.primo, nomeEPassword.secondo, connessione)) {
 				out.writeObject(CostantiSocket.REGISTRAZIONE_OK);
-				utente = server.getUtente(nomeEPassword.primo);
+				utente = serverSheepland.getUtente(nomeEPassword.primo);
 				connessione.getGestoriUtenti().put(utente, this);
 			} else {
 				out.writeObject(CostantiSocket.NOME_GIA_PRESENTE);
@@ -79,13 +79,14 @@ public class GestoreClientSocket extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			serverSheepland.gestisciDisconnessione(utente);
 		}
 	}
 
 	public void terminaConnessione() {
-		ascoltatoreMosse.ferma();
+		if (ascoltatoreMosse.isAlive()) {
+			ascoltatoreMosse.ferma();
+		}
 		try {
 			in.close();
 			out.close();

@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 
@@ -21,12 +21,12 @@ public class MovimentoPecora extends Mossa {
 	
 	@Override
 	public void aggiornaDati() {
-		ClientMain.getDatiPartita().setTerritori(terrDaAggiornare);;
+		MainClient.getDatiPartita().setTerritori(terrDaAggiornare);;
 	}
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().movimentoPecora(giocatore, tipo, origine, destinazione);
+		MainClient.getUI().movimentoPecora(giocatore, tipo, origine, destinazione);
 	}
 
 }

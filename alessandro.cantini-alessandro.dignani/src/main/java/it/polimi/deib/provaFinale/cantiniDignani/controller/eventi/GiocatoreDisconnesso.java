@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ClientMain;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 
 public class GiocatoreDisconnesso extends EventoDisconnessione {
 	private static final long serialVersionUID = -3680410443648775120L;
@@ -13,7 +13,7 @@ public class GiocatoreDisconnesso extends EventoDisconnessione {
 
 	@Override
 	public void visualizza() {
-		ClientMain.getUI().disconnessioneGiocatore(giocatore);
+		MainClient.getUI().disconnessioneGiocatore(giocatore);
 	}
 
 }
