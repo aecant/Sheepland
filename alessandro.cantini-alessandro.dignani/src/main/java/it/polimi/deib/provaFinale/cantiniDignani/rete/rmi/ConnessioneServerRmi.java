@@ -44,7 +44,6 @@ public class ConnessioneServerRmi extends ConnessioneServer implements Interfacc
 
 	public void inviaEvento(Evento evento, Utente utente) {
 		try {
-			ServerSheepland.LOGGER.println("Evento inviato a " + utente + ": " + evento);
 			ascoltatori.get(utente.getNome()).riceviEvento(evento);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

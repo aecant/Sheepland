@@ -61,7 +61,6 @@ public class ConnessioneServerSocket extends ConnessioneServer implements Interf
 	public void inviaEvento(Evento evento, Utente utente) {
 
 		gestoriUtenti.get(utente).inviaEvento(evento);
-		LOGGER.println(evento + " inviato a " + utente);
 
 	}
 

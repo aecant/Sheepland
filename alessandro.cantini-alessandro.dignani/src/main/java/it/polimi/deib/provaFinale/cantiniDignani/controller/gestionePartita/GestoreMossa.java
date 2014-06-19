@@ -30,6 +30,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class GestoreMossa {
@@ -70,69 +71,63 @@ public class GestoreMossa {
 		}
 	}
 
-	private void acquistaTessera(Pastore pastore, Giocatore giocatore) {
-		List<Tessera> tessereDisp = new ArrayList<Tessera>();
-		Territorio terr1 = pastore.getStrada().getTerritorio1();
-		Territorio terr2 = pastore.getStrada().getTerritorio2();
+	private void muoviPastore(Pastore pastore, Giocatore giocatore) {
+		boolean[] stradeGratis = Estrattore.stradeLibereGratis(partita, pastore.getStrada());
+		boolean[] stradeAPagamento = Estrattore.stradeLibereAPagamento(partita, pastore.getStrada());
+		gestorePartita.inviaEvento(new RichiestaPosizionePastore(stradeGratis, stradeAPagamento), giocatore);
 
-		Tessera tess1 = tesseraDaAcquistare(terr1, giocatore.getDenaro());
-		Tessera tess2 = tesseraDaAcquistare(terr2, giocatore.getDenaro());
-
-		if (tess1 != null) {
-			tessereDisp.add(tess1);
+		int codDest = gestorePartita.aspettaMossa(giocatore);
+		
+		if(!stradeGratis[codDest] && !stradeAPagamento[codDest]) {
+			throw new MossaNonValidaException(codDest + " non e' una strada valida");
 		}
-		if (tess2 != null && !tess2.equals(tess1)) {
-			tessereDisp.add(tess2);
-		}
-
-		gestorePartita.inviaEvento(new RichiestaTesseraDaAcquistare(tessereDisp), giocatore);
-
-		int indiceScelta = gestorePartita.aspettaMossa(giocatore);
-
-		Tessera tessScelta = tessereDisp.get(indiceScelta);
-
-		TipoTerritorio tipo = tessScelta.getTipo();
-
-		Tessera tesseraAcquistata = partita.getMazzo().prelevaTessera(tipo);
-
-		if (!tesseraAcquistata.equals(tessScelta)) {
-			throw new MossaNonValidaException("La tessera che vuole comprare " + giocatore + " e' diversa da quella in cima al mazzo");
+		
+		if (stradeAPagamento[codDest] && giocatore.getDenaro() >= 1) {
+			giocatore.sottraiDenaro(1);
 		}
 
-		giocatore.aggiungiTessera(tesseraAcquistata);
+		Strada origine = pastore.getStrada();
+		Strada destinazione = Mappa.getMappa().getStrade()[codDest];
 
-		gestorePartita.inviaEventoATutti(new AcquistoTessera(giocatore.getNome(), tesseraAcquistata, Estrattore.tessereInCima(partita)));
+		pastore.muoviIn(destinazione);
+
+		partita.getRecinti().aggiungi(origine);
+
+		gestorePartita.inviaEventoATutti(new MovimentoPastore(giocatore.getNome(), origine.getCodice(), destinazione.getCodice(), Estrattore.giocatori(partita), Estrattore.recinti(partita)));
 	}
 
-	private void accoppia(Pastore pastore, Giocatore giocatore) {
-		DatiTerritorio dati[] = Estrattore.datiTerritori(partita);
-		List<Integer> terrDisp = new ArrayList<Integer>();
+	private void muoviPecora(Pastore pastore, Giocatore giocatore) {
+		int t1 = pastore.getStrada().getTerritorio1().getCodice();
+		int t2 = pastore.getStrada().getTerritorio2().getCodice();
 
-		int codT1 = pastore.getStrada().getTerritorio1().getCodice();
-		int codT2 = pastore.getStrada().getTerritorio2().getCodice();
+		List<Coppia<Integer, TipoAnimale>> listaOviniSuTerritorio = listaOviniSuTerritorio(pastore, true);
 
-		if (accoppiamentoPossibile(dati[codT1])) {
-			terrDisp.add(codT1);
-		}
-		if (accoppiamentoPossibile(dati[codT2])) {
-			terrDisp.add(codT2);
-		}
+		gestorePartita.inviaEvento(new RichiestaPecoraDaMuovere(listaOviniSuTerritorio), giocatore);
 
-		gestorePartita.inviaEvento(new RichiestaTerritorioPerAccoppiamento(terrDisp), giocatore);
+		int indiceScelto = gestorePartita.aspettaMossa(giocatore);
 
-		int codTerr = gestorePartita.aspettaMossa(giocatore);
-
-		Territorio terr = Mappa.getMappa().getTerritori()[codTerr];
-
-		int lancio = gestorePartita.lanciaDado(MotivoLancioDado.TENTATIVO_ACCOPPIAMENTO);
-
-		boolean aBuonFine = (lancio == Mappa.getMappa().getDado(pastore.getStrada()));
-
-		if (aBuonFine) {
-			partita.getGregge().aggiungi(Sorte.agnelloRandom(terr));
+		controllaIndice(indiceScelto, listaOviniSuTerritorio);
+		
+		int codOrig = listaOviniSuTerritorio.get(indiceScelto).primo;
+		int codDest;
+		if (codOrig == t1) {
+			codDest = t2;
+		} else if (codOrig == t2) {
+			codDest = t1;
+		} else {
+			throw new MossaNonValidaException("Il territorio " + codOrig + " in cui " + giocatore + " vuole spostare la pecora non e' valido");
 		}
 
-		gestorePartita.inviaEventoATutti(new Accoppiamento(giocatore.getNome(), codTerr, aBuonFine, Estrattore.datiTerritori(partita)));
+		TipoAnimale animScelto = listaOviniSuTerritorio.get(indiceScelto).secondo;
+		Territorio destinazione = Mappa.getMappa().getTerritori()[codDest];
+
+		if (animScelto == TipoAnimale.PECORA_NERA) {
+			partita.getGregge().getPecoraNera().muoviIn(destinazione);
+		} else {
+			Estrattore.getPecora(partita, codOrig, animScelto).muoviIn(destinazione);
+		}
+
+		gestorePartita.inviaEventoATutti(new MovimentoPecora(giocatore.getNome(), animScelto, codOrig, codDest, Estrattore.datiTerritori(partita)));
 	}
 
 	private void abbatti(Pastore pastore, Giocatore giocatore) {
@@ -142,6 +137,9 @@ public class GestoreMossa {
 		gestorePartita.inviaEvento(new RichiestaPecoraDaAbbattere(listaOviniSuTerritorio), giocatore);
 
 		int indiceScelto = gestorePartita.aspettaMossa(giocatore);
+
+		controllaIndice(indiceScelto, listaOviniSuTerritorio);
+		
 		int terrScelto = listaOviniSuTerritorio.get(indiceScelto).primo;
 		TipoAnimale animScelto = listaOviniSuTerritorio.get(indiceScelto).secondo;
 
@@ -169,57 +167,73 @@ public class GestoreMossa {
 		gestorePartita.inviaEventoATutti(new Abbattimento(giocatore.getNome(), animScelto, terrScelto, aBuonFine, Estrattore.datiTerritori(partita), Estrattore.giocatori(partita)));
 	}
 
-	private void muoviPecora(Pastore pastore, Giocatore giocatore) {
-		int t1 = pastore.getStrada().getTerritorio1().getCodice();
-		int t2 = pastore.getStrada().getTerritorio2().getCodice();
+	private void accoppia(Pastore pastore, Giocatore giocatore) {
+		DatiTerritorio dati[] = Estrattore.datiTerritori(partita);
+		List<Integer> terrDisp = new ArrayList<Integer>();
 
-		List<Coppia<Integer, TipoAnimale>> listaOviniSuTerritorio = listaOviniSuTerritorio(pastore, true);
+		int codT1 = pastore.getStrada().getTerritorio1().getCodice();
+		int codT2 = pastore.getStrada().getTerritorio2().getCodice();
 
-		gestorePartita.inviaEvento(new RichiestaPecoraDaMuovere(listaOviniSuTerritorio), giocatore);
-
-		int indiceScelto = gestorePartita.aspettaMossa(giocatore);
-
-		int codOrig = listaOviniSuTerritorio.get(indiceScelto).primo;
-		int codDest;
-		if (codOrig == t1) {
-			codDest = t2;
-		} else if (codOrig == t2) {
-			codDest = t1;
-		} else {
-			throw new MossaNonValidaException("Il territorio " + codOrig + " in cui " + giocatore + " vuole spostare la pecora non e' valido");
+		if (accoppiamentoPossibile(dati[codT1])) {
+			terrDisp.add(codT1);
+		}
+		if (accoppiamentoPossibile(dati[codT2])) {
+			terrDisp.add(codT2);
 		}
 
-		TipoAnimale animScelto = listaOviniSuTerritorio.get(indiceScelto).secondo;
-		Territorio destinazione = Mappa.getMappa().getTerritori()[codDest];
+		gestorePartita.inviaEvento(new RichiestaTerritorioPerAccoppiamento(terrDisp), giocatore);
 
-		if (animScelto == TipoAnimale.PECORA_NERA) {
-			partita.getGregge().getPecoraNera().muoviIn(destinazione);
-		} else {
-			Estrattore.getPecora(partita, codOrig, animScelto).muoviIn(destinazione);
+		int codTerr = gestorePartita.aspettaMossa(giocatore);
+
+		controllaValore(codTerr, terrDisp);
+
+		Territorio terr = Mappa.getMappa().getTerritori()[codTerr];
+
+		int lancio = gestorePartita.lanciaDado(MotivoLancioDado.TENTATIVO_ACCOPPIAMENTO);
+
+		boolean aBuonFine = (lancio == Mappa.getMappa().getDado(pastore.getStrada()));
+
+		if (aBuonFine) {
+			partita.getGregge().aggiungi(Sorte.agnelloRandom(terr));
 		}
-		
-		gestorePartita.inviaEventoATutti(new MovimentoPecora(giocatore.getNome(), animScelto, codOrig, codDest, Estrattore.datiTerritori(partita)));
+
+		gestorePartita.inviaEventoATutti(new Accoppiamento(giocatore.getNome(), codTerr, aBuonFine, Estrattore.datiTerritori(partita)));
 	}
 
-	private void muoviPastore(Pastore pastore, Giocatore giocatore) {
-		boolean[] stradeGratis = Estrattore.stradeLibereGratis(partita, pastore.getStrada());
-		boolean[] stradeAPagamento = Estrattore.stradeLibereAPagamento(partita, pastore.getStrada());
-		gestorePartita.inviaEvento(new RichiestaPosizionePastore(stradeGratis, stradeAPagamento), giocatore);
+	private void acquistaTessera(Pastore pastore, Giocatore giocatore) {
+		List<Tessera> tessereDisp = new ArrayList<Tessera>();
+		Territorio terr1 = pastore.getStrada().getTerritorio1();
+		Territorio terr2 = pastore.getStrada().getTerritorio2();
 
-		int codDest = gestorePartita.aspettaMossa(giocatore);
-		
-		if(stradeAPagamento[codDest] && giocatore.getDenaro() >= 1) {
-			giocatore.sottraiDenaro(1);
+		Tessera tess1 = tesseraDaAcquistare(terr1, giocatore.getDenaro());
+		Tessera tess2 = tesseraDaAcquistare(terr2, giocatore.getDenaro());
+
+		if (tess1 != null) {
+			tessereDisp.add(tess1);
 		}
-		
-		Strada origine = pastore.getStrada();
-		Strada destinazione = Mappa.getMappa().getStrade()[codDest];
+		if (tess2 != null && !tess2.equals(tess1)) {
+			tessereDisp.add(tess2);
+		}
 
-		pastore.muoviIn(destinazione);
+		gestorePartita.inviaEvento(new RichiestaTesseraDaAcquistare(tessereDisp), giocatore);
 
-		partita.getRecinti().aggiungi(origine);
+		int indiceScelta = gestorePartita.aspettaMossa(giocatore);
 
-		gestorePartita.inviaEventoATutti(new MovimentoPastore(giocatore.getNome(), origine.getCodice(), destinazione.getCodice(), Estrattore.giocatori(partita), Estrattore.recinti(partita)));
+		controllaIndice(indiceScelta, tessereDisp);
+
+		Tessera tessScelta = tessereDisp.get(indiceScelta);
+
+		TipoTerritorio tipo = tessScelta.getTipo();
+
+		Tessera tesseraAcquistata = partita.getMazzo().prelevaTessera(tipo);
+
+		if (!tesseraAcquistata.equals(tessScelta)) {
+			throw new MossaNonValidaException("La tessera che vuole comprare " + giocatore + " e' diversa da quella in cima al mazzo");
+		}
+
+		giocatore.aggiungiTessera(tesseraAcquistata);
+
+		gestorePartita.inviaEventoATutti(new AcquistoTessera(giocatore.getNome(), tesseraAcquistata, Estrattore.tessereInCima(partita)));
 	}
 
 	/**
@@ -358,4 +372,15 @@ public class GestoreMossa {
 
 	}
 
+	private void controllaIndice(int indice, List<?> lista) {
+		if (indice < 0 || indice >= lista.size()) {
+			throw new MossaNonValidaException(indice + " non e' un indice valido per la lista " + lista);
+		}
+	}
+
+	private void controllaValore(int valore, Collection<Integer> lista) {
+		if (!lista.contains(valore)) {
+			throw new MossaNonValidaException(valore + " non e' contenuto nella lista " + lista);
+		}
+	}
 }
