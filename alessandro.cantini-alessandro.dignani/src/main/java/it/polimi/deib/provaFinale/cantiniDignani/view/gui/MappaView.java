@@ -189,12 +189,10 @@ public class MappaView extends BackgroundMappaPanel {
 	}
 
 	public void aggiungiAscoltatoriTerritori(Collection<Integer> territoriDisponibili) {
-		Integer indice = 0;
 		for(Integer codTerritorio : territoriDisponibili) {
-			PedinaListener temp = new PedinaListener(territoriView.get(codTerritorio).getCoordinataCentrale(), CostantiGui.DIMENSIONE_ASCOLTATORE_TERRITORIO, indice);
+			PedinaListener temp = new PedinaListener(territoriView.get(codTerritorio).getCoordinataCentrale(), CostantiGui.DIMENSIONE_ASCOLTATORE_TERRITORIO, codTerritorio);
 			ascoltatori.add(temp);
 			add(temp);
-			indice++;
 		}
 		repaint();
 	}
