@@ -50,7 +50,7 @@ public class CostantiGui {
 	public static final Dimension DIMENSIONE_IMG_MOTIVO_LANCIO = new Dimension(150, 150);
 	public static final Dimension DIMENSIONE_IMG_DADO = new Dimension(50, 50);
 	public static final Dimension DIMENSIONE_PANEL_LANCIO_DADO = new Dimension(DIMENSIONE_IMG_MOTIVO_LANCIO.width + 10, DIMENSIONE_IMG_MOTIVO_LANCIO.height + DIMENSIONE_IMG_DADO.height + 15); // TODO da modificare!
-	public static final int TEMPO_VISUALIZZAZIONE_MESSAGGIO = 3000;
+	public static final int TEMPO_VISUALIZZAZIONE_MESSAGGIO = 1000;
 	public static final Font FONT_MESSAGGI = new Font("Arial", Font.BOLD, 40);
 	public static final Color COLORE_SFONDO_MESSAGGI = new Color(252, 189, 73, 200);
 	public static final Color COLORE_TESTO_MESSAGGI = new Color(80, 80, 80);
@@ -172,7 +172,7 @@ public class CostantiGui {
 	public static final Dimension DIMENSIONE_ASCOLTATORE_ANIMALE = DIMENSIONE_PECORA;
 	public static final Dimension DIMENSIONE_ASCOLTATORE_TERRITORIO = new Dimension(DIMENSIONE_MAPPA.height / 8, DIMENSIONE_MAPPA.height / 12);
 
-	public static final Color COLORE_TESSERA_FINITA = new Color(10, 10, 10, 100);
+	public static final Color COLORE_TESSERA_FINITA = new Color(200, 20, 20, 100);
 
 
 

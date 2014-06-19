@@ -11,6 +11,7 @@ import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,7 +25,6 @@ public class TesseraView extends BackgroundPanel {
 	JLabel lblPossedute;
 	JPanel panelCosto;
 	JLabel moneta;
-	JPanel panelFinito = new JPanel();
 	
 	Integer costo;
 	Integer indice;
@@ -47,11 +47,6 @@ public class TesseraView extends BackgroundPanel {
 		angolino.setBackground(CostantiGui.COLORE_SFONDO_ANGOLINI);
 		angolino.setLayout(new BorderLayout());
 		angolino.add(lblPossedute, BorderLayout.CENTER);
-		
-		// imposto il panelFinito
-		panelFinito.setBounds(0, 0, CostantiGui.DIMENSIONE_PANEL_TESSERA.width, CostantiGui.DIMENSIONE_PANEL_TESSERA.height);
-		panelFinito.setBackground(CostantiGui.COLORE_TESSERA_FINITA);
-		panelFinito.setVisible(false);
 
 		// imposto il panel con il prezzo della tessera in cima di quel tipo
 		panelCosto = new JPanel();
@@ -64,7 +59,6 @@ public class TesseraView extends BackgroundPanel {
 		setLayout(null);
 		setBackground(CostantiGui.COLORE_ACQUA);
 		add(angolino);
-		add(panelFinito);
 		add(panelCosto);
 	}
 
@@ -102,7 +96,10 @@ public class TesseraView extends BackgroundPanel {
 		}
 		else {
 			costo = 0;
-			panelFinito.setVisible(true);
+			panelCosto.removeAll();
+			disegnaCosto();
+			setBorder(BorderFactory.createMatteBorder(
+                    5, 5, 5, 5, CostantiGui.COLORE_TESSERA_FINITA));
 		}
 	}
 }
