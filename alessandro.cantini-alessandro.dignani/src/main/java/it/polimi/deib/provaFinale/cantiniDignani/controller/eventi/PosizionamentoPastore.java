@@ -27,7 +27,6 @@ public class PosizionamentoPastore extends Mossa {
 
 	@Override
 	public String toString() {
-		return giocatore + " ha posizionato il pastore sulla strada " + strada;
+		return "Posizionamento Pastore sulla strada " + strada + " da parte di " + giocatore;
 	}
-
 }

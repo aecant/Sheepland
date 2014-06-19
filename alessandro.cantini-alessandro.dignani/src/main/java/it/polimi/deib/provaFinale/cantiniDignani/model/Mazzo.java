@@ -12,7 +12,12 @@ import java.util.Stack;
  * 
  */
 public class Mazzo {
-	private Map<TipoTerritorio, Stack<Tessera>> mazzo;
+	/**
+	 * Tessera inesistente che indica che il mazzo e' finito
+	 */
+	public final static Tessera TESSERA_FINITA = new Tessera(null, Integer.MIN_VALUE);
+	
+	private final Map<TipoTerritorio, Stack<Tessera>> mazzo;
 
 	/**
 	 * Crea uno stack di carte per ogni tipo contenuto in TipoTerritorio,
