@@ -1,15 +1,15 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
-import java.util.logging.Level;
+
+import java.util.logging.Logger;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 
-import com.sun.istack.internal.logging.Logger;
 
 public class Utente {
-	private static final Logger logger = Logger.getLogger(Utente.class);
+	private static final Logger logger = Logger.getLogger(Utente.class.getName());
 
 	private final String nome;
 	private final String password;
@@ -37,7 +37,7 @@ public class Utente {
 
 	public void inviaEvento(Evento evento) {
 		connessione.inviaEvento(evento, this);
-		logger.log(Level.FINE, evento + " inviato " + " a " + this);
+		logger.info(evento + " inviato " + " a " + this);
 	}
 
 	public void setConnessione(InterfacciaConnessioneServer connessione) {
