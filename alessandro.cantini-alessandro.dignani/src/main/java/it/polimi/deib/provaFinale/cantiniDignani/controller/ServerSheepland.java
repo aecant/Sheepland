@@ -154,6 +154,7 @@ public class ServerSheepland {
 			e.printStackTrace();
 		}
 		LOGGER.println(utente + "disconnesso");
+		
 	}
 	
 	private GestorePartita getGestorePartita(Utente utente) {
