@@ -96,6 +96,10 @@ public class Cli implements InterfacciaUtente {
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
 		out.println("Il giocatore ha acquistato una tessera di tipo " + tessera.getTipo().toString());
+		if(giocatore.equals(nome())) {
+			out.println("Possiedi le seguenti tessere: ");
+			out.println(MainClient.getDatiPartita().getGiocatore(nome()).numeroTesserePerTipo());
+		}
 	}
 
 	public void abbattimento(String giocatore, TipoAnimale tipo, int territorio, boolean aBuonFine) {

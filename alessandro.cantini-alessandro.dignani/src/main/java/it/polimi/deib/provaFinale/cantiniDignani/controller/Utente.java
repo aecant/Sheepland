@@ -4,7 +4,10 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 
+import com.sun.istack.internal.logging.Logger;
+
 public class Utente {
+	private static final Logger logger = Logger.getLogger(Utente.class);
 
 	private final String nome;
 	private final String password;
@@ -30,10 +33,9 @@ public class Utente {
 		return codaMosse;
 	}
 
-	
-
 	public void inviaEvento(Evento evento) {
 		connessione.inviaEvento(evento, this);
+		logger.info(evento + " inviato " + " a " + this);
 	}
 
 	public void setConnessione(InterfacciaConnessioneServer connessione) {
@@ -78,6 +80,5 @@ public class Utente {
 	public String toString() {
 		return "Utente [nome=" + nome + ", password=" + password + ", connessione=" + connessione + "]";
 	}
-
 
 }

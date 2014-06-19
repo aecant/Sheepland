@@ -233,7 +233,7 @@ public class GestoreMossa {
 
 		giocatore.aggiungiTessera(tesseraAcquistata);
 
-		gestorePartita.inviaEventoATutti(new AcquistoTessera(giocatore.getNome(), tesseraAcquistata, Estrattore.tessereInCima(partita)));
+		gestorePartita.inviaEventoATutti(new AcquistoTessera(giocatore.getNome(), tesseraAcquistata, Estrattore.tessereInCima(partita), Estrattore.giocatori(partita)));
 	}
 
 	/**
