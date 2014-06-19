@@ -3,6 +3,8 @@ package it.polimi.deib.provaFinale.cantiniDignani.rete.socket;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerSheepland;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.PasswordSbagliataException;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 
 import java.io.IOError;
@@ -66,12 +68,15 @@ public class GestoreClientSocket extends Thread {
 			@SuppressWarnings("unchecked")
 			Coppia<String, String> nomeEPassword = (Coppia<String, String>) oggettoRicevuto;
 			out.reset();
-			if (serverSheepland.aggiungiUtente(nomeEPassword.primo, nomeEPassword.secondo, connessione)) {
+			try {
+				serverSheepland.aggiungiUtente(nomeEPassword.primo, nomeEPassword.secondo, connessione);
 				out.writeObject(CostantiSocket.REGISTRAZIONE_OK);
 				utente = serverSheepland.getUtente(nomeEPassword.primo);
 				connessione.getGestoriUtenti().put(utente, this);
-			} else {
+			} catch (NomeGiaPresenteException e) {
 				out.writeObject(CostantiSocket.NOME_GIA_PRESENTE);
+			} catch (PasswordSbagliataException e) {
+				out.writeObject(CostantiSocket.PASSWORD_SBAGLIATA);
 			}
 			out.flush();
 

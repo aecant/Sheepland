@@ -44,6 +44,11 @@ public class Gui implements InterfacciaUtente {
 		messErrore = true;
 	}
 
+	public void passwordSbagliata() {
+		// TODO Auto-generated method stub
+
+	}
+
 	/**
 	 * Metodo che avvia la partita
 	 */
@@ -116,7 +121,7 @@ public class Gui implements InterfacciaUtente {
 		int max = 0;
 		for (String gioc : punteggio.keySet()) {
 			messaggio += gioc + ": " + punteggio.get(gioc) + " punti<br />";
-			if(punteggio.get(gioc) == max) {
+			if (punteggio.get(gioc) == max) {
 				vincitore += " " + gioc;
 			} else if (punteggio.get(gioc) > max) {
 				vincitore = gioc;
@@ -134,14 +139,14 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void abbattimento(String giocatore, TipoAnimale tipo, int territorio, boolean aBuonFine) {
-		if(aBuonFine) {
+		if (aBuonFine) {
 			finestraPartita.getMappa().disegnaTerritorio(territorio);
 		}
 		// TODO da integrare con l'immagine animata dell'accoppiamento
 	}
 
 	public void accoppiamento(String giocatore, int territorio, boolean aBuonFine) {
-		if(aBuonFine) {
+		if (aBuonFine) {
 			finestraPartita.getMappa().disegnaTerritorio(territorio);
 		}
 		// TODO da integrare con l'immagine animata dell'accoppiamneto
@@ -202,7 +207,7 @@ public class Gui implements InterfacciaUtente {
 	public int richiestaTesseraDaAcquistare(List<Tessera> tessereDisponibili) {
 		// TODO Auto-generated method stub
 		// ##################################################################################
-		
+
 		return 0;
 	}
 

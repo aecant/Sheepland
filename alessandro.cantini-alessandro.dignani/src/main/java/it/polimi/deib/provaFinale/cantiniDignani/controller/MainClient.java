@@ -3,6 +3,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.PasswordSbagliataException;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ConnessioneClientRmi;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.socket.ConnessioneClientSocket;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
@@ -13,6 +14,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.view.cli.InputCli;
 import it.polimi.deib.provaFinale.cantiniDignani.view.gui.Gui;
 
 public class MainClient {
+	
 	private static String nome;
 	private static InterfacciaUtente ui;
 	private static InterfacciaConnessioneClient connessione;
@@ -52,6 +54,8 @@ public class MainClient {
 				nome = nomeEPassword.primo;
 			} catch (NomeGiaPresenteException e) {
 				ui.nomeGiaPresente();
+			} catch (PasswordSbagliataException e) {
+				ui.passwordSbagliata();
 			}
 		}
 	}

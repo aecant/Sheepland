@@ -16,4 +16,9 @@ public class NomeGiaPresenteException extends Exception {
 		super(s, cause);
 	}
 
+	public NomeGiaPresenteException(Throwable cause) {
+		super(cause);
+	}
+	
+
 }

@@ -5,6 +5,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.PasswordSbagliataException;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 
@@ -41,18 +42,24 @@ public class ConnessioneClientSocket implements InterfacciaConnessioneClient {
 
 	}
 
-	public void registraGiocatore(Coppia<String, String> nomeEPassword) throws NomeGiaPresenteException {
+	public void registraGiocatore(Coppia<String, String> nomeEPassword) throws NomeGiaPresenteException, PasswordSbagliataException {
 		try {
 			out.reset();
 			out.writeObject(nomeEPassword);
 			out.flush();
 			Character rispostaServer = (Character) in.readObject();
-			if (rispostaServer == CostantiSocket.NOME_GIA_PRESENTE) {
+
+			switch (rispostaServer) {
+			case CostantiSocket.NOME_GIA_PRESENTE:
 				throw new NomeGiaPresenteException();
-			}
-			if (rispostaServer != CostantiSocket.REGISTRAZIONE_OK) {
+			case CostantiSocket.PASSWORD_SBAGLIATA:
+				throw new PasswordSbagliataException();
+			case CostantiSocket.REGISTRAZIONE_OK:
+				break;
+			default:
 				throw new IOError(null);
 			}
+
 			ascoltatoreEventi = new AscoltatoreSocket<Evento>(in, codaEventi);
 			ascoltatoreEventi.start();
 

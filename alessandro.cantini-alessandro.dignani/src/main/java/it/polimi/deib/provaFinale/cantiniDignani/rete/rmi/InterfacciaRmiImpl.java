@@ -2,6 +2,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.rete.rmi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerSheepland;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.PasswordSbagliataException;
 
 import java.io.PrintStream;
 import java.rmi.RemoteException;
@@ -17,9 +18,13 @@ public class InterfacciaRmiImpl implements InterfacciaRmi {
 		this.server = server;
 	}
 
-	public void registraGiocatore(String nome, String password) throws RemoteException, NomeGiaPresenteException {
-		if (!server.aggiungiUtente(nome, password, connessione)) {
-			throw new NomeGiaPresenteException();
+	public void registraGiocatore(String nome, String password) throws RemoteException, NomeGiaPresenteException, PasswordSbagliataException{
+		try {
+			server.aggiungiUtente(nome, password, connessione);
+		} catch (NomeGiaPresenteException e) {
+			throw new NomeGiaPresenteException(e);
+		} catch (PasswordSbagliataException e) {
+			throw new PasswordSbagliataException(e);
 		}
 	}
 

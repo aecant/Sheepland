@@ -25,6 +25,12 @@ public interface InterfacciaUtente {
 	void nomeGiaPresente();
 
 	/**
+	 * L'utente viene avvisato che la password inserita in precedenza non e'
+	 * corretta
+	 */
+	void passwordSbagliata();
+
+	/**
 	 * Viene visualizzato l'inizio della partita e viene fatta vedere all'utente
 	 * la sua tessera iniziale
 	 */

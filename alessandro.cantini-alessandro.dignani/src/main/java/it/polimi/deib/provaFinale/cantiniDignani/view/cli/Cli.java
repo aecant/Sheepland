@@ -52,6 +52,10 @@ public class Cli implements InterfacciaUtente {
 		out.println("Questo nome e' gia' registrato, inseriscine un altro");
 	}
 
+	public void passwordSbagliata() {
+		out.println("La password inserita e' sbagliata");
+	}
+	
 	public void inizioPartita() {
 		out.println("Partita iniziata con i giocatori:");
 		out.println(listaDiStringhe(MainClient.getDatiPartita().getNomiGiocatori(), "; ", "."));
@@ -96,7 +100,7 @@ public class Cli implements InterfacciaUtente {
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
 		out.println("Il giocatore ha acquistato una tessera di tipo " + tessera.getTipo().toString());
-		if(giocatore.equals(nome())) {
+		if (giocatore.equals(nome())) {
 			out.println("Possiedi le seguenti tessere: ");
 			out.println(MainClient.getDatiPartita().getGiocatore(nome()).numeroTesserePerTipo());
 		}

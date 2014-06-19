@@ -5,6 +5,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.PasswordSbagliataException;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 
@@ -36,7 +37,7 @@ public class ConnessioneClientRmi implements InterfacciaConnessioneClient, Inter
 		}
 	}
 
-	public void registraGiocatore(Coppia<String, String> nomeEPassword) throws NomeGiaPresenteException {
+	public void registraGiocatore(Coppia<String, String> nomeEPassword) throws NomeGiaPresenteException, PasswordSbagliataException {
 		try {
 			server.registraGiocatore(nomeEPassword.primo, nomeEPassword.secondo);
 			ascoltatore = (InterfacciaAscoltatoreRmi) UnicastRemoteObject.exportObject(this, 0);

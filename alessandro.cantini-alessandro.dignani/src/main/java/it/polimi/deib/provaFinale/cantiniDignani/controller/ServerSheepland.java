@@ -7,6 +7,8 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.PasswordSbagliataException;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ConnessioneServerRmi;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.socket.ConnessioneServerSocket;
 import it.polimi.deib.provaFinale.cantiniDignani.view.cli.CostantiCli;
@@ -21,7 +23,9 @@ public class ServerSheepland {
 
 	private final List<GestorePartita> gestoriPartita = new Vector<GestorePartita>();
 	private final List<Utente> utentiInAttesa = new Vector<Utente>();
-	private final List<Utente> utenti = new Vector<Utente>();
+	private final List<Utente> utentiOnline = new Vector<Utente>();
+	private final List<Utente> utentiDisconnessi = new Vector<Utente>();
+	
 	private final TimerPartita timerPartita = new TimerPartita(CostantiRete.MILLISECONDI_TIMER_PARTITA, this);
 
 	private final ConnessioneServerRmi connessioneRmi = new ConnessioneServerRmi(this);
@@ -35,14 +39,24 @@ public class ServerSheepland {
 
 	}
 
-	public synchronized boolean aggiungiUtente(String nome, String password, InterfacciaConnessioneServer connessione) {
+	public synchronized void aggiungiUtente(String nome, String password, InterfacciaConnessioneServer connessione) throws NomeGiaPresenteException, PasswordSbagliataException {
 		Utente utente = new Utente(nome, password, connessione);
-		if (utenteGiaRegistrato(utente)) {
-			return false;
+		if (utentiOnline.contains(utente)) {
+			throw new NomeGiaPresenteException();
 		}
-
+		
+		for(Utente u : utentiDisconnessi) {
+			if(u.getNome().equals(utente.getNome())) {
+				if(u.getPassword().equals(utente.getPassword())) {
+					riconnettiUtente(utente);
+				} else {
+					throw new PasswordSbagliataException();
+				}
+			}
+		}
+		
 		utentiInAttesa.add(utente);
-		utenti.add(utente);
+		utentiOnline.add(utente);
 		LOGGER.println("Registrato " + utente);
 
 		if (utentiInAttesa.size() == Costanti.NUM_MAX_GIOCATORI) {
@@ -53,7 +67,11 @@ public class ServerSheepland {
 			timerPartita.inizia();
 		}
 
-		return true;
+	}
+
+	private void riconnettiUtente(Utente utente) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public synchronized void iniziaPartita() {
@@ -76,28 +94,6 @@ public class ServerSheepland {
 		utentiInAttesa.clear();
 	}
 
-	/**
-	 * Controlla se un nome e' gia' stato registrato sul server
-	 * 
-	 * @param nome
-	 *            il nome da controllare
-	 * @return true se e' gia' stato registrato, false se il nome e' disponibile
-	 */
-	private boolean utenteGiaRegistrato(Utente utente) {
-		for (GestorePartita gest : gestoriPartita) {
-			for (Utente u : gest.getUtenti()) {
-				if (utente.equals(u)) {
-					return true;
-				}
-			}
-		}
-		for (Utente u : utentiInAttesa) {
-			if (utente.equals(u)) {
-				return true;
-			}
-		}
-		return false;
-	}
 
 	/**
 	 * Restituisce la partita giocata da un giocatore
@@ -137,6 +133,9 @@ public class ServerSheepland {
 	}
 	
 	public void gestisciDisconnessione(Utente utente) {
+		utentiInAttesa.remove(utente);
+		utentiOnline.remove(utente);
+		utentiDisconnessi.add(utente);
 		utente.getConnessione().gestisciDisconnessione(utente);
 		utente.setConnessione(null);
 		utente.getCodaMosse().aggiungi(CostantiRete.MOSSA_DISCONNESSIONE);
