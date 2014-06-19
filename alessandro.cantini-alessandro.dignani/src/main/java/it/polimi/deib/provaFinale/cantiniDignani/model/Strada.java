@@ -2,21 +2,16 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 import java.io.Serializable;
 
-public class Strada implements Serializable{
+public class Strada implements Serializable {
 	private static final long serialVersionUID = 6178303418989298078L;
-	
+
 	private Territorio territorio1;
 	private Territorio territorio2;
 	private Integer codice;
 
 	public Strada(Territorio territorio1, Territorio territorio2, Integer codice) {
-
-		try {
-			if (territorio1.equals(territorio2)) {
-				throw new IllegalArgumentException("I due territori devono essere diversi");
-			}
-		} catch (NullPointerException e) {
-			throw new IllegalArgumentException("I territori non devono essere null", e);
+		if (territorio1.equals(territorio2)) {
+			throw new IllegalArgumentException("I due territori devono essere diversi");
 		}
 		this.territorio1 = territorio1;
 		this.territorio2 = territorio2;
@@ -69,7 +64,7 @@ public class Strada implements Serializable{
 
 	@Override
 	public String toString() {
-		if(this.equals(Mappa.STRADA_INESISTENTE)) {
+		if (this.equals(Mappa.STRADA_INESISTENTE)) {
 			return "Strada inesistente";
 		}
 		return "Strada " + codice;

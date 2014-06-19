@@ -11,15 +11,14 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.PasswordSbagliataException;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ConnessioneServerRmi;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.socket.ConnessioneServerSocket;
-import it.polimi.deib.provaFinale.cantiniDignani.view.cli.CostantiCli;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Logger;
 
 public class ServerSheepland {
-	public final static PrintStream LOGGER = CostantiCli.DEFAULT_OUTPUT;
+	private final static Logger logger = Logger.getLogger(ServerSheepland.class.getName());
 
 	private final List<GestorePartita> gestoriPartita = new Vector<GestorePartita>();
 	private final List<Utente> utentiInAttesa = new Vector<Utente>();
@@ -32,6 +31,8 @@ public class ServerSheepland {
 	private final ConnessioneServerSocket connessioneSocket = new ConnessioneServerSocket(this);
 
 	public void inizia() {
+		logger.fine("ciao");
+		logger.info("ciao");
 		timerPartita.start();
 
 		connessioneRmi.start();
@@ -57,7 +58,7 @@ public class ServerSheepland {
 		
 		utentiInAttesa.add(utente);
 		utentiOnline.add(utente);
-		LOGGER.println("Registrato " + utente);
+		logger.info("Registrato " + utente);
 
 		if (utentiInAttesa.size() == Costanti.NUM_MAX_GIOCATORI) {
 			iniziaPartita();
@@ -152,7 +153,7 @@ public class ServerSheepland {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		LOGGER.println(utente + "disconnesso");
+		logger.info(utente + "disconnesso");
 		
 	}
 	

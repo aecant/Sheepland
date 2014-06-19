@@ -1,7 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerSheepland;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.InizioPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
@@ -12,9 +11,12 @@ import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 
 import java.util.Collections;
 import java.util.Stack;
+import java.util.logging.Logger;
 
 public class PreparazionePartita extends FasePartita {
 
+	private final static Logger logger = Logger.getLogger(PreparazionePartita.class.getName());
+	
 	public PreparazionePartita(GestorePartita gestore) {
 		super(gestore);
 	}
@@ -25,7 +27,7 @@ public class PreparazionePartita extends FasePartita {
 		disponiPecore();
 		disponiTessereIniziali();
 		gestore.inviaEventoATutti(new InizioPartita(Estrattore.datiPartita(partita)));
-		ServerSheepland.LOGGER.println("Partita iniziata con i giocatori: " + gestore.getTuttiGiocatori());
+		logger.info("Partita iniziata con i giocatori: " + gestore.getTuttiGiocatori());
 	}
 
 	/**

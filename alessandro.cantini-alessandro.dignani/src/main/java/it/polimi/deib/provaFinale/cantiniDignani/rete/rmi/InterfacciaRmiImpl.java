@@ -4,12 +4,13 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerSheepland;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.PasswordSbagliataException;
 
-import java.io.PrintStream;
 import java.rmi.RemoteException;
+import java.util.logging.Logger;
 
 public class InterfacciaRmiImpl implements InterfacciaRmi {
-
-	private final PrintStream logger = ServerSheepland.LOGGER;
+	
+	private final Logger logger = Logger.getLogger(InterfacciaRmiImpl.class.getName());
+	
 	private final ConnessioneServerRmi connessione;
 	private final ServerSheepland server;
 	
@@ -30,13 +31,13 @@ public class InterfacciaRmiImpl implements InterfacciaRmi {
 
 	public void aggiungiAscoltatore(String nome, InterfacciaAscoltatoreRmi ascoltatore) throws RemoteException {
 		connessione.getAscoltatori().put(nome, ascoltatore);
-		logger.println("Ascoltatore aggiunto: " + ascoltatore);
+		logger.info("Ascoltatore aggiunto: " + ascoltatore);
 	}
 
 	public void riceviMossa(String nome, int mossa) {
 		server.getUtente(nome).getCodaMosse().aggiungi(mossa);
 
-		logger.println("Mossa ricevuta da " + nome + " : " + mossa);
+		logger.info("Mossa ricevuta da " + nome + " : " + mossa);
 	}
 
 }

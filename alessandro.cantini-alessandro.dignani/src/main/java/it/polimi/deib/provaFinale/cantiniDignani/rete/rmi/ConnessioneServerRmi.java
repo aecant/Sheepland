@@ -14,9 +14,13 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Hashtable;
+import java.util.logging.Logger;
+
 
 public class ConnessioneServerRmi extends ConnessioneServer implements InterfacciaConnessioneServer {
 
+	private final Logger logger = Logger.getLogger(ConnessioneServerRmi.class.getName());
+	
 	private final Hashtable<String, InterfacciaAscoltatoreRmi> ascoltatori = new Hashtable<String, InterfacciaAscoltatoreRmi>();
 	private Registry registro;
 
@@ -35,7 +39,7 @@ public class ConnessioneServerRmi extends ConnessioneServer implements Interfacc
 			registro = LocateRegistry.createRegistry(CostantiRete.PORTA_SERVER_RMI);
 			registro.rebind(CostantiRete.NOME_SERVER_RMI, stub);
 
-			ServerSheepland.LOGGER.println("Server RMI pronto");
+			logger.info("Server RMI pronto");
 		} catch (RemoteException e) {
 			System.err.println("Eccezione server RMI:");
 			e.printStackTrace();

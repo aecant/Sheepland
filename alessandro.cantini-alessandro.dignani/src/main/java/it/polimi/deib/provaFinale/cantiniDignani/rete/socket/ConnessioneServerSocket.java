@@ -8,42 +8,41 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 
 import java.io.IOException;
-import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Logger;
 
 public class ConnessioneServerSocket extends ConnessioneServer implements InterfacciaConnessioneServer {
+	
+	private final static Logger logger = Logger.getLogger(ConnessioneServerSocket.class.getName());
+	
+	private ServerSocket server;
+	private final ExecutorService esecutore = Executors.newCachedThreadPool();
+	private final Map<Utente, GestoreClientSocket> gestoriUtenti = new Hashtable<Utente, GestoreClientSocket>();
 
 	public ConnessioneServerSocket(ServerSheepland serverSheepland) {
 		super(serverSheepland);
 	}
 
-	private final int PORTA = CostantiRete.PORTA_SERVER_SOCKET;
-	private final PrintStream LOGGER = ServerSheepland.LOGGER;
-
-	private ServerSocket server;
-	private final ExecutorService esecutore = Executors.newCachedThreadPool();
-	private final Map<Utente, GestoreClientSocket> gestoriUtenti = new Hashtable<Utente, GestoreClientSocket>();
-
 	public void inizia() {
 
 		try {
-			server = new ServerSocket(PORTA);
+			server = new ServerSocket(CostantiRete.PORTA_SERVER_SOCKET);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return;
 		}
-		LOGGER.println("Server socket pronto");
+		logger.info("Server socket pronto");
 		while (true) {
 			try {
 				Socket socket = server.accept();
 				esecutore.submit(new GestoreClientSocket(socket, this, serverSheepland));
-				LOGGER.println("Connessione iniziata con " + socket);
+				logger.info("Connessione iniziata con " + socket);
 			} catch (IOException e) {
 				e.printStackTrace();
 				break;
