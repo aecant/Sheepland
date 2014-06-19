@@ -129,13 +129,15 @@ public class Gui implements InterfacciaUtente {
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
 		finestraPartita.getPanelMessaggi().visualizzaMessaggio("" + giocatore + " ha comprato una tessera di tipo " + tessera.getTipo());
+		// TODO Migliorare con visualizzazione dell'immagine
+		finestraPartita.getPanelTessere().aggiornaTessere();
 	}
 
 	public void abbattimento(String giocatore, TipoAnimale tipo, int territorio, boolean aBuonFine) {
 		if(aBuonFine) {
 			finestraPartita.getMappa().disegnaTerritorio(territorio);
 		}
-		// TODO da integrare con l'immagine animata dell'accoppiamneto
+		// TODO da integrare con l'immagine animata dell'accoppiamento
 	}
 
 	public void accoppiamento(String giocatore, int territorio, boolean aBuonFine) {

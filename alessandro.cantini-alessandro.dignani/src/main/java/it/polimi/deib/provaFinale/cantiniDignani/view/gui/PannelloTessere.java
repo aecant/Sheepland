@@ -17,7 +17,7 @@ public class PannelloTessere extends JPanel {
 
 	private static final long serialVersionUID = -594444461810094160L;
 
-	private List<JPanel> tessereView = new ArrayList<JPanel>();
+	private List<TesseraView> tessereView = new ArrayList<TesseraView>();
 
 	public PannelloTessere(Tessera[] tessere, Map<TipoTerritorio, Integer> tessereGiocatoreCorrente) {
 		super(new GridLayout(6, 1, 0, 0));
@@ -25,7 +25,7 @@ public class PannelloTessere extends JPanel {
 		// creo le TessereView
 		int cont = 0;
 		for (Tessera tess : tessere) {
-				tessereView.add(new TesseraView(creaCasella(CostantiGui.PERCORSO_IMMAGINI + tess.getTipo().name().toLowerCase() + ".jpg"), tessere[cont].getCosto(), tessereGiocatoreCorrente.get(tess.getTipo())));
+				tessereView.add(new TesseraView(creaCasella(CostantiGui.PERCORSO_IMMAGINI + tess.getTipo().name().toLowerCase() + ".jpg"), tessere[cont].getCosto(), tessereGiocatoreCorrente.get(tess.getTipo()), cont));
 				cont++;
 		}
 
@@ -40,5 +40,11 @@ public class PannelloTessere extends JPanel {
 
 	private Image creaCasella(String percorsoImg) {
 		return Toolkit.getDefaultToolkit().getImage(percorsoImg).getScaledInstance(CostantiGui.DIMENSIONE_PANEL_TESSERA.width, CostantiGui.DIMENSIONE_PANEL_TESSERA.height, Image.SCALE_SMOOTH);
+	}
+	
+	public void aggiornaTessere() {
+		for(TesseraView tess : tessereView) {
+			tess.aggiorna();
+		}
 	}
 }
