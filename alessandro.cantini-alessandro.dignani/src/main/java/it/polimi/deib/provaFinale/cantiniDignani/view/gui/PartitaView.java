@@ -20,15 +20,13 @@ public class PartitaView {
 	private JPanel panelMappaSinistra;
 	private JPanel panelMappaDestra;
 	private MappaView mappa;
-
 	private PannelloTessere panelTessere;
-
 	private JPanel contenitore;
 	private JPanel panelGiocatoriMosse;
 	private PannelloGiocatori panelGiocatori;
 	private PannelloMosse panelMosse;
-
 	private PanelMessaggi panelMessaggi;
+	private PanelTessereDaAcquistare panelTessereDaAcquistare;
 
 	private DatiPartita datiPartita;
 	
@@ -87,9 +85,13 @@ public class PartitaView {
 		// imposto il panelMessaggi
 		panelMessaggi = new PanelMessaggi();
 		
+		// imposto il panelTessereDaAcquistare
+		panelTessereDaAcquistare = new PanelTessereDaAcquistare();
+		
 
 		// aggiungo il contenitore alla finestra
 		finestra.add(panelMessaggi);
+		finestra.add(panelTessereDaAcquistare);
 		finestra.add(contenitore);
 
 		finestra.pack();
@@ -125,5 +127,9 @@ public class PartitaView {
 
 	public PannelloMosse getPanelMosse() {
 		return panelMosse;
+	}
+
+	public PanelTessereDaAcquistare getPanelTessereDaAcquistare() {
+		return panelTessereDaAcquistare;
 	}
 }
