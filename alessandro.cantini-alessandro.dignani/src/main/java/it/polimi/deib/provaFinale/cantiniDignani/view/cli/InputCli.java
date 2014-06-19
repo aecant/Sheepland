@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class InputCli {
 	private final Scanner in;
-	private final PrintStream out = CostantiCli.DEFAULT_OUTPUT;
+	private final static PrintStream out = CostantiCli.DEFAULT_OUTPUT;
 
 	public InputCli(InputStream inputStream) {
 		in = new Scanner(inputStream);
