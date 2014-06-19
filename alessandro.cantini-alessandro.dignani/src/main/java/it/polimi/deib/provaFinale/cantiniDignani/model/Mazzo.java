@@ -45,7 +45,7 @@ public class Mazzo {
 		try {
 			return mazzo.get(tipo).peek();
 		} catch (EmptyStackException e) {
-			throw new MazzoFinitoException(e);
+			throw new MazzoFinitoException("Il mazzo di tipo " + tipo + " e' finito", e);
 		}
 	}
 
