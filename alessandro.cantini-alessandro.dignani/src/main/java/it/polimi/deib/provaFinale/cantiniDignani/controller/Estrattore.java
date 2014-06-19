@@ -3,6 +3,8 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Mazzo;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Mazzo.MazzoFinitoException;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
 import it.polimi.deib.provaFinale.cantiniDignani.model.PedinaSuStrada;
@@ -175,7 +177,11 @@ public class Estrattore {
 	public static Tessera[] tessereInCima(Partita partita) {
 		Tessera[] tessere = new Tessera[TipoTerritorio.valoriTessere().length];
 		for (int i = 0; i < tessere.length; i++) {
-			tessere[i] = partita.getMazzo().leggiTesseraInCima(TipoTerritorio.valoriTessere()[i]);
+			try {
+				tessere[i] = partita.getMazzo().leggiTesseraInCima(TipoTerritorio.valoriTessere()[i]);
+			} catch (MazzoFinitoException e) {
+				tessere[i] = Mazzo.TESSERA_FINITA;
+			}
 		}
 
 		return tessere;

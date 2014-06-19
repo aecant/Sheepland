@@ -26,8 +26,12 @@ public class MazzoTest {
 	 */
 	@Test(expected = MazzoFinitoException.class)
 	public void testMazzoFinito() {
-		for (int i = 0; i < Costanti.NUM_TESSERE_PER_TIPO + 1; i++)
+		for (int i = 0; i < Costanti.NUM_TESSERE_PER_TIPO + 1; i++) {
 			mazzo1.prelevaTessera(TipoTerritorio.BOSCO);
+			if(i == Costanti.NUM_TESSERE_PER_TIPO) {
+				assertTrue(mazzo1.getTessereRimaste(TipoTerritorio.BOSCO) == 0);
+			}
+		}
 	}
 
 	/**
