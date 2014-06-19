@@ -6,8 +6,8 @@ public class CostantiTest {
 
 	public static final boolean SCELTA_INTERFACCIA = false;
 
-	public static final boolean RMI = false;
+	public static final boolean RMI = true;
 
-	public static final boolean CLI = true;
+	public static final boolean CLI = false;
 
 }

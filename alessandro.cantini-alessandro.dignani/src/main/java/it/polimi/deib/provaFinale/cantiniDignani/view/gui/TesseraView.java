@@ -2,6 +2,8 @@ package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Mazzo;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
 
 import java.awt.BorderLayout;
@@ -22,6 +24,7 @@ public class TesseraView extends BackgroundPanel {
 	JLabel lblPossedute;
 	JPanel panelCosto;
 	JLabel moneta;
+	JPanel panelFinito = new JPanel();
 	
 	Integer costo;
 	Integer indice;
@@ -44,6 +47,11 @@ public class TesseraView extends BackgroundPanel {
 		angolino.setBackground(CostantiGui.COLORE_SFONDO_ANGOLINI);
 		angolino.setLayout(new BorderLayout());
 		angolino.add(lblPossedute, BorderLayout.CENTER);
+		
+		// imposto il panelFinito
+		panelFinito.setBounds(0, 0, CostantiGui.DIMENSIONE_PANEL_TESSERA.width, CostantiGui.DIMENSIONE_PANEL_TESSERA.height);
+		panelFinito.setBackground(CostantiGui.COLORE_TESSERA_FINITA);
+		panelFinito.setVisible(false);
 
 		// imposto il panel con il prezzo della tessera in cima di quel tipo
 		panelCosto = new JPanel();
@@ -56,6 +64,7 @@ public class TesseraView extends BackgroundPanel {
 		setLayout(null);
 		setBackground(CostantiGui.COLORE_ACQUA);
 		add(angolino);
+		add(panelFinito);
 		add(panelCosto);
 	}
 
@@ -73,18 +82,27 @@ public class TesseraView extends BackgroundPanel {
 
 	private void aggiornaPossedute() {
 		lblPossedute.setText(MainClient.getDatiPartita().getGiocatore(MainClient.getNome()).numeroTesserePerTipo().get(TipoTerritorio.valoriTessere()[indice]).toString());
+		lblPossedute.repaint();
 	}
 
 	private void aggiornaCosto() {
-		if(costo == MainClient.getDatiPartita().getTessereInCima()[indice].getCosto() - 1) {
-			costo = MainClient.getDatiPartita().getTessereInCima()[indice].getCosto();
-			panelCosto.add((new JLabel(new ImageIcon(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "soldi.png")
-					.getScaledInstance(CostantiGui.DIMENSIONE_MONETA_TESSERA.width, CostantiGui.DIMENSIONE_MONETA_TESSERA.height, Image.SCALE_SMOOTH)))));
-		} else if(costo != MainClient.getDatiPartita().getTessereInCima()[indice].getCosto() - 1) {
-			costo = MainClient.getDatiPartita().getTessereInCima()[indice].getCosto();
-			panelCosto.removeAll();
-			disegnaCosto();
+		// prendo i dati della tessera in cima di questo tipo
+		Tessera tess = MainClient.getDatiPartita().getTessereInCima()[indice];
+		
+		if (!tess.equals(Mazzo.TESSERA_FINITA)) {
+			if(costo == tess.getCosto() - 1) {
+				costo = tess.getCosto();
+				panelCosto.add((new JLabel(new ImageIcon(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "soldi.png").getScaledInstance(CostantiGui.DIMENSIONE_MONETA_TESSERA.width, CostantiGui.DIMENSIONE_MONETA_TESSERA.height, Image.SCALE_SMOOTH)))));
+			} else if(costo != tess.getCosto() - 1) {
+				costo = tess.getCosto();
+				panelCosto.removeAll();
+				disegnaCosto();
+			}
+			panelCosto.repaint();
 		}
-		panelCosto.repaint();
+		else {
+			costo = 0;
+			panelFinito.setVisible(true);
+		}
 	}
 }

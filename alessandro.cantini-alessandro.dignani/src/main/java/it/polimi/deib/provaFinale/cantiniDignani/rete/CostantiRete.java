@@ -5,7 +5,7 @@ public class CostantiRete {
 	// TODO nella versione definitiva, impostare a 30000
 	public static final long MILLISECONDI_TIMER_PARTITA = 5000;
 
-	public static final String INDIRIZZO_SERVER = "192.168.11.4"; // pc di Cant a casa sua 192.168.11.4
+	public static final String INDIRIZZO_SERVER = "localhost"; // pc di Cant a casa sua 192.168.11.4
 
 	public static final int PORTA_SERVER_SOCKET = 12975;
 

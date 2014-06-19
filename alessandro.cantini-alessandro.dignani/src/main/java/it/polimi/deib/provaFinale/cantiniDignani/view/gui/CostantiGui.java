@@ -172,6 +172,8 @@ public class CostantiGui {
 	public static final Dimension DIMENSIONE_ASCOLTATORE_ANIMALE = DIMENSIONE_PECORA;
 	public static final Dimension DIMENSIONE_ASCOLTATORE_TERRITORIO = new Dimension(DIMENSIONE_MAPPA.height / 8, DIMENSIONE_MAPPA.height / 12);
 
+	public static final Color COLORE_TESSERA_FINITA = new Color(10, 10, 10, 100);
+
 
 
 	/**
