@@ -11,10 +11,10 @@ import java.util.Map;
 public class Giocatore implements Serializable {
 	private static final long serialVersionUID = -8973926581885818571L;
 
-	private String nome;
+	private final String nome;
 	private Integer denaro;
-	private List<Pastore> pastori;
-	private List<Tessera> tessere;
+	private final List<Pastore> pastori;
+	private final List<Tessera> tessere;
 
 	public Giocatore(String nome) {
 		if (nome == null) {
@@ -45,7 +45,7 @@ public class Giocatore implements Serializable {
 	 * @throws DenaroInsufficienteException
 	 *             se il pastore non dispone di abbastanza denaro
 	 */
-	public void sottraiDenaro(int quantita) throws DenaroInsufficienteException {
+	public void sottraiDenaro(int quantita) {
 		if (quantita > denaro) {
 			throw new DenaroInsufficienteException();
 		}

@@ -16,7 +16,7 @@ public class Mazzo {
 	 * Tessera inesistente che indica che il mazzo e' finito
 	 */
 	public final static Tessera TESSERA_FINITA = new Tessera(null, Integer.MIN_VALUE);
-	
+
 	private final Map<TipoTerritorio, Stack<Tessera>> mazzo;
 
 	/**
@@ -43,7 +43,7 @@ public class Mazzo {
 	 * @throws IllegalArgumentException
 	 *             nel caso si cerchi di prelevare la tessera Sheepsburg
 	 */
-	public Tessera leggiTesseraInCima(TipoTerritorio tipo) throws MazzoFinitoException, IllegalArgumentException {
+	public Tessera leggiTesseraInCima(TipoTerritorio tipo) {
 		if (tipo == TipoTerritorio.SHEEPSBURG)
 			throw new IllegalArgumentException("Non esistono tessere di tipo Sheepsburg");
 
@@ -66,7 +66,7 @@ public class Mazzo {
 	 * @throws IllegalArgumentException
 	 *             nel caso si cerchi di prelevare la tessera Sheepsburg
 	 */
-	public Tessera prelevaTessera(TipoTerritorio tipo) throws MazzoFinitoException, IllegalArgumentException {
+	public Tessera prelevaTessera(TipoTerritorio tipo) {
 		Tessera t = leggiTesseraInCima(tipo);
 		mazzo.get(tipo).pop();
 		return t;

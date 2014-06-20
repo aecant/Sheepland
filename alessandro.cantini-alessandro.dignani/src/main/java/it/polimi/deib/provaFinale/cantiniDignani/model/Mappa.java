@@ -10,10 +10,10 @@ import java.util.List;
  */
 public class Mappa {
 	public static final Strada STRADA_INESISTENTE = new Strada(new Territorio(-1, null), new Territorio(-2, null), -1);
-	
+
 	private static Mappa istanza = null;
-	private Territorio[] territori;
-	private Strada[] strade;
+	private final Territorio[] territori;
+	private final Strada[] strade;
 
 	private Mappa() {
 		territori = creaTerritori();
@@ -30,10 +30,10 @@ public class Mappa {
 	 * @return il territorio di destinazione
 	 */
 	public Territorio transizione(Territorio t, int dado) {
-		if(dado < 1 || dado > 6) {
+		if (dado < 1 || dado > 6) {
 			throw new IllegalArgumentException(dado + " non e' un parametro accettabile: il numero dev'essere compreso fra 1 e 6");
 		}
-		
+
 		int indice = Costanti.MAPPA[t.getCodice()][dado - 1];
 		return territori[indice];
 	}
@@ -49,7 +49,7 @@ public class Mappa {
 	 *            il secondo territorio
 	 * @return true se i territori sono confinanti, false altrimenti
 	 */
-	public boolean sonoConfinanti(Territorio t1, Territorio t2) throws IllegalArgumentException {
+	public boolean sonoConfinanti(Territorio t1, Territorio t2) {
 		if (t1.equals(t2)) {
 			throw new IllegalArgumentException("I territori devono essere diversi");
 		}
@@ -98,7 +98,7 @@ public class Mappa {
 			}
 		}
 
-		throw new RuntimeException("Problema nell'ottenere lancio del dado corrispondente alla strada");
+		throw new IllegalArgumentException("Problema nell'ottenere lancio del dado corrispondente alla strada");
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class Mappa {
 	 *         comune
 	 * @throws IllegalArgumentException
 	 */
-	private Territorio territorioInComune(Strada s1, Strada s2) throws IllegalArgumentException {
+	private Territorio territorioInComune(Strada s1, Strada s2) {
 		if (s1.equals(s2)) {
 			throw new IllegalArgumentException("Le strade devono essere diverse");
 		}

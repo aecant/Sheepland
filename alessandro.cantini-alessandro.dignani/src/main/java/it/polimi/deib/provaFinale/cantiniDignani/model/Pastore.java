@@ -3,6 +3,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 public class Pastore extends PedinaSuStrada {
 
 	private static final long serialVersionUID = -7195381118983518612L;
+	
 	private ColorePastore colore;
 
 	public Pastore(Strada strada, ColorePastore colore) {
@@ -12,7 +13,7 @@ public class Pastore extends PedinaSuStrada {
 
 	public void muoviIn(Strada posizione) {
 		if(posizione == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException("La posizione non puo' essere null");
 		}
 		super.setStrada(posizione);
 	}
