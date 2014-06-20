@@ -207,8 +207,8 @@ public class Gui implements InterfacciaUtente {
 	public int richiestaTesseraDaAcquistare(List<Tessera> tessereDisponibili) {
 		// TODO Auto-generated method stub
 		// ##################################################################################
-
-		return 0;
+		finestraPartita.getPanelTessereDaAcquistare().sceltaTessera(tessereDisponibili);
+		return coda.aspetta();
 	}
 
 	public void disconnessioneGiocatore(String giocatore) {
@@ -218,5 +218,13 @@ public class Gui implements InterfacciaUtente {
 
 	public static GestoreCoda<Integer> getCoda() {
 		return coda;
+	}
+	
+	public void giocatoreRiconnesso(String giocatore){
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio(giocatore + " si è riconnesso");
+	}
+	
+	public void saltoTurno(String giocatore){
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio(giocatore + " ha saltato il turno");
 	}
 }
