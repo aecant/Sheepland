@@ -55,7 +55,7 @@ public class Cli implements InterfacciaUtente {
 	public void passwordSbagliata() {
 		out.println("La password inserita e' sbagliata");
 	}
-	
+
 	public void inizioPartita() {
 		out.println("Partita iniziata con i giocatori:");
 		out.println(listaDiStringhe(MainClient.getDatiPartita().getNomiGiocatori(), "; ", "."));
@@ -139,7 +139,16 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void disconnessioneGiocatore(String giocatore) {
-		out.println(giocatore + "si è disconnesso");
+		out.println(giocatore + " si e' disconnesso");
+	}
+
+	public void giocatoreRiconnesso(String giocatore) {
+		out.println(giocatore + " si e' riconnesso");
+	}
+
+	public void saltoTurno(String giocatore) {
+		out.println(giocatore + " ha saltato il turno");
+
 	}
 
 	public int richiestaPosizioneInizialePastore(boolean[] stradeLibere) {

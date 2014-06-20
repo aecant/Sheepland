@@ -2,7 +2,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.rete.rmi;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.PasswordSbagliataException;
@@ -18,24 +18,27 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ConnessioneClientRmi implements InterfacciaConnessioneClient, InterfacciaAscoltatoreRmi {
+public class ConnessioneClientRmi extends ConnessioneClient implements InterfacciaConnessioneClient, InterfacciaAscoltatoreRmi {
 
 	private final static Logger logger = Logger.getLogger(ConnessioneClientRmi.class.getName());
-	
+
 	private Registry registry;
 	private InterfacciaRmi server;
 	private InterfacciaAscoltatoreRmi ascoltatore;
-	private GestoreCoda<Evento> gestoreEventi = MainClient.getGestoreEventi();
+
+	public ConnessioneClientRmi(String indirizzoServer, GestoreCoda<Evento> codaEventi) {
+		super(indirizzoServer, codaEventi);
+	}
 
 	public void inizia() {
 		try {
-			registry = LocateRegistry.getRegistry(CostantiRete.INDIRIZZO_SERVER, CostantiRete.PORTA_SERVER_RMI);
-			server = (InterfacciaRmi) registry.lookup(CostantiRete.NOME_SERVER_RMI);
+			registry = LocateRegistry.getRegistry(indirizzoServer, CostantiRmi.PORTA_SERVER_RMI);
+			server = (InterfacciaRmi) registry.lookup(CostantiRmi.NOME_SERVER_RMI);
 
 		} catch (RemoteException e) {
 			logger.log(Level.SEVERE, "Impossibile stabilire la connessione col server", e);
 		} catch (NotBoundException e) {
-			logger.log(Level.SEVERE, CostantiRete.NOME_SERVER_RMI + " non collegato ", e);
+			logger.log(Level.SEVERE, CostantiRmi.NOME_SERVER_RMI + " non collegato ", e);
 		}
 	}
 
@@ -52,7 +55,7 @@ public class ConnessioneClientRmi implements InterfacciaConnessioneClient, Inter
 	}
 
 	public void riceviEvento(Evento evento) {
-		gestoreEventi.aggiungi(evento);
+		codaEventi.aggiungi(evento);
 	}
 
 	public boolean seiOnline() {

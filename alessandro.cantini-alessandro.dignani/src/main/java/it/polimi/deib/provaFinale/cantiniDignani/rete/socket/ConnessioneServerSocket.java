@@ -4,7 +4,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerSheepland;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneServer;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 
 import java.io.IOException;
@@ -31,7 +30,7 @@ public class ConnessioneServerSocket extends ConnessioneServer implements Interf
 	public void inizia() {
 
 		try {
-			server = new ServerSocket(CostantiRete.PORTA_SERVER_SOCKET);
+			server = new ServerSocket(CostantiSocket.PORTA_SERVER_SOCKET);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

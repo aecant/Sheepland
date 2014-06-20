@@ -23,6 +23,10 @@ public class FaseIniziale extends FasePartita {
 
 	private void giroPosizionamentoPastore(int numPastore) {
 		for (Giocatore giocatore : partita.getGiocatori()) {
+			if(gestore.giocatoreOffline(giocatore)) {
+				continue;
+			}
+			
 			boolean[] stradeLibere = Estrattore.stradeLibere(partita);
 			gestore.inviaEvento(new RichiestaPosizioneInizialePastore(stradeLibere), giocatore);
 			int codStrada = gestore.aspettaMossa(giocatore);

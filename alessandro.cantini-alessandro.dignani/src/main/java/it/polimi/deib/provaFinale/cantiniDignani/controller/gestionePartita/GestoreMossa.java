@@ -1,5 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.CostantiController;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
@@ -153,8 +154,8 @@ public class GestoreMossa {
 			for (Pastore pastoreVicino : partita.getPastori()) {
 				if (Mappa.getMappa().sonoContigue(pastore.getStrada(), pastoreVicino.getStrada()) && !pastoreVicino.getColore().equals(pastore.getColore())) {
 					lancio = gestorePartita.lanciaDado(MotivoLancioDado.SILENZIO_ABBATTIMENTO);
-					if (lancio >= Costanti.DADO_MIN_PER_SILENZIO) {
-						int somma = Costanti.COSTO_SILENZIO;
+					if (lancio >= CostantiController.DADO_MIN_PER_SILENZIO) {
+						int somma = CostantiController.COSTO_SILENZIO;
 						Giocatore ricevente = partita.getGiocatore(pastoreVicino);
 						gestorePartita.pagamento(somma, giocatore, ricevente);
 						gestorePartita.inviaEventoATutti(new Pagamento(somma, giocatore.getNome(), ricevente.getNome(), Estrattore.giocatori(partita)));

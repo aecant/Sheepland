@@ -4,7 +4,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerSheepland;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneServer;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 
 import java.rmi.NoSuchObjectException;
@@ -36,8 +35,8 @@ public class ConnessioneServerRmi extends ConnessioneServer implements Interfacc
 		try {
 			InterfacciaRmi interfacciaMetodi = new InterfacciaRmiImpl(this, serverSheepland);
 			InterfacciaRmi stub = (InterfacciaRmi) UnicastRemoteObject.exportObject(interfacciaMetodi, 0);
-			registro = LocateRegistry.createRegistry(CostantiRete.PORTA_SERVER_RMI);
-			registro.rebind(CostantiRete.NOME_SERVER_RMI, stub);
+			registro = LocateRegistry.createRegistry(CostantiRmi.PORTA_SERVER_RMI);
+			registro.rebind(CostantiRmi.NOME_SERVER_RMI, stub);
 
 			logger.info("Server RMI pronto");
 		} catch (RemoteException e) {
@@ -59,7 +58,7 @@ public class ConnessioneServerRmi extends ConnessioneServer implements Interfacc
 	public void termina() {
 		try {
 			UnicastRemoteObject.unexportObject(registro, true);
-			registro.unbind(CostantiRete.NOME_SERVER_RMI);
+			registro.unbind(CostantiRmi.NOME_SERVER_RMI);
 		} catch (NoSuchObjectException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
