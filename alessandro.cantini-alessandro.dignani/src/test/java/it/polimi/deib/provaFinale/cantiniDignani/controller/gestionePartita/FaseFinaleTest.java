@@ -5,13 +5,13 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 import java.util.Map;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.EstrattoreTest;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.FaseFinale;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
-import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,9 +31,9 @@ public class FaseFinaleTest {
 		
 		partita = fase.partita;
 		
-		partita.getGregge().aggiungi(Sorte.pecoraRandom(t1));
-		partita.getGregge().aggiungi(Sorte.pecoraRandom(t2));
-		partita.getGregge().aggiungi(Sorte.pecoraRandom(t3));
+		partita.getGregge().aggiungi(Estrattore.pecoraRandom(t1));
+		partita.getGregge().aggiungi(Estrattore.pecoraRandom(t2));
+		partita.getGregge().aggiungi(Estrattore.pecoraRandom(t3));
 		
 	}
 

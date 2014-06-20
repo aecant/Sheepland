@@ -24,7 +24,7 @@ public class MainClient {
 	public static void main(String[] args) {
 		connessione = chiediTipoConnessione();
 		ui = chiediTipoInterfaccia();
-
+		
 		connessione.inizia();
 
 		chiediNomeERegistraGiocatore();

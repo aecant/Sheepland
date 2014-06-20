@@ -53,13 +53,13 @@ public class SorteTest {
 
 	@Test
 	public void testPecoraRandom() {
-		Pecora pecora = Sorte.pecoraRandom(terr);
+		Pecora pecora = Estrattore.pecoraRandom(terr);
 		assertTrue(pecora instanceof Pecora);
 	}
 
 	@Test
 	public void testAgnelloRandom() {
-		Agnello agnello = Sorte.agnelloRandom(terr);
+		Agnello agnello = Estrattore.agnelloRandom(terr);
 		assertTrue(agnello instanceof Agnello);
 		assertTrue(agnello.getTipoAnimale() == TipoAnimale.AGNELLO);
 	}

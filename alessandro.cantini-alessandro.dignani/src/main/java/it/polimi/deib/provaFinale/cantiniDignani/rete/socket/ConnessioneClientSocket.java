@@ -14,8 +14,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.logging.Logger;
 
 public class ConnessioneClientSocket implements InterfacciaConnessioneClient {
+
+	private final static Logger logger = Logger.getLogger(ConnessioneClientSocket.class.getName());
 
 	private final int PORTA = CostantiRete.PORTA_SERVER_SOCKET;
 	private final String INDIRIZZO = CostantiRete.INDIRIZZO_SERVER;
@@ -29,8 +32,7 @@ public class ConnessioneClientSocket implements InterfacciaConnessioneClient {
 	public void inizia() {
 		try {
 			socket = new Socket(INDIRIZZO, PORTA);
-			System.out.println("Connessione stabilita: " + socket); // TODO da
-																	// rimuovere
+			logger.info("Connessione stabilita: " + socket);
 
 			out = new ObjectOutputStream(socket.getOutputStream());
 			in = new ObjectInputStream(socket.getInputStream());

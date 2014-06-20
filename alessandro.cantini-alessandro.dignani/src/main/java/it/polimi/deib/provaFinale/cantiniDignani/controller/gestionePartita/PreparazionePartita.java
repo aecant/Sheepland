@@ -7,7 +7,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
-import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 
 import java.util.Collections;
 import java.util.Stack;
@@ -64,7 +63,7 @@ public class PreparazionePartita extends FasePartita {
 	public void disponiPecore() {
 		for (Territorio t : Mappa.getMappa().getTerritori()) {
 			if (t.getTipo() != TipoTerritorio.SHEEPSBURG) {
-				partita.getGregge().aggiungi(Sorte.pecoraRandom(t));
+				partita.getGregge().aggiungi(Estrattore.pecoraRandom(t));
 			}
 		}
 	}

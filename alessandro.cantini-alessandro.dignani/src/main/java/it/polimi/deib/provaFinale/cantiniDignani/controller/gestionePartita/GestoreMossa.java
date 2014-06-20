@@ -27,7 +27,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
-import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -194,7 +193,7 @@ public class GestoreMossa {
 		boolean aBuonFine = (lancio == Mappa.getMappa().getDado(pastore.getStrada()));
 
 		if (aBuonFine) {
-			partita.getGregge().aggiungi(Sorte.agnelloRandom(terr));
+			partita.getGregge().aggiungi(Estrattore.agnelloRandom(terr));
 		}
 
 		gestorePartita.inviaEventoATutti(new Accoppiamento(giocatore.getNome(), codTerr, aBuonFine, Estrattore.datiTerritori(partita)));

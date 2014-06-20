@@ -14,9 +14,9 @@ import java.util.List;
 
 public class GestorePartita extends Thread {
 
-	private List<Utente> utenti;
+	private final List<Utente> utenti;
 	private final Partita partita;
-	private List<String> tuttiGiocatori;
+	private final List<String> tuttiGiocatori;
 
 	private final PreparazionePartita preparazionePartita;
 	private final FaseIniziale faseIniziale;

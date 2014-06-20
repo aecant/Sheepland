@@ -31,12 +31,12 @@ public class ServerSheepland {
 	private final ConnessioneServerSocket connessioneSocket = new ConnessioneServerSocket(this);
 
 	public void inizia() {
-		logger.fine("ciao");
-		logger.info("ciao");
 		timerPartita.start();
 
 		connessioneRmi.start();
+		logger.info("Server RMI pronto");
 		connessioneSocket.start();
+		logger.info("Server socket pronto");
 
 	}
 

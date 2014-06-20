@@ -1,13 +1,13 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
 import static org.junit.Assert.assertEquals;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.EstrattoreTest;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
-import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 
 import java.util.Arrays;
 
@@ -29,9 +29,9 @@ public class FasePrincipaleTest {
 	@Test
 	public void testTrasformaEInvecchiaAgnelli() {
 		Territorio[] t = Mappa.getMappa().getTerritori();
-		partita.getGregge().aggiungi(Sorte.agnelloRandom(t[1]));
-		partita.getGregge().aggiungi(Sorte.agnelloRandom(t[2]));
-		partita.getGregge().aggiungi(Sorte.agnelloRandom(t[3]));
+		partita.getGregge().aggiungi(Estrattore.agnelloRandom(t[1]));
+		partita.getGregge().aggiungi(Estrattore.agnelloRandom(t[2]));
+		partita.getGregge().aggiungi(Estrattore.agnelloRandom(t[3]));
 		
 		int numAgnelliPrima = numAgnelli(partita);
 		
