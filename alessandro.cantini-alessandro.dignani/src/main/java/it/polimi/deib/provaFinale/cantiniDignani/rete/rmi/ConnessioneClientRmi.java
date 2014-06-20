@@ -15,9 +15,13 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConnessioneClientRmi implements InterfacciaConnessioneClient, InterfacciaAscoltatoreRmi {
 
+	private final static Logger logger = Logger.getLogger(ConnessioneClientRmi.class.getName());
+	
 	private Registry registry;
 	private InterfacciaRmi server;
 	private InterfacciaAscoltatoreRmi ascoltatore;
@@ -29,11 +33,9 @@ public class ConnessioneClientRmi implements InterfacciaConnessioneClient, Inter
 			server = (InterfacciaRmi) registry.lookup(CostantiRete.NOME_SERVER_RMI);
 
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "Impossibile stabilire la connessione col server", e);
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, CostantiRete.NOME_SERVER_RMI + " non collegato ", e);
 		}
 	}
 
