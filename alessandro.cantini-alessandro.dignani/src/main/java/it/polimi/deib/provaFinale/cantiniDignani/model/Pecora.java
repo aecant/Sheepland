@@ -2,7 +2,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 public class Pecora extends Animale {
 
-	private boolean maschio;
+	private final boolean maschio;
 
 	public Pecora(Territorio posizione, boolean maschio) {
 		super(posizione);

@@ -3,12 +3,13 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 import java.io.Serializable;
 
 public class Territorio implements Serializable{
-
+	
 	private static final long serialVersionUID = 4585423958440423655L;
-	private int codice;
-	private TipoTerritorio tipo;
+	
+	private final int codice;
+	private final TipoTerritorio tipo;
 
-	public Territorio(int codice, TipoTerritorio tipo) throws IllegalArgumentException {
+	public Territorio(int codice, TipoTerritorio tipo) {
 		if (codice < 0 && codice > Costanti.NUM_TERRITORI - 1)
 			throw new IllegalArgumentException("Il tipo dev'essere compreso fra 0 e " + (Costanti.NUM_TERRITORI - 1));
 		this.tipo = tipo;

@@ -2,24 +2,62 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 public class Costanti {
 	
+	/**
+	 * L'eta' massima dell'agnello prima di diventare adulto
+	 */
 	public static final int ETA_MAX_AGNELLO = 2;
 
+	/**
+	 * Il numero minimo di giocatori per effettuare una partita
+	 */
 	public static final int NUM_MIN_GIOCATORI = 2;
+
+	/**
+	 * Il numero massimo di giocatori che possono partecipare a una partita
+	 */
 	public static final int NUM_MAX_GIOCATORI = 4;
 
+	/**
+	 * Il valore massimo delle tessere
+	 */
 	public static final int MAX_VALORE_TESSERA = 4;
+
+	/**
+	 * Il numero di tessere per ogni tipo di territorio
+	 */
 	public static final int NUM_TESSERE_PER_TIPO = MAX_VALORE_TESSERA + 1;
 
+	/**
+	 * Il denaro iniziale di ciascun giocatore in una partita con piu' di un
+	 * giocatore
+	 */
 	public static final int DENARO_INIZIALE = 20;
+
+	/**
+	 * Il denaro iniziale di ciascun giocatore in una partita con due giocatori
+	 */
 	public static final int DENARO_INIZIALE_DUE_GIOCATORI = 30;
 
+	/**
+	 * Il numero delle mosse a disposizione di un giocatore in ogni turno
+	 */
 	public static final int NUM_MOSSE_PER_TURNO = 3;
-	
+
+	/**
+	 * Il numero di recinti iniziali
+	 */
 	public static final int NUM_RECINTI_INIZIALI = 20;
+
+	/**
+	 * Il numero di recinti finali
+	 */
 	public static final int NUM_RECINTI_FINALI = NUM_MOSSE_PER_TURNO * NUM_MAX_GIOCATORI;
-	
+
+	/**
+	 * Il numero di pastori per due giocatori
+	 */
 	public static final int NUM_PASTORI_DUE_GIOCATORI = 2;
-	
+
 	/**
 	 * La matrice di transizione fra un territorio e un altro confinante
 	 * L'indice delle righe corrisponde al codice del territorio
@@ -48,7 +86,7 @@ public class Costanti {
 		};
 	
 	/**
-	 * array che fornisce la corrispondenza tra il codice di un territorio e il suo tipo,
+	 * Array che fornisce la corrispondenza tra il codice di un territorio e il suo tipo,
 	 * l'indice dell'array corrisponde al codice del territorio
 	 * dipende dall'implementazione di Mappa
 	 */
@@ -73,20 +111,38 @@ public class Costanti {
 		TipoTerritorio.CAMPO,
 		TipoTerritorio.CAMPO,
 	};
-	
-	
+
+	/**
+	 * Il numero di territori nella mappa
+	 */
 	public static final int NUM_TERRITORI = MAPPA.length;
-	
+
+	/**
+	 * Il numero di strade nella mappa
+	 */
 	public static final int NUM_STRADE = 42;
 
+	/**
+	 * La posizione iniziale del lupo
+	 */
 	public static final Territorio POS_INIZIALE_LUPO = Mappa.getMappa().getTerritori()[0];
+
+	/**
+	 * La posizione iniziale della pecora nera
+	 */
 	public static final Territorio POS_INIZIALE_PECORA_NERA = Mappa.getMappa().getTerritori()[0];
-	
-	
+
+	/**
+	 * La somma di denaro da pagare dopo un abbattimento per il silenzio di un
+	 * pastore
+	 */
 	public static final int COSTO_SILENZIO = 2;
+
+	/**
+	 * Il risultato minimo per ottenere un risarciment dopo un abbattimento
+	 */
 	public static final int DADO_MIN_PER_SILENZIO = 5;
-	
-	
+
 	/**
 	 * Costruttore privato per nascondere quello di default
 	 */

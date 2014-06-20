@@ -37,7 +37,7 @@ public class Gregge {
 	 * @throws IllegalArgumentException
 	 *             se la pecora non e' presente
 	 */
-	public void rimuovi(Pecora p) throws IllegalArgumentException {
+	public void rimuovi(Pecora p) {
 		if (!pecore.remove(p)) {
 			throw new IllegalArgumentException("La pecora non e' presente nel gregge");
 		}

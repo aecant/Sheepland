@@ -7,8 +7,8 @@ import java.util.List;
  * Classe che fornisce i metodi per la gestione dei recinti
  */
 public class InsiemeDiRecinti {
-	private List<PedinaSuStrada> recintiIniziali;
-	private List<PedinaSuStrada> recintiFinali;
+	private final List<PedinaSuStrada> recintiIniziali;
+	private final List<PedinaSuStrada> recintiFinali;
 
 	public InsiemeDiRecinti() {
 		recintiIniziali = new ArrayList<PedinaSuStrada>();
