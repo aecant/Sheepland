@@ -40,6 +40,8 @@ public class PanelMessaggi extends JPanel{
 		add(lblMessaggi, BorderLayout.CENTER);
 		setBounds(0, (CostantiGui.DIMENSIONE_SCHERMO.height - CostantiGui.DIMENSIONE_PANEL_MESSAGGI.height) / 2, CostantiGui.DIMENSIONE_PANEL_MESSAGGI.width, CostantiGui.DIMENSIONE_PANEL_MESSAGGI.height);
 		setVisible(true);
+		setFocusable(true);
+		repaint();
 		
 		
 		/* prova dinamica

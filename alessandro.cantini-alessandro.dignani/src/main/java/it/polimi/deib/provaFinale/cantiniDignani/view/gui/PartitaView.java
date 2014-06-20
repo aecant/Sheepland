@@ -13,8 +13,9 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class PartitaView {
-	private JFrame finestra;
+public class PartitaView extends JFrame{
+	private static final long serialVersionUID = 7676869943311337795L;
+	//private JFrame finestra;
 
 	private JPanel panelMappa;
 	private JPanel panelMappaSinistra;
@@ -69,9 +70,8 @@ public class PartitaView {
 		panelGiocatoriMosse.setBackground(CostantiGui.COLORE_ACQUA);
 
 		// imposto la finestra
-		finestra = new JFrame("Sheepland - The Videogame - " + MainClient.getNome());
-		finestra.setLayout(null);
-		finestra.setVisible(false);
+		setLayout(null);
+		setVisible(false);
 
 		// imposto il panel contenitore
 		contenitore = new JPanel(new BorderLayout());
@@ -90,23 +90,23 @@ public class PartitaView {
 		
 
 		// aggiungo il contenitore alla finestra
-		finestra.add(panelMessaggi);
-		finestra.add(panelTessereDaAcquistare);
-		finestra.add(contenitore);
+		add(panelMessaggi);
+		add(panelTessereDaAcquistare);
+		add(contenitore);
 
-		finestra.pack();
-		finestra.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-		finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		pack();
+		setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		if (CostantiGui.SCHERMO_INTERO) {
 			java.awt.GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			GraphicsDevice cc = ge.getDefaultScreenDevice();
-			cc.setFullScreenWindow(finestra);
+			cc.setFullScreenWindow(this);
 		}
 	}
 
 	public void visualizza() {
-		finestra.setVisible(true);
+		setVisible(true);
 	}
 
 	public MappaView getMappa() {
