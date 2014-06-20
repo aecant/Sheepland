@@ -15,6 +15,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.socket.ConnessioneServerSo
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ServerSheepland {
@@ -34,10 +35,7 @@ public class ServerSheepland {
 		timerPartita.start();
 
 		connessioneRmi.start();
-		logger.info("Server RMI pronto");
 		connessioneSocket.start();
-		logger.info("Server socket pronto");
-
 	}
 
 	public synchronized void aggiungiUtente(String nome, String password, InterfacciaConnessioneServer connessione) throws NomeGiaPresenteException, PasswordSbagliataException {
@@ -136,6 +134,8 @@ public class ServerSheepland {
 	}
 
 	public void gestisciDisconnessione(Utente utente) {
+		logger.warning("Disconnessione " + utente);
+		
 		utentiInAttesa.remove(utente);
 		utentiOnline.remove(utente);
 		utentiDisconnessi.add(utente);
@@ -152,8 +152,7 @@ public class ServerSheepland {
 				utentePartita.inviaEvento(new GiocatoreDisconnesso(utente.getNome()));
 			}
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "problemi nella disconnessione di un utente", e);
 		}
 		logger.info(utente + "disconnesso");
 

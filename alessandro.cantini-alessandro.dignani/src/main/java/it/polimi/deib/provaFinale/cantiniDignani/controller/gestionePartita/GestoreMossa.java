@@ -16,6 +16,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPeco
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPosizionePastore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTerritorioPerAccoppiamento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTesseraDaAcquistare;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SaltoTurno;
 import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
@@ -35,53 +36,57 @@ import java.util.List;
 
 public class GestoreMossa {
 
-	private GestorePartita gestorePartita;
+	private GestorePartita gestore;
 	private Partita partita;
 
 	public GestoreMossa(GestorePartita gestorePartita) {
-		this.gestorePartita = gestorePartita;
+		this.gestore = gestorePartita;
 		this.partita = gestorePartita.getPartita();
 	}
 
 	protected void effettuaMossa(Pastore pastore, TipoMossa tipoMossa) {
 		Giocatore giocatore = partita.getGiocatore(pastore);
 
-		switch (tipoMossa) {
+		try {
+			switch (tipoMossa) {
 
-		case MUOVI_PASTORE:
-			muoviPastore(pastore, giocatore);
-			break;
+			case MUOVI_PASTORE:
+				muoviPastore(pastore, giocatore);
+				break;
 
-		case MUOVI_PECORA:
-			muoviPecora(pastore, giocatore);
-			break;
+			case MUOVI_PECORA:
+				muoviPecora(pastore, giocatore);
+				break;
 
-		case ABBATTI:
-			abbatti(pastore, giocatore);
-			break;
+			case ABBATTI:
+				abbatti(pastore, giocatore);
+				break;
 
-		case ACCOPPIA:
-			accoppia(pastore, giocatore);
-			break;
+			case ACCOPPIA:
+				accoppia(pastore, giocatore);
+				break;
 
-		case ACQUISTA_TESSERA:
-			acquistaTessera(pastore, giocatore);
-			break;
+			case ACQUISTA_TESSERA:
+				acquistaTessera(pastore, giocatore);
+				break;
 
+			}
+		} catch (GiocatoreDisconnessoException e) {
+			gestore.inviaEventoATutti(new SaltoTurno(giocatore.getNome()));
 		}
 	}
 
-	private void muoviPastore(Pastore pastore, Giocatore giocatore) {
+	private void muoviPastore(Pastore pastore, Giocatore giocatore) throws GiocatoreDisconnessoException {
 		boolean[] stradeGratis = Estrattore.stradeLibereGratis(partita, pastore.getStrada());
 		boolean[] stradeAPagamento = Estrattore.stradeLibereAPagamento(partita, pastore.getStrada());
-		gestorePartita.inviaEvento(new RichiestaPosizionePastore(stradeGratis, stradeAPagamento), giocatore);
+		gestore.inviaEvento(new RichiestaPosizionePastore(stradeGratis, stradeAPagamento), giocatore);
 
-		int codDest = gestorePartita.aspettaMossa(giocatore);
-		
-		if(!stradeGratis[codDest] && !stradeAPagamento[codDest]) {
+		int codDest = aspettaMossa(giocatore);
+
+		if (!stradeGratis[codDest] && !stradeAPagamento[codDest]) {
 			throw new MossaNonValidaException(codDest + " non e' una strada valida");
 		}
-		
+
 		if (stradeAPagamento[codDest] && giocatore.getDenaro() >= 1) {
 			giocatore.sottraiDenaro(1);
 		}
@@ -93,21 +98,21 @@ public class GestoreMossa {
 
 		partita.getRecinti().aggiungi(origine);
 
-		gestorePartita.inviaEventoATutti(new MovimentoPastore(giocatore.getNome(), origine.getCodice(), destinazione.getCodice(), Estrattore.giocatori(partita), Estrattore.recinti(partita)));
+		gestore.inviaEventoATutti(new MovimentoPastore(giocatore.getNome(), origine.getCodice(), destinazione.getCodice(), Estrattore.giocatori(partita), Estrattore.recinti(partita)));
 	}
 
-	private void muoviPecora(Pastore pastore, Giocatore giocatore) {
+	private void muoviPecora(Pastore pastore, Giocatore giocatore) throws GiocatoreDisconnessoException {
 		int t1 = pastore.getStrada().getTerritorio1().getCodice();
 		int t2 = pastore.getStrada().getTerritorio2().getCodice();
 
 		List<Coppia<Integer, TipoAnimale>> listaOviniSuTerritorio = listaOviniSuTerritorio(pastore, true);
 
-		gestorePartita.inviaEvento(new RichiestaPecoraDaMuovere(listaOviniSuTerritorio), giocatore);
+		gestore.inviaEvento(new RichiestaPecoraDaMuovere(listaOviniSuTerritorio), giocatore);
 
-		int indiceScelto = gestorePartita.aspettaMossa(giocatore);
+		int indiceScelto = aspettaMossa(giocatore);
 
 		controllaIndice(indiceScelto, listaOviniSuTerritorio);
-		
+
 		int codOrig = listaOviniSuTerritorio.get(indiceScelto).primo;
 		int codDest;
 		if (codOrig == t1) {
@@ -127,23 +132,23 @@ public class GestoreMossa {
 			Estrattore.getPecora(partita, codOrig, animScelto).muoviIn(destinazione);
 		}
 
-		gestorePartita.inviaEventoATutti(new MovimentoPecora(giocatore.getNome(), animScelto, codOrig, codDest, Estrattore.datiTerritori(partita)));
+		gestore.inviaEventoATutti(new MovimentoPecora(giocatore.getNome(), animScelto, codOrig, codDest, Estrattore.datiTerritori(partita)));
 	}
 
-	private void abbatti(Pastore pastore, Giocatore giocatore) {
+	private void abbatti(Pastore pastore, Giocatore giocatore) throws GiocatoreDisconnessoException {
 
 		List<Coppia<Integer, TipoAnimale>> listaOviniSuTerritorio = listaOviniSuTerritorio(pastore, false);
 
-		gestorePartita.inviaEvento(new RichiestaPecoraDaAbbattere(listaOviniSuTerritorio), giocatore);
+		gestore.inviaEvento(new RichiestaPecoraDaAbbattere(listaOviniSuTerritorio), giocatore);
 
-		int indiceScelto = gestorePartita.aspettaMossa(giocatore);
+		int indiceScelto = aspettaMossa(giocatore);
 
 		controllaIndice(indiceScelto, listaOviniSuTerritorio);
-		
+
 		int terrScelto = listaOviniSuTerritorio.get(indiceScelto).primo;
 		TipoAnimale animScelto = listaOviniSuTerritorio.get(indiceScelto).secondo;
 
-		int lancio = gestorePartita.lanciaDado(MotivoLancioDado.TENTATIVO_ABBATTIMENTO);
+		int lancio = gestore.lanciaDado(MotivoLancioDado.TENTATIVO_ABBATTIMENTO);
 
 		boolean aBuonFine = (lancio == Mappa.getMappa().getDado(pastore.getStrada()));
 
@@ -153,21 +158,21 @@ public class GestoreMossa {
 
 			for (Pastore pastoreVicino : partita.getPastori()) {
 				if (Mappa.getMappa().sonoContigue(pastore.getStrada(), pastoreVicino.getStrada()) && !pastoreVicino.getColore().equals(pastore.getColore())) {
-					lancio = gestorePartita.lanciaDado(MotivoLancioDado.SILENZIO_ABBATTIMENTO);
+					lancio = gestore.lanciaDado(MotivoLancioDado.SILENZIO_ABBATTIMENTO);
 					if (lancio >= CostantiController.DADO_MIN_PER_SILENZIO) {
 						int somma = CostantiController.COSTO_SILENZIO;
 						Giocatore ricevente = partita.getGiocatore(pastoreVicino);
-						gestorePartita.pagamento(somma, giocatore, ricevente);
-						gestorePartita.inviaEventoATutti(new Pagamento(somma, giocatore.getNome(), ricevente.getNome(), Estrattore.giocatori(partita)));
+						gestore.pagamento(somma, giocatore, ricevente);
+						gestore.inviaEventoATutti(new Pagamento(somma, giocatore.getNome(), ricevente.getNome(), Estrattore.giocatori(partita)));
 					}
 				}
 			}
 		}
 
-		gestorePartita.inviaEventoATutti(new Abbattimento(giocatore.getNome(), animScelto, terrScelto, aBuonFine, Estrattore.datiTerritori(partita), Estrattore.giocatori(partita)));
+		gestore.inviaEventoATutti(new Abbattimento(giocatore.getNome(), animScelto, terrScelto, aBuonFine, Estrattore.datiTerritori(partita), Estrattore.giocatori(partita)));
 	}
 
-	private void accoppia(Pastore pastore, Giocatore giocatore) {
+	private void accoppia(Pastore pastore, Giocatore giocatore) throws GiocatoreDisconnessoException {
 		DatiTerritorio dati[] = Estrattore.datiTerritori(partita);
 		List<Integer> terrDisp = new ArrayList<Integer>();
 
@@ -181,15 +186,15 @@ public class GestoreMossa {
 			terrDisp.add(codT2);
 		}
 
-		gestorePartita.inviaEvento(new RichiestaTerritorioPerAccoppiamento(terrDisp), giocatore);
+		gestore.inviaEvento(new RichiestaTerritorioPerAccoppiamento(terrDisp), giocatore);
 
-		int codTerr = gestorePartita.aspettaMossa(giocatore);
+		int codTerr = aspettaMossa(giocatore);
 
 		controllaValore(codTerr, terrDisp);
 
 		Territorio terr = Mappa.getMappa().getTerritori()[codTerr];
 
-		int lancio = gestorePartita.lanciaDado(MotivoLancioDado.TENTATIVO_ACCOPPIAMENTO);
+		int lancio = gestore.lanciaDado(MotivoLancioDado.TENTATIVO_ACCOPPIAMENTO);
 
 		boolean aBuonFine = (lancio == Mappa.getMappa().getDado(pastore.getStrada()));
 
@@ -197,10 +202,10 @@ public class GestoreMossa {
 			partita.getGregge().aggiungi(Estrattore.agnelloRandom(terr));
 		}
 
-		gestorePartita.inviaEventoATutti(new Accoppiamento(giocatore.getNome(), codTerr, aBuonFine, Estrattore.datiTerritori(partita)));
+		gestore.inviaEventoATutti(new Accoppiamento(giocatore.getNome(), codTerr, aBuonFine, Estrattore.datiTerritori(partita)));
 	}
 
-	private void acquistaTessera(Pastore pastore, Giocatore giocatore) {
+	private void acquistaTessera(Pastore pastore, Giocatore giocatore) throws GiocatoreDisconnessoException {
 		List<Tessera> tessereDisp = new ArrayList<Tessera>();
 		Territorio terr1 = pastore.getStrada().getTerritorio1();
 		Territorio terr2 = pastore.getStrada().getTerritorio2();
@@ -215,9 +220,9 @@ public class GestoreMossa {
 			tessereDisp.add(tess2);
 		}
 
-		gestorePartita.inviaEvento(new RichiestaTesseraDaAcquistare(tessereDisp), giocatore);
+		gestore.inviaEvento(new RichiestaTesseraDaAcquistare(tessereDisp), giocatore);
 
-		int indiceScelta = gestorePartita.aspettaMossa(giocatore);
+		int indiceScelta = aspettaMossa(giocatore);
 
 		controllaIndice(indiceScelta, tessereDisp);
 
@@ -233,7 +238,7 @@ public class GestoreMossa {
 
 		giocatore.aggiungiTessera(tesseraAcquistata);
 
-		gestorePartita.inviaEventoATutti(new AcquistoTessera(giocatore.getNome(), tesseraAcquistata, Estrattore.tessereInCima(partita), Estrattore.giocatori(partita)));
+		gestore.inviaEventoATutti(new AcquistoTessera(giocatore.getNome(), tesseraAcquistata, Estrattore.tessereInCima(partita), Estrattore.giocatori(partita)));
 	}
 
 	/**
@@ -351,26 +356,15 @@ public class GestoreMossa {
 		return lista;
 	}
 
-	/**
-	 * Eccezione che segnala che il client ha risposto con una mossa non valida
-	 */
-	public class MossaNonValidaException extends RuntimeException {
 
-		private static final long serialVersionUID = -270481645032368246L;
-
-		public MossaNonValidaException() {
-			super();
+	private int aspettaMossa(Giocatore giocatore) throws GiocatoreDisconnessoException {
+		int mossa = gestore.aspettaMossa(giocatore);
+		if (mossa == CostantiController.MOSSA_DISCONNESSIONE) {
+			throw new GiocatoreDisconnessoException();
 		}
-
-		public MossaNonValidaException(String message, Throwable cause) {
-			super(message, cause);
-		}
-
-		public MossaNonValidaException(String message) {
-			super(message);
-		}
-
+		return mossa;
 	}
+
 
 	private void controllaIndice(int indice, List<?> lista) {
 		if (indice < 0 || indice >= lista.size()) {

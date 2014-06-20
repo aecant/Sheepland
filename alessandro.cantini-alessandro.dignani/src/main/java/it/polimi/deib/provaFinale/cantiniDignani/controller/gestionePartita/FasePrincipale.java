@@ -8,6 +8,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoLupo
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPecoraNera;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPastore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTipoMossa;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SaltoTurno;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.TrasformazioneAgnello;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.UccisioneLupo;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Agnello;
@@ -63,6 +64,11 @@ public class FasePrincipale extends FasePartita {
 	}
 
 	private void turnoGiocatore(Giocatore giocatore) {
+		if(gestore.giocatoreOffline(giocatore)) {
+			gestore.inviaEventoATutti(new SaltoTurno(giocatore.getNome()));
+			return;
+		}
+		
 		TipoMossa mossaPrecedente = null;
 		boolean pastoreMosso = false;
 		Pastore pastore = null;

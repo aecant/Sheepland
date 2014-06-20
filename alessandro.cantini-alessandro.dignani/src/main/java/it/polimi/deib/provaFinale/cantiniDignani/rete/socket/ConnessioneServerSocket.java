@@ -13,6 +13,7 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ConnessioneServerSocket extends ConnessioneServer implements InterfacciaConnessioneServer {
@@ -43,7 +44,7 @@ public class ConnessioneServerSocket extends ConnessioneServer implements Interf
 				esecutore.submit(new GestoreClientSocket(socket, this, serverSheepland));
 				logger.info("Connessione iniziata con " + socket);
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.log(Level.SEVERE, "problemi nell'accettazione dei socket", e);
 				break;
 			}
 		}
@@ -51,8 +52,7 @@ public class ConnessioneServerSocket extends ConnessioneServer implements Interf
 		try {
 			server.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "problemi nella chiusura del server", e);
 		}
 	}
 

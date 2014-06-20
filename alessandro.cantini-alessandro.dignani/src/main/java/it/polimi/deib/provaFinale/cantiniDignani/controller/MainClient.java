@@ -15,7 +15,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.view.cli.InputCli;
 import it.polimi.deib.provaFinale.cantiniDignani.view.gui.Gui;
 
 public class MainClient {
-	
+
 	private static String nome;
 	private static String indirizzoServer;
 	private static InterfacciaUtente ui;
@@ -27,15 +27,13 @@ public class MainClient {
 		indirizzoServer = chiediIndirizzoServer();
 		connessione = chiediTipoConnessione();
 		ui = chiediTipoInterfaccia();
-		
+
 		connessione.inizia();
 
 		chiediNomeERegistraGiocatore();
 
 		effettuaPartita();
 	}
-
-	
 
 	private static void effettuaPartita() {
 		Evento eventoCorrente = null;
@@ -67,10 +65,10 @@ public class MainClient {
 	}
 
 	private static String chiediIndirizzoServer() {
-		//TODO test da rimuoverer
+		// TODO test da rimuoverer
 		return CostantiTest.INDIRIZZO_SERVER;
 	}
-	
+
 	private static InterfacciaConnessioneClient chiediTipoConnessione() {
 		// TODO test da rimuovere
 		if (CostantiTest.SCELTA_RETE) {

@@ -7,14 +7,17 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.PasswordSbagliataException;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GestoreClientSocket extends Thread {
 
+	private final static Logger logger = Logger.getLogger(GestoreClientSocket.class.getName());
+	
 	private Socket socket;
 	private ConnessioneServerSocket connessione;
 	private ServerSheepland serverSheepland;
@@ -32,8 +35,7 @@ public class GestoreClientSocket extends Thread {
 			out = new ObjectOutputStream(socket.getOutputStream());
 			in = new ObjectInputStream(socket.getInputStream());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "Problemi nel creare gli object stream dal socket", e);
 		}
 	}
 
@@ -54,17 +56,14 @@ public class GestoreClientSocket extends Thread {
 			out.writeObject(evento);
 			out.flush();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			serverSheepland.gestisciDisconnessione(utente);
 		}
 	}
 
 	private void registrazioneGiocatore() {
 		try {
 			Object oggettoRicevuto = in.readObject();
-			if (!(oggettoRicevuto instanceof Coppia<?, ?>)) {
-				throw new IOError(null);
-			}
+			 
 			@SuppressWarnings("unchecked")
 			Coppia<String, String> nomeEPassword = (Coppia<String, String>) oggettoRicevuto;
 			out.reset();
@@ -81,8 +80,7 @@ public class GestoreClientSocket extends Thread {
 			out.flush();
 
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "problemi nella ricezione dell'evento", e);
 		} catch (IOException e) {
 			serverSheepland.gestisciDisconnessione(utente);
 		}
