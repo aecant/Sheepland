@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 public class MainServer {
 
 	public static void main(String[] args) {
-		Logger.getLogger("").setLevel(Level.ALL);
+		Logger.getLogger("").setLevel(Level.WARNING);
 		
 		ServerSheepland server = new ServerSheepland();
 		server.inizia();

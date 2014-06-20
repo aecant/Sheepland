@@ -1,8 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.rete.socket;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
+import it.polimi.deib.provaFinale.cantiniDignani.rete.ConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.PasswordSbagliataException;
@@ -16,22 +15,24 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Logger;
 
-public class ConnessioneClientSocket implements InterfacciaConnessioneClient {
+public class ConnessioneClientSocket extends ConnessioneClient implements InterfacciaConnessioneClient {
 
 	private final static Logger logger = Logger.getLogger(ConnessioneClientSocket.class.getName());
 
-	private final int PORTA = CostantiRete.PORTA_SERVER_SOCKET;
-	private final String INDIRIZZO = CostantiRete.INDIRIZZO_SERVER;
+	private final int PORTA = CostantiSocket.PORTA_SERVER_SOCKET;
 
 	private Socket socket;
 	private ObjectInputStream in;
 	private ObjectOutputStream out;
-	private GestoreCoda<Evento> codaEventi = MainClient.getGestoreEventi();
 	private AscoltatoreSocket<Evento> ascoltatoreEventi;
+
+	public ConnessioneClientSocket(String indirizzoServer, GestoreCoda<Evento> codaEventi) {
+		super(indirizzoServer, codaEventi);
+	}
 
 	public void inizia() {
 		try {
-			socket = new Socket(INDIRIZZO, PORTA);
+			socket = new Socket(indirizzoServer, PORTA);
 			logger.info("Connessione stabilita: " + socket);
 
 			out = new ObjectOutputStream(socket.getOutputStream());

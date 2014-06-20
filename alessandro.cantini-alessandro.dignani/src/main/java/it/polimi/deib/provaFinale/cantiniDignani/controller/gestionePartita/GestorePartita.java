@@ -72,13 +72,13 @@ public class GestorePartita extends Thread {
 		return getUtente(giocatore).getCodaMosse().aspetta();
 	}
 
-	protected void inviaEventoATutti(Evento evento) {
+	public void inviaEventoATutti(Evento evento) {
 		for (Giocatore g : partita.getGiocatori()) {
 			inviaEvento(evento, g);
 		}
 	}
 
-	protected void inviaEvento(Evento evento, Giocatore g) {
+	public void inviaEvento(Evento evento, Giocatore g) {
 		Utente utente = getUtente(g);
 		if (utente.getConnessione() != null) {
 			utente.inviaEvento(evento);
@@ -116,6 +116,10 @@ public class GestorePartita extends Thread {
 
 	public List<Utente> getUtenti() {
 		return utenti;
+	}
+
+	protected boolean giocatoreOffline(Giocatore giocatore) {
+		return getUtente(giocatore).getConnessione() == null;
 	}
 
 	private Utente getUtente(Giocatore giocatore) {

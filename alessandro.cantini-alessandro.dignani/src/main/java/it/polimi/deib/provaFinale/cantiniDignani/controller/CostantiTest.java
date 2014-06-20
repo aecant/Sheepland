@@ -10,4 +10,6 @@ public class CostantiTest {
 
 	public static final boolean CLI = false;
 
+	public static final String INDIRIZZO_SERVER = "localhost"; // pc di Cant a casa sua 192.168.11.4
+
 }

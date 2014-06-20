@@ -203,6 +203,23 @@ public interface InterfacciaUtente {
 	void disconnessioneGiocatore(String giocatore);
 
 	/**
+	 * Avverte l'utente che un giocatore si e' riconnesso
+	 * 
+	 * @param giocatore
+	 *            il giocatore che si e' riconnesso
+	 * 
+	 */
+	void giocatoreRiconnesso(String giocatore);
+
+	/**
+	 * Avverte l'utente che un giocatore ha saltato il turno
+	 * 
+	 * @param giocatore
+	 *            il giocatore che ha saltato il turno
+	 */
+	void saltoTurno(String giocatore);
+
+	/**
 	 * L'utente sceglie la strada su cui posizionare il pastore all'inizio della
 	 * partita
 	 * 

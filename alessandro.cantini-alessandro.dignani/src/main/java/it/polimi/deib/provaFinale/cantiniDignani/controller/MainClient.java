@@ -1,6 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.FinePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClient;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.PasswordSbagliataException;
@@ -16,12 +17,14 @@ import it.polimi.deib.provaFinale.cantiniDignani.view.gui.Gui;
 public class MainClient {
 	
 	private static String nome;
+	private static String indirizzoServer;
 	private static InterfacciaUtente ui;
 	private static InterfacciaConnessioneClient connessione;
 	private static DatiPartita datiPartita;
-	private static GestoreCoda<Evento> gestoreEventi = new GestoreCoda<Evento>();
+	private static GestoreCoda<Evento> codaEventi = new GestoreCoda<Evento>();
 
 	public static void main(String[] args) {
+		indirizzoServer = chiediIndirizzoServer();
 		connessione = chiediTipoConnessione();
 		ui = chiediTipoInterfaccia();
 		
@@ -32,9 +35,12 @@ public class MainClient {
 		effettuaPartita();
 	}
 
+	
+
 	private static void effettuaPartita() {
-		while (true) {
-			Evento eventoCorrente = gestoreEventi.aspetta();
+		Evento eventoCorrente = null;
+		while (!(eventoCorrente instanceof FinePartita)) {
+			eventoCorrente = codaEventi.aspetta();
 			gestisciEvento(eventoCorrente);
 		}
 	}
@@ -60,6 +66,11 @@ public class MainClient {
 		}
 	}
 
+	private static String chiediIndirizzoServer() {
+		//TODO test da rimuoverer
+		return CostantiTest.INDIRIZZO_SERVER;
+	}
+	
 	private static InterfacciaConnessioneClient chiediTipoConnessione() {
 		// TODO test da rimuovere
 		if (CostantiTest.SCELTA_RETE) {
@@ -70,17 +81,17 @@ public class MainClient {
 			int scelta = input.leggiIntero(1, 2);
 
 			if (scelta == 1) {
-				return new ConnessioneClientRmi();
+				return new ConnessioneClientRmi(indirizzoServer, codaEventi);
 			} else {
-				return new ConnessioneClientSocket();
+				return new ConnessioneClientSocket(indirizzoServer, codaEventi);
 			}
 
 		} else {
 
 			if (CostantiTest.RMI) {
-				return new ConnessioneClientRmi();
+				return new ConnessioneClientRmi(indirizzoServer, codaEventi);
 			} else {
-				return new ConnessioneClientSocket();
+				return new ConnessioneClientSocket(indirizzoServer, codaEventi);
 			}
 		}
 	}
@@ -125,7 +136,7 @@ public class MainClient {
 	}
 
 	public static GestoreCoda<Evento> getGestoreEventi() {
-		return gestoreEventi;
+		return codaEventi;
 	}
 
 	public static void setDatiPartita(DatiPartita datiPartita) {

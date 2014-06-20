@@ -133,17 +133,6 @@ public class Costanti {
 	public static final Territorio POS_INIZIALE_PECORA_NERA = Mappa.getMappa().getTerritori()[0];
 
 	/**
-	 * La somma di denaro da pagare dopo un abbattimento per il silenzio di un
-	 * pastore
-	 */
-	public static final int COSTO_SILENZIO = 2;
-
-	/**
-	 * Il risultato minimo per ottenere un risarciment dopo un abbattimento
-	 */
-	public static final int DADO_MIN_PER_SILENZIO = 5;
-
-	/**
 	 * Costruttore privato per nascondere quello di default
 	 */
 	private Costanti() {

@@ -1,11 +1,11 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.GiocatoreDisconnesso;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.GiocatoreRiconnesso;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
-import it.polimi.deib.provaFinale.cantiniDignani.rete.CostantiRete;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.PasswordSbagliataException;
@@ -24,8 +24,8 @@ public class ServerSheepland {
 	private final List<Utente> utentiInAttesa = new Vector<Utente>();
 	private final List<Utente> utentiOnline = new Vector<Utente>();
 	private final List<Utente> utentiDisconnessi = new Vector<Utente>();
-	
-	private final TimerPartita timerPartita = new TimerPartita(CostantiRete.MILLISECONDI_TIMER_PARTITA, this);
+
+	private final TimerPartita timerPartita = new TimerPartita(CostantiController.MILLISECONDI_TIMER_PARTITA, this);
 
 	private final ConnessioneServerRmi connessioneRmi = new ConnessioneServerRmi(this);
 	private final ConnessioneServerSocket connessioneSocket = new ConnessioneServerSocket(this);
@@ -45,17 +45,18 @@ public class ServerSheepland {
 		if (utentiOnline.contains(utente)) {
 			throw new NomeGiaPresenteException();
 		}
-		
-		for(Utente u : utentiDisconnessi) {
-			if(u.getNome().equals(utente.getNome())) {
-				if(u.getPassword().equals(utente.getPassword())) {
+
+		for (Utente u : utentiDisconnessi) {
+			if (u.getNome().equals(utente.getNome())) {
+				if (u.getPassword().equals(utente.getPassword())) {
 					riconnettiUtente(utente);
+					return;
 				} else {
 					throw new PasswordSbagliataException();
 				}
 			}
 		}
-		
+
 		utentiInAttesa.add(utente);
 		utentiOnline.add(utente);
 		logger.info("Registrato " + utente);
@@ -71,8 +72,10 @@ public class ServerSheepland {
 	}
 
 	private void riconnettiUtente(Utente utente) {
-		// TODO Auto-generated method stub
-		
+		utentiDisconnessi.remove(utente);
+		GestorePartita gestore = getGestorePartita(utente);
+		gestore.inviaEventoATutti(new GiocatoreRiconnesso(utente.getNome()));
+		//TODO gestire la disconnessione di un utente che non ha iniziato la partita
 	}
 
 	public synchronized void iniziaPartita() {
@@ -94,7 +97,6 @@ public class ServerSheepland {
 		gestore.start();
 		utentiInAttesa.clear();
 	}
-
 
 	/**
 	 * Restituisce la partita giocata da un giocatore
@@ -132,21 +134,21 @@ public class ServerSheepland {
 
 		throw new IllegalArgumentException(nome + " non presente ");
 	}
-	
+
 	public void gestisciDisconnessione(Utente utente) {
 		utentiInAttesa.remove(utente);
 		utentiOnline.remove(utente);
 		utentiDisconnessi.add(utente);
 		utente.getConnessione().gestisciDisconnessione(utente);
 		utente.setConnessione(null);
-		utente.getCodaMosse().aggiungi(CostantiRete.MOSSA_DISCONNESSIONE);
-		
+		utente.getCodaMosse().aggiungi(CostantiController.MOSSA_DISCONNESSIONE);
+
 		GestorePartita gestore = getGestorePartita(utente);
 		try {
-			synchronized(gestore) {
+			synchronized (gestore) {
 				gestore.wait();
 			}
-			for(Utente utentePartita : gestore.getUtenti()) {
+			for (Utente utentePartita : gestore.getUtenti()) {
 				utentePartita.inviaEvento(new GiocatoreDisconnesso(utente.getNome()));
 			}
 		} catch (InterruptedException e) {
@@ -154,9 +156,9 @@ public class ServerSheepland {
 			e.printStackTrace();
 		}
 		logger.info(utente + "disconnesso");
-		
+
 	}
-	
+
 	private GestorePartita getGestorePartita(Utente utente) {
 		for (GestorePartita gestore : gestoriPartita) {
 			if (gestore.getUtenti().contains(utente)) {
@@ -165,6 +167,5 @@ public class ServerSheepland {
 		}
 		throw new IllegalArgumentException(utente + " non trovato");
 	}
-	
 
 }
