@@ -15,7 +15,7 @@ public class Gregge {
 	 */
 	public Gregge() {
 		pecore = new ArrayList<Pecora>();
-		pecoraNera = new Animale(Costanti.POS_INIZIALE_PECORA_NERA);
+		pecoraNera = new Animale(CostantiModel.POS_INIZIALE_PECORA_NERA);
 	}
 
 	/**

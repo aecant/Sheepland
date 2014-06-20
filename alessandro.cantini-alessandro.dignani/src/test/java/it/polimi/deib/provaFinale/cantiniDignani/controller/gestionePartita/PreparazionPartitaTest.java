@@ -6,7 +6,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.EstrattoreTest;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.PreparazionePartita;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
@@ -41,7 +41,7 @@ public class PreparazionPartitaTest {
 	 */
 	@Test
 	public void testDistribuisciDenari() {
-		for (int i = Costanti.NUM_MAX_GIOCATORI; i >= Costanti.NUM_MIN_GIOCATORI; i--) {
+		for (int i = CostantiModel.NUM_MAX_GIOCATORI; i >= CostantiModel.NUM_MIN_GIOCATORI; i--) {
 			gestore = new GestorePartita(EstrattoreTest.listaUtenti(listaNomi));
 			partita = gestore.getPartita();
 			preparazionePartita = gestore.getPreparazionePartita();
@@ -49,9 +49,9 @@ public class PreparazionPartitaTest {
 
 			for (Giocatore g : partita.getGiocatori()) {
 				if (partita.getGiocatori().size() == 2) {
-					assertTrue(g.getDenaro() == Costanti.DENARO_INIZIALE_DUE_GIOCATORI);
+					assertTrue(g.getDenaro() == CostantiModel.DENARO_INIZIALE_DUE_GIOCATORI);
 				} else {
-					assertTrue(g.getDenaro() == Costanti.DENARO_INIZIALE);
+					assertTrue(g.getDenaro() == CostantiModel.DENARO_INIZIALE);
 				}
 			}
 

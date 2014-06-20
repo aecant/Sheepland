@@ -16,7 +16,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPeco
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPosizionePastore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTerritorioPerAccoppiamento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTesseraDaAcquistare;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
@@ -259,7 +259,7 @@ public class GestoreMossa {
 
 		// se e' l'ultima mossa e il giocatore non ha ancora mosso il
 		// pastore, si puo' solo muovere il pastore
-		if (numMossa == Costanti.NUM_MOSSE_PER_TURNO && pastoreMosso == false) {
+		if (numMossa == CostantiModel.NUM_MOSSE_PER_TURNO && pastoreMosso == false) {
 			return mosseDisponibili;
 		}
 

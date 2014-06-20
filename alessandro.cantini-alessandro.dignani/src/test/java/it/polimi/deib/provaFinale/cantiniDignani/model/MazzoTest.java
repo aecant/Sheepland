@@ -1,7 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 import static org.junit.Assert.*;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mazzo;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
@@ -26,9 +26,9 @@ public class MazzoTest {
 	 */
 	@Test(expected = MazzoFinitoException.class)
 	public void testMazzoFinito() {
-		for (int i = 0; i < Costanti.NUM_TESSERE_PER_TIPO + 1; i++) {
+		for (int i = 0; i < CostantiModel.NUM_TESSERE_PER_TIPO + 1; i++) {
 			mazzo1.prelevaTessera(TipoTerritorio.BOSCO);
-			if(i == Costanti.NUM_TESSERE_PER_TIPO) {
+			if(i == CostantiModel.NUM_TESSERE_PER_TIPO) {
 				assertTrue(mazzo1.getTessereRimaste(TipoTerritorio.BOSCO) == 0);
 			}
 		}
@@ -60,9 +60,9 @@ public class MazzoTest {
 	 */
 	@Test
 	public void testGetTessereRimaste() {
-		assertTrue(mazzo3.getTessereRimaste(TipoTerritorio.MONTAGNA) == Costanti.NUM_TESSERE_PER_TIPO - 2);
+		assertTrue(mazzo3.getTessereRimaste(TipoTerritorio.MONTAGNA) == CostantiModel.NUM_TESSERE_PER_TIPO - 2);
 		mazzo3.prelevaTessera(TipoTerritorio.MONTAGNA);
-		assertTrue(mazzo3.getTessereRimaste(TipoTerritorio.MONTAGNA) == Costanti.NUM_TESSERE_PER_TIPO - 3);
+		assertTrue(mazzo3.getTessereRimaste(TipoTerritorio.MONTAGNA) == CostantiModel.NUM_TESSERE_PER_TIPO - 3);
 
 	}
 
@@ -71,7 +71,7 @@ public class MazzoTest {
 	 */
 	@Test
 	public void testLeggiTesseraInCima() {
-		assertTrue(mazzo3.leggiTesseraInCima(TipoTerritorio.MONTAGNA).getCosto() == Costanti.MAX_VALORE_TESSERA - 2);
+		assertTrue(mazzo3.leggiTesseraInCima(TipoTerritorio.MONTAGNA).getCosto() == CostantiModel.MAX_VALORE_TESSERA - 2);
 	}
 
 	/**

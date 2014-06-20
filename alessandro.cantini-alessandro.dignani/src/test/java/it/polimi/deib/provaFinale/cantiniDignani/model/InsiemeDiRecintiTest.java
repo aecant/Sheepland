@@ -20,12 +20,12 @@ public class InsiemeDiRecintiTest {
 	 */
 	@Test
 	public void testAggiungi() {
-		for (int i = 0; i < Costanti.NUM_RECINTI_INIZIALI + Costanti.NUM_RECINTI_FINALI / 2; i++) {
+		for (int i = 0; i < CostantiModel.NUM_RECINTI_INIZIALI + CostantiModel.NUM_RECINTI_FINALI / 2; i++) {
 			recinti.aggiungi(Mappa.getMappa().getStrade()[i]);
 		}
-		assertEquals(recinti.getRecintiIniziali().size(), Costanti.NUM_RECINTI_INIZIALI);
-		assertEquals(recinti.getRecintiFinali().size(), Costanti.NUM_RECINTI_FINALI / 2);
-		assertEquals(recinti.getListaRecinti().size(), Costanti.NUM_RECINTI_INIZIALI + Costanti.NUM_RECINTI_FINALI / 2);
+		assertEquals(recinti.getRecintiIniziali().size(), CostantiModel.NUM_RECINTI_INIZIALI);
+		assertEquals(recinti.getRecintiFinali().size(), CostantiModel.NUM_RECINTI_FINALI / 2);
+		assertEquals(recinti.getListaRecinti().size(), CostantiModel.NUM_RECINTI_INIZIALI + CostantiModel.NUM_RECINTI_FINALI / 2);
 	}
 
 }

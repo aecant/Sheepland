@@ -11,7 +11,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTipo
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.TrasformazioneAgnello;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.UccisioneLupo;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Agnello;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
@@ -52,7 +52,7 @@ public class FasePrincipale extends FasePartita {
 		for (Pecora pec : Utilita.copia(partita.getGregge().getPecore())) {
 			if (pec.getTipoAnimale().equals(TipoAnimale.AGNELLO)) {
 				Agnello a = (Agnello) pec;
-				if (a.getEta() == Costanti.ETA_MAX_AGNELLO) {
+				if (a.getEta() == CostantiModel.ETA_MAX_AGNELLO) {
 					partita.getGregge().trasformaAgnelloInPecora(a);
 					gestore.inviaEventoATutti(new TrasformazioneAgnello(a.isMaschio(), a.getPosizione().getCodice(), Estrattore.datiTerritori(partita)));
 				} else {
@@ -88,7 +88,7 @@ public class FasePrincipale extends FasePartita {
 			throw new NullPointerException("A questo punto il pastore deve essere assegnato");
 		}
 
-		for (int numMossa = 1; numMossa <= Costanti.NUM_MOSSE_PER_TURNO; numMossa++) {
+		for (int numMossa = 1; numMossa <= CostantiModel.NUM_MOSSE_PER_TURNO; numMossa++) {
 			List<TipoMossa> mosseDisponibili = gestoreMossa.creaMosseDisponibili(numMossa, pastoreMosso, mossaPrecedente, pastore, giocatore.getDenaro());
 
 			gestore.inviaEvento(new RichiestaTipoMossa(mosseDisponibili, numMossa), giocatore);
@@ -156,7 +156,7 @@ public class FasePrincipale extends FasePartita {
 	}
 
 	private boolean recintiInizialiFiniti() {
-		return partita.getRecinti().getRecintiIniziali().size() == Costanti.NUM_RECINTI_INIZIALI;
+		return partita.getRecinti().getRecintiIniziali().size() == CostantiModel.NUM_RECINTI_INIZIALI;
 	}
 
 	private boolean movimentoPossibile(Territorio origine, int dado) {

@@ -27,7 +27,7 @@ public class Mazzo {
 		mazzo = new HashMap<TipoTerritorio, Stack<Tessera>>();
 		for (TipoTerritorio t : TipoTerritorio.valoriTessere()) {
 			Stack<Tessera> pilaDiCarte = new Stack<Tessera>();
-			for (int i = Costanti.MAX_VALORE_TESSERA; i >= 0; i--)
+			for (int i = CostantiModel.MAX_VALORE_TESSERA; i >= 0; i--)
 				pilaDiCarte.push(new Tessera(t, i));
 			mazzo.put(t, pilaDiCarte);
 		}

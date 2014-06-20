@@ -3,7 +3,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.GiocatoreDisconnesso;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.GiocatoreRiconnesso;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
@@ -61,11 +61,11 @@ public class ServerSheepland {
 		utentiOnline.add(utente);
 		logger.info("Registrato " + utente);
 
-		if (utentiInAttesa.size() == Costanti.NUM_MAX_GIOCATORI) {
+		if (utentiInAttesa.size() == CostantiModel.NUM_MAX_GIOCATORI) {
 			iniziaPartita();
 		}
 
-		if (utentiInAttesa.size() >= Costanti.NUM_MIN_GIOCATORI) {
+		if (utentiInAttesa.size() >= CostantiModel.NUM_MIN_GIOCATORI) {
 			timerPartita.inizia();
 		}
 
@@ -80,7 +80,7 @@ public class ServerSheepland {
 
 	public synchronized void iniziaPartita() {
 
-		if (utentiInAttesa.size() < 2 || utentiInAttesa.size() > Costanti.NUM_MAX_GIOCATORI) {
+		if (utentiInAttesa.size() < 2 || utentiInAttesa.size() > CostantiModel.NUM_MAX_GIOCATORI) {
 			throw new SheeplandException("La partita non puo' iniziare con " + utentiInAttesa.size() + "giocatori");
 		}
 

@@ -2,7 +2,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.model.ColorePastore;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
@@ -36,8 +36,8 @@ public class MappaView extends BackgroundMappaPanel {
 		this.setLayout(null);
 
 		// Creo l'array con le coordinate scalate dei territori
-		coordinateTerritori = new Point[Costanti.NUM_TERRITORI][TipoAnimale.values().length];
-		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
+		coordinateTerritori = new Point[CostantiModel.NUM_TERRITORI][TipoAnimale.values().length];
+		for (int i = 0; i < CostantiModel.NUM_TERRITORI; i++) {
 			for (int j = 0; j < TipoAnimale.values().length; j++) {
 				coordinateTerritori[i][j] = new Point((int) (CostantiGui.COORDINATE_TERRITORI[i][j].getX() * CostantiGui.FATTORE_DI_SCALA),
 						(int) (CostantiGui.COORDINATE_TERRITORI[i][j].getY() * CostantiGui.FATTORE_DI_SCALA));
@@ -45,13 +45,13 @@ public class MappaView extends BackgroundMappaPanel {
 		}
 
 		// Creo l'array con le coordinate scalate delle strade
-		coordinateStrade = new Point[Costanti.NUM_STRADE];
-		for (int i = 0; i < Costanti.NUM_STRADE; i++) {
+		coordinateStrade = new Point[CostantiModel.NUM_STRADE];
+		for (int i = 0; i < CostantiModel.NUM_STRADE; i++) {
 			coordinateStrade[i] = new Point((int) (CostantiGui.COORDINATE_STRADE[i].getX() * CostantiGui.FATTORE_DI_SCALA),
 					(int) (CostantiGui.COORDINATE_STRADE[i].getY() * CostantiGui.FATTORE_DI_SCALA));
 		}
 
-		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
+		for (int i = 0; i < CostantiModel.NUM_TERRITORI; i++) {
 			territoriView.add(new TerritorioView(i, coordinateTerritori[i]));
 		}
 	}
@@ -122,7 +122,7 @@ public class MappaView extends BackgroundMappaPanel {
 	}
 
 	public void inserisciSegnaliniIniziali(boolean[] stradeLibere) {
-		for (int i = 0; i < Costanti.NUM_STRADE; i++) {
+		for (int i = 0; i < CostantiModel.NUM_STRADE; i++) {
 			if (stradeLibere[i]) {
 				SegnalinoStrada segnalinoTemp = new SegnalinoStrada(coordinateStrade[i], false, i);
 				segnalini.add(segnalinoTemp);
@@ -149,7 +149,7 @@ public class MappaView extends BackgroundMappaPanel {
 				p.muovi(coordinateStrade[destinazione]);
 				p.setCodStrada(destinazione);
 				RecintoView recintoTemp = null;
-				if(MainClient.getDatiPartita().getRecinti().length > Costanti.NUM_RECINTI_INIZIALI) {
+				if(MainClient.getDatiPartita().getRecinti().length > CostantiModel.NUM_RECINTI_INIZIALI) {
 					recintoTemp = new RecintoView(coordinateStrade[origine], true);
 				} else {
 					recintoTemp = new RecintoView(coordinateStrade[origine], false);
@@ -162,7 +162,7 @@ public class MappaView extends BackgroundMappaPanel {
 	}
 
 	public void inserisciSegnalini(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento) {
-		for (int i = 0; i < Costanti.NUM_STRADE; i++) {
+		for (int i = 0; i < CostantiModel.NUM_STRADE; i++) {
 			SegnalinoStrada segnalinoTemp = null;
 			if (stradeLibereGratis[i]) {
 				segnalinoTemp = new SegnalinoStrada(coordinateStrade[i], false, i);

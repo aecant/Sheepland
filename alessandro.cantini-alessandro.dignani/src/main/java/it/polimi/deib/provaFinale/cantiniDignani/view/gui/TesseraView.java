@@ -1,7 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mazzo;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
@@ -51,7 +51,7 @@ public class TesseraView extends BackgroundPanel {
 		// imposto il panel con il prezzo della tessera in cima di quel tipo
 		panelCosto = new JPanel();
 		panelCosto.setBounds(0, (CostantiGui.DIMENSIONE_PANEL_TESSERA.height - CostantiGui.DIMENSIONE_MONETA_TESSERA.height - 10),
-				(CostantiGui.DIMENSIONE_MONETA_TESSERA.width +5) * Costanti.MAX_VALORE_TESSERA, CostantiGui.DIMENSIONE_MONETA_TESSERA.height); // TODO da sistemare
+				(CostantiGui.DIMENSIONE_MONETA_TESSERA.width +5) * CostantiModel.MAX_VALORE_TESSERA, CostantiGui.DIMENSIONE_MONETA_TESSERA.height); // TODO da sistemare
 		panelCosto.setOpaque(false);
 		panelCosto.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
 		disegnaCosto();

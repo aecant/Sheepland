@@ -3,7 +3,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
@@ -64,7 +64,7 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	private void disegnaStatoTerritori() {
-		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
+		for (int i = 0; i < CostantiModel.NUM_TERRITORI; i++) {
 			finestraPartita.getMappa().disegnaTerritorio(i);
 		}
 	}

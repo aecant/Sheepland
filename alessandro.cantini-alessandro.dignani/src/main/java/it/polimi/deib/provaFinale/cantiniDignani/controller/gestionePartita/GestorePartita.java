@@ -4,7 +4,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.LancioDado;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
@@ -14,7 +14,7 @@ import java.util.List;
 
 public class GestorePartita extends Thread {
 
-	private final List<Utente> utenti;
+	private List<Utente> utenti;
 	private final Partita partita;
 	private final List<String> tuttiGiocatori;
 
@@ -38,10 +38,10 @@ public class GestorePartita extends Thread {
 
 		if (partita.getGiocatori().size() == 2) {
 			dueGiocatori = true;
-			denaroIniziale = Costanti.DENARO_INIZIALE_DUE_GIOCATORI;
+			denaroIniziale = CostantiModel.DENARO_INIZIALE_DUE_GIOCATORI;
 		} else {
 			dueGiocatori = false;
-			denaroIniziale = Costanti.DENARO_INIZIALE;
+			denaroIniziale = CostantiModel.DENARO_INIZIALE;
 		}
 
 		preparazionePartita = new PreparazionePartita(this);

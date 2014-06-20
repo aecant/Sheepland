@@ -15,7 +15,7 @@ public class Partita {
 
 	public Partita(Collection<String> nomiGiocatori) {
 		mazzo = new Mazzo();
-		lupo = new Animale(Costanti.POS_INIZIALE_LUPO);
+		lupo = new Animale(CostantiModel.POS_INIZIALE_LUPO);
 		gregge = new Gregge();
 		recinti = new InsiemeDiRecinti();
 		giocatori = new ArrayList<Giocatore>();

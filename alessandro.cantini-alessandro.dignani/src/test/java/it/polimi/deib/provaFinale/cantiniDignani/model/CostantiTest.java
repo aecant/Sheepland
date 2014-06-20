@@ -1,7 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 import static org.junit.Assert.*;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 
 import org.junit.Test;
 
@@ -10,9 +10,9 @@ public class CostantiTest {
 	
 	@Test
 	public void test() {
-		assertEquals(Costanti.MAPPA.length, Costanti.TERRITORIO_CODICE.length);
-		assertEquals(Costanti.NUM_TERRITORI, Mappa.getMappa().getTerritori().length);
-		assertEquals(Costanti.NUM_STRADE, Mappa.getMappa().getStrade().length);
+		assertEquals(CostantiModel.MAPPA.length, CostantiModel.TERRITORIO_CODICE.length);
+		assertEquals(CostantiModel.NUM_TERRITORI, Mappa.getMappa().getTerritori().length);
+		assertEquals(CostantiModel.NUM_STRADE, Mappa.getMappa().getStrade().length);
 	}
 
 }

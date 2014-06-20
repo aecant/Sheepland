@@ -2,7 +2,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 import static org.junit.Assert.*;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Agnello;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pecora;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Territorio;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
@@ -44,7 +44,7 @@ public class AgnelloTest {
 	 */
 	@Test
 	public void testInvecchia() {
-		for (int i = 0; i < Costanti.ETA_MAX_AGNELLO; i++) {
+		for (int i = 0; i < CostantiModel.ETA_MAX_AGNELLO; i++) {
 			assertEquals(a1.getEta(), i);
 			a1.invecchia();
 		}

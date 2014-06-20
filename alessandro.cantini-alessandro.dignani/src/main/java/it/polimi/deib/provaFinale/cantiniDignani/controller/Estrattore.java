@@ -1,7 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.model.Agnello;
-import it.polimi.deib.provaFinale.cantiniDignani.model.Costanti;
+import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mazzo;
@@ -36,7 +36,7 @@ public class Estrattore {
 	 *         una partita
 	 */
 	public static DatiTerritorio[] datiTerritori(Partita partita) {
-		DatiTerritorio[] dati = new DatiTerritorio[Costanti.NUM_TERRITORI];
+		DatiTerritorio[] dati = new DatiTerritorio[CostantiModel.NUM_TERRITORI];
 		for (int i = 0; i < dati.length; i++) {
 			dati[i] = new DatiTerritorio();
 		}
@@ -93,7 +93,7 @@ public class Estrattore {
 	 * @return array di boolean, i true sono le strade libere
 	 */
 	public static boolean[] stradeLibere(Partita partita) {
-		boolean[] strade = new boolean[Costanti.NUM_STRADE];
+		boolean[] strade = new boolean[CostantiModel.NUM_STRADE];
 		Arrays.fill(strade, true);
 
 		for (PedinaSuStrada p : partita.getTutteLePedineSuStrada()) {
@@ -144,7 +144,7 @@ public class Estrattore {
 	public static boolean[] stradeLibereGratis(Partita partita, Strada posPastore) {
 		boolean[] stradeLibere = stradeLibere(partita);
 		boolean[] stradeLibereAPagamento = stradeLibereAPagamento(partita, posPastore);
-		boolean[] stradeLibereGratis = new boolean[Costanti.NUM_STRADE];
+		boolean[] stradeLibereGratis = new boolean[CostantiModel.NUM_STRADE];
 
 		for (int i = 0; i < stradeLibereGratis.length; i++) {
 			stradeLibereGratis[i] = stradeLibere[i] && !stradeLibereAPagamento[i];

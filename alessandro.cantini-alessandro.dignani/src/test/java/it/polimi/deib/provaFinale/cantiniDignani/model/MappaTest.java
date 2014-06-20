@@ -40,7 +40,7 @@ public class MappaTest {
 	
 	@Test
 	public void testGetTerritori() {
-		assertEquals(Mappa.getMappa().getTerritori().length, Costanti.NUM_TERRITORI);
+		assertEquals(Mappa.getMappa().getTerritori().length, CostantiModel.NUM_TERRITORI);
 	}
 
 	@Test

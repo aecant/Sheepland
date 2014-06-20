@@ -10,8 +10,8 @@ public class Territorio implements Serializable{
 	private final TipoTerritorio tipo;
 
 	public Territorio(int codice, TipoTerritorio tipo) {
-		if (codice < 0 && codice > Costanti.NUM_TERRITORI - 1)
-			throw new IllegalArgumentException("Il tipo dev'essere compreso fra 0 e " + (Costanti.NUM_TERRITORI - 1));
+		if (codice < 0 && codice > CostantiModel.NUM_TERRITORI - 1)
+			throw new IllegalArgumentException("Il tipo dev'essere compreso fra 0 e " + (CostantiModel.NUM_TERRITORI - 1));
 		this.tipo = tipo;
 		this.codice = codice;
 	}

@@ -1,6 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.model;
 
-public class Costanti {
+public class CostantiModel {
 	
 	/**
 	 * L'eta' massima dell'agnello prima di diventare adulto
@@ -135,7 +135,7 @@ public class Costanti {
 	/**
 	 * Costruttore privato per nascondere quello di default
 	 */
-	private Costanti() {
+	private CostantiModel() {
 	}
 	
 }

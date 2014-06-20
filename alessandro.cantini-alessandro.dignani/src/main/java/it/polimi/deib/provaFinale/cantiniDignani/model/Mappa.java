@@ -34,7 +34,7 @@ public class Mappa {
 			throw new IllegalArgumentException(dado + " non e' un parametro accettabile: il numero dev'essere compreso fra 1 e 6");
 		}
 
-		int indice = Costanti.MAPPA[t.getCodice()][dado - 1];
+		int indice = CostantiModel.MAPPA[t.getCodice()][dado - 1];
 		return territori[indice];
 	}
 
@@ -53,7 +53,7 @@ public class Mappa {
 		if (t1.equals(t2)) {
 			throw new IllegalArgumentException("I territori devono essere diversi");
 		}
-		return Utilita.contiene(Costanti.MAPPA[t1.getCodice()], t2.getCodice());
+		return Utilita.contiene(CostantiModel.MAPPA[t1.getCodice()], t2.getCodice());
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class Mappa {
 		int codT2 = strada.getTerritorio2().getCodice();
 
 		for (int lancio = 0; lancio < 6; lancio++) {
-			if (Costanti.MAPPA[codT1][lancio] == codT2) {
+			if (CostantiModel.MAPPA[codT1][lancio] == codT2) {
 				return lancio + 1;
 			}
 		}
@@ -155,10 +155,10 @@ public class Mappa {
 	 * @return l'array di territori
 	 */
 	private Territorio[] creaTerritori() {
-		Territorio[] temp = new Territorio[Costanti.NUM_TERRITORI];
+		Territorio[] temp = new Territorio[CostantiModel.NUM_TERRITORI];
 
-		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
-			temp[i] = new Territorio(i, Costanti.TERRITORIO_CODICE[i]);
+		for (int i = 0; i < CostantiModel.NUM_TERRITORI; i++) {
+			temp[i] = new Territorio(i, CostantiModel.TERRITORIO_CODICE[i]);
 		}
 
 		return temp;
@@ -173,8 +173,8 @@ public class Mappa {
 	private Strada[] creaStrade() {
 		int codice = 0;
 		List<Strada> temp = new ArrayList<Strada>();
-		for (int i = 0; i < Costanti.NUM_TERRITORI; i++) {
-			for (int j = i + 1; j < Costanti.NUM_TERRITORI; j++) {
+		for (int i = 0; i < CostantiModel.NUM_TERRITORI; i++) {
+			for (int j = i + 1; j < CostantiModel.NUM_TERRITORI; j++) {
 				if (sonoConfinanti(territori[i], territori[j])) {
 					temp.add(new Strada(territori[i], territori[j], codice));
 					codice++;

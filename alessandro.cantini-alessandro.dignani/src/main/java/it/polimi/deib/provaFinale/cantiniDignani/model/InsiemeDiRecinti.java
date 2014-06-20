@@ -22,7 +22,7 @@ public class InsiemeDiRecinti {
 	 *            la strada su cui viene aggiunto il recinto
 	 */
 	public void aggiungi(Strada posizione) {
-		if (recintiIniziali.size() < Costanti.NUM_RECINTI_INIZIALI) {
+		if (recintiIniziali.size() < CostantiModel.NUM_RECINTI_INIZIALI) {
 			recintiIniziali.add(new PedinaSuStrada(posizione));
 		} else {
 			recintiFinali.add(new PedinaSuStrada(posizione));
