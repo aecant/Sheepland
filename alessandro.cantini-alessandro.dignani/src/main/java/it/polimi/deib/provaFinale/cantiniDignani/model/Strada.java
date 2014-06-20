@@ -10,6 +10,9 @@ public class Strada implements Serializable {
 	private Integer codice;
 
 	public Strada(Territorio territorio1, Territorio territorio2, Integer codice) {
+		if (territorio1 == null || territorio2 == null) {
+			throw new IllegalArgumentException();
+		}
 		if (territorio1.equals(territorio2)) {
 			throw new IllegalArgumentException("I due territori devono essere diversi");
 		}
