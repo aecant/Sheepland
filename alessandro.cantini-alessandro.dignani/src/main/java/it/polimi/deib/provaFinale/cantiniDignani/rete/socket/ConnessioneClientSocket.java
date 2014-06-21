@@ -7,12 +7,14 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.PasswordSbagliataException;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
+import it.polimi.deib.provaFinale.cantiniDignani.view.cli.CostantiCli;
 
 import java.io.IOError;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ConnessioneClientSocket extends ConnessioneClient implements InterfacciaConnessioneClient {
@@ -67,11 +69,10 @@ public class ConnessioneClientSocket extends ConnessioneClient implements Interf
 			ascoltatoreEventi.start();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			CostantiCli.DEFAULT_OUTPUT.println("Connessione con il server interrotta");
+			logger.log(Level.SEVERE, "comunicazione con il server interrotta", e);	
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "problemi nella ricezione dal server", e);
 		}
 
 	}
