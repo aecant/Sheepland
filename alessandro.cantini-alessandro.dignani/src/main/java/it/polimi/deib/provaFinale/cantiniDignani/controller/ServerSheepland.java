@@ -2,6 +2,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.GiocatoreDisconnesso;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.GiocatoreRiconnesso;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.InizioPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
@@ -11,6 +12,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.NomeGiaPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.PasswordSbagliataException;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.rmi.ConnessioneServerRmi;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.socket.ConnessioneServerSocket;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +70,9 @@ public class ServerSheepland {
 
 	}
 
+	/**
+	 * Inizia una partita con gli utenti in attesa
+	 */
 	public synchronized void iniziaPartita() {
 
 		if (utentiInAttesa.size() < 2 || utentiInAttesa.size() > CostantiModel.NUM_MAX_GIOCATORI) {
@@ -80,7 +85,7 @@ public class ServerSheepland {
 			nomi.add(u.getNome());
 		}
 
-		List<Utente> utentiPartita = new ArrayList<Utente>();
+		List<Utente> utentiPartita = new Vector<Utente>();
 		utentiPartita.addAll(utentiInAttesa);
 		GestorePartita gestore = new GestorePartita(utentiPartita);
 		gestoriPartita.add(gestore);
@@ -104,7 +109,7 @@ public class ServerSheepland {
 			}
 		}
 
-		throw new IllegalArgumentException("Il giocatore non è presente");
+		throw new IllegalArgumentException(giocatore + " non è presente");
 
 	}
 
@@ -125,16 +130,22 @@ public class ServerSheepland {
 		throw new IllegalArgumentException(nome + " non presente ");
 	}
 
+	/**
+	 * Gestisce la disconnessione di un utente
+	 * 
+	 * @param utente
+	 *            l'utente di cui gestire la disconnessione
+	 */
 	public void gestisciDisconnessione(Utente utente) {
 		logger.warning("Disconnessione " + utente);
 
 		utentiInAttesa.remove(utente);
 		utentiOnline.remove(utente);
-		
-		if(utente == null) {
+
+		if (utente == null) {
 			return;
 		}
-		
+
 		utentiDisconnessi.add(utente);
 		if (utente.getConnessione() != null) {
 			utente.getConnessione().gestisciDisconnessione(utente);
@@ -143,12 +154,13 @@ public class ServerSheepland {
 		utente.getCodaMosse().aggiungi(CostantiController.MOSSA_DISCONNESSIONE);
 
 		GestorePartita gestore = getGestorePartita(utente);
-		synchronized (gestore) {
-			//TODO fermare la partita
-		}
+
 		for (Utente utentePartita : gestore.getUtenti()) {
 			utentePartita.inviaEvento(new GiocatoreDisconnesso(utente.getNome()));
 		}
+
+		gestore.sospendiPartita();
+
 		logger.info(utente + "disconnesso");
 
 	}
@@ -157,9 +169,18 @@ public class ServerSheepland {
 		utentiDisconnessi.remove(utente);
 		utente.getCodaMosse().svuota();
 		GestorePartita gestore = getGestorePartita(utente);
+		
+		for(Utente u : Utilita.copia(gestore.getUtenti())) {
+			if(utente.getNome().equals(u.getNome())) {
+				gestore.getUtenti().remove(u);
+			}
+		}
+		gestore.getUtenti().add(utente);
+		
+		gestore.notify();
 		gestore.inviaEventoATutti(new GiocatoreRiconnesso(utente.getNome()));
-		// TODO gestire la disconnessione di un utente che non ha iniziato la
-		// partita
+		utente.inviaEvento(new InizioPartita(Estrattore.datiPartita(gestore.getPartita())));
+		logger.info("riconnesso " + utente);
 	}
 
 	private GestorePartita getGestorePartita(Utente utente) {

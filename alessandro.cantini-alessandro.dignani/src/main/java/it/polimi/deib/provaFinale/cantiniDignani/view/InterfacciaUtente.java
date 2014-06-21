@@ -34,7 +34,7 @@ public interface InterfacciaUtente {
 	 * Viene visualizzato l'inizio della partita e viene fatta vedere all'utente
 	 * la sua tessera iniziale
 	 */
-	void inizioPartita();
+	void inizioPartita(boolean riconnessione);
 
 	/**
 	 * L'utente viene avvisato che e' iniziato il turno di un giocatore

@@ -52,7 +52,7 @@ public class Gui implements InterfacciaUtente {
 	/**
 	 * Metodo che avvia la partita
 	 */
-	public void inizioPartita() {
+	public void inizioPartita(boolean riconnessione) {
 
 		finestraPartita = new PartitaView(MainClient.getDatiPartita());
 

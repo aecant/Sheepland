@@ -56,8 +56,12 @@ public class Cli implements InterfacciaUtente {
 		out.println("La password inserita e' sbagliata");
 	}
 
-	public void inizioPartita() {
-		out.println("Partita iniziata con i giocatori:");
+	public void inizioPartita(boolean riconnessione) {
+		if (riconnessione) {
+			out.println("Ti sei riconnesso alla partita con i giocatori:");
+		} else {
+			out.println("Partita iniziata con i giocatori:");
+		}
 		out.println(listaDiStringhe(MainClient.getDatiPartita().getNomiGiocatori(), "; ", "."));
 		TipoTerritorio tipoTesseraIniziale = MainClient.getDatiPartita().getGiocatore(nome()).getTessere().get(0).getTipo();
 		out.println("La tua tessera iniziale e' di tipo " + tipoTesseraIniziale);
