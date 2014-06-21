@@ -42,6 +42,9 @@ public class PanelMossa extends JPanel {
 	
 	protected void disabilitaBottone() {
 		bottone.setEnabled(false);
+		for(MouseListener ml : bottone.getMouseListeners()) {
+			bottone.removeMouseListener(ml);
+		}
 	}
 	
 	protected void impostaAscoltatore(final int n) {
@@ -51,9 +54,6 @@ public class PanelMossa extends JPanel {
 		}
 		bottone.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
-				for(MouseListener ml : e.getComponent().getMouseListeners()) {
-					e.getComponent().removeMouseListener(ml);
-				}
 				Gui.getCoda().aggiungi(n);
 				Gui.getFinestraPartita().getPanelMosse().disabilitaMosse();
 			}
