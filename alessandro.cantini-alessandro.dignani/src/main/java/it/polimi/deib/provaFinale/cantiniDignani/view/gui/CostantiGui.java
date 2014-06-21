@@ -23,6 +23,9 @@ public class CostantiGui {
 	public static final Dimension DIMENSIONE_SCHERMO;
 	static {
 		DIMENSIONE_SCHERMO = Toolkit.getDefaultToolkit().getScreenSize();
+		if(!SCHERMO_INTERO) {
+			DIMENSIONE_SCHERMO.height -= 40;
+		}
 	}
 	
 	public static final double FATTORE_DI_SCALA = (double) DIMENSIONE_SCHERMO.height/800;
