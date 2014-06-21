@@ -25,7 +25,7 @@ public class PanelTessereDaAcquistare extends JDialog {
 	protected PanelTessereDaAcquistare() {
 		super(Gui.finestraPartita);
 		setSize(CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA);
-		setBounds(CostantiGui.DIMENSIONE_SCHERMO.width - CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.width / 2, CostantiGui.DIMENSIONE_SCHERMO.height - CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.height / 2, CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.width, CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.height);
+		//setBounds(CostantiGui.DIMENSIONE_SCHERMO.width - CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.width / 2, CostantiGui.DIMENSIONE_SCHERMO.height - CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.height / 2, CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.width, CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.height);
 		setLayout(new BorderLayout());
 		setResizable(false);
 		setUndecorated(true);

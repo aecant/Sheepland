@@ -109,6 +109,7 @@ public class Gui implements InterfacciaUtente {
 
 	public void movimentoPastore(String giocatore, int origine, int destinazione) {
 		finestraPartita.getMappa().movimentoPastore(origine, destinazione);
+		finestraPartita.getPanelGiocatori().aggiorna(giocatore);
 	}
 
 	public void movimentoLupo(int origine, int destinazione) {
@@ -133,7 +134,14 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
-		finestraPartita.getPanelMessaggi().visualizzaMessaggio("" + giocatore + " ha comprato una tessera di tipo " + tessera.getTipo());
+		if (giocatore.equals(MainClient.getNome())) {
+			finestraPartita.getPanelMessaggi().visualizzaMessaggio("Hai comprato una tessera di tipo " + tessera.getTipo());
+		} else {
+			finestraPartita.getPanelMessaggi().visualizzaMessaggio("" + giocatore + " ha comprato una tessera di tipo " + tessera.getTipo());
+		}
+		
+		finestraPartita.getPanelGiocatori().aggiorna(giocatore);
+
 		// TODO Migliorare con visualizzazione dell'immagine
 		finestraPartita.getPanelTessere().aggiornaTessere();
 	}
@@ -157,8 +165,7 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void pagamento(Integer denaro, String pagante, String pagato) {
-		// TODO Auto-generated method stub
-		// ####################################################################################
+		finestraPartita.getPanelGiocatori().pagamento(denaro, pagante, pagato);
 	}
 
 	public void uccisioneLupo(int territorio, TipoAnimale tipoOvino) {
@@ -205,8 +212,6 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public int richiestaTesseraDaAcquistare(List<Tessera> tessereDisponibili) {
-		// TODO Auto-generated method stub
-		// ##################################################################################
 		finestraPartita.getPanelTessereDaAcquistare().sceltaTessera(tessereDisponibili);
 		return coda.aspetta();
 	}
