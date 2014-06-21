@@ -1,5 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 
 import java.awt.BorderLayout;
@@ -51,6 +52,11 @@ public class GiocatoreView extends JPanel {
 		panelNome.add(panelSoldi, BorderLayout.WEST);
 		
 		add(panelNome, BorderLayout.CENTER);
-		//add(panelSoldi, BorderLayout.WEST);
 	}
+
+	public void aggiorna() {
+		lblSoldi.setText(MainClient.getDatiPartita().getGiocatore(lblNome.getText()).getDenaro().toString());
+	}
+	
+	
 }

@@ -29,6 +29,11 @@ public class PannelloGiocatori extends JPanel {
 	}
 	
 	protected void aggiorna(String giocatore) {
-		
+		panelsGiocatori.get(giocatore).aggiorna();
+	}
+	
+	protected void pagamento(Integer denaro, String pagante, String pagato) {
+		aggiorna(pagante);
+		aggiorna(pagato);
 	}
 }
