@@ -133,7 +133,12 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
-		finestraPartita.getPanelMessaggi().visualizzaMessaggio("" + giocatore + " ha comprato una tessera di tipo " + tessera.getTipo());
+		if (giocatore.equals(MainClient.getNome())) {
+			finestraPartita.getPanelMessaggi().visualizzaMessaggio("Hai comprato una tessera di tipo " + tessera.getTipo());
+		} else {
+			finestraPartita.getPanelMessaggi().visualizzaMessaggio("" + giocatore + " ha comprato una tessera di tipo " + tessera.getTipo());
+		}
+
 		// TODO Migliorare con visualizzazione dell'immagine
 		finestraPartita.getPanelTessere().aggiornaTessere();
 	}
