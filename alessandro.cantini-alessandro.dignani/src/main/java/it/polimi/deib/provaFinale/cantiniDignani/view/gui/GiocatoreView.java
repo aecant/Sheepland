@@ -56,6 +56,9 @@ public class GiocatoreView extends JPanel {
 
 	public void aggiorna() {
 		lblSoldi.setText(MainClient.getDatiPartita().getGiocatore(lblNome.getText()).getDenaro().toString());
+		panelSoldi.repaint();
+		panelNome.repaint();
+		repaint();
 	}
 	
 	
