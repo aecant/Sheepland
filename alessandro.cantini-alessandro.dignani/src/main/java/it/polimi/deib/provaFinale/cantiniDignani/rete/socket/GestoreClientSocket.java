@@ -71,11 +71,12 @@ public class GestoreClientSocket extends Thread {
 
 				@SuppressWarnings("unchecked")
 				Coppia<String, String> nomeEPassword = (Coppia<String, String>) oggettoRicevuto;
+				
 				out.reset();
 				try {
 					serverSheepland.aggiungiUtente(nomeEPassword.primo, nomeEPassword.secondo, connessione);
 					out.writeObject(CostantiSocket.REGISTRAZIONE_OK);
-					utente = serverSheepland.getUtente(nomeEPassword.primo);
+					utente = serverSheepland.getUtente(nomeEPassword.primo);				
 					connessione.getGestoriUtenti().put(utente, this);
 					registrato = true;
 				} catch (NomeGiaPresenteException e) {

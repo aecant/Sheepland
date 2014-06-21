@@ -14,6 +14,16 @@ public class Utente {
 	private final GestoreCoda<Integer> codaMosse;
 	private InterfacciaConnessioneServer connessione;
 
+	/**
+	 * Crea un istanza di utente
+	 * 
+	 * @param nome
+	 *            il nome dell'utente
+	 * @param password
+	 *            la password dell'utente
+	 * @param connessione
+	 *            la connessione dell'utente (RMI o socket per esempio)
+	 */
 	public Utente(String nome, String password, InterfacciaConnessioneServer connessione) {
 		this.nome = nome;
 		this.password = password;
@@ -21,18 +31,11 @@ public class Utente {
 		codaMosse = new GestoreCoda<Integer>();
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public GestoreCoda<Integer> getCodaMosse() {
-		return codaMosse;
-	}
-
+	/**
+	 * Invia un evento all'utente
+	 * 
+	 * @param evento
+	 */
 	public void inviaEvento(Evento evento) {
 		if (connessione != null) {
 			connessione.inviaEvento(evento, this);
@@ -40,14 +43,55 @@ public class Utente {
 		}
 	}
 
-	public void setConnessione(InterfacciaConnessioneServer connessione) {
-		this.connessione = connessione;
+	/**
+	 * Restituisce il nome dell'utente
+	 * 
+	 * @return il nome dell'utente
+	 */
+	public String getNome() {
+		return nome;
 	}
 
+	/**
+	 * Restituisce la password dell'utente
+	 * 
+	 * @return
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * Restituisce il gestore della coda
+	 * 
+	 * @return la password dell'utente
+	 */
+	public GestoreCoda<Integer> getCodaMosse() {
+		return codaMosse;
+	}
+
+	/**
+	 * Restituisce la connessione dell'utente
+	 * 
+	 * @return la connessione del'utente
+	 */
 	public InterfacciaConnessioneServer getConnessione() {
 		return connessione;
 	}
 
+	/**
+	 * Imposta la connessione dell'utente
+	 * 
+	 * @param connessione
+	 *            la connessione da impostare
+	 */
+	public void setConnessione(InterfacciaConnessioneServer connessione) {
+		this.connessione = connessione;
+	}
+
+	/**
+	 * Restituisce l'hash code dell'utente
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -56,6 +100,9 @@ public class Utente {
 		return result;
 	}
 
+	/**
+	 * Compara l'utente con un altro oggetto, utilizzando esclusivamente il nome
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -78,6 +125,9 @@ public class Utente {
 		return true;
 	}
 
+	/**
+	 * Restituisce una rappresentazione dell'utente sotto forma di stringa
+	 */
 	@Override
 	public String toString() {
 		return "Utente [nome=" + nome + ", password=" + password + ", connessione=" + connessione + "]";

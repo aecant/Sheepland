@@ -41,8 +41,7 @@ public class ConnessioneClientSocket extends ConnessioneClient implements Interf
 			in = new ObjectInputStream(socket.getInputStream());
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "Errore nella comunicazione con il server", e);
 		}
 
 	}
@@ -70,7 +69,7 @@ public class ConnessioneClientSocket extends ConnessioneClient implements Interf
 
 		} catch (IOException e) {
 			CostantiCli.DEFAULT_OUTPUT.println("Connessione con il server interrotta");
-			logger.log(Level.SEVERE, "comunicazione con il server interrotta", e);	
+			logger.log(Level.SEVERE, "comunicazione con il server interrotta", e);
 		} catch (ClassNotFoundException e) {
 			logger.log(Level.SEVERE, "problemi nella ricezione dal server", e);
 		}
@@ -83,8 +82,8 @@ public class ConnessioneClientSocket extends ConnessioneClient implements Interf
 			out.writeObject(mossaScelta);
 			out.flush();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "Errore nell'invio della mossa", e);
+
 		}
 	}
 
@@ -94,10 +93,9 @@ public class ConnessioneClientSocket extends ConnessioneClient implements Interf
 			out.close();
 			in.close();
 			socket.close();
-
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "Errore nella chiusura della connessione", e);
+
 		}
 	}
 

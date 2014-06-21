@@ -2,9 +2,12 @@ package it.polimi.deib.provaFinale.cantiniDignani.rete.socket;
 
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 
+import java.io.IOError;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Classe che permette di creare un ascoltatore in un nuovo thread.
@@ -13,6 +16,8 @@ import java.io.Serializable;
  *            il tipo degli elementi che si vogliono ascoltare
  */
 public class AscoltatoreSocket<T extends Serializable> extends Thread {
+
+	private final static Logger logger = Logger.getLogger(AscoltatoreSocket.class.getName());
 
 	protected ObjectInputStream in;
 	protected GestoreCoda<T> coda;
@@ -32,12 +37,11 @@ public class AscoltatoreSocket<T extends Serializable> extends Thread {
 			try {
 				elemento = (T) in.readObject();
 				if (elemento == null) {
-					throw new NullPointerException();
+					throw new IOError(null);
 				}
 				coda.aggiungi(elemento);
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.log(Level.SEVERE, "Errore nel tipo dell'oggetto ricevuto : " + elemento, e);
 			} catch (IOException e) {
 				gestisciInterruzione(e);
 			}
