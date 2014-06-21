@@ -58,7 +58,7 @@ public class CostantiGui {
 	public static final Color COLORE_SFONDO_LANCIO_DADO = new Color(186, 227, 248);
 	
 	// Panel scelta tessera da acquistare
-	public static final Dimension DIMENSIONE_PANEL_ACQUISTO_TESSERA = new Dimension(215, 160);
+	public static final Dimension DIMENSIONE_PANEL_ACQUISTO_TESSERA = new Dimension(300, 200);
 
 
 	// panels laterali mappa

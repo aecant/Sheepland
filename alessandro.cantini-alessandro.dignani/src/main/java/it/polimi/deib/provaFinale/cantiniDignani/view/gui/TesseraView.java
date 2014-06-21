@@ -35,19 +35,23 @@ public class TesseraView extends BackgroundPanel {
 		this.costo = costo;
 		this.indice = indice;
 		
-		// imposto il label dell'angolino
-		lblPossedute = new JLabel(possedute.toString());
-		lblPossedute.setForeground(CostantiGui.COLORE_TESTO_ANGOLINI);
-		lblPossedute.setFont(CostantiGui.FONT_ANGOLINI);
-		lblPossedute.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPossedute.setVerticalAlignment(SwingConstants.CENTER);
-
-		// imposto il panel dell'angolino
-		angolino.setBounds(0, 0, CostantiGui.DIMENSIONE_ANGOLINI, CostantiGui.DIMENSIONE_ANGOLINI);
-		angolino.setBackground(CostantiGui.COLORE_SFONDO_ANGOLINI);
-		angolino.setLayout(new BorderLayout());
-		angolino.add(lblPossedute, BorderLayout.CENTER);
-
+		if(possedute != null) {
+			// imposto il label dell'angolino
+			lblPossedute = new JLabel(possedute.toString());
+			lblPossedute.setForeground(CostantiGui.COLORE_TESTO_ANGOLINI);
+			lblPossedute.setFont(CostantiGui.FONT_ANGOLINI);
+			lblPossedute.setHorizontalAlignment(SwingConstants.CENTER);
+			lblPossedute.setVerticalAlignment(SwingConstants.CENTER);
+			
+			// imposto il panel dell'angolino
+			angolino.setBounds(0, 0, CostantiGui.DIMENSIONE_ANGOLINI, CostantiGui.DIMENSIONE_ANGOLINI);
+			angolino.setBackground(CostantiGui.COLORE_SFONDO_ANGOLINI);
+			angolino.setLayout(new BorderLayout());
+			angolino.add(lblPossedute, BorderLayout.CENTER);
+			
+			add(angolino);
+		}
+		
 		// imposto il panel con il prezzo della tessera in cima di quel tipo
 		panelCosto = new JPanel();
 		panelCosto.setBounds(0, (CostantiGui.DIMENSIONE_PANEL_TESSERA.height - CostantiGui.DIMENSIONE_MONETA_TESSERA.height - 10),
@@ -58,7 +62,6 @@ public class TesseraView extends BackgroundPanel {
 
 		setLayout(null);
 		setBackground(CostantiGui.COLORE_ACQUA);
-		add(angolino);
 		add(panelCosto);
 	}
 
@@ -101,5 +104,9 @@ public class TesseraView extends BackgroundPanel {
 			setBorder(BorderFactory.createMatteBorder(
                     5, 5, 5, 5, CostantiGui.COLORE_TESSERA_FINITA));
 		}
+	}
+	
+	public Integer getIndice() {
+		return indice;
 	}
 }
