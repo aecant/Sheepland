@@ -12,8 +12,12 @@ import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GestorePartita extends Thread {
+
+	private final static Logger logger = Logger.getLogger(GestorePartita.class.getName());
 
 	private List<Utente> utenti;
 	private final Partita partita;
@@ -51,7 +55,7 @@ public class GestorePartita extends Thread {
 		faseFinale = new FaseFinale(this);
 
 	}
-	
+
 	public void run() {
 
 		preparazionePartita.esegui();
@@ -134,6 +138,14 @@ public class GestorePartita extends Thread {
 			}
 		}
 		throw new IllegalArgumentException(giocatore + " non presente in " + utenti);
+	}
+
+	public void sospendiPartita() {
+		try {
+			Thread.sleep(CostantiController.MILLISECONDI_INTERRUZIONE_DISCONNESSIONE);
+		} catch (InterruptedException e) {
+			logger.log(Level.SEVERE, "gestore interrotto in modo inaspettato", e);
+		}
 	}
 
 }
