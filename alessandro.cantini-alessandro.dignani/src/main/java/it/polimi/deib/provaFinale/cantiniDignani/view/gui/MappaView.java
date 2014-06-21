@@ -173,8 +173,8 @@ public class MappaView extends BackgroundMappaPanel {
 				segnalini.add(segnalinoTemp);
 				add(segnalinoTemp);
 			}
-			repaint();
 		}
+		repaint();
 	}
 
 	public void aggiungiAscoltatoriAnimali(List<Coppia<Integer, TipoAnimale>> oviniSpostabili) {

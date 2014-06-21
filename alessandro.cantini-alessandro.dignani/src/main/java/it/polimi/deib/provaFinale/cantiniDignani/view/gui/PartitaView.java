@@ -91,6 +91,7 @@ public class PartitaView extends JFrame{
 
 		// aggiungo il contenitore alla finestra
 		add(panelMessaggi);
+		add(panelTessereDaAcquistare);
 		add(contenitore);
 
 		pack();
