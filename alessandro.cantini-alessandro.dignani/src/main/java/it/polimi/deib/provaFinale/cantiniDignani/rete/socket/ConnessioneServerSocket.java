@@ -11,8 +11,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Hashtable;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +19,6 @@ public class ConnessioneServerSocket extends ConnessioneServer implements Interf
 	private final static Logger logger = Logger.getLogger(ConnessioneServerSocket.class.getName());
 	
 	private ServerSocket server;
-	private final ExecutorService esecutore = Executors.newCachedThreadPool();
 	private final Map<Utente, GestoreClientSocket> gestoriUtenti = new Hashtable<Utente, GestoreClientSocket>();
 
 	public ConnessioneServerSocket(ServerSheepland serverSheepland) {
@@ -41,7 +38,7 @@ public class ConnessioneServerSocket extends ConnessioneServer implements Interf
 		while (true) {
 			try {
 				Socket socket = server.accept();
-				esecutore.submit(new GestoreClientSocket(socket, this, serverSheepland));
+				new GestoreClientSocket(socket, this, serverSheepland).start();
 				logger.info("Connessione iniziata con " + socket);
 			} catch (IOException e) {
 				logger.log(Level.SEVERE, "problemi nell'accettazione dei socket", e);
@@ -66,7 +63,6 @@ public class ConnessioneServerSocket extends ConnessioneServer implements Interf
 		for (Utente u : gestoriUtenti.keySet()) {
 			gestoriUtenti.get(u).terminaConnessione();
 		}
-		esecutore.shutdown();
 	}
 
 	public Map<Utente, GestoreClientSocket> getGestoriUtenti() {

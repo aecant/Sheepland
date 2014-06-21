@@ -79,7 +79,12 @@ public class FasePrincipale extends FasePartita {
 
 		if (gestore.dueGiocatori) {
 			gestore.inviaEvento(new RichiestaPastore(), giocatore);
-			int codStrada = gestore.aspettaMossa(giocatore);
+			int codStrada;
+			try {
+				codStrada = gestore.aspettaMossa(giocatore);
+			} catch (GiocatoreDisconnessoException e) {
+				return;
+			}
 
 			for (Pastore p : partita.getPastori()) {
 				if (p.getStrada().getCodice() == codStrada) {
@@ -99,7 +104,12 @@ public class FasePrincipale extends FasePartita {
 
 			gestore.inviaEvento(new RichiestaTipoMossa(mosseDisponibili, numMossa), giocatore);
 
-			int indice = gestore.aspettaMossa(giocatore);
+			int indice;
+			try {
+				indice = gestore.aspettaMossa(giocatore);
+			} catch (GiocatoreDisconnessoException e) {
+				return;
+			}
 			TipoMossa tipoMossa = mosseDisponibili.get(indice);
 
 			mossaPrecedente = tipoMossa;

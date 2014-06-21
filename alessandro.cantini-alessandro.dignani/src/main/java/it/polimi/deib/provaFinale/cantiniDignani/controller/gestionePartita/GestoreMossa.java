@@ -81,7 +81,7 @@ public class GestoreMossa {
 		boolean[] stradeAPagamento = Estrattore.stradeLibereAPagamento(partita, pastore.getStrada());
 		gestore.inviaEvento(new RichiestaPosizionePastore(stradeGratis, stradeAPagamento), giocatore);
 
-		int codDest = aspettaMossa(giocatore);
+		int codDest = gestore.aspettaMossa(giocatore);
 
 		if (!stradeGratis[codDest] && !stradeAPagamento[codDest]) {
 			throw new MossaNonValidaException(codDest + " non e' una strada valida");
@@ -109,7 +109,7 @@ public class GestoreMossa {
 
 		gestore.inviaEvento(new RichiestaPecoraDaMuovere(listaOviniSuTerritorio), giocatore);
 
-		int indiceScelto = aspettaMossa(giocatore);
+		int indiceScelto = gestore.aspettaMossa(giocatore);
 
 		controllaIndice(indiceScelto, listaOviniSuTerritorio);
 
@@ -141,7 +141,7 @@ public class GestoreMossa {
 
 		gestore.inviaEvento(new RichiestaPecoraDaAbbattere(listaOviniSuTerritorio), giocatore);
 
-		int indiceScelto = aspettaMossa(giocatore);
+		int indiceScelto = gestore.aspettaMossa(giocatore);
 
 		controllaIndice(indiceScelto, listaOviniSuTerritorio);
 
@@ -188,7 +188,7 @@ public class GestoreMossa {
 
 		gestore.inviaEvento(new RichiestaTerritorioPerAccoppiamento(terrDisp), giocatore);
 
-		int codTerr = aspettaMossa(giocatore);
+		int codTerr = gestore.aspettaMossa(giocatore);
 
 		controllaValore(codTerr, terrDisp);
 
@@ -222,7 +222,7 @@ public class GestoreMossa {
 
 		gestore.inviaEvento(new RichiestaTesseraDaAcquistare(tessereDisp), giocatore);
 
-		int indiceScelta = aspettaMossa(giocatore);
+		int indiceScelta = gestore.aspettaMossa(giocatore);
 
 		controllaIndice(indiceScelta, tessereDisp);
 
@@ -356,14 +356,6 @@ public class GestoreMossa {
 		return lista;
 	}
 
-
-	private int aspettaMossa(Giocatore giocatore) throws GiocatoreDisconnessoException {
-		int mossa = gestore.aspettaMossa(giocatore);
-		if (mossa == CostantiController.MOSSA_DISCONNESSIONE) {
-			throw new GiocatoreDisconnessoException();
-		}
-		return mossa;
-	}
 
 
 	private void controllaIndice(int indice, List<?> lista) {

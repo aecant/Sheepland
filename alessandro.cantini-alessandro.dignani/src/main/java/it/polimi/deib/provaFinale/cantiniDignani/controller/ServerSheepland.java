@@ -15,7 +15,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.socket.ConnessioneServerSo
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ServerSheepland {
@@ -67,13 +66,6 @@ public class ServerSheepland {
 			timerPartita.inizia();
 		}
 
-	}
-
-	private void riconnettiUtente(Utente utente) {
-		utentiDisconnessi.remove(utente);
-		GestorePartita gestore = getGestorePartita(utente);
-		gestore.inviaEventoATutti(new GiocatoreRiconnesso(utente.getNome()));
-		//TODO gestire la disconnessione di un utente che non ha iniziato la partita
 	}
 
 	public synchronized void iniziaPartita() {
@@ -135,27 +127,39 @@ public class ServerSheepland {
 
 	public void gestisciDisconnessione(Utente utente) {
 		logger.warning("Disconnessione " + utente);
-		
+
 		utentiInAttesa.remove(utente);
 		utentiOnline.remove(utente);
+		
+		if(utente == null) {
+			return;
+		}
+		
 		utentiDisconnessi.add(utente);
-		utente.getConnessione().gestisciDisconnessione(utente);
-		utente.setConnessione(null);
+		if (utente.getConnessione() != null) {
+			utente.getConnessione().gestisciDisconnessione(utente);
+			utente.setConnessione(null);
+		}
 		utente.getCodaMosse().aggiungi(CostantiController.MOSSA_DISCONNESSIONE);
 
 		GestorePartita gestore = getGestorePartita(utente);
-		try {
-			synchronized (gestore) {
-				gestore.wait();
-			}
-			for (Utente utentePartita : gestore.getUtenti()) {
-				utentePartita.inviaEvento(new GiocatoreDisconnesso(utente.getNome()));
-			}
-		} catch (InterruptedException e) {
-			logger.log(Level.SEVERE, "problemi nella disconnessione di un utente", e);
+		synchronized (gestore) {
+			//TODO fermare la partita
+		}
+		for (Utente utentePartita : gestore.getUtenti()) {
+			utentePartita.inviaEvento(new GiocatoreDisconnesso(utente.getNome()));
 		}
 		logger.info(utente + "disconnesso");
 
+	}
+
+	private void riconnettiUtente(Utente utente) {
+		utentiDisconnessi.remove(utente);
+		utente.getCodaMosse().svuota();
+		GestorePartita gestore = getGestorePartita(utente);
+		gestore.inviaEventoATutti(new GiocatoreRiconnesso(utente.getNome()));
+		// TODO gestire la disconnessione di un utente che non ha iniziato la
+		// partita
 	}
 
 	private GestorePartita getGestorePartita(Utente utente) {

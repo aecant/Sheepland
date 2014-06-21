@@ -29,7 +29,12 @@ public class FaseIniziale extends FasePartita {
 			
 			boolean[] stradeLibere = Estrattore.stradeLibere(partita);
 			gestore.inviaEvento(new RichiestaPosizioneInizialePastore(stradeLibere), giocatore);
-			int codStrada = gestore.aspettaMossa(giocatore);
+			int codStrada;
+			try {
+				codStrada = gestore.aspettaMossa(giocatore);
+			} catch (GiocatoreDisconnessoException e) {
+				return;
+			}
 
 			Strada strada = Mappa.getMappa().getStrade()[codStrada];
 			giocatore.getPastori().get(numPastore).muoviIn(strada);

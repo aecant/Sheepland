@@ -1,5 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.CostantiController;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
@@ -50,7 +51,7 @@ public class GestorePartita extends Thread {
 		faseFinale = new FaseFinale(this);
 
 	}
-
+	
 	public void run() {
 
 		preparazionePartita.esegui();
@@ -68,8 +69,12 @@ public class GestorePartita extends Thread {
 		return lancio;
 	}
 
-	protected int aspettaMossa(Giocatore giocatore) {
-		return getUtente(giocatore).getCodaMosse().aspetta();
+	protected int aspettaMossa(Giocatore giocatore) throws GiocatoreDisconnessoException {
+		int mossa = getUtente(giocatore).getCodaMosse().aspetta();
+		if (mossa == CostantiController.MOSSA_DISCONNESSIONE) {
+			throw new GiocatoreDisconnessoException();
+		}
+		return mossa;
 	}
 
 	public void inviaEventoATutti(Evento evento) {

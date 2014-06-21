@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class GestoreClientSocket extends Thread {
 
 	private final static Logger logger = Logger.getLogger(GestoreClientSocket.class.getName());
-	
+
 	private Socket socket;
 	private ConnessioneServerSocket connessione;
 	private ServerSheepland serverSheepland;
@@ -26,6 +26,8 @@ public class GestoreClientSocket extends Thread {
 	private ObjectOutputStream out;
 	private AscoltatoreSocketServer ascoltatoreMosse;
 	private Utente utente;
+
+	private boolean registrato = true;
 
 	public GestoreClientSocket(Socket socket, ConnessioneServerSocket connessione, ServerSheepland serverSheepland) {
 		this.socket = socket;
@@ -42,7 +44,9 @@ public class GestoreClientSocket extends Thread {
 	public void run() {
 		registrazioneGiocatore();
 
-		riceviMosse();
+		if (registrato) {
+			riceviMosse();
+		}
 	}
 
 	private void riceviMosse() {
@@ -63,7 +67,7 @@ public class GestoreClientSocket extends Thread {
 	private void registrazioneGiocatore() {
 		try {
 			Object oggettoRicevuto = in.readObject();
-			 
+
 			@SuppressWarnings("unchecked")
 			Coppia<String, String> nomeEPassword = (Coppia<String, String>) oggettoRicevuto;
 			out.reset();
@@ -82,6 +86,7 @@ public class GestoreClientSocket extends Thread {
 		} catch (ClassNotFoundException e) {
 			logger.log(Level.SEVERE, "problemi nella ricezione dell'evento", e);
 		} catch (IOException e) {
+			registrato = false;
 			serverSheepland.gestisciDisconnessione(utente);
 		}
 	}
@@ -95,8 +100,7 @@ public class GestoreClientSocket extends Thread {
 			out.close();
 			socket.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "problema nella chiusura del socket di " + utente, e);
 		}
 
 	}

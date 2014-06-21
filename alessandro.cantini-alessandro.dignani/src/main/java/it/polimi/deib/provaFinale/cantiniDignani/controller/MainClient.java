@@ -65,7 +65,7 @@ public class MainClient {
 	}
 
 	private static String chiediIndirizzoServer() {
-		// TODO test da rimuoverer
+		// TODO test da rimuovere
 		return CostantiTest.INDIRIZZO_SERVER;
 	}
 

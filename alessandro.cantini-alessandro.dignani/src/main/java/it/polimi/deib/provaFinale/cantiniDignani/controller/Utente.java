@@ -1,12 +1,10 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
-
 import java.util.logging.Logger;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
-
 
 public class Utente {
 	private static final Logger logger = Logger.getLogger(Utente.class.getName());
@@ -36,8 +34,10 @@ public class Utente {
 	}
 
 	public void inviaEvento(Evento evento) {
-		connessione.inviaEvento(evento, this);
-		logger.info(evento + " inviato " + " a " + this);
+		if (connessione != null) {
+			connessione.inviaEvento(evento, this);
+			logger.info(evento + " inviato " + " a " + this);
+		}
 	}
 
 	public void setConnessione(InterfacciaConnessioneServer connessione) {

@@ -2,6 +2,8 @@ package it.polimi.deib.provaFinale.cantiniDignani.utilita;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Gestisce una coda di elementi del tipo passato come parametro.
@@ -11,6 +13,8 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 
 public class GestoreCoda<T> {
+	
+	private final static Logger logger = Logger.getLogger(GestoreCoda.class.getName());
 
 	private BlockingQueue<T> coda = new LinkedBlockingQueue<T>();
 
@@ -25,8 +29,7 @@ public class GestoreCoda<T> {
 		try {
 			evento = coda.take();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "coda interrotta", e);
 		}
 		return evento;
 	}
@@ -43,7 +46,7 @@ public class GestoreCoda<T> {
 	public T aspetta(Class<? extends T> classe) {
 		T elemento = aspetta();
 		if (elemento.getClass() != classe) {
-			throw new RuntimeException("L'evento è diverso da quello aspettato");
+			throw new IllegalArgumentException("L'elemento in coda è diverso da quello aspettato");
 		}
 		return elemento;
 	}
