@@ -13,6 +13,9 @@ public class AscoltatoreSocketServer extends AscoltatoreSocket<Integer> {
 	
 	public AscoltatoreSocketServer(ObjectInputStream in, Utente utente, ServerSheepland serverSheepland) {
 		super(in, utente.getCodaMosse());
+		if(utente == null || in == null || serverSheepland == null) {
+			throw new IllegalArgumentException();
+		}
 		this.utente = utente;
 		this.serverSheepland = serverSheepland;
 	}

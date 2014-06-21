@@ -63,8 +63,11 @@ public class Cli implements InterfacciaUtente {
 			out.println("Partita iniziata con i giocatori:");
 		}
 		out.println(listaDiStringhe(MainClient.getDatiPartita().getNomiGiocatori(), "; ", "."));
-		TipoTerritorio tipoTesseraIniziale = MainClient.getDatiPartita().getGiocatore(nome()).getTessere().get(0).getTipo();
-		out.println("La tua tessera iniziale e' di tipo " + tipoTesseraIniziale);
+
+		if (!riconnessione) {
+			TipoTerritorio tipoTesseraIniziale = MainClient.getDatiPartita().getGiocatore(nome()).getTessere().get(0).getTipo();
+			out.println("La tua tessera iniziale e' di tipo " + tipoTesseraIniziale);
+		}
 		stampaStatoTerritori();
 	}
 

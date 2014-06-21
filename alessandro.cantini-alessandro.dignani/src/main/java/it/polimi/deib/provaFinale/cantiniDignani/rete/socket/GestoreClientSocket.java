@@ -27,7 +27,7 @@ public class GestoreClientSocket extends Thread {
 	private AscoltatoreSocketServer ascoltatoreMosse;
 	private Utente utente;
 
-	private boolean registrato = true;
+	private boolean registrato = false;
 
 	public GestoreClientSocket(Socket socket, ConnessioneServerSocket connessione, ServerSheepland serverSheepland) {
 		this.socket = socket;
@@ -65,29 +65,31 @@ public class GestoreClientSocket extends Thread {
 	}
 
 	private void registrazioneGiocatore() {
-		try {
-			Object oggettoRicevuto = in.readObject();
-
-			@SuppressWarnings("unchecked")
-			Coppia<String, String> nomeEPassword = (Coppia<String, String>) oggettoRicevuto;
-			out.reset();
+		while (!registrato) {
 			try {
-				serverSheepland.aggiungiUtente(nomeEPassword.primo, nomeEPassword.secondo, connessione);
-				out.writeObject(CostantiSocket.REGISTRAZIONE_OK);
-				utente = serverSheepland.getUtente(nomeEPassword.primo);
-				connessione.getGestoriUtenti().put(utente, this);
-			} catch (NomeGiaPresenteException e) {
-				out.writeObject(CostantiSocket.NOME_GIA_PRESENTE);
-			} catch (PasswordSbagliataException e) {
-				out.writeObject(CostantiSocket.PASSWORD_SBAGLIATA);
-			}
-			out.flush();
+				Object oggettoRicevuto = in.readObject();
 
-		} catch (ClassNotFoundException e) {
-			logger.log(Level.SEVERE, "problemi nella ricezione dell'evento", e);
-		} catch (IOException e) {
-			registrato = false;
-			serverSheepland.gestisciDisconnessione(utente);
+				@SuppressWarnings("unchecked")
+				Coppia<String, String> nomeEPassword = (Coppia<String, String>) oggettoRicevuto;
+				out.reset();
+				try {
+					serverSheepland.aggiungiUtente(nomeEPassword.primo, nomeEPassword.secondo, connessione);
+					out.writeObject(CostantiSocket.REGISTRAZIONE_OK);
+					utente = serverSheepland.getUtente(nomeEPassword.primo);
+					connessione.getGestoriUtenti().put(utente, this);
+					registrato = true;
+				} catch (NomeGiaPresenteException e) {
+					out.writeObject(CostantiSocket.NOME_GIA_PRESENTE);
+				} catch (PasswordSbagliataException e) {
+					out.writeObject(CostantiSocket.PASSWORD_SBAGLIATA);
+				}
+				out.flush();
+
+			} catch (ClassNotFoundException e) {
+				logger.log(Level.SEVERE, "problemi nella ricezione dell'evento", e);
+			} catch (IOException e) {
+				serverSheepland.gestisciDisconnessione(utente);
+			}
 		}
 	}
 

@@ -45,6 +45,8 @@ public class ServerSheepland {
 			throw new NomeGiaPresenteException();
 		}
 
+		utentiOnline.add(utente);
+
 		for (Utente u : utentiDisconnessi) {
 			if (u.getNome().equals(utente.getNome())) {
 				if (u.getPassword().equals(utente.getPassword())) {
@@ -57,7 +59,6 @@ public class ServerSheepland {
 		}
 
 		utentiInAttesa.add(utente);
-		utentiOnline.add(utente);
 		logger.info("Registrato " + utente);
 
 		if (utentiInAttesa.size() == CostantiModel.NUM_MAX_GIOCATORI) {
@@ -169,15 +170,18 @@ public class ServerSheepland {
 		utentiDisconnessi.remove(utente);
 		utente.getCodaMosse().svuota();
 		GestorePartita gestore = getGestorePartita(utente);
-		
-		for(Utente u : Utilita.copia(gestore.getUtenti())) {
-			if(utente.getNome().equals(u.getNome())) {
+
+		for (Utente u : Utilita.copia(gestore.getUtenti())) {
+			if (utente.getNome().equals(u.getNome())) {
 				gestore.getUtenti().remove(u);
 			}
 		}
 		gestore.getUtenti().add(utente);
-		
-		gestore.notify();
+
+		synchronized (gestore) {
+			gestore.notify();
+		}
+
 		gestore.inviaEventoATutti(new GiocatoreRiconnesso(utente.getNome()));
 		utente.inviaEvento(new InizioPartita(Estrattore.datiPartita(gestore.getPartita())));
 		logger.info("riconnesso " + utente);
