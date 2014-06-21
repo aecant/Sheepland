@@ -5,6 +5,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -50,6 +51,9 @@ public class PanelMossa extends JPanel {
 		}
 		bottone.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
+				for(MouseListener ml : e.getComponent().getMouseListeners()) {
+					e.getComponent().removeMouseListener(ml);
+				}
 				Gui.getCoda().aggiungi(n);
 				Gui.getFinestraPartita().getPanelMosse().disabilitaMosse();
 			}
