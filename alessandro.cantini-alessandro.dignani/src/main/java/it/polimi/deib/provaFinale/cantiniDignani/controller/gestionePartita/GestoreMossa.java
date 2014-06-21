@@ -237,6 +237,8 @@ public class GestoreMossa {
 		}
 
 		giocatore.aggiungiTessera(tesseraAcquistata);
+		
+		giocatore.sottraiDenaro(tesseraAcquistata.getCosto());
 
 		gestore.inviaEventoATutti(new AcquistoTessera(giocatore.getNome(), tesseraAcquistata, Estrattore.tessereInCima(partita), Estrattore.giocatori(partita)));
 	}
