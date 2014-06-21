@@ -65,4 +65,13 @@ public class GestoreCoda<T> {
 		coda.clear();
 	}
 
+	/**
+	 * Controlla se la coda e' vuota
+	 * 
+	 * @return true se la coda e' vuota, false se contiene almeno un elemento
+	 */
+	public boolean codaVuota() {
+		return coda.isEmpty();
+	}
+
 }
