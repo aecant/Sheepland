@@ -10,12 +10,11 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.List;
 
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class PanelTessereDaAcquistare extends JDialog {
+public class PanelTessereDaAcquistare extends JPanel {
 
 	private static final long serialVersionUID = 2090429027013450871L;
 	
@@ -23,13 +22,8 @@ public class PanelTessereDaAcquistare extends JDialog {
 	private JPanel panelTessere = new JPanel();
 	
 	protected PanelTessereDaAcquistare() {
-		super(Gui.finestraPartita);
-		setSize(CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA);
-		//setBounds(CostantiGui.DIMENSIONE_SCHERMO.width - CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.width / 2, CostantiGui.DIMENSIONE_SCHERMO.height - CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.height / 2, CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.width, CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.height);
+		setBounds(CostantiGui.DIMENSIONE_SCHERMO.width - CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.width / 2, CostantiGui.DIMENSIONE_SCHERMO.height - CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.height / 2, CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.width, CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.height);
 		setLayout(new BorderLayout());
-		setResizable(false);
-		setUndecorated(true);
-		setLocationRelativeTo(getParent());
 
 		
 		// Imposto il lblMessaggio

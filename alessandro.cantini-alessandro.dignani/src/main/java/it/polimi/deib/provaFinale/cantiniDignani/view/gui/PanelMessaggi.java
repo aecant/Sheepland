@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class PanelMessaggi extends JPanel{
+public class PanelMessaggi extends JPanel {
 
 	private static final long serialVersionUID = -5161847623471545868L;
 	
@@ -40,7 +40,7 @@ public class PanelMessaggi extends JPanel{
 		add(lblMessaggi, BorderLayout.CENTER);
 		setBounds(0, (CostantiGui.DIMENSIONE_SCHERMO.height - CostantiGui.DIMENSIONE_PANEL_MESSAGGI.height) / 2, CostantiGui.DIMENSIONE_PANEL_MESSAGGI.width, CostantiGui.DIMENSIONE_PANEL_MESSAGGI.height);
 		setVisible(true);
-		setFocusable(true);
+		Gui.getFinestraPartita().repaint();
 		repaint();
 		
 		
