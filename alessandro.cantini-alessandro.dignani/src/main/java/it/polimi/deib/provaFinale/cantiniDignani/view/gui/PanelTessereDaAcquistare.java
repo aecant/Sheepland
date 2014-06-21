@@ -4,7 +4,10 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.List;
 
 import javax.swing.JDialog;
@@ -22,9 +25,12 @@ public class PanelTessereDaAcquistare extends JDialog {
 	protected PanelTessereDaAcquistare() {
 		super(Gui.finestraPartita);
 		setSize(CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA);
-		setLocationRelativeTo(getParent());
 		setBounds(CostantiGui.DIMENSIONE_SCHERMO.width - CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.width / 2, CostantiGui.DIMENSIONE_SCHERMO.height - CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.height / 2, CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.width, CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.height);
 		setLayout(new BorderLayout());
+		setResizable(false);
+		setUndecorated(true);
+		setLocationRelativeTo(getParent());
+
 		
 		// Imposto il lblMessaggio
 		lblMessaggio.setHorizontalAlignment(SwingConstants.CENTER);
@@ -33,18 +39,36 @@ public class PanelTessereDaAcquistare extends JDialog {
 		lblMessaggio.setForeground(CostantiGui.COLORE_TESTO_MESSAGGI);
 		
 		// Imposto il panelTessere
-		panelTessere.setLayout(new GridLayout(1, 2, 5, 0));
+		panelTessere.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
 		panelTessere.setBackground(Color.WHITE);
 		panelTessere.setPreferredSize(CostantiGui.DIMENSIONE_PANEL_TESSERE_ACQUISTO);
 		
 		add(lblMessaggio, BorderLayout.NORTH);
+		add(panelTessere, BorderLayout.CENTER);
 		
 		setVisible(false);
 	}
 	
 	public void sceltaTessera(List<Tessera> tessereDisponibili) {
+		int cont = 0;
+		for(Tessera tess : tessereDisponibili) {
+			Image img = Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + tess.getTipo().name().toLowerCase() + ".jpg").getScaledInstance(CostantiGui.DIMENSIONE_PANEL_TESSERA.width, CostantiGui.DIMENSIONE_PANEL_TESSERA.height, Image.SCALE_SMOOTH);
+			TesseraView tessView = new TesseraView(img, tess.getCosto(), null, cont);
+			tessView.setPreferredSize(CostantiGui.DIMENSIONE_PANEL_TESSERA);
+			tessView.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent e) {
+				Component c = e.getComponent();
+				if(c  instanceof TesseraView) {
+					Gui.getCoda().aggiungi(((TesseraView) c).getIndice());
+					Gui.getFinestraPartita().getPanelTessereDaAcquistare().panelTessere.removeAll();
+					Gui.getFinestraPartita().getPanelTessereDaAcquistare().setVisible(false);
+				}
+				
+			}
+		});
+			panelTessere.add(tessView);
+			cont++;
+		}
 		setVisible(true);
-		// TODO da completare
-		Gui.getCoda().aggiungi(0);
 	}
 }
