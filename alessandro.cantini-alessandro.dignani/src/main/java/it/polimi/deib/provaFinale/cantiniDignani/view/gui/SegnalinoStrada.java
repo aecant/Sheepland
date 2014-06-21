@@ -16,6 +16,8 @@ public class SegnalinoStrada extends JPanel {
 	
 	private int codStrada;
 	private JLabel lblImmagine;
+	private static ImageIcon imgAPagamento = new ImageIcon(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "segnalinoStradaPagamento.png").getScaledInstance(CostantiGui.DIMENSIONE_SEGNALINO_STRADA.width, CostantiGui.DIMENSIONE_SEGNALINO_STRADA.height, Image.SCALE_SMOOTH));
+	private static ImageIcon imgGratis = new ImageIcon(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "segnalinoStradaGratis.png").getScaledInstance(CostantiGui.DIMENSIONE_SEGNALINO_STRADA.width, CostantiGui.DIMENSIONE_SEGNALINO_STRADA.height, Image.SCALE_SMOOTH));
 	
 	public SegnalinoStrada(Point posizione, boolean aPagamento, int codStrada) {
 		this.codStrada = codStrada;
@@ -23,18 +25,13 @@ public class SegnalinoStrada extends JPanel {
 		this.setBounds((posizione.x - CostantiGui.DIMENSIONE_SEGNALINO_STRADA.width / 2), (posizione.y - CostantiGui.DIMENSIONE_SEGNALINO_STRADA.height / 2), CostantiGui.DIMENSIONE_SEGNALINO_STRADA.width, CostantiGui.DIMENSIONE_SEGNALINO_STRADA.height);
 		this.setOpaque(false);
 		
-		ImageIcon img;
-		String nomeFile;
-		
 		if(aPagamento) {
-			nomeFile = "segnalinoStradaPagamento";
-		} else {
-			nomeFile = "segnalinoStradaGratis";
+			lblImmagine = new JLabel(imgAPagamento);
+			} else {
+				lblImmagine = new JLabel(imgGratis);
 		}
-		
-		img = new ImageIcon(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + nomeFile + ".png").getScaledInstance(CostantiGui.DIMENSIONE_SEGNALINO_STRADA.width, CostantiGui.DIMENSIONE_SEGNALINO_STRADA.height, Image.SCALE_SMOOTH));
 
-		lblImmagine = new JLabel(img);
+		
 		lblImmagine.setBounds(new Rectangle(new Point(0, 0), CostantiGui.DIMENSIONE_SEGNALINO_STRADA));
 		
 		add(lblImmagine);
