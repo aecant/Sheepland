@@ -48,17 +48,16 @@ public class ConnessioneClientRmi extends ConnessioneClient implements Interfacc
 			ascoltatore = (InterfacciaAscoltatoreRmi) UnicastRemoteObject.exportObject(this, 0);
 			server.aggiungiAscoltatore(nomeEPassword.primo, ascoltatore);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "Impossibile stabilire la connessione col server", e);
 		}
 
 	}
 
-	public void riceviEvento(Evento evento) {
+	public void riceviEvento(Evento evento) throws RemoteException {
 		codaEventi.aggiungi(evento);
 	}
 
-	public boolean seiOnline() {
+	public boolean seiOnline() throws RemoteException {
 		return true;
 	}
 

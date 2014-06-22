@@ -6,8 +6,8 @@ public abstract class ConnessioneServer extends Thread {
 	
 	protected ServerSheepland serverSheepland;
 	
-	public ConnessioneServer(ServerSheepland server) {
-		this.serverSheepland = server;
+	public ConnessioneServer(ServerSheepland serverSheepland) {
+		this.serverSheepland = serverSheepland;
 	}
 	
 	@Override

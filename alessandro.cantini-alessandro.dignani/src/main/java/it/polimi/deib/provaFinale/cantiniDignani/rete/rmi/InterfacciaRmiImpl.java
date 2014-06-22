@@ -34,9 +34,8 @@ public class InterfacciaRmiImpl implements InterfacciaRmi {
 		logger.info("Ascoltatore aggiunto: " + ascoltatore);
 	}
 
-	public void riceviMossa(String nome, int mossa) {
+	public void riceviMossa(String nome, int mossa)  throws RemoteException{
 		server.getUtente(nome).getCodaMosse().aggiungi(mossa);
-
 		logger.info("Mossa ricevuta da " + nome + " : " + mossa);
 	}
 

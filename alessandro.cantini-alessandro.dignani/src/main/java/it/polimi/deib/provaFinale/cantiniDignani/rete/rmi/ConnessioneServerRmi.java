@@ -13,18 +13,18 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Hashtable;
+import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 public class ConnessioneServerRmi extends ConnessioneServer implements InterfacciaConnessioneServer {
 
 	private final Logger logger = Logger.getLogger(ConnessioneServerRmi.class.getName());
-	
+
 	private final Hashtable<String, InterfacciaAscoltatoreRmi> ascoltatori = new Hashtable<String, InterfacciaAscoltatoreRmi>();
 	private Registry registro;
 
-	public ConnessioneServerRmi(ServerSheepland server) {
-		super(server);
+	public ConnessioneServerRmi(ServerSheepland serverSheepland) {
+		super(serverSheepland);
 	}
 
 	public void run() {
@@ -40,8 +40,7 @@ public class ConnessioneServerRmi extends ConnessioneServer implements Interfacc
 
 			logger.info("Server RMI pronto");
 		} catch (RemoteException e) {
-			System.err.println("Eccezione server RMI:");
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "Problema nel creare il server RMI", e);
 		}
 	}
 
@@ -49,8 +48,7 @@ public class ConnessioneServerRmi extends ConnessioneServer implements Interfacc
 		try {
 			ascoltatori.get(utente.getNome()).riceviEvento(evento);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			serverSheepland.gestisciDisconnessione(utente);
 		}
 
 	}
@@ -60,14 +58,11 @@ public class ConnessioneServerRmi extends ConnessioneServer implements Interfacc
 			UnicastRemoteObject.unexportObject(registro, true);
 			registro.unbind(CostantiRmi.NOME_SERVER_RMI);
 		} catch (NoSuchObjectException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "Problema nella disconnessione del server", e);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "Problema nella disconnessione del server", e);
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "Problema nella disconnessione del server", e);
 		}
 	}
 
@@ -75,13 +70,13 @@ public class ConnessioneServerRmi extends ConnessioneServer implements Interfacc
 		return ascoltatori;
 	}
 
+	public void gestisciDisconnessione(Utente utente) {
+		ascoltatori.remove(utente.getNome());
+	}
+
 	@Override
 	public String toString() {
 		return "Connessione RMI";
-	}
-
-	public void gestisciDisconnessione(Utente utente) {
-		ascoltatori.remove(utente.getNome());
 	}
 
 }
