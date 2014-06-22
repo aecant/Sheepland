@@ -260,4 +260,14 @@ public class Gui implements InterfacciaUtente {
 		finestraPartita.getPanelTessereDaVendere().marketRichiestaTesseraDaAcquistare(tessereDisponibili);
 		return coda.aspetta();
 	}
+
+	public void marketCompravenditaTessera(String compratore, TesseraInVendita tesseraInVendita) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void marketInizio() {
+		// TODO Auto-generated method stub
+		
+	}
 }
