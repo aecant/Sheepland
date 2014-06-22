@@ -151,16 +151,21 @@ public class Gui implements InterfacciaUtente {
 
 	public void abbattimento(String giocatore, TipoAnimale tipo, int territorio, boolean aBuonFine) {
 		if (aBuonFine) {
+			finestraPartita.getPanelMessaggi().visualizzaAbbattimentoRiuscito();
 			finestraPartita.getMappa().disegnaTerritorio(territorio);
+		} else {
+			finestraPartita.getPanelMessaggi().visualizzaAbbattimentoFallito();
 		}
-		// TODO da integrare con l'immagine animata dell'abbatimento
 	}
 
 	public void accoppiamento(String giocatore, int territorio, boolean aBuonFine) {
+		
 		if (aBuonFine) {
+			finestraPartita.getPanelMessaggi().visualizzaAccoppiamentoRiuscito();
 			finestraPartita.getMappa().disegnaTerritorio(territorio);
+		} else {
+			finestraPartita.getPanelMessaggi().visualizzaAccoppiamentoFallito();
 		}
-		// TODO da integrare con l'immagine animata dell'accoppiamneto
 	}
 
 	public void trasformazioneAgnello(boolean maschio, Integer territorio) {

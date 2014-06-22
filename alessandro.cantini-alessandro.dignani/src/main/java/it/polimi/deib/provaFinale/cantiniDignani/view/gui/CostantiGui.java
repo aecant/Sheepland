@@ -184,7 +184,7 @@ public class CostantiGui {
 
 	public static final Dimension DIMENSIONE_PANEL_TESSERE_ACQUISTO = new Dimension((DIMENSIONE_PANEL_TESSERA.width * 2) + 10, DIMENSIONE_PANEL_TESSERA.height + 20);
 
-
+	public static final Dimension DIMENSIONE_IMMAGINE_SCENETTA = new Dimension(DIMENSIONE_SCHERMO.width / 2, (int) ((DIMENSIONE_SCHERMO.width / 2) * 0.6));
 
 	/**
 	 * Costruttore privato per nascondere quello di default
