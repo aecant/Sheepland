@@ -119,6 +119,9 @@ public class MappaView extends BackgroundMappaPanel {
 		case PECORA:
 			pedina = new PecoraView(orig, 0);
 			break;
+		case PECORA_NERA:
+			pedina = territoriView.get(origine).getPecoraNera();
+			break;
 		default:
 			pedina = null;
 			break;
