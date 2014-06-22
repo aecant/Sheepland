@@ -28,6 +28,7 @@ public class PartitaView extends JFrame{
 	private PannelloMosse panelMosse;
 	private PanelMessaggi panelMessaggi;
 	private PanelTessereDaAcquistare panelTessereDaAcquistare;
+	private PanelTessereDaVendere panelTessereDaVendere;
 
 	private DatiPartita datiPartita;
 	
@@ -90,10 +91,13 @@ public class PartitaView extends JFrame{
 		// imposto il panelTessereDaAcquistare
 		panelTessereDaAcquistare = new PanelTessereDaAcquistare();
 		
+		// imposto il panelTessereDaVendere
+		panelTessereDaVendere = new PanelTessereDaVendere();
 
 		// aggiungo il contenitore alla finestra
 		add(panelMessaggi);
 		add(panelTessereDaAcquistare);
+		add(panelTessereDaVendere);
 		add(contenitore);
 
 		pack();
@@ -133,5 +137,9 @@ public class PartitaView extends JFrame{
 
 	public PanelTessereDaAcquistare getPanelTessereDaAcquistare() {
 		return panelTessereDaAcquistare;
+	}
+
+	public PanelTessereDaVendere getPanelTessereDaVendere() {
+		return panelTessereDaVendere;
 	}
 }

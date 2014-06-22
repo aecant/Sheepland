@@ -3,9 +3,11 @@ package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.TesseraInVendita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
@@ -151,7 +153,7 @@ public class Gui implements InterfacciaUtente {
 		if (aBuonFine) {
 			finestraPartita.getMappa().disegnaTerritorio(territorio);
 		}
-		// TODO da integrare con l'immagine animata dell'accoppiamento
+		// TODO da integrare con l'immagine animata dell'abbatimento
 	}
 
 	public void accoppiamento(String giocatore, int territorio, boolean aBuonFine) {
@@ -232,5 +234,30 @@ public class Gui implements InterfacciaUtente {
 	
 	public void saltoTurno(String giocatore){
 		finestraPartita.getPanelMessaggi().visualizzaMessaggio(giocatore + " ha saltato il turno");
+	}
+	
+	public int marketRichiestaTesseraDaVendere(List<TipoTerritorio> listaTerritori) {
+		finestraPartita.getPanelTessereDaVendere().sceltaTipoTessera(listaTerritori);
+		return coda.aspetta();
+	}
+	
+	public int marketRichiestaPrezzo(TipoTerritorio t) {
+		finestraPartita.getPanelTessereDaVendere().sceltaPrezzo(t);
+		return coda.aspetta();
+	}
+	
+	public void marketMessaInVendita(TesseraInVendita tess) {
+		String messaggio = tess.getGiocatore() + " ha messo in vendita una tessera di tipo " + tess.getTipo() + " a " + tess.getPrezzo() + " denar";
+		if(tess.getPrezzo() == 1) {
+			messaggio += "o";
+		} else {
+			messaggio += "i";
+		}
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio(messaggio);
+	}
+	
+	public int marketRichiestaTesseraDaAcquistare(List<TesseraInVendita> tessereDisponibili) {
+		finestraPartita.getPanelTessereDaVendere().marketRichiestaTesseraDaAcquistare(tessereDisponibili);
+		return coda.aspetta();
 	}
 }
