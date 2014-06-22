@@ -316,6 +316,12 @@ public interface InterfacciaUtente {
 	void marketInizio();
 
 	/**
+	 * L'utente viene avvertito che e' iniziata la fase del market in cui si
+	 * possono acquistare le tessere
+	 */
+	void marketInizioAcquisti();
+
+	/**
 	 * L'utente viene avvertito che e' stata messa in vendita una tessera
 	 * 
 	 * @param tesseraInVendita
