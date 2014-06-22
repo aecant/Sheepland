@@ -7,7 +7,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServ
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 
 public class Utente {
-	private static final Logger logger = Logger.getLogger(Utente.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(Utente.class.getName());
 
 	private final String nome;
 	private final String password;
@@ -39,7 +39,7 @@ public class Utente {
 	public void inviaEvento(Evento evento) {
 		if (connessione != null) {
 			connessione.inviaEvento(evento, this);
-			logger.info(evento + " inviato " + " a " + this);
+			LOGGER.info(evento + " inviato " + " a " + this);
 		}
 	}
 

@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 
 public class AvvertimentoRiconnessione extends Thread {
 
+	private final static Logger LOGGER = Logger.getLogger(AvvertimentoRiconnessione.class.getName());
+	
 	private GestorePartita gestore;
 	private Utente utente;
 
@@ -22,7 +24,7 @@ public class AvvertimentoRiconnessione extends Thread {
 			sleep(300); // lascia il tempo di completare la registrazione
 			utente.inviaEvento(new InizioPartita(Estrattore.datiPartita(gestore.getPartita()), true));
 		} catch (InterruptedException e) {
-			Logger.getGlobal().log(Level.SEVERE, "interruzione nell'avvertimento dei giocatori", e);
+			LOGGER.log(Level.SEVERE, "interruzione nell'avvertimento dei giocatori", e);
 		}
 
 	}

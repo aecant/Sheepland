@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class AscoltatoreSocket<T extends Serializable> extends Thread {
 
-	private final static Logger logger = Logger.getLogger(AscoltatoreSocket.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(AscoltatoreSocket.class.getName());
 
 	protected ObjectInputStream in;
 	protected GestoreCoda<T> coda;
@@ -41,7 +41,7 @@ public class AscoltatoreSocket<T extends Serializable> extends Thread {
 				}
 				coda.aggiungi(elemento);
 			} catch (ClassNotFoundException e) {
-				logger.log(Level.SEVERE, "Errore nel tipo dell'oggetto ricevuto : " + elemento, e);
+				LOGGER.log(Level.SEVERE, "Errore nel tipo dell'oggetto ricevuto : " + elemento, e);
 			} catch (IOException e) {
 				ferma();
 				gestisciInterruzione(e);
@@ -51,7 +51,7 @@ public class AscoltatoreSocket<T extends Serializable> extends Thread {
 	}
 
 	protected void gestisciInterruzione(IOException e) {
-		logger.log(Level.SEVERE, "Disconnessione socket", e);
+		LOGGER.log(Level.SEVERE, "Disconnessione socket", e);
 	}
 
 	public void ferma() {

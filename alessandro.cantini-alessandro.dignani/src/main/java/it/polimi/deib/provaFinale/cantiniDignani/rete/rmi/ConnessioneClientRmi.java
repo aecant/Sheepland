@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 public class ConnessioneClientRmi extends ConnessioneClient implements InterfacciaConnessioneClient, InterfacciaAscoltatoreRmi {
 
-	private final static Logger logger = Logger.getLogger(ConnessioneClientRmi.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(ConnessioneClientRmi.class.getName());
 
 	private Registry registry;
 	private InterfacciaRmi server;
@@ -36,9 +36,9 @@ public class ConnessioneClientRmi extends ConnessioneClient implements Interfacc
 			server = (InterfacciaRmi) registry.lookup(CostantiRmi.NOME_SERVER_RMI);
 
 		} catch (RemoteException e) {
-			logger.log(Level.SEVERE, "Impossibile stabilire la connessione col server", e);
+			LOGGER.log(Level.SEVERE, "Impossibile stabilire la connessione col server", e);
 		} catch (NotBoundException e) {
-			logger.log(Level.SEVERE, CostantiRmi.NOME_SERVER_RMI + " non collegato ", e);
+			LOGGER.log(Level.SEVERE, CostantiRmi.NOME_SERVER_RMI + " non collegato ", e);
 		}
 	}
 
@@ -48,7 +48,7 @@ public class ConnessioneClientRmi extends ConnessioneClient implements Interfacc
 			ascoltatore = (InterfacciaAscoltatoreRmi) UnicastRemoteObject.exportObject(this, 0);
 			server.aggiungiAscoltatore(nomeEPassword.primo, ascoltatore);
 		} catch (RemoteException e) {
-			logger.log(Level.SEVERE, "Impossibile stabilire la connessione col server", e);
+			LOGGER.log(Level.SEVERE, "Impossibile stabilire la connessione col server", e);
 		}
 
 	}
@@ -65,8 +65,7 @@ public class ConnessioneClientRmi extends ConnessioneClient implements Interfacc
 		try {
 			server.riceviMossa(MainClient.getNome(), mossaScelta);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "Impossibile stabilire la connessione col server", e);
 		}
 	}
 
@@ -74,8 +73,7 @@ public class ConnessioneClientRmi extends ConnessioneClient implements Interfacc
 		try {
 			UnicastRemoteObject.unexportObject(ascoltatore, true);
 		} catch (NoSuchObjectException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "Impossibile stabilire la connessione col server", e);
 		}
 	}
 

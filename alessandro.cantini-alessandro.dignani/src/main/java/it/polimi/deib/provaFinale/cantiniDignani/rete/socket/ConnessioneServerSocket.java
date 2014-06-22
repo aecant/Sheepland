@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 public class ConnessioneServerSocket extends ConnessioneServer implements InterfacciaConnessioneServer {
 	
-	private final static Logger logger = Logger.getLogger(ConnessioneServerSocket.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(ConnessioneServerSocket.class.getName());
 	
 	private ServerSocket server;
 	private final Map<Utente, GestoreClientSocket> gestoriUtenti = new Hashtable<Utente, GestoreClientSocket>();
@@ -34,14 +34,14 @@ public class ConnessioneServerSocket extends ConnessioneServer implements Interf
 			e.printStackTrace();
 			return;
 		}
-		logger.info("Server socket pronto");
+		LOGGER.info("Server socket pronto");
 		while (true) {
 			try {
 				Socket socket = server.accept();
 				new GestoreClientSocket(socket, this, serverSheepland).start();
-				logger.info("Connessione iniziata con " + socket);
+				LOGGER.info("Connessione iniziata con " + socket);
 			} catch (IOException e) {
-				logger.log(Level.SEVERE, "problemi nell'accettazione dei socket", e);
+				LOGGER.log(Level.SEVERE, "problemi nell'accettazione dei socket", e);
 				break;
 			}
 		}
@@ -49,7 +49,7 @@ public class ConnessioneServerSocket extends ConnessioneServer implements Interf
 		try {
 			server.close();
 		} catch (IOException e) {
-			logger.log(Level.SEVERE, "problemi nella chiusura del server", e);
+			LOGGER.log(Level.SEVERE, "problemi nella chiusura del server", e);
 		}
 	}
 

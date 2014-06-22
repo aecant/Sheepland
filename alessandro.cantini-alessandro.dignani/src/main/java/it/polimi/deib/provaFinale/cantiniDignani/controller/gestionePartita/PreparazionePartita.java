@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class PreparazionePartita extends FasePartita {
 
-	private final static Logger logger = Logger.getLogger(PreparazionePartita.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(PreparazionePartita.class.getName());
 	
 	public PreparazionePartita(GestorePartita gestore) {
 		super(gestore);
@@ -26,7 +26,7 @@ public class PreparazionePartita extends FasePartita {
 		disponiPecore();
 		disponiTessereIniziali();
 		gestore.inviaEventoATutti(new InizioPartita(Estrattore.datiPartita(partita)));
-		logger.info("Partita iniziata con i giocatori: " + gestore.getTuttiGiocatori());
+		LOGGER.info("Partita iniziata con i giocatori: " + gestore.getTuttiGiocatori());
 	}
 
 	/**

@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 public abstract class Timer extends Thread {
 	
-	private final static Logger logger = Logger.getLogger(Timer.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(Timer.class.getName());
 	
 	private final long tempoDaAspettare;
 	private final long precisione;
@@ -35,7 +35,7 @@ public abstract class Timer extends Thread {
 			try {
 				Thread.sleep(precisione);
 			} catch (InterruptedException e) {
-				logger.log(Level.SEVERE, "Il timer e' stato interrotto", e);
+				LOGGER.log(Level.SEVERE, "Il timer e' stato interrotto", e);
 			}
 		}
 	}

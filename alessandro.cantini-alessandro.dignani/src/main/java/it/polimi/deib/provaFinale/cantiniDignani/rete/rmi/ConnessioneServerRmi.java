@@ -13,14 +13,15 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ConnessioneServerRmi extends ConnessioneServer implements InterfacciaConnessioneServer {
 
-	private final Logger logger = Logger.getLogger(ConnessioneServerRmi.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(ConnessioneServerRmi.class.getName());
 
-	private final Hashtable<String, InterfacciaAscoltatoreRmi> ascoltatori = new Hashtable<String, InterfacciaAscoltatoreRmi>();
+	private final Map<String, InterfacciaAscoltatoreRmi> ascoltatori = new Hashtable<String, InterfacciaAscoltatoreRmi>();
 	private Registry registro;
 
 	public ConnessioneServerRmi(ServerSheepland serverSheepland) {
@@ -37,10 +38,12 @@ public class ConnessioneServerRmi extends ConnessioneServer implements Interfacc
 			InterfacciaRmi stub = (InterfacciaRmi) UnicastRemoteObject.exportObject(interfacciaMetodi, 0);
 			registro = LocateRegistry.createRegistry(CostantiRmi.PORTA_SERVER_RMI);
 			registro.rebind(CostantiRmi.NOME_SERVER_RMI, stub);
-
-			logger.info("Server RMI pronto");
+			
+			new ControlloClientOnlineRmi(this).start();
+			
+			LOGGER.info("Server RMI pronto");
 		} catch (RemoteException e) {
-			logger.log(Level.SEVERE, "Problema nel creare il server RMI", e);
+			LOGGER.log(Level.SEVERE, "Problema nel creare il server RMI", e);
 		}
 	}
 
@@ -58,15 +61,15 @@ public class ConnessioneServerRmi extends ConnessioneServer implements Interfacc
 			UnicastRemoteObject.unexportObject(registro, true);
 			registro.unbind(CostantiRmi.NOME_SERVER_RMI);
 		} catch (NoSuchObjectException e) {
-			logger.log(Level.SEVERE, "Problema nella disconnessione del server", e);
+			LOGGER.log(Level.SEVERE, "Problema nella disconnessione del server", e);
 		} catch (RemoteException e) {
-			logger.log(Level.SEVERE, "Problema nella disconnessione del server", e);
+			LOGGER.log(Level.SEVERE, "Problema nella disconnessione del server", e);
 		} catch (NotBoundException e) {
-			logger.log(Level.SEVERE, "Problema nella disconnessione del server", e);
+			LOGGER.log(Level.SEVERE, "Problema nella disconnessione del server", e);
 		}
 	}
 
-	protected Hashtable<String, InterfacciaAscoltatoreRmi> getAscoltatori() {
+	protected Map<String, InterfacciaAscoltatoreRmi> getAscoltatori() {
 		return ascoltatori;
 	}
 

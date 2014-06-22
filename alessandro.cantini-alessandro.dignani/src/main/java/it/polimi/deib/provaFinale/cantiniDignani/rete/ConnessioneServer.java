@@ -4,7 +4,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.ServerSheepland;
 
 public abstract class ConnessioneServer extends Thread {
 	
-	protected ServerSheepland serverSheepland;
+	protected final ServerSheepland serverSheepland;
 	
 	public ConnessioneServer(ServerSheepland serverSheepland) {
 		this.serverSheepland = serverSheepland;
@@ -16,4 +16,8 @@ public abstract class ConnessioneServer extends Thread {
 	}
 	
 	public abstract void inizia();
+
+	public ServerSheepland getServerSheepland() {
+		return serverSheepland;
+	}
 }

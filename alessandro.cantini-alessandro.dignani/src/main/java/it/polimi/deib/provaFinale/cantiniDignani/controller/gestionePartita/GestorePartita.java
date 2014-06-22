@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 
 public class GestorePartita extends Thread {
 
-	private final static Logger logger = Logger.getLogger(GestorePartita.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(GestorePartita.class.getName());
 
 	private List<Utente> utenti;
 	private final Partita partita;
@@ -148,14 +148,14 @@ public class GestorePartita extends Thread {
 	public synchronized void sospendiPartita() {
 		try {
 			synchronized(this) {
-				logger.info("Iniziato timer disconnessione, partita sospesa");
+				LOGGER.info("Iniziato timer disconnessione, partita sospesa");
 				timer.start();
 				this.wait();
 			}
-			logger.info("Partita ripresa");
+			LOGGER.info("Partita ripresa");
 			timer.termina();
 		} catch (InterruptedException e) {
-			logger.log(Level.SEVERE, "gestore interrotto in modo inaspettato", e);
+			LOGGER.log(Level.SEVERE, "gestore interrotto in modo inaspettato", e);
 		}
 	}
 

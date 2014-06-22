@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 public class InterfacciaRmiImpl implements InterfacciaRmi {
 	
-	private final Logger logger = Logger.getLogger(InterfacciaRmiImpl.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(InterfacciaRmiImpl.class.getName());
 	
 	private final ConnessioneServerRmi connessione;
 	private final ServerSheepland server;
@@ -31,12 +31,12 @@ public class InterfacciaRmiImpl implements InterfacciaRmi {
 
 	public void aggiungiAscoltatore(String nome, InterfacciaAscoltatoreRmi ascoltatore) throws RemoteException {
 		connessione.getAscoltatori().put(nome, ascoltatore);
-		logger.info("Ascoltatore aggiunto: " + ascoltatore);
+		LOGGER.info("Ascoltatore aggiunto: " + ascoltatore);
 	}
 
 	public void riceviMossa(String nome, int mossa)  throws RemoteException{
 		server.getUtente(nome).getCodaMosse().aggiungi(mossa);
-		logger.info("Mossa ricevuta da " + nome + " : " + mossa);
+		LOGGER.info("Mossa ricevuta da " + nome + " : " + mossa);
 	}
 
 }

@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 
 public class ConnessioneClientSocket extends ConnessioneClient implements InterfacciaConnessioneClient {
 
-	private final static Logger logger = Logger.getLogger(ConnessioneClientSocket.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(ConnessioneClientSocket.class.getName());
 
 	private final int PORTA = CostantiSocket.PORTA_SERVER_SOCKET;
 
@@ -35,13 +35,13 @@ public class ConnessioneClientSocket extends ConnessioneClient implements Interf
 	public void inizia() {
 		try {
 			socket = new Socket(indirizzoServer, PORTA);
-			logger.info("Connessione stabilita: " + socket);
+			LOGGER.info("Connessione stabilita: " + socket);
 
 			out = new ObjectOutputStream(socket.getOutputStream());
 			in = new ObjectInputStream(socket.getInputStream());
 
 		} catch (IOException e) {
-			logger.log(Level.SEVERE, "Errore nella comunicazione con il server", e);
+			LOGGER.log(Level.SEVERE, "Errore nella comunicazione con il server", e);
 		}
 
 	}
@@ -69,9 +69,9 @@ public class ConnessioneClientSocket extends ConnessioneClient implements Interf
 
 		} catch (IOException e) {
 			CostantiCli.DEFAULT_OUTPUT.println("Connessione con il server interrotta");
-			logger.log(Level.SEVERE, "comunicazione con il server interrotta", e);
+			LOGGER.log(Level.SEVERE, "comunicazione con il server interrotta", e);
 		} catch (ClassNotFoundException e) {
-			logger.log(Level.SEVERE, "problemi nella ricezione dal server", e);
+			LOGGER.log(Level.SEVERE, "problemi nella ricezione dal server", e);
 		}
 
 	}
@@ -82,7 +82,7 @@ public class ConnessioneClientSocket extends ConnessioneClient implements Interf
 			out.writeObject(mossaScelta);
 			out.flush();
 		} catch (IOException e) {
-			logger.log(Level.SEVERE, "Errore nell'invio della mossa", e);
+			LOGGER.log(Level.SEVERE, "Errore nell'invio della mossa", e);
 
 		}
 	}
@@ -94,7 +94,7 @@ public class ConnessioneClientSocket extends ConnessioneClient implements Interf
 			in.close();
 			socket.close();
 		} catch (IOException e) {
-			logger.log(Level.SEVERE, "Errore nella chiusura della connessione", e);
+			LOGGER.log(Level.SEVERE, "Errore nella chiusura della connessione", e);
 
 		}
 	}

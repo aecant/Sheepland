@@ -19,7 +19,7 @@ import java.util.Vector;
 import java.util.logging.Logger;
 
 public class ServerSheepland {
-	private final static Logger logger = Logger.getLogger(ServerSheepland.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(ServerSheepland.class.getName());
 
 	private final List<GestorePartita> gestoriPartita = new Vector<GestorePartita>();
 	private final List<Utente> utentiInAttesa = new Vector<Utente>();
@@ -136,10 +136,10 @@ public class ServerSheepland {
 
 			gestore.sospendiPartita();
 
-			logger.warning("Disconnesso " + utente + " nella partita " + gestore.getPartita());
+			LOGGER.warning("Disconnesso " + utente + " nella partita " + gestore.getPartita());
 
 		} catch (ElementoNonPresenteException e) {
-			logger.warning("Disconnesso " + utente);
+			LOGGER.warning("Disconnesso " + utente);
 		}
 
 	}
@@ -164,7 +164,7 @@ public class ServerSheepland {
 		}
 
 		utentiInAttesa.add(utente);
-		logger.info("Registrato " + utente);
+		LOGGER.info("Registrato " + utente);
 
 		if (utentiInAttesa.size() == CostantiModel.NUM_MAX_GIOCATORI) {
 			iniziaPartita();
@@ -202,7 +202,7 @@ public class ServerSheepland {
 		
 		new AvvertimentoRiconnessione(gestore, utente).start();
 
-		logger.info("riconnesso " + utente);
+		LOGGER.info("riconnesso " + utente);
 	}
 
 	private GestorePartita getGestorePartita(Utente utente) {
