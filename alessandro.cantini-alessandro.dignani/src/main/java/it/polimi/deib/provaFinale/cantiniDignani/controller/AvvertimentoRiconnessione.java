@@ -20,7 +20,7 @@ public class AvvertimentoRiconnessione extends Thread {
 	public void run() {
 		try {
 			sleep(300); // lascia il tempo di completare la registrazione
-			utente.inviaEvento(new InizioPartita(Estrattore.datiPartita(gestore.getPartita())));
+			utente.inviaEvento(new InizioPartita(Estrattore.datiPartita(gestore.getPartita()), true));
 		} catch (InterruptedException e) {
 			Logger.getGlobal().log(Level.SEVERE, "interruzione nell'avvertimento dei giocatori", e);
 		}
