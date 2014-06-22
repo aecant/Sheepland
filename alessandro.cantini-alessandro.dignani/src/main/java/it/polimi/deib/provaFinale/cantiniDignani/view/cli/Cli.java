@@ -288,7 +288,7 @@ public class Cli implements InterfacciaUtente {
 		if(scelta == 0) {
 			return CostantiController.TERMINATORE_MARKET;
 		}
-		return scelta;
+		return scelta - 1;
 	}
 
 	public int marketRichiestaTesseraDaVendere(List<TipoTerritorio> territoriDisponibili) {
@@ -298,7 +298,7 @@ public class Cli implements InterfacciaUtente {
 		if(scelta == 0) {
 			return CostantiController.TERMINATORE_MARKET;
 		}
-		return scelta;
+		return scelta - 1;
 	}
 
 }
