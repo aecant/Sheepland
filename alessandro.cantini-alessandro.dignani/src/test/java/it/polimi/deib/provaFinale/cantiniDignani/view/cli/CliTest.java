@@ -29,7 +29,7 @@ public class CliTest {
 		oviniDisp.add(creaCoppia(1, MONTONE));
 
 		int indice = cli.richiestaPecoraDaAbbattere(oviniDisp);
-		assertEquals(oviniDisp.get(indice).secondo, TipoAnimale.AGNELLO);
+		assertEquals(oviniDisp.get(indice).getSecondo(), TipoAnimale.AGNELLO);
 	}
 
 }

@@ -89,7 +89,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void movimentoPecora(String giocatore, TipoAnimale pecora, int origine, int destinazione) {
-		out.println(giocatore + " ha spostato " + pecora.nomeGenerico + " " + daA(origine, destinazione));
+		out.println(giocatore + " ha spostato " + pecora.getNomeGenerico() + " " + daA(origine, destinazione));
 	}
 
 	public void movimentoPecoraNera(int origine, int destinazione) {
@@ -116,7 +116,7 @@ public class Cli implements InterfacciaUtente {
 
 	public void abbattimento(String giocatore, TipoAnimale tipo, int territorio, boolean aBuonFine) {
 		String verbo = aBuonFine ? " ha abbattuto " : " non e' riuscito ad abbattere ";
-		out.println(giocatore + verbo + tipo.nomeGenerico + " " + nelTerr(territorio, "."));
+		out.println(giocatore + verbo + tipo.getNomeGenerico() + " " + nelTerr(territorio, "."));
 	}
 
 	public void accoppiamento(String giocatore, int territorio, boolean aBuonFine) {
@@ -126,7 +126,7 @@ public class Cli implements InterfacciaUtente {
 
 	public void trasformazioneAgnello(boolean maschio, Integer territorio) {
 		TipoAnimale adulto = maschio ? TipoAnimale.MONTONE : TipoAnimale.PECORA;
-		out.println("Un agnello e' diventato " + adulto.nomeGenerico + " " + nelTerr(territorio, "."));
+		out.println("Un agnello e' diventato " + adulto.getNomeGenerico() + " " + nelTerr(territorio, "."));
 	}
 
 	public void pagamento(Integer denaro, String pagante, String pagato) {
@@ -134,7 +134,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void uccisioneLupo(int territorio, TipoAnimale tipoOvino) {
-		out.println("Il lupo ha ucciso " + tipoOvino.nomeGenerico + " " + nelTerr(territorio));
+		out.println("Il lupo ha ucciso " + tipoOvino.getNomeGenerico() + " " + nelTerr(territorio));
 	}
 
 	public void finePartita(Map<String, Integer> punteggio) {
@@ -233,7 +233,7 @@ public class Cli implements InterfacciaUtente {
 		int numRiga = 1;
 		while (iter.hasNext()) {
 			Coppia<Integer, TipoAnimale> coppia = iter.next();
-			out.print(numRiga + ") " + coppia.secondo + " che ora si trova " + nelTerr(coppia.primo));
+			out.print(numRiga + ") " + coppia.getSecondo() + " che ora si trova " + nelTerr(coppia.getPrimo()));
 			out.println(iter.hasNext() ? ";" : ".");
 			numRiga++;
 		}

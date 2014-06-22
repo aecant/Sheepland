@@ -13,8 +13,8 @@ import java.io.Serializable;
 public class Coppia<P extends Serializable, S extends Serializable> implements Serializable {
 	private static final long serialVersionUID = 2945128168506394320L;
 
-	public final P primo;
-	public final S secondo;
+	private final P primo;
+	private final S secondo;
 
 	public Coppia(P s, S d) {
 		this.primo = s;
@@ -34,9 +34,17 @@ public class Coppia<P extends Serializable, S extends Serializable> implements S
 		return new Coppia<E, F>(primo, secondo);
 	}
 
+	public P getPrimo() {
+		return primo;
+	}
+
+	public S getSecondo() {
+		return secondo;
+	}
+
 	@Override
 	public String toString() {
-		return "Coppia: " + primo + ", " + secondo;
+		return "Coppia: " + getPrimo() + ", " + getSecondo();
 	}
 
 }

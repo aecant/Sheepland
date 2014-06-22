@@ -108,7 +108,7 @@ public class Giocatore implements Serializable {
 	 */
 	public void aggiungiPastore(Pastore pastore) {
 		if (pastore == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException("pastore non puo' essere null");
 		}
 		pastori.add(pastore);
 	}

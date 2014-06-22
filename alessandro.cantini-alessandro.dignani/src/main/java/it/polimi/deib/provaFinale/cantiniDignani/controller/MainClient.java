@@ -60,7 +60,7 @@ public class MainClient {
 				Coppia<String, String> nomeEPassword = ui.chiediNomeEPassword();
 				connessione.registraGiocatore(nomeEPassword);
 				registrato = true;
-				nome = nomeEPassword.primo;
+				nome = nomeEPassword.getPrimo();
 			} catch (NomeGiaPresenteException e) {
 				LOGGER.log(Level.FINE, "nome gia' presente", e);
 				ui.nomeGiaPresente();

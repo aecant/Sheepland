@@ -8,7 +8,7 @@ public enum ColorePastore {
 	VERDE(new Color(0, 217, 36)),
 	GIALLO(new Color(217, 209, 0));
 	
-	public final Color coloreView;
+	private final Color coloreView;
 	
 	private ColorePastore(Color coloreView) {
 		this.coloreView = coloreView;
@@ -17,5 +17,9 @@ public enum ColorePastore {
 	@Override 
 	public String toString() {
 		return name().toLowerCase();
+	}
+
+	public Color getColoreView() {
+		return coloreView;
 	}
 }

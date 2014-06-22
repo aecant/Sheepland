@@ -32,7 +32,7 @@ public class ConnessioneClientRmi extends ConnessioneClient implements Interfacc
 
 	public void inizia() {
 		try {
-			registry = LocateRegistry.getRegistry(indirizzoServer, CostantiRmi.PORTA_SERVER_RMI);
+			registry = LocateRegistry.getRegistry(getIndirizzoServer(), CostantiRmi.PORTA_SERVER_RMI);
 			server = (InterfacciaRmi) registry.lookup(CostantiRmi.NOME_SERVER_RMI);
 
 		} catch (RemoteException e) {
@@ -44,9 +44,9 @@ public class ConnessioneClientRmi extends ConnessioneClient implements Interfacc
 
 	public void registraGiocatore(Coppia<String, String> nomeEPassword) throws NomeGiaPresenteException, PasswordSbagliataException {
 		try {
-			server.registraGiocatore(nomeEPassword.primo, nomeEPassword.secondo);
+			server.registraGiocatore(nomeEPassword.getPrimo(), nomeEPassword.getSecondo());
 			ascoltatore = (InterfacciaAscoltatoreRmi) UnicastRemoteObject.exportObject(this, 0);
-			server.aggiungiAscoltatore(nomeEPassword.primo, ascoltatore);
+			server.aggiungiAscoltatore(nomeEPassword.getPrimo(), ascoltatore);
 		} catch (RemoteException e) {
 			LOGGER.log(Level.SEVERE, "Impossibile stabilire la connessione col server", e);
 		}
@@ -54,7 +54,7 @@ public class ConnessioneClientRmi extends ConnessioneClient implements Interfacc
 	}
 
 	public void riceviEvento(Evento evento) throws RemoteException {
-		codaEventi.aggiungi(evento);
+		getCodaEventi().aggiungi(evento);
 	}
 
 	public boolean seiOnline() throws RemoteException {

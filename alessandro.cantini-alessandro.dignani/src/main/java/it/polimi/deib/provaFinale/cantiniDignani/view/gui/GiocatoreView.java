@@ -27,7 +27,7 @@ public class GiocatoreView extends JPanel {
 	public GiocatoreView(Giocatore g) {
 		super();
 		setPreferredSize(CostantiGui.DIMENSIONE_PANEL_GIOCATORE);
-		setBackground(g.getPastori().get(0).getColore().coloreView);
+		setBackground(g.getPastori().get(0).getColore().getColoreView());
 		setLayout(new BorderLayout());
 		setBorder(new EmptyBorder(10, 10, 10, 10));
 		

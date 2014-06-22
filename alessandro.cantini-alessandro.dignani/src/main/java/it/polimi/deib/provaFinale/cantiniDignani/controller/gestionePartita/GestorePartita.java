@@ -34,8 +34,8 @@ public class GestorePartita extends Thread {
 
 	private final TimerDisconnessione timer;
 
-	public final boolean dueGiocatori;
-	public final int denaroIniziale;
+	private final boolean dueGiocatori;
+	private final int denaroIniziale;
 
 	public GestorePartita(List<Utente> utenti) {
 		this.utenti = utenti;
@@ -164,6 +164,14 @@ public class GestorePartita extends Thread {
 
 	public TimerDisconnessione getTimerDisconnessione() {
 		return timer;
+	}
+
+	public boolean isDueGiocatori() {
+		return dueGiocatori;
+	}
+
+	public int getDenaroIniziale() {
+		return denaroIniziale;
 	}
 
 }

@@ -53,7 +53,7 @@ public class PreparazionePartita extends FasePartita {
 	 */
 	public void distribuisciDenari() {
 		for (Giocatore g : partita.getGiocatori()) {
-			g.aggiungiDenaro(gestore.denaroIniziale);
+			g.aggiungiDenaro(gestore.getDenaroIniziale());
 		}
 	}
 

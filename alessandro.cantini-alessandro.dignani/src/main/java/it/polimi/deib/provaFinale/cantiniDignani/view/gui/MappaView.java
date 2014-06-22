@@ -209,7 +209,7 @@ public class MappaView extends BackgroundMappaPanel {
 	public void aggiungiAscoltatoriAnimali(List<Coppia<Integer, TipoAnimale>> oviniSpostabili) {
 		Integer indice = 0;
 		for(Coppia<Integer, TipoAnimale> coppia : oviniSpostabili) {
-			PedinaListener temp = new PedinaListener(territoriView.get(coppia.primo).getCoordinate(coppia.secondo), CostantiGui.DIMENSIONE_ASCOLTATORE_ANIMALE, indice);
+			PedinaListener temp = new PedinaListener(territoriView.get(coppia.getPrimo()).getCoordinate(coppia.getSecondo()), CostantiGui.DIMENSIONE_ASCOLTATORE_ANIMALE, indice);
 			ascoltatori.add(temp);
 			add(temp);
 			indice++;

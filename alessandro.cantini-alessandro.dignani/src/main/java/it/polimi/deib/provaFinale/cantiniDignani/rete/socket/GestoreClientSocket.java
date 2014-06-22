@@ -73,9 +73,9 @@ public class GestoreClientSocket extends Thread {
 
 				out.reset();
 				try {
-					serverSheepland.aggiungiUtente(nomeEPassword.primo, nomeEPassword.secondo, connessione);
+					serverSheepland.aggiungiUtente(nomeEPassword.getPrimo(), nomeEPassword.getSecondo(), connessione);
 					out.writeObject(CostantiSocket.REGISTRAZIONE_OK);
-					utente = serverSheepland.getUtente(nomeEPassword.primo);
+					utente = serverSheepland.getUtente(nomeEPassword.getPrimo());
 					connessione.getGestoriUtenti().put(utente, this);
 					registrato = true;
 				} catch (NomeGiaPresenteException e) {

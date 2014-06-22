@@ -7,12 +7,16 @@ public enum TipoAnimale {
 	MONTONE("un montone"),
 	AGNELLO("un agnello");
 
-	public final String nomeGenerico;
+	private final String nomeGenerico;
 
 	private TipoAnimale(String nomeGenerico) {
 		this.nomeGenerico = nomeGenerico;
 	}
 	
+	public String getNomeGenerico() {
+		return nomeGenerico;
+	}
+
 	@Override
 	public String toString() {
 		if(this == PECORA_NERA) {

@@ -81,7 +81,7 @@ public class FasePrincipale extends FasePartita {
 
 		gestore.inviaEventoATutti(new InizioTurno(giocatore.getNome()));
 
-		if (gestore.dueGiocatori) {
+		if (gestore.isDueGiocatori()) {
 			gestore.inviaEvento(new RichiestaPastore(), giocatore);
 			int codStrada;
 			try {

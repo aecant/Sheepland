@@ -171,7 +171,7 @@ public class Estrattore {
 			}
 		}
 
-		throw new IllegalArgumentException("Non esiste " + tipo.nomeGenerico + " nel territorio " + codTerritorio);
+		throw new IllegalArgumentException("Non esiste " + tipo.getNomeGenerico() + " nel territorio " + codTerritorio);
 	}
 
 	/**

@@ -13,12 +13,12 @@ public class CostantiGui {
 	public static final boolean SCHERMO_INTERO = false;
 	
 	// Risoluzione spostamento
-	public static int NUM_PASSI_SPOSTAMENTO = 60;
+	public static final int NUM_PASSI_SPOSTAMENTO = 60;
 
-	public static String PERCORSO_IMMAGINI = new String("immagini/");
+	public static final String PERCORSO_IMMAGINI = new String("immagini/");
 
 	// Colori
-	public static Color COLORE_ACQUA = new Color(34, 145, 243);
+	public static final Color COLORE_ACQUA = new Color(34, 145, 243);
 
 	public static final Dimension DIMENSIONE_SCHERMO;
 	static {

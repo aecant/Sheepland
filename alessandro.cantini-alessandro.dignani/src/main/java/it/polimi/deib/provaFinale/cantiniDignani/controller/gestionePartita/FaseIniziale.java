@@ -22,7 +22,7 @@ public class FaseIniziale extends FasePartita {
 	@Override
 	public void esegui() {
 		giroPosizionamentoPastore(0);
-		if (gestore.dueGiocatori) {
+		if (gestore.isDueGiocatori()) {
 			giroPosizionamentoPastore(1);
 		}
 	}

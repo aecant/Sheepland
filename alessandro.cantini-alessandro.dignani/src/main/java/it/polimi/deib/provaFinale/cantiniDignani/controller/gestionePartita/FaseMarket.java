@@ -25,7 +25,7 @@ public class FaseMarket extends FasePartita {
 
 	private final static Logger LOGGER = Logger.getLogger(FaseMarket.class.getName());
 	
-	public List<TesseraInVendita> tessereGlobali = new LinkedList<TesseraInVendita>();
+	private final List<TesseraInVendita> tessereGlobali = new LinkedList<TesseraInVendita>();
 
 	public FaseMarket(GestorePartita gestore) {
 		super(gestore);

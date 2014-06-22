@@ -119,7 +119,7 @@ public class GestoreMossa {
 
 		controllaIndice(indiceScelto, listaOviniSuTerritorio);
 
-		int codOrig = listaOviniSuTerritorio.get(indiceScelto).primo;
+		int codOrig = listaOviniSuTerritorio.get(indiceScelto).getPrimo();
 		int codDest;
 		if (codOrig == t1) {
 			codDest = t2;
@@ -129,7 +129,7 @@ public class GestoreMossa {
 			throw new MossaNonValidaException("Il territorio " + codOrig + " in cui " + giocatore + " vuole spostare la pecora non e' valido");
 		}
 
-		TipoAnimale animScelto = listaOviniSuTerritorio.get(indiceScelto).secondo;
+		TipoAnimale animScelto = listaOviniSuTerritorio.get(indiceScelto).getSecondo();
 		Territorio destinazione = Mappa.getMappa().getTerritori()[codDest];
 
 		if (animScelto == TipoAnimale.PECORA_NERA) {
@@ -151,8 +151,8 @@ public class GestoreMossa {
 
 		controllaIndice(indiceScelto, listaOviniSuTerritorio);
 
-		int terrScelto = listaOviniSuTerritorio.get(indiceScelto).primo;
-		TipoAnimale animScelto = listaOviniSuTerritorio.get(indiceScelto).secondo;
+		int terrScelto = listaOviniSuTerritorio.get(indiceScelto).getPrimo();
+		TipoAnimale animScelto = listaOviniSuTerritorio.get(indiceScelto).getSecondo();
 
 		int lancio = gestore.lanciaDado(MotivoLancioDado.TENTATIVO_ABBATTIMENTO);
 

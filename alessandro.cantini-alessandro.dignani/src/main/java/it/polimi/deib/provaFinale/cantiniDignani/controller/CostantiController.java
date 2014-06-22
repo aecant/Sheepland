@@ -19,7 +19,7 @@ public class CostantiController {
 	 * Il numero che restituisce un client disconnesso se gli viene chiesta una
 	 * mossa
 	 */
-	public static int MOSSA_DISCONNESSIONE = Integer.MIN_VALUE;
+	public static final int MOSSA_DISCONNESSIONE = Integer.MIN_VALUE;
 
 	/**
 	 * La somma di denaro da pagare dopo un abbattimento per il silenzio di un

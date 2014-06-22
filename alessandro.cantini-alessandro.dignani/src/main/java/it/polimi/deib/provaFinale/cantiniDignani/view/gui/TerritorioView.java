@@ -21,7 +21,7 @@ public class TerritorioView {
 	
 	public TerritorioView(int codTerr, Point[] coordinate) {
 		this.codTerr = codTerr;
-		this.coordinate = coordinate;
+		this.coordinate = coordinate.clone();
 		aggiorna();
 	}
 

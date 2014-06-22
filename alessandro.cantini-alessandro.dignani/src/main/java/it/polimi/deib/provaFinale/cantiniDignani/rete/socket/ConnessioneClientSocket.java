@@ -34,7 +34,7 @@ public class ConnessioneClientSocket extends ConnessioneClient implements Interf
 
 	public void inizia() {
 		try {
-			socket = new Socket(indirizzoServer, PORTA);
+			socket = new Socket(getIndirizzoServer(), PORTA);
 			LOGGER.info("Connessione stabilita: " + socket);
 
 			out = new ObjectOutputStream(socket.getOutputStream());
@@ -64,7 +64,7 @@ public class ConnessioneClientSocket extends ConnessioneClient implements Interf
 				throw new IOError(null);
 			}
 
-			ascoltatoreEventi = new AscoltatoreSocket<Evento>(in, codaEventi);
+			ascoltatoreEventi = new AscoltatoreSocket<Evento>(in, getCodaEventi());
 			ascoltatoreEventi.start();
 
 		} catch (IOException e) {

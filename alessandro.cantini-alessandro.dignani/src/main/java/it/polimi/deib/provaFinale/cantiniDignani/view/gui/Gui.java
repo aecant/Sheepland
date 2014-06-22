@@ -23,9 +23,6 @@ public class Gui implements InterfacciaUtente {
 	boolean messPwdSbagliata = false;
 	private static GestoreCoda<Integer> coda = new GestoreCoda<Integer>();
 
-	public Gui() {
-	}
-
 	/**
 	 * Implementazione del metodo che chiede all'utente il nome per connettersi
 	 * tramite una nuova finestra
@@ -38,7 +35,8 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	/**
-	 * Implementazione del metodo che avvisa che il nome scelto in precedenza non è valido
+	 * Implementazione del metodo che avvisa che il nome scelto in precedenza
+	 * non è valido
 	 * 
 	 */
 	public void nomeGiaPresente() {
@@ -142,7 +140,7 @@ public class Gui implements InterfacciaUtente {
 		} else {
 			finestraPartita.getPanelMessaggi().visualizzaMessaggio("" + giocatore + " ha comprato una tessera di tipo " + tessera.getTipo());
 		}
-		
+
 		finestraPartita.getPanelGiocatori().aggiorna(giocatore);
 
 		// TODO Migliorare con visualizzazione dell'immagine
@@ -159,7 +157,7 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void accoppiamento(String giocatore, int territorio, boolean aBuonFine) {
-		
+
 		if (aBuonFine) {
 			finestraPartita.getPanelMessaggi().visualizzaAccoppiamentoRiuscito();
 			finestraPartita.getMappa().disegnaTerritorio(territorio);
@@ -232,35 +230,35 @@ public class Gui implements InterfacciaUtente {
 	public static GestoreCoda<Integer> getCoda() {
 		return coda;
 	}
-	
-	public void giocatoreRiconnesso(String giocatore){
+
+	public void giocatoreRiconnesso(String giocatore) {
 		finestraPartita.getPanelMessaggi().visualizzaMessaggio(giocatore + " si è riconnesso");
 	}
-	
-	public void saltoTurno(String giocatore){
+
+	public void saltoTurno(String giocatore) {
 		finestraPartita.getPanelMessaggi().visualizzaMessaggio(giocatore + " ha saltato il turno");
 	}
-	
+
 	public int marketRichiestaTesseraDaVendere(List<TipoTerritorio> listaTerritori) {
 		finestraPartita.getPanelTessereDaVendere().sceltaTipoTessera(listaTerritori);
 		return coda.aspetta();
 	}
-	
+
 	public int marketRichiestaPrezzo(TipoTerritorio t) {
 		finestraPartita.getPanelTessereDaVendere().sceltaPrezzo(t);
 		return coda.aspetta();
 	}
-	
+
 	public void marketMessaInVendita(TesseraInVendita tess) {
 		String messaggio = tess.getGiocatore() + " ha messo in vendita una tessera di tipo " + tess.getTipo() + " a " + tess.getPrezzo() + " denar";
-		if(tess.getPrezzo() == 1) {
+		if (tess.getPrezzo() == 1) {
 			messaggio += "o";
 		} else {
 			messaggio += "i";
 		}
 		finestraPartita.getPanelMessaggi().visualizzaMessaggio(messaggio);
 	}
-	
+
 	public int marketRichiestaTesseraDaAcquistare(List<TesseraInVendita> tessereDisponibili) {
 		finestraPartita.getPanelTessereDaVendere().marketRichiestaTesseraDaAcquistare(tessereDisponibili);
 		return coda.aspetta();
@@ -268,15 +266,15 @@ public class Gui implements InterfacciaUtente {
 
 	public void marketCompravenditaTessera(String compratore, TesseraInVendita tesseraInVendita) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void marketInizio() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public void marketInizioAcquisti() {
-		
+
 	}
 }
