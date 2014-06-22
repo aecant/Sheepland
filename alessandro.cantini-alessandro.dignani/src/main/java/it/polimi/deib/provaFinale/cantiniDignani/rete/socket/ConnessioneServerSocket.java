@@ -9,7 +9,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServ
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +19,7 @@ public class ConnessioneServerSocket extends ConnessioneServer implements Interf
 	private final static Logger LOGGER = Logger.getLogger(ConnessioneServerSocket.class.getName());
 	
 	private ServerSocket server;
-	private final Map<Utente, GestoreClientSocket> gestoriUtenti = new Hashtable<Utente, GestoreClientSocket>();
+	private final Map<Utente, GestoreClientSocket> gestoriUtenti = new HashMap<Utente, GestoreClientSocket>();
 
 	public ConnessioneServerSocket(ServerSheepland serverSheepland) {
 		super(serverSheepland);
@@ -54,23 +54,23 @@ public class ConnessioneServerSocket extends ConnessioneServer implements Interf
 
 	public void inviaEvento(Evento evento, Utente utente) {
 
-		gestoriUtenti.get(utente).inviaEvento(evento);
+		getGestoriUtenti().get(utente).inviaEvento(evento);
 
 	}
 
 	public void termina() {
-		for (Utente u : gestoriUtenti.keySet()) {
-			gestoriUtenti.get(u).terminaConnessione();
+		for (Utente u : getGestoriUtenti().keySet()) {
+			getGestoriUtenti().get(u).terminaConnessione();
 		}
 	}
 
-	public Map<Utente, GestoreClientSocket> getGestoriUtenti() {
+	public synchronized Map<Utente, GestoreClientSocket> getGestoriUtenti() {
 		return gestoriUtenti;
 	}
 
 	public void gestisciDisconnessione(Utente utente) {
-		gestoriUtenti.get(utente).terminaConnessione();
-		gestoriUtenti.remove(utente);
+		getGestoriUtenti().get(utente).terminaConnessione();
+		getGestoriUtenti().remove(utente);
 	}
 
 	@Override

@@ -12,7 +12,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +21,7 @@ public class ConnessioneServerRmi extends ConnessioneServer implements Interfacc
 
 	private final static Logger LOGGER = Logger.getLogger(ConnessioneServerRmi.class.getName());
 
-	private final Map<String, InterfacciaAscoltatoreRmi> ascoltatori = new Hashtable<String, InterfacciaAscoltatoreRmi>();
+	private final Map<String, InterfacciaAscoltatoreRmi> ascoltatori = new HashMap<String, InterfacciaAscoltatoreRmi>();
 	private Registry registro;
 
 	public ConnessioneServerRmi(ServerSheepland serverSheepland) {
@@ -49,7 +49,7 @@ public class ConnessioneServerRmi extends ConnessioneServer implements Interfacc
 
 	public void inviaEvento(Evento evento, Utente utente) {
 		try {
-			ascoltatori.get(utente.getNome()).riceviEvento(evento);
+			getAscoltatori().get(utente.getNome()).riceviEvento(evento);
 		} catch (RemoteException e) {
 			LOGGER.log(Level.FINE, "giocatore disconnesso", e);
 			serverSheepland.gestisciDisconnessione(utente);
@@ -70,12 +70,12 @@ public class ConnessioneServerRmi extends ConnessioneServer implements Interfacc
 		}
 	}
 
-	protected Map<String, InterfacciaAscoltatoreRmi> getAscoltatori() {
+	protected synchronized Map<String, InterfacciaAscoltatoreRmi> getAscoltatori() {
 		return ascoltatori;
 	}
 
 	public void gestisciDisconnessione(Utente utente) {
-		ascoltatori.remove(utente.getNome());
+		getAscoltatori().remove(utente.getNome());
 	}
 
 	@Override

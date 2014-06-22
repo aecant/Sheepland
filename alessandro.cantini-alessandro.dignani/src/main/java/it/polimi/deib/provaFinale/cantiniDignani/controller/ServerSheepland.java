@@ -15,17 +15,16 @@ import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ServerSheepland {
 	private final static Logger LOGGER = Logger.getLogger(ServerSheepland.class.getName());
 
-	private final List<GestorePartita> gestoriPartita = new Vector<GestorePartita>();
-	private final List<Utente> utentiInAttesa = new Vector<Utente>();
-	private final List<Utente> utentiOnline = new Vector<Utente>();
-	private final List<Utente> utentiDisconnessi = new Vector<Utente>();
+	private final List<GestorePartita> gestoriPartita = new ArrayList<GestorePartita>();
+	private final List<Utente> utentiInAttesa = new ArrayList<Utente>();
+	private final List<Utente> utentiOnline = new ArrayList<Utente>();
+	private final List<Utente> utentiDisconnessi = new ArrayList<Utente>();
 
 	private final TimerPartita timerPartita = new TimerPartita(CostantiController.MILLISECONDI_TIMER_PARTITA, this);
 
@@ -44,22 +43,22 @@ public class ServerSheepland {
 	 */
 	public synchronized void iniziaPartita() {
 
-		if (utentiInAttesa.size() < 2 || utentiInAttesa.size() > CostantiModel.NUM_MAX_GIOCATORI) {
-			throw new SheeplandException("La partita non puo' iniziare con " + utentiInAttesa.size() + "giocatori");
+		if (getUtentiInAttesa().size() < 2 || getUtentiInAttesa().size() > CostantiModel.NUM_MAX_GIOCATORI) {
+			throw new SheeplandException("La partita non puo' iniziare con " + getUtentiInAttesa().size() + "giocatori");
 		}
 
 		timerPartita.ferma();
 		List<String> nomi = new ArrayList<String>();
-		for (Utente u : utentiInAttesa) {
+		for (Utente u : getUtentiInAttesa()) {
 			nomi.add(u.getNome());
 		}
 
-		List<Utente> utentiPartita = new Vector<Utente>();
-		utentiPartita.addAll(utentiInAttesa);
+		List<Utente> utentiPartita = new ArrayList<Utente>();
+		utentiPartita.addAll(getUtentiInAttesa());
 		GestorePartita gestore = new GestorePartita(utentiPartita);
-		gestoriPartita.add(gestore);
+		getGestoriPartita().add(gestore);
 		gestore.start();
-		utentiInAttesa.clear();
+		getUtentiInAttesa().clear();
 	}
 
 	/**
@@ -70,7 +69,7 @@ public class ServerSheepland {
 	 * @return la partita giocata dal giocatore
 	 */
 	public Partita getPartita(String giocatore) {
-		for (GestorePartita gest : gestoriPartita) {
+		for (GestorePartita gest : getGestoriPartita()) {
 			for (Giocatore g : gest.getPartita().getGiocatori()) {
 				if (giocatore.equals(g.getNome())) {
 					return gest.getPartita();
@@ -90,14 +89,14 @@ public class ServerSheepland {
 	 * @return l'utente che ha il nome passato come parametro
 	 */
 	public Utente getUtente(String nome) {
-		for (GestorePartita gest : gestoriPartita) {
+		for (GestorePartita gest : getGestoriPartita()) {
 			for (Utente ut : gest.getUtenti()) {
 				if (ut.getNome().equals(nome)) {
 					return ut;
 				}
 			}
 		}
-		for (Utente ut : utentiInAttesa) {
+		for (Utente ut : getUtentiInAttesa()) {
 			if (ut.getNome().equals(nome)) {
 				return ut;
 			}
@@ -114,14 +113,14 @@ public class ServerSheepland {
 	 */
 	public void gestisciDisconnessione(Utente utente) {
 
-		utentiInAttesa.remove(utente);
-		utentiOnline.remove(utente);
+		getUtentiInAttesa().remove(utente);
+		getUtentiOnline().remove(utente);
 
 		if (utente == null) {
 			return;
 		}
 
-		utentiDisconnessi.add(utente);
+		getUtentiDisconnessi().add(utente);
 		if (utente.getConnessione() != null) {
 			utente.getConnessione().gestisciDisconnessione(utente);
 			utente.setConnessione(null);
@@ -147,13 +146,13 @@ public class ServerSheepland {
 
 	public synchronized void aggiungiUtente(String nome, String password, InterfacciaConnessioneServer connessione) throws NomeGiaPresenteException, PasswordSbagliataException {
 		Utente utente = new Utente(nome, password, connessione);
-		if (utentiOnline.contains(utente)) {
+		if (getUtentiOnline().contains(utente)) {
 			throw new NomeGiaPresenteException();
 		}
 
-		utentiOnline.add(utente);
+		getUtentiOnline().add(utente);
 
-		for (Utente u : utentiDisconnessi) {
+		for (Utente u : getUtentiDisconnessi()) {
 			if (u.getNome().equals(utente.getNome())) {
 				if (u.getPassword().equals(utente.getPassword())) {
 					riconnettiUtente(utente);
@@ -164,21 +163,21 @@ public class ServerSheepland {
 			}
 		}
 
-		utentiInAttesa.add(utente);
+		getUtentiInAttesa().add(utente);
 		LOGGER.info("Registrato " + utente);
 
-		if (utentiInAttesa.size() == CostantiModel.NUM_MAX_GIOCATORI) {
+		if (getUtentiInAttesa().size() == CostantiModel.NUM_MAX_GIOCATORI) {
 			iniziaPartita();
 		}
 
-		if (utentiInAttesa.size() >= CostantiModel.NUM_MIN_GIOCATORI) {
+		if (getUtentiInAttesa().size() >= CostantiModel.NUM_MIN_GIOCATORI) {
 			timerPartita.inizia();
 		}
 
 	}
 
 	private void riconnettiUtente(Utente utente) {
-		utentiDisconnessi.remove(utente);
+		getUtentiDisconnessi().remove(utente);
 		utente.getCodaMosse().svuota();
 			
 		GestorePartita gestore;
@@ -208,12 +207,37 @@ public class ServerSheepland {
 	}
 
 	private GestorePartita getGestorePartita(Utente utente) {
-		for (GestorePartita gestore : gestoriPartita) {
+		for (GestorePartita gestore : getGestoriPartita()) {
 			if (gestore.getUtenti().contains(utente)) {
 				return gestore;
 			}
 		}
 		throw new ElementoNonPresenteException(utente + " non trovato");
+	}
+
+	private synchronized List<GestorePartita> getGestoriPartita() {
+		return gestoriPartita;
+	}
+
+	/**
+	 * @return the utentiInAttesa
+	 */
+	private synchronized List<Utente> getUtentiInAttesa() {
+		return utentiInAttesa;
+	}
+
+	/**
+	 * @return the utentiOnline
+	 */
+	private synchronized List<Utente> getUtentiOnline() {
+		return utentiOnline;
+	}
+
+	/**
+	 * @return the utentiDisconnessi
+	 */
+	private synchronized List<Utente> getUtentiDisconnessi() {
+		return utentiDisconnessi;
 	}
 
 }

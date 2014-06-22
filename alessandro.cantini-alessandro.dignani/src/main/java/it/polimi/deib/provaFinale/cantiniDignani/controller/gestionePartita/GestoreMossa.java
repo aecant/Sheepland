@@ -72,7 +72,9 @@ public class GestoreMossa {
 			case ACQUISTA_TESSERA:
 				acquistaTessera(pastore, giocatore);
 				break;
-
+				
+			default:
+				throw new MossaNonValidaException();
 			}
 		} catch (GiocatoreDisconnessoException e) {
 			LOGGER.log(Level.FINE, "giocatore disconnesso", e);

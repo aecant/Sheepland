@@ -78,6 +78,8 @@ public class TerritorioView {
 			creaPecoraNera(point);
 			Gui.getFinestraPartita().getMappa().repaint();
 			break;
+		default: 
+			break;
 		}
 	}
 
