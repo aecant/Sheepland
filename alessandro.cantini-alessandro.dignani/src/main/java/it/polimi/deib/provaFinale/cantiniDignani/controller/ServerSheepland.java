@@ -31,10 +31,10 @@ public class ServerSheepland {
 	private final ConnessioneServerSocket connessioneSocket = new ConnessioneServerSocket(this);
 
 	public void inizia() {
-		timerPartita.start();
-
 		connessioneRmi.start();
 		connessioneSocket.start();
+		
+		timerPartita.start();
 	}
 
 	/**

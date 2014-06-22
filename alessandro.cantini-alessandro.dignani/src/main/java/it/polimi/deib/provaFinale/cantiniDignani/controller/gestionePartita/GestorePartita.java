@@ -1,7 +1,9 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.CostantiController;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.ElementoNonPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.TimerDisconnessione;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.LancioDado;
@@ -28,6 +30,8 @@ public class GestorePartita extends Thread {
 	private final FasePrincipale fasePrincipale;
 	private final FaseFinale faseFinale;
 
+	private final TimerDisconnessione timer;
+	
 	public final boolean dueGiocatori;
 	public final int denaroIniziale;
 
@@ -54,6 +58,7 @@ public class GestorePartita extends Thread {
 		fasePrincipale = new FasePrincipale(this);
 		faseFinale = new FaseFinale(this);
 
+		timer = new TimerDisconnessione(CostantiController.MILLISECONDI_INTERRUZIONE_DISCONNESSIONE, this);
 	}
 
 	public void run() {
@@ -137,15 +142,25 @@ public class GestorePartita extends Thread {
 				return u;
 			}
 		}
-		throw new IllegalArgumentException(giocatore + " non presente in " + utenti);
+		throw new ElementoNonPresenteException(giocatore + " non presente in " + utenti);
 	}
 
-	public void sospendiPartita() {
+	public synchronized void sospendiPartita() {
 		try {
-			Thread.sleep(CostantiController.MILLISECONDI_INTERRUZIONE_DISCONNESSIONE);
+			synchronized(this) {
+				logger.info("Iniziato timer disconnessione, partita sospesa");
+				timer.start();
+				this.wait();
+			}
+			logger.info("Partita ripresa");
+			timer.termina();
 		} catch (InterruptedException e) {
 			logger.log(Level.SEVERE, "gestore interrotto in modo inaspettato", e);
 		}
+	}
+
+	public TimerDisconnessione getTimerDisconnessione() {
+		return timer;
 	}
 
 }
