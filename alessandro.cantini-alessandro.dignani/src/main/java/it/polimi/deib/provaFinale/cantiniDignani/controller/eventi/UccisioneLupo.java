@@ -14,7 +14,7 @@ public class UccisioneLupo implements Evento {
 	public UccisioneLupo(int territorio, TipoAnimale tipoUcciso, DatiTerritorio[] terrDaAggiornare) {
 		this.territorio = territorio;
 		this.tipoUcciso = tipoUcciso;
-		this.terrDaAggiornare = terrDaAggiornare;
+		this.terrDaAggiornare = terrDaAggiornare.clone();
 	}
 
 	public void aggiornaDati() {

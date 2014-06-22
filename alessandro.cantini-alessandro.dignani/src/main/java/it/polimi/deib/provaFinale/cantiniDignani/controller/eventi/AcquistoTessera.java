@@ -14,8 +14,8 @@ public class AcquistoTessera extends Mossa {
 	public AcquistoTessera(String giocatore, Tessera tessera, Tessera[] tessInCimaDaAggiornare, Giocatore[] giocDaAggiornare) {
 		super(giocatore);
 		this.tessera = tessera;
-		this.tessInCimaDaAggiornare = tessInCimaDaAggiornare;
-		this.giocDaAggiornare = giocDaAggiornare;
+		this.tessInCimaDaAggiornare = tessInCimaDaAggiornare.clone();
+		this.giocDaAggiornare = giocDaAggiornare.clone();
 	}
 
 	@Override

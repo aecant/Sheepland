@@ -16,7 +16,7 @@ public class MovimentoPecora extends Mossa {
 		this.tipo = tipo;
 		this.origine = origine;
 		this.destinazione = destinazione;
-		this.terrDaAggiornare = terrDaAggiornare;
+		this.terrDaAggiornare = terrDaAggiornare.clone();
 	}
 	
 	@Override

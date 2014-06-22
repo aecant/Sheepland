@@ -14,8 +14,8 @@ public class MovimentoPastore extends Mossa {
 		super(giocatore);
 		this.origine = origine;
 		this.destinazione = destinazione;
-		this.giocDaAggiornare = giocDaAggiornare;
-		this.recintiDaAggiornare = recintiDaAggiornare;
+		this.giocDaAggiornare = giocDaAggiornare.clone();
+		this.recintiDaAggiornare = recintiDaAggiornare.clone();
 	}
 
 	@Override

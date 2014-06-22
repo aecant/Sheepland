@@ -14,7 +14,7 @@ public class Pagamento extends Mossa {
 		super(pagante);
 		this.denaro = denaro;
 		this.ricevente = ricevente;
-		this.giocDaAggiornare = giocDaAggiornare;
+		this.giocDaAggiornare = giocDaAggiornare.clone();
 	}
 
 	@Override
