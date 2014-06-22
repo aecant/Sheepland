@@ -78,7 +78,7 @@ public class FaseMarket extends FasePartita {
 					break;
 				}
 
-				if (prezzoScelto < 1 || prezzoScelto > 4) {
+				if (prezzoScelto < CostantiController.MIN_PREZZO_MARKET || prezzoScelto > CostantiController.MAX_PREZZO_MARKET) {
 					throw new MossaNonValidaException();
 				}
 
@@ -140,16 +140,14 @@ public class FaseMarket extends FasePartita {
 
 		TesseraInVendita tesseraComprata = tessereDisponibili.get(scelta);
 		tessereGlobali.remove(tesseraComprata);
-		
+
 		gestore.inviaEventoATutti(new MarketCompravenditaTessera(giocatore.getNome(), tesseraComprata));
-		
+
 		Giocatore venditore = gestore.getPartita().getGiocatore(tesseraComprata.getGiocatore());
-		
+
 		giocatore.aggiungiTessera(venditore.rimuoviTessera(tesseraComprata.getTipo()));
-		
+
 		gestore.pagamento(tesseraComprata.getPrezzo(), giocatore, venditore);
 	}
-	
-	
 
 }

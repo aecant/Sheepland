@@ -5,6 +5,7 @@ import static it.polimi.deib.provaFinale.cantiniDignani.utilita.UtilitaStringhe.
 import static it.polimi.deib.provaFinale.cantiniDignani.utilita.UtilitaStringhe.listaDiStringhe;
 import static it.polimi.deib.provaFinale.cantiniDignani.utilita.UtilitaStringhe.menuDiScelta;
 import static it.polimi.deib.provaFinale.cantiniDignani.utilita.UtilitaStringhe.nelTerr;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.CostantiController;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
@@ -40,7 +41,6 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public Coppia<String, String> chiediNomeEPassword() {
-		pulisci();
 		out.println("Inserisci il tuo nome");
 		String nome = in.leggiStringa();
 		out.println("Inserisci la password");
@@ -228,12 +228,6 @@ public class Cli implements InterfacciaUtente {
 
 	}
 
-	private void pulisci() {
-		// per ora, nullo
-		for (int i = 0; i < 0; i++) {
-			out.println();
-		}
-	}
 
 	private int selezionaIndicePecora(List<Coppia<Integer, TipoAnimale>> pecore) {
 		Iterator<Coppia<Integer, TipoAnimale>> iter = pecore.iterator();
@@ -275,28 +269,36 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void marketInizio() {
-		// TODO Auto-generated method stub
-
+		out.println("E' iniziata la fase del market");
 	}
 
-	public void marketMessaInVendita(TesseraInVendita tesseraInVendita) {
-		// TODO Auto-generated method stub
-
+	public void marketMessaInVendita(TesseraInVendita tess) {
+		out.println(tess.getGiocatore() + " ha messo in vendita una tessera di tipo " + tess.getTipo() + " al prezzo di " + tess.getPrezzo() + " denari");
 	}
 
 	public int marketRichiestaPrezzo(TipoTerritorio tipo) {
-		// TODO Auto-generated method stub
-		return 0;
+		out.println("Inserisci il prezzo a cui vuoi vendere la tessera di tipo " + tipo);
+		return in.leggiIntero(CostantiController.MIN_PREZZO_MARKET, 4);
 	}
 
 	public int marketRichiestaTesseraDaAcquistare(List<TesseraInVendita> tessereDisponibili) {
-		// TODO Auto-generated method stub
-		return 0;
+		out.println("Devi scegliere una tessera da acquistare fra le seguenti, 0 per saltare");
+		out.println(menuDiScelta(tessereDisponibili));
+		int scelta = in.leggiIntero(0, tessereDisponibili.size());
+		if(scelta == 0) {
+			return CostantiController.TERMINATORE_MARKET;
+		}
+		return scelta;
 	}
 
 	public int marketRichiestaTesseraDaVendere(List<TipoTerritorio> territoriDisponibili) {
-		// TODO Auto-generated method stub
-		return 0;
+		out.println("Devi scegliere una tessera da vendere fra quelle coi seguenti tipi territorio, 0 per saltare");
+		out.println(menuDiScelta(territoriDisponibili));
+		int scelta = in.leggiIntero(0, territoriDisponibili.size());
+		if(scelta == 0) {
+			return CostantiController.TERMINATORE_MARKET;
+		}
+		return scelta;
 	}
 
 }
