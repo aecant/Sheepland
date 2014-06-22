@@ -182,7 +182,7 @@ public class CostantiGui {
 
 	public static final Font FONT_MESSAGGIO_ACQUISTO_TESSERA = new Font("Arial", Font.BOLD, 20);
 
-	public static final Dimension DIMENSIONE_PANEL_TESSERE_ACQUISTO = new Dimension(205, 110);;
+	public static final Dimension DIMENSIONE_PANEL_TESSERE_ACQUISTO = new Dimension((DIMENSIONE_PANEL_TESSERA.width * 2) + 10, DIMENSIONE_PANEL_TESSERA.height + 20);
 
 
 

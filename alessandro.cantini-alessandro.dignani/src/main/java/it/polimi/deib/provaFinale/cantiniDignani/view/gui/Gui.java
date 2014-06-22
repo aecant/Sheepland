@@ -55,7 +55,7 @@ public class Gui implements InterfacciaUtente {
 	 */
 	public void inizioPartita(boolean riconnessione) {
 
-		finestraPartita = new PartitaView(MainClient.getDatiPartita());
+		finestraPartita = new PartitaView(MainClient.getDatiPartita(), riconnessione);
 
 		disegnaStatoTerritori();
 
