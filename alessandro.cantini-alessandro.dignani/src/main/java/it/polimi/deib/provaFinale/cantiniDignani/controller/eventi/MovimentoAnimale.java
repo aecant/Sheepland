@@ -12,7 +12,7 @@ public abstract class MovimentoAnimale implements Evento {
 	public MovimentoAnimale(int origine, int destinazione, DatiTerritorio[] terrDaAggiornare) {
 		this.origine = origine;
 		this.destinazione = destinazione;
-		this.terrDaAggiornare = terrDaAggiornare;
+		this.terrDaAggiornare = terrDaAggiornare.clone();
 	}
 
 	public final void aggiornaDati() {

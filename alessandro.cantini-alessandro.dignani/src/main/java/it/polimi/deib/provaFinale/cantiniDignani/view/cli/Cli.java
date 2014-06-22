@@ -228,7 +228,6 @@ public class Cli implements InterfacciaUtente {
 
 	}
 
-
 	private int selezionaIndicePecora(List<Coppia<Integer, TipoAnimale>> pecore) {
 		Iterator<Coppia<Integer, TipoAnimale>> iter = pecore.iterator();
 		int numRiga = 1;
@@ -272,6 +271,10 @@ public class Cli implements InterfacciaUtente {
 		out.println("E' iniziata la fase del market");
 	}
 
+	public void marketInizioAcquisti() {
+		out.println("E' iniziata la fase del market in cui si possono acquistare le carte");
+	}
+
 	public void marketMessaInVendita(TesseraInVendita tess) {
 		out.println(tess.getGiocatore() + " ha messo in vendita una tessera di tipo " + tess.getTipo() + " al prezzo di " + tess.getPrezzo() + " denari");
 	}
@@ -285,7 +288,7 @@ public class Cli implements InterfacciaUtente {
 		out.println("Devi scegliere una tessera da acquistare fra le seguenti, 0 per saltare");
 		out.println(menuDiScelta(tessereDisponibili));
 		int scelta = in.leggiIntero(0, tessereDisponibili.size());
-		if(scelta == 0) {
+		if (scelta == 0) {
 			return CostantiController.TERMINATORE_MARKET;
 		}
 		return scelta - 1;
@@ -295,7 +298,7 @@ public class Cli implements InterfacciaUtente {
 		out.println("Devi scegliere una tessera da vendere fra quelle coi seguenti tipi territorio, 0 per saltare");
 		out.println(menuDiScelta(territoriDisponibili));
 		int scelta = in.leggiIntero(0, territoriDisponibili.size());
-		if(scelta == 0) {
+		if (scelta == 0) {
 			return CostantiController.TERMINATORE_MARKET;
 		}
 		return scelta - 1;

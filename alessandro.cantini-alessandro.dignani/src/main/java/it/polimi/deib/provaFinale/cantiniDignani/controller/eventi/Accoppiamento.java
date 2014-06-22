@@ -14,7 +14,7 @@ public class Accoppiamento extends Mossa {
 		super(giocatore);
 		this.territorio = territorio;
 		this.aBuonFine = aBuonFine;
-		this.terrDaAggiornare = terrDaAggiornare;
+		this.terrDaAggiornare = terrDaAggiornare.clone();
 	}
 
 	@Override

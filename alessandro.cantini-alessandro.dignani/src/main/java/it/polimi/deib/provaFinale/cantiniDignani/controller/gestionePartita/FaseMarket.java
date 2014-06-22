@@ -3,6 +3,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.CostantiController;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MarketCompravenditaTessera;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MarketInizio;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MarketInizioAcquisti;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MarketMessaInVendita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MarketRichiestaPrezzo;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MarketRichiestaTesseraDaAcquistare;
@@ -102,6 +103,8 @@ public class FaseMarket extends FasePartita {
 	}
 
 	private void faseAcquisto() {
+		gestore.inviaEventoATutti(new MarketInizioAcquisti());
+		
 		int numGiocatori = partita.getGiocatori().size();
 		int indicePrimo = Sorte.numeroCasuale(0, numGiocatori - 1);
 
@@ -115,39 +118,34 @@ public class FaseMarket extends FasePartita {
 	}
 
 	private void gestisciFaseAcquisto(Giocatore giocatore) {
-		if (gestore.giocatoreOffline(giocatore)) {
-			return;
-		}
-		List<TesseraInVendita> tessereDisponibili = (List<TesseraInVendita>) Utilita.copia(tessereGlobali);
-		for (TesseraInVendita tess : tessereGlobali) {
-			if (tess.getPrezzo() > giocatore.getDenaro() || giocatore.getNome().equals(tess.getGiocatore())) {
-				tessereDisponibili.remove(tess);
+		while (true) {
+			if (gestore.giocatoreOffline(giocatore)) {
+				return;
 			}
+			List<TesseraInVendita> tessereDisponibili = (List<TesseraInVendita>) Utilita.copia(tessereGlobali);
+			for (TesseraInVendita tess : tessereGlobali) {
+				if (tess.getPrezzo() > giocatore.getDenaro() || giocatore.getNome().equals(tess.getGiocatore())) {
+					tessereDisponibili.remove(tess);
+				}
+			}
+			gestore.inviaEvento(new MarketRichiestaTesseraDaAcquistare(tessereDisponibili), giocatore);
+			int scelta;
+			try {
+				scelta = gestore.aspettaMossa(giocatore);
+			} catch (GiocatoreDisconnessoException e) {
+				return;
+			}
+			if (scelta == CostantiController.TERMINATORE_MARKET) {
+				break;
+			}
+			GestoreMossa.controllaIndice(scelta, tessereDisponibili);
+			TesseraInVendita tesseraComprata = tessereDisponibili.get(scelta);
+			tessereGlobali.remove(tesseraComprata);
+			gestore.inviaEventoATutti(new MarketCompravenditaTessera(giocatore.getNome(), tesseraComprata));
+			Giocatore venditore = gestore.getPartita().getGiocatore(tesseraComprata.getGiocatore());
+			giocatore.aggiungiTessera(venditore.rimuoviTessera(tesseraComprata.getTipo()));
+			gestore.pagamento(tesseraComprata.getPrezzo(), giocatore, venditore);
 		}
-
-		gestore.inviaEvento(new MarketRichiestaTesseraDaAcquistare(tessereDisponibili), giocatore);
-
-		int scelta;
-		try {
-			scelta = gestore.aspettaMossa(giocatore);
-		} catch (GiocatoreDisconnessoException e) {
-			return;
-		}
-		if (scelta == CostantiController.TERMINATORE_MARKET) {
-			return;
-		}
-		GestoreMossa.controllaIndice(scelta, tessereDisponibili);
-
-		TesseraInVendita tesseraComprata = tessereDisponibili.get(scelta);
-		tessereGlobali.remove(tesseraComprata);
-
-		gestore.inviaEventoATutti(new MarketCompravenditaTessera(giocatore.getNome(), tesseraComprata));
-
-		Giocatore venditore = gestore.getPartita().getGiocatore(tesseraComprata.getGiocatore());
-
-		giocatore.aggiungiTessera(venditore.rimuoviTessera(tesseraComprata.getTipo()));
-
-		gestore.pagamento(tesseraComprata.getPrezzo(), giocatore, venditore);
 	}
 
 }

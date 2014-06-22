@@ -17,7 +17,7 @@ public class Abbattimento extends Mossa {
 		this.tipoOvino = tipoOvino;
 		this.territorio = territorio;
 		this.aBuonFine = aBuonFine;
-		this.terrDaAggiornare = terrDaAggiornare;
+		this.terrDaAggiornare = terrDaAggiornare.clone();
 	}
 
 	@Override

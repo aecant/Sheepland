@@ -13,7 +13,7 @@ public class TrasformazioneAgnello implements Evento {
 	public TrasformazioneAgnello(boolean maschio, Integer territorio, DatiTerritorio[] terrDaAggiornare) {
 		this.maschio = maschio;
 		this.territorio = territorio;
-		this.terrDaAggiornare = terrDaAggiornare;
+		this.terrDaAggiornare = terrDaAggiornare.clone();
 	}
 
 	public void aggiornaDati() {
