@@ -100,6 +100,12 @@ public class PanelMessaggi extends JPanel {
 		
 		add(panelMotivo, BorderLayout.CENTER);
 		add(panelDado, BorderLayout.SOUTH);
+		
+		visualizza();
+		stopMessaggio();
+	}
+
+	private void visualizza() {
 		setVisible(true);
 		
 		try {
@@ -107,8 +113,37 @@ public class PanelMessaggi extends JPanel {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-
+	}
+	
+	public void visualizzaAbbattimentoRiuscito() {
+		Image imm = Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "abbattimentoRiuscito.jpg").getScaledInstance(CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.width, CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.height, Image.SCALE_SMOOTH);
+		visualizzaScenetta(imm);
+	}
+	
+	public void visualizzaAbbattimentoFallito() {
+		Image imm = Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "abbattimentoFallito.jpg").getScaledInstance(CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.width, CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.height, Image.SCALE_SMOOTH);
+		visualizzaScenetta(imm);
+	}
+	
+	public void visualizzaAccoppiamentoRiuscito() {
+		Image imm = Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "accoppiamentoRiuscito.jpg").getScaledInstance(CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.width, CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.height, Image.SCALE_SMOOTH);
+		visualizzaScenetta(imm);
+	}
+	
+	public void visualizzaAccoppiamentoFallito() {
+		Image imm = Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "accoppiamentoFallito.jpg").getScaledInstance(CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.width, CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.height, Image.SCALE_SMOOTH);
+		visualizzaScenetta(imm);
+	}
+	
+	public void visualizzaScenetta(Image imm) {
+		setLayout(new FlowLayout());
 		
+		JPanel immagine = new BackgroundPanel(imm);
+		immagine.setPreferredSize(CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA);
+		add(immagine);
+		setBounds((CostantiGui.DIMENSIONE_SCHERMO.width - CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.width) / 2, (CostantiGui.DIMENSIONE_SCHERMO.height - CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.height) / 2, CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.width, CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.height);
+		
+		visualizza();
 		stopMessaggio();
 	}
 
