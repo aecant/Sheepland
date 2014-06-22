@@ -17,7 +17,8 @@ import java.util.Map;
 public class Gui implements InterfacciaUtente {
 	private FinestraChiediNome fcn;
 	static PartitaView finestraPartita;
-	boolean messErrore = false;
+	boolean messNomeGiaPresente = false;
+	boolean messPwdSbagliata = false;
 	private static GestoreCoda<Integer> coda = new GestoreCoda<Integer>();
 
 	public Gui() {
@@ -30,7 +31,7 @@ public class Gui implements InterfacciaUtente {
 	 * @return una String con il nome
 	 */
 	public Coppia<String, String> chiediNomeEPassword() {
-		fcn = new FinestraChiediNome(messErrore);
+		fcn = new FinestraChiediNome(messNomeGiaPresente, messPwdSbagliata);
 		return fcn.riceviNome();
 	}
 
@@ -41,12 +42,11 @@ public class Gui implements InterfacciaUtente {
 	 * @return String del nome scelto
 	 */
 	public void nomeGiaPresente() {
-		messErrore = true;
+		messNomeGiaPresente = true;
 	}
 
 	public void passwordSbagliata() {
-		// TODO Auto-generated method stub
-
+		messPwdSbagliata = true;
 	}
 
 	/**

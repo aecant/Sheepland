@@ -24,11 +24,12 @@ public class FinestraChiediNome extends JFrame {
 	private JTextField txtNome;
 	private JLabel lblInserisciIlNome;
 	private JLabel lblIlNomeScelto;
+	private JLabel lblPswSbagliata;
 	private JPasswordField passwordField;
 
 	private GestoreCoda <Coppia<String, String>> coda = new GestoreCoda<Coppia<String, String>>();
 
-	public FinestraChiediNome(boolean visualizzaMessaggioErrore) {
+	public FinestraChiediNome(boolean visualizzaMessaggioNome, boolean visualizzaMessaggioPassword) {
 		super("Sheepland - Inserisci il nome");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 150, 400, 400);
@@ -53,12 +54,25 @@ public class FinestraChiediNome extends JFrame {
 		lblIlNomeScelto = new JLabel("<html>Il nome scelto è già occupato,<br />scegliere un altro nome e riprovare!</html>");
 		lblIlNomeScelto.setForeground(Color.RED);
 		lblIlNomeScelto.setBounds(50, 61, 250, 38);
-		if (visualizzaMessaggioErrore) {
+		
+		lblPswSbagliata = new JLabel("<html>La password inserita è sbagliata!</html>");
+		lblPswSbagliata.setForeground(Color.RED);
+		lblPswSbagliata.setBounds(50, 61, 250, 38);
+		
+		if (visualizzaMessaggioNome) {
 			lblIlNomeScelto.setVisible(true);
 		} else {
 			lblIlNomeScelto.setVisible(false);
 		}
 		contentPane.add(lblIlNomeScelto);
+		
+		if (visualizzaMessaggioPassword) {
+			lblPswSbagliata.setVisible(true);
+		} else {
+			lblPswSbagliata.setVisible(false);
+		}
+		contentPane.add(lblIlNomeScelto);
+		contentPane.add(lblPswSbagliata);
 
 		JButton btnInvia = new JButton("Connetti");
 		btnInvia.addMouseListener(new MouseAdapter() {
