@@ -32,8 +32,12 @@ import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GestoreMossa {
+
+	private static final Logger LOGGER = Logger.getLogger(GestoreMossa.class.getName());
 
 	private GestorePartita gestore;
 	private Partita partita;
@@ -71,6 +75,7 @@ public class GestoreMossa {
 
 			}
 		} catch (GiocatoreDisconnessoException e) {
+			LOGGER.log(Level.FINE, "giocatore disconnesso", e);
 			gestore.inviaEventoATutti(new SaltoTurno(giocatore.getNome()));
 		}
 	}
@@ -171,7 +176,7 @@ public class GestoreMossa {
 	}
 
 	private void accoppia(Pastore pastore, Giocatore giocatore) throws GiocatoreDisconnessoException {
-		DatiTerritorio dati[] = Estrattore.datiTerritori(partita);
+		DatiTerritorio[] dati = Estrattore.datiTerritori(partita);
 		List<Integer> terrDisp = new ArrayList<Integer>();
 
 		int codT1 = pastore.getStrada().getTerritorio1().getCodice();
@@ -369,11 +374,14 @@ public class GestoreMossa {
 			throw new MossaNonValidaException(indice + " non e' un indice valido per la lista " + lista);
 		}
 	}
-	
+
 	/**
 	 * Controlla che un intero sia contenuto in una collezione
-	 * @param valore l'intero da controllare
-	 * @param collezione la collezione
+	 * 
+	 * @param valore
+	 *            l'intero da controllare
+	 * @param collezione
+	 *            la collezione
 	 */
 	public static void controllaValore(int valore, Collection<Integer> collezione) {
 		if (!collezione.contains(valore)) {

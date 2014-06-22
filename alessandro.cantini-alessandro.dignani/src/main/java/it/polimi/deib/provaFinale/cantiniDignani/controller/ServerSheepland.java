@@ -16,6 +16,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ServerSheepland {
@@ -139,7 +140,7 @@ public class ServerSheepland {
 			LOGGER.warning("Disconnesso " + utente + " nella partita " + gestore.getPartita());
 
 		} catch (ElementoNonPresenteException e) {
-			LOGGER.warning("Disconnesso " + utente);
+			LOGGER.log(Level.WARNING, "Disconnesso " + utente, e);
 		}
 
 	}
@@ -184,6 +185,7 @@ public class ServerSheepland {
 		try {
 			gestore = getGestorePartita(utente);
 		} catch (ElementoNonPresenteException e) {
+			LOGGER.log(Level.FINE, "elemento non presente", e);
 			return;
 		}
 

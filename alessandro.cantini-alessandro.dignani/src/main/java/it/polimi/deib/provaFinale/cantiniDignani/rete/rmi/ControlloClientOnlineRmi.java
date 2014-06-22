@@ -27,6 +27,7 @@ public class ControlloClientOnlineRmi extends Thread {
 				try {
 					connessione.getAscoltatori().get(nome).seiOnline();
 				} catch (RemoteException e) {
+					LOGGER.log(Level.FINE, "disconnessione giocatore", e);
 					connessione.getServerSheepland().gestisciDisconnessione(connessione.getServerSheepland().getUtente(nome));
 					break;
 				}

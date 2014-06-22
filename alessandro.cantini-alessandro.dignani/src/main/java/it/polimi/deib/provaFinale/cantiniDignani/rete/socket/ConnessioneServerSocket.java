@@ -30,8 +30,7 @@ public class ConnessioneServerSocket extends ConnessioneServer implements Interf
 		try {
 			server = new ServerSocket(CostantiSocket.PORTA_SERVER_SOCKET);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "Errore nel creare il server socket", e);
 			return;
 		}
 		LOGGER.info("Server socket pronto");

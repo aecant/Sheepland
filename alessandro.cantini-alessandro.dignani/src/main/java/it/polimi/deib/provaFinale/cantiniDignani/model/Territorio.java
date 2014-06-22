@@ -2,16 +2,17 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 import java.io.Serializable;
 
-public class Territorio implements Serializable{
-	
+public class Territorio implements Serializable {
+
 	private static final long serialVersionUID = 4585423958440423655L;
-	
+
 	private final int codice;
 	private final TipoTerritorio tipo;
 
 	public Territorio(int codice, TipoTerritorio tipo) {
-		if (codice < 0 && codice > CostantiModel.NUM_TERRITORI - 1)
+		if (codice < 0 && codice > CostantiModel.NUM_TERRITORI - 1) {
 			throw new IllegalArgumentException("Il tipo dev'essere compreso fra 0 e " + (CostantiModel.NUM_TERRITORI - 1));
+		}
 		this.tipo = tipo;
 		this.codice = codice;
 	}
@@ -40,20 +41,24 @@ public class Territorio implements Serializable{
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (!(obj instanceof Territorio))
+		}
+		if (!(obj instanceof Territorio)) {
 			return false;
+		}
 		Territorio other = (Territorio) obj;
-		if (codice != other.codice)
+		if (codice != other.codice) {
 			return false;
-		if (tipo != other.tipo)
-			throw new RuntimeException("Due territori non possono avere codice uguale e tipo diverso!");
+		}
+		if (tipo != other.tipo) {
+			throw new IllegalArgumentException("Due territori non possono avere codice uguale e tipo diverso!");
+		}
 
 		return true;
 	}
-
 
 }

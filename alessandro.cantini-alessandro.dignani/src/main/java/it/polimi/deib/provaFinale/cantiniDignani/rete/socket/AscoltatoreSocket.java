@@ -43,6 +43,7 @@ public class AscoltatoreSocket<T extends Serializable> extends Thread {
 			} catch (ClassNotFoundException e) {
 				LOGGER.log(Level.SEVERE, "Errore nel tipo dell'oggetto ricevuto : " + elemento, e);
 			} catch (IOException e) {
+				LOGGER.log(Level.FINE, "Interruzione comunicazione", e);
 				ferma();
 				gestisciInterruzione(e);
 			}

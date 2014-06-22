@@ -8,8 +8,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Utilita {
+	
+	private static final Logger LOGGER = Logger.getLogger(Utilita.class.getName());
+
 	/**
 	 * Costruttore privato per nascondere quello pubblico
 	 */
@@ -146,6 +151,8 @@ public class Utilita {
 		try {
 			al = (ArrayList<E>) collezione;
 		} catch (ClassCastException exc) {
+			LOGGER.log(Level.FINE, "impossibile convertire la collezione in lista", exc);
+
 			for (E elemento : collezione) {
 				al.add(elemento);
 			}

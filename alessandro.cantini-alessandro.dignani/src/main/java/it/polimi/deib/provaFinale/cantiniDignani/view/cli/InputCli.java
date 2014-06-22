@@ -4,8 +4,13 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Collection;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class InputCli {
+	
+	private static final Logger LOGGER = Logger.getLogger(InputCli.class.getName());
+
 	private final Scanner in;
 	private final static PrintStream out = CostantiCli.DEFAULT_OUTPUT;
 
@@ -37,6 +42,7 @@ public class InputCli {
 				str = str.trim();
 				num = Integer.parseInt(str);
 			} catch (NumberFormatException e) {
+				LOGGER.log(Level.FINE, "la string inserita non e' convertibile in intero", e);
 				out.println("Devi inserire un intero");
 			}
 		}

@@ -27,8 +27,9 @@ public class Mazzo {
 		mazzo = new HashMap<TipoTerritorio, Stack<Tessera>>();
 		for (TipoTerritorio t : TipoTerritorio.valoriTessere()) {
 			Stack<Tessera> pilaDiCarte = new Stack<Tessera>();
-			for (int i = CostantiModel.MAX_VALORE_TESSERA; i >= 0; i--)
+			for (int i = CostantiModel.MAX_VALORE_TESSERA; i >= 0; i--) {
 				pilaDiCarte.push(new Tessera(t, i));
+			}
 			mazzo.put(t, pilaDiCarte);
 		}
 	}
@@ -44,8 +45,9 @@ public class Mazzo {
 	 *             nel caso si cerchi di prelevare la tessera Sheepsburg
 	 */
 	public Tessera leggiTesseraInCima(TipoTerritorio tipo) {
-		if (tipo == TipoTerritorio.SHEEPSBURG)
+		if (tipo == TipoTerritorio.SHEEPSBURG) {
 			throw new IllegalArgumentException("Non esistono tessere di tipo Sheepsburg");
+		}
 
 		try {
 			return mazzo.get(tipo).peek();
