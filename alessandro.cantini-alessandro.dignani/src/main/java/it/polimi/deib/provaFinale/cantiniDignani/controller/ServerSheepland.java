@@ -1,8 +1,6 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.GiocatoreDisconnesso;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.GiocatoreRiconnesso;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.InizioPartita;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
@@ -37,38 +35,6 @@ public class ServerSheepland {
 
 		connessioneRmi.start();
 		connessioneSocket.start();
-	}
-
-	public synchronized void aggiungiUtente(String nome, String password, InterfacciaConnessioneServer connessione) throws NomeGiaPresenteException, PasswordSbagliataException {
-		Utente utente = new Utente(nome, password, connessione);
-		if (utentiOnline.contains(utente)) {
-			throw new NomeGiaPresenteException();
-		}
-
-		utentiOnline.add(utente);
-
-		for (Utente u : utentiDisconnessi) {
-			if (u.getNome().equals(utente.getNome())) {
-				if (u.getPassword().equals(utente.getPassword())) {
-					riconnettiUtente(utente);
-					return;
-				} else {
-					throw new PasswordSbagliataException();
-				}
-			}
-		}
-
-		utentiInAttesa.add(utente);
-		logger.info("Registrato " + utente);
-
-		if (utentiInAttesa.size() == CostantiModel.NUM_MAX_GIOCATORI) {
-			iniziaPartita();
-		}
-
-		if (utentiInAttesa.size() >= CostantiModel.NUM_MIN_GIOCATORI) {
-			timerPartita.inizia();
-		}
-
 	}
 
 	/**
@@ -110,10 +76,17 @@ public class ServerSheepland {
 			}
 		}
 
-		throw new IllegalArgumentException(giocatore + " non è presente");
+		throw new ElementoNonPresenteException(giocatore + " non è presente");
 
 	}
 
+	/**
+	 * Restituisce l'utente con un certo nome
+	 * 
+	 * @param nome
+	 *            il nome dell'utente
+	 * @return l'utente che ha il nome passato come parametro
+	 */
 	public Utente getUtente(String nome) {
 		for (GestorePartita gest : gestoriPartita) {
 			for (Utente ut : gest.getUtenti()) {
@@ -128,7 +101,7 @@ public class ServerSheepland {
 			}
 		}
 
-		throw new IllegalArgumentException(nome + " non presente ");
+		throw new ElementoNonPresenteException(nome + " non presente ");
 	}
 
 	/**
@@ -138,7 +111,6 @@ public class ServerSheepland {
 	 *            l'utente di cui gestire la disconnessione
 	 */
 	public void gestisciDisconnessione(Utente utente) {
-		logger.warning("Disconnessione " + utente);
 
 		utentiInAttesa.remove(utente);
 		utentiOnline.remove(utente);
@@ -154,22 +126,64 @@ public class ServerSheepland {
 		}
 		utente.getCodaMosse().aggiungi(CostantiController.MOSSA_DISCONNESSIONE);
 
-		GestorePartita gestore = getGestorePartita(utente);
+		try {
+			GestorePartita gestore = getGestorePartita(utente);
 
-		for (Utente utentePartita : gestore.getUtenti()) {
-			utentePartita.inviaEvento(new GiocatoreDisconnesso(utente.getNome()));
+			for (Utente utentePartita : gestore.getUtenti()) {
+				utentePartita.inviaEvento(new GiocatoreDisconnesso(utente.getNome()));
+			}
+
+			gestore.sospendiPartita();
+
+			logger.warning("Disconnesso " + utente + " nella partita " + gestore.getPartita());
+
+		} catch (ElementoNonPresenteException e) {
+			logger.warning("Disconnesso " + utente);
 		}
 
-		gestore.sospendiPartita();
+	}
 
-		logger.info(utente + "disconnesso");
+	public synchronized void aggiungiUtente(String nome, String password, InterfacciaConnessioneServer connessione) throws NomeGiaPresenteException, PasswordSbagliataException {
+		Utente utente = new Utente(nome, password, connessione);
+		if (utentiOnline.contains(utente)) {
+			throw new NomeGiaPresenteException();
+		}
+
+		utentiOnline.add(utente);
+
+		for (Utente u : utentiDisconnessi) {
+			if (u.getNome().equals(utente.getNome())) {
+				if (u.getPassword().equals(utente.getPassword())) {
+					riconnettiUtente(utente);
+					return;
+				} else {
+					throw new PasswordSbagliataException();
+				}
+			}
+		}
+
+		utentiInAttesa.add(utente);
+		logger.info("Registrato " + utente);
+
+		if (utentiInAttesa.size() == CostantiModel.NUM_MAX_GIOCATORI) {
+			iniziaPartita();
+		}
+
+		if (utentiInAttesa.size() >= CostantiModel.NUM_MIN_GIOCATORI) {
+			timerPartita.inizia();
+		}
 
 	}
 
 	private void riconnettiUtente(Utente utente) {
 		utentiDisconnessi.remove(utente);
 		utente.getCodaMosse().svuota();
-		GestorePartita gestore = getGestorePartita(utente);
+		GestorePartita gestore;
+		try {
+			gestore = getGestorePartita(utente);
+		} catch (ElementoNonPresenteException e) {
+			return;
+		}
 
 		for (Utente u : Utilita.copia(gestore.getUtenti())) {
 			if (utente.getNome().equals(u.getNome())) {
@@ -181,9 +195,9 @@ public class ServerSheepland {
 		synchronized (gestore) {
 			gestore.notify();
 		}
+		
+		new AvvertimentoRiconnessione(gestore, utente).start();
 
-		gestore.inviaEventoATutti(new GiocatoreRiconnesso(utente.getNome()));
-		utente.inviaEvento(new InizioPartita(Estrattore.datiPartita(gestore.getPartita())));
 		logger.info("riconnesso " + utente);
 	}
 
@@ -193,7 +207,7 @@ public class ServerSheepland {
 				return gestore;
 			}
 		}
-		throw new IllegalArgumentException(utente + " non trovato");
+		throw new ElementoNonPresenteException(utente + " non trovato");
 	}
 
 }
