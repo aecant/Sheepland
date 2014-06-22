@@ -25,9 +25,13 @@ import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FasePrincipale extends FasePartita {
 
+	private static final Logger LOGGER = Logger.getLogger(FasePartita.class.getName());
+	
 	private final GestoreMossa gestoreMossa;
 
 	public FasePrincipale(GestorePartita gestore) {
@@ -83,6 +87,7 @@ public class FasePrincipale extends FasePartita {
 			try {
 				codStrada = gestore.aspettaMossa(giocatore);
 			} catch (GiocatoreDisconnessoException e) {
+				LOGGER.log(Level.FINE, "giocatore disconnesso", e);
 				return;
 			}
 
@@ -108,6 +113,7 @@ public class FasePrincipale extends FasePartita {
 			try {
 				indice = gestore.aspettaMossa(giocatore);
 			} catch (GiocatoreDisconnessoException e) {
+				LOGGER.log(Level.FINE, "giocatore disconnesso", e);
 				return;
 			}
 			TipoMossa tipoMossa = mosseDisponibili.get(indice);

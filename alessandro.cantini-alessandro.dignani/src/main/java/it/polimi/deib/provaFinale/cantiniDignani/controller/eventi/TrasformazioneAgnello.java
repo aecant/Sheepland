@@ -17,7 +17,7 @@ public class TrasformazioneAgnello implements Evento {
 	}
 
 	public void aggiornaDati() {
-		MainClient.getDatiPartita().setTerritori(terrDaAggiornare);;
+		MainClient.getDatiPartita().setTerritori(terrDaAggiornare);
 	}
 
 	public void visualizza() {

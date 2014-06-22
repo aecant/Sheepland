@@ -20,20 +20,19 @@ public class FaseFinale extends FasePartita {
 	public void esegui() {
 		gestore.inviaEventoATutti(new FinePartita(punteggioGiocatori()));
 	}
-	
-	
+
 	private Map<String, Integer> punteggioGiocatori() {
 		Map<String, Integer> punteggi = new HashMap<String, Integer>();
 		Map<TipoTerritorio, Integer> valore = valoreTerritori();
-				
-		for(Giocatore gioc : partita.getGiocatori()) {
+
+		for (Giocatore gioc : partita.getGiocatori()) {
 			punteggi.put(gioc.getNome(), gioc.getDenaro());
 			Map<TipoTerritorio, Integer> numTessere = gioc.numeroTesserePerTipo();
-			for(TipoTerritorio tipo : numTessere.keySet()) {
-				Utilita.incrementa(punteggi, gioc.getNome(), numTessere.get(tipo)*valore.get(tipo));
+			for (TipoTerritorio tipo : numTessere.keySet()) {
+				Utilita.incrementa(punteggi, gioc.getNome(), numTessere.get(tipo) * valore.get(tipo));
 			}
 		}
-		
+
 		return punteggi;
 	}
 
@@ -61,8 +60,9 @@ public class FaseFinale extends FasePartita {
 
 	private void incrementa(Map<TipoTerritorio, Integer> mappa, Animale animale, int quantita) {
 		TipoTerritorio tipo = animale.getPosizione().getTipo();
-		if (tipo == TipoTerritorio.SHEEPSBURG)
+		if (tipo == TipoTerritorio.SHEEPSBURG) {
 			return;
+		}
 		Utilita.incrementa(mappa, tipo, quantita);
 	}
 

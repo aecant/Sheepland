@@ -21,7 +21,7 @@ public class MovimentoPecora extends Mossa {
 	
 	@Override
 	public void aggiornaDati() {
-		MainClient.getDatiPartita().setTerritori(terrDaAggiornare);;
+		MainClient.getDatiPartita().setTerritori(terrDaAggiornare);
 	}
 
 	@Override

@@ -14,7 +14,6 @@ public class MarketMessaInVendita implements Evento {
 	}
 
 	public void aggiornaDati() {
-		;
 	}
 
 	public void visualizza() {

@@ -4,12 +4,16 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JPanel;
 
 public class PedinaView extends JPanel {
 
 	private static final long serialVersionUID = 3540874383960169152L;
+	
+	private static final Logger LOGGER = Logger.getLogger(PedinaView.class.getName());
 	
 	/**
 	 * Costruttore della pedina nella posizione e delle dimensioni specifitate nel rettangolo
@@ -46,7 +50,7 @@ public class PedinaView extends JPanel {
 			try {
 				Thread.sleep(10);
 			} catch (Exception e) {
-				System.err.println(e);
+				LOGGER.log(Level.FINE, "interruzione anomala", e);
 			}
 		}
 		setPosizione(destinazione);

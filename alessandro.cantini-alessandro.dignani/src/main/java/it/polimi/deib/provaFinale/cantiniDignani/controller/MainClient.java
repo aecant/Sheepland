@@ -1,5 +1,8 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.FinePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClient;
@@ -16,6 +19,8 @@ import it.polimi.deib.provaFinale.cantiniDignani.view.gui.Gui;
 
 public class MainClient {
 
+	private final static Logger LOGGER = Logger.getLogger(MainClient.class.getName());
+	
 	private static String nome;
 	private static String indirizzoServer;
 	private static InterfacciaUtente ui;
@@ -57,8 +62,10 @@ public class MainClient {
 				registrato = true;
 				nome = nomeEPassword.primo;
 			} catch (NomeGiaPresenteException e) {
+				LOGGER.log(Level.FINE, "nome gia' presente", e);
 				ui.nomeGiaPresente();
 			} catch (PasswordSbagliataException e) {
+				LOGGER.log(Level.FINE, "password sbagliata", e);
 				ui.passwordSbagliata();
 			}
 		}

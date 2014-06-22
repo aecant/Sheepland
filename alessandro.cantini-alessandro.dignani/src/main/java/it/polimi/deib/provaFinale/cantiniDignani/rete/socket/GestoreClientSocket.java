@@ -58,6 +58,7 @@ public class GestoreClientSocket extends Thread {
 			out.writeObject(evento);
 			out.flush();
 		} catch (IOException e) {
+			LOGGER.log(Level.FINE, "giocatore disconnesso", e);
 			serverSheepland.gestisciDisconnessione(utente);
 		}
 	}
@@ -78,8 +79,10 @@ public class GestoreClientSocket extends Thread {
 					connessione.getGestoriUtenti().put(utente, this);
 					registrato = true;
 				} catch (NomeGiaPresenteException e) {
+					LOGGER.log(Level.FINE, "nome gia' presente", e);
 					out.writeObject(CostantiSocket.NOME_GIA_PRESENTE);
 				} catch (PasswordSbagliataException e) {
+					LOGGER.log(Level.FINE, "password sbagliata", e);
 					out.writeObject(CostantiSocket.PASSWORD_SBAGLIATA);
 				}
 				out.flush();
@@ -87,6 +90,7 @@ public class GestoreClientSocket extends Thread {
 			} catch (ClassNotFoundException e) {
 				LOGGER.log(Level.SEVERE, "problemi nella ricezione dell'evento", e);
 			} catch (IOException e) {
+				LOGGER.log(Level.FINE, "giocatore disconnesso", e);
 				serverSheepland.gestisciDisconnessione(utente);
 			}
 		}

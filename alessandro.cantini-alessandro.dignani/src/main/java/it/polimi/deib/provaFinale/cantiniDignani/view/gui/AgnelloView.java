@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 
 public class AgnelloView extends PedinaConContatoreView {
 
+	private static final String CONTATORE = "contatore";
+
 	private static final long serialVersionUID = 8240587143214381489L;
 
 	private JLabel immagine;
@@ -25,7 +27,7 @@ public class AgnelloView extends PedinaConContatoreView {
 
 		for (Component c : super.getComponents()) {
 			if (c.getName() != null) {
-				if (c.getName().equals("contatore")) {
+				if (c.getName().equals(CONTATORE)) {
 					c.setBounds(7, 8, 15, 15);
 				}
 			}

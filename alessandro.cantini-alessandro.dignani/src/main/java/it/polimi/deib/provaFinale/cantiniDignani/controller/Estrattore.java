@@ -18,12 +18,16 @@ import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Classe che fornisce metodi statici per effettuare query e ottenere dati dal
  * model
  */
 public class Estrattore {
+
+	private static final Logger LOGGER = Logger.getLogger(Estrattore.class.getName());
 
 	/**
 	 * Restituisce un array di DatiTerritorio. Ogni elemento dell'array contiene
@@ -183,6 +187,7 @@ public class Estrattore {
 			try {
 				tessere[i] = partita.getMazzo().leggiTesseraInCima(TipoTerritorio.valoriTessere()[i]);
 			} catch (MazzoFinitoException e) {
+				LOGGER.log(Level.FINE, "il mazzo e' finito", e);
 				tessere[i] = Mazzo.TESSERA_FINITA;
 			}
 		}

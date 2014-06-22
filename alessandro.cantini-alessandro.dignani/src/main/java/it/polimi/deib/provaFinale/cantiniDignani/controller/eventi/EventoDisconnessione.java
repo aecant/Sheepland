@@ -5,7 +5,6 @@ public abstract class EventoDisconnessione implements Evento {
 
 	
 	public final void aggiornaDati() {
-		;
 	}
 
 	public abstract void visualizza();

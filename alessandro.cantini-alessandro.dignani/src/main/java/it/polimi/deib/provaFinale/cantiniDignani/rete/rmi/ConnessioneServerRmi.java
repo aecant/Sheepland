@@ -51,6 +51,7 @@ public class ConnessioneServerRmi extends ConnessioneServer implements Interfacc
 		try {
 			ascoltatori.get(utente.getNome()).riceviEvento(evento);
 		} catch (RemoteException e) {
+			LOGGER.log(Level.FINE, "giocatore disconnesso", e);
 			serverSheepland.gestisciDisconnessione(utente);
 		}
 

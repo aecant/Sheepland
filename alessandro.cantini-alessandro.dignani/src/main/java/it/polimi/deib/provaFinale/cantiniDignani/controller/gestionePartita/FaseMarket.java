@@ -18,9 +18,13 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FaseMarket extends FasePartita {
 
+	private final static Logger LOGGER = Logger.getLogger(FaseMarket.class.getName());
+	
 	public List<TesseraInVendita> tessereGlobali = new LinkedList<TesseraInVendita>();
 
 	public FaseMarket(GestorePartita gestore) {
@@ -44,13 +48,14 @@ public class FaseMarket extends FasePartita {
 			Collection<Tessera> tessereTemp = Utilita.copia(giocatore.getTessere());
 
 			while (true) {
-				List<TipoTerritorio> territoriPossibili = generaTesserePossibili(giocatore, tessereTemp);
+				List<TipoTerritorio> territoriPossibili = generaTesserePossibili(tessereTemp);
 				gestore.inviaEvento(new MarketRichiestaTesseraDaVendere(territoriPossibili), giocatore);
 
 				int scelta;
 				try {
 					scelta = gestore.aspettaMossa(giocatore);
 				} catch (GiocatoreDisconnessoException e) {
+					LOGGER.log(Level.FINE, "giocatore disconnesso", e);
 					break;
 				}
 				if (scelta == CostantiController.TERMINATORE_MARKET) {
@@ -76,6 +81,7 @@ public class FaseMarket extends FasePartita {
 				try {
 					prezzoScelto = gestore.aspettaMossa(giocatore);
 				} catch (GiocatoreDisconnessoException e) {
+					LOGGER.log(Level.FINE, "giocatore disconnesso", e);
 					break;
 				}
 
@@ -91,7 +97,7 @@ public class FaseMarket extends FasePartita {
 		}
 	}
 
-	private List<TipoTerritorio> generaTesserePossibili(Giocatore giocatore, Collection<Tessera> tessereTemp) {
+	private List<TipoTerritorio> generaTesserePossibili(Collection<Tessera> tessereTemp) {
 		List<TipoTerritorio> territori = new LinkedList<TipoTerritorio>();
 		for (Tessera tess : tessereTemp) {
 			if (!territori.contains(tess.getTipo())) {
@@ -133,6 +139,7 @@ public class FaseMarket extends FasePartita {
 			try {
 				scelta = gestore.aspettaMossa(giocatore);
 			} catch (GiocatoreDisconnessoException e) {
+				LOGGER.log(Level.FINE, "giocatore disconnesso", e);
 				return;
 			}
 			if (scelta == CostantiController.TERMINATORE_MARKET) {
