@@ -1,10 +1,10 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
-import java.util.logging.Logger;
-
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
+
+import java.util.logging.Logger;
 
 public class Utente {
 	private static final Logger LOGGER = Logger.getLogger(Utente.class.getName());

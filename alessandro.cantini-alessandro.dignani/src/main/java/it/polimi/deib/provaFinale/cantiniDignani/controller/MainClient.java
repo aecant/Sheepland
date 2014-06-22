@@ -1,8 +1,5 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.FinePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneClient;
@@ -16,6 +13,9 @@ import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 import it.polimi.deib.provaFinale.cantiniDignani.view.cli.Cli;
 import it.polimi.deib.provaFinale.cantiniDignani.view.cli.InputCli;
 import it.polimi.deib.provaFinale.cantiniDignani.view.gui.Gui;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainClient {
 

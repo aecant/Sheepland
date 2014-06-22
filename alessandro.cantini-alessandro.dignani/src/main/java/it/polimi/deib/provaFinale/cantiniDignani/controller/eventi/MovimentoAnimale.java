@@ -1,7 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 
 public abstract class MovimentoAnimale implements Evento {
 	private static final long serialVersionUID = 3263700493723371773L;

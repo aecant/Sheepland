@@ -1,7 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 
 public class Accoppiamento extends Mossa {
 	private static final long serialVersionUID = -4505056058824206511L;

@@ -1,7 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.eventi;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 
 public class InizioPartita implements Evento {
 	

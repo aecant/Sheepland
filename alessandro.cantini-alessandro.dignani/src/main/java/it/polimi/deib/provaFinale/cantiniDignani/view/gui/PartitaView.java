@@ -1,7 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiPartita;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 
 import java.awt.BorderLayout;
 import java.awt.GraphicsDevice;

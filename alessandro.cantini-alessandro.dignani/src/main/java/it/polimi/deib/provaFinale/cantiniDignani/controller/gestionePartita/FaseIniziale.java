@@ -1,8 +1,5 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.PosizionamentoPastore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPosizioneInizialePastore;
@@ -10,6 +7,9 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Strada;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FaseIniziale extends FasePartita {
 
