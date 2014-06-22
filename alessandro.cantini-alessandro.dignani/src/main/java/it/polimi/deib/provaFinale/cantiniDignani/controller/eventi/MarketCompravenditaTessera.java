@@ -16,7 +16,6 @@ public class MarketCompravenditaTessera extends Mossa {
 
 	@Override
 	public void aggiornaDati() {
-		;
 		// i dati dei giocatori vengono aggiornati con l'invio delle'evento
 		// del pagamento
 	}

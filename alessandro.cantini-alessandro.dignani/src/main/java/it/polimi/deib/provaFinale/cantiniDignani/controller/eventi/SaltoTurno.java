@@ -12,7 +12,6 @@ public class SaltoTurno extends Mossa{
 
 	@Override
 	public void aggiornaDati() {
-		;
 	}
 
 	@Override

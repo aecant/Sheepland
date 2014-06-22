@@ -15,7 +15,6 @@ public class FinePartita implements Evento {
 
 
 	public void aggiornaDati() {
-		;
 	}
 
 	

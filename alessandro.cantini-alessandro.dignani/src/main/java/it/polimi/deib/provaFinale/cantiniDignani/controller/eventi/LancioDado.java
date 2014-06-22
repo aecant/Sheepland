@@ -18,7 +18,6 @@ public class LancioDado implements Evento {
 	}
 
 	public void aggiornaDati() {
-		;
 	}
 
 	public void visualizza() {
