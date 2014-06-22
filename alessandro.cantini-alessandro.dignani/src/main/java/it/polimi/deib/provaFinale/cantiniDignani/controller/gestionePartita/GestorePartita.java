@@ -2,11 +2,13 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.CostantiController;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ElementoNonPresenteException;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TimerDisconnessione;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.LancioDado;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Pagamento;
 import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Partita;
@@ -31,7 +33,7 @@ public class GestorePartita extends Thread {
 	private final FaseFinale faseFinale;
 
 	private final TimerDisconnessione timer;
-	
+
 	public final boolean dueGiocatori;
 	public final int denaroIniziale;
 
@@ -92,8 +94,8 @@ public class GestorePartita extends Thread {
 		}
 	}
 
-	public void inviaEvento(Evento evento, Giocatore g) {
-		Utente utente = getUtente(g);
+	public void inviaEvento(Evento evento, Giocatore giocatore) {
+		Utente utente = getUtente(giocatore);
 		if (utente.getConnessione() != null) {
 			utente.inviaEvento(evento);
 		}
@@ -102,6 +104,7 @@ public class GestorePartita extends Thread {
 	protected void pagamento(int somma, Giocatore pagante, Giocatore ricevente) {
 		pagante.sottraiDenaro(somma);
 		ricevente.aggiungiDenaro(somma);
+		inviaEventoATutti(new Pagamento(somma, pagante.getNome(), ricevente.getNome(), Estrattore.giocatori(partita)));
 	}
 
 	public Partita getPartita() {
@@ -147,7 +150,7 @@ public class GestorePartita extends Thread {
 
 	public synchronized void sospendiPartita() {
 		try {
-			synchronized(this) {
+			synchronized (this) {
 				LOGGER.info("Iniziato timer disconnessione, partita sospesa");
 				timer.start();
 				this.wait();

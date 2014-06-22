@@ -122,8 +122,7 @@ public class FasePrincipale extends FasePartita {
 	}
 
 	private void market() {
-		// TODO Auto-generated method stub
-
+		new FaseMarket(gestore).esegui();
 	}
 
 	private void movimentoLupo() {

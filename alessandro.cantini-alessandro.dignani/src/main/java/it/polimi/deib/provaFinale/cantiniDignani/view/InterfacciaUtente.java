@@ -2,8 +2,10 @@ package it.polimi.deib.provaFinale.cantiniDignani.view;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.TesseraInVendita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
+import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 
 import java.util.Collection;
@@ -297,5 +299,61 @@ public interface InterfacciaUtente {
 	 *         come parametro
 	 */
 	int richiestaTesseraDaAcquistare(List<Tessera> tessereDisponibili);
+
+	/**
+	 * Viene presentata la compravendita di una tessera
+	 * 
+	 * @param compratore
+	 *            il giocatore che compra la tessera
+	 * @param tesseraInVendita
+	 *            la tessera venduta
+	 */
+	void marketCompravenditaTessera(String compratore, TesseraInVendita tesseraInVendita);
+
+	/**
+	 * L'utente viene avvertito che e' iniziata la fase del market
+	 */
+	void marketInizio();
+
+	/**
+	 * L'utente viene avvertito che e' stata messa in vendita una tessera
+	 * 
+	 * @param tesseraInVendita
+	 *            la tessera che e' stata messa in vendita
+	 */
+	void marketMessaInVendita(TesseraInVendita tesseraInVendita);
+
+	/**
+	 * Viene richiesto il prezzo a cui l'utente decide di mettere in vendita la
+	 * tessera. Il prezzo puo' variare da 1 a 4 denari.
+	 * 
+	 * @param tipo
+	 *            il tipo di territorio della tessera di cui si deve decidere il
+	 *            prezzo
+	 * @return il prezzo deciso per la tessera
+	 */
+	int marketRichiestaPrezzo(TipoTerritorio tipo);
+
+	/**
+	 * Viene richiesto all'utente di scegliere una tessera da acquistare. Nel
+	 * caso in cui non si voglia acquistare nessuna tessera, si deve restituire
+	 * il valore indicato in @link{CostantiModel}
+	 * 
+	 * @param tessereDisponibili
+	 * @return l'indice della lista di tessere disponibili, oppure l'intero che
+	 *         termina la richiesta
+	 */
+	int marketRichiestaTesseraDaAcquistare(List<TesseraInVendita> tessereDisponibili);
+
+	/**
+	 * Viene richiesto all'utente di scegliere una tessera da vendere. Nel caso
+	 * in cui non si voglia acquistare nessuna tessera, si deve restituire il
+	 * valore indicato in @link{CostantiModel}
+	 * 
+	 * @param territoriDisponibili
+	 * @returnl'indice della lista di territori disponibili, oppure l'intero che
+	 *                 termina la richiesta
+	 */
+	int marketRichiestaTesseraDaVendere(List<TipoTerritorio> territoriDisponibili);
 
 }

@@ -10,7 +10,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Accoppiamento
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.AcquistoTessera;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPastore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoPecora;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Pagamento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPecoraDaAbbattere;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPecoraDaMuovere;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPosizionePastore;
@@ -163,13 +162,12 @@ public class GestoreMossa {
 						int somma = CostantiController.COSTO_SILENZIO;
 						Giocatore ricevente = partita.getGiocatore(pastoreVicino);
 						gestore.pagamento(somma, giocatore, ricevente);
-						gestore.inviaEventoATutti(new Pagamento(somma, giocatore.getNome(), ricevente.getNome(), Estrattore.giocatori(partita)));
 					}
 				}
 			}
 		}
 
-		gestore.inviaEventoATutti(new Abbattimento(giocatore.getNome(), animScelto, terrScelto, aBuonFine, Estrattore.datiTerritori(partita), Estrattore.giocatori(partita)));
+		gestore.inviaEventoATutti(new Abbattimento(giocatore.getNome(), animScelto, terrScelto, aBuonFine, Estrattore.datiTerritori(partita)));
 	}
 
 	private void accoppia(Pastore pastore, Giocatore giocatore) throws GiocatoreDisconnessoException {
@@ -237,7 +235,7 @@ public class GestoreMossa {
 		}
 
 		giocatore.aggiungiTessera(tesseraAcquistata);
-		
+
 		giocatore.sottraiDenaro(tesseraAcquistata.getCosto());
 
 		gestore.inviaEventoATutti(new AcquistoTessera(giocatore.getNome(), tesseraAcquistata, Estrattore.tessereInCima(partita), Estrattore.giocatori(partita)));
@@ -358,17 +356,28 @@ public class GestoreMossa {
 		return lista;
 	}
 
-
-
-	private void controllaIndice(int indice, List<?> lista) {
+	/**
+	 * Controlla che un indice appartenga a una lista
+	 * 
+	 * @param indice
+	 *            l'indice
+	 * @param lista
+	 *            la lista
+	 */
+	public static void controllaIndice(int indice, List<?> lista) {
 		if (indice < 0 || indice >= lista.size()) {
 			throw new MossaNonValidaException(indice + " non e' un indice valido per la lista " + lista);
 		}
 	}
-
-	private void controllaValore(int valore, Collection<Integer> lista) {
-		if (!lista.contains(valore)) {
-			throw new MossaNonValidaException(valore + " non e' contenuto nella lista " + lista);
+	
+	/**
+	 * Controlla che un intero sia contenuto in una collezione
+	 * @param valore l'intero da controllare
+	 * @param collezione la collezione
+	 */
+	public static void controllaValore(int valore, Collection<Integer> collezione) {
+		if (!collezione.contains(valore)) {
+			throw new MossaNonValidaException(valore + " non e' contenuto nella lista " + collezione);
 		}
 	}
 }

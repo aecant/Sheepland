@@ -5,6 +5,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -60,6 +61,25 @@ public class Giocatore implements Serializable {
 	 */
 	public void aggiungiTessera(Tessera tessera) {
 		tessere.add(tessera);
+	}
+
+	/**
+	 * Toglie al giocatore una tessera di un certo tipo
+	 * 
+	 * @param tipo
+	 *            il tipo territorio della tessera
+	 * @return la tessera tolta al giocatore
+	 */
+	public Tessera rimuoviTessera(TipoTerritorio tipo) {
+		Iterator<Tessera> iter = tessere.iterator();
+		while (iter.hasNext()) {
+			Tessera tess = iter.next();
+			if (tess.getTipo() == tipo) {
+				iter.remove();
+				return tess;
+			}
+		}
+		throw new IllegalArgumentException(tipo + " non presente");
 	}
 
 	/**

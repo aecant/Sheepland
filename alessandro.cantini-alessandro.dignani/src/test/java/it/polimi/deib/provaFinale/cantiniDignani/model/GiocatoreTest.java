@@ -55,6 +55,17 @@ public class GiocatoreTest {
 		assertTrue(occorrenze.get(TipoTerritorio.LAGO) == 0);
 		assertTrue(occorrenze.get(TipoTerritorio.MONTAGNA) == 0);
 		
+		giocatore.rimuoviTessera(TipoTerritorio.BOSCO);
+		giocatore.rimuoviTessera(TipoTerritorio.BOSCO);
+		giocatore.rimuoviTessera(TipoTerritorio.CAMPO);
+		giocatore.rimuoviTessera(TipoTerritorio.CAMPO);
+		
+		
+		
+		occorrenze = giocatore.numeroTesserePerTipo();
+		assertEquals(occorrenze.get(TipoTerritorio.BOSCO), Integer.valueOf(1));
+		assertEquals(occorrenze.get(TipoTerritorio.CAMPO), Integer.valueOf(0));
+
 		
 	}
 }

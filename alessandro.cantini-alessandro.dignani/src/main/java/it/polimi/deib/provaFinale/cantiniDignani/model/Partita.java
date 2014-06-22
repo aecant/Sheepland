@@ -120,6 +120,20 @@ public class Partita {
 		throw new IllegalArgumentException("Problema: il " + pastore + " non e' presente nella " + this);
 	}
 
+	/**
+	 * Restituisce il giocatore con un certo nome
+	 * @param nome il nome del giocatore
+	 * @return il giocatore con un certo nome
+	 */
+	public Giocatore getGiocatore(String nome) {
+		for (Giocatore g : giocatori) {
+			if (g.getNome().equals(nome)) {
+				return g;
+			}
+		}
+		throw new IllegalArgumentException("Non c'e' un giocatore con il nome " + nome);
+	}
+
 	public Gregge getGregge() {
 		return gregge;
 	}

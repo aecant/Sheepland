@@ -9,6 +9,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.DatiTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.TesseraInVendita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Tessera;
@@ -267,6 +268,35 @@ public class Cli implements InterfacciaUtente {
 
 	private String nome() {
 		return MainClient.getNome();
+	}
+
+	public void marketCompravenditaTessera(String compratore, TesseraInVendita tess) {
+		out.println(compratore + " ha acquistato una tessera di tipo " + tess.getTipo() + " da " + tess.getGiocatore() + " al prezzo di " + tess.getPrezzo() + " denari");
+	}
+
+	public void marketInizio() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void marketMessaInVendita(TesseraInVendita tesseraInVendita) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public int marketRichiestaPrezzo(TipoTerritorio tipo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int marketRichiestaTesseraDaAcquistare(List<TesseraInVendita> tessereDisponibili) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int marketRichiestaTesseraDaVendere(List<TipoTerritorio> territoriDisponibili) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
