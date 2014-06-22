@@ -54,6 +54,22 @@ public class MappaView extends BackgroundMappaPanel {
 		for (int i = 0; i < CostantiModel.NUM_TERRITORI; i++) {
 			territoriView.add(new TerritorioView(i, coordinateTerritori[i]));
 		}
+		
+		for (int i = 0; i < MainClient.getDatiPartita().getRecinti().length; i++) {
+			if(i < CostantiModel.NUM_RECINTI_INIZIALI){
+				aggiungiRecinto(MainClient.getDatiPartita().getRecinti()[i], false);
+			} else {
+				aggiungiRecinto(MainClient.getDatiPartita().getRecinti()[i], true);
+			}
+		}
+		repaint();
+	}
+	
+	private void aggiungiRecinto(Integer codStrada, boolean isFinale) {
+		RecintoView recintoTemp = null;
+		recintoTemp = new RecintoView(coordinateStrade[codStrada], isFinale);
+		recinti.add(recintoTemp);
+		add(recintoTemp);
 	}
 
 	public void creaPastore(int strada, ColorePastore colore) {
@@ -148,14 +164,12 @@ public class MappaView extends BackgroundMappaPanel {
 			if (p.getCodStrada() == origine) {
 				p.muovi(coordinateStrade[destinazione]);
 				p.setCodStrada(destinazione);
-				RecintoView recintoTemp = null;
+				
 				if(MainClient.getDatiPartita().getRecinti().length > CostantiModel.NUM_RECINTI_INIZIALI) {
-					recintoTemp = new RecintoView(coordinateStrade[origine], true);
+					aggiungiRecinto(origine, true);
 				} else {
-					recintoTemp = new RecintoView(coordinateStrade[origine], false);
+					aggiungiRecinto(origine, false);
 				}
-				recinti.add(recintoTemp);
-				add(recintoTemp);
 				repaint();
 			}
 		}

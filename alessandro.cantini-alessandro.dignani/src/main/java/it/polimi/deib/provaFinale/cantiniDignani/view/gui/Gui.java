@@ -36,15 +36,16 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	/**
-	 * Implementazione del metodo che chiede all'utente il nome per connettersi
-	 * avvisandolo che il nome scelto in precedenza non è valido
+	 * Implementazione del metodo che avvisa che il nome scelto in precedenza non è valido
 	 * 
-	 * @return String del nome scelto
 	 */
 	public void nomeGiaPresente() {
 		messNomeGiaPresente = true;
 	}
 
+	/**
+	 * Metodo che avvisa l'utente che la password scelta è sbagliata
+	 */
 	public void passwordSbagliata() {
 		messPwdSbagliata = true;
 	}
