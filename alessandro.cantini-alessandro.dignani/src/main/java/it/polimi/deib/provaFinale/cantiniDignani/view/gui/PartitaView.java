@@ -38,6 +38,8 @@ public class PartitaView extends JFrame{
 	 */
 	public PartitaView(DatiPartita datiPartita) {
 		this.datiPartita = datiPartita;
+		
+		setTitle("Sheepland - " + MainClient.getNome());
 
 		// imposto il panel della mappa
 		panelMappa = new JPanel(new BorderLayout());
