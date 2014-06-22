@@ -3,6 +3,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.view.gui;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.model.ColorePastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
@@ -27,7 +28,7 @@ public class MappaView extends BackgroundMappaPanel {
 	protected List<RecintoView> recinti = new ArrayList<RecintoView>();
 	protected List<PedinaListener> ascoltatori = new ArrayList<PedinaListener>();
 
-	public MappaView() {
+	public MappaView(boolean riconnessione) {
 		super(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "mappaSheepland.png")
 				.getScaledInstance(CostantiGui.DIMENSIONE_MAPPA.width, CostantiGui.DIMENSIONE_MAPPA.height, Image.SCALE_SMOOTH));
 		this.setPreferredSize(CostantiGui.DIMENSIONE_MAPPA);
@@ -51,18 +52,29 @@ public class MappaView extends BackgroundMappaPanel {
 					(int) (CostantiGui.COORDINATE_STRADE[i].getY() * CostantiGui.FATTORE_DI_SCALA));
 		}
 
+		// disegno gli animali nei territori
 		for (int i = 0; i < CostantiModel.NUM_TERRITORI; i++) {
 			territoriView.add(new TerritorioView(i, coordinateTerritori[i]));
 		}
 		
-		for (int i = 0; i < MainClient.getDatiPartita().getRecinti().length; i++) {
-			if(i < CostantiModel.NUM_RECINTI_INIZIALI){
-				aggiungiRecinto(MainClient.getDatiPartita().getRecinti()[i], false);
-			} else {
-				aggiungiRecinto(MainClient.getDatiPartita().getRecinti()[i], true);
+		if(riconnessione) {
+			// Disegno i recinti
+			for (int i = 0; i < MainClient.getDatiPartita().getRecinti().length; i++) {
+				if(i < CostantiModel.NUM_RECINTI_INIZIALI){
+					aggiungiRecinto(MainClient.getDatiPartita().getRecinti()[i], false);
+				} else {
+					aggiungiRecinto(MainClient.getDatiPartita().getRecinti()[i], true);
+				}
 			}
+			
+			// Disegno i pastori
+			for(Giocatore g : MainClient.getDatiPartita().getGiocatori()) {
+				for(Pastore p : g.getPastori()) {
+					creaPastore(p.getStrada().getCodice(), p.getColore());
+				}
+			}
+			repaint();
 		}
-		repaint();
 	}
 	
 	private void aggiungiRecinto(Integer codStrada, boolean isFinale) {

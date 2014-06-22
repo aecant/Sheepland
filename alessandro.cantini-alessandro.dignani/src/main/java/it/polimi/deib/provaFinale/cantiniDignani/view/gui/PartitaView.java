@@ -36,7 +36,7 @@ public class PartitaView extends JFrame{
 	/**
 	 * classe che crea la finestra con tutta la grafica del gioco
 	 */
-	public PartitaView(DatiPartita datiPartita) {
+	public PartitaView(DatiPartita datiPartita, boolean riconnessione) {
 		this.datiPartita = datiPartita;
 		
 		setTitle("Sheepland - " + MainClient.getNome());
@@ -51,7 +51,7 @@ public class PartitaView extends JFrame{
 		panelMappaDestra.setPreferredSize(CostantiGui.DIMENSIONE_PAN_LATERALI_MAPPA);
 		panelMappaDestra.setBackground(CostantiGui.COLORE_ACQUA);
 
-		mappa = new MappaView();
+		mappa = new MappaView(riconnessione);
 		panelMappa.add(mappa, BorderLayout.CENTER);
 		panelMappa.add(panelMappaSinistra, BorderLayout.WEST);
 		panelMappa.add(panelMappaDestra, BorderLayout.EAST);
