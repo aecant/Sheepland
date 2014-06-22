@@ -275,4 +275,8 @@ public class Gui implements InterfacciaUtente {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void marketInizioAcquisti() {
+		
+	}
 }
