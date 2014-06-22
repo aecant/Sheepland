@@ -38,4 +38,9 @@ public class TesseraInVendita implements java.io.Serializable {
 		return prezzo;
 	}
 
+	@Override
+	public String toString() {
+		return "Tessera di tipo " + tipo + " venduta da " + giocatore + " al prezzo di " + prezzo + " denari";
+	}
+
 }

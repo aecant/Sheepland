@@ -39,6 +39,16 @@ public class CostantiController {
 	public static final int TERMINATORE_MARKET = -1;
 
 	/**
+	 * Il prezzo minimo a cui si puo' vendere una tessera
+	 */
+	public static final int MIN_PREZZO_MARKET = 1;
+
+	/**
+	 * Il prezzo massimo a cui si puo' vendere una tessera
+	 */
+	public static final int MAX_PREZZO_MARKET = 4;
+
+	/**
 	 * Costruttore privato per nascondere quello di default
 	 */
 	private CostantiController() {
