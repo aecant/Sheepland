@@ -33,6 +33,12 @@ public class CostantiController {
 	public static final int DADO_MIN_PER_SILENZIO = 5;
 
 	/**
+	 * Il numero di convenzione che rappresenta la fine della scelta del
+	 * giocatore nel market
+	 */
+	public static final int TERMINATORE_MARKET = -1;
+
+	/**
 	 * Costruttore privato per nascondere quello di default
 	 */
 	private CostantiController() {
