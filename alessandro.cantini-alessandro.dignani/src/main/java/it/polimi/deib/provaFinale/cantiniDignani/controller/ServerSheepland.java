@@ -1,6 +1,7 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.GiocatoreDisconnesso;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.GiocatoreRiconnesso;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita.GestorePartita;
 import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
@@ -31,10 +32,10 @@ public class ServerSheepland {
 	private final ConnessioneServerSocket connessioneSocket = new ConnessioneServerSocket(this);
 
 	public void inizia() {
-		timerPartita.start();
-
 		connessioneRmi.start();
 		connessioneSocket.start();
+		
+		timerPartita.start();
 	}
 
 	/**
@@ -178,6 +179,7 @@ public class ServerSheepland {
 	private void riconnettiUtente(Utente utente) {
 		utentiDisconnessi.remove(utente);
 		utente.getCodaMosse().svuota();
+			
 		GestorePartita gestore;
 		try {
 			gestore = getGestorePartita(utente);
@@ -185,6 +187,8 @@ public class ServerSheepland {
 			return;
 		}
 
+		gestore.inviaEventoATutti(new GiocatoreRiconnesso(utente.getNome()));
+		
 		for (Utente u : Utilita.copia(gestore.getUtenti())) {
 			if (utente.getNome().equals(u.getNome())) {
 				gestore.getUtenti().remove(u);

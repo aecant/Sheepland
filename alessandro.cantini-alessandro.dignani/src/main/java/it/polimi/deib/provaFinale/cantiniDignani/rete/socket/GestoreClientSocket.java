@@ -18,7 +18,6 @@ public class GestoreClientSocket extends Thread {
 
 	private final static Logger logger = Logger.getLogger(GestoreClientSocket.class.getName());
 
-	private Socket socket;
 	private ConnessioneServerSocket connessione;
 	private ServerSheepland serverSheepland;
 
@@ -30,7 +29,6 @@ public class GestoreClientSocket extends Thread {
 	private boolean registrato = false;
 
 	public GestoreClientSocket(Socket socket, ConnessioneServerSocket connessione, ServerSheepland serverSheepland) {
-		this.socket = socket;
 		this.connessione = connessione;
 		this.serverSheepland = serverSheepland;
 		try {
@@ -71,12 +69,12 @@ public class GestoreClientSocket extends Thread {
 
 				@SuppressWarnings("unchecked")
 				Coppia<String, String> nomeEPassword = (Coppia<String, String>) oggettoRicevuto;
-				
+
 				out.reset();
 				try {
 					serverSheepland.aggiungiUtente(nomeEPassword.primo, nomeEPassword.secondo, connessione);
 					out.writeObject(CostantiSocket.REGISTRAZIONE_OK);
-					utente = serverSheepland.getUtente(nomeEPassword.primo);				
+					utente = serverSheepland.getUtente(nomeEPassword.primo);
 					connessione.getGestoriUtenti().put(utente, this);
 					registrato = true;
 				} catch (NomeGiaPresenteException e) {
@@ -97,13 +95,6 @@ public class GestoreClientSocket extends Thread {
 	public void terminaConnessione() {
 		if (ascoltatoreMosse.isAlive()) {
 			ascoltatoreMosse.ferma();
-		}
-		try {
-			in.close();
-			out.close();
-			socket.close();
-		} catch (IOException e) {
-			logger.log(Level.SEVERE, "problema nella chiusura del socket di " + utente, e);
 		}
 
 	}
