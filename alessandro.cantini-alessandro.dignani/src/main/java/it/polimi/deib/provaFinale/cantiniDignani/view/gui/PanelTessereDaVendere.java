@@ -45,15 +45,12 @@ public class PanelTessereDaVendere extends JPanel {
 		// Imposto il bottone salta
 		butSalta.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
-				Component c = e.getComponent();
-				if (c instanceof TesseraView) {
-					Gui.getCoda().aggiungi(CostantiController.TERMINATORE_MARKET);
-					panelTessere.removeAll();
-					setVisible(false);
-				}
+				Gui.getCoda().aggiungi(CostantiController.TERMINATORE_MARKET);
+				panelTessere.removeAll();
+				setVisible(false);
 			}
 		});
-		
+
 		add(lblMessaggio, BorderLayout.NORTH);
 		add(panelTessere, BorderLayout.CENTER);
 		add(butSalta, BorderLayout.SOUTH);
@@ -105,6 +102,7 @@ public class PanelTessereDaVendere extends JPanel {
 			});
 			panelTessere.add(tessView);
 		}
+		setVisible(true);
 	}
 
 	public void marketRichiestaTesseraDaAcquistare(List<TesseraInVendita> tessereDisponibili) {
