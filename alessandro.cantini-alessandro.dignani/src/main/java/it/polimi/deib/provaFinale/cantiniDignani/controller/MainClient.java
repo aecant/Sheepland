@@ -11,15 +11,22 @@ import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 import it.polimi.deib.provaFinale.cantiniDignani.view.cli.Cli;
+import it.polimi.deib.provaFinale.cantiniDignani.view.cli.CostantiCli;
 import it.polimi.deib.provaFinale.cantiniDignani.view.cli.InputCli;
 import it.polimi.deib.provaFinale.cantiniDignani.view.gui.Gui;
 
+import java.io.PrintStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.apache.commons.validator.routines.InetAddressValidator;
 
 public class MainClient {
 
 	private static final Logger LOGGER = Logger.getLogger(MainClient.class.getName());
+
+	private static final InputCli INPUT = new InputCli(CostantiCli.DEFAULT_INPUT);
+	private static final PrintStream OUTPUT = CostantiCli.DEFAULT_OUTPUT;
 
 	private static String nome;
 	private static String indirizzoServer;
@@ -27,19 +34,17 @@ public class MainClient {
 	private static InterfacciaConnessioneClient connessione;
 	private static DatiPartita datiPartita;
 	private static GestoreCoda<Evento> codaEventi = new GestoreCoda<Evento>();
-	
+
+	// costruttore privato per nascondere quello pubblico
 	private MainClient() {
 	}
-	
+
 	public static void main(String[] args) {
 		indirizzoServer = chiediIndirizzoServer();
 		connessione = chiediTipoConnessione();
 		ui = chiediTipoInterfaccia();
-
 		connessione.inizia();
-
 		chiediNomeERegistraGiocatore();
-
 		effettuaPartita();
 	}
 
@@ -75,12 +80,15 @@ public class MainClient {
 	}
 
 	private static String chiediIndirizzoServer() {
-		// TODO test da rimuovere
-		return CostantiTest.INDIRIZZO_SERVER;
+		String indirizzo = "";
+		while (!InetAddressValidator.getInstance().isValid(indirizzo)) {
+			OUTPUT.println("Inserisci l'indirizzo IP del server");
+			indirizzo = INPUT.leggiStringa();
+		}
+		return indirizzo;
 	}
 
 	private static InterfacciaConnessioneClient chiediTipoConnessione() {
-		// TODO test da rimuovere
 		if (CostantiTest.SCELTA_RETE) {
 			InputCli input = new InputCli(System.in);
 			System.out.println("1) Socket");
@@ -106,11 +114,10 @@ public class MainClient {
 
 	private static InterfacciaUtente chiediTipoInterfaccia() {
 		if (CostantiTest.SCELTA_INTERFACCIA) {
-			InputCli input = new InputCli(System.in);
-			System.out.println("1) CLI");
-			System.out.println("2) GUI");
+			OUTPUT.println("1) CLI");
+			OUTPUT.println("2) GUI");
 
-			int scelta = input.leggiIntero(1, 2);
+			int scelta = INPUT.leggiIntero(1, 2);
 
 			if (scelta == 1) {
 				return new Cli();

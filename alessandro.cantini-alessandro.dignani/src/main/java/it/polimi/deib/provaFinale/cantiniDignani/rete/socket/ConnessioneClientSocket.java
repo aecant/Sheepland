@@ -42,6 +42,7 @@ public class ConnessioneClientSocket extends ConnessioneClient implements Interf
 
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, "Errore nella comunicazione con il server", e);
+			return;
 		}
 
 	}
