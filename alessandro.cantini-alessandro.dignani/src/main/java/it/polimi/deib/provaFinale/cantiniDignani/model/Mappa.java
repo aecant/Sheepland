@@ -110,7 +110,7 @@ public class Mappa {
 	 * @return
 	 * @throws IllegalArgumentException
 	 */
-	private Territorio territorioOpposto(Territorio t, Strada s) throws IllegalArgumentException {
+	private Territorio territorioOpposto(Territorio t, Strada s) {
 		if (t.equals(s.getTerritorio1())) {
 			return s.getTerritorio2();
 		}

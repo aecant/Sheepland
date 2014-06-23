@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class PreparazionePartita extends FasePartita {
 
-	private final static Logger LOGGER = Logger.getLogger(PreparazionePartita.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(PreparazionePartita.class.getName());
 	
 	public PreparazionePartita(GestorePartita gestore) {
 		super(gestore);

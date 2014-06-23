@@ -40,7 +40,7 @@ public class Sorte {
 	 * @throws IllegalArgumentException
 	 *             se min e' maggiore o uguale a max
 	 */
-	public static int numeroCasuale(int min, int max) throws IllegalArgumentException {
+	public static int numeroCasuale(int min, int max){
 		if (min > max) {
 			throw new IllegalArgumentException("il primo parametro deve essere minore o uguale al secondo");
 		}

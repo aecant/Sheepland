@@ -16,14 +16,10 @@ import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class GestorePartita extends Thread {
 
-	private final static Logger LOGGER = Logger.getLogger(GestorePartita.class.getName());
-
-	private List<Utente> utenti;
+	private final List<Utente> utenti;
 	private final Partita partita;
 	private final List<String> tuttiGiocatori;
 
@@ -149,17 +145,7 @@ public class GestorePartita extends Thread {
 	}
 
 	public synchronized void sospendiPartita() {
-		try {
-			synchronized (this) {
-				LOGGER.info("Iniziato timer disconnessione, partita sospesa");
-				timer.start();
-				this.wait();
-			}
-			LOGGER.info("Partita ripresa");
-			timer.termina();
-		} catch (InterruptedException e) {
-			LOGGER.log(Level.SEVERE, "gestore interrotto in modo inaspettato", e);
-		}
+		//TODO da implementare
 	}
 
 	public TimerDisconnessione getTimerDisconnessione() {

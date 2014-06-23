@@ -17,11 +17,11 @@ import java.util.List;
 import java.util.Map;
 
 public class Gui implements InterfacciaUtente {
-	private FinestraChiediNome fcn;
-	static PartitaView finestraPartita;
-	boolean messNomeGiaPresente = false;
-	boolean messPwdSbagliata = false;
+	private static PartitaView finestraPartita;
 	private static GestoreCoda<Integer> coda = new GestoreCoda<Integer>();
+
+	private boolean messNomeGiaPresente = false;
+	private boolean messPwdSbagliata = false;
 
 	/**
 	 * Implementazione del metodo che chiede all'utente il nome per connettersi
@@ -30,7 +30,7 @@ public class Gui implements InterfacciaUtente {
 	 * @return una String con il nome
 	 */
 	public Coppia<String, String> chiediNomeEPassword() {
-		fcn = new FinestraChiediNome(messNomeGiaPresente, messPwdSbagliata);
+		FinestraChiediNome fcn = new FinestraChiediNome(messNomeGiaPresente, messPwdSbagliata);
 		return fcn.riceviNome();
 	}
 

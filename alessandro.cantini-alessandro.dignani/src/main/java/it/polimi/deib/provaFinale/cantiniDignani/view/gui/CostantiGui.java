@@ -10,6 +10,10 @@ import java.awt.Toolkit;
 
 public class CostantiGui {
 
+	private static final String FARISI = "Farisi";
+
+	private static final String ARIAL = "Arial";
+
 	public static final boolean SCHERMO_INTERO = false;
 	
 	// Risoluzione spostamento
@@ -52,9 +56,12 @@ public class CostantiGui {
 	public static final Dimension DIMENSIONE_PANEL_MESSAGGI = new Dimension(DIMENSIONE_SCHERMO.width, DIMENSIONE_SCHERMO.height / 3);
 	public static final Dimension DIMENSIONE_IMG_MOTIVO_LANCIO = new Dimension(150, 150);
 	public static final Dimension DIMENSIONE_IMG_DADO = new Dimension(50, 50);
-	public static final Dimension DIMENSIONE_PANEL_LANCIO_DADO = new Dimension(DIMENSIONE_IMG_MOTIVO_LANCIO.width + 10, DIMENSIONE_IMG_MOTIVO_LANCIO.height + DIMENSIONE_IMG_DADO.height + 15); // TODO da modificare!
+	
+	// TODO da modificare!
+	public static final Dimension DIMENSIONE_PANEL_LANCIO_DADO = new Dimension(DIMENSIONE_IMG_MOTIVO_LANCIO.width + 10, DIMENSIONE_IMG_MOTIVO_LANCIO.height + DIMENSIONE_IMG_DADO.height + 15);
+	
 	public static final int TEMPO_VISUALIZZAZIONE_MESSAGGIO = 3000;
-	public static final Font FONT_MESSAGGI = new Font("Arial", Font.BOLD, 40);
+	public static final Font FONT_MESSAGGI = new Font(ARIAL, Font.BOLD, 40);
 	public static final Color COLORE_SFONDO_MESSAGGI = new Color(252, 189, 73, 200);
 	public static final Color COLORE_TESTO_MESSAGGI = new Color(80, 80, 80);
 	public static final String PERCORSO_IMMAGINI_DADO = PERCORSO_IMMAGINI + "dado/";
@@ -165,9 +172,9 @@ public class CostantiGui {
 	// Fonts
 	public static final Font FONT_PULSANTI_MOSSE = new Font("Chalkduster", Font.PLAIN, 18);
 	public static final Font FONT_NOME_GIOCATORE = new Font("Trajan Pro 3", Font.BOLD, 16);
-	public static final Font FONT_SOLDI = new Font("Farisi", Font.PLAIN, 30);
-	public static final Font FONT_CONTATORI_ANIMALI = new Font("Farisi", Font.PLAIN, 20);
-	public static final Font FONT_ANGOLINI = new Font("Arial", Font.BOLD, 14);
+	public static final Font FONT_SOLDI = new Font(FARISI, Font.PLAIN, 30);
+	public static final Font FONT_CONTATORI_ANIMALI = new Font(FARISI, Font.PLAIN, 20);
+	public static final Font FONT_ANGOLINI = new Font(ARIAL, Font.BOLD, 14);
 
 	public static final int NUM_FRAME_ANIM_MESS = 50;
 
@@ -180,7 +187,7 @@ public class CostantiGui {
 
 	public static final Color COLORE_TESSERA_FINITA = new Color(200, 20, 20, 100);
 
-	public static final Font FONT_MESSAGGIO_ACQUISTO_TESSERA = new Font("Arial", Font.BOLD, 20);
+	public static final Font FONT_MESSAGGIO_ACQUISTO_TESSERA = new Font(ARIAL, Font.BOLD, 20);
 
 	public static final Dimension DIMENSIONE_PANEL_TESSERE_ACQUISTO = new Dimension((DIMENSIONE_PANEL_TESSERA.width * 2) + 10, DIMENSIONE_PANEL_TESSERA.height + 20);
 

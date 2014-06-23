@@ -119,7 +119,7 @@ public class PanelMessaggi extends JPanel {
 		try {
 			Thread.sleep(CostantiGui.TEMPO_VISUALIZZAZIONE_MESSAGGIO);
 		} catch (InterruptedException e) {
-			LOGGER.log(Level.SEVERE, "Interruzione anomala", e);
+			LOGGER.log(Level.SEVERE, "Interruzione anomala nella visualizzazione del messaggio", e);
 		}
 	}
 

@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 public class GestoreClientSocket extends Thread {
 
-	private final static Logger LOGGER = Logger.getLogger(GestoreClientSocket.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(GestoreClientSocket.class.getName());
 
 	private ConnessioneServerSocket connessione;
 	private ServerSheepland serverSheepland;
@@ -58,7 +58,7 @@ public class GestoreClientSocket extends Thread {
 			out.writeObject(evento);
 			out.flush();
 		} catch (IOException e) {
-			LOGGER.log(Level.FINE, "giocatore disconnesso", e);
+			LOGGER.log(Level.FINE, "giocatore disconnesso ", e);
 			serverSheepland.gestisciDisconnessione(utente);
 		}
 	}

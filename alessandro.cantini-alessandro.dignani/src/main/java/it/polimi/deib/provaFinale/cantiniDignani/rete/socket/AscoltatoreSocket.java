@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class AscoltatoreSocket<T extends Serializable> extends Thread {
 
-	private final static Logger LOGGER = Logger.getLogger(AscoltatoreSocket.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(AscoltatoreSocket.class.getName());
 
 	protected ObjectInputStream in;
 	protected GestoreCoda<T> coda;

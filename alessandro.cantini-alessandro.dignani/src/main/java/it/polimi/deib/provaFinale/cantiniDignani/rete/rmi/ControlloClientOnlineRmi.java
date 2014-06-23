@@ -8,9 +8,9 @@ import java.util.logging.Logger;
 
 public class ControlloClientOnlineRmi extends Thread {
 
-	private final static Logger LOGGER = Logger.getLogger(ControlloClientOnlineRmi.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(ControlloClientOnlineRmi.class.getName());
 	
-	private final static int MILLISECONDI_CONTROLLO = 400;
+	private static final int MILLISECONDI_CONTROLLO = 400;
 
 	private final ConnessioneServerRmi connessione;
 	private boolean on;

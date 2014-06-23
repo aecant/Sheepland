@@ -23,8 +23,10 @@ import java.util.logging.Logger;
 
 public class FaseMarket extends FasePartita {
 
-	private final static Logger LOGGER = Logger.getLogger(FaseMarket.class.getName());
-	
+	private static final String GIOCATORE_DISCONNESSO = "giocatore disconnesso";
+
+	private static final Logger LOGGER = Logger.getLogger(FaseMarket.class.getName());
+
 	private final List<TesseraInVendita> tessereGlobali = new LinkedList<TesseraInVendita>();
 
 	public FaseMarket(GestorePartita gestore) {
@@ -49,13 +51,17 @@ public class FaseMarket extends FasePartita {
 
 			while (true) {
 				List<TipoTerritorio> territoriPossibili = generaTesserePossibili(tessereTemp);
+				if(territoriPossibili.isEmpty()) {
+					break;
+				}
+				
 				gestore.inviaEvento(new MarketRichiestaTesseraDaVendere(territoriPossibili), giocatore);
 
 				int scelta;
 				try {
 					scelta = gestore.aspettaMossa(giocatore);
 				} catch (GiocatoreDisconnessoException e) {
-					LOGGER.log(Level.FINE, "giocatore disconnesso", e);
+					LOGGER.log(Level.FINE, GIOCATORE_DISCONNESSO, e);
 					break;
 				}
 				if (scelta == CostantiController.TERMINATORE_MARKET) {
@@ -66,14 +72,7 @@ public class FaseMarket extends FasePartita {
 
 				TipoTerritorio tipoScelto = territoriPossibili.get(scelta);
 
-				Iterator<Tessera> iter = tessereTemp.iterator();
-				while (iter.hasNext()) {
-					Tessera tess = iter.next();
-					if (tess.getTipo() == tipoScelto) {
-						iter.remove();
-						break;
-					}
-				}
+				rimuoviTessera(tessereTemp, tipoScelto);
 
 				gestore.inviaEvento(new MarketRichiestaPrezzo(tipoScelto), giocatore);
 
@@ -81,7 +80,7 @@ public class FaseMarket extends FasePartita {
 				try {
 					prezzoScelto = gestore.aspettaMossa(giocatore);
 				} catch (GiocatoreDisconnessoException e) {
-					LOGGER.log(Level.FINE, "giocatore disconnesso", e);
+					LOGGER.log(Level.FINE, GIOCATORE_DISCONNESSO, e);
 					break;
 				}
 
@@ -94,6 +93,17 @@ public class FaseMarket extends FasePartita {
 				gestore.inviaEventoATutti(new MarketMessaInVendita(tesseraInVendita));
 			}
 
+		}
+	}
+
+	private void rimuoviTessera(Collection<Tessera> tessereTemp, TipoTerritorio tipoScelto) {
+		Iterator<Tessera> iter = tessereTemp.iterator();
+		while (iter.hasNext()) {
+			Tessera tess = iter.next();
+			if (tess.getTipo() == tipoScelto) {
+				iter.remove();
+				break;
+			}
 		}
 	}
 
@@ -110,7 +120,7 @@ public class FaseMarket extends FasePartita {
 
 	private void faseAcquisto() {
 		gestore.inviaEventoATutti(new MarketInizioAcquisti());
-		
+
 		int numGiocatori = partita.getGiocatori().size();
 		int indicePrimo = Sorte.numeroCasuale(0, numGiocatori - 1);
 
@@ -134,12 +144,16 @@ public class FaseMarket extends FasePartita {
 					tessereDisponibili.remove(tess);
 				}
 			}
+			if(tessereDisponibili.isEmpty()) {
+				break;
+			}
+			
 			gestore.inviaEvento(new MarketRichiestaTesseraDaAcquistare(tessereDisponibili), giocatore);
 			int scelta;
 			try {
 				scelta = gestore.aspettaMossa(giocatore);
 			} catch (GiocatoreDisconnessoException e) {
-				LOGGER.log(Level.FINE, "giocatore disconnesso", e);
+				LOGGER.log(Level.FINE, GIOCATORE_DISCONNESSO, e);
 				return;
 			}
 			if (scelta == CostantiController.TERMINATORE_MARKET) {

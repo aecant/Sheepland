@@ -16,6 +16,6 @@ public abstract class RichiestaPecora extends Richiesta {
 	}
 
 	@Override
-	abstract protected int interagisci();
+	protected abstract int interagisci();
 
 }

@@ -20,9 +20,10 @@ import java.util.logging.Logger;
 
 public class ConnessioneClientRmi extends ConnessioneClient implements InterfacciaConnessioneClient, InterfacciaAscoltatoreRmi {
 
-	private final static Logger LOGGER = Logger.getLogger(ConnessioneClientRmi.class.getName());
+	private static final String NO_CONNESSIONE = "Impossibile stabilire la connessione col server";
 
-	private Registry registry;
+	private static final Logger LOGGER = Logger.getLogger(ConnessioneClientRmi.class.getName());
+
 	private InterfacciaRmi server;
 	private InterfacciaAscoltatoreRmi ascoltatore;
 
@@ -32,11 +33,11 @@ public class ConnessioneClientRmi extends ConnessioneClient implements Interfacc
 
 	public void inizia() {
 		try {
-			registry = LocateRegistry.getRegistry(getIndirizzoServer(), CostantiRmi.PORTA_SERVER_RMI);
+			Registry registry = LocateRegistry.getRegistry(getIndirizzoServer(), CostantiRmi.PORTA_SERVER_RMI);
 			server = (InterfacciaRmi) registry.lookup(CostantiRmi.NOME_SERVER_RMI);
 
 		} catch (RemoteException e) {
-			LOGGER.log(Level.SEVERE, "Impossibile stabilire la connessione col server", e);
+			LOGGER.log(Level.SEVERE, NO_CONNESSIONE, e);
 		} catch (NotBoundException e) {
 			LOGGER.log(Level.SEVERE, CostantiRmi.NOME_SERVER_RMI + " non collegato ", e);
 		}
@@ -48,7 +49,7 @@ public class ConnessioneClientRmi extends ConnessioneClient implements Interfacc
 			ascoltatore = (InterfacciaAscoltatoreRmi) UnicastRemoteObject.exportObject(this, 0);
 			server.aggiungiAscoltatore(nomeEPassword.getPrimo(), ascoltatore);
 		} catch (RemoteException e) {
-			LOGGER.log(Level.SEVERE, "Impossibile stabilire la connessione col server", e);
+			LOGGER.log(Level.SEVERE, NO_CONNESSIONE, e);
 		}
 
 	}
@@ -65,7 +66,7 @@ public class ConnessioneClientRmi extends ConnessioneClient implements Interfacc
 		try {
 			server.riceviMossa(MainClient.getNome(), mossaScelta);
 		} catch (RemoteException e) {
-			LOGGER.log(Level.SEVERE, "Impossibile stabilire la connessione col server", e);
+			LOGGER.log(Level.SEVERE, NO_CONNESSIONE, e);
 		}
 	}
 
@@ -73,7 +74,7 @@ public class ConnessioneClientRmi extends ConnessioneClient implements Interfacc
 		try {
 			UnicastRemoteObject.unexportObject(ascoltatore, true);
 		} catch (NoSuchObjectException e) {
-			LOGGER.log(Level.SEVERE, "Impossibile stabilire la connessione col server", e);
+			LOGGER.log(Level.SEVERE, NO_CONNESSIONE, e);
 		}
 	}
 

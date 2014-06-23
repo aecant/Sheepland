@@ -19,7 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ServerSheepland {
-	private final static Logger LOGGER = Logger.getLogger(ServerSheepland.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(ServerSheepland.class.getName());
 
 	private final List<GestorePartita> gestoriPartita = new ArrayList<GestorePartita>();
 	private final List<Utente> utentiInAttesa = new ArrayList<Utente>();
@@ -77,7 +77,7 @@ public class ServerSheepland {
 			}
 		}
 
-		throw new ElementoNonPresenteException(giocatore + " non è presente");
+		throw new ElementoNonPresenteException(giocatore + " non e' presente");
 
 	}
 
@@ -139,7 +139,7 @@ public class ServerSheepland {
 			LOGGER.warning("Disconnesso " + utente + " nella partita " + gestore.getPartita());
 
 		} catch (ElementoNonPresenteException e) {
-			LOGGER.log(Level.WARNING, "Disconnesso " + utente, e);
+			LOGGER.log(Level.WARNING, "Disconnesso  " + utente, e);
 		}
 
 	}

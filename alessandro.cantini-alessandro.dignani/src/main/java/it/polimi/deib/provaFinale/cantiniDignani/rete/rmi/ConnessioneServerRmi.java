@@ -19,7 +19,9 @@ import java.util.logging.Logger;
 
 public class ConnessioneServerRmi extends ConnessioneServer implements InterfacciaConnessioneServer {
 
-	private final static Logger LOGGER = Logger.getLogger(ConnessioneServerRmi.class.getName());
+	private static final String NO_CONNESSIONE = "Problema nella disconnessione del server";
+
+	private static final Logger LOGGER = Logger.getLogger(ConnessioneServerRmi.class.getName());
 
 	private final Map<String, InterfacciaAscoltatoreRmi> ascoltatori = new HashMap<String, InterfacciaAscoltatoreRmi>();
 	private Registry registro;
@@ -62,11 +64,11 @@ public class ConnessioneServerRmi extends ConnessioneServer implements Interfacc
 			UnicastRemoteObject.unexportObject(registro, true);
 			registro.unbind(CostantiRmi.NOME_SERVER_RMI);
 		} catch (NoSuchObjectException e) {
-			LOGGER.log(Level.SEVERE, "Problema nella disconnessione del server", e);
+			LOGGER.log(Level.SEVERE, NO_CONNESSIONE, e);
 		} catch (RemoteException e) {
-			LOGGER.log(Level.SEVERE, "Problema nella disconnessione del server", e);
+			LOGGER.log(Level.SEVERE, NO_CONNESSIONE, e);
 		} catch (NotBoundException e) {
-			LOGGER.log(Level.SEVERE, "Problema nella disconnessione del server", e);
+			LOGGER.log(Level.SEVERE, NO_CONNESSIONE, e);
 		}
 	}
 

@@ -20,17 +20,21 @@ public class FinestraChiediNome extends JFrame {
 
 	private static final long serialVersionUID = -2198792582824078626L;
 
-	private JPanel contentPane;
+	private final GestoreCoda<Coppia<String, String>> coda = new GestoreCoda<Coppia<String, String>>();
+
 	private JTextField txtNome;
-	private JLabel lblInserisciIlNome;
-	private JLabel lblIlNomeScelto;
-	private JLabel lblPswSbagliata;
 	private JPasswordField passwordField;
 
-	private GestoreCoda <Coppia<String, String>> coda = new GestoreCoda<Coppia<String, String>>();
 
+	
 	public FinestraChiediNome(boolean visualizzaMessaggioNome, boolean visualizzaMessaggioPassword) {
 		super("Sheepland - Inserisci il nome");
+
+		JLabel lblIlNomeScelto;
+		JLabel lblInserisciIlNome;
+		JLabel lblPswSbagliata;
+		JPanel contentPane;
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 150, 400, 400);
 		contentPane = new BackgroundPanel(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "sfondoPastorePecore.png").getScaledInstance(400, 400, Image.SCALE_SMOOTH));
@@ -39,7 +43,7 @@ public class FinestraChiediNome extends JFrame {
 
 		txtNome = new JTextField(10);
 		txtNome.setBounds(50, 130, 180, 30);
-		
+
 		passwordField = new JPasswordField();
 		passwordField.setBounds(50, 160, 180, 30);
 
@@ -54,18 +58,18 @@ public class FinestraChiediNome extends JFrame {
 		lblIlNomeScelto = new JLabel("<html>Il nome scelto è già occupato,<br />scegliere un altro nome e riprovare!</html>");
 		lblIlNomeScelto.setForeground(Color.RED);
 		lblIlNomeScelto.setBounds(50, 61, 250, 38);
-		
+
 		lblPswSbagliata = new JLabel("<html>La password inserita è sbagliata!</html>");
 		lblPswSbagliata.setForeground(Color.RED);
 		lblPswSbagliata.setBounds(50, 61, 250, 38);
-		
+
 		if (visualizzaMessaggioNome) {
 			lblIlNomeScelto.setVisible(true);
 		} else {
 			lblIlNomeScelto.setVisible(false);
 		}
 		contentPane.add(lblIlNomeScelto);
-		
+
 		if (visualizzaMessaggioPassword) {
 			lblPswSbagliata.setVisible(true);
 		} else {
@@ -78,8 +82,9 @@ public class FinestraChiediNome extends JFrame {
 		btnInvia.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// Controllo che il campo testo non sia vuoto (sarebbe meglio aggiungere altri controlli)
-				if(txtNome.getText().length() != 0 && passwordField.getPassword().toString().length() != 0) {
+				// Controllo che il campo testo non sia vuoto (sarebbe meglio
+				// aggiungere altri controlli)
+				if (txtNome.getText().length() != 0 && passwordField.getPassword().toString().length() != 0) {
 					coda.aggiungi(Coppia.creaCoppia(txtNome.getText(), String.valueOf(passwordField.getPassword())));
 				}
 			}

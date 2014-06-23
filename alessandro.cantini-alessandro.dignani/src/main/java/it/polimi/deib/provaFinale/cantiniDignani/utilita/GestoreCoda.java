@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class GestoreCoda<T> {
 	
-	private final static Logger logger = Logger.getLogger(GestoreCoda.class.getName());
+	private static final Logger logger = Logger.getLogger(GestoreCoda.class.getName());
 
 	private BlockingQueue<T> coda = new LinkedBlockingQueue<T>();
 

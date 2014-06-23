@@ -4,16 +4,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public abstract class Timer extends Thread {
-	
-	private final static Logger LOGGER = Logger.getLogger(Timer.class.getName());
-	
+
+	private static final Logger LOGGER = Logger.getLogger(Timer.class.getName());
+
 	private final long tempoDaAspettare;
 	private final long precisione;
 
 	private boolean attivo = true;
 	private boolean on = false;
 	private long inizio;
-
 
 	public Timer(long millisecondi, long precisione) {
 		this.tempoDaAspettare = millisecondi;
@@ -43,12 +42,12 @@ public abstract class Timer extends Thread {
 	/**
 	 * L'azione da compiere quando il timer e' finito
 	 */
-	abstract public void agisci();
+	public abstract void agisci();
 
 	/**
 	 * Inizia e resetta il timer
 	 */
-	synchronized public void inizia() {
+	public synchronized void inizia() {
 		inizio = System.currentTimeMillis();
 		on = true;
 	}
@@ -56,14 +55,14 @@ public abstract class Timer extends Thread {
 	/**
 	 * Ferma il timer
 	 */
-	synchronized public void ferma() {
+	public synchronized void ferma() {
 		on = false;
 	}
-	
+
 	/**
 	 * Termina il thread
 	 */
-	synchronized public void termina() {
+	public synchronized void termina() {
 		attivo = false;
 	}
 }

@@ -159,22 +159,27 @@ public class GestoreMossa {
 		boolean aBuonFine = (lancio == Mappa.getMappa().getDado(pastore.getStrada()));
 
 		if (aBuonFine) {
-			Pecora daAbbattere = Estrattore.getPecora(partita, terrScelto, animScelto);
-			partita.getGregge().rimuovi(daAbbattere);
-
-			for (Pastore pastoreVicino : partita.getPastori()) {
-				if (Mappa.getMappa().sonoContigue(pastore.getStrada(), pastoreVicino.getStrada()) && !pastoreVicino.getColore().equals(pastore.getColore())) {
-					lancio = gestore.lanciaDado(MotivoLancioDado.SILENZIO_ABBATTIMENTO);
-					if (lancio >= CostantiController.DADO_MIN_PER_SILENZIO) {
-						int somma = CostantiController.COSTO_SILENZIO;
-						Giocatore ricevente = partita.getGiocatore(pastoreVicino);
-						gestore.pagamento(somma, giocatore, ricevente);
-					}
-				}
-			}
+			abbattimentoABuonFine(pastore, giocatore, terrScelto, animScelto);
 		}
 
 		gestore.inviaEventoATutti(new Abbattimento(giocatore.getNome(), animScelto, terrScelto, aBuonFine, Estrattore.datiTerritori(partita)));
+	}
+
+	private void abbattimentoABuonFine(Pastore pastore, Giocatore giocatore, int terrScelto, TipoAnimale animScelto) {
+		int lancio;
+		Pecora daAbbattere = Estrattore.getPecora(partita, terrScelto, animScelto);
+		partita.getGregge().rimuovi(daAbbattere);
+
+		for (Pastore pastoreVicino : partita.getPastori()) {
+			if (Mappa.getMappa().sonoContigue(pastore.getStrada(), pastoreVicino.getStrada()) && !pastoreVicino.getColore().equals(pastore.getColore())) {
+				lancio = gestore.lanciaDado(MotivoLancioDado.SILENZIO_ABBATTIMENTO);
+				if (lancio >= CostantiController.DADO_MIN_PER_SILENZIO) {
+					int somma = CostantiController.COSTO_SILENZIO;
+					Giocatore ricevente = partita.getGiocatore(pastoreVicino);
+					gestore.pagamento(somma, giocatore, ricevente);
+				}
+			}
+		}
 	}
 
 	private void accoppia(Pastore pastore, Giocatore giocatore) throws GiocatoreDisconnessoException {

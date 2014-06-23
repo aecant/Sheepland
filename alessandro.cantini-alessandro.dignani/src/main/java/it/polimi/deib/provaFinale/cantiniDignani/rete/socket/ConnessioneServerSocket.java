@@ -15,10 +15,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ConnessioneServerSocket extends ConnessioneServer implements InterfacciaConnessioneServer {
-	
-	private final static Logger LOGGER = Logger.getLogger(ConnessioneServerSocket.class.getName());
-	
-	private ServerSocket server;
+
+	private static final Logger LOGGER = Logger.getLogger(ConnessioneServerSocket.class.getName());
+
 	private final Map<Utente, GestoreClientSocket> gestoriUtenti = new HashMap<Utente, GestoreClientSocket>();
 
 	public ConnessioneServerSocket(ServerSheepland serverSheepland) {
@@ -26,7 +25,7 @@ public class ConnessioneServerSocket extends ConnessioneServer implements Interf
 	}
 
 	public void inizia() {
-
+		ServerSocket server;
 		try {
 			server = new ServerSocket(CostantiSocket.PORTA_SERVER_SOCKET);
 		} catch (IOException e) {

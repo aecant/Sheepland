@@ -11,13 +11,14 @@ import javax.swing.JLabel;
 public class PecoraView extends PedinaConContatoreView {
 
 	private static final long serialVersionUID = 4393985322855180188L;
-	
-	private JLabel pi;
 
 	public PecoraView(int posizioneX, int posizioneY, Integer n) {
 		super(posizioneX, posizioneY, CostantiGui.DIMENSIONE_PECORA, n);
-		
-		pi = new JLabel(new ImageIcon(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "pecora.png").getScaledInstance(CostantiGui.DIMENSIONE_PECORA.width, CostantiGui.DIMENSIONE_PECORA.height, Image.SCALE_SMOOTH)));
+
+		JLabel pi;
+
+		pi = new JLabel(new ImageIcon(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "pecora.png")
+				.getScaledInstance(CostantiGui.DIMENSIONE_PECORA.width, CostantiGui.DIMENSIONE_PECORA.height, Image.SCALE_SMOOTH)));
 		pi.setBounds(new Rectangle(new Point(0, 0), CostantiGui.DIMENSIONE_PECORA));
 
 		this.add(pi);

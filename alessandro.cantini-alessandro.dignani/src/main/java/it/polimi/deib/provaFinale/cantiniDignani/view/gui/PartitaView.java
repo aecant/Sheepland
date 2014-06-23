@@ -13,33 +13,30 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class PartitaView extends JFrame{
+public class PartitaView extends JFrame {
 	private static final long serialVersionUID = 7676869943311337795L;
-	//private JFrame finestra;
+	// private JFrame finestra;
 
-	private JPanel panelMappa;
-	private JPanel panelMappaSinistra;
-	private JPanel panelMappaDestra;
 	private MappaView mappa;
 	private PannelloTessere panelTessere;
-	private JPanel contenitore;
-	private JPanel panelGiocatoriMosse;
 	private PannelloGiocatori panelGiocatori;
 	private PannelloMosse panelMosse;
 	private PanelMessaggi panelMessaggi;
 	private PanelTessereDaAcquistare panelTessereDaAcquistare;
 	private PanelTessereDaVendere panelTessereDaVendere;
 
-	private DatiPartita datiPartita;
-	
 	String io;
 
 	/**
 	 * classe che crea la finestra con tutta la grafica del gioco
 	 */
 	public PartitaView(DatiPartita datiPartita, boolean riconnessione) {
-		this.datiPartita = datiPartita;
-		
+		JPanel panelGiocatoriMosse;
+		JPanel panelMappa;
+		JPanel panelMappaSinistra;
+		JPanel panelMappaDestra;
+		JPanel contenitore;
+
 		setTitle("Sheepland - " + MainClient.getNome());
 
 		// imposto il panel della mappa
@@ -56,12 +53,12 @@ public class PartitaView extends JFrame{
 		panelMappa.add(mappa, BorderLayout.CENTER);
 		panelMappa.add(panelMappaSinistra, BorderLayout.WEST);
 		panelMappa.add(panelMappaDestra, BorderLayout.EAST);
-		
+
 		// imposto il panel delle tessere
-		panelTessere = new PannelloTessere(this.datiPartita.getTessereInCima(), datiPartita.getGiocatore(MainClient.getNome()).numeroTesserePerTipo());
+		panelTessere = new PannelloTessere(datiPartita.getTessereInCima(), datiPartita.getGiocatore(MainClient.getNome()).numeroTesserePerTipo());
 
 		// imposto il panel dei giocatori
-		panelGiocatori = new PannelloGiocatori(this.datiPartita.getGiocatori());
+		panelGiocatori = new PannelloGiocatori(datiPartita.getGiocatori());
 
 		// imposto il panel delle mosse
 		panelMosse = new PannelloMosse();
@@ -84,13 +81,13 @@ public class PartitaView extends JFrame{
 		contenitore.add(panelMappa, BorderLayout.CENTER);
 		contenitore.add(panelGiocatoriMosse, BorderLayout.EAST);
 		contenitore.setBounds(new Rectangle(new Point(0, 0), CostantiGui.DIMENSIONE_SCHERMO));
-		
+
 		// imposto il panelMessaggi
 		panelMessaggi = new PanelMessaggi();
-		
+
 		// imposto il panelTessereDaAcquistare
 		panelTessereDaAcquistare = new PanelTessereDaAcquistare();
-		
+
 		// imposto il panelTessereDaVendere
 		panelTessereDaVendere = new PanelTessereDaVendere();
 
@@ -118,7 +115,7 @@ public class PartitaView extends JFrame{
 	public MappaView getMappa() {
 		return this.mappa;
 	}
-	
+
 	public PanelMessaggi getPanelMessaggi() {
 		return this.panelMessaggi;
 	}

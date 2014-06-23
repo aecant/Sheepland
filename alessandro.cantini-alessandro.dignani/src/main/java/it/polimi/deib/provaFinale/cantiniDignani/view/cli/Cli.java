@@ -142,7 +142,8 @@ public class Cli implements InterfacciaUtente {
 		for (String gioc : punteggio.keySet()) {
 			out.println(gioc + ": " + punteggio.get(gioc) + " punti");
 		}
-		String vincitore = ""; // TODO implementare il vincitore
+		// TODO implementare il vincitore
+		String vincitore = ""; 
 		out.println("Ha vinto " + vincitore);
 	}
 
@@ -264,7 +265,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void marketCompravenditaTessera(String compratore, TesseraInVendita tess) {
-		out.println(compratore + " ha acquistato una tessera di tipo " + tess.getTipo() + " da " + tess.getGiocatore() + " al prezzo di " + tess.getPrezzo() + " denari");
+		out.println(compratore + " ha acquistato una tessera di tipo " + tess.getTipo() + " da " + tess.getGiocatore() + " pagando " + tess.getPrezzo() + " denari");
 	}
 
 	public void marketInizio() {
@@ -276,7 +277,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void marketMessaInVendita(TesseraInVendita tess) {
-		out.println(tess.getGiocatore() + " ha messo in vendita una tessera di tipo " + tess.getTipo() + " al prezzo di " + tess.getPrezzo() + " denari");
+		out.println(tess.getGiocatore() + " ha messo in vendita una tessera di tipo " + tess.getTipo() + " al prezzo di " + tess.getPrezzo() + " denari.");
 	}
 
 	public int marketRichiestaPrezzo(TipoTerritorio tipo) {

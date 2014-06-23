@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 
 public class ConnessioneClientSocket extends ConnessioneClient implements InterfacciaConnessioneClient {
 
-	private final static Logger LOGGER = Logger.getLogger(ConnessioneClientSocket.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(ConnessioneClientSocket.class.getName());
 
 	private final int PORTA = CostantiSocket.PORTA_SERVER_SOCKET;
 

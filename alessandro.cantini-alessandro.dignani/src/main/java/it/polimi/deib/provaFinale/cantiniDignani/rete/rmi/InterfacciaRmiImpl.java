@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 public class InterfacciaRmiImpl implements InterfacciaRmi {
 	
-	private final static Logger LOGGER = Logger.getLogger(InterfacciaRmiImpl.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(InterfacciaRmiImpl.class.getName());
 	
 	private final ConnessioneServerRmi connessione;
 	private final ServerSheepland server;

@@ -15,7 +15,7 @@ public class Mazzo {
 	/**
 	 * Tessera inesistente che indica che il mazzo e' finito
 	 */
-	public final static Tessera TESSERA_FINITA = new Tessera(null, Integer.MIN_VALUE);
+	public static final Tessera TESSERA_FINITA = new Tessera(null, Integer.MIN_VALUE);
 
 	private final Map<TipoTerritorio, Stack<Tessera>> mazzo;
 

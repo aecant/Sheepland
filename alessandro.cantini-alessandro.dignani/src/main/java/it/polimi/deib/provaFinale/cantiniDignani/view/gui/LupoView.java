@@ -12,10 +12,11 @@ public class LupoView extends PedinaView {
 
 	private static final long serialVersionUID = 611823202675870719L;
 	
-	private JLabel immagine;
 
 	public LupoView(int posizioneX, int posizioneY) {
 		super(posizioneX, posizioneY, CostantiGui.DIMENSIONE_LUPO);
+
+		JLabel immagine;
 
 		//setPreferredSize(CostantiGui.DIMENSIONE_LUPO);
 

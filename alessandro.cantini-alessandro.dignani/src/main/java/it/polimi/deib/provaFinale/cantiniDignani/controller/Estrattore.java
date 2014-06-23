@@ -30,6 +30,12 @@ public class Estrattore {
 	private static final Logger LOGGER = Logger.getLogger(Estrattore.class.getName());
 
 	/**
+	 * Costruttore privato per nascondere quello di default
+	 */
+	private Estrattore() {
+	}
+
+	/**
 	 * Restituisce un array di DatiTerritorio. Ogni elemento dell'array contiene
 	 * i dati su un territorio, l'indice dell'array corrisponde al codice del
 	 * territorio.
@@ -254,11 +260,5 @@ public class Estrattore {
 			return agnelloRandom(t);
 		}
 
-	}
-
-	/**
-	 * Costruttore privato per nascondere quello di default
-	 */
-	private Estrattore() {
 	}
 }

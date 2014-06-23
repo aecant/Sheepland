@@ -19,8 +19,8 @@ import java.util.logging.Logger;
 
 public class MainClient {
 
-	private final static Logger LOGGER = Logger.getLogger(MainClient.class.getName());
-	
+	private static final Logger LOGGER = Logger.getLogger(MainClient.class.getName());
+
 	private static String nome;
 	private static String indirizzoServer;
 	private static InterfacciaUtente ui;

@@ -14,11 +14,12 @@ public class PastoreView extends PedinaView {
 
 	private static final long serialVersionUID = -335615034409783586L;
 
-	private JLabel immagine;
 	int codStrada;
 
 	public PastoreView(int posizioneX, int posizioneY, ColorePastore colore, int codStrada) {
 		super(posizioneX, posizioneY, CostantiGui.DIMENSIONE_PASTORE);
+
+		JLabel immagine;
 
 		this.codStrada = codStrada;
 		

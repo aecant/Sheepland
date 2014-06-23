@@ -31,7 +31,7 @@ public class DatiPartita implements Serializable {
 
 	public void setGiocatori(Giocatore[] giocatori) {
 		if (giocatori == null) {
-			throw new IllegalArgumentException("il parametro non puo' essere null");
+			throw new IllegalArgumentException("i giocatori non possono essere null");
 		}
 		this.giocatori = giocatori.clone();
 	}
@@ -59,7 +59,7 @@ public class DatiPartita implements Serializable {
 
 	public void setTerritori(DatiTerritorio[] territori) {
 		if (territori == null) {
-			throw new IllegalArgumentException("il parametro non puo' essere null");
+			throw new IllegalArgumentException("i territori non possono essere null");
 		}
 		this.territori = territori.clone();
 	}
@@ -70,7 +70,7 @@ public class DatiPartita implements Serializable {
 
 	public void setRecinti(Integer[] recinti) {
 		if (territori == null) {
-			throw new IllegalArgumentException("il parametro non puo' essere null");
+			throw new IllegalArgumentException("i recinti non possono essere null");
 		}
 		this.recinti = recinti.clone();
 	}
@@ -81,7 +81,7 @@ public class DatiPartita implements Serializable {
 
 	public void setGiocatoreDiTurno(String giocatoreDiTurno) {
 		if (giocatoreDiTurno == null) {
-			throw new IllegalArgumentException("il parametro non puo' essere null");
+			throw new IllegalArgumentException("il giocatore di turno non puo' essere null");
 		}
 		this.giocatoreDiTurno = giocatoreDiTurno;
 	}
@@ -92,7 +92,7 @@ public class DatiPartita implements Serializable {
 
 	public void setTessereInCima(Tessera[] tessereInCima) {
 		if (tessereInCima == null) {
-			throw new IllegalArgumentException("il parametro non puo' essere null");
+			throw new IllegalArgumentException("le tessere in cima non possono essere null");
 		}
 		this.tessereInCima = tessereInCima.clone();
 	}

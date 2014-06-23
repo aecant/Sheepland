@@ -87,7 +87,7 @@ public class FasePrincipale extends FasePartita {
 			try {
 				codStrada = gestore.aspettaMossa(giocatore);
 			} catch (GiocatoreDisconnessoException e) {
-				LOGGER.log(Level.FINE, "giocatore disconnesso", e);
+				LOGGER.log(Level.FINE, "giocatore disconnesso ", e);
 				return;
 			}
 

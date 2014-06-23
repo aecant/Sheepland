@@ -12,7 +12,7 @@ public class InputCli {
 	private static final Logger LOGGER = Logger.getLogger(InputCli.class.getName());
 
 	private final Scanner in;
-	private final static PrintStream out = CostantiCli.DEFAULT_OUTPUT;
+	private static final PrintStream out = CostantiCli.DEFAULT_OUTPUT;
 
 	public InputCli(InputStream inputStream) {
 		in = new Scanner(inputStream);
