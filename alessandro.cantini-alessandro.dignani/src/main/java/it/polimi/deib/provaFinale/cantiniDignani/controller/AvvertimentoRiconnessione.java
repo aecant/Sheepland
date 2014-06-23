@@ -18,12 +18,22 @@ public class AvvertimentoRiconnessione extends Thread {
 		this.utente = utente;
 	}
 
+	/**
+	 * Aspetta un tempo sufficiente per permettere al giocatore riconnesso di
+	 * completare la registrazione, invia all'utente l'inizio della partita e
+	 * notifica il gestore partita che aspettava la riconnessione
+	 */
 	@Override
 	public void run() {
 		try {
 			// lascia il tempo di completare la registrazione
 			sleep(300);
 			utente.inviaEvento(new InizioPartita(Estrattore.datiPartita(gestore.getPartita()), true));
+
+			synchronized (gestore) {
+				gestore.notify();
+			}
+
 		} catch (InterruptedException e) {
 			LOGGER.log(Level.SEVERE, "interruzione nell'avvertimento dei giocatori", e);
 		}

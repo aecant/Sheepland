@@ -34,7 +34,7 @@ public class ServerSheepland {
 	public void inizia() {
 		connessioneRmi.start();
 		connessioneSocket.start();
-		
+
 		timerPartita.start();
 	}
 
@@ -111,7 +111,7 @@ public class ServerSheepland {
 	 * @param utente
 	 *            l'utente di cui gestire la disconnessione
 	 */
-	public void gestisciDisconnessione(Utente utente) {
+	public synchronized void gestisciDisconnessione(Utente utente) {
 
 		getUtentiInAttesa().remove(utente);
 		getUtentiOnline().remove(utente);
@@ -133,8 +133,6 @@ public class ServerSheepland {
 			for (Utente utentePartita : gestore.getUtenti()) {
 				utentePartita.inviaEvento(new GiocatoreDisconnesso(utente.getNome()));
 			}
-
-			gestore.sospendiPartita();
 
 			LOGGER.warning("Disconnesso " + utente + " nella partita " + gestore.getPartita());
 
@@ -179,7 +177,7 @@ public class ServerSheepland {
 	private void riconnettiUtente(Utente utente) {
 		getUtentiDisconnessi().remove(utente);
 		utente.getCodaMosse().svuota();
-			
+
 		GestorePartita gestore;
 		try {
 			gestore = getGestorePartita(utente);
@@ -189,7 +187,7 @@ public class ServerSheepland {
 		}
 
 		gestore.inviaEventoATutti(new GiocatoreRiconnesso(utente.getNome()));
-		
+
 		for (Utente u : Utilita.copia(gestore.getUtenti())) {
 			if (utente.getNome().equals(u.getNome())) {
 				gestore.getUtenti().remove(u);
@@ -197,10 +195,6 @@ public class ServerSheepland {
 		}
 		gestore.getUtenti().add(utente);
 
-		synchronized (gestore) {
-			gestore.notify();
-		}
-		
 		new AvvertimentoRiconnessione(gestore, utente).start();
 
 		LOGGER.info("riconnesso " + utente);

@@ -140,10 +140,6 @@ public class GestorePartita extends Thread {
 		throw new ElementoNonPresenteException(giocatore + " non presente in " + utenti);
 	}
 
-	public synchronized void sospendiPartita() {
-		// TODO da implementare
-	}
-
 	public boolean isDueGiocatori() {
 		return dueGiocatori;
 	}

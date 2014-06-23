@@ -1,8 +1,10 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
+import it.polimi.deib.provaFinale.cantiniDignani.controller.CostantiController;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.SheeplandException;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.TimerNotify;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.InizioTurno;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoLupo;
@@ -32,7 +34,7 @@ import java.util.logging.Logger;
 public class FasePrincipale extends FasePartita {
 
 	private static final Logger LOGGER = Logger.getLogger(FasePartita.class.getName());
-	
+
 	private final GestoreMossa gestoreMossa;
 
 	public FasePrincipale(GestorePartita gestore) {
@@ -69,11 +71,11 @@ public class FasePrincipale extends FasePartita {
 	}
 
 	private void turnoGiocatore(Giocatore giocatore) {
-		if(gestore.giocatoreOffline(giocatore)) {
+		if (gestore.giocatoreOffline(giocatore)) {
 			gestore.inviaEventoATutti(new SaltoTurno(giocatore.getNome()));
 			return;
 		}
-		
+
 		TipoMossa mossaPrecedente = null;
 		boolean pastoreMosso = false;
 		Pastore pastore = null;
@@ -115,7 +117,26 @@ public class FasePrincipale extends FasePartita {
 				indice = gestore.aspettaMossa(giocatore);
 			} catch (GiocatoreDisconnessoException e) {
 				LOGGER.log(Level.FINE, "giocatore disconnesso", e);
-				return;
+
+				TimerNotify timer = new TimerNotify(CostantiController.SECONDI_INTERRUZIONE_DISCONNESSIONE * 1000, gestore);
+				timer.start();
+				timer.inizia();
+				try {
+					synchronized (gestore) {
+						gestore.wait();
+					}
+				} catch (InterruptedException e1) {
+					LOGGER.log(Level.SEVERE, "interruzione inaspettata mentra si aspettava la riconnessione", e1);
+				}
+				timer.termina();
+
+				if (gestore.giocatoreOffline(giocatore)) {
+					return;
+				} else {
+					numMossa--;
+					continue;
+				}
+
 			}
 			TipoMossa tipoMossa = mosseDisponibili.get(indice);
 
@@ -150,18 +171,18 @@ public class FasePrincipale extends FasePartita {
 		if (movimentoPossibile(origine, lancio) || tutteStradeOccupate) {
 			partita.getLupo().muoviIn(destinazione);
 			gestore.inviaEventoATutti(new MovimentoLupo(origine.getCodice(), destinazione.getCodice(), Estrattore.datiTerritori(partita)));
-			
+
 			List<Pecora> pecoreSulTerr = new ArrayList<Pecora>();
-			for(Pecora pec : partita.getGregge().getPecore()) {
-				if(destinazione.equals(pec.getPosizione())){
+			for (Pecora pec : partita.getGregge().getPecore()) {
+				if (destinazione.equals(pec.getPosizione())) {
 					pecoreSulTerr.add(pec);
 				}
 			}
-			if(!pecoreSulTerr.isEmpty()) {
+			if (!pecoreSulTerr.isEmpty()) {
 				Collections.shuffle(pecoreSulTerr);
 				Pecora uccisa = pecoreSulTerr.get(0);
 				partita.getGregge().rimuovi(uccisa);
-				gestore.inviaEventoATutti(new UccisioneDaParteDelLupo(destinazione.getCodice(),uccisa.getTipoAnimale(), Estrattore.datiTerritori(partita)));
+				gestore.inviaEventoATutti(new UccisioneDaParteDelLupo(destinazione.getCodice(), uccisa.getTipoAnimale(), Estrattore.datiTerritori(partita)));
 			}
 		}
 	}
