@@ -68,12 +68,15 @@ public class Gui implements InterfacciaUtente {
 
 		finestraPartita.visualizza();
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			LOGGER.log(Level.SEVERE, "interruzione anomala nel timer", e);
 		}
-		finestraPartita.getPanelMessaggi().visualizzaMessaggio(
-				"La tua tessera iniziale è di tipo " + MainClient.getDatiPartita().getGiocatore(MainClient.getNome()).getTessere().get(0).getTipo().toString());
+		
+		// Se non è una riconnessione mostro la tessera iniziale
+		if(!riconnessione) {
+			finestraPartita.getPanelMessaggi().visualizzaMessaggio("La tua tessera iniziale è di tipo " + MainClient.getDatiPartita().getGiocatore(MainClient.getNome()).getTessere().get(0).getTipo().toString());
+		}
 	}
 
 	private void disegnaStatoTerritori() {
