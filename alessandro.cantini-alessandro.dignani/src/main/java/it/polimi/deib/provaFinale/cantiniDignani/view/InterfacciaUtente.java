@@ -197,7 +197,9 @@ public interface InterfacciaUtente {
 	void finePartita(Map<String, Integer> punteggio);
 
 	/**
-	 * Avverte l'utente che un giocatore si e' disconnesso
+	 * Avverte l'utente che un giocatore si e' disconnesso e sospende la partita
+	 * per permettere al giocatore di riconnettersi. La partita e' sospesa per
+	 * un periodo di tempo indicato in @link{CostantiController}
 	 * 
 	 * @param giocatore
 	 *            il giocatore che si e' disconnesso
@@ -211,7 +213,7 @@ public interface InterfacciaUtente {
 	 *            il giocatore che si e' riconnesso
 	 * 
 	 */
-	void giocatoreRiconnesso(String giocatore);
+	void riconnessioneGiocatore(String giocatore);
 
 	/**
 	 * Avverte l'utente che un giocatore ha saltato il turno

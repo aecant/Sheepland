@@ -15,7 +15,7 @@ public class GiocatoreRiconnesso extends EventoDisconnessione {
 
 	@Override
 	public void visualizza() {
-		MainClient.getUI().giocatoreRiconnesso(giocatore);
+		MainClient.getUI().riconnessioneGiocatore(giocatore);
 	}
 
 }

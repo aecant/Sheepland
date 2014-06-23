@@ -151,7 +151,7 @@ public class Cli implements InterfacciaUtente {
 		out.println(giocatore + " si e' disconnesso");
 	}
 
-	public void giocatoreRiconnesso(String giocatore) {
+	public void riconnessioneGiocatore(String giocatore) {
 		out.println(giocatore + " si e' riconnesso");
 	}
 

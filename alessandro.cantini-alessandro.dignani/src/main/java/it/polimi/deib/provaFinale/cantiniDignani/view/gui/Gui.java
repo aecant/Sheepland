@@ -241,7 +241,7 @@ public class Gui implements InterfacciaUtente {
 		return coda;
 	}
 
-	public void giocatoreRiconnesso(String giocatore) {
+	public void riconnessioneGiocatore(String giocatore) {
 		finestraPartita.getPanelMessaggi().visualizzaMessaggio(giocatore + " si è riconnesso");
 	}
 
