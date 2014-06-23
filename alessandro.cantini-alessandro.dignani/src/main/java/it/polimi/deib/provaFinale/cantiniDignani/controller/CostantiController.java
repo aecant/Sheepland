@@ -2,12 +2,11 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 
 public class CostantiController {
 
-	// TODO nella versione definitiva, impostare a 30000
 	/**
 	 * Il numero di millisecondi per cui aspettare che si connettano altri
 	 * utenti prima di iniziare la partita
 	 */
-	public static final long MILLISECONDI_TIMER_PARTITA = 5000;
+	public static final long MILLISECONDI_TIMER_PARTITA = 15000;
 
 	/**
 	 * Il numero di millisecondi per cui sospendere una partita nel caso di

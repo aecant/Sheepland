@@ -59,7 +59,6 @@ public class CostantiGui {
 	public static final Dimension DIMENSIONE_IMG_MOTIVO_LANCIO = new Dimension(150, 150);
 	public static final Dimension DIMENSIONE_IMG_DADO = new Dimension(50, 50);
 	
-	// TODO da modificare!
 	public static final Dimension DIMENSIONE_PANEL_LANCIO_DADO = new Dimension(DIMENSIONE_IMG_MOTIVO_LANCIO.width + 10, DIMENSIONE_IMG_MOTIVO_LANCIO.height + DIMENSIONE_IMG_DADO.height + 15);
 	
 	public static final int TEMPO_VISUALIZZAZIONE_MESSAGGIO = 3000;
@@ -195,7 +194,7 @@ public class CostantiGui {
 
 	// Fonts
 	public static final Font FONT_PULSANTI_MOSSE = new Font("Chalkduster", Font.PLAIN, 18);
-	public static final Font FONT_NOME_GIOCATORE = new Font("Trajan Pro 3", Font.BOLD, 16);
+	public static final Font FONT_NOME_GIOCATORE = new Font("Herculanum", Font.BOLD, 16);
 	public static final Font FONT_SOLDI = new Font(FARISI, Font.PLAIN, 30);
 	public static final Font FONT_CONTATORI_ANIMALI = new Font(FARISI, Font.PLAIN, 20);
 	public static final Font FONT_ANGOLINI = new Font(ARIAL, Font.BOLD, 14);

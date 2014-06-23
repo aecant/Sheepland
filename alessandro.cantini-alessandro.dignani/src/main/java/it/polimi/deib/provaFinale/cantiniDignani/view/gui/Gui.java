@@ -162,7 +162,6 @@ public class Gui implements InterfacciaUtente {
 
 		finestraPartita.getPanelGiocatori().aggiorna(giocatore);
 
-		// TODO Migliorare con visualizzazione dell'immagine
 		finestraPartita.getPanelTessere().aggiornaTessere();
 	}
 
@@ -215,13 +214,11 @@ public class Gui implements InterfacciaUtente {
 
 	public int richiestaTerritorioPerAccoppiamento(Collection<Integer> territoriDisponibili) {
 		finestraPartita.getMappa().aggiungiAscoltatoriTerritori(territoriDisponibili);
-		// TODO da migliorare
 		return coda.aspetta();
 	}
 
 	public int richiestaTipoMossa(List<TipoMossa> mosseDisponibili, int numMossa) {
 		finestraPartita.getPanelMosse().abilitaMosse(mosseDisponibili);
-		// TODO Visualizzare anche il numero di mossa corrente
 		return coda.aspetta();
 	}
 
