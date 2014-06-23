@@ -15,8 +15,13 @@ import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Gui implements InterfacciaUtente {
+	
+	private static final Logger LOGGER = Logger.getLogger(Gui.class.getName());
+	
 	private static PartitaView finestraPartita;
 	private static GestoreCoda<Integer> coda = new GestoreCoda<Integer>();
 
@@ -60,6 +65,11 @@ public class Gui implements InterfacciaUtente {
 		disegnaStatoTerritori();
 
 		finestraPartita.visualizza();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE, "interruzione anomala nel timer", e);
+		}
 		finestraPartita.getPanelMessaggi().visualizzaMessaggio(
 				"La tua tessera iniziale è di tipo " + MainClient.getDatiPartita().getGiocatore(MainClient.getNome()).getTessere().get(0).getTipo().toString());
 	}
