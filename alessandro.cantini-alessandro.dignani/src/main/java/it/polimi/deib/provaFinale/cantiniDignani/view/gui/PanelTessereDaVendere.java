@@ -10,6 +10,7 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -74,6 +75,9 @@ public class PanelTessereDaVendere extends JPanel {
 
 	public void sceltaPrezzo(TipoTerritorio t) {
 		butSalta.setEnabled(false);
+		for(MouseListener ml : butSalta.getMouseListeners()) {
+			butSalta.removeMouseListener(ml);
+		}
 		lblMessaggio.setText("Scegli il prezzo a cui venderla");
 		Image img = Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + t.name().toLowerCase() + ".jpg").getScaledInstance(CostantiGui.DIMENSIONE_PANEL_TESSERA.width, CostantiGui.DIMENSIONE_PANEL_TESSERA.height, Image.SCALE_SMOOTH);
 		for (int i = 1; i <= CostantiController.MAX_PREZZO_MARKET; i++) {
@@ -85,6 +89,13 @@ public class PanelTessereDaVendere extends JPanel {
 					if (c instanceof TesseraView) {
 						clickTessera(c);
 						butSalta.setEnabled(true);
+						butSalta.addMouseListener(new java.awt.event.MouseAdapter() {
+							public void mouseClicked(java.awt.event.MouseEvent e) {
+								Gui.getCoda().aggiungi(CostantiController.TERMINATORE_MARKET);
+								panelTessere.removeAll();
+								setVisible(false);
+							}
+						});
 					}
 				}
 			});

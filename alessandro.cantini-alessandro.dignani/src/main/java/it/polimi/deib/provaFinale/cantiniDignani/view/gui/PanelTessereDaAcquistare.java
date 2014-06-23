@@ -57,7 +57,6 @@ public class PanelTessereDaAcquistare extends JPanel {
 					Gui.getFinestraPartita().getPanelTessereDaAcquistare().panelTessere.removeAll();
 					Gui.getFinestraPartita().getPanelTessereDaAcquistare().setVisible(false);
 				}
-				
 			}
 		});
 			panelTessere.add(tessView);
