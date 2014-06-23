@@ -14,7 +14,6 @@ public class PannelloMosse extends JPanel {
 
 	private static final long serialVersionUID = 5474628813953012904L;
 
-	// List<PanelMossa> panelsMosse = new ArrayList<PanelMossa>();
 	Map<TipoMossa, PanelMossa> panelsMosse = new HashMap<TipoMossa, PanelMossa>();
 
 	public PannelloMosse() {
