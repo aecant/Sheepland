@@ -4,7 +4,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.CostantiController;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ElementoNonPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.TimerDisconnessione;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.LancioDado;
@@ -27,8 +26,6 @@ public class GestorePartita extends Thread {
 	private final FaseIniziale faseIniziale;
 	private final FasePrincipale fasePrincipale;
 	private final FaseFinale faseFinale;
-
-	private final TimerDisconnessione timer;
 
 	private final boolean dueGiocatori;
 	private final int denaroIniziale;
@@ -56,7 +53,6 @@ public class GestorePartita extends Thread {
 		fasePrincipale = new FasePrincipale(this);
 		faseFinale = new FaseFinale(this);
 
-		timer = new TimerDisconnessione(CostantiController.MILLISECONDI_INTERRUZIONE_DISCONNESSIONE, this);
 	}
 
 	public void run() {
@@ -145,11 +141,7 @@ public class GestorePartita extends Thread {
 	}
 
 	public synchronized void sospendiPartita() {
-		//TODO da implementare
-	}
-
-	public TimerDisconnessione getTimerDisconnessione() {
-		return timer;
+		// TODO da implementare
 	}
 
 	public boolean isDueGiocatori() {
