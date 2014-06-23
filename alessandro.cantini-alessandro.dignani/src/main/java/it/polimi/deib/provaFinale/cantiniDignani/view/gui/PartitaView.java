@@ -54,19 +54,8 @@ public class PartitaView extends JFrame {
 		panelMappa.add(panelMappaSinistra, BorderLayout.WEST);
 		panelMappa.add(panelMappaDestra, BorderLayout.EAST);
 
-		addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent e) {
-				System.out.println("Hai cliccato la finestra in ("+ e.getX() + ", " + e.getY() + ")");
-			}
-		});
-		
 		// imposto il layeredPane
 		contenitoreLayer = new JLayeredPane();
-		contenitoreLayer.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent e) {
-				System.out.println("Hai cliccato il contenitoreLayer in ("+ e.getX() + ", " + e.getY() + ")");
-			}
-		});
 		
 		// imposto il panel delle tessere
 		panelTessere = new PannelloTessere(datiPartita.getTessereInCima(), datiPartita.getGiocatore(MainClient.getNome()).numeroTesserePerTipo());
@@ -105,10 +94,10 @@ public class PartitaView extends JFrame {
 		panelTessereDaVendere = new PanelTessereDaVendere();
 
 		// aggiungo il contenitore alla finestra
-		contenitoreLayer.add(panelMessaggi, new Integer(7));
-		contenitoreLayer.add(panelTessereDaAcquistare, new Integer(5));
-		contenitoreLayer.add(panelTessereDaVendere, new Integer(6));
-		contenitoreLayer.add(contenitore, new Integer(0));
+		contenitoreLayer.add(panelMessaggi, 7);
+		contenitoreLayer.add(panelTessereDaAcquistare, 5);
+		contenitoreLayer.add(panelTessereDaVendere, 6);
+		contenitoreLayer.add(contenitore, 0);
 		
 		add(contenitoreLayer, BorderLayout.CENTER);
 
