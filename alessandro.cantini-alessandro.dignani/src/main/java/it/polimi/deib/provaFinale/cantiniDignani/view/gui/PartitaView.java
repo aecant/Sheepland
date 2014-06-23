@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 
 public class PartitaView extends JFrame {
 	private static final long serialVersionUID = 7676869943311337795L;
-	// private JFrame finestra;
 
 	private MappaView mappa;
 	private PannelloTessere panelTessere;
@@ -28,7 +27,7 @@ public class PartitaView extends JFrame {
 	String io;
 
 	/**
-	 * classe che crea la finestra con tutta la grafica del gioco
+	 * Classe che crea la finestra con tutta la grafica del gioco
 	 */
 	public PartitaView(DatiPartita datiPartita, boolean riconnessione) {
 		JPanel panelGiocatoriMosse;

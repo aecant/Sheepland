@@ -158,7 +158,6 @@ public class MappaView extends BackgroundMappaPanel {
 				SegnalinoStrada segnalinoTemp = new SegnalinoStrada(coordinateStrade[i], false, i);
 				segnalini.add(segnalinoTemp);
 				add(segnalinoTemp);
-				// repaint();
 			}
 		}
 		repaint();
@@ -169,7 +168,6 @@ public class MappaView extends BackgroundMappaPanel {
 			SegnalinoStrada segnalinoTemp = new SegnalinoStrada(coordinateStrade[p.getStrada().getCodice()], false, p.getStrada().getCodice());
 			segnalini.add(segnalinoTemp);
 			add(segnalinoTemp);
-			// repaint();
 		}
 		repaint();
 	}
