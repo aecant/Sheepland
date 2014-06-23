@@ -114,13 +114,13 @@ public class MappaView extends BackgroundMappaPanel {
 		PedinaView pedina;
 		switch (tipoOvino) {
 		case AGNELLO:
-			pedina = new AgnelloView(orig, 0);
+			pedina = new AgnelloView(orig, 1);
 			break;
 		case MONTONE:
-			pedina = new MontoneView(orig, 0);
+			pedina = new MontoneView(orig, 1);
 			break;
 		case PECORA:
-			pedina = new PecoraView(orig, 0);
+			pedina = new PecoraView(orig, 1);
 			break;
 		case PECORA_NERA:
 			pedina = territoriView.get(origine).getPecoraNera();
