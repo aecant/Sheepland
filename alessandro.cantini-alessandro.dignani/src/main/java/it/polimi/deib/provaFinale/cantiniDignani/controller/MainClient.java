@@ -81,7 +81,7 @@ public class MainClient {
 
 	private static String chiediIndirizzoServer() {
 		String indirizzo = "";
-		while (!InetAddressValidator.getInstance().isValid(indirizzo)) {
+		while (!InetAddressValidator.getInstance().isValid(indirizzo) && !indirizzo.equals("localhost")) {
 			OUTPUT.println("Inserisci l'indirizzo IP del server");
 			indirizzo = INPUT.leggiStringa();
 		}
@@ -89,48 +89,29 @@ public class MainClient {
 	}
 
 	private static InterfacciaConnessioneClient chiediTipoConnessione() {
-		if (CostantiTest.SCELTA_RETE) {
-			InputCli input = new InputCli(System.in);
-			System.out.println("1) Socket");
-			System.out.println("2) RMI");
+		OUTPUT.println("1) Socket");
+		OUTPUT.println("2) RMI");
 
-			int scelta = input.leggiIntero(1, 2);
+		int scelta = INPUT.leggiIntero(1, 2);
 
-			if (scelta == 1) {
-				return new ConnessioneClientRmi(indirizzoServer, codaEventi);
-			} else {
-				return new ConnessioneClientSocket(indirizzoServer, codaEventi);
-			}
-
+		if (scelta == 1) {
+			return new ConnessioneClientRmi(indirizzoServer, codaEventi);
 		} else {
-
-			if (CostantiTest.RMI) {
-				return new ConnessioneClientRmi(indirizzoServer, codaEventi);
-			} else {
-				return new ConnessioneClientSocket(indirizzoServer, codaEventi);
-			}
+			return new ConnessioneClientSocket(indirizzoServer, codaEventi);
 		}
+
 	}
 
 	private static InterfacciaUtente chiediTipoInterfaccia() {
-		if (CostantiTest.SCELTA_INTERFACCIA) {
-			OUTPUT.println("1) CLI");
-			OUTPUT.println("2) GUI");
+		OUTPUT.println("1) CLI");
+		OUTPUT.println("2) GUI");
 
-			int scelta = INPUT.leggiIntero(1, 2);
+		int scelta = INPUT.leggiIntero(1, 2);
 
-			if (scelta == 1) {
-				return new Cli();
-			} else {
-				return new Gui();
-			}
-
+		if (scelta == 1) {
+			return new Cli();
 		} else {
-			if (CostantiTest.CLI) {
-				return new Cli();
-			} else {
-				return new Gui();
-			}
+			return new Gui();
 		}
 	}
 
