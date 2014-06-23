@@ -275,6 +275,6 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void marketInizioAcquisti() {
-
+		//TODO da implementare
 	}
 }

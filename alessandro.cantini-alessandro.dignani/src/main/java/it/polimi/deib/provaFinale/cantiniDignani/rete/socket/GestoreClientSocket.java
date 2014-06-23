@@ -58,7 +58,7 @@ public class GestoreClientSocket extends Thread {
 			out.writeObject(evento);
 			out.flush();
 		} catch (IOException e) {
-			LOGGER.log(Level.FINE, "giocatore disconnesso ", e);
+			LOGGER.log(Level.FINE, "giocatore disconnesso, impossibile inviare evento", e);
 			serverSheepland.gestisciDisconnessione(utente);
 		}
 	}
@@ -90,8 +90,8 @@ public class GestoreClientSocket extends Thread {
 			} catch (ClassNotFoundException e) {
 				LOGGER.log(Level.SEVERE, "problemi nella ricezione dell'evento", e);
 			} catch (IOException e) {
-				LOGGER.log(Level.FINE, "giocatore disconnesso", e);
 				serverSheepland.gestisciDisconnessione(utente);
+				LOGGER.log(Level.FINE, "giocatore disconnesso, impossibile registrare evento", e);
 			}
 		}
 	}

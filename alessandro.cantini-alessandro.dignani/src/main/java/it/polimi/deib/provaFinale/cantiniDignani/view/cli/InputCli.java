@@ -12,10 +12,11 @@ public class InputCli {
 	private static final Logger LOGGER = Logger.getLogger(InputCli.class.getName());
 
 	private final Scanner in;
-	private static final PrintStream out = CostantiCli.DEFAULT_OUTPUT;
+	private final PrintStream out;
 
 	public InputCli(InputStream inputStream) {
 		in = new Scanner(inputStream);
+		out = CostantiCli.DEFAULT_OUTPUT;
 	}
 
 	/**
@@ -69,7 +70,8 @@ public class InputCli {
 	}
 
 	/**
-	 * Chiede un intero che deve appartenere alla collezione passata come parametro
+	 * Chiede un intero che deve appartenere alla collezione passata come
+	 * parametro
 	 * 
 	 * @param insieme
 	 *            l'insieme di numeri di cui l'intero deve far parte

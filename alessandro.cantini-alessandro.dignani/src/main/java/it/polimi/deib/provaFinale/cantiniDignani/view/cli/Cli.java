@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class Cli implements InterfacciaUtente {
 	private final InputCli in;
-	private final PrintStream out = CostantiCli.DEFAULT_OUTPUT;
+	private static final PrintStream out = CostantiCli.DEFAULT_OUTPUT;
 
 	public Cli(InputStream is) {
 		in = new InputCli(is);

@@ -25,7 +25,6 @@ public class Sorte {
 	 */
 	public static boolean lanciaMoneta() {
 		return new Random().nextBoolean();
-		// return numeroCasuale(0, 1) == 0 ? false : true;
 	}
 
 	/**
@@ -40,7 +39,7 @@ public class Sorte {
 	 * @throws IllegalArgumentException
 	 *             se min e' maggiore o uguale a max
 	 */
-	public static int numeroCasuale(int min, int max){
+	public static int numeroCasuale(int min, int max) {
 		if (min > max) {
 			throw new IllegalArgumentException("il primo parametro deve essere minore o uguale al secondo");
 		}

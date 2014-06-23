@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class TerritorioView {
-	private Map<TipoAnimale, Point> coordAnimali = new HashMap<TipoAnimale, Point>();;
+	private Map<TipoAnimale, Point> coordAnimali = new HashMap<TipoAnimale, Point>();
 	private final Point[] coordinate;
 	private final int codTerr;
 	private int indice;
@@ -28,7 +28,7 @@ public class TerritorioView {
 	/**
 	 * Aggiorna la mappa delle coordinate degli animali
 	 */
-	public void aggiorna() {
+	public final void aggiorna() {
 		indice = coordAnimali.keySet().size();
 		for (TipoAnimale tipo : TipoAnimale.values()) {
 			if (dati().getTipiAnimale().contains(tipo) && !coordAnimali.containsKey(tipo)) {

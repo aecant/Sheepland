@@ -17,21 +17,19 @@ public class AgnelloView extends PedinaConContatoreView {
 
 	public AgnelloView(int posizioneX, int posizioneY, Integer n) {
 		super(posizioneX, posizioneY, CostantiGui.DIMENSIONE_AGNELLO, n);
-		
+
 		JLabel immagine = new JLabel(new ImageIcon(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "agnello.png")
 				.getScaledInstance(CostantiGui.DIMENSIONE_AGNELLO.width, CostantiGui.DIMENSIONE_AGNELLO.height, Image.SCALE_SMOOTH)));
 		immagine.setBounds(new Rectangle(new Point(0, 0), CostantiGui.DIMENSIONE_AGNELLO));
 		add(immagine);
 
 		for (Component c : super.getComponents()) {
-			if (c.getName() != null) {
-				if (c.getName().equals(CONTATORE)) {
-					c.setBounds(7, 8, 15, 15);
-				}
+			if (c.getName() != null && c.getName().equals(CONTATORE)) {
+				c.setBounds(7, 8, 15, 15);
 			}
 		}
 	}
-	
+
 	public AgnelloView(Point coordinate, Integer n) {
 		this(coordinate.x, coordinate.y, n);
 	}

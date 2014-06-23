@@ -56,27 +56,27 @@ public class MappaView extends BackgroundMappaPanel {
 		for (int i = 0; i < CostantiModel.NUM_TERRITORI; i++) {
 			territoriView.add(new TerritorioView(i, coordinateTerritori[i]));
 		}
-		
-		if(riconnessione) {
+
+		if (riconnessione) {
 			// Disegno i recinti
 			for (int i = 0; i < MainClient.getDatiPartita().getRecinti().length; i++) {
-				if(i < CostantiModel.NUM_RECINTI_INIZIALI){
+				if (i < CostantiModel.NUM_RECINTI_INIZIALI) {
 					aggiungiRecinto(MainClient.getDatiPartita().getRecinti()[i], false);
 				} else {
 					aggiungiRecinto(MainClient.getDatiPartita().getRecinti()[i], true);
 				}
 			}
-			
+
 			// Disegno i pastori
-			for(Giocatore g : MainClient.getDatiPartita().getGiocatori()) {
-				for(Pastore p : g.getPastori()) {
+			for (Giocatore g : MainClient.getDatiPartita().getGiocatori()) {
+				for (Pastore p : g.getPastori()) {
 					creaPastore(p.getStrada().getCodice(), p.getColore());
 				}
 			}
 			repaint();
 		}
 	}
-	
+
 	private void aggiungiRecinto(Integer codStrada, boolean isFinale) {
 		RecintoView recintoTemp = null;
 		recintoTemp = new RecintoView(coordinateStrade[codStrada], isFinale);
@@ -84,7 +84,7 @@ public class MappaView extends BackgroundMappaPanel {
 		add(recintoTemp);
 	}
 
-	public void creaPastore(int strada, ColorePastore colore) {
+	public final void creaPastore(int strada, ColorePastore colore) {
 		Point coordinataStrada = coordinateStrade[strada];
 		PastoreView past = new PastoreView(coordinataStrada.x - (CostantiGui.DIMENSIONE_PASTORE.width / 2), coordinataStrada.y - (CostantiGui.DIMENSIONE_PASTORE.height / 2), colore, strada);
 		pastori.add(past);
@@ -179,8 +179,8 @@ public class MappaView extends BackgroundMappaPanel {
 			if (p.getCodStrada() == origine) {
 				p.muovi(coordinateStrade[destinazione]);
 				p.setCodStrada(destinazione);
-				
-				if(MainClient.getDatiPartita().getRecinti().length > CostantiModel.NUM_RECINTI_INIZIALI) {
+
+				if (MainClient.getDatiPartita().getRecinti().length > CostantiModel.NUM_RECINTI_INIZIALI) {
 					aggiungiRecinto(origine, true);
 				} else {
 					aggiungiRecinto(origine, false);
@@ -208,7 +208,7 @@ public class MappaView extends BackgroundMappaPanel {
 
 	public void aggiungiAscoltatoriAnimali(List<Coppia<Integer, TipoAnimale>> oviniSpostabili) {
 		Integer indice = 0;
-		for(Coppia<Integer, TipoAnimale> coppia : oviniSpostabili) {
+		for (Coppia<Integer, TipoAnimale> coppia : oviniSpostabili) {
 			PedinaListener temp = new PedinaListener(territoriView.get(coppia.getPrimo()).getCoordinate(coppia.getSecondo()), CostantiGui.DIMENSIONE_ASCOLTATORE_ANIMALE, indice);
 			ascoltatori.add(temp);
 			add(temp);
@@ -218,7 +218,7 @@ public class MappaView extends BackgroundMappaPanel {
 	}
 
 	public void aggiungiAscoltatoriTerritori(Collection<Integer> territoriDisponibili) {
-		for(Integer codTerritorio : territoriDisponibili) {
+		for (Integer codTerritorio : territoriDisponibili) {
 			PedinaListener temp = new PedinaListener(territoriView.get(codTerritorio).getCoordinataCentrale(), CostantiGui.DIMENSIONE_ASCOLTATORE_TERRITORIO, codTerritorio);
 			ascoltatori.add(temp);
 			add(temp);

@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class GestoreCoda<T> {
 	
-	private static final Logger logger = Logger.getLogger(GestoreCoda.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(GestoreCoda.class.getName());
 
 	private BlockingQueue<T> coda = new LinkedBlockingQueue<T>();
 
@@ -29,7 +29,7 @@ public class GestoreCoda<T> {
 		try {
 			evento = coda.take();
 		} catch (InterruptedException e) {
-			logger.log(Level.SEVERE, "coda interrotta", e);
+			LOGGER.log(Level.SEVERE, "coda interrotta", e);
 		}
 		return evento;
 	}

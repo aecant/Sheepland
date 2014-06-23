@@ -6,10 +6,10 @@ public class MainServer {
 
 	private MainServer() {
 	}
-	
+
 	public static void main(String[] args) {
 		Logger.getLogger("").setLevel(CostantiTest.LIVELLO_LOGGER);
-		
+
 		ServerSheepland server = new ServerSheepland();
 		server.inizia();
 	}

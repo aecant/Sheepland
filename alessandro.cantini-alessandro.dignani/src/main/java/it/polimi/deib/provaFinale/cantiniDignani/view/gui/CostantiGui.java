@@ -19,7 +19,7 @@ public class CostantiGui {
 	// Risoluzione spostamento
 	public static final int NUM_PASSI_SPOSTAMENTO = 60;
 
-	public static final String PERCORSO_IMMAGINI = new String("immagini/");
+	public static final String PERCORSO_IMMAGINI = "immagini/";
 
 	// Colori
 	public static final Color COLORE_ACQUA = new Color(34, 145, 243);

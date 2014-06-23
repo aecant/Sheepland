@@ -118,8 +118,8 @@ public class UtilitaStringhe {
 	 *            la stringa da formattare
 	 * @return una stringa con l'iniziale maiuscola
 	 */
-	public static String inizialeMaiuscola(String s) {
-		s = s.toLowerCase();
+	public static String inizialeMaiuscola(String stringa) {
+		String s = stringa.toLowerCase();
 		return s.substring(0, 1).toUpperCase() + s.substring(1);
 	}
 
@@ -184,11 +184,12 @@ public class UtilitaStringhe {
 		String elenco = "";
 
 		Iterator<E> iter = lista.iterator();
+		int i = indice;
 		while (iter.hasNext()) {
 			String elem = iter.next().toString();
 			String fine = iter.hasNext() ? fineRiga : fineElenco;
-			elenco += indice + separatore + elem + fine;
-			indice++;
+			elenco += i + separatore + elem + fine;
+			i++;
 		}
 
 		return elenco;
