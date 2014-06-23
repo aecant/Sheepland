@@ -23,17 +23,8 @@ public class PecoraView extends PedinaConContatoreView {
 
 		this.add(pi);
 
-//		this.addMouseListener(new java.awt.event.MouseAdapter() {
-//			public void mouseClicked(java.awt.event.MouseEvent e) {
-//				Component c = e.getComponent();
-//				if(c  instanceof PecoraView) {
-//					((PecoraView) c).incrementa();
-//				}
-//				
-//			}
-//		});
 	}
-	
+
 	public PecoraView(Point coordinate, Integer n) {
 		this(coordinate.x, coordinate.y, n);
 	}

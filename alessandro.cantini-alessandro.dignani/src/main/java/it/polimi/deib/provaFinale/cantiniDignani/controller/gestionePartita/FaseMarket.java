@@ -145,7 +145,7 @@ public class FaseMarket extends FasePartita {
 				}
 			}
 			if(tessereDisponibili.isEmpty()) {
-				break;
+				return;
 			}
 			
 			gestore.inviaEvento(new MarketRichiestaTesseraDaAcquistare(tessereDisponibili), giocatore);
@@ -157,7 +157,7 @@ public class FaseMarket extends FasePartita {
 				return;
 			}
 			if (scelta == CostantiController.TERMINATORE_MARKET) {
-				break;
+				return;
 			}
 			GestoreMossa.controllaIndice(scelta, tessereDisponibili);
 			TesseraInVendita tesseraComprata = tessereDisponibili.get(scelta);

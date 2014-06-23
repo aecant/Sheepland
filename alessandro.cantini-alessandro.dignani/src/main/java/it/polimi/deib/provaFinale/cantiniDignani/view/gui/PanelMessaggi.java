@@ -41,7 +41,7 @@ public class PanelMessaggi extends JPanel {
 	public void visualizzaMessaggio(String messaggio) {
 		visualizzaMessaggio(messaggio, CostantiGui.TEMPO_VISUALIZZAZIONE_MESSAGGIO);
 	}
-	
+
 	public void visualizzaMessaggio(String messaggio, int millis) {
 		setLayout(new BorderLayout());
 		setBackground(CostantiGui.COLORE_SFONDO_MESSAGGI);
@@ -52,29 +52,6 @@ public class PanelMessaggi extends JPanel {
 		setVisible(true);
 		Gui.getFinestraPartita().repaint();
 		repaint();
-
-		// prova dinamica
-//		int dimX = 0;
-//		int dimY = 0;
-//
-//		double dx = CostantiGui.DIMENSIONE_PANEL_MESSAGGI.width / CostantiGui.NUM_FRAME_ANIM_MESS;
-//		double dy = CostantiGui.DIMENSIONE_PANEL_MESSAGGI.height / CostantiGui.NUM_FRAME_ANIM_MESS;
-//
-//		for (int i = 0; i <= CostantiGui.NUM_FRAME_ANIM_MESS; i++) {
-//			dimX = (int) (dx * i);
-//			dimY = (int) (dy * i);
-//
-//			setBounds((CostantiGui.DIMENSIONE_SCHERMO.width - dimX) / 2, (CostantiGui.DIMENSIONE_SCHERMO.height - dimY) / 2, dimX, dimY);
-//			lblMessaggi.setLocation(0, 0);
-//			repaint();
-//
-//			try {
-//				Thread.sleep(10);
-//			} catch (InterruptedException e) {
-//				LOGGER.log(Level.SEVERE, "Interruzione anomala", e);
-//			}
-//
-//		}
 
 		try {
 			Thread.sleep(millis);
@@ -89,7 +66,6 @@ public class PanelMessaggi extends JPanel {
 		setLayout(new BorderLayout(0, 5));
 		setBackground(CostantiGui.COLORE_SFONDO_LANCIO_DADO);
 
-		// Carico l'immagine del motivo del lancio
 		img = Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI_DADO + motivo.toString().toLowerCase() + ".png")
 				.getScaledInstance(CostantiGui.DIMENSIONE_IMG_MOTIVO_LANCIO.width, CostantiGui.DIMENSIONE_IMG_MOTIVO_LANCIO.height, Image.SCALE_SMOOTH);
 
@@ -173,7 +149,7 @@ public class PanelMessaggi extends JPanel {
 	}
 
 	public void visualizzaMessaggioDisconnessione(String giocatore) {
-		for(int i = 30; i>=0; i--) {
+		for (int i = 30; i >= 0; i--) {
 			visualizzaMessaggio("<html>Il giocatore " + giocatore + " si è disconnesso!<br /> Attendere " + i + " secondi</html>", 1000);
 		}
 	}
