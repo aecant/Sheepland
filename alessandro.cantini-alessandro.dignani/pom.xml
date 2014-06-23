@@ -4,7 +4,7 @@
 
 	<groupId>it.polimi.deib.provaFinale</groupId>
 	<artifactId>alessandro.cantini-alessandro.dignani</artifactId>
-	<version>1.0 beta</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
 	<name>alessandro.cantini-alessandro.dignani</name>
