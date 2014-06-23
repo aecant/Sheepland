@@ -195,6 +195,10 @@ public class CostantiGui {
 
 	public static final Dimension DIMENSIONE_IMMAGINE_SCENETTA = new Dimension(DIMENSIONE_SCHERMO.width / 2, (int) ((DIMENSIONE_SCHERMO.width / 2) * 0.6));
 
+	public static final Dimension DIMENSIONE_ONDA = new Dimension(DIMENSIONE_MAPPA.height / 18, DIMENSIONE_MAPPA.height / 48);
+
+	public static final int SPOSTAMENTO_ONDA = DIMENSIONE_ONDA.width / 2;
+
 
 	/**
 	 * Costruttore privato per nascondere quello di default
