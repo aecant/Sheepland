@@ -11,6 +11,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
+import it.polimi.deib.provaFinale.cantiniDignani.view.ThreadSospensionePartita;
 
 import java.util.Collection;
 import java.util.List;
@@ -19,14 +20,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Gui implements InterfacciaUtente {
-	
+
 	private static final Logger LOGGER = Logger.getLogger(Gui.class.getName());
-	
+
 	private static PartitaView finestraPartita;
 	private static GestoreCoda<Integer> coda = new GestoreCoda<Integer>();
 
 	private boolean messNomeGiaPresente = false;
 	private boolean messPwdSbagliata = false;
+
+	private ThreadSospensionePartita sospensionePartita;
 
 	/**
 	 * Implementazione del metodo che chiede all'utente il nome per connettersi
@@ -72,10 +75,11 @@ public class Gui implements InterfacciaUtente {
 		} catch (InterruptedException e) {
 			LOGGER.log(Level.SEVERE, "interruzione anomala nel timer", e);
 		}
-		
+
 		// Se non è una riconnessione mostro la tessera iniziale
-		if(!riconnessione) {
-			finestraPartita.getPanelMessaggi().visualizzaMessaggio("La tua tessera iniziale è di tipo " + MainClient.getDatiPartita().getGiocatore(MainClient.getNome()).getTessere().get(0).getTipo().toString());
+		if (!riconnessione) {
+			finestraPartita.getPanelMessaggi().visualizzaMessaggio(
+					"La tua tessera iniziale è di tipo " + MainClient.getDatiPartita().getGiocatore(MainClient.getNome()).getTessere().get(0).getTipo().toString());
 		}
 	}
 
@@ -146,7 +150,7 @@ public class Gui implements InterfacciaUtente {
 			}
 		}
 		messaggio += "<br />Ha vinto " + vincitore + " con un punteggio di " + max + "!</html>";
-		finestraPartita.getPanelMessaggi().visualizzaMessaggio(messaggio, 60*1000);
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio(messaggio, 60 * 1000);
 	}
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
@@ -223,13 +227,11 @@ public class Gui implements InterfacciaUtente {
 
 	public int richiestaPecoraDaMuovere(List<Coppia<Integer, TipoAnimale>> oviniSpostabili) {
 		finestraPartita.getMappa().aggiungiAscoltatoriAnimali(oviniSpostabili);
-		// TODO Far illuminare i territori disponibili
 		return coda.aspetta();
 	}
 
 	public int richiestaPecoraDaAbbattere(List<Coppia<Integer, TipoAnimale>> oviniAbbattibili) {
 		finestraPartita.getMappa().aggiungiAscoltatoriAnimali(oviniAbbattibili);
-		// TODO Far illuminare i territori disponibili
 		return coda.aspetta();
 	}
 
@@ -239,15 +241,18 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void disconnessioneGiocatore(String giocatore) {
-		finestraPartita.getPanelMessaggi().visualizzaMessaggioDisconnessione(giocatore);
-	}
-
-	public static GestoreCoda<Integer> getCoda() {
-		return coda;
+		sospensionePartita = new ThreadSospensionePartitaGui(giocatore);
+		sospensionePartita.start();
 	}
 
 	public void riconnessioneGiocatore(String giocatore) {
-		finestraPartita.getPanelMessaggi().visualizzaMessaggio(giocatore + " si è riconnesso");
+		sospensionePartita.ferma();
+		try {
+			sospensionePartita.join();
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE, "interruzione inaspettata sospensione partita", e);
+		}
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio(giocatore + " si e' riconnesso");
 	}
 
 	public void saltoTurno(String giocatore) {
@@ -277,6 +282,10 @@ public class Gui implements InterfacciaUtente {
 	public int marketRichiestaTesseraDaAcquistare(List<TesseraInVendita> tessereDisponibili) {
 		finestraPartita.getPanelTessereDaVendere().marketRichiestaTesseraDaAcquistare(tessereDisponibili);
 		return coda.aspetta();
+	}
+
+	public static GestoreCoda<Integer> getCoda() {
+		return coda;
 	}
 
 	public void marketCompravenditaTessera(String compratore, TesseraInVendita tesseraInVendita) {
