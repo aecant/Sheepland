@@ -39,6 +39,10 @@ public class PanelMessaggi extends JPanel {
 	}
 
 	public void visualizzaMessaggio(String messaggio) {
+		visualizzaMessaggio(messaggio, CostantiGui.TEMPO_VISUALIZZAZIONE_MESSAGGIO);
+	}
+	
+	public void visualizzaMessaggio(String messaggio, int millis) {
 		setLayout(new BorderLayout());
 		setBackground(CostantiGui.COLORE_SFONDO_MESSAGGI);
 		lblMessaggi.setText(messaggio);
@@ -73,7 +77,7 @@ public class PanelMessaggi extends JPanel {
 //		}
 
 		try {
-			Thread.sleep(CostantiGui.TEMPO_VISUALIZZAZIONE_MESSAGGIO);
+			Thread.sleep(millis);
 		} catch (InterruptedException e) {
 			LOGGER.log(Level.SEVERE, "Interruzione anomala", e);
 		}
@@ -166,5 +170,11 @@ public class PanelMessaggi extends JPanel {
 			remove(comp);
 		}
 		setVisible(false);
+	}
+
+	public void visualizzaMessaggioDisconnessione(String giocatore) {
+		for(int i = 30; i>=0; i--) {
+			visualizzaMessaggio("<html>Il giocatore " + giocatore + " si è disconnesso!<br /> Attendere " + i + " secondi</html>", 1000);
+		}
 	}
 }

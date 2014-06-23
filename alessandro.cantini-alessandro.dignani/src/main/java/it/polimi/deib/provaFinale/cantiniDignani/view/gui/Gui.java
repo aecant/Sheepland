@@ -182,6 +182,7 @@ public class Gui implements InterfacciaUtente {
 
 	public void pagamento(Integer denaro, String pagante, String pagato) {
 		finestraPartita.getPanelGiocatori().pagamento(denaro, pagante, pagato);
+		finestraPartita.getPanelTessere().aggiornaTessere();
 	}
 
 	public void uccisioneLupo(int territorio, TipoAnimale tipoOvino) {
@@ -233,8 +234,7 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void disconnessioneGiocatore(String giocatore) {
-		// TODO migliorare
-		finestraPartita.getPanelMessaggi().visualizzaMessaggio("Il giocatore " + giocatore + " si è disconnesso!");
+		finestraPartita.getPanelMessaggi().visualizzaMessaggioDisconnessione(giocatore);
 	}
 
 	public static GestoreCoda<Integer> getCoda() {
@@ -275,16 +275,15 @@ public class Gui implements InterfacciaUtente {
 	}
 
 	public void marketCompravenditaTessera(String compratore, TesseraInVendita tesseraInVendita) {
-		// TODO Auto-generated method stub
-
+		String messaggio = compratore + " ha acquistato una tessera di tipo " + tesseraInVendita.getTipo() + " da " + tesseraInVendita.getGiocatore();
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio(messaggio);
 	}
 
 	public void marketInizio() {
-		// TODO Auto-generated method stub
-
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio("Inizio fase vendita market");
 	}
 
 	public void marketInizioAcquisti() {
-		//TODO da implementare
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio("Inizio fase acquisti market");
 	}
 }
