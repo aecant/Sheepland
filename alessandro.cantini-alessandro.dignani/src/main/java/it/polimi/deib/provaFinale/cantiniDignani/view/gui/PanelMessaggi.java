@@ -148,9 +148,4 @@ public class PanelMessaggi extends JPanel {
 		setVisible(false);
 	}
 
-	public void visualizzaMessaggioDisconnessione(String giocatore) {
-		for (int i = 30; i >= 0; i--) {
-			visualizzaMessaggio("<html>Il giocatore " + giocatore + " si è disconnesso!<br /> Attendere " + i + " secondi</html>", 1000);
-		}
-	}
 }

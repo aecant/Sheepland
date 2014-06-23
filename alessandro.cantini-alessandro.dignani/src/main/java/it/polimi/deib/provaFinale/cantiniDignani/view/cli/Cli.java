@@ -19,6 +19,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.model.TipoTerritorio;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 import it.polimi.deib.provaFinale.cantiniDignani.view.InterfacciaUtente;
+import it.polimi.deib.provaFinale.cantiniDignani.view.ThreadSospensionePartita;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -31,13 +32,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Cli implements InterfacciaUtente {
-	
+
 	private static final String DENARI = " denari";
 
 	private static final Logger LOGGER = Logger.getLogger(Cli.class.getName());
-	
+
 	private final InputCli in;
 	private final PrintStream out;
+
+	private ThreadSospensionePartita sospensionePartita;
 
 	public Cli(InputStream is) {
 		in = new InputCli(is);
@@ -147,39 +150,42 @@ public class Cli implements InterfacciaUtente {
 
 	public void finePartita(Map<String, Integer> punteggio) {
 		out.println("La partita e' finita!");
-		
+
 		int max = 0;
 		String vincitore = "";
 		for (String gioc : punteggio.keySet()) {
 			int punti = punteggio.get(gioc);
 			out.println(gioc + ": " + punti + " punti");
-			if(punti == max) {
+			if (punti == max) {
 				vincitore += ", " + gioc;
-			} else if (punti > max){
+			} else if (punti > max) {
 				max = punti;
 				vincitore = gioc;
 			}
 		}
-		
+
 		out.println("Ha vinto " + vincitore);
 	}
 
 	public void disconnessioneGiocatore(String giocatore) {
 		out.println(giocatore + " si e' disconnesso");
 		out.println("La partita verra' sospesa per " + CostantiController.SECONDI_INTERRUZIONE_DISCONNESSIONE + " secondi per permettere a " + giocatore + " di riconnettersi");
-		for(int i = CostantiController.SECONDI_INTERRUZIONE_DISCONNESSIONE; i >= 0; i--) {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				LOGGER.log(Level.SEVERE, "interruzione anomala nella visualizzazione del timer", e);
-			}
-			
-			out.print(i + "...");
-		}
+
+		sospensionePartita = new ThreadSospensionePartitaCli(giocatore, out);
+		sospensionePartita.start();
+
 		out.println("\nLa partita puo' riprendere");
 	}
 
 	public void riconnessioneGiocatore(String giocatore) {
+		sospensionePartita.ferma();
+
+		try {
+			sospensionePartita.join();
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE, "interruzione inaspettata ", e);
+		}
+
 		out.println(giocatore + " si e' riconnesso");
 	}
 
