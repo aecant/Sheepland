@@ -21,14 +21,12 @@ public class PanelTessereDaVendere extends JPanel {
 
 	private static final long serialVersionUID = -2079063338583718618L;
 
-	private JLabel lblMessaggio = new JLabel("Scegli la tessera da vendere");
+	private JLabel lblMessaggio = new JLabel();
 	private JPanel panelTessere = new JPanel();
 	private JButton butSalta = new JButton("Salta");
 
 	protected PanelTessereDaVendere() {
-		setBounds((CostantiGui.DIMENSIONE_SCHERMO.width - CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.width) / 2,
-				(CostantiGui.DIMENSIONE_SCHERMO.height - CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.height) / 2, CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.width,
-				CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.height);
+		setBounds((CostantiGui.DIMENSIONE_SCHERMO.width - CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.width) / 2, (CostantiGui.DIMENSIONE_SCHERMO.height - CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.height) / 2, CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.width,CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.height);
 		setLayout(new BorderLayout());
 
 		// Imposto il lblMessaggio
@@ -60,71 +58,79 @@ public class PanelTessereDaVendere extends JPanel {
 
 	public void sceltaTipoTessera(List<TipoTerritorio> tessereDisponibili) {
 		int cont = 0;
+		lblMessaggio.setText("Scegli la tessera da vendere");
 		for (TipoTerritorio t : tessereDisponibili) {
 			Image img = Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + t.name().toLowerCase() + ".jpg")
 					.getScaledInstance(CostantiGui.DIMENSIONE_PANEL_TESSERA.width, CostantiGui.DIMENSIONE_PANEL_TESSERA.height, Image.SCALE_SMOOTH);
 			TesseraView tessView = new TesseraView(img, 0, null, cont);
-			tessView.setPreferredSize(CostantiGui.DIMENSIONE_PANEL_TESSERA);
-			tessView.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					Component c = e.getComponent();
-					if (c instanceof TesseraView) {
-						Gui.getCoda().aggiungi(((TesseraView) c).getIndice());
-						panelTessere.removeAll();
-						setVisible(false);
-					}
-				}
-			});
-			panelTessere.add(tessView);
+			impostaTessera(tessView);
+			impostaAscoltatore(tessView);
 			cont++;
 		}
-		setVisible(true);
+		visualizza(cont);
 	}
+
+	
 
 	public void sceltaPrezzo(TipoTerritorio t) {
 		butSalta.setEnabled(false);
-
-		Image img = Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + t.name().toLowerCase() + ".jpg")
-				.getScaledInstance(CostantiGui.DIMENSIONE_PANEL_TESSERA.width, CostantiGui.DIMENSIONE_PANEL_TESSERA.height, Image.SCALE_SMOOTH);
-		for (int i = 1; i < 5; i++) {
+		lblMessaggio.setText("Scegli il prezzo a cui venderla");
+		Image img = Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + t.name().toLowerCase() + ".jpg").getScaledInstance(CostantiGui.DIMENSIONE_PANEL_TESSERA.width, CostantiGui.DIMENSIONE_PANEL_TESSERA.height, Image.SCALE_SMOOTH);
+		for (int i = 1; i <= CostantiController.MAX_PREZZO_MARKET; i++) {
 			TesseraView tessView = new TesseraView(img, i, null, i);
-			tessView.setPreferredSize(CostantiGui.DIMENSIONE_PANEL_TESSERA);
+			impostaTessera(tessView);
 			tessView.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
 					Component c = e.getComponent();
 					if (c instanceof TesseraView) {
-						Gui.getCoda().aggiungi(((TesseraView) c).getIndice());
-						panelTessere.removeAll();
-						setVisible(false);
+						clickTessera(c);
 						butSalta.setEnabled(true);
 					}
 				}
 			});
-			panelTessere.add(tessView);
 		}
-		setVisible(true);
+		visualizza(CostantiController.MAX_PREZZO_MARKET - 1);
 	}
 
 	public void marketRichiestaTesseraDaAcquistare(List<TesseraInVendita> tessereDisponibili) {
 		int cont = 0;
+		lblMessaggio.setText("Scegli la tessera da acquistare");
 		for (TesseraInVendita tess : tessereDisponibili) {
 			Image img = Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + tess.getTipo().name().toLowerCase() + ".jpg")
 					.getScaledInstance(CostantiGui.DIMENSIONE_PANEL_TESSERA.width, CostantiGui.DIMENSIONE_PANEL_TESSERA.height, Image.SCALE_SMOOTH);
 			TesseraView tessView = new TesseraView(img, tess.getPrezzo(), null, cont);
-			tessView.setPreferredSize(CostantiGui.DIMENSIONE_PANEL_TESSERA);
-			tessView.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					Component c = e.getComponent();
-					if (c instanceof TesseraView) {
-						Gui.getCoda().aggiungi(((TesseraView) c).getIndice());
-						panelTessere.removeAll();
-						setVisible(false);
-					}
-				}
-			});
-			panelTessere.add(tessView);
+			impostaTessera(tessView);
+			impostaAscoltatore(tessView);
 			cont++;
 		}
+		visualizza(cont);
+	}
+
+	private void clickTessera(Component c) {
+		Gui.getCoda().aggiungi(((TesseraView) c).getIndice());
+		panelTessere.removeAll();
+		setVisible(false);
+	}
+	
+	private void impostaTessera(TesseraView tessView) {
+		tessView.setPreferredSize(CostantiGui.DIMENSIONE_PANEL_TESSERA);
+		panelTessere.add(tessView);
+	}
+	
+	private void impostaAscoltatore(TesseraView tessView) {
+		tessView.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent e) {
+				Component c = e.getComponent();
+				if (c instanceof TesseraView) {
+					clickTessera(c);
+				}
+			}
+		});
+	}
+	
+	private void visualizza(int cont) {
+		int larghezza = CostantiGui.DIMENSIONE_PANEL_TESSERA.width * (cont + 1) + 30;
+		setBounds((CostantiGui.DIMENSIONE_SCHERMO.width - larghezza) / 2, (CostantiGui.DIMENSIONE_SCHERMO.height - CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.height) / 2, larghezza, CostantiGui.DIMENSIONE_PANEL_ACQUISTO_TESSERA.height);
 		setVisible(true);
 	}
 }
