@@ -165,6 +165,28 @@ public class CostantiGui {
 		new Point(315, 134)
 	};
 
+	/**
+	 * Coordinate delle posizioni delle onde
+	 * [Attenzione] Le coordinate salvate sono relative ad uno
+	 * schermo con risoluzione 1280x800 Queste coordinate andranno poi
+	 * moltiplicate per il FATTORE_DI_SCALA calcolato facendo
+	 * PIXEL_ALTEZZA_SCHERMO_CORRENTE / 800
+	 */
+	public static final Point[] COORDINATE_ONDE = {
+		new Point(47, 47),
+		new Point(114, 87),
+		new Point(278, 80),
+		new Point(530, 34),
+		new Point(23, 546),
+		new Point(42, 560),
+		new Point(64, 708),
+		new Point(100, 725),
+		new Point(129, 758),
+		new Point(428, 776),
+		new Point(483, 761),
+		new Point(535, 638),
+	};
+	
 	// Panel mosse
 	public static final Dimension DIMENSIONE_PANEL_MOSSA = new Dimension(DIMENSIONE_PANEL_GIOCATORE.width, 80);
 	
@@ -197,7 +219,7 @@ public class CostantiGui {
 
 	public static final Dimension DIMENSIONE_ONDA = new Dimension(DIMENSIONE_MAPPA.height / 18, DIMENSIONE_MAPPA.height / 48);
 
-	public static final int SPOSTAMENTO_ONDA = DIMENSIONE_ONDA.width / 2;
+	public static final int SPOSTAMENTO_ONDA = DIMENSIONE_ONDA.width / 4;
 
 
 	/**

@@ -30,6 +30,10 @@ public class Onda extends PedinaView implements Runnable {
 		this.add(immagineOnda);
 	}
 
+	public Onda(int i, int j) {
+		this(new Point(i, j));
+	}
+
 	public void run() {
 		Point posIniziale = getLocation();
 		double a = 0;
