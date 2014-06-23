@@ -94,10 +94,10 @@ public class PartitaView extends JFrame {
 		panelTessereDaVendere = new PanelTessereDaVendere();
 
 		// aggiungo il contenitore alla finestra
-		contenitoreLayer.add(panelMessaggi, 7);
-		contenitoreLayer.add(panelTessereDaAcquistare, 5);
-		contenitoreLayer.add(panelTessereDaVendere, 6);
-		contenitoreLayer.add(contenitore, 0);
+		contenitoreLayer.add(panelMessaggi, new Integer(7));
+		contenitoreLayer.add(panelTessereDaAcquistare, new Integer(5));
+		contenitoreLayer.add(panelTessereDaVendere, new Integer(6));
+		contenitoreLayer.add(contenitore, new Integer(0));
 		
 		add(contenitoreLayer, BorderLayout.CENTER);
 
