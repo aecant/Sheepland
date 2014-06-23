@@ -4,6 +4,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.CostantiController;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.ElementoNonPresenteException;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.TimerNotify;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Utente;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.LancioDado;
@@ -15,9 +16,13 @@ import it.polimi.deib.provaFinale.cantiniDignani.utilita.Sorte;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GestorePartita extends Thread {
 
+	private static final Logger LOGGER = Logger.getLogger(GestorePartita.class.getName());
+	
 	private final List<Utente> utenti;
 	private final Partita partita;
 	private final List<String> tuttiGiocatori;
@@ -146,6 +151,20 @@ public class GestorePartita extends Thread {
 
 	public int getDenaroIniziale() {
 		return denaroIniziale;
+	}
+
+	protected void sospendiPartita() {
+		TimerNotify timer = new TimerNotify(CostantiController.SECONDI_INTERRUZIONE_DISCONNESSIONE * 1000, this);
+		timer.start();
+		timer.inizia();
+		try {
+			synchronized (this) {
+				wait();
+			}
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE, "interruzione inaspettata mentra si aspettava la riconnessione", e);
+		}
+		timer.termina();
 	}
 
 }

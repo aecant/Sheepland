@@ -1,10 +1,8 @@
 package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
-import it.polimi.deib.provaFinale.cantiniDignani.controller.CostantiController;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.SheeplandException;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.TimerNotify;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.InizioTurno;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoLupo;
@@ -118,17 +116,7 @@ public class FasePrincipale extends FasePartita {
 			} catch (GiocatoreDisconnessoException e) {
 				LOGGER.log(Level.FINE, "giocatore disconnesso", e);
 
-				TimerNotify timer = new TimerNotify(CostantiController.SECONDI_INTERRUZIONE_DISCONNESSIONE * 1000, gestore);
-				timer.start();
-				timer.inizia();
-				try {
-					synchronized (gestore) {
-						gestore.wait();
-					}
-				} catch (InterruptedException e1) {
-					LOGGER.log(Level.SEVERE, "interruzione inaspettata mentra si aspettava la riconnessione", e1);
-				}
-				timer.termina();
+				gestore.sospendiPartita();
 
 				if (gestore.giocatoreOffline(giocatore)) {
 					return;
