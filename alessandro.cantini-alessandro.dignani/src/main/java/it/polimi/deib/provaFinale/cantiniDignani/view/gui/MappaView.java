@@ -29,7 +29,6 @@ public class MappaView extends BackgroundMappaPanel {
 	protected List<PastoreView> pastori = new ArrayList<PastoreView>();
 	protected List<RecintoView> recinti = new ArrayList<RecintoView>();
 	protected List<PedinaListener> ascoltatori = new ArrayList<PedinaListener>();
-	protected List<Onda> onde = new ArrayList<Onda>();
 	
 
 	public MappaView(boolean riconnessione) {
@@ -61,23 +60,11 @@ public class MappaView extends BackgroundMappaPanel {
 			territoriView.add(new TerritorioView(i, coordinateTerritori[i]));
 		}
 		
-		
-		// Creo l'array con le coordinate scalate delle onde
-				coordinateOnde = new Point[CostantiGui.COORDINATE_ONDE.length];
-				for (int i = 0; i < CostantiGui.COORDINATE_ONDE.length; i++) {
-					coordinateOnde[i] = new Point((int) (CostantiGui.COORDINATE_ONDE[i].getX() * CostantiGui.FATTORE_DI_SCALA),
-							(int) (CostantiGui.COORDINATE_ONDE[i].getY() * CostantiGui.FATTORE_DI_SCALA));
-					// disegno le onde
-					creaOnda(coordinateOnde[i]);
-				}
-		
-		
-		// TODO TEMPORANEO!!!!
-		addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent e) {
-				System.out.println("new Point(" + e.getX() + ", " + e.getY() + "),");
-			}
-		});
+		// imposto le onde
+		Onde onde = new Onde(new Point(0, 0));
+		add(onde);
+		Thread t = new Thread(onde);
+		t.start();
 
 		if (riconnessione) {
 			// Disegno i recinti
@@ -116,13 +103,6 @@ public class MappaView extends BackgroundMappaPanel {
 		past.getParent().repaint();
 	}
 
-	public final void creaOnda(Point posizione) {
-		Onda onda = new Onda(posizione.x - CostantiGui.DIMENSIONE_ONDA.width / 2, posizione.y - CostantiGui.DIMENSIONE_ONDA.height / 2);
-		onde.add(onda);
-		add(onda);
-		Thread t = new Thread(onda);
-		t.start();
-	}
 	
 	protected void disegnaTerritorio(Integer codTerritorio) {
 		territoriView.get(codTerritorio).aggiorna();
