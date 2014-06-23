@@ -15,8 +15,7 @@ public enum TipoTerritorio {
 	 * @return l'array dei tipi delle tessere
 	 */
 	public static TipoTerritorio[] valoriTessere() {
-		TipoTerritorio[] valoriTessere = { MONTAGNA, DESERTO, LAGO, BOSCO, PASCOLO, CAMPO };
-		return valoriTessere;
+		return new TipoTerritorio[] { MONTAGNA, DESERTO, LAGO, BOSCO, PASCOLO, CAMPO };
 	}
 
 	@Override

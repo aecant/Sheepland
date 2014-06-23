@@ -7,7 +7,7 @@ public enum TipoMossa {
 	ACCOPPIA("Accoppia"),
 	ABBATTI("Abbatti");
 	
-	public final String nome;
+	private final String nome;
 	
 	private TipoMossa(String nome) {
 		this.nome = nome;
@@ -15,6 +15,10 @@ public enum TipoMossa {
 	
 	@Override
 	public String toString() {
+		return getNome();
+	}
+
+	public String getNome() {
 		return nome;
 	}
 }

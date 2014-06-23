@@ -276,7 +276,7 @@ public class GestoreMossa {
 
 		// se e' l'ultima mossa e il giocatore non ha ancora mosso il
 		// pastore, si puo' solo muovere il pastore
-		if (numMossa == CostantiModel.NUM_MOSSE_PER_TURNO && pastoreMosso == false) {
+		if (numMossa == CostantiModel.NUM_MOSSE_PER_TURNO && !pastoreMosso) {
 			return mosseDisponibili;
 		}
 

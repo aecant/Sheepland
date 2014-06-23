@@ -21,7 +21,7 @@ public class ConnessioneClientSocket extends ConnessioneClient implements Interf
 
 	private static final Logger LOGGER = Logger.getLogger(ConnessioneClientSocket.class.getName());
 
-	private final int PORTA = CostantiSocket.PORTA_SERVER_SOCKET;
+	private static final int PORTA = CostantiSocket.PORTA_SERVER_SOCKET;
 
 	private Socket socket;
 	private ObjectInputStream in;

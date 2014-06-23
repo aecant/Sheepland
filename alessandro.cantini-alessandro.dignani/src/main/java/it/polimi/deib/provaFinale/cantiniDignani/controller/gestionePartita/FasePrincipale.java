@@ -2,6 +2,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller.gestionePartita;
 
 import it.polimi.deib.provaFinale.cantiniDignani.controller.Estrattore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.MotivoLancioDado;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.SheeplandException;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.TipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.InizioTurno;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.MovimentoLupo;
@@ -101,7 +102,7 @@ public class FasePrincipale extends FasePartita {
 		}
 
 		if (pastore == null) {
-			throw new NullPointerException("A questo punto il pastore deve essere assegnato");
+			throw new SheeplandException("A questo punto il pastore deve essere assegnato");
 		}
 
 		for (int numMossa = 1; numMossa <= CostantiModel.NUM_MOSSE_PER_TURNO; numMossa++) {

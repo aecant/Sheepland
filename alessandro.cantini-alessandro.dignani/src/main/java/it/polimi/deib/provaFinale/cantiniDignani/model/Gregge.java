@@ -76,9 +76,9 @@ public class Gregge {
 	 * @return la lista di tutti gli ovini
 	 */
 	public List<Animale> getPecoreCompresaLaNera() {
-		List<Animale> pecore = new ArrayList<Animale>();
-		pecore.addAll(pecore);
-		pecore.add(pecoraNera);
-		return pecore;
+		List<Animale> lista = new ArrayList<Animale>();
+		lista.addAll(lista);
+		lista.add(pecoraNera);
+		return lista;
 	}
 }
