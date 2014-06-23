@@ -22,7 +22,7 @@ public class SegnalinoStrada extends JPanel {
 	public SegnalinoStrada(Point posizione, boolean aPagamento, int codStrada) {
 		this.codStrada = codStrada;
 		this.setLayout(null);
-		this.setBounds((posizione.x - CostantiGui.DIMENSIONE_SEGNALINO_STRADA.width / 2), (posizione.y - CostantiGui.DIMENSIONE_SEGNALINO_STRADA.height / 2), CostantiGui.DIMENSIONE_SEGNALINO_STRADA.width, CostantiGui.DIMENSIONE_SEGNALINO_STRADA.height);
+		this.setBounds(posizione.x - CostantiGui.DIMENSIONE_SEGNALINO_STRADA.width / 2, posizione.y - CostantiGui.DIMENSIONE_SEGNALINO_STRADA.height / 2, CostantiGui.DIMENSIONE_SEGNALINO_STRADA.width, CostantiGui.DIMENSIONE_SEGNALINO_STRADA.height);
 		this.setOpaque(false);
 		
 		if(aPagamento) {

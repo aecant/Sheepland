@@ -17,7 +17,7 @@ public class RecintoView extends JPanel {
 	
 	public RecintoView(Point posizione, boolean isFinale) {
 		this.setLayout(null);
-		this.setBounds((posizione.x - CostantiGui.DIMENSIONE_SEGNALINO_STRADA.width / 2), (posizione.y - CostantiGui.DIMENSIONE_SEGNALINO_STRADA.height / 2), CostantiGui.DIMENSIONE_SEGNALINO_STRADA.width, CostantiGui.DIMENSIONE_SEGNALINO_STRADA.height);
+		this.setBounds(posizione.x - CostantiGui.DIMENSIONE_SEGNALINO_STRADA.width / 2, posizione.y - CostantiGui.DIMENSIONE_SEGNALINO_STRADA.height / 2, CostantiGui.DIMENSIONE_SEGNALINO_STRADA.width, CostantiGui.DIMENSIONE_SEGNALINO_STRADA.height);
 		this.setOpaque(false);
 		
 		ImageIcon img;

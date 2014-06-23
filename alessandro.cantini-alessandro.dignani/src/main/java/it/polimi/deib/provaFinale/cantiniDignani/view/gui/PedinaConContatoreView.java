@@ -18,7 +18,7 @@ public class PedinaConContatoreView extends PedinaView {
 		
 		lblContatore = new JLabel(n.toString());
 		
-		lblContatore.setBounds((CostantiGui.DIMENSIONE_PECORA.width / 2), (CostantiGui.DIMENSIONE_PECORA.height / 2) - 5, 15, 15);
+		lblContatore.setBounds(CostantiGui.DIMENSIONE_PECORA.width / 2, CostantiGui.DIMENSIONE_PECORA.height / 2 - 5, 15, 15);
 		lblContatore.setFont(CostantiGui.FONT_CONTATORI_ANIMALI);
 		lblContatore.setName("contatore");
 		add(lblContatore);

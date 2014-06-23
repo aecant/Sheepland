@@ -32,6 +32,8 @@ import java.util.logging.Logger;
 
 public class Cli implements InterfacciaUtente {
 	
+	private static final String DENARI = " denari";
+
 	private static final Logger LOGGER = Logger.getLogger(Cli.class.getName());
 	
 	private final InputCli in;
@@ -136,7 +138,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void pagamento(Integer denaro, String pagante, String pagato) {
-		out.println(pagante + " ha pagato a " + pagato + " " + denaro + " denari.");
+		out.println(pagante + " ha pagato a " + pagato + " " + denaro + DENARI);
 	}
 
 	public void uccisioneLupo(int territorio, TipoAnimale tipoOvino) {
@@ -291,7 +293,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void marketCompravenditaTessera(String compratore, TesseraInVendita tess) {
-		out.println(compratore + " ha acquistato una tessera di tipo " + tess.getTipo() + " da " + tess.getGiocatore() + " pagando " + tess.getPrezzo() + " denari");
+		out.println(compratore + " ha acquistato una tessera di tipo " + tess.getTipo() + " da " + tess.getGiocatore() + " pagando " + tess.getPrezzo() + DENARI);
 	}
 
 	public void marketInizio() {
@@ -303,7 +305,7 @@ public class Cli implements InterfacciaUtente {
 	}
 
 	public void marketMessaInVendita(TesseraInVendita tess) {
-		out.println(tess.getGiocatore() + " ha messo in vendita una tessera di tipo " + tess.getTipo() + " al prezzo di " + tess.getPrezzo() + " denari.");
+		out.println(tess.getGiocatore() + " ha messo in vendita una tessera di tipo " + tess.getTipo() + " al prezzo di " + tess.getPrezzo() + DENARI);
 	}
 
 	public int marketRichiestaPrezzo(TipoTerritorio tipo) {
