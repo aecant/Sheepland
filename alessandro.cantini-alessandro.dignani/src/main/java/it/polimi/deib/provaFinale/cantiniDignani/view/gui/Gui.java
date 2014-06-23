@@ -46,6 +46,7 @@ public class Gui implements InterfacciaUtente {
 	 */
 	public void nomeGiaPresente() {
 		messNomeGiaPresente = true;
+		messPwdSbagliata = false;
 	}
 
 	/**
@@ -53,6 +54,7 @@ public class Gui implements InterfacciaUtente {
 	 */
 	public void passwordSbagliata() {
 		messPwdSbagliata = true;
+		messNomeGiaPresente = false;
 	}
 
 	/**
