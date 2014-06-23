@@ -18,6 +18,7 @@ public class LancioDado implements Evento {
 	}
 
 	public void aggiornaDati() {
+		// non ci sono dati da aggiornare
 	}
 
 	public void visualizza() {

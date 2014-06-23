@@ -4,6 +4,9 @@ import java.util.logging.Logger;
 
 public class MainServer {
 
+	private MainServer() {
+	}
+	
 	public static void main(String[] args) {
 		Logger.getLogger("").setLevel(CostantiTest.LIVELLO_LOGGER);
 		

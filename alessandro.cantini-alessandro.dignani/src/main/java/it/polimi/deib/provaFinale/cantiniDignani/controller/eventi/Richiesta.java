@@ -11,6 +11,7 @@ public abstract class Richiesta implements Evento {
 	private static final long serialVersionUID = 8125665824548264902L;
 
 	public final void aggiornaDati() {
+		// le richieste non modificano i dati
 	}
 
 	public final void visualizza() {

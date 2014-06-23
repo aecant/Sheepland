@@ -15,6 +15,7 @@ public class FinePartita implements Evento {
 
 
 	public void aggiornaDati() {
+		// non ci sono dati da aggiornare
 	}
 
 	

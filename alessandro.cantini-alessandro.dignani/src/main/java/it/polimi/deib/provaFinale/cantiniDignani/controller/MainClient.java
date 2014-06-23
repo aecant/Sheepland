@@ -27,7 +27,10 @@ public class MainClient {
 	private static InterfacciaConnessioneClient connessione;
 	private static DatiPartita datiPartita;
 	private static GestoreCoda<Evento> codaEventi = new GestoreCoda<Evento>();
-
+	
+	private MainClient() {
+	}
+	
 	public static void main(String[] args) {
 		indirizzoServer = chiediIndirizzoServer();
 		connessione = chiediTipoConnessione();

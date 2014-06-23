@@ -10,7 +10,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPast
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTipoMossa;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SaltoTurno;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.TrasformazioneAgnello;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.UccisioneLupo;
+import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.UccisioneDaParteDelLupo;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Agnello;
 import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
@@ -160,7 +160,7 @@ public class FasePrincipale extends FasePartita {
 				Collections.shuffle(pecoreSulTerr);
 				Pecora uccisa = pecoreSulTerr.get(0);
 				partita.getGregge().rimuovi(uccisa);
-				gestore.inviaEventoATutti(new UccisioneLupo(destinazione.getCodice(),uccisa.getTipoAnimale(), Estrattore.datiTerritori(partita)));
+				gestore.inviaEventoATutti(new UccisioneDaParteDelLupo(destinazione.getCodice(),uccisa.getTipoAnimale(), Estrattore.datiTerritori(partita)));
 			}
 		}
 	}
