@@ -3,6 +3,7 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.Evento;
 import it.polimi.deib.provaFinale.cantiniDignani.rete.InterfacciaConnessioneServer;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.GestoreCoda;
+import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 
 import java.util.logging.Logger;
 
@@ -94,10 +95,7 @@ public class Utente {
 	 */
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		return result;
+		return Utilita.hashCodeNome(nome);
 	}
 
 	/**

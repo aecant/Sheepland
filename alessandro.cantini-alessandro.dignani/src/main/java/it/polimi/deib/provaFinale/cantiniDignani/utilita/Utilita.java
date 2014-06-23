@@ -161,4 +161,11 @@ public class Utilita {
 		return al;
 	}
 
+	public static int hashCodeNome(String nome) {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+
 }
