@@ -57,7 +57,6 @@ public class TesseraView extends BackgroundPanel {
 		// imposto il panel con il prezzo della tessera in cima di quel tipo
 		panelCosto = new JPanel();
 
-		// TODO da sistemare
 		panelCosto.setBounds(0, CostantiGui.DIMENSIONE_PANEL_TESSERA.height - CostantiGui.DIMENSIONE_MONETA_TESSERA.height - 10, (CostantiGui.DIMENSIONE_MONETA_TESSERA.width + 5)
 				* CostantiModel.MAX_VALORE_TESSERA, CostantiGui.DIMENSIONE_MONETA_TESSERA.height);
 		panelCosto.setOpaque(false);
