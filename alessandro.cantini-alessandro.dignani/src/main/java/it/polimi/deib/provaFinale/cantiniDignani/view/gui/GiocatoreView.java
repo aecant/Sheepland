@@ -18,6 +18,8 @@ public class GiocatoreView extends JPanel {
 
 	static final long serialVersionUID = 554747254657044516L;
 	
+	JPanel contenitore = new JPanel();
+	
 	JPanel panelNome = new JPanel(new FlowLayout());
 	JLabel lblNome;
 	
@@ -27,9 +29,13 @@ public class GiocatoreView extends JPanel {
 	public GiocatoreView(Giocatore g) {
 		super();
 		setPreferredSize(CostantiGui.DIMENSIONE_PANEL_GIOCATORE);
-		setBackground(g.getPastori().get(0).getColore().getColoreView());
+		setOpaque(false);
 		setLayout(new BorderLayout());
-		setBorder(new EmptyBorder(10, 10, 10, 10));
+		
+		contenitore.setPreferredSize(CostantiGui.DIMENSIONE_GIOCATORE_NON_CORRENTE);
+		contenitore.setBackground(g.getPastori().get(0).getColore().getColoreView());
+		contenitore.setLayout(new BorderLayout());
+		contenitore.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
 		lblNome = new JLabel(g.getNome());
 		lblNome.setFont(CostantiGui.FONT_NOME_GIOCATORE);
@@ -51,15 +57,27 @@ public class GiocatoreView extends JPanel {
 		panelNome.add(lblNome, BorderLayout.CENTER);
 		panelNome.add(panelSoldi, BorderLayout.WEST);
 		
-		add(panelNome, BorderLayout.CENTER);
+		contenitore.add(panelNome, BorderLayout.CENTER);
+		
+		add(contenitore, BorderLayout.EAST);
 	}
 
 	public void aggiorna() {
+		lblSoldi.setText("");
 		lblSoldi.setText(MainClient.getDatiPartita().getGiocatore(lblNome.getText()).getDenaro().toString());
 		panelSoldi.repaint();
 		panelNome.repaint();
+		contenitore.repaint();
 		repaint();
 	}
-	
-	
+
+	public void setCorrente() {
+		contenitore.setPreferredSize(CostantiGui.DIMENSIONE_GIOCATORE_CORRENTE);
+		aggiorna();
+	}
+
+	public void setNonCorrente() {
+		contenitore.setPreferredSize(CostantiGui.DIMENSIONE_GIOCATORE_NON_CORRENTE);
+		aggiorna();
+	}
 }

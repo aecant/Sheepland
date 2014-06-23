@@ -95,7 +95,7 @@ public class Gui implements InterfacciaUtente {
 		} else {
 			getPartita().getPanelMessaggi().visualizzaMessaggio("E' il turno di " + giocatore + "!");
 		}
-
+		finestraPartita.getPanelGiocatori().impostaGiocatoreCorrente(giocatore);
 	}
 
 	public static PartitaView getFinestraPartita() {

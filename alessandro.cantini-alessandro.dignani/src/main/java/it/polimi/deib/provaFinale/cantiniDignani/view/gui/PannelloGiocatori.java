@@ -28,6 +28,12 @@ public class PannelloGiocatori extends JPanel {
 		}
 	}
 	
+	protected void aggiorna() {
+		for(String g : panelsGiocatori.keySet()) {
+			aggiorna(g);
+		}
+	}
+	
 	protected void aggiorna(String giocatore) {
 		panelsGiocatori.get(giocatore).aggiorna();
 	}
@@ -35,5 +41,16 @@ public class PannelloGiocatori extends JPanel {
 	protected void pagamento(Integer denaro, String pagante, String pagato) {
 		aggiorna(pagante);
 		aggiorna(pagato);
+	}
+	
+	public void impostaGiocatoreCorrente(String nome) {
+		for(String giocatore : panelsGiocatori.keySet()) {
+			if(giocatore.equals(nome)) {
+				panelsGiocatori.get(giocatore).setCorrente();
+			} else {
+				panelsGiocatori.get(giocatore).setNonCorrente();
+			}
+		}
+		repaint();
 	}
 }

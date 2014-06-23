@@ -51,6 +51,8 @@ public class CostantiGui {
 	public static final Dimension DIMENSIONE_PANEL_GIOCATORE = new Dimension(200, 70);
 	public static final Color COLORE_SFONDO_NOME_GIOC = new Color(255, 255, 255, 180);
 	public static final Dimension DIMENSIONE_PANEL_SOLDI = new Dimension(50, 50);
+	public static final Dimension DIMENSIONE_GIOCATORE_CORRENTE = new Dimension(DIMENSIONE_PANEL_GIOCATORE);
+	public static final Dimension DIMENSIONE_GIOCATORE_NON_CORRENTE = new Dimension(DIMENSIONE_PANEL_GIOCATORE.width - 20, DIMENSIONE_PANEL_GIOCATORE.height);
 	
 	// Panel messaggi
 	public static final Dimension DIMENSIONE_PANEL_MESSAGGI = new Dimension(DIMENSIONE_SCHERMO.width, DIMENSIONE_SCHERMO.height / 3);
@@ -192,6 +194,7 @@ public class CostantiGui {
 	public static final Dimension DIMENSIONE_PANEL_TESSERE_ACQUISTO = new Dimension((DIMENSIONE_PANEL_TESSERA.width * 2) + 10, DIMENSIONE_PANEL_TESSERA.height + 20);
 
 	public static final Dimension DIMENSIONE_IMMAGINE_SCENETTA = new Dimension(DIMENSIONE_SCHERMO.width / 2, (int) ((DIMENSIONE_SCHERMO.width / 2) * 0.6));
+
 
 	/**
 	 * Costruttore privato per nascondere quello di default
