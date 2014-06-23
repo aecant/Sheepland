@@ -27,13 +27,19 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Cli implements InterfacciaUtente {
+	
+	private static final Logger LOGGER = Logger.getLogger(Cli.class.getName());
+	
 	private final InputCli in;
-	private static final PrintStream out = CostantiCli.DEFAULT_OUTPUT;
+	private final PrintStream out;
 
 	public Cli(InputStream is) {
 		in = new InputCli(is);
+		out = CostantiCli.DEFAULT_OUTPUT;
 	}
 
 	public Cli() {
@@ -139,16 +145,36 @@ public class Cli implements InterfacciaUtente {
 
 	public void finePartita(Map<String, Integer> punteggio) {
 		out.println("La partita e' finita!");
+		
+		int max = 0;
+		String vincitore = "";
 		for (String gioc : punteggio.keySet()) {
-			out.println(gioc + ": " + punteggio.get(gioc) + " punti");
+			int punti = punteggio.get(gioc);
+			out.println(gioc + ": " + punti + " punti");
+			if(punti == max) {
+				vincitore += ", " + gioc;
+			} else if (punti > max){
+				max = punti;
+				vincitore = gioc;
+			}
 		}
-		// TODO implementare il vincitore
-		String vincitore = ""; 
+		
 		out.println("Ha vinto " + vincitore);
 	}
 
 	public void disconnessioneGiocatore(String giocatore) {
 		out.println(giocatore + " si e' disconnesso");
+		out.println("La partita verra' sospesa per " + CostantiController.SECONDI_INTERRUZIONE_DISCONNESSIONE + " secondi per permettere a " + giocatore + " di riconnettersi");
+		for(int i = CostantiController.SECONDI_INTERRUZIONE_DISCONNESSIONE; i >= 0; i--) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				LOGGER.log(Level.SEVERE, "interruzione anomala nella visualizzazione del timer", e);
+			}
+			
+			out.print(i + "...");
+		}
+		out.println("\nLa partita puo' riprendere");
 	}
 
 	public void riconnessioneGiocatore(String giocatore) {

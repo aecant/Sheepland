@@ -13,7 +13,7 @@ public class CostantiController {
 	 * Il numero di millisecondi per cui sospendere una partita nel caso di
 	 * disconnessione di un giocatore
 	 */
-	public static final long SECONDI_INTERRUZIONE_DISCONNESSIONE = 30;
+	public static final int SECONDI_INTERRUZIONE_DISCONNESSIONE = 30;
 
 	/**
 	 * Il numero che restituisce un client disconnesso se gli viene chiesta una

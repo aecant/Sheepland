@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Utilita {
-	
+
 	private static final Logger LOGGER = Logger.getLogger(Utilita.class.getName());
 
 	/**
@@ -161,10 +161,17 @@ public class Utilita {
 		return al;
 	}
 
-	public static int hashCodeNome(String nome) {
+	/**
+	 * Restituisce un hash code per un oggetto usando una sola variabile stringa
+	 * 
+	 * @param stringa
+	 *            la stringa con cui generare l'hashcode
+	 * @return l'hash code generato da un singolo attributo stringa
+	 */
+	public static int hashCodeNome(String stringa) {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((stringa == null) ? 0 : stringa.hashCode());
 		return result;
 	}
 
