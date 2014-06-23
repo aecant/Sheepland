@@ -134,14 +134,14 @@ public class Gui implements InterfacciaUtente {
 		for (String gioc : punteggio.keySet()) {
 			messaggio += gioc + ": " + punteggio.get(gioc) + " punti<br />";
 			if (punteggio.get(gioc) == max) {
-				vincitore += " " + gioc;
+				vincitore += " e " + gioc;
 			} else if (punteggio.get(gioc) > max) {
 				vincitore = gioc;
 				max = punteggio.get(gioc);
 			}
 		}
 		messaggio += "<br />Ha vinto " + vincitore + " con un punteggio di " + max + "!</html>";
-		finestraPartita.getPanelMessaggi().visualizzaMessaggio(messaggio);
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio(messaggio, 60*1000);
 	}
 
 	public void acquistoTessera(String giocatore, Tessera tessera) {
@@ -266,7 +266,7 @@ public class Gui implements InterfacciaUtente {
 		} else {
 			messaggio += "i";
 		}
-		finestraPartita.getPanelMessaggi().visualizzaMessaggio(messaggio);
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio(messaggio, 1000);
 	}
 
 	public int marketRichiestaTesseraDaAcquistare(List<TesseraInVendita> tessereDisponibili) {
@@ -276,7 +276,7 @@ public class Gui implements InterfacciaUtente {
 
 	public void marketCompravenditaTessera(String compratore, TesseraInVendita tesseraInVendita) {
 		String messaggio = compratore + " ha acquistato una tessera di tipo " + tesseraInVendita.getTipo() + " da " + tesseraInVendita.getGiocatore();
-		finestraPartita.getPanelMessaggi().visualizzaMessaggio(messaggio);
+		finestraPartita.getPanelMessaggi().visualizzaMessaggio(messaggio, 2000);
 	}
 
 	public void marketInizio() {
