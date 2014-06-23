@@ -1,0 +1,1 @@
+Per avviare una partita si deve avviare prima il main del server contenuto nella classe MainServer e successivamente avviare i client eseguendo la classe MainClient.
