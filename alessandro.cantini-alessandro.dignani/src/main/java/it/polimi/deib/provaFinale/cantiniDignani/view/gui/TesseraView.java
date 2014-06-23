@@ -58,7 +58,7 @@ public class TesseraView extends BackgroundPanel {
 		panelCosto = new JPanel();
 
 		// TODO da sistemare
-		panelCosto.setBounds(0, CostantiGui.DIMENSIONE_PANEL_TESSERA.height - CostantiGui.DIMENSIONE_MONETA_TESSERA.height - 10, CostantiGui.DIMENSIONE_MONETA_TESSERA.width + 5
+		panelCosto.setBounds(0, CostantiGui.DIMENSIONE_PANEL_TESSERA.height - CostantiGui.DIMENSIONE_MONETA_TESSERA.height - 10, (CostantiGui.DIMENSIONE_MONETA_TESSERA.width + 5)
 				* CostantiModel.MAX_VALORE_TESSERA, CostantiGui.DIMENSIONE_MONETA_TESSERA.height);
 		panelCosto.setOpaque(false);
 		panelCosto.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));

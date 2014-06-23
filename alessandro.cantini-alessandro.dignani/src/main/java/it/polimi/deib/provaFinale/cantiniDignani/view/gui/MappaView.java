@@ -4,6 +4,7 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.MainClient;
 import it.polimi.deib.provaFinale.cantiniDignani.model.ColorePastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
+import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Pastore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.TipoAnimale;
 import it.polimi.deib.provaFinale.cantiniDignani.utilita.Coppia;
@@ -70,7 +71,9 @@ public class MappaView extends BackgroundMappaPanel {
 			// Disegno i pastori
 			for (Giocatore g : MainClient.getDatiPartita().getGiocatori()) {
 				for (Pastore p : g.getPastori()) {
-					creaPastore(p.getStrada().getCodice(), p.getColore());
+					if(!p.getStrada().equals(Mappa.STRADA_INESISTENTE)) {
+						creaPastore(p.getStrada().getCodice(), p.getColore());
+					}
 				}
 			}
 			repaint();
