@@ -185,6 +185,11 @@ public class Mappa {
 		return temp.toArray(new Strada[temp.size()]);
 	}
 
+	/**
+	 * Fornisce l'istanza del singleton
+	 * 
+	 * @return l'istanza del singletom
+	 */
 	public static synchronized Mappa getMappa() {
 		if (istanza == null) {
 			istanza = new Mappa();
@@ -192,10 +197,20 @@ public class Mappa {
 		return istanza;
 	}
 
+	/**
+	 * Restituisce i territori
+	 * 
+	 * @return i territori
+	 */
 	public Territorio[] getTerritori() {
 		return territori;
 	}
 
+	/**
+	 * Restituisce le strade
+	 * 
+	 * @return le strade
+	 */
 	public Strada[] getStrade() {
 		return strade;
 	}

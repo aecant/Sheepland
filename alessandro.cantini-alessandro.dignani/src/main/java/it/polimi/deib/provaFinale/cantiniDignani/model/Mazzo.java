@@ -107,7 +107,10 @@ public class Mazzo {
 			super(s);
 		}
 	}
-
+	
+	/**
+	 * Fornisce una stringa che rappresenta il mazzo
+	 */
 	@Override
 	public String toString() {
 		String s = "Mazzo:\n";

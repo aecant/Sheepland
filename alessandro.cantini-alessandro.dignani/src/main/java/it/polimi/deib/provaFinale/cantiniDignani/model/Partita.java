@@ -5,6 +5,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Contiene i dati e i metodi per svolgere una partita a Sheepland
+ */
 public class Partita {
 	private Mazzo mazzo;
 	private Animale lupo;
@@ -13,6 +16,12 @@ public class Partita {
 	private List<Giocatore> giocatori;
 	private Giocatore giocatoreDiTurno;
 
+	/**
+	 * Crea una partita
+	 * 
+	 * @param nomiGiocatori
+	 *            i nomi dei giocatori.
+	 */
 	public Partita(Collection<String> nomiGiocatori) {
 		mazzo = new Mazzo();
 		lupo = new Animale(CostantiModel.POS_INIZIALE_LUPO);
@@ -122,7 +131,9 @@ public class Partita {
 
 	/**
 	 * Restituisce il giocatore con un certo nome
-	 * @param nome il nome del giocatore
+	 * 
+	 * @param nome
+	 *            il nome del giocatore
 	 * @return il giocatore con un certo nome
 	 */
 	public Giocatore getGiocatore(String nome) {
@@ -134,30 +145,66 @@ public class Partita {
 		throw new IllegalArgumentException("Non c'e' un giocatore con il nome " + nome);
 	}
 
+	/**
+	 * Restituisce il gregge
+	 * 
+	 * @return il gregge
+	 */
 	public Gregge getGregge() {
 		return gregge;
 	}
 
+	/**
+	 * Restituisce i giocatori
+	 * 
+	 * @return i giocatori
+	 */
 	public List<Giocatore> getGiocatori() {
 		return giocatori;
 	}
 
+	/**
+	 * Restituisce i recinti
+	 * 
+	 * @return i recitni
+	 */
 	public InsiemeDiRecinti getRecinti() {
 		return recinti;
 	}
 
+	/**
+	 * Restituisce il mazzo
+	 * 
+	 * @return il mazzo
+	 */
 	public Mazzo getMazzo() {
 		return mazzo;
 	}
 
+	/**
+	 * Restituisce il lupo
+	 * 
+	 * @return il lupo
+	 */
 	public Animale getLupo() {
 		return lupo;
 	}
 
+	/**
+	 * Restituisce il giocatore di turno
+	 * 
+	 * @return il giocatore di turno
+	 */
 	public Giocatore getGiocatoreDiTurno() {
 		return giocatoreDiTurno;
 	}
 
+	/**
+	 * Cambia il giocatore di turno
+	 * 
+	 * @param giocatoreDiTurno
+	 *            il giocatore da sostituire
+	 */
 	public void setGiocatoreDiTurno(Giocatore giocatoreDiTurno) {
 		this.giocatoreDiTurno = giocatoreDiTurno;
 	}
@@ -168,6 +215,9 @@ public class Partita {
 		}
 	}
 
+	/**
+	 * Restituisce una stringa con i giocatori della partita
+	 */
 	@Override
 	public String toString() {
 		return "partita giocata da " + giocatori;
