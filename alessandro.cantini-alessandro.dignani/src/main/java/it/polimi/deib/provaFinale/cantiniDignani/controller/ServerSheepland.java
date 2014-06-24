@@ -126,6 +126,8 @@ public class ServerSheepland {
 			utente.setConnessione(null);
 		}
 		utente.getCodaMosse().aggiungi(CostantiController.MOSSA_DISCONNESSIONE);
+		utente.getCodaMosse().aggiungi(CostantiController.MOSSA_DISCONNESSIONE);
+		utente.getCodaMosse().aggiungi(CostantiController.MOSSA_DISCONNESSIONE);
 
 		try {
 			GestorePartita gestore = getGestorePartita(utente);

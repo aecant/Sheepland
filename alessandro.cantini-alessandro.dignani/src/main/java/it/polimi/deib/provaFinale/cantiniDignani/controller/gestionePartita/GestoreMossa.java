@@ -15,7 +15,6 @@ import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPeco
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaPosizionePastore;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTerritorioPerAccoppiamento;
 import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.RichiestaTesseraDaAcquistare;
-import it.polimi.deib.provaFinale.cantiniDignani.controller.eventi.SaltoTurno;
 import it.polimi.deib.provaFinale.cantiniDignani.model.CostantiModel;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Giocatore;
 import it.polimi.deib.provaFinale.cantiniDignani.model.Mappa;
@@ -78,7 +77,15 @@ public class GestoreMossa {
 			}
 		} catch (GiocatoreDisconnessoException e) {
 			LOGGER.log(Level.FINE, "giocatore disconnesso", e);
-			gestore.inviaEventoATutti(new SaltoTurno(giocatore.getNome()));
+
+			gestore.sospendiPartita();
+			
+			if (gestore.giocatoreOffline(giocatore)) {
+				return;
+			} else {
+				effettuaMossa(pastore, tipoMossa);
+			}
+
 		}
 	}
 
