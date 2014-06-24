@@ -14,6 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * Classe che si occupa dell'acquisto delle tessere durante il market
+ * @author alessandrodignani
+ *
+ */
 public class PanelTessereDaAcquistare extends JPanel {
 
 	private static final long serialVersionUID = 2090429027013450871L;

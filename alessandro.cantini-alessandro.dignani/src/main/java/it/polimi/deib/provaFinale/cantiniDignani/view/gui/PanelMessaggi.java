@@ -16,6 +16,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * Classe che si occupa di visualizzare i messaggi diretti all'utente
+ * @author alessandrodignani
+ *
+ */
 public class PanelMessaggi extends JPanel {
 
 	private static final long serialVersionUID = -5161847623471545868L;
@@ -38,11 +43,11 @@ public class PanelMessaggi extends JPanel {
 		setVisible(false);
 	}
 
-	public void visualizzaMessaggio(String messaggio) {
+	protected void visualizzaMessaggio(String messaggio) {
 		visualizzaMessaggio(messaggio, CostantiGui.TEMPO_VISUALIZZAZIONE_MESSAGGIO);
 	}
 
-	public void visualizzaMessaggio(String messaggio, int millis) {
+	protected void visualizzaMessaggio(String messaggio, int millis) {
 		setLayout(new BorderLayout());
 		setBackground(CostantiGui.COLORE_SFONDO_MESSAGGI);
 		lblMessaggi.setText(messaggio);
@@ -62,7 +67,7 @@ public class PanelMessaggi extends JPanel {
 		stopMessaggio();
 	}
 
-	public void visualizzaLancioDado(Integer numero, MotivoLancioDado motivo) {
+	protected void visualizzaLancioDado(Integer numero, MotivoLancioDado motivo) {
 		setLayout(new BorderLayout(0, 5));
 		setBackground(CostantiGui.COLORE_SFONDO_LANCIO_DADO);
 
@@ -103,31 +108,31 @@ public class PanelMessaggi extends JPanel {
 		}
 	}
 
-	public void visualizzaAbbattimentoRiuscito() {
+	protected void visualizzaAbbattimentoRiuscito() {
 		Image imm = Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "abbattimentoRiuscito.gif")
 				.getScaledInstance(CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.width, CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.height, Image.SCALE_SMOOTH);
 		visualizzaScenetta(imm);
 	}
 
-	public void visualizzaAbbattimentoFallito() {
+	protected void visualizzaAbbattimentoFallito() {
 		Image imm = Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "abbattimentoFallito.jpg")
 				.getScaledInstance(CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.width, CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.height, Image.SCALE_SMOOTH);
 		visualizzaScenetta(imm);
 	}
 
-	public void visualizzaAccoppiamentoRiuscito() {
+	protected void visualizzaAccoppiamentoRiuscito() {
 		Image imm = Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "accoppiamentoRiuscito.jpg")
 				.getScaledInstance(CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.width, CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.height, Image.SCALE_SMOOTH);
 		visualizzaScenetta(imm);
 	}
 
-	public void visualizzaAccoppiamentoFallito() {
+	protected void visualizzaAccoppiamentoFallito() {
 		Image imm = Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "accoppiamentoFallito.jpg")
 				.getScaledInstance(CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.width, CostantiGui.DIMENSIONE_IMMAGINE_SCENETTA.height, Image.SCALE_SMOOTH);
 		visualizzaScenetta(imm);
 	}
 
-	public void visualizzaScenetta(Image imm) {
+	protected void visualizzaScenetta(Image imm) {
 		setLayout(new GridLayout(1, 1, 0, 0));
 
 		JPanel immagine = new BackgroundPanel(imm);
