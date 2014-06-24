@@ -75,7 +75,7 @@ public class TesseraView extends BackgroundPanel {
 		}
 	}
 
-	public void aggiorna() {
+	protected void aggiorna() {
 		aggiornaCosto();
 		aggiornaPossedute();
 	}
@@ -108,7 +108,7 @@ public class TesseraView extends BackgroundPanel {
 		}
 	}
 
-	public Integer getIndice() {
+	protected Integer getIndice() {
 		return indice;
 	}
 }
