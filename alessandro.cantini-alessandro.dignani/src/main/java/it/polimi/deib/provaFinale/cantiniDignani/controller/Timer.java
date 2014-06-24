@@ -3,6 +3,9 @@ package it.polimi.deib.provaFinale.cantiniDignani.controller;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Classe che serve a gestire un timer
+ */
 public abstract class Timer extends Thread {
 
 	private static final Logger LOGGER = Logger.getLogger(Timer.class.getName());
