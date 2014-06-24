@@ -14,6 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * Classe che si occupa della visualizzazione grafica di un giocatore
+ * @author alessandrodignani
+ *
+ */
 public class GiocatoreView extends JPanel {
 
 	static final long serialVersionUID = 554747254657044516L;
@@ -26,7 +31,7 @@ public class GiocatoreView extends JPanel {
 	JPanel panelSoldi;
 	JLabel lblSoldi;
 
-	public GiocatoreView(Giocatore g) {
+	protected GiocatoreView(Giocatore g) {
 		super();
 		setPreferredSize(CostantiGui.DIMENSIONE_PANEL_GIOCATORE);
 		setOpaque(false);
@@ -62,7 +67,7 @@ public class GiocatoreView extends JPanel {
 		add(contenitore, BorderLayout.EAST);
 	}
 
-	public void aggiorna() {
+	protected void aggiorna() {
 		lblSoldi.setText("");
 		lblSoldi.setText(MainClient.getDatiPartita().getGiocatore(lblNome.getText()).getDenaro().toString());
 		panelSoldi.repaint();
@@ -71,12 +76,12 @@ public class GiocatoreView extends JPanel {
 		repaint();
 	}
 
-	public void setCorrente() {
+	protected void setCorrente() {
 		contenitore.setPreferredSize(CostantiGui.DIMENSIONE_GIOCATORE_CORRENTE);
 		aggiorna();
 	}
 
-	public void setNonCorrente() {
+	protected void setNonCorrente() {
 		contenitore.setPreferredSize(CostantiGui.DIMENSIONE_GIOCATORE_NON_CORRENTE);
 		aggiorna();
 	}
