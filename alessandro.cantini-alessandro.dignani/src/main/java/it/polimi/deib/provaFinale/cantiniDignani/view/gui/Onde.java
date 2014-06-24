@@ -10,6 +10,12 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+/**
+ * Classe che si occupa della gestione delle onde dinamiche e delega il movimento ad un altro thread
+ * in modo da non interferire con il gioco
+ * @author alessandrodignani
+ *
+ */
 public class Onde extends PedinaView implements Runnable {
 
 	private static final Logger LOGGER = Logger.getLogger(Onde.class.getName());
