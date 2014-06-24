@@ -14,4 +14,4 @@ Se la connessione con il server viene persa o se si chiude l’applicazione del 
 
 Le partita possono svolgersi con utenti che scelgono connessioni e interfacce utente diverse. Per esempio si potrebbe giocare una partita fra un utente connesso via socket che usa la CLI e un utente connesso via RMI che usa la GUI. Un utente si può disconnettere usando RMI e riconnetere via socket, e viceversa.
 
-Per giocare con la CLI l’utente deve avere sotto mano la mappa di Sheepland con i codici delle strade e dei territorio (la mappa è presente
+Per giocare con la CLI l’utente deve avere sotto mano la mappa di Sheepland con i codici delle strade e dei territorio (la mappa è presente nella cartella Documentazione)
