@@ -66,6 +66,11 @@ public class Gregge {
 		return pecoraNera;
 	}
 
+	/**
+	 * Restituisce le pecore
+	 * 
+	 * @return le pecore
+	 */
 	public List<Pecora> getPecore() {
 		return pecore;
 	}

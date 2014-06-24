@@ -2,6 +2,9 @@ package it.polimi.deib.provaFinale.cantiniDignani.model;
 
 import java.awt.Color;
 
+/**
+ * 	Rappresenta il colore del pastore
+ */
 public enum ColorePastore {
 	ROSSO(new Color(217, 0, 40)),
 	BLU(new Color(0, 61, 217)),
@@ -14,6 +17,9 @@ public enum ColorePastore {
 		this.coloreView = coloreView;
 	}
 	
+	/**
+	 * Restituisce il nome del colore
+	 */
 	@Override 
 	public String toString() {
 		return name().toLowerCase();
