@@ -9,12 +9,23 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+/**
+ * classe che si occupa della visualizzazione di un agnello
+ * @author alessandrodignani
+ *
+ */
 public class AgnelloView extends PedinaConContatoreView {
 
 	private static final String CONTATORE = "contatore";
 
 	private static final long serialVersionUID = 8240587143214381489L;
 
+	/**
+	 * Costruttore che crea un'istanza di agnello
+	 * @param posizioneX coordinata x di dove posizionare l'agnello
+	 * @param posizioneY coordinata y di dove posizionare l'agnello
+	 * @param n numero che comparirà nella label
+	 */
 	public AgnelloView(int posizioneX, int posizioneY, Integer n) {
 		super(posizioneX, posizioneY, CostantiGui.DIMENSIONE_AGNELLO, n);
 
@@ -30,6 +41,11 @@ public class AgnelloView extends PedinaConContatoreView {
 		}
 	}
 
+	/**
+	 * Costruttore che crea un'istanza di agnello
+	 * @param coordinate punto in cui inserire l'agnello
+	 * @param n numero visualizzato dalla label
+	 */
 	public AgnelloView(Point coordinate, Integer n) {
 		this(coordinate.x, coordinate.y, n);
 	}

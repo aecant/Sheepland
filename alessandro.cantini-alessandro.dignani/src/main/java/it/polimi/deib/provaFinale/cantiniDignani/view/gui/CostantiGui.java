@@ -8,23 +8,28 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.Toolkit;
 
+/**
+ * Classe che contiente tutte le costanti utili all'esecuzione dell'interfaccia grafica
+ * @author alessandrodignani
+ *
+ */
 public class CostantiGui {
 
 	private static final String FARISI = "Farisi";
 
 	private static final String ARIAL = "Arial";
 
-	public static final boolean SCHERMO_INTERO = false;
+	protected static final boolean SCHERMO_INTERO = false;
 	
 	// Risoluzione spostamento
-	public static final int NUM_PASSI_SPOSTAMENTO = 60;
+	protected static final int NUM_PASSI_SPOSTAMENTO = 60;
 
-	public static final String PERCORSO_IMMAGINI = "immagini/";
+	protected static final String PERCORSO_IMMAGINI = "immagini/";
 
 	// Colori
-	public static final Color COLORE_ACQUA = new Color(34, 145, 243);
+	protected static final Color COLORE_ACQUA = new Color(34, 145, 243);
 
-	public static final Dimension DIMENSIONE_SCHERMO;
+	protected static final Dimension DIMENSIONE_SCHERMO;
 	static {
 		DIMENSIONE_SCHERMO = Toolkit.getDefaultToolkit().getScreenSize();
 		if(!SCHERMO_INTERO) {
@@ -32,48 +37,48 @@ public class CostantiGui {
 		}
 	}
 	
-	public static final double FATTORE_DI_SCALA = (double) DIMENSIONE_SCHERMO.height/800;
+	protected static final double FATTORE_DI_SCALA = (double) DIMENSIONE_SCHERMO.height/800;
 
 	// Dimensioni delle immagini disegnate
-	public static final Dimension DIMENSIONE_MAPPA = new Dimension((int) (DIMENSIONE_SCHERMO.height * (0.75)), DIMENSIONE_SCHERMO.height);
-	public static final Dimension DIMENSIONE_PECORA = new Dimension(DIMENSIONE_MAPPA.height / 18, DIMENSIONE_MAPPA.height / 24);
-	public static final Dimension DIMENSIONE_MONTONE = new Dimension(DIMENSIONE_MAPPA.height / 18, DIMENSIONE_MAPPA.height / 24);
-	public static final Dimension DIMENSIONE_AGNELLO = new Dimension(DIMENSIONE_MAPPA.height / 21, DIMENSIONE_MAPPA.height / 28);
-	public static final Dimension DIMENSIONE_LUPO = new Dimension(DIMENSIONE_MAPPA.height / 12, DIMENSIONE_MAPPA.height / 16);
-	public static final Dimension DIMENSIONE_PASTORE = new Dimension(DIMENSIONE_MAPPA.height / 24, DIMENSIONE_MAPPA.height / 24);
+	protected static final Dimension DIMENSIONE_MAPPA = new Dimension((int) (DIMENSIONE_SCHERMO.height * (0.75)), DIMENSIONE_SCHERMO.height);
+	protected static final Dimension DIMENSIONE_PECORA = new Dimension(DIMENSIONE_MAPPA.height / 18, DIMENSIONE_MAPPA.height / 24);
+	protected static final Dimension DIMENSIONE_MONTONE = new Dimension(DIMENSIONE_MAPPA.height / 18, DIMENSIONE_MAPPA.height / 24);
+	protected static final Dimension DIMENSIONE_AGNELLO = new Dimension(DIMENSIONE_MAPPA.height / 21, DIMENSIONE_MAPPA.height / 28);
+	protected static final Dimension DIMENSIONE_LUPO = new Dimension(DIMENSIONE_MAPPA.height / 12, DIMENSIONE_MAPPA.height / 16);
+	protected static final Dimension DIMENSIONE_PASTORE = new Dimension(DIMENSIONE_MAPPA.height / 24, DIMENSIONE_MAPPA.height / 24);
 
 	// Panel Tessere
-	public static final Dimension DIMENSIONE_PANEL_TESSERA = new Dimension(DIMENSIONE_MAPPA.height / TipoTerritorio.valoriTessere().length, DIMENSIONE_MAPPA.height / TipoTerritorio.valoriTessere().length);
-	public static final int DIMENSIONE_ANGOLINI = DIMENSIONE_MAPPA.height / (TipoTerritorio.valoriTessere().length * 5);
-	public static final Color COLORE_SFONDO_ANGOLINI = new Color(255, 255, 255, 180);
+	protected static final Dimension DIMENSIONE_PANEL_TESSERA = new Dimension(DIMENSIONE_MAPPA.height / TipoTerritorio.valoriTessere().length, DIMENSIONE_MAPPA.height / TipoTerritorio.valoriTessere().length);
+	protected static final int DIMENSIONE_ANGOLINI = DIMENSIONE_MAPPA.height / (TipoTerritorio.valoriTessere().length * 5);
+	protected static final Color COLORE_SFONDO_ANGOLINI = new Color(255, 255, 255, 180);
 
 	// Panel giocatori
-	public static final Dimension DIMENSIONE_PANEL_GIOCATORE = new Dimension(200, 70);
-	public static final Color COLORE_SFONDO_NOME_GIOC = new Color(255, 255, 255, 180);
-	public static final Dimension DIMENSIONE_PANEL_SOLDI = new Dimension(50, 50);
-	public static final Dimension DIMENSIONE_GIOCATORE_CORRENTE = new Dimension(DIMENSIONE_PANEL_GIOCATORE);
-	public static final Dimension DIMENSIONE_GIOCATORE_NON_CORRENTE = new Dimension(DIMENSIONE_PANEL_GIOCATORE.width - 20, DIMENSIONE_PANEL_GIOCATORE.height);
+	protected static final Dimension DIMENSIONE_PANEL_GIOCATORE = new Dimension(200, 70);
+	protected static final Color COLORE_SFONDO_NOME_GIOC = new Color(255, 255, 255, 180);
+	protected static final Dimension DIMENSIONE_PANEL_SOLDI = new Dimension(50, 50);
+	protected static final Dimension DIMENSIONE_GIOCATORE_CORRENTE = new Dimension(DIMENSIONE_PANEL_GIOCATORE);
+	protected static final Dimension DIMENSIONE_GIOCATORE_NON_CORRENTE = new Dimension(DIMENSIONE_PANEL_GIOCATORE.width - 20, DIMENSIONE_PANEL_GIOCATORE.height);
 	
 	// Panel messaggi
-	public static final Dimension DIMENSIONE_PANEL_MESSAGGI = new Dimension(DIMENSIONE_SCHERMO.width, DIMENSIONE_SCHERMO.height / 3);
-	public static final Dimension DIMENSIONE_IMG_MOTIVO_LANCIO = new Dimension(150, 150);
-	public static final Dimension DIMENSIONE_IMG_DADO = new Dimension(50, 50);
+	protected static final Dimension DIMENSIONE_PANEL_MESSAGGI = new Dimension(DIMENSIONE_SCHERMO.width, DIMENSIONE_SCHERMO.height / 3);
+	protected static final Dimension DIMENSIONE_IMG_MOTIVO_LANCIO = new Dimension(150, 150);
+	protected static final Dimension DIMENSIONE_IMG_DADO = new Dimension(50, 50);
 	
-	public static final Dimension DIMENSIONE_PANEL_LANCIO_DADO = new Dimension(DIMENSIONE_IMG_MOTIVO_LANCIO.width + 10, DIMENSIONE_IMG_MOTIVO_LANCIO.height + DIMENSIONE_IMG_DADO.height + 15);
+	protected static final Dimension DIMENSIONE_PANEL_LANCIO_DADO = new Dimension(DIMENSIONE_IMG_MOTIVO_LANCIO.width + 10, DIMENSIONE_IMG_MOTIVO_LANCIO.height + DIMENSIONE_IMG_DADO.height + 15);
 	
-	public static final int TEMPO_VISUALIZZAZIONE_MESSAGGIO = 3000;
-	public static final Font FONT_MESSAGGI = new Font(ARIAL, Font.BOLD, 40);
-	public static final Color COLORE_SFONDO_MESSAGGI = new Color(252, 189, 73, 200);
-	public static final Color COLORE_TESTO_MESSAGGI = new Color(80, 80, 80);
-	public static final String PERCORSO_IMMAGINI_DADO = PERCORSO_IMMAGINI + "dado/";
-	public static final Color COLORE_SFONDO_LANCIO_DADO = new Color(186, 227, 248);
+	protected static final int TEMPO_VISUALIZZAZIONE_MESSAGGIO = 3000;
+	protected static final Font FONT_MESSAGGI = new Font(ARIAL, Font.BOLD, 40);
+	protected static final Color COLORE_SFONDO_MESSAGGI = new Color(252, 189, 73, 200);
+	protected static final Color COLORE_TESTO_MESSAGGI = new Color(80, 80, 80);
+	protected static final String PERCORSO_IMMAGINI_DADO = PERCORSO_IMMAGINI + "dado/";
+	protected static final Color COLORE_SFONDO_LANCIO_DADO = new Color(186, 227, 248);
 	
 	// Panel scelta tessera da acquistare
-	public static final Dimension DIMENSIONE_PANEL_ACQUISTO_TESSERA = new Dimension(300, 200);
+	protected static final Dimension DIMENSIONE_PANEL_ACQUISTO_TESSERA = new Dimension(300, 200);
 
 
 	// panels laterali mappa
-	public static final Dimension DIMENSIONE_PAN_LATERALI_MAPPA = new Dimension(
+	protected static final Dimension DIMENSIONE_PAN_LATERALI_MAPPA = new Dimension(
 			(int) (DIMENSIONE_SCHERMO.width - DIMENSIONE_SCHERMO.height * (0.75) - DIMENSIONE_PANEL_GIOCATORE.width - DIMENSIONE_PANEL_TESSERA.width) / 2, DIMENSIONE_SCHERMO.height);
 
 	/**
@@ -83,7 +88,7 @@ public class CostantiGui {
 	 * moltiplicate per il FATTORE_DI_SCALA calcolato facendo
 	 * PIXEL_ALTEZZA_SCHERMO_CORRENTE / 800
 	 */
-	public static final Point[][] COORDINATE_TERRITORI = {
+	protected static final Point[][] COORDINATE_TERRITORI = {
 			// Sheepsburg
 			{ new Point(316, 340), new Point(316, 392), new Point(313, 366), new Point(276, 367), new Point(347, 372) },
 			// Montagna
@@ -119,7 +124,7 @@ public class CostantiGui {
 	 * moltiplicate per il FATTORE_DI_SCALA calcolato facendo
 	 * PIXEL_ALTEZZA_SCHERMO_CORRENTE / 800
 	 */
-	public static final Point[] COORDINATE_STRADE = {
+	protected static final Point[] COORDINATE_STRADE = {
 		new Point(318, 311),
 		new Point(363, 338),
 		new Point(369, 395),
@@ -171,7 +176,7 @@ public class CostantiGui {
 	 * moltiplicate per il FATTORE_DI_SCALA calcolato facendo
 	 * PIXEL_ALTEZZA_SCHERMO_CORRENTE / 800
 	 */
-	public static final Point[] COORDINATE_ONDE = {
+	protected static final Point[] COORDINATE_ONDE = {
 		new Point(47, 47),
 		new Point(114, 87),
 		new Point(278, 80),
@@ -187,38 +192,38 @@ public class CostantiGui {
 	};
 	
 	// Panel mosse
-	public static final Dimension DIMENSIONE_PANEL_MOSSA = new Dimension(DIMENSIONE_PANEL_GIOCATORE.width, 80);
+	protected static final Dimension DIMENSIONE_PANEL_MOSSA = new Dimension(DIMENSIONE_PANEL_GIOCATORE.width, 80);
 	
 	// Segnalini Strade
-	public static final Dimension DIMENSIONE_SEGNALINO_STRADA = new Dimension(DIMENSIONE_MAPPA.height / 20, DIMENSIONE_MAPPA.height / 20);
+	protected static final Dimension DIMENSIONE_SEGNALINO_STRADA = new Dimension(DIMENSIONE_MAPPA.height / 20, DIMENSIONE_MAPPA.height / 20);
 
 	// Fonts
-	public static final Font FONT_PULSANTI_MOSSE = new Font("Chalkduster", Font.PLAIN, 18);
-	public static final Font FONT_NOME_GIOCATORE = new Font("Herculanum", Font.BOLD, 16);
-	public static final Font FONT_SOLDI = new Font(FARISI, Font.PLAIN, 30);
-	public static final Font FONT_CONTATORI_ANIMALI = new Font(FARISI, Font.PLAIN, 20);
-	public static final Font FONT_ANGOLINI = new Font(ARIAL, Font.BOLD, 14);
+	protected static final Font FONT_PULSANTI_MOSSE = new Font("Chalkduster", Font.PLAIN, 18);
+	protected static final Font FONT_NOME_GIOCATORE = new Font("Herculanum", Font.BOLD, 16);
+	protected static final Font FONT_SOLDI = new Font(FARISI, Font.PLAIN, 30);
+	protected static final Font FONT_CONTATORI_ANIMALI = new Font(FARISI, Font.PLAIN, 20);
+	protected static final Font FONT_ANGOLINI = new Font(ARIAL, Font.BOLD, 14);
 
-	public static final int NUM_FRAME_ANIM_MESS = 50;
+	protected static final int NUM_FRAME_ANIM_MESS = 50;
 
-	public static final Color COLORE_TESTO_ANGOLINI = Color.DARK_GRAY;
+	protected static final Color COLORE_TESTO_ANGOLINI = Color.DARK_GRAY;
 
-	public static final Dimension DIMENSIONE_MONETA_TESSERA = new Dimension(20, 20);
+	protected static final Dimension DIMENSIONE_MONETA_TESSERA = new Dimension(20, 20);
 
-	public static final Dimension DIMENSIONE_ASCOLTATORE_ANIMALE = DIMENSIONE_PECORA;
-	public static final Dimension DIMENSIONE_ASCOLTATORE_TERRITORIO = new Dimension(DIMENSIONE_MAPPA.height / 8, DIMENSIONE_MAPPA.height / 12);
+	protected static final Dimension DIMENSIONE_ASCOLTATORE_ANIMALE = DIMENSIONE_PECORA;
+	protected static final Dimension DIMENSIONE_ASCOLTATORE_TERRITORIO = new Dimension(DIMENSIONE_MAPPA.height / 8, DIMENSIONE_MAPPA.height / 12);
 
-	public static final Color COLORE_TESSERA_FINITA = new Color(200, 20, 20, 100);
+	protected static final Color COLORE_TESSERA_FINITA = new Color(200, 20, 20, 100);
 
-	public static final Font FONT_MESSAGGIO_ACQUISTO_TESSERA = new Font(ARIAL, Font.BOLD, 20);
+	protected static final Font FONT_MESSAGGIO_ACQUISTO_TESSERA = new Font(ARIAL, Font.BOLD, 20);
 
-	public static final Dimension DIMENSIONE_PANEL_TESSERE_ACQUISTO = new Dimension((DIMENSIONE_PANEL_TESSERA.width * 2) + 10, DIMENSIONE_PANEL_TESSERA.height + 20);
+	protected static final Dimension DIMENSIONE_PANEL_TESSERE_ACQUISTO = new Dimension((DIMENSIONE_PANEL_TESSERA.width * 2) + 10, DIMENSIONE_PANEL_TESSERA.height + 20);
 
-	public static final Dimension DIMENSIONE_IMMAGINE_SCENETTA = new Dimension(DIMENSIONE_SCHERMO.width / 2, (int) ((DIMENSIONE_SCHERMO.width / 2) * 0.6));
+	protected static final Dimension DIMENSIONE_IMMAGINE_SCENETTA = new Dimension(DIMENSIONE_SCHERMO.width / 2, (int) ((DIMENSIONE_SCHERMO.width / 2) * 0.6));
 
-	public static final Dimension DIMENSIONE_ONDE = new Dimension(DIMENSIONE_MAPPA);
+	protected static final Dimension DIMENSIONE_ONDE = new Dimension(DIMENSIONE_MAPPA);
 
-	public static final int SPOSTAMENTO_ONDA = DIMENSIONE_MAPPA.height / (18*5);
+	protected static final int SPOSTAMENTO_ONDA = DIMENSIONE_MAPPA.height / (18*5);
 
 
 	/**

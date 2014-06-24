@@ -16,6 +16,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+/**
+ * Classe che crea la finestra con la richiesta del nome e della password
+ * @author alessandrodignani
+ *
+ */
 public class FinestraChiediNome extends JFrame {
 
 	private static final long serialVersionUID = -2198792582824078626L;
@@ -27,7 +32,7 @@ public class FinestraChiediNome extends JFrame {
 
 
 	
-	public FinestraChiediNome(boolean visualizzaMessaggioNome, boolean visualizzaMessaggioPassword) {
+	protected FinestraChiediNome(boolean visualizzaMessaggioNome, boolean visualizzaMessaggioPassword) {
 		super("Sheepland - Inserisci il nome");
 
 		JLabel lblIlNomeScelto;
@@ -93,7 +98,7 @@ public class FinestraChiediNome extends JFrame {
 		contentPane.add(btnInvia);
 	}
 
-	public Coppia<String, String> riceviNome() {
+	protected Coppia<String, String> riceviNome() {
 		setVisible(true);
 		Coppia<String, String> temp = null;
 		temp = coda.aspetta();
