@@ -38,7 +38,11 @@ public class MainClient {
 	// costruttore privato per nascondere quello pubblico
 	private MainClient() {
 	}
-
+	
+	/** 
+	 * Il main del client
+	 * @param args null
+	 */
 	public static void main(String[] args) {
 		indirizzoServer = chiediIndirizzoServer();
 		connessione = chiediTipoConnessione();

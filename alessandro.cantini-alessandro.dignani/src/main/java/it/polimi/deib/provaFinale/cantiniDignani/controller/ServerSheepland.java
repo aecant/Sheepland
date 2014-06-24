@@ -126,6 +126,8 @@ public class ServerSheepland {
 			utente.setConnessione(null);
 		}
 		utente.getCodaMosse().aggiungi(CostantiController.MOSSA_DISCONNESSIONE);
+		utente.getCodaMosse().aggiungi(CostantiController.MOSSA_DISCONNESSIONE);
+		utente.getCodaMosse().aggiungi(CostantiController.MOSSA_DISCONNESSIONE);
 
 		try {
 			GestorePartita gestore = getGestorePartita(utente);
@@ -142,6 +144,20 @@ public class ServerSheepland {
 
 	}
 
+	/**
+	 * Aggiunge un utente al server
+	 * 
+	 * @param nome
+	 *            il nome dell'utente
+	 * @param password
+	 *            la password dell'utente
+	 * @param connessione
+	 *            la connessione dell'utente
+	 * @throws NomeGiaPresenteException
+	 *             se il nome e' gia' presente
+	 * @throws PasswordSbagliataException
+	 *             se la password e' sbagliata
+	 */
 	public synchronized void aggiungiUtente(String nome, String password, InterfacciaConnessioneServer connessione) throws NomeGiaPresenteException, PasswordSbagliataException {
 		Utente utente = new Utente(nome, password, connessione);
 		if (getUtentiOnline().contains(utente)) {
