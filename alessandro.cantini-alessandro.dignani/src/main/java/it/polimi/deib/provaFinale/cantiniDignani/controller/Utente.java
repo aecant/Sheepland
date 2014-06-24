@@ -7,6 +7,9 @@ import it.polimi.deib.provaFinale.cantiniDignani.utilita.Utilita;
 
 import java.util.logging.Logger;
 
+/**
+ * Classe che rappresenta un utente che si connette a un server
+ */
 public class Utente {
 	private static final Logger LOGGER = Logger.getLogger(Utente.class.getName());
 

@@ -17,15 +17,32 @@ public abstract class Timer extends Thread {
 	private boolean on = false;
 	private long inizio;
 
+	/**
+	 * Crea un timer
+	 * 
+	 * @param millisecondi
+	 *            i millisecondo dopo i quali il timer scade
+	 * @param precisione
+	 *            ogni quanto controllare che il timer sia scaduto
+	 */
 	public Timer(long millisecondi, long precisione) {
 		this.tempoDaAspettare = millisecondi;
 		this.precisione = precisione;
 	}
 
+	/**
+	 * Crea un timer
+	 * 
+	 * @param millisecondi
+	 *            i millisecondo dopo i quali il timer scade
+	 */
 	public Timer(long millisecondi) {
 		this(millisecondi, 100L);
 	}
-
+	
+	/**
+	 * Inizia il processo del timer
+	 */
 	@Override
 	public void run() {
 		while (attivo) {

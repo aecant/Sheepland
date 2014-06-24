@@ -42,10 +42,20 @@ public class InsiemeDiRecinti {
 		return recinti;
 	}
 
+	/**
+	 * Restituisce i recinti iniziali
+	 * 
+	 * @return i recinti iniziali
+	 */
 	public List<PedinaSuStrada> getRecintiIniziali() {
 		return recintiIniziali;
 	}
 
+	/**
+	 * Restituisce i recinti finali
+	 * 
+	 * @return i recinti finali
+	 */
 	public List<PedinaSuStrada> getRecintiFinali() {
 		return recintiFinali;
 	}

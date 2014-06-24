@@ -9,6 +9,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Il giocatore che gioca a una partita di Sheepland
+ */
 public class Giocatore implements Serializable {
 	private static final long serialVersionUID = -8973926581885818571L;
 
@@ -17,6 +20,12 @@ public class Giocatore implements Serializable {
 	private final List<Pastore> pastori;
 	private final List<Tessera> tessere;
 
+	/**
+	 * Crea un giocatore
+	 * 
+	 * @param nome
+	 *            il nome del giocatore
+	 */
 	public Giocatore(String nome) {
 		if (nome == null) {
 			throw new IllegalArgumentException("Il nome del giocatore non puo' essere null");
@@ -113,32 +122,57 @@ public class Giocatore implements Serializable {
 		pastori.add(pastore);
 	}
 
+	/**
+	 * Restituisce le tessere
+	 * @return le tessere
+	 */
 	public List<Tessera> getTessere() {
 		return tessere;
 	}
-
+	
+	/**
+	 * Restituisce i pastori di un giocatore
+	 * @return i pastori
+	 */
 	public List<Pastore> getPastori() {
 		return pastori;
 	}
 
+	/**
+	 * Restituisce il nome del giocatore
+	 * @return il nome
+	 */
 	public String getNome() {
 		return this.nome;
 	}
 
+	/**
+	 * Restituisce il denaro del giocatore
+	 * @return il denaro
+	 */
 	public Integer getDenaro() {
 		return this.denaro;
 	}
-
+	
+	/**
+	 * Restituisce una stringa che rappresenta il giocatore
+	 */
 	@Override
 	public String toString() {
 		return "Giocatore [nome=" + nome + ", pastori=" + pastori + "]";
 	}
 
+	/**
+	 * Restituisce l'hash code di un giocatore
+	 */
 	@Override
 	public int hashCode() {
 		return Utilita.hashCodeNome(nome);
 	}
 
+	/**
+	 * Compara il giocatore con un altro oggetto, usando il nome
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
