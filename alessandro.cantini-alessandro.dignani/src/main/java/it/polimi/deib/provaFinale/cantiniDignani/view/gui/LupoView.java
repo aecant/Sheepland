@@ -8,11 +8,17 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+/**
+ * classe che si occpupa della visualizzazione di una pedina
+ * di tipo Lupo
+ * @author alessandrodignani
+ *
+ */
 public class LupoView extends PedinaView {
 
 	private static final long serialVersionUID = 611823202675870719L;
 
-	public LupoView(int posizioneX, int posizioneY) {
+	protected LupoView(int posizioneX, int posizioneY) {
 		super(posizioneX, posizioneY, CostantiGui.DIMENSIONE_LUPO);
 
 		JLabel immagine;
@@ -23,7 +29,7 @@ public class LupoView extends PedinaView {
 		add(immagine);
 	}
 
-	public LupoView(Point coordinate) {
+	protected LupoView(Point coordinate) {
 		this(coordinate.x, coordinate.y);
 	}
 }

@@ -11,6 +11,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/**
+ * Classe che gestisce il panel con le mosse
+ * @author alessandrodignani
+ *
+ */
 public class PanelMossa extends JPanel {
 
 	private static final long serialVersionUID = 4003349145527582509L;
@@ -18,7 +23,7 @@ public class PanelMossa extends JPanel {
 	JButton bottone;
 	ImageIcon sfondo;
 
-	public PanelMossa(TipoMossa tipoMossa) {
+	protected PanelMossa(TipoMossa tipoMossa) {
 		setLayout(new BorderLayout());
 		setPreferredSize(CostantiGui.DIMENSIONE_PANEL_MOSSA);
 		setSize(getPreferredSize());

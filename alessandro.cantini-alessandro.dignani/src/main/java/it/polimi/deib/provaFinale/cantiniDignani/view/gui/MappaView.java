@@ -31,7 +31,7 @@ public class MappaView extends BackgroundMappaPanel {
 	protected List<PedinaListener> ascoltatori = new ArrayList<PedinaListener>();
 	
 
-	public MappaView(boolean riconnessione) {
+	protected MappaView(boolean riconnessione) {
 		super(Toolkit.getDefaultToolkit().getImage(CostantiGui.PERCORSO_IMMAGINI + "mappaSheepland.png")
 				.getScaledInstance(CostantiGui.DIMENSIONE_MAPPA.width, CostantiGui.DIMENSIONE_MAPPA.height, Image.SCALE_SMOOTH));
 		this.setPreferredSize(CostantiGui.DIMENSIONE_MAPPA);
@@ -95,7 +95,7 @@ public class MappaView extends BackgroundMappaPanel {
 		add(recintoTemp);
 	}
 
-	public final void creaPastore(int strada, ColorePastore colore) {
+	protected final void creaPastore(int strada, ColorePastore colore) {
 		Point coordinataStrada = coordinateStrade[strada];
 		PastoreView past = new PastoreView(coordinataStrada.x - CostantiGui.DIMENSIONE_PASTORE.width / 2, coordinataStrada.y - CostantiGui.DIMENSIONE_PASTORE.height / 2, colore, strada);
 		pastori.add(past);
@@ -109,14 +109,25 @@ public class MappaView extends BackgroundMappaPanel {
 		territoriView.get(codTerritorio).disegna();
 	}
 
+	/**
+	 * Getter per le coordinate dei territori scalate
+	 * @return
+	 */
 	public Point[][] getCoordinateTerritori() {
 		return coordinateTerritori;
 	}
 
+	/**
+	 * Getter per le coordinate delle strade scalate
+	 * @return
+	 */
 	public Point[] getCoordinateStrade() {
 		return coordinateStrade;
 	}
 
+	/**
+	 * Metodo che visualizza il movimento di un ovino
+	 */
 	public void movimentoPecora(TipoAnimale tipoOvino, int origine, int destinazione) {
 		Point orig = territoriView.get(origine).getCoordinate(tipoOvino);
 		Point dest = territoriView.get(destinazione).getCoordinate(tipoOvino);
@@ -147,8 +158,9 @@ public class MappaView extends BackgroundMappaPanel {
 		territoriView.get(destinazione).aggiorna();
 		territoriView.get(destinazione).disegna();
 	}
-
-	public void movimentoPecoraNera(int origine, int destinazione) {
+	
+	
+	protected void movimentoPecoraNera(int origine, int destinazione) {
 		territoriView.get(origine).getPecoraNera().muovi(territoriView.get(destinazione).getCoordinate(TipoAnimale.PECORA_NERA));
 		territoriView.get(origine).aggiorna();
 		territoriView.get(origine).disegna();
@@ -156,7 +168,7 @@ public class MappaView extends BackgroundMappaPanel {
 		territoriView.get(destinazione).disegna();
 	}
 
-	public void movimentoLupo(int origine, int destinazione) {
+	protected void movimentoLupo(int origine, int destinazione) {
 		territoriView.get(origine).getLupo().muovi(territoriView.get(destinazione).getCoordinate(TipoAnimale.LUPO));
 		territoriView.get(origine).aggiorna();
 		territoriView.get(origine).disegna();
@@ -164,7 +176,7 @@ public class MappaView extends BackgroundMappaPanel {
 		territoriView.get(destinazione).disegna();
 	}
 
-	public void inserisciSegnaliniIniziali(boolean[] stradeLibere) {
+	protected void inserisciSegnaliniIniziali(boolean[] stradeLibere) {
 		for (int i = 0; i < CostantiModel.NUM_STRADE; i++) {
 			if (stradeLibere[i]) {
 				SegnalinoStrada segnalinoTemp = new SegnalinoStrada(coordinateStrade[i], false, i);
@@ -175,7 +187,7 @@ public class MappaView extends BackgroundMappaPanel {
 		repaint();
 	}
 
-	public void aggiungiSegnaliniPastori() {
+	protected void aggiungiSegnaliniPastori() {
 		for (Pastore p : MainClient.getDatiPartita().getGiocatore(MainClient.getDatiPartita().getGiocatoreDiTurno()).getPastori()) {
 			SegnalinoStrada segnalinoTemp = new SegnalinoStrada(coordinateStrade[p.getStrada().getCodice()], false, p.getStrada().getCodice());
 			segnalini.add(segnalinoTemp);
@@ -184,7 +196,7 @@ public class MappaView extends BackgroundMappaPanel {
 		repaint();
 	}
 
-	public void movimentoPastore(int origine, int destinazione) {
+	protected void movimentoPastore(int origine, int destinazione) {
 		for (PastoreView p : pastori) {
 			if (p.getCodStrada() == origine) {
 				p.muovi(coordinateStrade[destinazione]);
@@ -200,7 +212,7 @@ public class MappaView extends BackgroundMappaPanel {
 		}
 	}
 
-	public void inserisciSegnalini(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento) {
+	protected void inserisciSegnalini(boolean[] stradeLibereGratis, boolean[] stradeLibereAPagamento) {
 		for (int i = 0; i < CostantiModel.NUM_STRADE; i++) {
 			SegnalinoStrada segnalinoTemp = null;
 			if (stradeLibereGratis[i]) {
@@ -216,7 +228,7 @@ public class MappaView extends BackgroundMappaPanel {
 		repaint();
 	}
 
-	public void aggiungiAscoltatoriAnimali(List<Coppia<Integer, TipoAnimale>> oviniSpostabili) {
+	protected void aggiungiAscoltatoriAnimali(List<Coppia<Integer, TipoAnimale>> oviniSpostabili) {
 		Integer indice = 0;
 		for (Coppia<Integer, TipoAnimale> coppia : oviniSpostabili) {
 			PedinaListener temp = new PedinaListener(territoriView.get(coppia.getPrimo()).getCoordinate(coppia.getSecondo()), CostantiGui.DIMENSIONE_ASCOLTATORE_ANIMALE, indice);
@@ -227,7 +239,7 @@ public class MappaView extends BackgroundMappaPanel {
 		repaint();
 	}
 
-	public void aggiungiAscoltatoriTerritori(Collection<Integer> territoriDisponibili) {
+	protected void aggiungiAscoltatoriTerritori(Collection<Integer> territoriDisponibili) {
 		for (Integer codTerritorio : territoriDisponibili) {
 			PedinaListener temp = new PedinaListener(territoriView.get(codTerritorio).getCoordinataCentrale(), CostantiGui.DIMENSIONE_ASCOLTATORE_TERRITORIO, codTerritorio);
 			ascoltatori.add(temp);

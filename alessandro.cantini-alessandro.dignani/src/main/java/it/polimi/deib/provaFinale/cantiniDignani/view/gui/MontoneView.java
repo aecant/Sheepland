@@ -7,7 +7,11 @@ import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
+/**
+ * Classe che si occupa della visualizzazione della pedina di tipo montone
+ * @author alessandrodignani
+ *
+ */
 public class MontoneView extends PedinaConContatoreView {
 
 	private static final long serialVersionUID = -2111643752999646338L;
