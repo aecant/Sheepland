@@ -1,5 +1,5 @@
 # Sheepland
-This was my final project for Bachelor's Degree in Computer Science and Engineering at Politecnico di Milano.
+This was my final project for BSc in Engineering of Computing Systems at Politecnico di Milano.
 It was a team effort with [Alessandro Dignani](https://github.com/alessandrodignani).
 
 [Sheepland](https://www.amazon.it/Cranio-Creations-CC012-Gioco-Sheepland/dp/B008JY9D7U) is a board game by Cranio Creations, and this project is a videogame transposition of the original game.
