@@ -1,13 +1,13 @@
 # Sheepland
 This was my final project for Bachelor's Degree in Computer Science and Engineering at Politecnico di Milano.
-I did it with [Alessandro Dignani](https://github.com/alessandrodignani).
+It was a team effort with [Alessandro Dignani](https://github.com/alessandrodignani).
 
 [Sheepland](https://www.amazon.it/Cranio-Creations-CC012-Gioco-Sheepland/dp/B008JY9D7U) is a board game by Cranio Creations, and this project is a videogame transposition of the original game.
 It is written in Java 7 and it's developed under client-server architecture.
 
 This was our first OOP project and the code is written in Italian, we were young :)
 
-## Use guide
+## User guide
 To play a game of Sheepland you must first start the server the MainServer class, and then start the client by running the MainClient class (both are contained in the controller package).
 
 The server accepts clients that connect both with RMI and socket.
