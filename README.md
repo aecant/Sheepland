@@ -25,3 +25,5 @@ If the connection with the server is lost or if you close the client application
 The matches can take place with users who choose different connections and user interfaces. For example, you could play a game between a user connected via a socket using the CLI and a user connected via RMI using the GUI. A user can log off using RMI and reconnect via socket, and vice versa.
 
 To play with the CLI, the user must have the Sheepland map in hand with the codes of the roads and the territory (the map is in the Documentation folder).
+
+[!blacksheep](https://raw.github.com/aecant/Sheepland/blob/master/screenshots/Screenshot_blacksheep.png)
