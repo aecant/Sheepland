@@ -26,4 +26,24 @@ The matches can take place with users who choose different connections and user 
 
 To play with the CLI, the user must have the Sheepland map in hand with the codes of the roads and the territory (the map is in the Documentation folder).
 
-![Blacksheep](https://github.com/aecant/Sheepland/blob/master/screenshots/Screenshot_blacksheep.png)
+
+## Screenshots
+![blacksheep](https://github.com/aecant/Sheepland/blob/master/screenshots/Screenshot_blacksheep.png)
+
+![coupling_success](https://github.com/aecant/Sheepland/blob/master/screenshots/Screenshot_coupling_success.png)
+
+![knocking_down_success](https://github.com/aecant/Sheepland/blob/master/screenshots/Screenshot_knocking_down_success.png)
+
+![movement_selection](https://github.com/aecant/Sheepland/blob/master/screenshots/Screenshot_movement_selection.png)
+
+![coupling](https://github.com/aecant/Sheepland/blob/master/screenshots/Screenshot_coupling.png)
+
+![general_view](https://github.com/aecant/Sheepland/blob/master/screenshots/Screenshot_general_view.png)
+
+![market_acquisition](https://github.com/aecant/Sheepland/blob/master/screenshots/Screenshot_market_acquisition.png)
+
+![coupling_failed](https://github.com/aecant/Sheepland/blob/master/screenshots/Screenshot_coupling_failed.png)
+
+![knocking_down](https://github.com/aecant/Sheepland/blob/master/screenshots/Screenshot_knocking_down.png)
+
+![market_selloff](https://github.com/aecant/Sheepland/blob/master/screenshots/Screenshot_market_selloff.png)
