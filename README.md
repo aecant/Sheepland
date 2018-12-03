@@ -26,4 +26,4 @@ The matches can take place with users who choose different connections and user 
 
 To play with the CLI, the user must have the Sheepland map in hand with the codes of the roads and the territory (the map is in the Documentation folder).
 
-![Blacksheep](https://raw.github.com/aecant/Sheepland/blob/master/screenshots/Screenshot_blacksheep.png)
+![Blacksheep](https://github.com/aecant/Sheepland/blob/master/screenshots/Screenshot_blacksheep.png)
